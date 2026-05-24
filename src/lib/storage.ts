@@ -1,7 +1,7 @@
 export interface Project {
   id: number;
   title: string;
-  category: "auditórios" | "igrejas" | "corporativos" | string;
+  category: "auditórios" | "teatros" | "igrejas" | "corporativos" | string;
   image: string;
   images?: string[]; // Suporte para o carrossel
   seoAlt?: string;

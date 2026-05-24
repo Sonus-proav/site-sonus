@@ -17,7 +17,7 @@ export function Footer() {
             </Link>
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mb-6">
               Soluções integradas em áudio e vídeo de alta performance. 
-              25 anos de tradição transformando ambientes em experiências inesquecíveis.
+              28 anos de tradição transformando ambientes em experiências inesquecíveis.
             </p>
           </div>
 

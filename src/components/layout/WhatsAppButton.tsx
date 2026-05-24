@@ -22,7 +22,7 @@ export function WhatsAppButton() {
         </span>
       </div>
       <span className="font-semibold hidden sm:inline-block whitespace-nowrap">
-        Contate direto por WhatsApp
+        WhatsApp
       </span>
     </a>
   )

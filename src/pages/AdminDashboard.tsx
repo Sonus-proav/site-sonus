@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
+import { motion, Reorder } from "framer-motion"
 import { FadeIn } from "@/components/ui/FadeIn"
-import { Plus, Edit3, Trash2, Home } from "lucide-react"
+import { Plus, Edit3, Trash2, Home, GripVertical } from "lucide-react"
 import { Link } from "react-router-dom"
-import { type Project, getProjects, deleteProject, addProject, updateProject } from "@/lib/storage"
+import { type Project, getProjects, deleteProject, addProject, updateProject, saveProjects } from "@/lib/storage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
 
 export function AdminDashboard() {
@@ -11,9 +11,23 @@ export function AdminDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingProject, setEditingProject] = useState<Project | null>(null)
 
+  const latestProjects = useRef<Project[]>([])
+
   useEffect(() => {
-    getProjects().then(setProjects)
+    getProjects().then(data => {
+      setProjects(data)
+      latestProjects.current = data
+    })
   }, [])
+
+  const handleReorder = (newOrder: Project[]) => {
+    setProjects(newOrder)
+    latestProjects.current = newOrder
+  }
+
+  const handleDragEnd = async () => {
+    await saveProjects(latestProjects.current)
+  }
 
   const handleDelete = async (id: number) => {
     if (confirm("Tem certeza que deseja excluir este projeto?")) {
@@ -73,23 +87,28 @@ export function AdminDashboard() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-white/10 bg-black/50 text-zinc-400 text-sm uppercase tracking-wider">
+                    <th className="p-4 md:p-6 w-10"></th>
                     <th className="p-4 md:p-6 font-medium">Imagem</th>
                     <th className="p-4 md:p-6 font-medium">Título</th>
                     <th className="p-4 md:p-6 font-medium">Categoria</th>
                     <th className="p-4 md:p-6 font-medium text-right">Ações</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <Reorder.Group as="tbody" axis="y" values={projects} onReorder={handleReorder} className="divide-y divide-white/5">
                   {projects.map((project) => (
-                    <motion.tr 
+                    <Reorder.Item 
+                      as="tr"
                       key={project.id}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="hover:bg-white/[0.02] transition-colors group"
+                      value={project}
+                      onDragEnd={handleDragEnd}
+                      className="hover:bg-white/[0.02] transition-colors group bg-zinc-950/50"
                     >
+                      <td className="p-4 md:p-6 text-zinc-600 cursor-grab active:cursor-grabbing">
+                        <GripVertical className="w-5 h-5 hover:text-white transition-colors" />
+                      </td>
                       <td className="p-4 md:p-6">
                         <div className="w-16 h-12 rounded-lg overflow-hidden bg-zinc-900 border border-white/10">
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                          <img src={project.image} alt={project.title} className="w-full h-full object-cover pointer-events-none" />
                         </div>
                       </td>
                       <td className="p-4 md:p-6 font-medium text-white">
@@ -103,32 +122,32 @@ export function AdminDashboard() {
                       <td className="p-4 md:p-6 text-zinc-400 uppercase text-xs tracking-wider">
                         {project.category}
                       </td>
-                      <td className="p-4 md:p-6 text-right space-x-2">
+                      <td className="p-4 md:p-6 text-right space-x-2 relative z-10">
                         <button 
-                          onClick={() => handleEdit(project)}
+                          onClick={(e) => { e.stopPropagation(); handleEdit(project); }}
                           className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white transition-colors"
                           title="Editar"
                         >
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button 
-                          onClick={() => handleDelete(project.id)}
+                          onClick={(e) => { e.stopPropagation(); handleDelete(project.id); }}
                           className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
                           title="Excluir"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </td>
-                    </motion.tr>
+                    </Reorder.Item>
                   ))}
                   {projects.length === 0 && (
                     <tr>
-                      <td colSpan={4} className="p-8 text-center text-zinc-500">
+                      <td colSpan={5} className="p-8 text-center text-zinc-500">
                         Nenhum projeto encontrado.
                       </td>
                     </tr>
                   )}
-                </tbody>
+                </Reorder.Group>
               </table>
             </div>
           </div>

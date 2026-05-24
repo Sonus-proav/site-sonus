@@ -18,7 +18,7 @@ export function Projects() {
       <div className="container px-4 md:px-6">
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-            Nosso Portfólio de <span className="text-primary">Excelência</span>
+            Nosso Portfólio Profissional
           </h1>
           <p className="text-lg text-zinc-400 font-light">
             Explore nossa galeria de projetos e descubra como transformamos espaços comuns em ambientes extraordinários com soluções audiovisuais de última geração.
@@ -29,7 +29,8 @@ export function Projects() {
           <Tabs defaultValue="todos" className="w-full flex flex-col items-center">
             <TabsList className="bg-black/50 border border-white/10 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12">
               <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Todos</TabsTrigger>
-              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Auditórios e Teatros</TabsTrigger>
+              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Auditórios</TabsTrigger>
+              <TabsTrigger value="teatros" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Teatros</TabsTrigger>
               <TabsTrigger value="igrejas" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Igrejas e Templos</TabsTrigger>
               <TabsTrigger value="corporativos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Corporativos</TabsTrigger>
             </TabsList>
@@ -39,6 +40,9 @@ export function Projects() {
             </TabsContent>
             <TabsContent value="auditórios" className="w-full mt-0">
               <ProjectGrid filter="auditórios" projects={projectsData} />
+            </TabsContent>
+            <TabsContent value="teatros" className="w-full mt-0">
+              <ProjectGrid filter="teatros" projects={projectsData} />
             </TabsContent>
             <TabsContent value="igrejas" className="w-full mt-0">
               <ProjectGrid filter="igrejas" projects={projectsData} />

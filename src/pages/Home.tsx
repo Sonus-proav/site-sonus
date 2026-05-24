@@ -58,30 +58,31 @@ ${formData.message}`
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              <span className="text-sm font-medium tracking-wide">25 Anos de Tradição e Inovação</span>
+              <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
-              Integração e Projetos Audiovisuais de <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Alta Performance</span>
+            <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+              Som e Vídeo que <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Transformam Ambientes</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
-              Transformamos ambientes em experiências sensoriais inesquecíveis. 
-              Especialistas em sonorização corporativa, automação de salas de reunião e sistemas acústicos para auditórios e igrejas.
+            <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Há 28 anos projetando e implantando o melhor.<br />
+              Projetos profissionais e personalizados para Auditórios, Igrejas, <br className="hidden md:block" />
+              Reunião Online, Salas de Treinamento e Teatros.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
               <a href="#contato" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
-                  Solicite seu Orçamento
+                  Inicie Seu Projeto Conosco
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
               <Link to="/projetos" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/10 border-white/20 hover:bg-white/20 text-white backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all">
                   <Play className="mr-2 h-5 w-5 text-primary" />
-                  Nossos Projetos
+                  Explore Nosso Portfólio
                 </Button>
               </Link>
             </div>
@@ -103,7 +104,7 @@ ${formData.message}`
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-8 left-8 z-20 bg-black/60 backdrop-blur-xl border border-white/10 p-6 rounded-2xl">
-                  <div className="text-5xl font-black text-primary mb-2">+25</div>
+                  <div className="text-5xl font-black text-primary mb-2">+28</div>
                   <div className="text-zinc-300 font-medium">Anos de Mercado<br/>CNPJ consolidado</div>
                 </div>
               </div>
@@ -111,14 +112,15 @@ ${formData.message}`
             
             <FadeIn direction="left" delay={0.2} className="space-y-8">
               <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-                Autoridade em <span className="text-primary">Integração</span>
+                Nossa História, <br />
+                <span className="text-primary">Sua Segurança</span>
               </h2>
               <div className="space-y-6 text-zinc-400 leading-relaxed text-lg font-light">
                 <p>
-                  A Sonus nasceu há 25 anos com o propósito de elevar o padrão da integração audiovisual no Brasil. Unimos a tradição de uma empresa sólida com a constante busca por inovações, como instalação de ecossistemas Q-SYS e microfonação inteligente Shure.
+                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — Seja em um grande auditório, igreja ou uma sala de diretoria.
                 </p>
                 <p>
-                  Nossa expertise B2B nos permite arquitetar sistemas de videoconferência complexos que funcionam com simplicidade extrema. Não entregamos apenas equipamentos, entregamos soluções acústicas integradas que conectam negócios.
+                  Nossa trajetória une a solidez da experiência prática com a agilidade para adotar as inovações tecnológicas mais confiáveis. Nosso compromisso não termina na entrega; nós somos parceiros do seu sucesso em cada projeto.
                 </p>
               </div>
               
@@ -169,7 +171,7 @@ ${formData.message}`
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                  <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Ex: João Silva" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white" />
+                  <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
@@ -178,14 +180,14 @@ ${formData.message}`
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="joao@empresa.com.br" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white" />
+                <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descrição do Projeto</label>
-                <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos um pouco sobre a sua necessidade..." className="bg-black/50 border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-white" />
+                <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-black/50 border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-white" />
               </div>
               <Button type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_15px_rgba(41,128,185,0.3)] transition-all">
-                Enviar Solicitação
+                Enviar
               </Button>
             </form>
           </FadeIn>

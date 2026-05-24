@@ -172,7 +172,8 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
                 onChange={e => setCategory(e.target.value)}
                 className="w-full bg-black/50 border border-white/10 rounded-xl h-12 px-4 text-white focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
               >
-                <option value="auditórios">Auditórios e Teatros</option>
+                <option value="auditórios">Auditórios</option>
+                <option value="teatros">Teatros</option>
                 <option value="igrejas">Igrejas e Templos</option>
                 <option value="corporativos">Corporativos</option>
               </select>
