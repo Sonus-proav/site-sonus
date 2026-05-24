@@ -134,7 +134,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           </AnimatePresence>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
           <p className="text-primary font-medium text-sm tracking-wider uppercase mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100">
             {project.category}
           </p>
@@ -146,7 +146,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
         {/* Carousel Controls */}
         {hasMultipleImages && (
-          <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10 pointer-events-auto">
+          <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
             <button 
               onClick={prevImage}
               className="p-1.5 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md transition-colors"
@@ -164,7 +164,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
         {/* Carousel Indicators */}
         {hasMultipleImages && (
-          <div className="absolute bottom-4 right-4 flex gap-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+          <div className="absolute bottom-4 right-4 flex gap-1 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
             {images.map((_, i) => (
               <div 
                 key={i} 
