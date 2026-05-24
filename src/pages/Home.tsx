@@ -66,11 +66,14 @@ ${formData.message}`
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Transformam Ambientes</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
-              Há 28 anos projetando e implantando o melhor.<br />
-              Projetos personalizados e automatizados para Auditórios, Igrejas, <br className="hidden md:block" />
-              Reunião Online, Salas de Treinamento e Teatros.
-            </p>
+            <div className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed space-y-3 sm:space-y-4 px-2 text-balance">
+              <p className="font-normal text-zinc-300">
+                Há 28 anos projetando e implantando o melhor.
+              </p>
+              <p>
+                Projetos personalizados e automatizados para Auditórios, Igrejas, Reunião Online, Salas de Treinamento e Teatros.
+              </p>
+            </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
               <a href="#contato" className="w-full sm:w-auto">
