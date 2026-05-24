@@ -120,7 +120,7 @@ ${formData.message}`
               </h2>
               <div className="space-y-6 text-zinc-400 leading-relaxed text-lg font-light">
                 <p>
-                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — Seja em um grande auditório, igreja ou uma sala de diretoria.
+                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — Seja em um grande auditório, igreja ou uma sala de reunião e videconferencia de uma multinacional.
                 </p>
                 <p>
                   Nossa trajetória une a solidez da experiência prática com a agilidade para adotar as inovações tecnológicas mais confiáveis. Nosso compromisso não termina na entrega, nós somos parceiros do seu sucesso em cada projeto.
