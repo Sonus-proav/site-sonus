@@ -4,6 +4,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
 import { getProjects, type Project } from "@/lib/storage"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export function ProjectDetails() {
   const { id } = useParams()
@@ -18,8 +19,25 @@ export function ProjectDetails() {
     })
   }, [id])
 
+
   if (loading) {
-    return <div className="min-h-screen bg-black pt-32 flex justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></div>
+    return (
+      <div className="min-h-screen pt-32 pb-24">
+        <div className="container px-4 md:px-6">
+          <Skeleton className="w-48 h-10 rounded-full mb-8" />
+          <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <Skeleton className="w-full aspect-[4/3] rounded-2xl" />
+            <div className="flex flex-col h-full justify-center">
+              <div className="bg-black/40 border border-white/10 p-8 md:p-12 rounded-3xl">
+                <Skeleton className="w-32 h-4 mb-4" />
+                <Skeleton className="w-3/4 h-10 mb-4" />
+                <Skeleton className="w-full h-32" />
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    )
   }
 
   const hasMultipleImages = project?.images && project.images.length > 1

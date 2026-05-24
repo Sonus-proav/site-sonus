@@ -10,42 +10,29 @@ interface ProjectModalProps {
   initialData?: Project | null
 }
 
-const compressImage = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      const img = new Image();
-      img.src = event.target?.result as string;
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const MAX_WIDTH = 1000;
-        const MAX_HEIGHT = 1000;
-        let width = img.width;
-        let height = img.height;
+import imageCompression from 'browser-image-compression';
 
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-            height = MAX_HEIGHT;
-          }
-        }
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        ctx?.drawImage(img, 0, 0, width, height);
-        // Comprime para formato WebP com qualidade 70%
-        resolve(canvas.toDataURL("image/webp", 0.7));
-      };
-      img.onerror = (error) => reject(error);
+const compressImage = async (file: File): Promise<string> => {
+  try {
+    const options = {
+      maxSizeMB: 0.3,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+      fileType: 'image/webp'
     };
-    reader.onerror = (error) => reject(error);
-  });
+    
+    const compressedFile = await imageCompression(file, options);
+    
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(compressedFile);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  } catch (error) {
+    console.error('Error compressing image:', error);
+    throw error;
+  }
 };
 
 export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectModalProps) {

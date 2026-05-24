@@ -5,12 +5,17 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { getProjects, type Project } from "@/lib/storage"
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export function Projects() {
   const [projectsData, setProjectsData] = useState<Project[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getProjects().then(setProjectsData)
+    getProjects().then(data => {
+      setProjectsData(data)
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -36,19 +41,19 @@ export function Projects() {
             </TabsList>
 
             <TabsContent value="todos" className="w-full mt-0">
-              <ProjectGrid filter="todos" projects={projectsData} />
+              <ProjectGrid filter="todos" projects={projectsData} loading={isLoading} />
             </TabsContent>
             <TabsContent value="auditórios" className="w-full mt-0">
-              <ProjectGrid filter="auditórios" projects={projectsData} />
+              <ProjectGrid filter="auditórios" projects={projectsData} loading={isLoading} />
             </TabsContent>
             <TabsContent value="teatros" className="w-full mt-0">
-              <ProjectGrid filter="teatros" projects={projectsData} />
+              <ProjectGrid filter="teatros" projects={projectsData} loading={isLoading} />
             </TabsContent>
             <TabsContent value="igrejas" className="w-full mt-0">
-              <ProjectGrid filter="igrejas" projects={projectsData} />
+              <ProjectGrid filter="igrejas" projects={projectsData} loading={isLoading} />
             </TabsContent>
             <TabsContent value="corporativos" className="w-full mt-0">
-              <ProjectGrid filter="corporativos" projects={projectsData} />
+              <ProjectGrid filter="corporativos" projects={projectsData} loading={isLoading} />
             </TabsContent>
           </Tabs>
         </FadeIn>
@@ -57,7 +62,17 @@ export function Projects() {
   )
 }
 
-function ProjectGrid({ filter, projects }: { filter: string, projects: Project[] }) {
+function ProjectGrid({ filter, projects, loading }: { filter: string, projects: Project[], loading: boolean }) {
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[...Array(6)].map((_, i) => (
+          <Skeleton key={i} className="w-full aspect-[4/3] rounded-2xl" />
+        ))}
+      </div>
+    )
+  }
+
   const filteredProjects = filter === "todos" 
     ? projects 
     : projects.filter(p => p.category === filter)
