@@ -68,7 +68,7 @@ ${formData.message}`
             
             <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
               Há 28 anos projetando e implantando o melhor.<br />
-              Projetos profissionais e personalizados para Auditórios, Igrejas, <br className="hidden md:block" />
+              Projetos personalizados e automatizados para Auditórios, Igrejas, <br className="hidden md:block" />
               Reunião Online, Salas de Treinamento e Teatros.
             </p>
             
