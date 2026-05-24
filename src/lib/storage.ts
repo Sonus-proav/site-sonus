@@ -1,5 +1,6 @@
 import { collection, doc, getDocs, deleteDoc, writeBatch, updateDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, storage } from './firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import defaultProjects from "../../data/projects.json";
 
 export interface Project {
@@ -12,6 +13,15 @@ export interface Project {
   description?: string;
   order?: number;
   isHidden?: boolean;
+}
+
+export async function uploadImageToStorage(file: File): Promise<string> {
+  // Cria um nome único usando timestamp para evitar conflitos
+  const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "")}`;
+  const storageRef = ref(storage, `projects/${filename}`);
+  
+  await uploadBytes(storageRef, file);
+  return await getDownloadURL(storageRef);
 }
 
 export async function getProjects(): Promise<Project[]> {

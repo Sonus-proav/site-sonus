@@ -11,8 +11,9 @@ interface ProjectModalProps {
 }
 
 import imageCompression from 'browser-image-compression';
+import { uploadImageToStorage } from "@/lib/storage";
 
-const compressImage = async (file: File): Promise<string> => {
+const compressImage = async (file: File): Promise<File> => {
   try {
     const options = {
       maxSizeMB: 0.15,
@@ -21,14 +22,7 @@ const compressImage = async (file: File): Promise<string> => {
       fileType: 'image/webp'
     };
     
-    const compressedFile = await imageCompression(file, options);
-    
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(compressedFile);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
+    return await imageCompression(file, options);
   } catch (error) {
     console.error('Error compressing image:', error);
     throw error;
@@ -64,12 +58,14 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
     if (file) {
       setIsCompressing(true)
       try {
-        const compressedBase64 = await compressImage(file)
+        const compressedFile = await compressImage(file)
+        const downloadURL = await uploadImageToStorage(compressedFile)
+        
         const newImages = [...images]
-        newImages[index] = compressedBase64
+        newImages[index] = downloadURL
         setImages(newImages)
       } catch (err) {
-        console.error("Erro ao comprimir imagem", err)
+        console.error("Erro ao comprimir/upload da imagem", err)
         alert("Ocorreu um erro ao processar a imagem. Tente outra.")
       } finally {
         setIsCompressing(false)
