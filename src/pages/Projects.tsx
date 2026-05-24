@@ -113,7 +113,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-900 border border-white/10 cursor-pointer h-full"
+        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-900 border border-white/10 cursor-pointer h-full will-change-transform"
       >
         <div className="relative w-full h-full overflow-hidden">
           {!isImageLoaded && (
@@ -126,12 +126,13 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               alt={project.seoAlt || project.title}
               loading={index < 2 ? "eager" : "lazy"}
               fetchPriority={index < 2 ? "high" : "auto"}
+              decoding="async"
               onLoad={() => setIsImageLoaded(true)}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: isImageLoaded ? 1 : 0, scale: isImageLoaded ? 1 : 1.05 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10 will-change-transform"
             />
           </AnimatePresence>
         </div>
