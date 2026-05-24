@@ -88,16 +88,20 @@ function ProjectGrid({ filter, projects, loading }: { filter: string, projects: 
 
 function ProjectCard({ project, index }: { project: Project, index: number }) {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
+  
   const hasMultipleImages = project.images && project.images.length > 1
   const images = hasMultipleImages ? project.images! : [project.image]
 
   const nextImage = (e: React.MouseEvent) => {
-    e.preventDefault() // Prevents Link navigation
+    e.preventDefault()
+    setIsImageLoaded(false)
     setCurrentImgIndex((prev) => (prev + 1) % images.length)
   }
 
   const prevImage = (e: React.MouseEvent) => {
     e.preventDefault()
+    setIsImageLoaded(false)
     setCurrentImgIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
@@ -110,17 +114,22 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-900 border border-white/10 cursor-pointer h-full"
       >
         <div className="relative w-full h-full overflow-hidden">
+          {!isImageLoaded && (
+            <Skeleton className="absolute inset-0 w-full h-full rounded-none z-0" />
+          )}
           <AnimatePresence initial={false}>
             <motion.img 
               key={currentImgIndex}
               src={images[currentImgIndex]} 
               alt={project.seoAlt || project.title}
-              loading="lazy"
+              loading={index < 2 ? "eager" : "lazy"}
+              fetchPriority={index < 2 ? "high" : "auto"}
+              onLoad={() => setIsImageLoaded(true)}
               initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: isImageLoaded ? 1 : 0, scale: isImageLoaded ? 1 : 1.05 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10"
             />
           </AnimatePresence>
         </div>
