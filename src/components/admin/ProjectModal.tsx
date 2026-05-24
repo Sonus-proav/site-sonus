@@ -6,7 +6,7 @@ import type { Project } from "@/lib/storage"
 interface ProjectModalProps {
   isOpen: boolean
   onClose: () => void
-  onSave: (project: Omit<Project, "id">) => void
+  onSave: (project: Omit<Project, "id">) => Promise<void>
   initialData?: Project | null
 }
 
@@ -41,6 +41,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
   const [description, setDescription] = useState("")
   const [images, setImages] = useState<string[]>([""])
   const [isCompressing, setIsCompressing] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
@@ -88,7 +89,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
     setImages(newImages)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const cleanImages = images.filter(img => img.trim() !== "")
     
@@ -97,14 +98,19 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
       return
     }
 
-    onSave({
-      title,
-      category,
-      description,
-      image: cleanImages[0],
-      images: cleanImages,
-      seoAlt: `Projeto de ${category} - ${title}`
-    })
+    setIsSaving(true)
+    try {
+      await onSave({
+        title,
+        category,
+        description,
+        image: cleanImages[0],
+        images: cleanImages,
+        seoAlt: `Projeto de ${category} - ${title}`
+      })
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   if (!isOpen) return null
@@ -229,10 +235,10 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
 
             <button 
               type="submit"
-              disabled={isCompressing}
+              disabled={isCompressing || isSaving}
               className="w-full h-14 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-[0_0_15px_rgba(41,128,185,0.3)] mt-8"
             >
-              {isCompressing ? "Processando..." : "Salvar Projeto"}
+              {isCompressing ? "Processando Imagem..." : isSaving ? "Salvando no Banco..." : "Salvar Projeto"}
             </button>
           </form>
         </motion.div>
