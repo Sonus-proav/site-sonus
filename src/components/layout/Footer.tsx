@@ -16,7 +16,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mb-6">
-              Soluções integradas em áudio e vídeo de alta performance. CNPJ: 02.484.642/0001-39
+              Soluções integradas em áudio e vídeo de alta performance.
               28 anos de tradição transformando ambientes em experiências inesquecíveis.
             </p>
           </div>
@@ -55,7 +55,7 @@ export function Footer() {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-zinc-500 text-xs">
-            © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados.
+            © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados. CNPJ: 02.484.642/0001-39
           </p>
         </div>
       </div>
