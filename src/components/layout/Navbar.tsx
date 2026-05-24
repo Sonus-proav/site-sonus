@@ -1,0 +1,91 @@
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { Menu, X, AudioLines } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navLinks = [
+    { name: "Início", path: "/" },
+    { name: "Sobre Nós", path: "/#sobre" },
+    { name: "Portfólio", path: "/projetos" },
+    { name: "Contato", path: "/#contato" },
+  ]
+
+  return (
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+        isScrolled
+          ? "bg-black/60 backdrop-blur-md border-white/10 shadow-lg py-3"
+          : "bg-transparent py-5"
+      )}
+    >
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="bg-primary/20 p-2 rounded-xl group-hover:bg-primary/30 transition-colors">
+            <AudioLines className="h-6 w-6 text-primary" />
+          </div>
+          <img 
+            src="/logo.png" 
+            alt="Sonus Logo" 
+            className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity ml-1" 
+          />
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className="text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+            >
+              {link.name}
+            </Link>
+          ))}
+          <a
+            href="/#contato"
+            className="text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)] hover:shadow-[0_0_25px_rgba(41,128,185,0.6)]"
+          >
+            Orçamento
+          </a>
+        </nav>
+
+        {/* Mobile Nav Toggle */}
+        <button
+          className="md:hidden text-zinc-300 hover:text-white"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 py-4 px-4 flex flex-col gap-4 shadow-xl">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className="text-base font-medium text-zinc-300 hover:text-white transition-colors px-2 py-1"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </header>
+  )
+}
