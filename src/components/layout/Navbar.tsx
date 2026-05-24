@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, AudioLines } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -33,13 +33,10 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="bg-primary/20 p-2 rounded-xl group-hover:bg-primary/30 transition-colors">
-            <AudioLines className="h-6 w-6 text-primary" />
-          </div>
           <img 
             src="/logo.png" 
             alt="Sonus Logo" 
-            className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity ml-1" 
+            className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity" 
           />
         </Link>
 
