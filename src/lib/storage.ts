@@ -1,3 +1,5 @@
+import defaultProjects from "../../data/projects.json";
+
 export interface Project {
   id: number;
   title: string;
@@ -15,16 +17,9 @@ export async function getProjects(): Promise<Project[]> {
       return await res.json();
     }
   } catch (err) {
-    console.error("Falha ao buscar projetos da API Local", err);
+    console.warn("API Local indisponível. Usando dados estáticos de fallback.");
   }
-  return [
-    { id: 1, title: "Auditório da Cresol", category: "auditórios", image: "https://images.unsplash.com/photo-1507676184212-d0330a151f93?q=80&w=2069&auto=format&fit=crop" },
-    { id: 2, title: "Sala de video conferência | Cresol", category: "corporativos", image: "/cresol.jpg" },
-    { id: 3, title: "Igreja Matriz de Xanxerê - SC", category: "igrejas", image: "/xanxere.jpg" },
-    { id: 4, title: "Auditório Cesul", category: "auditórios", image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=2070&auto=format&fit=crop" },
-    { id: 5, title: "Centro Admin | Cresol Dois Vizinhos", category: "corporativos", image: "/cresol-dv.png" },
-    { id: 6, title: "Matriz de São Miguel do Oeste", category: "igrejas", image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=2070&auto=format&fit=crop" }
-  ];
+  return defaultProjects as Project[];
 }
 
 export async function saveProjects(projects: Project[]): Promise<void> {
