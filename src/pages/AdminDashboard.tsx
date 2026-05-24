@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { motion, Reorder } from "framer-motion"
+import { Reorder } from "framer-motion"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Plus, Edit3, Trash2, Home, GripVertical } from "lucide-react"
 import { Link } from "react-router-dom"
