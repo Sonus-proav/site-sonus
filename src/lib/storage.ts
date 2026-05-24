@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, deleteDoc, writeBatch } from 'firebase/firestore';
+import { collection, doc, getDocs, deleteDoc, writeBatch, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 import defaultProjects from "../../data/projects.json";
 
@@ -77,15 +77,15 @@ export async function addProject(project: Omit<Project, "id">): Promise<Project>
 }
 
 export async function updateProject(id: number, updates: Partial<Project>): Promise<void> {
-  const projects = await getProjects();
-  const index = projects.findIndex(p => p.id === id);
-  if (index !== -1) {
-    const updated = { ...projects[index], ...updates };
-    if (updated.images && updated.images.length > 0) {
-      updated.image = updated.images[0];
+  try {
+    if (updates.images && updates.images.length > 0) {
+      updates.image = updates.images[0];
     }
-    projects[index] = updated;
-    await saveProjects(projects);
+    
+    // Atualiza apenas o documento específico no Firebase, super rápido!
+    await updateDoc(doc(db, "projects", id.toString()), updates);
+  } catch (error) {
+    console.error("Erro ao atualizar o projeto no Firebase:", error);
   }
 }
 

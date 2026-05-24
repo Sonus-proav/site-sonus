@@ -36,9 +36,23 @@ export function AdminDashboard() {
     }
   }
 
+  const [togglingId, setTogglingId] = useState<number | null>(null)
+
   const handleToggleVisibility = async (project: Project) => {
-    await updateProject(project.id, { isHidden: !project.isHidden })
-    setProjects(await getProjects())
+    if (togglingId === project.id) return; // Evita cliques duplos rápidos
+    
+    try {
+      setTogglingId(project.id)
+      
+      // 1. Atualização Otimista (Instantânea na UI)
+      const isHiddenNow = !project.isHidden;
+      setProjects(prev => prev.map(p => p.id === project.id ? { ...p, isHidden: isHiddenNow } : p))
+      
+      // 2. Persiste no Firebase no background
+      await updateProject(project.id, { isHidden: isHiddenNow })
+    } finally {
+      setTogglingId(null)
+    }
   }
 
   const handleEdit = (project: Project) => {
