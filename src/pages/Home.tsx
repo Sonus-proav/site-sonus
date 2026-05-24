@@ -82,7 +82,7 @@ ${formData.message}`
               <Link to="/projetos" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/10 border-white/20 hover:bg-white/20 text-white backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all">
                   <Play className="mr-2 h-5 w-5 text-primary" />
-                  Explore Nosso Portfólio
+                  Explore Nossos Projetos
                 </Button>
               </Link>
             </div>
