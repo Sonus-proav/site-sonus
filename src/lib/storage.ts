@@ -11,6 +11,7 @@ export interface Project {
   seoAlt?: string;
   description?: string;
   order?: number;
+  isHidden?: boolean;
 }
 
 export async function getProjects(): Promise<Project[]> {

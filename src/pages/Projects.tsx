@@ -73,9 +73,11 @@ function ProjectGrid({ filter, projects, loading }: { filter: string, projects: 
     )
   }
 
+  const visibleProjects = projects.filter(p => !p.isHidden)
+
   const filteredProjects = filter === "todos" 
-    ? projects 
-    : projects.filter(p => p.category === filter)
+    ? visibleProjects 
+    : visibleProjects.filter(p => p.category === filter)
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

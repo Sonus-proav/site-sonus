@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import { Reorder } from "framer-motion"
 import { FadeIn } from "@/components/ui/FadeIn"
-import { Plus, Edit3, Trash2, Home, GripVertical } from "lucide-react"
+import { Plus, Edit3, Trash2, Home, GripVertical, Eye, EyeOff } from "lucide-react"
 import { Link } from "react-router-dom"
 import { type Project, getProjects, deleteProject, addProject, updateProject, saveProjects } from "@/lib/storage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
@@ -34,6 +34,11 @@ export function AdminDashboard() {
       await deleteProject(id)
       setProjects(await getProjects())
     }
+  }
+
+  const handleToggleVisibility = async (project: Project) => {
+    await updateProject(project.id, { isHidden: !project.isHidden })
+    setProjects(await getProjects())
   }
 
   const handleEdit = (project: Project) => {
@@ -112,9 +117,16 @@ export function AdminDashboard() {
                         </div>
                       </td>
                       <td className="p-4 md:p-6 font-medium text-white">
-                        {project.title}
+                        <div className="flex items-center gap-2">
+                          <span className={project.isHidden ? "opacity-50 line-through" : ""}>{project.title}</span>
+                          {project.isHidden && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                              Oculto
+                            </span>
+                          )}
+                        </div>
                         {project.images && project.images.length > 1 && (
-                          <span className="ml-3 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                          <span className="inline-flex mt-1 items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
                             {project.images.length} fotos
                           </span>
                         )}
@@ -122,7 +134,14 @@ export function AdminDashboard() {
                       <td className="p-4 md:p-6 text-zinc-400 uppercase text-xs tracking-wider">
                         {project.category}
                       </td>
-                      <td className="p-4 md:p-6 text-right space-x-2 relative z-10">
+                      <td className="p-4 md:p-6 text-right space-x-2 relative z-10 flex justify-end">
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); handleToggleVisibility(project); }}
+                          className={`inline-flex items-center justify-center w-10 h-10 rounded-lg transition-colors ${project.isHidden ? 'bg-orange-500/10 text-orange-400 hover:bg-orange-500/20' : 'bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white'}`}
+                          title={project.isHidden ? "Mostrar no site" : "Ocultar do site"}
+                        >
+                          {project.isHidden ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); handleEdit(project); }}
                           className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white transition-colors"
