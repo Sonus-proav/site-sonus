@@ -97,7 +97,10 @@ export function ProjectDetails() {
                   key={currentImgIndex}
                   src={hasMultipleImages ? project.images![currentImgIndex] : project.image} 
                   alt={project.seoAlt || project.title}
-                  loading="lazy"
+                  width={1200}
+                  height={900}
+                  loading="eager"
+                  fetchPriority="high"
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -113,12 +116,14 @@ export function ProjectDetails() {
                   <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10">
                     <button 
                       onClick={() => setCurrentImgIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length)}
+                      aria-label="Imagem anterior"
                       className="p-3 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md transition-colors"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button 
                       onClick={() => setCurrentImgIndex((prev) => (prev + 1) % project.images!.length)}
+                      aria-label="Próxima imagem"
                       className="p-3 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md transition-colors"
                     >
                       <ChevronRight className="w-5 h-5" />

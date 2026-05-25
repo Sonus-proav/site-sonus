@@ -131,6 +131,8 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               key={currentImgIndex}
               src={images[currentImgIndex]} 
               alt={project.seoAlt || project.title}
+              width={800}
+              height={600}
               loading={index < 4 ? "eager" : "lazy"}
               fetchPriority={index < 4 ? "high" : "auto"}
               decoding="async"
@@ -159,12 +161,14 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
             <button 
               onClick={prevImage}
+              aria-label="Imagem anterior"
               className="p-1.5 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button 
               onClick={nextImage}
+              aria-label="Próxima imagem"
               className="p-1.5 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
@@ -188,7 +192,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {hasMultipleImages && (
           <div className="hidden">
             {images.map((img, i) => (
-              i !== currentImgIndex && <img key={i} src={img} alt="preload" loading="eager" />
+              i !== currentImgIndex && <img key={i} src={img} alt="preload" width={800} height={600} loading="eager" />
             ))}
           </div>
         )}

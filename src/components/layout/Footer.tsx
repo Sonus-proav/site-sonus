@@ -12,6 +12,8 @@ export function Footer() {
               <img 
                 src="/logo.png" 
                 alt="Sonus Logo" 
+                width={120}
+                height={32}
                 className="h-6 w-auto opacity-90 hover:opacity-100 transition-opacity ml-1 dark:brightness-100 brightness-0" 
               />
             </Link>

@@ -37,6 +37,8 @@ export function Navbar() {
           <img 
             src="/logo.png" 
             alt="Sonus Logo" 
+            width={120}
+            height={32}
             className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity dark:brightness-100 brightness-0" 
           />
         </Link>
@@ -67,6 +69,7 @@ export function Navbar() {
         <div className="flex items-center gap-4 md:hidden">
           <ThemeToggle />
           <button
+            aria-label="Abrir menu"
             className="text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
