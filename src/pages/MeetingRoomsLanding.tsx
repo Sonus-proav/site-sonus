@@ -340,7 +340,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* Medium Room */}
-            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group" delay={100}>
+            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group">
               <div className="h-64 bg-[url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               <div className="p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
@@ -351,7 +351,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* Large Room / 18m Boardroom */}
-            <FadeIn className="col-span-1 md:col-span-2 bg-gradient-to-br from-blue-900/10 to-emerald-900/5 border border-white/10 rounded-[2rem] overflow-hidden group mt-4 relative" delay={200}>
+            <FadeIn className="col-span-1 md:col-span-2 bg-gradient-to-br from-blue-900/10 to-emerald-900/5 border border-white/10 rounded-[2rem] overflow-hidden group mt-4 relative">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity group-hover:opacity-30 transition-opacity duration-700" />
               <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
@@ -428,7 +428,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* The Sonus Way */}
-            <FadeIn className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 md:p-12" delay={200}>
+            <FadeIn className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
                   <CheckCircle2 className="w-6 h-6" />
@@ -477,7 +477,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={100}>
+            <FadeIn className="bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -487,7 +487,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={200}>
+            <FadeIn className="bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-6 h-6" />
               </div>
@@ -497,7 +497,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={300}>
+            <FadeIn className="md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
@@ -506,6 +506,76 @@ export function MeetingRoomsLanding() {
               <p className="text-zinc-400 text-lg relative z-10 max-w-md">
                 Código limpo. Interfaces criadas sob medida com a logomarca e identidade visual da sua empresa.
               </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Projetos Executados Section */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn className="text-center mb-16">
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+               Nosso Portfólio
+             </div>
+            <h2 className="text-[clamp(2rem,3vw,3.5rem)] font-black tracking-tight mb-4">
+              Engenharia em Prática: Casos de Sucesso
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Veja como transformamos salas reais aplicando acústica de precisão e design minimalista.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* Project 1 */}
+            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Boardroom</span>
+                  <span className="px-3 py-1 bg-emerald-500/20 backdrop-blur-md rounded-full text-[10px] font-bold text-emerald-400 uppercase tracking-wider border border-emerald-500/20">Shure MXA920</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Sede Corporativa Faria Lima</h3>
+                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
+                  Mesa de 16 lugares sem nenhum cabo. Integração total MTR com 2 telas de 85 polegadas.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Project 2 */}
+            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Auditório</span>
+                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Q-SYS Core</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Centro de Capacitação Tech</h3>
+                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
+                  Sistema de áudio distribuído para 50 pessoas com Auto-Tracking em 3 câmeras PTZ.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Project 3 */}
+            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Huddle Room</span>
+                  <span className="px-3 py-1 bg-zinc-800/80 backdrop-blur-md rounded-full text-[10px] font-bold text-zinc-300 uppercase tracking-wider border border-white/10">BYOD</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Salas de Diretoria Executiva</h3>
+                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
+                  Conjunto de 8 salas rápidas desenhadas para máxima agilidade e sem complexidade de uso.
+                </p>
+              </div>
             </FadeIn>
           </div>
         </div>
