@@ -72,7 +72,7 @@ export function MeetingRoomsLanding() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="text-sm font-medium tracking-wide text-zinc-300">Integração Q-SYS + Shure + Auto-Tracking</span>
+            <span className="text-sm font-medium tracking-wide text-zinc-300">O Padrão Ouro em Áudio Corporativo</span>
           </div>
 
           <h1 className="text-[clamp(2.5rem,5vw,5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
@@ -362,26 +362,26 @@ export function MeetingRoomsLanding() {
                     Boardrooms Extensas <br className="hidden lg:block" /> (Mesas de 18 Metros)
                   </h3>
                   <p className="text-zinc-300 text-lg leading-relaxed">
-                    Aqui a acústica se torna um desafio de física. Para que o CEO na ponta da mesa ouça perfeitamente um conselheiro a 18 metros de distância, empregamos o sistema de Voice Lift.
+                    Aqui a distância se torna um desafio. Nossa engenharia garante que o CEO na ponta da mesa ouça e seja ouvido perfeitamente por quem está a 18 metros de distância.
                   </p>
                   <p className="text-zinc-400 leading-relaxed">
-                    Sincronizamos múltiplos microfones de teto Shure em rede Dante, enquanto o Q-SYS processa centenas de canais simultâneos de cancelamento de eco acústico (AEC). Usamos câmeras cruzadas para não perder nenhum ângulo, tudo isso simplificado em um painel Touch de 10 polegadas para o executivo.
+                    Sincronizamos uma malha de microfones invisíveis no teto para criar um ambiente imersivo. Quem está na sala fala em tom natural, e quem está no home office recebe o áudio cristalino e o vídeo focado de quem está falando, sem cortes ou ecos. O controle da sala inteira fica a um toque de distância.
                   </p>
                 </div>
                 
                 {/* Tech Highlights */}
                 <div className="w-full md:w-1/3 flex flex-col gap-4">
                    <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
-                     <div className="text-emerald-400 font-bold text-xl mb-1">Rede Dante™</div>
-                     <div className="text-zinc-400 text-xs">Áudio IP sem compressão ou delay.</div>
+                     <div className="text-emerald-400 font-bold text-xl mb-1">Áudio Sincronizado</div>
+                     <div className="text-zinc-400 text-xs">Transmissão em tempo real e sem falhas na rede da empresa.</div>
                    </div>
                    <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
-                     <div className="text-blue-400 font-bold text-xl mb-1">AEC DSP</div>
-                     <div className="text-zinc-400 text-xs">Acoustic Echo Cancellation massivo.</div>
+                     <div className="text-blue-400 font-bold text-xl mb-1">Zero Eco Acústico</div>
+                     <div className="text-zinc-400 text-xs">Processamento de estúdio para eliminar qualquer ruído ou reverberação.</div>
                    </div>
                    <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
-                     <div className="text-purple-400 font-bold text-xl mb-1">Voice Lift</div>
-                     <div className="text-zinc-400 text-xs">Amplificação zonal natural na sala.</div>
+                     <div className="text-purple-400 font-bold text-xl mb-1">Amplificação Natural</div>
+                     <div className="text-zinc-400 text-xs">A voz de quem está longe chega suavemente pelas caixas acústicas da sala.</div>
                    </div>
                 </div>
               </div>
@@ -471,9 +471,9 @@ export function MeetingRoomsLanding() {
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                 <Settings className="w-8 h-8" />
               </div>
-              <h3 className="text-3xl font-bold mb-3 relative z-10">Engenharia Acústica Própria</h3>
+              <h3 className="text-3xl font-bold mb-3 relative z-10">Estudo Acústico Prévio</h3>
               <p className="text-zinc-400 text-lg relative z-10 max-w-md">
-                Desenhamos projetos no EASE Focus para garantir predição sonora perfeita. Seu som nunca vai reverberar.
+                Desenhamos o comportamento do som em software 3D antes da instalação para garantir que sua sala não sofrerá com ecos ou reverberação.
               </p>
             </FadeIn>
 
@@ -502,9 +502,9 @@ export function MeetingRoomsLanding() {
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
               </div>
-              <h3 className="text-3xl font-bold mb-3 relative z-10">Programação LUA / Q-SYS</h3>
+              <h3 className="text-3xl font-bold mb-3 relative z-10">Painéis de Um Toque</h3>
               <p className="text-zinc-400 text-lg relative z-10 max-w-md">
-                Código limpo. Interfaces criadas sob medida com a logomarca e identidade visual da sua empresa.
+                Interfaces simplificadas e desenhadas sob medida (com a logomarca da sua empresa). Qualquer executivo consegue iniciar a reunião sozinho.
               </p>
             </FadeIn>
           </div>
@@ -527,8 +527,8 @@ export function MeetingRoomsLanding() {
             <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             
             {[
-              { step: "01", title: "Consultoria Inicial", desc: "Mapeamento das necessidades da sala, plataforma (MTR/Zoom) e desafios acústicos." },
-              { step: "02", title: "Projeto EASE", desc: "Simulação acústica em software para garantir que o som não vai reverberar ou ecoar." },
+              { step: "01", title: "Consultoria Inicial", desc: "Diagnóstico completo das necessidades da diretoria e mapeamento dos desafios arquitetônicos." },
+              { step: "02", title: "Projeto Executivo", desc: "Desenho da arquitetura tecnológica focada em resolver os problemas de áudio e vídeo definitivamente." },
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
