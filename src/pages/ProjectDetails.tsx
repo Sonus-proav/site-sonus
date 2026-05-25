@@ -5,6 +5,7 @@ import { getProjects, getCachedProjects, type Project } from "@/lib/publicStorag
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { SEO } from "../components/SEO"
 import { Helmet } from "react-helmet-async"
 
 export function ProjectDetails() {
@@ -51,9 +52,10 @@ export function ProjectDetails() {
   if (!project) {
     return (
       <div className="min-h-screen pt-32 pb-24 flex flex-col items-center justify-center">
-        <Helmet>
-          <title>Projeto não encontrado | Sonus</title>
-        </Helmet>
+        <SEO 
+          title="Projeto não encontrado | Sonus" 
+          description="O projeto que você está procurando não existe." 
+        />
         <h1 className="text-3xl text-black dark:text-white font-bold mb-4 transition-colors duration-300">Projeto não encontrado</h1>
         <Link to="/projetos" className="text-primary hover:underline flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Voltar aos projetos
@@ -64,13 +66,14 @@ export function ProjectDetails() {
 
   return (
     <div className="min-h-screen pt-32 pb-24">
+      <SEO 
+        title={`${project.title} | Portfólio Sonus`} 
+        description={project.description?.substring(0, 155) + "..." || "Conheça mais este incrível projeto audiovisual realizado pela Sonus."} 
+        image={project.image}
+        url={`https://sonusproaudio.com.br/projetos/${project.id}`}
+        type="article"
+      />
       <Helmet>
-        <title>{project.title} | Portfólio Sonus</title>
-        <meta name="description" content={project.description?.substring(0, 155) + "..." || "Conheça mais este incrível projeto audiovisual realizado pela Sonus."} />
-        <meta property="og:title" content={`${project.title} | Sonus`} />
-        <meta property="og:description" content={project.description?.substring(0, 155) + "..." || "Conheça mais este projeto realizado pela Sonus."} />
-        <meta property="og:image" content={project.image} />
-        
         {/* Preload de todas as imagens do carrossel para troca instantânea */}
         {hasMultipleImages && project.images!.map((img, i) => (
           <link rel="preload" as="image" href={img} key={i} />

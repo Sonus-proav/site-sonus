@@ -2,7 +2,7 @@ import { useState } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan } from "lucide-react"
-import { Helmet } from "react-helmet-async"
+import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
 export function QSysLanding() {
@@ -35,10 +35,11 @@ export function QSysLanding() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30">
-      <Helmet>
-        <title>Ecossistema Q-SYS | Automação e Controle Absoluto | Sonus</title>
-        <meta name="description" content="Projetos profissionais com o Ecossistema Q-SYS. Controle de áudio, vídeo e automação centralizada com interface de alto padrão." />
-      </Helmet>
+      <SEO 
+        title="Ecossistema Q-SYS | Padronização Corporativa Sonus" 
+        description="Projetos profissionais com o Ecossistema Q-SYS. Controle de áudio, vídeo e automação centralizada com interface de alto padrão." 
+        url="https://sonusproaudio.com.br/qsys"
+      />
 
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

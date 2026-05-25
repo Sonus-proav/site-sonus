@@ -14,6 +14,8 @@ const AdminLogin = React.lazy(() => import("./pages/AdminLogin").then(module => 
 const QSysLanding = React.lazy(() => import("./pages/QSysLanding").then(module => ({ default: module.QSysLanding })))
 const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding").then(module => ({ default: module.MeetingRoomsLanding })))
 
+import { HelmetProvider } from "react-helmet-async"
+
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
   <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center transition-colors duration-300">
@@ -23,9 +25,10 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <AuthProvider>
-      <ErrorBoundary>
-        <Suspense fallback={<PageLoader />}>
+    <HelmetProvider>
+      <AuthProvider>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
@@ -44,9 +47,10 @@ function App() {
               } 
             />
           </Routes>
-        </Suspense>
-      </ErrorBoundary>
-    </AuthProvider>
+          </Suspense>
+        </ErrorBoundary>
+      </AuthProvider>
+    </HelmetProvider>
   )
 }
 

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import { getProjects, getCachedProjects, optimizeImageUrl, type Project } from "@/lib/publicStorage"
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Helmet } from "react-helmet-async"
+import { SEO } from "../components/SEO"
 
 export function Projects() {
   const [projectsData, setProjectsData] = useState<Project[]>(getCachedProjects() || [])
@@ -23,12 +23,13 @@ export function Projects() {
   }, [])
 
   return (
-    <div className="min-h-screen pt-32 pb-24">
-      <Helmet>
-        <title>Portfólio de Projetos Audiovisuais | Sonus</title>
-        <meta name="description" content="Explore nosso portfólio de projetos concluídos: auditórios, teatros, igrejas e automação corporativa com a mais alta tecnologia de som e vídeo." />
-      </Helmet>
-      <div className="container px-4 md:px-6">
+    <div className="flex flex-col min-h-screen pt-20">
+      <SEO 
+        title="Portfólio Sonus | Casos de Sucesso em Áudio e Vídeo" 
+        description="Explore nossos principais projetos executados de integração audiovisual corporativa, acústica de igrejas e automação de grandes auditórios." 
+        url="https://sonusproaudio.com.br/projetos"
+      />
+      <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-20">
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
             Nosso Portfólio Profissional

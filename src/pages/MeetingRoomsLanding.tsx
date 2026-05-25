@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings, Quote } from "lucide-react"
-import { Helmet } from "react-helmet-async"
+import { SEO } from "@/components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
 export function MeetingRoomsLanding() {
@@ -46,10 +46,11 @@ export function MeetingRoomsLanding() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
-      <Helmet>
-        <title>Salas de Reunião de Alto Padrão | Shure + Q-SYS | Sonus</title>
-        <meta name="description" content="Salas de Reunião sem fios na mesa. Integração Q-SYS com microfones de teto Shure e câmeras Auto-Tracking." />
-      </Helmet>
+      <SEO 
+        title="Salas de Reunião Padrão Sonus | Automação e Áudio Invisível" 
+        description="Transforme suas salas corporativas com a Sonus. Áudio invisível, automação nativa e zero complexidade para a sua diretoria." 
+        url="https://sonusproaudio.com.br/salas-reuniao"
+      />
 
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

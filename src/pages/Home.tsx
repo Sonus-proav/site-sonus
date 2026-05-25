@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronRight, Play, CheckCircle2 } from "lucide-react"
 import { Link } from "react-router-dom"
+import { SEO } from "../components/SEO"
 
 export function Home() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,12 @@ ${formData.message}`
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
+      <SEO 
+        title="Sonus | Soluções em Áudio e Vídeo Profissional" 
+        description="Especialistas em projetos de integração audiovisual de alta performance, automação de salas de reunião e acústica corporativa. 28 anos de mercado." 
+        url="https://sonusproaudio.com.br/"
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         {/* LCP Optimization: Usar <picture> com prioridade alta ao invés de background CSS */}
