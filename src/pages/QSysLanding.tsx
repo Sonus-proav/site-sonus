@@ -33,9 +33,8 @@ export function QSysLanding() {
 
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[150px] transform-gpu will-change-transform" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-500/10 blur-[150px] transform-gpu will-change-transform" />
-        <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-cyan-500/10 blur-[120px] transform-gpu will-change-transform" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0a0a0a] to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent" />
       </div>
 
       {/* Minimal Header */}
@@ -77,7 +76,7 @@ export function QSysLanding() {
 
         {/* Hero Image / Touch Panel Mockup */}
         <FadeIn delay={0.2} className="w-full max-w-5xl mx-auto mt-20 relative">
-          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/5 border border-white/20 backdrop-blur-2xl shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 group">
+          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.08] border border-white/20 shadow-2xl ring-1 ring-white/10 group">
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
             
@@ -332,7 +331,7 @@ export function QSysLanding() {
               }
             ].map((feature, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="h-full rounded-3xl p-8 bg-white/5 border border-white/10 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-300 group">
+                <div className="h-full rounded-3xl p-8 bg-white/[0.08] border border-white/10 hover:bg-white/[0.12] transition-colors duration-300 group shadow-lg">
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/5 group-hover:scale-110 transition-transform duration-500">
                     {feature.icon}
                   </div>
@@ -348,7 +347,7 @@ export function QSysLanding() {
       </section>
 
       {/* Scenarios - Horizontal Layout */}
-      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/5 border-y border-white/5 backdrop-blur-3xl">
+      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.03] border-y border-white/5 shadow-inner">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" className="space-y-8">
@@ -383,8 +382,8 @@ export function QSysLanding() {
 
             <FadeIn direction="left" delay={0.2} className="relative">
               <div className="aspect-[4/5] rounded-[3rem] bg-gradient-to-br from-zinc-800 to-black p-1 border border-white/10 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-500/10 blur-[100px] rounded-full mix-blend-screen" />
-                <div className="w-full h-full rounded-[2.8rem] bg-zinc-950 border border-white/5 overflow-hidden flex flex-col relative z-10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 to-transparent mix-blend-screen" />
+                <div className="w-full h-full rounded-[2.8rem] bg-zinc-950 border border-white/5 overflow-hidden flex flex-col relative z-10 shadow-inner">
                   {/* Faux UI */}
                   <div className="h-16 border-b border-white/10 flex items-center px-8 bg-white/[0.02]">
                     <div className="font-semibold text-lg text-zinc-200">Painel de Controle</div>
@@ -420,9 +419,9 @@ export function QSysLanding() {
       {/* CTA Section */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <FadeIn className="max-w-4xl mx-auto">
-          <div className="rounded-[3rem] p-12 md:p-20 bg-gradient-to-br from-blue-600 to-purple-700 text-center relative overflow-hidden border border-white/20 shadow-[0_0_100px_rgba(37,99,235,0.3)]">
+          <div className="rounded-[3rem] p-12 md:p-20 bg-gradient-to-br from-blue-600 to-purple-700 text-center relative overflow-hidden border border-white/20 shadow-2xl">
             {/* Glass Highlights */}
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-white/10 rounded-b-[100%] blur-3xl pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             
             <div className="relative z-10 space-y-8 flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
