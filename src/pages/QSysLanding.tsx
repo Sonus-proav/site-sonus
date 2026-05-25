@@ -56,7 +56,7 @@ export function QSysLanding() {
             <span className="text-sm font-medium tracking-wide text-zinc-300">Integração Certificada Sonus + Q-SYS</span>
           </div>
 
-          <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
+          <h1 className="text-[clamp(2.5rem,6vw,6rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
             O Futuro do Controle <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Audiovisual.</span>
           </h1>
@@ -83,16 +83,15 @@ export function QSysLanding() {
             
             <div className="rounded-[2rem] overflow-hidden bg-zinc-950 relative w-full flex flex-col border border-white/10 shadow-inner min-h-[600px]">
               
-              {/* Topbar do Touch Panel */}
               <div className="h-10 md:h-14 bg-white/[0.02] border-b border-white/5 flex items-center justify-between px-4 md:px-6">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)] animate-pulse" />
-                  <span className="font-semibold text-zinc-300 text-xs md:text-sm tracking-widest uppercase">Auditório Principal</span>
+                  <span className="font-semibold text-zinc-300 text-[clamp(10px,1.5vw,14px)] tracking-widest uppercase">Auditório Principal</span>
                 </div>
                 <div className="flex items-center gap-3 md:gap-5 text-zinc-400">
                   <Wifi className="w-4 h-4" aria-label="Sinal WiFi" />
                   <Battery className="w-4 h-4" aria-label="Bateria" />
-                  <span className="text-xs md:text-sm font-bold text-zinc-300">14:30</span>
+                  <span className="text-[clamp(10px,1.5vw,14px)] font-bold text-zinc-300">14:30</span>
                 </div>
               </div>
 
@@ -111,7 +110,7 @@ export function QSysLanding() {
                     ].map((item, i) => (
                       <button key={i} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
                         <div className="shrink-0">{item.icon}</div>
-                        <span className="hidden md:block font-medium">{item.label}</span>
+                        <span className="hidden md:block font-medium text-[clamp(12px,1.5vw,16px)]">{item.label}</span>
                       </button>
                     ))}
                   </div>
@@ -238,7 +237,7 @@ export function QSysLanding() {
                         >
                           <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} transition-opacity duration-500`} style={{ opacity: activeScene === i ? 0.3 : 0.1 }} />
                           <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-                          <span className="relative z-10 font-bold text-[10px] sm:text-xs md:text-sm text-zinc-100 leading-tight">{scene.title}</span>
+                          <span className="relative z-10 font-bold text-[clamp(10px,1.2vw,14px)] text-zinc-100 leading-tight">{scene.title}</span>
                           {activeScene === i && <div className="absolute top-2 right-2 md:top-3 md:right-3 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white transition-all" style={{ boxShadow: `0 0 10px ${scene.activeColor}` }} />}
                         </div>
                       ))}
@@ -250,8 +249,8 @@ export function QSysLanding() {
                     {/* Volume Control */}
                     <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex-1 flex flex-col justify-center">
                       <div className="flex justify-between items-center mb-3 md:mb-5">
-                        <span className="text-zinc-400 font-semibold uppercase tracking-widest text-[10px] md:text-xs">Volume Mestre</span>
-                        <span className="text-blue-400 font-black text-base md:text-xl transition-all duration-300">{currentVolume}%</span>
+                        <span className="text-zinc-400 font-semibold uppercase tracking-widest text-[clamp(9px,1.2vw,12px)]">Volume Mestre</span>
+                        <span className="text-blue-400 font-black text-[clamp(14px,1.5vw,20px)] transition-all duration-300">{currentVolume}%</span>
                       </div>
                       <div 
                         className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner group"
@@ -276,14 +275,14 @@ export function QSysLanding() {
                       <div className="bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 opacity-20"><Thermometer className="w-12 h-12 text-orange-500" /></div>
                         <Thermometer className="w-6 h-6 md:w-8 md:h-8 text-orange-400 relative z-10" />
-                        <span className="text-xl md:text-3xl font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].temp}</span>
-                        <span className="text-[10px] md:text-xs text-orange-200/60 font-bold uppercase tracking-widest relative z-10">Clima</span>
+                        <span className="text-[clamp(16px,2vw,30px)] font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].temp}</span>
+                        <span className="text-[clamp(9px,1vw,12px)] text-orange-200/60 font-bold uppercase tracking-widest relative z-10">Clima</span>
                       </div>
                       <div className="bg-gradient-to-br from-yellow-400/10 to-amber-500/5 border border-yellow-400/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 opacity-20"><Lightbulb className="w-12 h-12 text-yellow-400" /></div>
                         <Lightbulb className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 relative z-10" />
-                        <span className="text-xl md:text-3xl font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].light}</span>
-                        <span className="text-[10px] md:text-xs text-yellow-200/60 font-bold uppercase tracking-widest relative z-10">Luzes</span>
+                        <span className="text-[clamp(16px,2vw,30px)] font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].light}</span>
+                        <span className="text-[clamp(9px,1vw,12px)] text-yellow-200/60 font-bold uppercase tracking-widest relative z-10">Luzes</span>
                       </div>
                     </div>
                   </div>
@@ -395,11 +394,11 @@ export function QSysLanding() {
                     <div className="grid grid-cols-2 gap-4">
                       <div onClick={() => setActiveFauxScene("presentation")} className={`h-32 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center px-2 ${activeFauxScene === "presentation" ? 'bg-blue-500/20 border border-blue-500/30 hover:bg-blue-500/30' : 'bg-white/5 border border-white/10 hover:bg-white/10'}`}>
                         <Play className={`w-8 h-8 transition-colors ${activeFauxScene === "presentation" ? 'text-blue-400' : 'text-zinc-500'}`} />
-                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "presentation" ? 'text-blue-200' : 'text-zinc-400'}`}>Modo Apresentação</span>
+                        <span className={`font-medium text-[clamp(10px,1.2vw,14px)] transition-colors ${activeFauxScene === "presentation" ? 'text-blue-200' : 'text-zinc-400'}`}>Modo Apresentação</span>
                       </div>
                       <div onClick={() => setActiveFauxScene("video")} className={`h-32 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center px-2 ${activeFauxScene === "video" ? 'bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500/30' : 'bg-white/5 border border-white/10 hover:bg-white/10'}`}>
                         <Video className={`w-8 h-8 transition-colors ${activeFauxScene === "video" ? 'text-purple-400' : 'text-zinc-500'}`} />
-                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "video" ? 'text-purple-200' : 'text-zinc-400'}`}>Videochamada</span>
+                        <span className={`font-medium text-[clamp(10px,1.2vw,14px)] transition-colors ${activeFauxScene === "video" ? 'text-purple-200' : 'text-zinc-400'}`}>Videochamada</span>
                       </div>
                     </div>
                     <div className="space-y-4 pt-6">
@@ -436,7 +435,7 @@ export function QSysLanding() {
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
-                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-base md:text-xl font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
                   Consultoria Gratuita Q-SYS
                 </Button>
               </div>
