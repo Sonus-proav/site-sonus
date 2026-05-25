@@ -1,11 +1,16 @@
 import { useState } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power } from "lucide-react"
+import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 
 export function QSysLanding() {
   const [activeScene, setActiveScene] = useState(0)
+  const [currentVolume, setCurrentVolume] = useState(75)
+  const [showAdminKeypad, setShowAdminKeypad] = useState(false)
+  const [adminPin, setAdminPin] = useState("")
+  const [isAdminUnlocked, setIsAdminUnlocked] = useState(false)
+  const [pinError, setPinError] = useState(false)
 
   const scenesData = [
     { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
@@ -109,7 +114,14 @@ export function QSysLanding() {
                     </button>
                   ))}
                   
-                  <div className="mt-auto">
+                  <div className="mt-auto flex flex-col gap-2 md:gap-3">
+                    <button 
+                      onClick={() => setShowAdminKeypad(!showAdminKeypad)}
+                      className={`w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all border ${showAdminKeypad ? 'bg-zinc-800 text-white border-zinc-600 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-black/20 text-zinc-500 hover:bg-white/10 hover:text-white border-transparent hover:border-white/5'}`}
+                    >
+                      {isAdminUnlocked ? <Unlock className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-green-400" /> : <Lock className="w-5 h-5 md:w-6 md:h-6 shrink-0" />}
+                      <span className="hidden md:block font-bold">Admin</span>
+                    </button>
                     <button className="w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20">
                       <Power className="w-5 h-5 md:w-6 md:h-6 shrink-0" />
                       <span className="hidden md:block font-bold">Desligar Sala</span>
@@ -118,7 +130,96 @@ export function QSysLanding() {
                 </div>
 
                 {/* Dashboard Área Interativa */}
-                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                {showAdminKeypad ? (
+                  <div className="flex-1 flex flex-col items-center justify-center bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 relative overflow-hidden">
+                    {!isAdminUnlocked ? (
+                      <div className="max-w-[240px] w-full animate-in fade-in zoom-in duration-300">
+                        <div className="text-center mb-4">
+                          <h3 className="text-zinc-300 font-bold tracking-widest uppercase mb-1 text-sm">Acesso Restrito</h3>
+                          <p className="text-zinc-500 text-[10px] uppercase tracking-widest">Insira o PIN (1234)</p>
+                        </div>
+                        
+                        <div className={`flex justify-center gap-3 mb-6 transition-transform ${pinError ? 'translate-x-1' : ''}`}>
+                          {[0,1,2,3].map(idx => (
+                            <div key={idx} className={`w-3 h-3 rounded-full border-2 transition-all ${idx < adminPin.length ? (pinError ? 'bg-red-500 border-red-500' : 'bg-blue-500 border-blue-500') : 'border-zinc-700 bg-transparent'}`} />
+                          ))}
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 md:gap-3">
+                          {[1,2,3,4,5,6,7,8,9].map(num => (
+                            <button key={num} onClick={() => {
+                              if (adminPin.length < 4) {
+                                const newPin = adminPin + num.toString();
+                                setAdminPin(newPin);
+                                if (newPin.length === 4) {
+                                  if (newPin === "1234") {
+                                    setTimeout(() => setIsAdminUnlocked(true), 300);
+                                  } else {
+                                    setPinError(true);
+                                    setTimeout(() => { setAdminPin(""); setPinError(false); }, 800);
+                                  }
+                                }
+                              }
+                            }} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
+                              {num}
+                            </button>
+                          ))}
+                          <button onClick={() => setAdminPin("")} className="h-10 md:h-12 rounded-xl bg-red-500/10 hover:bg-red-500/20 active:scale-95 transition-all text-red-400 flex items-center justify-center border border-red-500/20 font-bold">
+                            C
+                          </button>
+                          <button onClick={() => {
+                            if (adminPin.length < 4) {
+                                const newPin = adminPin + "0";
+                                setAdminPin(newPin);
+                                if (newPin.length === 4) {
+                                  if (newPin === "1234") {
+                                    setTimeout(() => setIsAdminUnlocked(true), 300);
+                                  } else {
+                                    setPinError(true);
+                                    setTimeout(() => { setAdminPin(""); setPinError(false); }, 800);
+                                  }
+                                }
+                              }
+                          }} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
+                            0
+                          </button>
+                          <button onClick={() => setShowAdminKeypad(false)} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 transition-all text-zinc-400 flex items-center justify-center border border-white/5 font-bold">
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-full flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
+                          <div className="flex items-center gap-2 md:gap-3 text-green-400">
+                            <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
+                            <span className="font-bold tracking-widest uppercase text-xs md:text-sm">Modo Engenharia</span>
+                          </div>
+                          <button onClick={() => { setIsAdminUnlocked(false); setShowAdminKeypad(false); setAdminPin(""); }} className="text-zinc-500 hover:text-white transition-colors text-[10px] md:text-xs font-bold uppercase border border-zinc-700 px-3 py-1 rounded-full">
+                            Sair
+                          </button>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-3 md:gap-4 flex-1">
+                          {[
+                            { title: "Diagnóstico de Rede", status: "Online", color: "text-green-400" },
+                            { title: "Calibração DSP", status: "Ideal", color: "text-blue-400" },
+                            { title: "Update de Firmware", status: "v4.2.1", color: "text-zinc-400" },
+                            { title: "Matriz de Vídeo", status: "Ativa", color: "text-purple-400" },
+                            { title: "Logs do Sistema", status: "Limpo", color: "text-zinc-400" },
+                            { title: "Reiniciar Core", status: "Pronto", color: "text-red-400" },
+                          ].map((cfg, i) => (
+                            <div key={i} className="bg-white/[0.02] border border-white/10 rounded-xl p-3 md:p-4 flex flex-col justify-between hover:bg-white/[0.05] transition-colors cursor-pointer active:scale-95 group">
+                              <span className="text-[10px] md:text-xs font-medium text-zinc-300 group-hover:text-white transition-colors">{cfg.title}</span>
+                              <span className={`text-[10px] font-bold uppercase tracking-widest mt-2 ${cfg.color}`}>{cfg.status}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 animate-in fade-in duration-300">
                   {/* Cenários Rápidos */}
                   <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col">
                     <h3 className="text-zinc-400 font-semibold mb-3 md:mb-4 tracking-widest uppercase text-[10px] md:text-xs">Cenários Rápidos</h3>
@@ -126,7 +227,10 @@ export function QSysLanding() {
                       {scenesData.map((scene, i) => (
                         <div 
                           key={i} 
-                          onClick={() => setActiveScene(i)}
+                          onClick={() => {
+                            setActiveScene(i);
+                            setCurrentVolume(scene.vol);
+                          }}
                           className={`relative rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col justify-end overflow-hidden cursor-pointer group transition-all duration-300 ${activeScene === i ? 'ring-2 ring-white shadow-lg scale-[1.02]' : 'border border-white/10 hover:border-white/30'}`}
                         >
                           <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} transition-opacity duration-500`} style={{ opacity: activeScene === i ? 0.3 : 0.1 }} />
@@ -144,14 +248,22 @@ export function QSysLanding() {
                     <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex-1 flex flex-col justify-center">
                       <div className="flex justify-between items-center mb-3 md:mb-5">
                         <span className="text-zinc-400 font-semibold uppercase tracking-widest text-[10px] md:text-xs">Volume Mestre</span>
-                        <span className="text-blue-400 font-black text-base md:text-xl transition-all duration-500">{scenesData[activeScene].vol}%</span>
+                        <span className="text-blue-400 font-black text-base md:text-xl transition-all duration-300">{currentVolume}%</span>
                       </div>
-                      <div className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner">
+                      <div 
+                        className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner group"
+                        onClick={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+                          const newVol = Math.round((x / rect.width) * 100);
+                          setCurrentVolume(newVol);
+                        }}
+                      >
                         <div 
-                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1 transition-all duration-700 ease-out" 
-                          style={{ width: `${scenesData[activeScene].vol}%` }}
+                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1 transition-all duration-300 ease-out" 
+                          style={{ width: `${currentVolume}%` }}
                         >
-                          <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full shadow-md" />
+                          <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full shadow-md scale-95 group-active:scale-110 transition-transform" />
                         </div>
                       </div>
                     </div>
@@ -172,7 +284,7 @@ export function QSysLanding() {
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
               
               {/* Reflexo de Tela (Glossy Overlay) */}
