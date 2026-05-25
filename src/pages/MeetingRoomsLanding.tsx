@@ -387,6 +387,12 @@ export function MeetingRoomsLanding() {
               </div>
             </FadeIn>
           </div>
+          
+          <FadeIn className="flex justify-center pt-8">
+            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+              Solicitar Projeto para Minha Empresa
+            </Button>
+          </FadeIn>
         </div>
       </section>
 
@@ -541,6 +547,12 @@ export function MeetingRoomsLanding() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn className="flex justify-center mt-16 relative z-10">
+            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
+              Falar com Engenheiro Sonus
+            </Button>
+          </FadeIn>
         </div>
       </section>
 
