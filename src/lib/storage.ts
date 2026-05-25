@@ -24,6 +24,15 @@ export async function uploadImageToStorage(file: File): Promise<string> {
   return await getDownloadURL(storageRef);
 }
 
+// Proxy de Redimensionamento Global: Transforma imagens de 3MB em WebP de 30KB on-the-fly
+export function optimizeImageUrl(url: string, width: number = 800): string {
+  if (!url || !url.includes("firebasestorage.googleapis.com")) return url;
+  
+  // Usa o CDN gratuito wsrv.nl (antigo images.weserv.nl)
+  // &output=webp &q=80 para forçar compressão next-gen
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&output=webp&q=80`;
+}
+
 let projectsCache: Project[] | null = null;
 let cachePromise: Promise<Project[]> | null = null;
 

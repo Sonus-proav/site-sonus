@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getProjects, getCachedProjects, type Project } from "@/lib/storage"
+import { getProjects, getCachedProjects, optimizeImageUrl, type Project } from "@/lib/storage"
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Helmet } from "react-helmet-async"
@@ -154,7 +154,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           <AnimatePresence initial={false}>
             <motion.img 
               key={currentImgIndex}
-              src={images[currentImgIndex]} 
+              src={optimizeImageUrl(images[currentImgIndex], 800)} 
               alt={project.seoAlt || project.title}
               width={800}
               height={600}
@@ -217,7 +217,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {hasMultipleImages && (
           <div className="hidden">
             {images.map((img, i) => (
-              i !== currentImgIndex && <img key={i} src={img} alt="preload" width={800} height={600} loading="eager" decoding="async" />
+              i !== currentImgIndex && <img key={i} src={optimizeImageUrl(img, 800)} alt="preload" width={800} height={600} loading="eager" decoding="async" />
             ))}
           </div>
         )}
