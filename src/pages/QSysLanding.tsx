@@ -203,9 +203,9 @@ export function QSysLanding() {
                         <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
                           <div className="flex items-center gap-2 md:gap-3 text-green-400">
                             <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
-                            <span className="font-bold tracking-widest uppercase text-xs md:text-sm">Modo Engenharia</span>
+                            <span className="font-bold tracking-widest uppercase text-xs md:text-sm">Modo Técnico</span>
                           </div>
-                          <button aria-label="Sair do Modo de Engenharia" onClick={() => { setIsAdminUnlocked(false); setShowAdminKeypad(false); setAdminPin(""); }} className="text-zinc-400 hover:text-white transition-colors text-[10px] md:text-xs font-bold uppercase border border-zinc-700 px-3 py-1 rounded-full min-h-[32px]">
+                          <button aria-label="Sair do Modo Técnico" onClick={() => { setIsAdminUnlocked(false); setShowAdminKeypad(false); setAdminPin(""); }} className="text-zinc-400 hover:text-white transition-colors text-[10px] md:text-xs font-bold uppercase border border-zinc-700 px-3 py-1 rounded-full min-h-[32px]">
                             Sair
                           </button>
                         </div>
@@ -600,11 +600,11 @@ export function QSysLanding() {
             
             <div className="relative z-10 space-y-8 flex flex-col items-center">
               <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                Engenharia de Ponta.<br />
+                Tecnologia de Ponta.<br />
                 Padrão Sonus de Qualidade.
               </h2>
               <p className="text-xl text-white/80 font-light max-w-2xl text-balance">
-                Paz de espírito corporativa. Desenhamos a engenharia, integramos a tecnologia e entregamos as chaves com a garantia de que suas reuniões críticas não vão mais falhar.
+                Paz de espírito corporativa. Desenhamos a arquitetura, integramos a tecnologia e entregamos as chaves com a garantia de que suas reuniões críticas não vão mais falhar.
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
@@ -627,10 +627,13 @@ export function QSysLanding() {
       <footer className="relative py-12 px-6 bg-black border-t border-white/5 z-10 text-center md:text-left">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-             <img src="/logo.png" alt="Sonus" width="100" height="28" className="h-6 w-auto brightness-0 invert opacity-50 mb-6 mx-auto md:mx-0" />
-             <p className="text-zinc-600 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
-               Engenharia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
-             </p>
+             <div className="flex items-center gap-2 mb-4">
+                <ShieldCheck className="w-6 h-6 text-blue-500" />
+                <span className="font-bold text-lg tracking-tight">Sonus Corporativo</span>
+              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
+                Tecnologia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
+              </p>
           </div>
           <div className="space-y-4">
             <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Contato</h4>

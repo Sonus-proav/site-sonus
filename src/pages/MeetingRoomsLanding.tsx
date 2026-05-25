@@ -356,13 +356,13 @@ export function MeetingRoomsLanding() {
               <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
-                    Alta Engenharia Sonus
+                    Alta Tecnologia Sonus
                   </div>
                   <h3 className="text-3xl md:text-5xl font-black leading-tight">
                     Boardrooms Extensas <br className="hidden lg:block" /> (Mesas de 18 Metros)
                   </h3>
                   <p className="text-zinc-300 text-lg leading-relaxed">
-                    Aqui a distância se torna um desafio. Nossa engenharia garante que o CEO na ponta da mesa ouça e seja ouvido perfeitamente por quem está a 18 metros de distância.
+                    Aqui a distância se torna um desafio. Nossa tecnologia garante que o CEO na ponta da mesa ouça e seja ouvido perfeitamente por quem está a 18 metros de distância.
                   </p>
                   <p className="text-zinc-400 leading-relaxed">
                     Sincronizamos uma malha de microfones invisíveis no teto para criar um ambiente imersivo. Quem está na sala fala em tom natural, e quem está no home office recebe o áudio cristalino e o vídeo focado de quem está falando, sem cortes ou ecos. O controle da sala inteira fica a um toque de distância.
@@ -404,7 +404,7 @@ export function MeetingRoomsLanding() {
               O fim dos 15 minutos perdidos antes de cada reunião.
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Nossa engenharia elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.
+              Nosso método elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.
             </p>
           </FadeIn>
 
@@ -474,7 +474,7 @@ export function MeetingRoomsLanding() {
               Por que a <span className="text-blue-500">Sonus</span>?
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl">
-              Nós não vendemos apenas caixas de equipamentos. Entregamos a sala pronta para uso, com engenharia e respaldo técnico corporativo.
+              Nós não vendemos apenas caixas de equipamentos. Entregamos a sala pronta para uso, com tecnologia de ponta e respaldo técnico corporativo.
             </p>
           </FadeIn>
 
@@ -562,7 +562,7 @@ export function MeetingRoomsLanding() {
 
           <FadeIn className="flex justify-center mt-16 relative z-10">
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
-              Falar com Engenheiro Sonus
+              Falar com Especialista Sonus
             </Button>
           </FadeIn>
         </div>
@@ -576,7 +576,7 @@ export function MeetingRoomsLanding() {
                Nosso Portfólio
              </div>
             <h2 className="text-[clamp(2rem,3vw,3.5rem)] font-black tracking-tight mb-4">
-              Engenharia em Prática: Casos de Sucesso
+              Tecnologia em Prática: Casos de Sucesso
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
               Veja como transformamos salas reais aplicando acústica de precisão e design minimalista.
@@ -678,8 +678,8 @@ export function MeetingRoomsLanding() {
           <div className="space-y-4">
             {[
               {
-                q: "A Sonus atende em nível nacional?",
-                a: "Sim. Apesar da nossa sede técnica, enviamos nossa equipe de engenharia para instalações corporativas críticas em todo o Brasil."
+                q: "Nossa empresa não fica em São Paulo. Vocês atendem?",
+                a: "Sim. Apesar da nossa sede técnica, enviamos nossa equipe técnica especializada para instalações corporativas críticas em todo o Brasil."
               },
               {
                 q: "Nossa empresa usa primariamente o Microsoft Teams. Tudo vai funcionar nativamente?",
@@ -732,10 +732,13 @@ export function MeetingRoomsLanding() {
       <footer className="relative py-12 px-6 bg-black border-t border-white/5 z-10 text-center md:text-left">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-             <img src="/logo.png" alt="Sonus" width="100" height="28" className="h-6 w-auto brightness-0 invert opacity-50 mb-6 mx-auto md:mx-0" />
-             <p className="text-zinc-600 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
-               Engenharia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
-             </p>
+             <div className="flex items-center gap-2 mb-4">
+                <ShieldCheck className="w-6 h-6 text-blue-500" />
+                <span className="font-bold text-lg tracking-tight">Sonus Corporativo</span>
+              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
+                Tecnologia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
+              </p>
           </div>
           <div className="space-y-4">
             <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Contato</h4>
