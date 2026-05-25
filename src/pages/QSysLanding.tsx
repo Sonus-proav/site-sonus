@@ -240,6 +240,7 @@ export function QSysLanding() {
                           onClick={() => {
                             setActiveScene(i);
                             setCurrentVolume(scene.vol);
+                            setHvacTemp(parseInt(scene.temp));
                           }}
                           className={`relative rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col justify-end overflow-hidden cursor-pointer group transition-all duration-300 ${activeScene === i ? 'ring-2 ring-white shadow-lg scale-[1.02]' : 'border border-white/10 hover:border-white/30'}`}
                         >
@@ -283,7 +284,7 @@ export function QSysLanding() {
                       <div className="bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 opacity-20"><Thermometer className="w-12 h-12 text-orange-500" /></div>
                         <Thermometer className="w-6 h-6 md:w-8 md:h-8 text-orange-400 relative z-10" />
-                        <span className="text-[clamp(16px,2vw,30px)] font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].temp}</span>
+                        <span className="text-[clamp(16px,2vw,30px)] font-black text-white relative z-10 transition-all duration-500">{hvacTemp}°</span>
                         <span className="text-[clamp(9px,1vw,12px)] text-orange-200/60 font-bold uppercase tracking-widest relative z-10">Clima</span>
                       </div>
                       <div className="bg-gradient-to-br from-yellow-400/10 to-amber-500/5 border border-yellow-400/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
