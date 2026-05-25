@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus } from "lucide-react"
+import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
@@ -12,6 +12,7 @@ export function MeetingRoomsLanding() {
   const [micMuted, setMicMuted] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(0)
   const [presentationActive, setPresentationActive] = useState(false)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
   
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>
@@ -285,7 +286,20 @@ export function MeetingRoomsLanding() {
             </div>
           </div>
 
-          <div className="pt-8 w-full sm:w-auto">
+          {/* Trust Bar / Ecossistema */}
+          <div className="w-full max-w-5xl mx-auto mt-12 mb-4 pt-12 border-t border-white/5">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-blue-400">Zoom</span>
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-emerald-500">SHURE</span>
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-zinc-300">Q-SYS</span>
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-cyan-400">Dante™</span>
+            </div>
+          </div>
+
+          <div className="pt-16 w-full sm:w-auto">
             <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
               Consultoria Online Gratuita
             </Button>
@@ -372,6 +386,189 @@ export function MeetingRoomsLanding() {
             </FadeIn>
           </div>
         </div>
+      </section>
+
+      {/* Pain vs Solution Section */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
+              O fim dos 15 minutos perdidos antes de cada reunião.
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Nossa engenharia elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* The Old Way */}
+            <FadeIn className="bg-red-500/5 border border-red-500/20 rounded-3xl p-8 md:p-12">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
+                  <XCircle className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-red-200">A Sala Comum</h3>
+              </div>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <AlertCircle className="w-6 h-6 text-red-400 shrink-0 mt-1" />
+                  <p className="text-zinc-400">Cabos HDMI, USB e adaptadores espalhados pela mesa e quebrando frequentemente.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <AlertCircle className="w-6 h-6 text-red-400 shrink-0 mt-1" />
+                  <p className="text-zinc-400">Microfones de mesa que não captam quem está no fundo ou sofrem interferência de cadernos e laptops.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <AlertCircle className="w-6 h-6 text-red-400 shrink-0 mt-1" />
+                  <p className="text-zinc-400">Quem está remoto (em home office) escuta ecos horríveis e se sente excluído da reunião.</p>
+                </li>
+              </ul>
+            </FadeIn>
+
+            {/* The Sonus Way */}
+            <FadeIn className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 md:p-12" delay={200}>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-emerald-200">A Sala Padrão Sonus</h3>
+              </div>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0 mt-1" />
+                  <p className="text-zinc-300"><strong>Mesa Livre:</strong> Nenhum cabo visível. Tudo espelhado sem fio e com baterias carregadas indutivamente.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0 mt-1" />
+                  <p className="text-zinc-300"><strong>Áudio Invisível:</strong> Microfones no teto filtram ruídos de ar condicionado e captam apenas a voz cristalina.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0 mt-1" />
+                  <p className="text-zinc-300"><strong>Equidade:</strong> O Q-SYS enquadra quem fala. Todos na chamada remota vêem os gestos e expressões de perto.</p>
+                </li>
+              </ul>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Bento Box */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn className="mb-16">
+            <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
+              Por que a <span className="text-blue-500">Sonus</span>?
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl">
+              Nós não vendemos apenas caixas de equipamentos. Entregamos a sala pronta para uso, com engenharia e respaldo técnico corporativo.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+            <FadeIn className="md:col-span-2 bg-gradient-to-br from-blue-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+              <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+                <Settings className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-bold mb-3 relative z-10">Engenharia Acústica Própria</h3>
+              <p className="text-zinc-400 text-lg relative z-10 max-w-md">
+                Desenhamos projetos no EASE Focus para garantir predição sonora perfeita. Seu som nunca vai reverberar.
+              </p>
+            </FadeIn>
+
+            <FadeIn className="bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={100}>
+              <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 relative z-10">SLA Corporativo</h3>
+              <p className="text-zinc-400 text-sm relative z-10">
+                Manutenção preventiva e corretiva com tempos de resposta garantidos em contrato.
+              </p>
+            </FadeIn>
+
+            <FadeIn className="bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={200}>
+              <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 relative z-10">Zero Downtime</h3>
+              <p className="text-zinc-400 text-sm relative z-10">
+                Instalação silenciosa e rápida fora de horário comercial, se necessário.
+              </p>
+            </FadeIn>
+
+            <FadeIn className="md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group" delay={300}>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
+              <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
+                <Wrench className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-bold mb-3 relative z-10">Programação LUA / Q-SYS</h3>
+              <p className="text-zinc-400 text-lg relative z-10 max-w-md">
+                Código limpo. Interfaces criadas sob medida com a logomarca e identidade visual da sua empresa.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505] border-t border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
+              Perguntas Frequentes
+            </h2>
+          </FadeIn>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: "A Sonus atende em nível nacional?",
+                a: "Sim. Apesar da nossa sede técnica, enviamos nossa equipe de engenharia para instalações corporativas críticas em todo o Brasil."
+              },
+              {
+                q: "Nossa empresa usa primariamente o Microsoft Teams. Tudo vai funcionar nativamente?",
+                a: "Com certeza. Somos especialistas em implantação MTR (Microsoft Teams Rooms). Nossas soluções baseadas em Q-SYS e Shure são certificadas oficialmente pela Microsoft, garantindo estabilidade e integrações profundas."
+              },
+              {
+                q: "Vocês fazem o estudo acústico ou só vendem os equipamentos?",
+                a: "Fazemos o projeto end-to-end. Um sistema caríssimo soará mal em uma sala com acústica ruim. Realizamos os cálculos de reverberação e orientamos eventuais tratamentos nas paredes e teto antes da instalação do áudio."
+              },
+              {
+                q: "Quanto tempo demora a implantação de uma sala de alto padrão?",
+                a: "Após a aprovação do projeto, a parte de instalação física (cabeamento e fixação) e o comissionamento técnico variam de 2 a 5 dias para uma Boardroom complexa, sempre realizados para minimizar o impacto na rotina da empresa."
+              }
+            ].map((faq, i) => (
+              <div key={i} className="border border-white/10 rounded-2xl bg-white/[0.02] overflow-hidden">
+                <button 
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
+                >
+                  <span className="font-bold text-lg text-zinc-200">{faq.q}</span>
+                  <ChevronDown className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-48' : 'max-h-0'}`}>
+                  <p className="px-6 pb-6 text-zinc-400">{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA Banner */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-black overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
+        <FadeIn className="max-w-4xl mx-auto bg-gradient-to-br from-blue-600 to-emerald-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay" />
+          <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-black tracking-tight text-white mb-6 relative z-10 leading-tight">
+            Pronto para transformar <br/> a forma como sua empresa se comunica?
+          </h2>
+          <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10">
+            Fale agora com nosso especialista. Vamos desenhar a arquitetura perfeita (e sem cabos) para a sua sala de reuniões.
+          </p>
+          <Button onClick={handleWhatsApp} size="lg" className="relative z-10 h-16 px-10 text-xl font-bold rounded-full bg-black text-white hover:bg-zinc-900 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
+            Solicitar Consultoria Gratuita
+          </Button>
+        </FadeIn>
       </section>
 
       {/* Floating WhatsApp Button directed to Specialist */}
