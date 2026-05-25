@@ -1,6 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play } from "lucide-react"
+import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 
 export function QSysLanding() {
@@ -84,22 +84,27 @@ export function QSysLanding() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: <Cpu className="w-8 h-8 text-blue-400" />,
                 title: "Processamento por Software",
-                desc: "Construído sobre infraestrutura de TI padrão (Intel/Linux), eliminando o hardware proprietário engessado. Mais poder, menos caixas."
+                desc: "Construído sobre infraestrutura de TI padrão (Intel/Linux), eliminando hardware engessado. Mais poder, menos caixas."
               },
               {
                 icon: <Layers className="w-8 h-8 text-cyan-400" />,
                 title: "Áudio, Vídeo e Controle",
-                desc: "O único ecossistema que trata áudio, vídeo de rede (AV-over-IP) e automação de controle em um único motor, nativamente."
+                desc: "O único ecossistema que trata áudio, vídeo de rede e automação em um único motor, nativamente."
               },
               {
                 icon: <Settings className="w-8 h-8 text-purple-400" />,
                 title: "Automação Ilimitada",
-                desc: "Integre iluminação, ar-condicionado, cortinas e painéis de LED através de plugins, gerenciando tudo em telas Touch customizadas."
+                desc: "Integre iluminação, ar-condicionado, cortinas e painéis de LED gerenciando tudo em telas Touch customizadas."
+              },
+              {
+                icon: <BrainCircuit className="w-8 h-8 text-emerald-400" />,
+                title: "IA e Sensores Inteligentes",
+                desc: "Câmeras com rastreamento por Inteligência Artificial e sensores que preparam a sala automaticamente antes de você entrar."
               }
             ].map((feature, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -139,7 +144,7 @@ export function QSysLanding() {
               <div className="space-y-4 pt-4">
                 {[
                   { icon: <Mic className="w-5 h-5" />, text: "Cancelamento de Eco Acústico (AEC) Inteligente" },
-                  { icon: <Video className="w-5 h-5" />, text: "Câmeras PTZ com Rastreamento de Voz Automático" },
+                  { icon: <BrainCircuit className="w-5 h-5" />, text: "Câmeras PTZ com Rastreamento IA e Facial" },
                   { icon: <Sliders className="w-5 h-5" />, text: "Telas Touch com a Identidade Visual da sua Empresa" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 text-zinc-300 bg-black/20 p-4 rounded-2xl border border-white/5 backdrop-blur-md">
