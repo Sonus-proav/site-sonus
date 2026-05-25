@@ -12,7 +12,7 @@ export interface Project {
 
 export function optimizeImageUrl(url: string, width: number = 800): string {
   if (!url || !url.includes("firebasestorage.googleapis.com")) return url;
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&output=webp&q=80`;
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&output=webp&q=60`;
 }
 
 let projectsCache: Project[] | null = null;
