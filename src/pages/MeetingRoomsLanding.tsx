@@ -287,7 +287,7 @@ export function MeetingRoomsLanding() {
 
           <div className="pt-8 w-full sm:w-auto">
             <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
-              Consultoria Corporativa Sonus
+              Consultoria Online Gratuita
             </Button>
           </div>
 
@@ -297,6 +297,81 @@ export function MeetingRoomsLanding() {
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Design sem cabos visíveis</span>
           </div>
         </FadeIn>
+      </section>
+
+      {/* Scalability Section */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
+        <div className="max-w-7xl mx-auto space-y-20">
+          <FadeIn className="text-center max-w-3xl mx-auto">
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black tracking-tight mb-6">
+              Escalabilidade sem Limites.
+            </h2>
+            <p className="text-zinc-400 text-lg md:text-xl leading-relaxed">
+              Do Huddle Room rápido à mesa de diretoria de 18 metros. A plataforma Q-SYS permite que a Sonus construa a acústica e automação perfeitas, independente da complexidade da sua sala.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {/* Huddle Room */}
+            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group">
+              <div className="h-64 bg-[url('https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="p-8 md:p-10">
+                <h3 className="text-2xl font-bold mb-4">Salas Pequenas (Huddle)</h3>
+                <p className="text-zinc-400 leading-relaxed">
+                  Para reuniões ágeis, focamos em sistemas All-in-One ou pequenos processadores Q-SYS Core Nano. Conexão rápida e BYOD, permitindo que a equipe conecte o laptop e comece a reunião em segundos, com áudio de classe empresarial.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Medium Room */}
+            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group" delay={100}>
+              <div className="h-64 bg-[url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="p-8 md:p-10">
+                <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
+                <p className="text-zinc-400 leading-relaxed">
+                  O padrão ouro corporativo. Um único microfone de teto Shure MXA920 cobre toda a sala, limpando a mesa de fios. O Q-SYS distribui o áudio perfeitamente e gerencia a câmera PTZ que segue o locutor ativamente.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Large Room / 18m Boardroom */}
+            <FadeIn className="col-span-1 md:col-span-2 bg-gradient-to-br from-blue-900/10 to-emerald-900/5 border border-white/10 rounded-[2rem] overflow-hidden group mt-4 relative" delay={200}>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity group-hover:opacity-30 transition-opacity duration-700" />
+              <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
+                <div className="flex-1 space-y-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
+                    Alta Engenharia Sonus
+                  </div>
+                  <h3 className="text-3xl md:text-5xl font-black leading-tight">
+                    Boardrooms Extensas <br className="hidden lg:block" /> (Mesas de 18 Metros)
+                  </h3>
+                  <p className="text-zinc-300 text-lg leading-relaxed">
+                    Aqui a acústica se torna um desafio de física. Para que o CEO na ponta da mesa ouça perfeitamente um conselheiro a 18 metros de distância, empregamos o sistema de Voice Lift.
+                  </p>
+                  <p className="text-zinc-400 leading-relaxed">
+                    Sincronizamos múltiplos microfones de teto Shure em rede Dante, enquanto o Q-SYS processa centenas de canais simultâneos de cancelamento de eco acústico (AEC). Usamos câmeras cruzadas para não perder nenhum ângulo, tudo isso simplificado em um painel Touch de 10 polegadas para o executivo.
+                  </p>
+                </div>
+                
+                {/* Tech Highlights */}
+                <div className="w-full md:w-1/3 flex flex-col gap-4">
+                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                     <div className="text-emerald-400 font-bold text-xl mb-1">Rede Dante™</div>
+                     <div className="text-zinc-400 text-xs">Áudio IP sem compressão ou delay.</div>
+                   </div>
+                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                     <div className="text-blue-400 font-bold text-xl mb-1">AEC DSP</div>
+                     <div className="text-zinc-400 text-xs">Acoustic Echo Cancellation massivo.</div>
+                   </div>
+                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                     <div className="text-purple-400 font-bold text-xl mb-1">Voice Lift</div>
+                     <div className="text-zinc-400 text-xs">Amplificação zonal natural na sala.</div>
+                   </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
       </section>
 
       {/* Floating WhatsApp Button directed to Specialist */}
