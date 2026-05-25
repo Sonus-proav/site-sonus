@@ -33,15 +33,15 @@ export function QSysLanding() {
 
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[150px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-500/10 blur-[150px]" />
-        <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-cyan-500/10 blur-[120px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[150px] transform-gpu will-change-transform" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-500/10 blur-[150px] transform-gpu will-change-transform" />
+        <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-cyan-500/10 blur-[120px] transform-gpu will-change-transform" />
       </div>
 
       {/* Minimal Header */}
       <header className="absolute top-0 left-0 right-0 z-50 p-6 md:p-8 flex items-center justify-between">
-        <a href="/" className="hover:opacity-80 transition-opacity">
-          <img src="/logo.png" alt="Sonus" className="h-6 md:h-8 brightness-0 invert opacity-90" />
+        <a href="/" className="hover:opacity-80 transition-opacity" aria-label="Voltar para a Página Inicial">
+          <img src="/logo.png" alt="Logo Sonus" width="120" height="32" className="h-6 md:h-8 w-auto brightness-0 invert opacity-90" />
         </a>
       </header>
 
@@ -89,9 +89,9 @@ export function QSysLanding() {
                   <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)] animate-pulse" />
                   <span className="font-semibold text-zinc-300 text-xs md:text-sm tracking-widest uppercase">Auditório Principal</span>
                 </div>
-                <div className="flex items-center gap-3 md:gap-5 text-zinc-500">
-                  <Wifi className="w-4 h-4" />
-                  <Battery className="w-4 h-4" />
+                <div className="flex items-center gap-3 md:gap-5 text-zinc-400">
+                  <Wifi className="w-4 h-4" aria-label="Sinal WiFi" />
+                  <Battery className="w-4 h-4" aria-label="Bateria" />
                   <span className="text-xs md:text-sm font-bold text-zinc-300">14:30</span>
                 </div>
               </div>
@@ -108,7 +108,7 @@ export function QSysLanding() {
                     { icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, label: "Iluminação" },
                     { icon: <Thermometer className="w-5 h-5 md:w-6 md:h-6" />, label: "Climatização" },
                   ].map((item, i) => (
-                    <button key={i} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
+                    <button key={i} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
                       <div className="shrink-0">{item.icon}</div>
                       <span className="hidden md:block font-medium">{item.label}</span>
                     </button>
@@ -117,12 +117,13 @@ export function QSysLanding() {
                   <div className="mt-auto flex flex-col gap-2 md:gap-3">
                     <button 
                       onClick={() => setShowAdminKeypad(!showAdminKeypad)}
-                      className={`w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all border ${showAdminKeypad ? 'bg-zinc-800 text-white border-zinc-600 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-black/20 text-zinc-500 hover:bg-white/10 hover:text-white border-transparent hover:border-white/5'}`}
+                      aria-label="Painel Administrativo"
+                      className={`w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 min-h-[48px] rounded-xl md:rounded-2xl transition-all border ${showAdminKeypad ? 'bg-zinc-800 text-white border-zinc-600 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-black/20 text-zinc-400 hover:bg-white/10 hover:text-white border-transparent hover:border-white/5'}`}
                     >
                       {isAdminUnlocked ? <Unlock className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-green-400" /> : <Lock className="w-5 h-5 md:w-6 md:h-6 shrink-0" />}
                       <span className="hidden md:block font-bold">Admin</span>
                     </button>
-                    <button className="w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20">
+                    <button aria-label="Desligar Sala" className="w-full min-h-[48px] flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20">
                       <Power className="w-5 h-5 md:w-6 md:h-6 shrink-0" />
                       <span className="hidden md:block font-bold">Desligar Sala</span>
                     </button>
@@ -136,7 +137,7 @@ export function QSysLanding() {
                       <div className="max-w-[240px] w-full animate-in fade-in zoom-in duration-300">
                         <div className="text-center mb-4">
                           <h3 className="text-zinc-300 font-bold tracking-widest uppercase mb-1 text-sm">Acesso Restrito</h3>
-                          <p className="text-zinc-500 text-[10px] uppercase tracking-widest">Insira o PIN (1234)</p>
+                          <p className="text-zinc-400 text-[10px] uppercase tracking-widest">Insira o PIN (1234)</p>
                         </div>
                         
                         <div className={`flex justify-center gap-3 mb-6 transition-transform ${pinError ? 'translate-x-1' : ''}`}>
@@ -160,11 +161,11 @@ export function QSysLanding() {
                                   }
                                 }
                               }
-                            }} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
+                            }} aria-label={`Dígito ${num}`} className="min-h-[48px] h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
                               {num}
                             </button>
                           ))}
-                          <button onClick={() => setAdminPin("")} className="h-10 md:h-12 rounded-xl bg-red-500/10 hover:bg-red-500/20 active:scale-95 transition-all text-red-400 flex items-center justify-center border border-red-500/20 font-bold">
+                          <button onClick={() => setAdminPin("")} aria-label="Limpar Senha" className="min-h-[48px] h-10 md:h-12 rounded-xl bg-red-500/10 hover:bg-red-500/20 active:scale-95 transition-all text-red-400 flex items-center justify-center border border-red-500/20 font-bold">
                             C
                           </button>
                           <button onClick={() => {
@@ -180,10 +181,10 @@ export function QSysLanding() {
                                   }
                                 }
                               }
-                          }} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
+                          }} aria-label="Dígito 0" className="min-h-[48px] h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:bg-blue-600 active:scale-95 transition-all text-lg font-medium text-white border border-white/5">
                             0
                           </button>
-                          <button onClick={() => setShowAdminKeypad(false)} className="h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 transition-all text-zinc-400 flex items-center justify-center border border-white/5 font-bold">
+                          <button onClick={() => setShowAdminKeypad(false)} aria-label="Fechar Teclado Numérico" className="min-h-[48px] h-10 md:h-12 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 transition-all text-zinc-400 flex items-center justify-center border border-white/5 font-bold">
                             X
                           </button>
                         </div>
@@ -195,7 +196,7 @@ export function QSysLanding() {
                             <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
                             <span className="font-bold tracking-widest uppercase text-xs md:text-sm">Modo Engenharia</span>
                           </div>
-                          <button onClick={() => { setIsAdminUnlocked(false); setShowAdminKeypad(false); setAdminPin(""); }} className="text-zinc-500 hover:text-white transition-colors text-[10px] md:text-xs font-bold uppercase border border-zinc-700 px-3 py-1 rounded-full">
+                          <button aria-label="Sair do Modo de Engenharia" onClick={() => { setIsAdminUnlocked(false); setShowAdminKeypad(false); setAdminPin(""); }} className="text-zinc-400 hover:text-white transition-colors text-[10px] md:text-xs font-bold uppercase border border-zinc-700 px-3 py-1 rounded-full min-h-[32px]">
                             Sair
                           </button>
                         </div>
@@ -449,7 +450,7 @@ export function QSysLanding() {
       </section>
 
       {/* Minimal Footer */}
-      <footer className="py-8 text-center text-zinc-500 text-sm border-t border-white/5 relative z-10 bg-black/20">
+      <footer className="py-8 text-center text-zinc-400 text-sm border-t border-white/5 relative z-10 bg-black/20">
         <p>&copy; {new Date().getFullYear()} Sonus Áudio e Vídeo Profissional. Todos os direitos reservados.</p>
       </footer>
     </div>
