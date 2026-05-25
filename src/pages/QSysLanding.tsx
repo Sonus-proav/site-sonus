@@ -3,6 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck } from "lucide-react"
 import { Helmet } from "react-helmet-async"
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
 export function QSysLanding() {
   const [activeScene, setActiveScene] = useState(0)
@@ -21,8 +22,8 @@ export function QSysLanding() {
   ]
 
   const handleWhatsApp = () => {
-    const text = `Olá! Gostaria de saber mais sobre o Ecossistema Q-SYS para o meu projeto.`
-    window.open(`https://wa.me/554635237192?text=${encodeURIComponent(text)}`, "_blank")
+    const text = `Olá! Gostaria de falar com o especialista Q-SYS sobre o meu projeto.`
+    window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
 
   return (
@@ -454,6 +455,12 @@ export function QSysLanding() {
       <footer className="py-8 text-center text-zinc-400 text-sm border-t border-white/5 relative z-10 bg-black/20">
         <p>&copy; {new Date().getFullYear()} Sonus Áudio e Vídeo Profissional. Todos os direitos reservados.</p>
       </footer>
+      
+      {/* Floating WhatsApp Button directed to Q-SYS Specialist */}
+      <WhatsAppButton 
+        phone="5546920013151" 
+        message="Olá! Gostaria de falar com o especialista Q-SYS." 
+      />
     </div>
   )
 }
