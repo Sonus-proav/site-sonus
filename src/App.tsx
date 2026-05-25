@@ -13,7 +13,7 @@ const AdminLogin = React.lazy(() => import("./pages/AdminLogin").then(module => 
 
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
+  <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center transition-colors duration-300">
     <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
   </div>
 )

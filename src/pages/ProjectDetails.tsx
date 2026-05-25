@@ -28,7 +28,7 @@ export function ProjectDetails() {
           <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <Skeleton className="w-full aspect-[4/3] rounded-2xl" />
             <div className="flex flex-col h-full justify-center">
-              <div className="bg-black/40 border border-white/10 p-8 md:p-12 rounded-3xl">
+              <div className="bg-white/50 dark:bg-black/40 border border-black/10 dark:border-white/10 p-8 md:p-12 rounded-3xl transition-colors duration-300">
                 <Skeleton className="w-32 h-4 mb-4" />
                 <Skeleton className="w-3/4 h-10 mb-4" />
                 <Skeleton className="w-full h-32" />
@@ -45,7 +45,7 @@ export function ProjectDetails() {
   if (!project) {
     return (
       <div className="min-h-screen pt-32 pb-24 flex flex-col items-center justify-center">
-        <h1 className="text-3xl text-white font-bold mb-4">Projeto não encontrado</h1>
+        <h1 className="text-3xl text-black dark:text-white font-bold mb-4 transition-colors duration-300">Projeto não encontrado</h1>
         <Link to="/projetos" className="text-primary hover:underline flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Voltar aos projetos
         </Link>
@@ -60,7 +60,7 @@ export function ProjectDetails() {
         <FadeIn>
           <Link 
             to="/projetos" 
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 text-white backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all mb-8 group"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 text-black dark:text-white backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all mb-8 group"
           >
             <ArrowLeft className="w-5 h-5 text-primary transition-transform group-hover:-translate-x-1" />
             <span className="font-medium">Voltar para Projetos</span>
@@ -70,7 +70,7 @@ export function ProjectDetails() {
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column: Image Gallery */}
           <FadeIn delay={0.1}>
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-900 border border-white/10 relative group">
+            <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 relative group transition-colors duration-300">
               <AnimatePresence initial={false}>
                 <motion.img 
                   key={currentImgIndex}
@@ -121,17 +121,17 @@ export function ProjectDetails() {
 
           {/* Right Column: Content */}
           <FadeIn delay={0.2} className="flex flex-col h-full justify-center">
-            <div className="bg-black/40 border border-white/10 backdrop-blur-xl p-8 md:p-12 rounded-3xl relative overflow-hidden">
+            <div className="bg-white/50 dark:bg-black/40 border border-black/10 dark:border-white/10 backdrop-blur-xl p-8 md:p-12 rounded-3xl relative overflow-hidden transition-colors duration-300">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               
               <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
                 {project.category}
               </p>
-              <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-4 leading-snug">
+              <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-black dark:text-white mb-4 leading-snug transition-colors duration-300">
                 {project.title}
               </h1>
               
-              <div className="space-y-6 text-zinc-400 font-light leading-relaxed text-lg whitespace-pre-wrap">
+              <div className="space-y-6 text-zinc-600 dark:text-zinc-400 font-light leading-relaxed text-lg whitespace-pre-wrap transition-colors duration-300">
                 {project.description ? (
                   <p>{project.description}</p>
                 ) : (

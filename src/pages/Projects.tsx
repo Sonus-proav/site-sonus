@@ -22,22 +22,22 @@ export function Projects() {
     <div className="min-h-screen pt-32 pb-24">
       <div className="container px-4 md:px-6">
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
             Nosso Portfólio Profissional
           </h1>
-          <p className="text-lg text-zinc-400 font-light">
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light transition-colors duration-300">
             Explore nossa galeria de projetos e descubra como transformamos espaços comuns em ambientes extraordinários com soluções audiovisuais de última geração.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <Tabs defaultValue="todos" className="w-full flex flex-col items-center">
-            <TabsList className="bg-black/50 border border-white/10 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12">
-              <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Todos</TabsTrigger>
-              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Auditórios</TabsTrigger>
-              <TabsTrigger value="teatros" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Teatros</TabsTrigger>
-              <TabsTrigger value="igrejas" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Igrejas e Templos</TabsTrigger>
-              <TabsTrigger value="corporativos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-400">Corporativos</TabsTrigger>
+            <TabsList className="bg-white/50 dark:bg-black/50 border border-black/10 dark:border-white/10 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12 transition-colors duration-300">
+              <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Todos</TabsTrigger>
+              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Auditórios</TabsTrigger>
+              <TabsTrigger value="teatros" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Teatros</TabsTrigger>
+              <TabsTrigger value="igrejas" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Igrejas e Templos</TabsTrigger>
+              <TabsTrigger value="corporativos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Corporativos</TabsTrigger>
             </TabsList>
 
             <TabsContent value="todos" className="w-full mt-0">
@@ -113,7 +113,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-zinc-900 border border-white/10 cursor-pointer h-full will-change-transform"
+        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 cursor-pointer h-full will-change-transform transition-colors duration-300"
       >
         <div className="relative w-full h-full overflow-hidden">
           {!isImageLoaded && (

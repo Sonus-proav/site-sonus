@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "../ThemeToggle"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -27,7 +28,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
         isScrolled
-          ? "bg-black/95 md:bg-black/60 md:backdrop-blur-md border-white/10 shadow-lg py-3"
+          ? "bg-white/95 dark:bg-black/95 md:bg-white/80 md:dark:bg-black/60 md:backdrop-blur-md border-black/10 dark:border-white/10 shadow-lg py-3"
           : "bg-transparent py-5"
       )}
     >
@@ -36,7 +37,7 @@ export function Navbar() {
           <img 
             src="/logo.png" 
             alt="Sonus Logo" 
-            className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity" 
+            className="h-5 md:h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity dark:brightness-100 brightness-0" 
           />
         </Link>
 
@@ -46,36 +47,42 @@ export function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className="text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
             >
               {link.name}
             </Link>
           ))}
-          <a
-            href="/#contato"
-            className="text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)] hover:shadow-[0_0_25px_rgba(41,128,185,0.6)]"
-          >
-            Orçamento
-          </a>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <a
+              href="/#contato"
+              className="text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)] hover:shadow-[0_0_25px_rgba(41,128,185,0.6)]"
+            >
+              Orçamento
+            </a>
+          </div>
         </nav>
 
         {/* Mobile Nav Toggle */}
-        <button
-          className="md:hidden text-zinc-300 hover:text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 py-4 px-4 flex flex-col gap-4 shadow-xl">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 py-4 px-4 flex flex-col gap-4 shadow-xl">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="text-base font-medium text-zinc-300 hover:text-white transition-colors px-2 py-1"
+              className="text-base font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors px-2 py-1"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}

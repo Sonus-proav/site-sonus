@@ -39,19 +39,19 @@ export function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden transition-colors duration-300">
       {/* Elementos de Fundo Escuros */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
       
       <FadeIn className="w-full max-w-md relative z-10">
-        <div className="bg-zinc-950/80 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl">
+        <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl border border-black/10 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl transition-colors duration-300">
           
           <div className="flex flex-col items-center justify-center mb-10 text-center">
             <div className="w-16 h-16 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(41,128,185,0.2)]">
               <ShieldCheck className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2 tracking-tight">Área Restrita</h1>
-            <p className="text-sm text-zinc-400">Insira a credencial master para acessar o painel de controle Sonus.</p>
+            <h1 className="text-2xl font-bold text-black dark:text-white mb-2 tracking-tight transition-colors duration-300">Área Restrita</h1>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Insira a credencial master para acessar o painel de controle Sonus.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -67,7 +67,7 @@ export function AdminLogin() {
                   }}
                   disabled={isAttempting}
                   placeholder="Master Password"
-                  className={`w-full bg-black/50 border ${error ? 'border-red-500/50 focus:ring-red-500/50' : 'border-white/10 focus:ring-primary'} rounded-xl h-14 pl-12 pr-4 text-white focus:outline-none focus:ring-2 transition-all placeholder:text-zinc-600 disabled:opacity-50`}
+                  className={`w-full bg-white/50 dark:bg-black/50 border ${error ? 'border-red-500/50 focus:ring-red-500/50' : 'border-black/10 dark:border-white/10 focus:ring-primary'} rounded-xl h-14 pl-12 pr-4 text-black dark:text-white focus:outline-none focus:ring-2 transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-600 disabled:opacity-50`}
                 />
               </div>
               {error && (
