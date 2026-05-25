@@ -81,7 +81,7 @@ export function QSysLanding() {
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
             
-            <div className="rounded-[2rem] overflow-hidden bg-zinc-950 relative aspect-[4/3] sm:aspect-video md:aspect-[21/9] flex flex-col border border-white/10 shadow-inner">
+            <div className="rounded-[2rem] overflow-hidden bg-zinc-950 relative aspect-[4/3] sm:aspect-video md:aspect-[16/10] lg:aspect-[16/9] xl:aspect-[21/10] min-h-[500px] flex flex-col border border-white/10 shadow-inner">
               
               {/* Topbar do Touch Panel */}
               <div className="h-10 md:h-14 bg-white/[0.02] border-b border-white/5 flex items-center justify-between px-4 md:px-6">
