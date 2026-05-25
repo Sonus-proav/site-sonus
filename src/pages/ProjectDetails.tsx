@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
-import { getProjects, getCachedProjects, type Project } from "@/lib/storage"
+import { getProjects, getCachedProjects, type Project } from "@/lib/publicStorage"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
