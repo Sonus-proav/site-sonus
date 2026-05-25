@@ -1,9 +1,19 @@
+import { useState } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 
 export function QSysLanding() {
+  const [activeScene, setActiveScene] = useState(0)
+
+  const scenesData = [
+    { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
+    { title: "Videoconferência", color: "from-purple-600 to-pink-500", temp: "20°", light: "70%", vol: 60, activeColor: "rgba(236,72,153,1)" },
+    { title: "Modo Cinema", color: "from-amber-500 to-orange-500", temp: "24°", light: "10%", vol: 85, activeColor: "rgba(249,115,22,1)" },
+    { title: "Iluminação Total", color: "from-zinc-500 to-zinc-700", temp: "23°", light: "100%", vol: 50, activeColor: "rgba(161,161,170,1)" },
+  ]
+
   const handleWhatsApp = () => {
     const text = `Olá! Gostaria de saber mais sobre o Ecossistema Q-SYS para o meu projeto.`
     window.open(`https://wa.me/554635237192?text=${encodeURIComponent(text)}`, "_blank")
@@ -106,16 +116,16 @@ export function QSysLanding() {
                   <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col">
                     <h3 className="text-zinc-400 font-semibold mb-3 md:mb-4 tracking-widest uppercase text-[10px] md:text-xs">Cenários Rápidos</h3>
                     <div className="grid grid-cols-2 gap-2 md:gap-3 flex-1">
-                      {[
-                        { title: "Apresentação", color: "from-blue-600 to-cyan-500", active: true },
-                        { title: "Videoconferência", color: "from-purple-600 to-pink-500" },
-                        { title: "Modo Cinema", color: "from-amber-500 to-orange-500" },
-                        { title: "Iluminação Total", color: "from-zinc-600 to-zinc-800" },
-                      ].map((scene, i) => (
-                        <div key={i} className={`relative rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col justify-end overflow-hidden cursor-pointer group transition-all ${scene.active ? 'ring-2 ring-blue-500 shadow-lg' : 'border border-white/10 hover:border-white/30'}`}>
-                          <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} opacity-${scene.active ? '30' : '10'} group-hover:opacity-30 transition-opacity`} />
+                      {scenesData.map((scene, i) => (
+                        <div 
+                          key={i} 
+                          onClick={() => setActiveScene(i)}
+                          className={`relative rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col justify-end overflow-hidden cursor-pointer group transition-all duration-300 ${activeScene === i ? 'ring-2 ring-white shadow-lg scale-[1.02]' : 'border border-white/10 hover:border-white/30'}`}
+                        >
+                          <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} transition-opacity duration-500`} style={{ opacity: activeScene === i ? 0.3 : 0.1 }} />
+                          <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                           <span className="relative z-10 font-bold text-xs md:text-sm text-zinc-100">{scene.title}</span>
-                          {scene.active && <div className="absolute top-2 right-2 md:top-3 md:right-3 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,1)]" />}
+                          {activeScene === i && <div className="absolute top-2 right-2 md:top-3 md:right-3 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white transition-all" style={{ boxShadow: `0 0 10px ${scene.activeColor}` }} />}
                         </div>
                       ))}
                     </div>
@@ -127,10 +137,13 @@ export function QSysLanding() {
                     <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex-1 flex flex-col justify-center">
                       <div className="flex justify-between items-center mb-3 md:mb-5">
                         <span className="text-zinc-400 font-semibold uppercase tracking-widest text-[10px] md:text-xs">Volume Mestre</span>
-                        <span className="text-blue-400 font-black text-base md:text-xl">75%</span>
+                        <span className="text-blue-400 font-black text-base md:text-xl transition-all duration-500">{scenesData[activeScene].vol}%</span>
                       </div>
                       <div className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner">
-                        <div className="h-full w-[75%] bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1">
+                        <div 
+                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1 transition-all duration-700 ease-out" 
+                          style={{ width: `${scenesData[activeScene].vol}%` }}
+                        >
                           <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full shadow-md" />
                         </div>
                       </div>
@@ -141,13 +154,13 @@ export function QSysLanding() {
                       <div className="bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 opacity-20"><Thermometer className="w-12 h-12 text-orange-500" /></div>
                         <Thermometer className="w-6 h-6 md:w-8 md:h-8 text-orange-400 relative z-10" />
-                        <span className="text-xl md:text-3xl font-black text-white relative z-10">22°</span>
+                        <span className="text-xl md:text-3xl font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].temp}</span>
                         <span className="text-[10px] md:text-xs text-orange-200/60 font-bold uppercase tracking-widest relative z-10">Clima</span>
                       </div>
                       <div className="bg-gradient-to-br from-yellow-400/10 to-amber-500/5 border border-yellow-400/20 rounded-2xl md:rounded-3xl p-3 md:p-4 flex flex-col items-center justify-center gap-1 md:gap-2 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 opacity-20"><Lightbulb className="w-12 h-12 text-yellow-400" /></div>
                         <Lightbulb className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 relative z-10" />
-                        <span className="text-xl md:text-3xl font-black text-white relative z-10">40%</span>
+                        <span className="text-xl md:text-3xl font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].light}</span>
                         <span className="text-[10px] md:text-xs text-yellow-200/60 font-bold uppercase tracking-widest relative z-10">Luzes</span>
                       </div>
                     </div>
