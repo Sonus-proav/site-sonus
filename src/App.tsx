@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import { AppLayout } from "./components/layout/AppLayout"
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProtectedRoute } from "./components/admin/ProtectedRoute"
+import { ErrorBoundary } from "./components/ErrorBoundary"
 
 // Lazy loading the pages to split the JS bundle
 const Home = React.lazy(() => import("./pages/Home").then(module => ({ default: module.Home })))
@@ -22,25 +23,27 @@ const PageLoader = () => (
 function App() {
   return (
     <AuthProvider>
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route index element={<Home />} />
-            <Route path="projetos" element={<Projects />} />
-            <Route path="projetos/:id" element={<ProjectDetails />} />
-            <Route path="qsys" element={<QSysLanding />} />
-          </Route>
-          <Route path="/admin-login" element={<AdminLogin />} />
-          <Route 
-            path="/admin-dashboard-sonus" 
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            } 
-          />
-        </Routes>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Home />} />
+              <Route path="projetos" element={<Projects />} />
+              <Route path="projetos/:id" element={<ProjectDetails />} />
+              <Route path="qsys" element={<QSysLanding />} />
+            </Route>
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route 
+              path="/admin-dashboard-sonus" 
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </AuthProvider>
   )
 }
