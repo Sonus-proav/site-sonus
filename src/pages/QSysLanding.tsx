@@ -238,7 +238,7 @@ export function QSysLanding() {
                         >
                           <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} transition-opacity duration-500`} style={{ opacity: activeScene === i ? 0.3 : 0.1 }} />
                           <div className={`absolute inset-0 bg-gradient-to-br ${scene.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-                          <span className="relative z-10 font-bold text-xs md:text-sm text-zinc-100">{scene.title}</span>
+                          <span className="relative z-10 font-bold text-[10px] sm:text-xs md:text-sm text-zinc-100 leading-tight">{scene.title}</span>
                           {activeScene === i && <div className="absolute top-2 right-2 md:top-3 md:right-3 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white transition-all" style={{ boxShadow: `0 0 10px ${scene.activeColor}` }} />}
                         </div>
                       ))}
