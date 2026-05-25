@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
-import { getProjects, type Project } from "@/lib/storage"
+import { getProjects, getCachedProjects, type Project } from "@/lib/storage"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -9,15 +9,20 @@ import { Helmet } from "react-helmet-async"
 
 export function ProjectDetails() {
   const { id } = useParams()
-  const [project, setProject] = useState<Project | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [project, setProject] = useState<Project | null>(() => {
+    const cached = getCachedProjects()
+    return cached ? cached.find(p => p.id === Number(id)) || null : null
+  })
+  const [loading, setLoading] = useState(!getCachedProjects())
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
   useEffect(() => {
-    getProjects().then(projects => {
-      setProject(projects.find(p => p.id === Number(id)) || null)
-      setLoading(false)
-    })
+    if (!getCachedProjects()) {
+      getProjects().then(projects => {
+        setProject(projects.find(p => p.id === Number(id)) || null)
+        setLoading(false)
+      })
+    }
   }, [id])
 
 

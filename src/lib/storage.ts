@@ -24,36 +24,61 @@ export async function uploadImageToStorage(file: File): Promise<string> {
   return await getDownloadURL(storageRef);
 }
 
-export async function getProjects(): Promise<Project[]> {
-  try {
-    const querySnapshot = await getDocs(collection(db, "projects"));
-    
-    // Se o banco estiver vazio, migramos os dados antigos automaticamente
-    if (querySnapshot.empty) {
-      console.log("Migrando banco de dados para o Firebase...");
-      const batch = writeBatch(db);
-      defaultProjects.forEach((proj, index) => {
-        const p = { ...proj, order: index } as Project;
-        const docRef = doc(db, "projects", p.id.toString());
-        batch.set(docRef, p);
-      });
-      await batch.commit();
-      
-      const projects = defaultProjects as Project[];
-      return projects.map((p, i) => ({ ...p, order: i }));
-    }
+let projectsCache: Project[] | null = null;
+let cachePromise: Promise<Project[]> | null = null;
 
-    const projects: Project[] = [];
-    querySnapshot.forEach((doc) => {
-      projects.push(doc.data() as Project);
-    });
-    
-    // Retorna os projetos ordenados pela ordem definida no Admin
-    return projects.sort((a, b) => (a.order || 0) - (b.order || 0));
-  } catch (error) {
-    console.error("Erro ao buscar projetos do Firebase:", error);
-    return defaultProjects as Project[];
-  }
+export function getCachedProjects(): Project[] | null {
+  return projectsCache;
+}
+
+export async function getProjects(): Promise<Project[]> {
+  // Se já temos a promessa rodando, espera ela
+  if (cachePromise) return cachePromise;
+  
+  // Se já temos o cache, retorna na hora
+  if (projectsCache) return projectsCache;
+
+  cachePromise = (async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "projects"));
+      
+      if (querySnapshot.empty) {
+        console.log("Migrando banco de dados para o Firebase...");
+        const batch = writeBatch(db);
+        defaultProjects.forEach((proj, index) => {
+          const p = { ...proj, order: index } as Project;
+          const docRef = doc(db, "projects", p.id.toString());
+          batch.set(docRef, p);
+        });
+        await batch.commit();
+        
+        const projects = defaultProjects as Project[];
+        projectsCache = projects.map((p, i) => ({ ...p, order: i }));
+        return projectsCache;
+      }
+
+      const projects: Project[] = [];
+      querySnapshot.forEach((doc) => {
+        projects.push(doc.data() as Project);
+      });
+      
+      projectsCache = projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+      return projectsCache;
+    } catch (error) {
+      console.error("Erro ao buscar projetos do Firebase:", error);
+      return defaultProjects as Project[];
+    } finally {
+      // Limpa a promessa para que futuras chamadas não travem se der erro
+      cachePromise = null;
+    }
+  })();
+
+  return cachePromise;
+}
+
+// Invalida o cache
+export function invalidateCache() {
+  projectsCache = null;
 }
 
 export async function saveProjects(projects: Project[]): Promise<void> {
@@ -66,6 +91,7 @@ export async function saveProjects(projects: Project[]): Promise<void> {
       batch.set(docRef, proj);
     });
     await batch.commit();
+    invalidateCache();
   } catch (error) {
     console.error("Erro ao salvar projetos no Firebase:", error);
   }
@@ -83,6 +109,7 @@ export async function addProject(project: Omit<Project, "id">): Promise<Project>
   // Coloca o novo projeto no topo e salva o array inteiro para recalcular as ordens
   projects.unshift(newProject);
   await saveProjects(projects);
+  invalidateCache();
   return newProject;
 }
 
@@ -94,6 +121,7 @@ export async function updateProject(id: number, updates: Partial<Project>): Prom
     
     // Atualiza apenas o documento específico no Firebase, super rápido!
     await updateDoc(doc(db, "projects", id.toString()), updates);
+    invalidateCache();
   } catch (error) {
     console.error("Erro ao atualizar o projeto no Firebase:", error);
   }
@@ -102,6 +130,7 @@ export async function updateProject(id: number, updates: Partial<Project>): Prom
 export async function deleteProject(id: number): Promise<void> {
   try {
     await deleteDoc(doc(db, "projects", id.toString()));
+    invalidateCache();
   } catch (err) {
     console.error("Erro ao deletar do Firebase", err);
   }

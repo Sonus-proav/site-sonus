@@ -3,20 +3,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getProjects, type Project } from "@/lib/storage"
+import { getProjects, getCachedProjects, type Project } from "@/lib/storage"
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Helmet } from "react-helmet-async"
 
 export function Projects() {
-  const [projectsData, setProjectsData] = useState<Project[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [projectsData, setProjectsData] = useState<Project[]>(getCachedProjects() || [])
+  const [isLoading, setIsLoading] = useState(!getCachedProjects())
 
   useEffect(() => {
-    getProjects().then(data => {
-      setProjectsData(data)
-      setIsLoading(false)
-    })
+    if (!getCachedProjects()) {
+      getProjects().then(data => {
+        setProjectsData(data)
+        setIsLoading(false)
+      })
+    }
   }, [])
 
   return (
@@ -129,8 +131,8 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               key={currentImgIndex}
               src={images[currentImgIndex]} 
               alt={project.seoAlt || project.title}
-              loading={index < 2 ? "eager" : "lazy"}
-              fetchPriority={index < 2 ? "high" : "auto"}
+              loading={index < 4 ? "eager" : "lazy"}
+              fetchPriority={index < 4 ? "high" : "auto"}
               decoding="async"
               onLoad={() => setIsImageLoaded(true)}
               initial={{ opacity: 0, scale: 1.05 }}
