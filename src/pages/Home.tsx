@@ -34,15 +34,17 @@ ${formData.message}`
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Imagem de Fundo com Baixa Opacidade */}
-        <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
-          style={{
-            backgroundImage: "url('/sobre-sonus.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        {/* LCP Optimization: Usar <picture> com prioridade alta ao invés de background CSS */}
+        <picture className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]">
+          <source srcSet="/sobre-sonus.webp" type="image/webp" />
+          <img 
+            src="/sobre-sonus.jpg" 
+            alt="Fundo Sonus" 
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
         {/* Máscaras de degradê para mesclar a imagem suavemente com o fundo */}
         <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-slate-50/60 dark:from-black/60 via-transparent to-slate-50 dark:to-black transition-colors duration-300" />
         <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-slate-50/80 dark:from-black/80 via-transparent to-slate-50/80 dark:to-black/80 transition-colors duration-300" />

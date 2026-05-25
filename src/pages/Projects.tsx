@@ -192,7 +192,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {hasMultipleImages && (
           <div className="hidden">
             {images.map((img, i) => (
-              i !== currentImgIndex && <img key={i} src={img} alt="preload" width={800} height={600} loading="eager" />
+              i !== currentImgIndex && <img key={i} src={img} alt="preload" width={800} height={600} loading="eager" decoding="async" />
             ))}
           </div>
         )}
