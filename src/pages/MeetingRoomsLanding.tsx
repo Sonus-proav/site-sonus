@@ -661,7 +661,7 @@ export function MeetingRoomsLanding() {
               },
               {
                 q: "Quanto tempo demora a implantação de uma sala de alto padrão?",
-                a: "Após a aprovação do projeto, a parte de instalação física (cabeamento e fixação) e o comissionamento técnico variam de 2 a 5 dias para uma Boardroom complexa, sempre realizados para minimizar o impacto na rotina da empresa."
+                a: "O tempo de entrega varia pois cada cenário é único. Atuamos desde projetos na planta (onde acompanhamos a obra com a arquitetura) até reformas de salas já prontas. Após a aprovação e alinhamento do cronograma, a instalação física é feita de forma muito ágil para minimizar o impacto na rotina da sua empresa."
               }
             ].map((faq, i) => (
               <div key={i} className="border border-white/10 rounded-2xl bg-white/[0.02] overflow-hidden">
