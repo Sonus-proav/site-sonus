@@ -120,10 +120,10 @@ ${formData.message}`
               </h2>
               <div className="space-y-6 text-zinc-600 dark:text-zinc-300 leading-relaxed text-lg font-light transition-colors duration-300">
                 <p>
-                  Com <strong className="text-zinc-900 dark:text-white font-medium">28 anos de atuação sólida</strong> e <strong className="text-zinc-900 dark:text-white font-medium">CNPJ original</strong> no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas <strong className="text-primary font-medium">engenha soluções</strong>. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — Seja em um grande <strong className="text-zinc-900 dark:text-white font-medium">auditório, igreja ou uma sala de reunião</strong>, treinamento e videoconferência de uma multinacional.
+                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — <strong className="text-zinc-900 dark:text-white font-medium">Seja em um grande auditório, igreja ou uma sala de reunião, treinamento e videoconferência de uma multinacional.</strong>
                 </p>
                 <p>
-                  Nossa trajetória une a solidez da experiência prática com a agilidade para adotar as inovações tecnológicas mais confiáveis. Nosso compromisso não termina na entrega, nós somos <strong className="text-primary font-medium">parceiros do seu sucesso</strong> em cada projeto.
+                  Nossa trajetória une a solidez da experiência prática com a agilidade para adotar as inovações tecnológicas mais confiáveis. Nosso compromisso não termina na entrega, nós somos parceiros do seu sucesso em cada projeto.
                 </p>
               </div>
               
