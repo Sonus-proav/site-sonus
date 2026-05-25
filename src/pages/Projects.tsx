@@ -170,6 +170,22 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10 will-change-transform"
             />
           </AnimatePresence>
+          
+          {/* Tags */}
+          {project.tags && project.tags.length > 0 && (
+            <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2 pointer-events-none">
+              {project.tags.slice(0, 2).map((tag, i) => (
+                <span key={i} className="bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
+                  {tag}
+                </span>
+              ))}
+              {project.tags.length > 2 && (
+                <span className="bg-primary/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
+                  +{project.tags.length - 2}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">

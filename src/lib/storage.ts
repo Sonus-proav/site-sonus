@@ -12,6 +12,9 @@ export interface Project {
   description?: string;
   order?: number;
   isHidden?: boolean;
+  problem?: string;
+  solution?: string;
+  tags?: string[];
 }
 
 export async function uploadImageToStorage(file: File): Promise<string> {

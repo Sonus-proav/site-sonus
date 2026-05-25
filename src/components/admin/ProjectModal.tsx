@@ -33,6 +33,9 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
   const [title, setTitle] = useState("")
   const [category, setCategory] = useState("auditórios")
   const [description, setDescription] = useState("")
+  const [problem, setProblem] = useState("")
+  const [solution, setSolution] = useState("")
+  const [tagsInput, setTagsInput] = useState("")
   const [images, setImages] = useState<string[]>([""])
   const [isCompressing, setIsCompressing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -43,11 +46,17 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         setTitle(initialData.title)
         setCategory(initialData.category)
         setDescription(initialData.description || "")
+        setProblem(initialData.problem || "")
+        setSolution(initialData.solution || "")
+        setTagsInput(initialData.tags ? initialData.tags.join(", ") : "")
         setImages(initialData.images && initialData.images.length > 0 ? initialData.images : [initialData.image])
       } else {
         setTitle("")
         setCategory("auditórios")
         setDescription("")
+        setProblem("")
+        setSolution("")
+        setTagsInput("")
         setImages([""])
       }
     }
@@ -100,6 +109,9 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         title,
         category,
         description,
+        problem,
+        solution,
+        tags: tagsInput.split(",").map(t => t.trim()).filter(t => t !== ""),
         image: cleanImages[0],
         images: cleanImages,
         seoAlt: `Projeto de ${category} - ${title}`
@@ -169,12 +181,43 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-zinc-300">Descrição (Opcional)</label>
+              <label className="text-sm font-medium text-zinc-300">Descrição Geral (Opcional)</label>
               <textarea 
                 value={description}
                 onChange={e => setDescription(e.target.value)}
-                className="w-full bg-black/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] resize-none"
-                placeholder="Detalhes técnicos, equipamentos utilizados..."
+                className="w-full bg-black/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-primary min-h-[80px] resize-none"
+                placeholder="Detalhes técnicos rápidos..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-300">O Problema do Cliente</label>
+              <textarea 
+                value={problem}
+                onChange={e => setProblem(e.target.value)}
+                className="w-full bg-black/50 border border-orange-500/30 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 min-h-[100px] resize-none"
+                placeholder="Ex: A diretoria perdia tempo conectando cabos..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-300">A Solução Sonus</label>
+              <textarea 
+                value={solution}
+                onChange={e => setSolution(e.target.value)}
+                className="w-full bg-black/50 border border-emerald-500/30 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 min-h-[100px] resize-none"
+                placeholder="Ex: Instalamos áudio invisível 100% automatizado..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-300">Tags / Tecnologias (separadas por vírgula)</label>
+              <input 
+                type="text" 
+                value={tagsInput}
+                onChange={e => setTagsInput(e.target.value)}
+                className="w-full bg-black/50 border border-white/10 rounded-xl h-12 px-4 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Ex: Shure MXA920, Q-SYS Core, Auditório"
               />
             </div>
 

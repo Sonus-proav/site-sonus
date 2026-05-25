@@ -8,6 +8,9 @@ export interface Project {
   description?: string;
   order?: number;
   isHidden?: boolean;
+  problem?: string;
+  solution?: string;
+  tags?: string[];
 }
 
 export function optimizeImageUrl(url: string, width: number = 800): string {
@@ -40,6 +43,7 @@ export async function getProjects(): Promise<Project[]> {
       const projects: Project[] = json.documents.map((doc: any) => {
         const f = doc.fields;
         const images = f.images?.arrayValue?.values ? f.images.arrayValue.values.map((v: any) => v.stringValue) : [];
+        const tags = f.tags?.arrayValue?.values ? f.tags.arrayValue.values.map((v: any) => v.stringValue) : [];
         return {
           id: parseInt(f.id?.integerValue || f.id?.stringValue || "0"),
           title: f.title?.stringValue || "",
@@ -49,7 +53,10 @@ export async function getProjects(): Promise<Project[]> {
           seoAlt: f.seoAlt?.stringValue || "",
           description: f.description?.stringValue || "",
           order: parseInt(f.order?.integerValue || "0"),
-          isHidden: f.isHidden?.booleanValue || false
+          isHidden: f.isHidden?.booleanValue || false,
+          problem: f.problem?.stringValue || "",
+          solution: f.solution?.stringValue || "",
+          tags: tags
         };
       });
 
