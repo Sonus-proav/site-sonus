@@ -10,6 +10,7 @@ const Projects = React.lazy(() => import("./pages/Projects").then(module => ({ d
 const ProjectDetails = React.lazy(() => import("./pages/ProjectDetails").then(module => ({ default: module.ProjectDetails })))
 const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard").then(module => ({ default: module.AdminDashboard })))
 const AdminLogin = React.lazy(() => import("./pages/AdminLogin").then(module => ({ default: module.AdminLogin })))
+const QSysLanding = React.lazy(() => import("./pages/QSysLanding").then(module => ({ default: module.QSysLanding })))
 
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
@@ -27,6 +28,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="projetos" element={<Projects />} />
             <Route path="projetos/:id" element={<ProjectDetails />} />
+            <Route path="qsys" element={<QSysLanding />} />
           </Route>
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route 
