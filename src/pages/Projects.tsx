@@ -183,6 +183,15 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
             ))}
           </div>
         )}
+
+        {/* Preload invisível das imagens secundárias para troca sem Skeleton */}
+        {hasMultipleImages && (
+          <div className="hidden">
+            {images.map((img, i) => (
+              i !== currentImgIndex && <img key={i} src={img} alt="preload" loading="eager" />
+            ))}
+          </div>
+        )}
       </motion.article>
     </Link>
   )

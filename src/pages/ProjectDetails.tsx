@@ -70,6 +70,11 @@ export function ProjectDetails() {
         <meta property="og:title" content={`${project.title} | Sonus`} />
         <meta property="og:description" content={project.description?.substring(0, 155) + "..." || "Conheça mais este projeto realizado pela Sonus."} />
         <meta property="og:image" content={project.image} />
+        
+        {/* Preload de todas as imagens do carrossel para troca instantânea */}
+        {hasMultipleImages && project.images!.map((img, i) => (
+          <link rel="preload" as="image" href={img} key={i} />
+        ))}
       </Helmet>
       <div className="container px-4 md:px-6">
         
