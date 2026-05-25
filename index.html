@@ -80,24 +80,22 @@
   </head>
   <body>
     <style>
-      #root:empty {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #000000;
+      body { margin: 0; }
+      .initial-loader-container {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        display: flex; align-items: center; justify-content: center;
+        background-color: #000000; z-index: 9999;
       }
       .initial-loader {
-        width: 32px;
-        height: 32px;
-        border: 2px solid #2980b9;
-        border-top-color: transparent;
-        border-radius: 50%;
+        width: 32px; height: 32px; border: 2px solid #2980b9;
+        border-top-color: transparent; border-radius: 50%;
         animation: spin 1s linear infinite;
       }
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
-    <div id="root"><div class="initial-loader"></div></div>
+    <div id="root">
+      <div class="initial-loader-container"><div class="initial-loader"></div></div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
