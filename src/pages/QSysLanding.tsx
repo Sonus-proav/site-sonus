@@ -319,7 +319,7 @@ export function QSysLanding() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium">
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS Nível 2</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Projetos em todo Brasil</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Programação LUA Customizada</span>
               </div>
