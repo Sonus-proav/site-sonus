@@ -95,7 +95,7 @@ export function MeetingRoomsLanding() {
               </div>
 
               {/* Screen Content */}
-              <div className="w-full aspect-[4/3] md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20">
+              <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20">
                 
                 {/* Status Bar */}
                 <div className="h-8 md:h-12 bg-black/40 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative z-10 backdrop-blur-md">
