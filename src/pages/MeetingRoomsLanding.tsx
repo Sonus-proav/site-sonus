@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings } from "lucide-react"
+import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings, Quote } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
@@ -511,6 +511,39 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
+      {/* O Nosso Método */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#030303] border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
+              Do Zero à Primeira Chamada em <span className="text-emerald-500">4 Passos</span>
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Processo previsível para que a sua diretoria saiba exatamente o que será entregue, sem surpresas no meio do caminho.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            
+            {[
+              { step: "01", title: "Consultoria Inicial", desc: "Mapeamento das necessidades da sala, plataforma (MTR/Zoom) e desafios acústicos." },
+              { step: "02", title: "Projeto EASE", desc: "Simulação acústica em software para garantir que o som não vai reverberar ou ecoar." },
+              { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
+              { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
+            ].map((item, i) => (
+              <FadeIn key={i} className="relative z-10 bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl text-center group hover:bg-white/[0.02] transition-colors">
+                <div className="w-16 h-16 mx-auto bg-black border border-white/10 rounded-full flex items-center justify-center mb-6 text-2xl font-black text-white/20 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Projetos Executados Section */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
@@ -581,6 +614,28 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
+      {/* Testimonial */}
+      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <FadeIn className="bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-[3rem] p-10 md:p-16 text-center">
+            <Quote className="w-12 h-12 text-blue-500/50 mx-auto mb-8" />
+            <p className="text-[clamp(1.25rem,2vw,2rem)] font-medium leading-relaxed text-zinc-300 mb-10">
+              "A diferença entre comprar equipamentos soltos e contratar a Sonus foi a nossa paz de espírito. Eles não entregaram apenas microfones de teto, entregaram uma sala onde a diretoria senta e simplesmente faz a reunião acontecer. Zero chamados no suporte."
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-500 font-bold">
+                TI
+              </div>
+              <div className="text-left">
+                <div className="font-bold text-white">Diretor de Tecnologia</div>
+                <div className="text-zinc-500 text-sm">Multinacional - Faria Lima (SP)</div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505] border-t border-white/5">
         <div className="max-w-3xl mx-auto">
@@ -642,6 +697,39 @@ export function MeetingRoomsLanding() {
           </Button>
         </FadeIn>
       </section>
+
+      {/* Mini Footer */}
+      <footer className="relative py-12 px-6 bg-black border-t border-white/5 z-10 text-center md:text-left">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+             <img src="/logo.png" alt="Sonus" width="100" height="28" className="h-6 w-auto brightness-0 invert opacity-50 mb-6 mx-auto md:mx-0" />
+             <p className="text-zinc-600 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
+               Engenharia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
+             </p>
+          </div>
+          <div className="space-y-4">
+            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Contato</h4>
+            <div className="text-zinc-600 text-sm space-y-2">
+              <p>contato@sonus.pro.br</p>
+              <p>+55 (46) 92001-3151</p>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Empresa</h4>
+            <div className="text-zinc-600 text-sm space-y-2">
+              <p>Sonus Áudio e Vídeo Ltda</p>
+              <p>CNPJ: 43.149.336/0001-09</p>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 text-zinc-700 text-xs flex flex-col md:flex-row items-center justify-between">
+          <p>© {new Date().getFullYear()} Sonus. Todos os direitos reservados.</p>
+          <div className="flex gap-4 mt-4 md:mt-0">
+            <a href="#" className="hover:text-zinc-400 transition-colors">Política de Privacidade</a>
+            <a href="#" className="hover:text-zinc-400 transition-colors">Termos de Uso</a>
+          </div>
+        </div>
+      </footer>
 
       {/* Floating WhatsApp Button directed to Specialist */}
       <WhatsAppButton 
