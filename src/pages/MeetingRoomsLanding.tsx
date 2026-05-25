@@ -311,7 +311,6 @@ export function MeetingRoomsLanding() {
             <img src="/shure-logo.png" alt="Shure" className="h-5 md:h-8 w-auto object-contain brightness-0 invert" />
             <img src="/qsys-logo.png" alt="Q-SYS" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
             <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-cyan-400">Dante™</span>
           </div>
         </div>
       </section>
