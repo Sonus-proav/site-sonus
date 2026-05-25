@@ -466,8 +466,8 @@ export function MeetingRoomsLanding() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
-            <FadeIn className="md:col-span-2 bg-gradient-to-br from-blue-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[250px]">
+            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 bg-gradient-to-br from-blue-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                 <Settings className="w-8 h-8" />
               </div>
@@ -477,7 +477,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -487,7 +487,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-6 h-6" />
               </div>
@@ -497,7 +497,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
