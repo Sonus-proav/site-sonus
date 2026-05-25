@@ -64,13 +64,13 @@ export function QSysLanding() {
             <span className="text-sm font-medium tracking-wide text-zinc-300">Integração Certificada Sonus + Q-SYS</span>
           </div>
 
-          <h1 className="text-[clamp(2.5rem,6vw,6rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
-            O Futuro do Controle <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Audiovisual.</span>
+          <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
+            Controle Total da sua Empresa <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">em Uma Única Tela.</span>
           </h1>
 
           <p className="text-lg md:text-2xl text-zinc-400 font-light max-w-3xl text-balance leading-relaxed">
-            Áudio, vídeo e automação processados de forma centralizada por software. A plataforma mais poderosa e flexível para auditórios, espaços corporativos e grandes templos.
+            Elimine de vez a bagunça de controles remotos e equipamentos incompatíveis. O Q-SYS unifica áudio, vídeo e automação em painéis simples que qualquer executivo consegue usar sem pedir ajuda.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-8 w-full sm:w-auto">
@@ -446,6 +446,20 @@ export function QSysLanding() {
         </FadeIn>
       </section>
 
+      {/* Trust Bar / Ecossistema */}
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-[#030303] z-10">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Integração Nativa e Certificada</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
+            <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain" />
+            <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain" />
+            <img src="/shure-logo.png" alt="Shure" className="h-5 md:h-8 w-auto object-contain brightness-0 invert" />
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
+          </div>
+        </div>
+      </section>
+
       {/* Feature Grid - Glassmorphism */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
@@ -462,23 +476,23 @@ export function QSysLanding() {
             {[
               {
                 icon: <Cpu className="w-8 h-8 text-blue-400" />,
-                title: "Processamento por Software",
-                desc: "Construído sobre infraestrutura de TI padrão (Intel/Linux), eliminando hardware engessado. Mais poder, menos caixas."
+                title: "Fim da Obsolescência",
+                desc: "Diferente de matrizes físicas engessadas, o Q-SYS é um software. Atualize remotamente como um servidor de TI e economize milhares em hardware."
               },
               {
                 icon: <Layers className="w-8 h-8 text-cyan-400" />,
-                title: "Áudio, Vídeo e Controle",
-                desc: "O único ecossistema que trata áudio, vídeo de rede e automação em um único motor, nativamente."
+                title: "Tudo em Um Só Lugar",
+                desc: "A única plataforma corporativa que processa e comanda microfones, câmeras, vídeo e luz de forma nativa e sem gambiarras."
               },
               {
                 icon: <Settings className="w-8 h-8 text-purple-400" />,
-                title: "Automação Ilimitada",
-                desc: "Integre iluminação, ar-condicionado, cortinas e painéis de LED gerenciando tudo em telas Touch customizadas."
+                title: "Padronização Corporativa",
+                desc: "O mesmo painel de controle na mesa da presidência e na sala rápida. Curva de aprendizado zero para a sua equipe."
               },
               {
                 icon: <BrainCircuit className="w-8 h-8 text-emerald-400" />,
-                title: "IA e Sensores Inteligentes",
-                desc: "Câmeras com rastreamento por Inteligência Artificial e sensores que preparam a sala automaticamente antes de você entrar."
+                title: "Salas que Pensam",
+                desc: "Sensores preparam a sala antes de você entrar. Câmeras com IA rastreiam o orador. Fim dos chamados para o TI ligar o projetor."
               }
             ].map((feature, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -510,9 +524,9 @@ export function QSysLanding() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-zinc-600">A Sala Perfeita.</span>
               </h2>
               <p className="text-lg text-zinc-400 font-light leading-relaxed">
-                Imagine entrar em um auditório, tocar no painel de controle e automaticamente: as luzes dimerizam, as cortinas fecham, os microfones ativam, o projetor liga e a câmera foca no palco. 
+                Imagine entrar na sala do conselho, tocar em "Reunião" no painel e automaticamente: as cortinas fecham, as luzes dimerizam, o ar liga em 22 graus, os microfones ativam e o Microsoft Teams entra na chamada. 
                 <br /><br />
-                A Sonus desenha a interface sob medida para que qualquer pessoa consiga operar sistemas complexos com a facilidade de usar um smartphone.
+                Tudo desenhado com a identidade visual da sua empresa para que qualquer executivo comande a sala com a facilidade de usar um smartphone.
               </p>
 
               <div className="space-y-4 pt-4">
@@ -580,7 +594,7 @@ export function QSysLanding() {
                 Padrão Sonus de Qualidade.
               </h2>
               <p className="text-xl text-white/80 font-light max-w-2xl text-balance">
-                Não somos apenas revendedores, somos engenheiros. Desenhamos a arquitetura de rede, programamos a automação e customizamos a interface gráfica para a realidade do seu espaço.
+                Paz de espírito corporativa. Desenhamos a engenharia, integramos a tecnologia e entregamos as chaves com a garantia de que suas reuniões críticas não vão mais falhar.
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
@@ -590,18 +604,46 @@ export function QSysLanding() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium">
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS Oficial</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Projetos em todo Brasil</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Programação LUA Customizada</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Interfaces com a sua Identidade Visual</span>
               </div>
             </div>
           </div>
         </FadeIn>
       </section>
 
-      {/* Minimal Footer */}
-      <footer className="py-8 text-center text-zinc-400 text-sm border-t border-white/5 relative z-10 bg-black/20">
-        <p>&copy; {new Date().getFullYear()} Sonus Áudio e Vídeo Profissional. Todos os direitos reservados.</p>
+      {/* Full Footer */}
+      <footer className="relative py-12 px-6 bg-black border-t border-white/5 z-10 text-center md:text-left">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+             <img src="/logo.png" alt="Sonus" width="100" height="28" className="h-6 w-auto brightness-0 invert opacity-50 mb-6 mx-auto md:mx-0" />
+             <p className="text-zinc-600 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
+               Engenharia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
+             </p>
+          </div>
+          <div className="space-y-4">
+            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Contato</h4>
+            <div className="text-zinc-600 text-sm space-y-2">
+              <p>contato@sonus.pro.br</p>
+              <p>+55 (46) 92001-3151</p>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Empresa</h4>
+            <div className="text-zinc-600 text-sm space-y-2">
+              <p>Sonus Áudio e Vídeo Ltda</p>
+              <p>CNPJ: 43.149.336/0001-09</p>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 text-zinc-700 text-xs flex flex-col md:flex-row items-center justify-between">
+          <p>© {new Date().getFullYear()} Sonus. Todos os direitos reservados.</p>
+          <div className="flex gap-4 mt-4 md:mt-0">
+            <a href="#" className="hover:text-zinc-400 transition-colors">Política de Privacidade</a>
+            <a href="#" className="hover:text-zinc-400 transition-colors">Termos de Uso</a>
+          </div>
+        </div>
       </footer>
       
       {/* Floating WhatsApp Button directed to Q-SYS Specialist */}
