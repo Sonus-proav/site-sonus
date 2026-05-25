@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck } from "lucide-react"
+import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
@@ -13,6 +13,13 @@ export function QSysLanding() {
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false)
   const [pinError, setPinError] = useState(false)
   const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
+  
+  // New States for Interactive Tabs
+  const [activeTab, setActiveTab] = useState("Cenários")
+  const [audioLevels, setAudioLevels] = useState({ mic1: 80, mic2: 60, pc: 100 })
+  const [lightLevels, setLightLevels] = useState({ palco: 100, plateia: 40, sanca: 80 })
+  const [hvacTemp, setHvacTemp] = useState(22)
+  const [cameraPreset, setCameraPreset] = useState("Palco")
 
   const scenesData = [
     { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
@@ -103,13 +110,13 @@ export function QSysLanding() {
                 <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0">
                   <div className="flex flex-row md:flex-col gap-2 md:gap-3 shrink-0">
                     {[
-                      { icon: <MonitorPlay className="w-5 h-5 md:w-6 md:h-6" />, label: "Cenários", active: true },
-                      { icon: <Volume2 className="w-5 h-5 md:w-6 md:h-6" />, label: "Áudio" },
-                      { icon: <Camera className="w-5 h-5 md:w-6 md:h-6" />, label: "Câmeras PTZ" },
-                      { icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, label: "Iluminação" },
-                      { icon: <Thermometer className="w-5 h-5 md:w-6 md:h-6" />, label: "Climatização" },
+                      { icon: <MonitorPlay className="w-5 h-5 md:w-6 md:h-6" />, label: "Cenários", id: "Cenários" },
+                      { icon: <Volume2 className="w-5 h-5 md:w-6 md:h-6" />, label: "Áudio", id: "Áudio" },
+                      { icon: <Camera className="w-5 h-5 md:w-6 md:h-6" />, label: "Câmeras PTZ", id: "Câmeras PTZ" },
+                      { icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, label: "Iluminação", id: "Iluminação" },
+                      { icon: <Thermometer className="w-5 h-5 md:w-6 md:h-6" />, label: "Climatização", id: "Climatização" },
                     ].map((item, i) => (
-                      <button key={i} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
+                      <button key={i} onClick={() => setActiveTab(item.id)} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 ${activeTab === item.id ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] ring-1 ring-blue-400' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
                         <div className="shrink-0">{item.icon}</div>
                         <span className="hidden md:block font-medium text-[clamp(12px,1.5vw,16px)]">{item.label}</span>
                       </button>
@@ -221,7 +228,7 @@ export function QSysLanding() {
                       </div>
                     )}
                   </div>
-                ) : (
+                ) : activeTab === "Cenários" ? (
                   <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 animate-in fade-in duration-300">
                   {/* Cenários Rápidos */}
                   <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col">
@@ -285,9 +292,149 @@ export function QSysLanding() {
                         <span className="text-[clamp(16px,2vw,30px)] font-black text-white relative z-10 transition-all duration-500">{scenesData[activeScene].light}</span>
                         <span className="text-[clamp(9px,1vw,12px)] text-yellow-200/60 font-bold uppercase tracking-widest relative z-10">Luzes</span>
                       </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : activeTab === "Áudio" ? (
+                  <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                    <h3 className="text-zinc-400 font-semibold tracking-widest uppercase text-[10px] md:text-xs mb-4 text-center md:text-left">Mixer de Áudio</h3>
+                    <div className="flex justify-around flex-1 items-end gap-2 md:gap-4 pb-4">
+                      {/* Mixer Channel 1 */}
+                      <div className="flex flex-col items-center gap-4 w-16 md:w-24">
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic1: vol})) }}>
+                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic1}%` }} />
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.mic1}</span></div>
+                        </div>
+                        <button onClick={() => setAudioLevels(p => ({...p, mic1: p.mic1 === 0 ? 80 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic1 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
+                          {audioLevels.mic1 === 0 ? <MicOff className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <Mic className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
+                        </button>
+                        <span className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest text-center">Mic 1</span>
+                      </div>
+                      {/* Mixer Channel 2 */}
+                      <div className="flex flex-col items-center gap-4 w-16 md:w-24">
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic2: vol})) }}>
+                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic2}%` }} />
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.mic2}</span></div>
+                        </div>
+                        <button onClick={() => setAudioLevels(p => ({...p, mic2: p.mic2 === 0 ? 60 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic2 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
+                          {audioLevels.mic2 === 0 ? <MicOff className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <Mic className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
+                        </button>
+                        <span className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest text-center">Mic 2</span>
+                      </div>
+                      {/* Mixer Channel 3 (PC) */}
+                      <div className="flex flex-col items-center gap-4 w-16 md:w-24">
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, pc: vol})) }}>
+                          <div className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(56,189,248,0.3)]" style={{ height: `${audioLevels.pc}%` }} />
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.pc}</span></div>
+                        </div>
+                        <button onClick={() => setAudioLevels(p => ({...p, pc: p.pc === 0 ? 100 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.pc === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
+                          {audioLevels.pc === 0 ? <VolumeX className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <MonitorPlay className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
+                        </button>
+                        <span className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest text-center">PC</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : activeTab === "Câmeras PTZ" ? (
+                  <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 h-full">
+                    <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] shadow-inner">
+                      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-luminosity blur-[2px] transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }}></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      
+                      {/* OSD Info */}
+                      <div className="absolute top-4 left-4 md:top-6 md:left-6 flex gap-2">
+                        <div className="px-2 py-1 bg-red-500/90 rounded text-[10px] font-bold flex items-center gap-1.5 shadow-[0_0_10px_rgba(239,68,68,0.5)]"><div className="w-2 h-2 rounded-full bg-white animate-pulse" /> REC</div>
+                        <div className="px-2 py-1 bg-black/60 backdrop-blur-md rounded border border-white/10 uppercase text-[10px] font-bold text-zinc-300">CAM 1</div>
+                      </div>
+                      
+                      {/* Center Crosshair (Subtle) */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-white/10 rounded-full flex items-center justify-center pointer-events-none">
+                        <div className="w-1 h-1 bg-red-500/50 rounded-full" />
+                      </div>
+
+                      {/* D-Pad PTZ Controls */}
+                      <div className="relative z-10 flex flex-col items-center justify-center gap-2 md:gap-4 w-full mt-auto mb-6">
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronUp className="w-6 h-6 text-white" /></div>
+                        <div className="flex gap-8 md:gap-12 items-center">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronLeft className="w-6 h-6 text-white" /></div>
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600/20 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/40 active:scale-90 transition-all backdrop-blur-md"><Target className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /></div>
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronRight className="w-6 h-6 text-white" /></div>
+                        </div>
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronDown className="w-6 h-6 text-white" /></div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 md:gap-4 shrink-0">
+                      {['Palco', 'Mesa', 'Plateia'].map(preset => (
+                        <button key={preset} onClick={() => setCameraPreset(preset)} className={`h-12 md:h-14 rounded-xl border transition-all text-[10px] md:text-xs font-bold uppercase tracking-widest ${cameraPreset === preset ? 'bg-blue-600/20 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] text-blue-300' : 'bg-white/5 border-white/10 text-zinc-400 hover:bg-white/10'}`}>{preset}</button>
+                      ))}
+                    </div>
+                  </div>
+                ) : activeTab === "Iluminação" ? (
+                  <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                    <h3 className="text-zinc-400 font-semibold tracking-widest uppercase text-[10px] md:text-xs mb-2">Zonas de Iluminação</h3>
+                    <div className="flex flex-col gap-6 md:gap-8 justify-center flex-1">
+                      {/* Zona 1 */}
+                      <div>
+                        <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-yellow-500" /> Luzes do Palco</span><span className="text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded-md">{lightLevels.palco}%</span></div>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, palco: Math.round((x/rect.width)*100)})) }}>
+                          <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-300 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(250,204,21,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.palco}%` }}>
+                            <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Zona 2 */}
+                      <div>
+                        <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-amber-500" /> Luzes da Plateia</span><span className="text-amber-400 bg-amber-500/10 px-2 py-1 rounded-md">{lightLevels.plateia}%</span></div>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, plateia: Math.round((x/rect.width)*100)})) }}>
+                          <div className="h-full bg-gradient-to-r from-amber-600 to-amber-300 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(251,191,36,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.plateia}%` }}>
+                            <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Zona 3 */}
+                      <div>
+                        <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-blue-500" /> Sancas Decorativas</span><span className="text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md">{lightLevels.sanca}%</span></div>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, sanca: Math.round((x/rect.width)*100)})) }}>
+                          <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(56,189,248,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.sanca}%` }}>
+                            <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex-1 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500 gap-8 bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-6">
+                    <div className="w-56 h-56 md:w-72 md:h-72 rounded-full border-[10px] border-black/60 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative flex items-center justify-center bg-gradient-to-b from-zinc-800 to-black overflow-hidden ring-1 ring-white/5">
+                      <div className={`absolute inset-0 transition-all duration-1000 mix-blend-screen ${hvacTemp < 21 ? 'bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3)_0%,transparent_70%)]' : hvacTemp > 24 ? 'bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3)_0%,transparent_70%)]' : 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_0%,transparent_70%)]'}`} />
+                      <div className="flex flex-col items-center z-10 relative">
+                        <span className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest font-bold mb-1">Setpoint</span>
+                        <div className="flex items-start text-white">
+                          <span className="text-7xl md:text-8xl font-black tracking-tighter tabular-nums">{hvacTemp}</span>
+                          <span className="text-3xl md:text-4xl mt-2 font-light text-zinc-400">°C</span>
+                        </div>
+                        <div className="px-4 py-1.5 rounded-full bg-black/50 border border-white/10 mt-3 flex items-center gap-2 backdrop-blur-md">
+                          <Thermometer className={`w-3.5 h-3.5 ${hvacTemp < 21 ? 'text-blue-400' : hvacTemp > 24 ? 'text-orange-400' : 'text-emerald-400'}`} /> 
+                          <span className="text-zinc-300 text-xs font-bold uppercase tracking-widest">Atual: {hvacTemp > 22 ? hvacTemp - 1 : hvacTemp < 20 ? hvacTemp + 1 : 22}°C</span>
+                        </div>
+                      </div>
+                      
+                      {/* Decorative tick marks */}
+                      {[...Array(40)].map((_, i) => (
+                        <div key={i} className="absolute w-1 h-3 bg-white/10" style={{ transform: `rotate(${i * 9}deg) translateY(-100px)` }} />
+                      ))}
+                    </div>
+                    
+                    <div className="flex gap-4 md:gap-8">
+                      <button onClick={() => setHvacTemp(prev => Math.max(16, prev - 1))} className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-black/40 hover:bg-black/60 active:scale-95 border border-white/10 hover:border-blue-500/50 flex items-center justify-center text-blue-400 transition-all shadow-lg group">
+                        <Minus className="w-8 h-8 md:w-10 md:h-10 group-active:text-blue-300" />
+                      </button>
+                      <button className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-blue-600/10 active:scale-95 border border-blue-500/30 flex items-center justify-center text-blue-300 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                        <Fan className="w-6 h-6 md:w-8 md:h-8 animate-spin" />
+                      </button>
+                      <button onClick={() => setHvacTemp(prev => Math.min(30, prev + 1))} className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-black/40 hover:bg-black/60 active:scale-95 border border-white/10 hover:border-orange-500/50 flex items-center justify-center text-orange-400 transition-all shadow-lg group">
+                        <Plus className="w-8 h-8 md:w-10 md:h-10 group-active:text-orange-300" />
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
               
