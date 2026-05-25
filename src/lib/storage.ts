@@ -1,7 +1,6 @@
 import { collection, doc, getDocs, deleteDoc, writeBatch, updateDoc } from 'firebase/firestore';
 import { db, storage } from './firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import defaultProjects from "../../data/projects.json";
 
 export interface Project {
   id: number;
@@ -53,6 +52,7 @@ export async function getProjects(): Promise<Project[]> {
       
       if (querySnapshot.empty) {
         console.log("Migrando banco de dados para o Firebase...");
+        const { default: defaultProjects } = await import("../../data/projects.json");
         const batch = writeBatch(db);
         defaultProjects.forEach((proj, index) => {
           const p = { ...proj, order: index } as Project;
@@ -75,6 +75,7 @@ export async function getProjects(): Promise<Project[]> {
       return projectsCache;
     } catch (error) {
       console.error("Erro ao buscar projetos do Firebase:", error);
+      const { default: defaultProjects } = await import("../../data/projects.json");
       return defaultProjects as Project[];
     } finally {
       // Limpa a promessa para que futuras chamadas não travem se der erro
