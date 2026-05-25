@@ -11,6 +11,7 @@ export function QSysLanding() {
   const [adminPin, setAdminPin] = useState("")
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false)
   const [pinError, setPinError] = useState(false)
+  const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
 
   const scenesData = [
     { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
@@ -392,22 +393,22 @@ export function QSysLanding() {
                   </div>
                   <div className="p-8 flex-1 flex flex-col justify-center gap-6">
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="h-32 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-blue-500/30 transition-colors">
-                        <Play className="w-8 h-8 text-blue-400" />
-                        <span className="font-medium text-blue-200 text-sm">Modo Apresentação</span>
+                      <div onClick={() => setActiveFauxScene("presentation")} className={`h-32 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center px-2 ${activeFauxScene === "presentation" ? 'bg-blue-500/20 border border-blue-500/30 hover:bg-blue-500/30' : 'bg-white/5 border border-white/10 hover:bg-white/10'}`}>
+                        <Play className={`w-8 h-8 transition-colors ${activeFauxScene === "presentation" ? 'text-blue-400' : 'text-zinc-500'}`} />
+                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "presentation" ? 'text-blue-200' : 'text-zinc-400'}`}>Modo Apresentação</span>
                       </div>
-                      <div className="h-32 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-white/10 transition-colors">
-                        <Video className="w-8 h-8 text-zinc-400" />
-                        <span className="font-medium text-zinc-300 text-sm">Videoconferência</span>
+                      <div onClick={() => setActiveFauxScene("video")} className={`h-32 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center px-2 ${activeFauxScene === "video" ? 'bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500/30' : 'bg-white/5 border border-white/10 hover:bg-white/10'}`}>
+                        <Video className={`w-8 h-8 transition-colors ${activeFauxScene === "video" ? 'text-purple-400' : 'text-zinc-500'}`} />
+                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "video" ? 'text-purple-200' : 'text-zinc-400'}`}>Videoconferência</span>
                       </div>
                     </div>
                     <div className="space-y-4 pt-6">
                       <div className="flex justify-between text-sm text-zinc-400 font-medium">
                         <span>Volume Principal</span>
-                        <span>75%</span>
+                        <span className="transition-all duration-500">{activeFauxScene === "presentation" ? '75%' : '60%'}</span>
                       </div>
                       <div className="h-4 bg-black rounded-full overflow-hidden border border-white/10">
-                        <div className="h-full w-[75%] bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
+                        <div className={`h-full transition-all duration-1000 ease-out rounded-full ${activeFauxScene === "presentation" ? 'w-[75%] bg-gradient-to-r from-blue-500 to-cyan-400' : 'w-[60%] bg-gradient-to-r from-purple-500 to-pink-400'}`} />
                       </div>
                     </div>
                   </div>
@@ -435,7 +436,7 @@ export function QSysLanding() {
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
-                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-10 text-xl font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full sm:w-auto">
+                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-base md:text-xl font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
                   Consultoria Gratuita Q-SYS
                 </Button>
               </div>
