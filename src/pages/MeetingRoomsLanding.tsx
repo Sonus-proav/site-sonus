@@ -286,31 +286,33 @@ export function MeetingRoomsLanding() {
             </div>
           </div>
 
-          {/* Trust Bar / Ecossistema */}
-          <div className="w-full max-w-5xl mx-auto mt-12 mb-4 pt-12 border-t border-white/5">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-blue-400">Zoom</span>
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-emerald-500">SHURE</span>
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-zinc-300">Q-SYS</span>
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-cyan-400">Dante™</span>
-            </div>
-          </div>
-
-          <div className="pt-16 w-full sm:w-auto">
+          <div className="pt-8 w-full sm:w-auto">
             <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
               Consultoria Online Gratuita
             </Button>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium pb-24">
+          <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium">
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Soluções Microsoft Teams Rooms</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Integração Zoom Rooms</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Design sem cabos visíveis</span>
           </div>
         </FadeIn>
+      </section>
+
+      {/* Trust Bar / Ecossistema - Moved Outside for Better Breathing Room */}
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-[#030303] z-10">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-blue-400">Zoom</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-emerald-500">SHURE</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-zinc-300">Q-SYS</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-cyan-400">Dante™</span>
+          </div>
+        </div>
       </section>
 
       {/* Scalability Section */}
