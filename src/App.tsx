@@ -3,10 +3,6 @@ import { Routes, Route } from "react-router-dom"
 import { AppLayout } from "./components/layout/AppLayout"
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProtectedRoute } from "./components/admin/ProtectedRoute"
-import { getProjects } from "./lib/storage"
-
-// Pre-fetch global do banco de dados para zerar o delay de carregamento
-getProjects().catch(console.error);
 
 // Lazy loading the pages to split the JS bundle
 const Home = React.lazy(() => import("./pages/Home").then(module => ({ default: module.Home })))
