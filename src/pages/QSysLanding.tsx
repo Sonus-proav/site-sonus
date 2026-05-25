@@ -55,7 +55,7 @@ export function QSysLanding() {
             <span className="text-sm font-medium tracking-wide text-zinc-300">Integração Certificada Sonus + Q-SYS</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
             O Futuro do Controle <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Audiovisual.</span>
           </h1>
@@ -96,33 +96,35 @@ export function QSysLanding() {
               </div>
 
               {/* Main Content Dashboard */}
-              <div className="flex-1 flex p-3 md:p-6 gap-3 md:gap-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 to-black">
+              <div className="flex-1 flex flex-col md:flex-row p-3 md:p-6 gap-3 md:gap-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 to-black">
                 
                 {/* Sidebar Navigation */}
-                <div className="w-16 md:w-64 flex flex-col gap-2 md:gap-3">
-                  {[
-                    { icon: <MonitorPlay className="w-5 h-5 md:w-6 md:h-6" />, label: "Cenários", active: true },
-                    { icon: <Volume2 className="w-5 h-5 md:w-6 md:h-6" />, label: "Áudio" },
-                    { icon: <Camera className="w-5 h-5 md:w-6 md:h-6" />, label: "Câmeras PTZ" },
-                    { icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, label: "Iluminação" },
-                    { icon: <Thermometer className="w-5 h-5 md:w-6 md:h-6" />, label: "Climatização" },
-                  ].map((item, i) => (
-                    <button key={i} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
-                      <div className="shrink-0">{item.icon}</div>
-                      <span className="hidden md:block font-medium">{item.label}</span>
-                    </button>
-                  ))}
+                <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0">
+                  <div className="flex flex-row md:flex-col gap-2 md:gap-3 shrink-0">
+                    {[
+                      { icon: <MonitorPlay className="w-5 h-5 md:w-6 md:h-6" />, label: "Cenários", active: true },
+                      { icon: <Volume2 className="w-5 h-5 md:w-6 md:h-6" />, label: "Áudio" },
+                      { icon: <Camera className="w-5 h-5 md:w-6 md:h-6" />, label: "Câmeras PTZ" },
+                      { icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, label: "Iluminação" },
+                      { icon: <Thermometer className="w-5 h-5 md:w-6 md:h-6" />, label: "Climatização" },
+                    ].map((item, i) => (
+                      <button key={i} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 ${item.active ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
+                        <div className="shrink-0">{item.icon}</div>
+                        <span className="hidden md:block font-medium">{item.label}</span>
+                      </button>
+                    ))}
+                  </div>
                   
-                  <div className="mt-auto flex flex-col gap-2 md:gap-3">
+                  <div className="md:mt-auto flex flex-row md:flex-col gap-2 md:gap-3 shrink-0 border-l md:border-l-0 md:border-t border-white/10 pl-2 md:pl-0 md:pt-4 ml-1 md:ml-0">
                     <button 
                       onClick={() => setShowAdminKeypad(!showAdminKeypad)}
                       aria-label="Painel Administrativo"
-                      className={`w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 min-h-[48px] rounded-xl md:rounded-2xl transition-all border ${showAdminKeypad ? 'bg-zinc-800 text-white border-zinc-600 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-black/20 text-zinc-400 hover:bg-white/10 hover:text-white border-transparent hover:border-white/5'}`}
+                      className={`w-full flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 min-h-[48px] min-w-[48px] shrink-0 rounded-xl md:rounded-2xl transition-all border ${showAdminKeypad ? 'bg-zinc-800 text-white border-zinc-600 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-black/20 text-zinc-400 hover:bg-white/10 hover:text-white border-transparent hover:border-white/5'}`}
                     >
                       {isAdminUnlocked ? <Unlock className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-green-400" /> : <Lock className="w-5 h-5 md:w-6 md:h-6 shrink-0" />}
                       <span className="hidden md:block font-bold">Admin</span>
                     </button>
-                    <button aria-label="Desligar Sala" className="w-full min-h-[48px] flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20">
+                    <button aria-label="Desligar Sala" className="w-full min-h-[48px] min-w-[48px] shrink-0 flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20">
                       <Power className="w-5 h-5 md:w-6 md:h-6 shrink-0" />
                       <span className="hidden md:block font-bold">Desligar Sala</span>
                     </button>
@@ -243,7 +245,7 @@ export function QSysLanding() {
                   </div>
 
                   {/* Controles Ativos */}
-                  <div className="flex flex-col gap-3 md:gap-6 hidden sm:flex">
+                  <div className="flex flex-col gap-3 md:gap-6">
                     {/* Volume Control */}
                     <div className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex-1 flex flex-col justify-center">
                       <div className="flex justify-between items-center mb-3 md:mb-5">
@@ -299,7 +301,7 @@ export function QSysLanding() {
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
           <FadeIn className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
               Por que escolher o Ecossistema Q-SYS?
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
@@ -354,7 +356,7 @@ export function QSysLanding() {
               <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 font-medium text-sm border border-blue-500/20">
                 Experiência de Usuário
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
                 Um Toque. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-zinc-600">A Sala Perfeita.</span>
               </h2>
@@ -424,7 +426,7 @@ export function QSysLanding() {
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             
             <div className="relative z-10 space-y-8 flex flex-col items-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
                 Engenharia de Ponta.<br />
                 Padrão Sonus de Qualidade.
               </h2>
