@@ -18,6 +18,9 @@ export function Projects() {
       getProjects().then(data => {
         setProjectsData(data)
         setIsLoading(false)
+      }).catch(() => {
+        setProjectsData([])
+        setIsLoading(false)
       })
     }
   }, [])

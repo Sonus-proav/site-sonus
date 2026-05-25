@@ -30,18 +30,24 @@ export class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-red-900 flex flex-col items-center justify-center p-8 text-white">
-          <h1 className="text-3xl font-bold mb-4">Oops! Algo deu errado.</h1>
-          <p className="mb-4">{this.state.error && this.state.error.toString()}</p>
-          <pre className="bg-black/50 p-4 rounded overflow-auto w-full max-w-4xl text-sm">
-            {this.state.errorInfo?.componentStack}
-          </pre>
-          <button
-            className="mt-8 px-6 py-2 bg-white text-red-900 rounded font-bold"
-            onClick={() => window.location.reload()}
-          >
-            Recarregar a Página
-          </button>
+        <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-8 text-black dark:text-white transition-colors duration-300">
+          <div className="max-w-md text-center">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+              <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold mb-3">Ops! Algo deu errado.</h1>
+            <p className="text-zinc-500 dark:text-zinc-400 mb-8 text-sm">
+              Houve um problema ao carregar esta página. Tente recarregar.
+            </p>
+            <button
+              className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
+              onClick={() => window.location.reload()}
+            >
+              Recarregar a Página
+            </button>
+          </div>
         </div>
       )
     }

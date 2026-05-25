@@ -63,9 +63,10 @@ export async function getProjects(): Promise<Project[]> {
       projectsCache = projects.sort((a, b) => (a.order || 0) - (b.order || 0));
       return projectsCache;
     } catch (error) {
-      console.error("Erro ao buscar via REST API:", error);
-      const { default: defaultProjects } = await import("../../data/projects.json");
-      return defaultProjects as Project[];
+      console.error("Erro ao buscar projetos:", error);
+      // Retorna array vazio para evitar crash - o usuário verá a mensagem "sem projetos"
+      projectsCache = [];
+      return [];
     } finally {
       cachePromise = null;
     }

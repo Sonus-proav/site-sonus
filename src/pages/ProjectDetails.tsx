@@ -22,6 +22,9 @@ export function ProjectDetails() {
       getProjects().then(projects => {
         setProject(projects.find(p => p.id === Number(id)) || null)
         setLoading(false)
+      }).catch(() => {
+        setProject(null)
+        setLoading(false)
       })
     }
   }, [id])
