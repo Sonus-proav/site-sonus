@@ -30,8 +30,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path="projetos" element={<Projects />} />
               <Route path="projetos/:id" element={<ProjectDetails />} />
-              <Route path="qsys" element={<QSysLanding />} />
             </Route>
+            <Route path="qsys" element={<QSysLanding />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route 
               path="/admin-dashboard-sonus" 

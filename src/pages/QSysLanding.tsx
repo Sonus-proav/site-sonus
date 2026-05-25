@@ -33,6 +33,13 @@ export function QSysLanding() {
         <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
+      {/* Minimal Header */}
+      <header className="absolute top-0 left-0 right-0 z-50 p-6 md:p-8 flex items-center justify-between">
+        <a href="/" className="hover:opacity-80 transition-opacity">
+          <img src="/logo.png" alt="Sonus" className="h-6 md:h-8 brightness-0 invert opacity-90" />
+        </a>
+      </header>
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
@@ -319,7 +326,7 @@ export function QSysLanding() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium">
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Certificação Q-SYS Nível 2</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Projetos em todo Brasil</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Programação LUA Customizada</span>
               </div>
@@ -327,6 +334,11 @@ export function QSysLanding() {
           </div>
         </FadeIn>
       </section>
+
+      {/* Minimal Footer */}
+      <footer className="py-8 text-center text-zinc-500 text-sm border-t border-white/5 relative z-10 bg-black/20">
+        <p>&copy; {new Date().getFullYear()} Sonus Áudio e Vídeo Profissional. Todos os direitos reservados.</p>
+      </footer>
     </div>
   )
 }
