@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -70,9 +71,16 @@ export function Projects() {
 }
 
 function ProjectGrid({ filter, projects, loading }: { filter: string, projects: Project[], loading: boolean }) {
+  const [visibleCount, setVisibleCount] = useState(6)
+
+  // Reseta o contador quando muda o filtro
+  useEffect(() => {
+    setVisibleCount(6)
+  }, [filter])
+
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
         {[...Array(6)].map((_, i) => (
           <Skeleton key={i} className="w-full aspect-[4/3] rounded-2xl" />
         ))}
@@ -86,11 +94,28 @@ function ProjectGrid({ filter, projects, loading }: { filter: string, projects: 
     ? visibleProjects 
     : visibleProjects.filter(p => p.category === filter)
 
+  const currentProjects = filteredProjects.slice(0, visibleCount)
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {filteredProjects.map((project, index) => (
-        <ProjectCard key={project.id} project={project} index={index} />
-      ))}
+    <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+        {currentProjects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
+        ))}
+      </div>
+      
+      {visibleCount < filteredProjects.length && (
+        <FadeIn delay={0.1} className="mt-12">
+          <Button 
+            onClick={() => setVisibleCount(v => v + 6)}
+            size="lg" 
+            variant="outline" 
+            className="text-base font-medium px-8 h-12 rounded-full bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 text-black dark:text-white backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
+          >
+            Carregar mais projetos
+          </Button>
+        </FadeIn>
+      )}
     </div>
   )
 }
