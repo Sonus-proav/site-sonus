@@ -615,21 +615,21 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Testimonial */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
+      <section className="relative py-12 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
         <div className="max-w-4xl mx-auto relative z-10">
-          <FadeIn className="bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-[3rem] p-10 md:p-16 text-center">
-            <Quote className="w-12 h-12 text-blue-500/50 mx-auto mb-8" />
-            <p className="text-[clamp(1.25rem,2vw,2rem)] font-medium leading-relaxed text-zinc-300 mb-10">
+          <FadeIn className="bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-[2rem] p-8 md:p-10 text-center">
+            <Quote className="w-8 h-8 text-blue-500/50 mx-auto mb-6" />
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-relaxed text-zinc-300 mb-8 italic">
               "A diferença entre comprar equipamentos soltos e contratar a Sonus foi a nossa paz de espírito. Eles não entregaram apenas microfones de teto, entregaram uma sala onde a diretoria senta e simplesmente faz a reunião acontecer. Zero chamados no suporte."
             </p>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-500 font-bold">
+              <div className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-500 font-bold text-sm">
                 TI
               </div>
               <div className="text-left">
-                <div className="font-bold text-white">Diretor de Tecnologia</div>
-                <div className="text-zinc-500 text-sm">Multinacional - Faria Lima (SP)</div>
+                <div className="font-bold text-white text-sm">Diretor de Tecnologia</div>
+                <div className="text-zinc-500 text-xs">Multinacional - Faria Lima (SP)</div>
               </div>
             </div>
           </FadeIn>
