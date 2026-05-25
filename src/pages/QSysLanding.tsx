@@ -15,7 +15,7 @@ export function QSysLanding() {
 
   const scenesData = [
     { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
-    { title: "Videoconferência", color: "from-purple-600 to-pink-500", temp: "20°", light: "70%", vol: 60, activeColor: "rgba(236,72,153,1)" },
+    { title: "Videochamada", color: "from-purple-600 to-pink-500", temp: "20°", light: "70%", vol: 60, activeColor: "rgba(236,72,153,1)" },
     { title: "Modo Cinema", color: "from-amber-500 to-orange-500", temp: "24°", light: "10%", vol: 85, activeColor: "rgba(249,115,22,1)" },
     { title: "Iluminação Total", color: "from-zinc-500 to-zinc-700", temp: "23°", light: "100%", vol: 50, activeColor: "rgba(161,161,170,1)" },
   ]
@@ -399,7 +399,7 @@ export function QSysLanding() {
                       </div>
                       <div onClick={() => setActiveFauxScene("video")} className={`h-32 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center px-2 ${activeFauxScene === "video" ? 'bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500/30' : 'bg-white/5 border border-white/10 hover:bg-white/10'}`}>
                         <Video className={`w-8 h-8 transition-colors ${activeFauxScene === "video" ? 'text-purple-400' : 'text-zinc-500'}`} />
-                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "video" ? 'text-purple-200' : 'text-zinc-400'}`}>Videoconferência</span>
+                        <span className={`font-medium text-xs md:text-sm transition-colors ${activeFauxScene === "video" ? 'text-purple-200' : 'text-zinc-400'}`}>Videochamada</span>
                       </div>
                     </div>
                     <div className="space-y-4 pt-6">
