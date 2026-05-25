@@ -9,14 +9,16 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: http:; connect-src 'self' https: http: wss:; frame-ancestors 'none';">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <!-- LCP Optimization (Preload Hero Image) -->
-    <link rel="preload" as="image" href="/sobre-sonus.webp" fetchpriority="high">
-
-    <!-- Fontes carregadas de forma assíncrona para ZERAR o bloqueio de renderização -->
+    <!-- Fontes carregadas normalmente para evitar CLS (Cumulative Layout Shift) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- LCP Optimization (Hero da Home) -->
+    <link rel="preload" as="image" href="/sobre-sonus.webp" fetchpriority="high">
+
+    <!-- LCP Optimization (Projetos - Imagem 1) -->
+    <link rel="preload" as="image" href="https://wsrv.nl/?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fsonus-site-ae590.firebasestorage.app%2Fo%2Fprojects%252F1779662590913-matrizitapejaradooeste.jpg%3Falt%3Dmedia%26token%3D85ad6aff-91c9-4660-99f0-5e0747fb77a8&w=800&output=webp&q=80" fetchpriority="high">
     
     <!-- Primary Meta Tags -->
     <title>Sonus | Soluções em Áudio e Vídeo Profissional</title>
