@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronRight, Play, CheckCircle2 } from "lucide-react"
 import { Link } from "react-router-dom"
-import { Helmet } from "react-helmet-async"
 
 export function Home() {
   const [formData, setFormData] = useState({
@@ -33,10 +32,6 @@ ${formData.message}`
 
   return (
     <div className="flex flex-col">
-      <Helmet>
-        <title>Sonus | Soluções em Áudio e Vídeo Profissional</title>
-        <meta name="description" content="Especialistas em projetos de integração audiovisual de alta performance, automação de salas de reunião e acústica para igrejas. 28 anos de experiência no mercado corporativo." />
-      </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         {/* Imagem de Fundo com Baixa Opacidade */}
@@ -125,7 +120,7 @@ ${formData.message}`
               </h2>
               <div className="space-y-6 text-zinc-600 dark:text-zinc-300 leading-relaxed text-lg font-light transition-colors duration-300">
                 <p>
-                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — <strong className="text-zinc-900 dark:text-white font-medium">Seja em grandes auditórios, teatros e igrejas ou em numa sala de reunião, treinamento e videoconferência de uma multinacional.</strong>
+                  Com 28 anos de atuação sólida e CNPJ original no mercado audiovisual, a Sonus não apenas entrega equipamentos, mas engenha soluções. Nossos 28 anos de mercado são a sua garantia de que entendemos a complexidade de cada ambiente — <strong className="text-zinc-900 dark:text-white font-medium">Seja em um grande auditório, igreja, teatro, sala de reunião, treinamento ou videoconferência de uma multinacional.</strong>
                 </p>
                 <p>
                   Nossa trajetória une a solidez da experiência prática com a agilidade para adotar as inovações tecnológicas mais confiáveis. Nosso compromisso não termina na entrega, nós somos parceiros do seu sucesso em cada projeto.
