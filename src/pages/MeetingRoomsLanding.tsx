@@ -301,13 +301,13 @@ export function MeetingRoomsLanding() {
       <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01] backdrop-blur-xl z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
             <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
-            <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain" />
-            <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain" />
+            <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
+            <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
             <img src="/shure-logo.png" alt="Shure" className="h-5 md:h-8 w-auto object-contain brightness-0 invert" />
             <img src="/qsys-logo.png" alt="Q-SYS" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-red-500">BARCO</span>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">BARCO</span>
           </div>
         </div>
       </section>
