@@ -88,7 +88,7 @@ export function MeetingRoomsLanding() {
 
           {/* Interactive Mockup Container */}
           <div className="w-full max-w-4xl mt-12 mb-8 perspective-1000 group">
-            <div className="w-full bg-gradient-to-b from-zinc-800 to-black rounded-[2rem] md:rounded-[3rem] p-1.5 md:p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.9)] border border-white/[0.12] relative transform-gpu transition-transform duration-700 hover:rotate-x-0 rotate-x-2 screen-sweep">
+            <div className="w-full bg-gradient-to-b from-zinc-800 to-black rounded-[2rem] md:rounded-[3rem] p-1.5 md:p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.9)] border border-white/[0.12] relative transform-gpu transition-transform duration-700 hover:rotate-x-0 rotate-x-2">
               
               {/* Fake Bezel and Camera */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 md:w-48 h-6 md:h-8 bg-black rounded-b-3xl z-30 flex items-center justify-center gap-2 border-b border-x border-white/5">
@@ -97,7 +97,7 @@ export function MeetingRoomsLanding() {
               </div>
 
               {/* Screen Content */}
-              <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20">
+              <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20 screen-sweep">
                 
                 {/* Status Bar */}
                 <div className="h-8 md:h-12 bg-black/40 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative z-10 backdrop-blur-md">
