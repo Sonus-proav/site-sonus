@@ -75,14 +75,21 @@
     @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
     min-height: 100vh;
     background-color: #f8fafc;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image: radial-gradient(circle at top center, #ffffff 0%, #f1f5f9 60%);
-    background-attachment: fixed;
+    z-index: -10;
+    pointer-events: none;
   }
   
   .dark body {
     background-color: #000000;
+  }
+  .dark body::before {
     background-image: radial-gradient(circle at top center, #0F172A 0%, #000000 60%);
-    background-attachment: fixed;
   }
 }
 
@@ -93,25 +100,21 @@
 /* Glass Card Base */
 .glass-card {
   background: rgba(10, 10, 10, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
-  transform: translateZ(0); /* Hardware Acceleration / Composite layer */
-  backface-visibility: hidden;
 }
 .glass-card-strong {
   background: rgba(5, 5, 5, 0.4);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 /* Floating Orb Animations */
