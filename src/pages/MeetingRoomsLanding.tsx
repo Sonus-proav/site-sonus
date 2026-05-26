@@ -687,17 +687,80 @@ export function MeetingRoomsLanding() {
       {/* Bottom CTA Banner */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
-        <FadeIn className="max-w-4xl mx-auto glass-card-strong bg-gradient-to-br from-blue-600/40 to-emerald-600/40 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+        <FadeIn className="max-w-6xl mx-auto glass-card-strong bg-gradient-to-br from-blue-600/30 to-emerald-600/20 rounded-[3rem] p-8 md:p-16 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
           <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none" alt="Banner background" />
-          <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-black tracking-tight text-white mb-6 relative z-10 leading-tight">
-            Pronto para transformar <br/> a forma como sua empresa se comunica?
-          </h2>
-          <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10">
-            Fale agora com nosso especialista. Vamos desenhar a arquitetura perfeita (e sem cabos) para a sua sala de reuniões.
-          </p>
-          <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn relative z-10 h-16 px-10 text-xl font-bold rounded-full bg-black text-white hover:bg-zinc-900 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
-            Solicitar Consultoria Gratuita
-          </Button>
+          
+          <div className="relative z-10 flex-1 text-center lg:text-left">
+            <h2 className="text-[clamp(2rem,3.5vw,3.5rem)] font-black tracking-tight text-white mb-6 leading-tight">
+              Pronto para transformar a forma como sua empresa se comunica?
+            </h2>
+            <p className="text-white/80 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10">
+              Fale agora com nosso especialista. Vamos desenhar a arquitetura perfeita (e sem cabos) para a sua sala de reuniões.
+            </p>
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn relative z-10 h-16 px-10 text-lg md:text-xl font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]">
+              Falar com Especialista
+            </Button>
+          </div>
+
+          <div className="relative z-10 w-full max-w-[320px] shrink-0">
+            {/* iPhone Mockup */}
+            <div className="w-full h-[620px] bg-zinc-950 rounded-[3rem] border-[8px] border-zinc-900 shadow-2xl overflow-hidden flex flex-col relative ring-1 ring-white/10">
+              {/* Notch */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-20 flex justify-end items-center px-3">
+                 <div className="w-2 h-2 rounded-full bg-emerald-500/30" />
+              </div>
+              
+              {/* Chat Header */}
+              <div className="bg-white/[0.03] border-b border-white/5 backdrop-blur-xl pt-14 pb-4 px-6 flex items-center gap-3 z-10">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-blue-600 p-[1px]">
+                  <div className="w-full h-full rounded-full bg-zinc-950 flex items-center justify-center">
+                    <img src="/favicon.svg" alt="Sonus" className="w-5 h-5 opacity-90" />
+                  </div>
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-white flex items-center gap-2">
+                    Sonus Pro AV
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
+                  </div>
+                  <div className="text-[10px] text-zinc-400">Equipe de Projetos</div>
+                </div>
+              </div>
+
+              {/* Chat Body */}
+              <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden bg-[radial-gradient(ellipse_at_top,#111_0%,#000_100%)] relative">
+                {/* Sonus Message 1 */}
+                <div className="animate-chat-bubble flex items-end gap-2" style={{ animationDelay: '800ms' }}>
+                  <div className="bg-white/10 text-zinc-200 text-sm p-3.5 rounded-2xl rounded-bl-sm max-w-[90%] border border-white/5 backdrop-blur-md shadow-lg">
+                    Olá! Vi que você tem interesse em atualizar a tecnologia das suas salas de reunião. Como posso ajudar?
+                  </div>
+                </div>
+                
+                {/* Client Message 1 */}
+                <div className="animate-chat-bubble flex items-end justify-end gap-2" style={{ animationDelay: '2500ms' }}>
+                  <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 text-white text-sm p-3.5 rounded-2xl rounded-br-sm max-w-[90%] shadow-lg shadow-emerald-900/20">
+                    Precisamos de uma solução para nossa sala de diretoria. Atualmente o áudio está muito ruim nas videoconferências.
+                  </div>
+                </div>
+                
+                {/* Sonus Message 2 */}
+                <div className="animate-chat-bubble flex items-end gap-2" style={{ animationDelay: '4800ms' }}>
+                  <div className="bg-white/10 text-zinc-200 text-sm p-3.5 rounded-2xl rounded-bl-sm max-w-[90%] border border-white/5 backdrop-blur-md shadow-lg">
+                    Perfeito! Nós fazemos o projeto acústico e de captação invisível (sem cabos na mesa). Vamos agendar um call rápido para entendermos o espaço?
+                  </div>
+                </div>
+              </div>
+
+              {/* Chat Input Bar */}
+              <div className="bg-zinc-950/80 p-4 border-t border-white/5 backdrop-blur-xl">
+                <div className="h-10 bg-white/5 rounded-full border border-white/10 flex items-center px-4 justify-between">
+                  <span className="text-zinc-500 text-sm font-light">Mensagem...</span>
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </FadeIn>
       </section>
 
