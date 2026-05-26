@@ -586,54 +586,20 @@ export function MeetingRoomsLanding() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Project 1 */}
-            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
-              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Projeto" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+          <div className="max-w-4xl mx-auto mt-12">
+            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-[21/9]">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Sala de Reunião Cresol Baser" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Boardroom</span>
-                  <span className="px-3 py-1 bg-emerald-500/20 backdrop-blur-md rounded-full text-[10px] font-bold text-emerald-400 uppercase tracking-wider border border-emerald-500/20">Shure MXA920</span>
+                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider border border-white/20">Cresol Baser</span>
+                  <span className="px-3 py-1 bg-emerald-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-wider border border-emerald-500/20">Boardroom</span>
+                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Videoconferência</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Sede Corporativa Faria Lima</h3>
-                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-                  Mesa de 16 lugares sem nenhum cabo. Integração total MTR com 2 telas de 85 polegadas.
-                </p>
-              </div>
-            </FadeIn>
-
-            {/* Project 2 */}
-            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
-              <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1200&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Projeto" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Auditório</span>
-                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Q-SYS Core</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Centro de Capacitação Tech</h3>
-                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-                  Sistema de áudio distribuído para 50 pessoas com Auto-Tracking em 3 câmeras PTZ.
-                </p>
-              </div>
-            </FadeIn>
-
-            {/* Project 3 */}
-            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Projeto" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">Huddle Room</span>
-                  <span className="px-3 py-1 bg-zinc-800/80 backdrop-blur-md rounded-full text-[10px] font-bold text-zinc-300 uppercase tracking-wider border border-white/10">BYOD</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Salas de Diretoria Executiva</h3>
-                <p className="text-zinc-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-                  Conjunto de 8 salas rápidas desenhadas para máxima agilidade e sem complexidade de uso.
+                <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">Sala de Reunião dos Diretores</h3>
+                <p className="text-zinc-300 text-sm md:text-base max-w-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                  Projeto de alto padrão executado para a Cresol Baser, integrando videoconferência avançada e captação de áudio invisível para reuniões executivas e decisões estratégicas sem barreiras tecnológicas.
                 </p>
               </div>
             </FadeIn>
