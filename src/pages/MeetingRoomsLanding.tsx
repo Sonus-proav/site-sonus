@@ -48,8 +48,8 @@ export function MeetingRoomsLanding() {
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 noise-overlay">
       <SEO 
-        title="Salas de Reunião Padrão Sonus | Automação e Áudio Invisível" 
-        description="Transforme suas salas corporativas com a Sonus. Áudio invisível, automação nativa e zero complexidade para a sua diretoria." 
+        title="Automação de Salas de Reunião e Videoconferência | Sonus Pro AV" 
+        description="Projetos de captação de áudio invisível, acústica e automação para salas de diretoria. Instalação premium certificada Microsoft Teams e Zoom Rooms." 
         url="https://sonusproaudio.com.br/salas-reuniao"
       />
 

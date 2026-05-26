@@ -34,8 +34,8 @@ ${formData.message}`
   return (
     <div className="flex flex-col min-h-screen">
       <SEO 
-        title="Sonus | Soluções em Áudio e Vídeo Profissional" 
-        description="Especialistas em projetos de integração audiovisual de alta performance, automação de salas de reunião e acústica corporativa. 28 anos de mercado." 
+        title="Sonus Pro AV | Projetos de Sonorização e Automação Corporativa" 
+        description="Especialistas em integração audiovisual de alta performance. Projetos de sonorização, acústica e automação para empresas, auditórios e igrejas. 28 anos de mercado." 
         url="https://sonusproaudio.com.br/"
       />
       {/* Hero Section */}

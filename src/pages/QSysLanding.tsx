@@ -37,8 +37,8 @@ export function QSysLanding() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 noise-overlay">
       <SEO 
-        title="Ecossistema Q-SYS | Padronização Corporativa Sonus" 
-        description="Projetos profissionais com o Ecossistema Q-SYS. Controle de áudio, vídeo e automação centralizada com interface de alto padrão." 
+        title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
+        description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
         url="https://sonusproaudio.com.br/qsys"
       />
 

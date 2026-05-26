@@ -28,8 +28,8 @@ export function Projects() {
   return (
     <div className="flex flex-col min-h-screen pt-20">
       <SEO 
-        title="Portfólio Sonus | Casos de Sucesso em Áudio e Vídeo" 
-        description="Explore nossos principais projetos executados de integração audiovisual corporativa, acústica de igrejas e automação de grandes auditórios." 
+        title="Portfólio de Projetos Audiovisuais | Sonus Pro AV" 
+        description="Conheça nossos cases de sucesso em sonorização e automação corporativa para empresas, auditórios e igrejas." 
         url="https://sonusproaudio.com.br/projetos"
       />
       <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-20">
