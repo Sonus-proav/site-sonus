@@ -57,10 +57,10 @@ export function MeetingRoomsLanding() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/10 via-[#050505] to-[#050505]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent" />
         {/* Floating Orbs */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-[120px] animate-float-slow" />
-        <div className="absolute -bottom-32 -left-20 w-[400px] h-[400px] bg-blue-500/[0.12] rounded-full blur-[100px] animate-float-slow-reverse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[80px] animate-float-slow" />
-        <div className="absolute -top-10 -left-10 w-[350px] h-[350px] bg-purple-500/[0.08] rounded-full blur-[100px] animate-float-slow-reverse" />
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-emerald-500/15 to-transparent animate-float-slow pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-blue-500/[0.12] to-transparent animate-float-slow-reverse pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-cyan-500/10 to-transparent animate-float-slow pointer-events-none" />
+        <div className="absolute -top-10 -left-10 w-[350px] h-[350px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-purple-500/[0.08] to-transparent animate-float-slow-reverse pointer-events-none" />
       </div>
 
       {/* Minimal Header */}

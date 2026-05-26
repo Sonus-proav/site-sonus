@@ -46,10 +46,10 @@ export function QSysLanding() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0a0a0a] to-[#0a0a0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent" />
         {/* Floating Orbs */}
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[120px] animate-float-slow" />
-        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] animate-float-slow-reverse" />
-        <div className="absolute top-1/2 -left-20 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px] animate-float-slow" />
-        <div className="absolute bottom-1/4 -right-20 w-[350px] h-[350px] bg-emerald-500/[0.08] rounded-full blur-[100px] animate-float-slow-reverse" />
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-blue-500/15 to-transparent animate-float-slow pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-cyan-500/10 to-transparent animate-float-slow-reverse pointer-events-none" />
+        <div className="absolute top-1/2 -left-20 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-purple-500/10 to-transparent animate-float-slow pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-[350px] h-[350px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-emerald-500/[0.08] to-transparent animate-float-slow-reverse pointer-events-none" />
       </div>
 
       {/* Minimal Header */}
