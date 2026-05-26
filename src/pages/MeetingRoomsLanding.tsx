@@ -52,15 +52,11 @@ export function MeetingRoomsLanding() {
         url="https://sonusproaudio.com.br/salas-reuniao"
       />
 
-      {/* Decorative Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/10 via-[#050505] to-[#050505]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent" />
-        {/* Floating Orbs */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-emerald-500/15 to-transparent animate-float-slow pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-blue-500/[0.12] to-transparent animate-float-slow-reverse pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-cyan-500/10 to-transparent animate-float-slow pointer-events-none" />
-        <div className="absolute -top-10 -left-10 w-[350px] h-[350px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-purple-500/[0.08] to-transparent animate-float-slow-reverse pointer-events-none" />
+      {/* Soundwave Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[#050505]" />
+        <img src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
       {/* Minimal Header */}

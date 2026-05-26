@@ -41,15 +41,11 @@ export function QSysLanding() {
         url="https://sonusproaudio.com.br/qsys"
       />
 
-      {/* Decorative Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0a0a0a] to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent" />
-        {/* Floating Orbs */}
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-blue-500/15 to-transparent animate-float-slow pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-cyan-500/10 to-transparent animate-float-slow-reverse pointer-events-none" />
-        <div className="absolute top-1/2 -left-20 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-purple-500/10 to-transparent animate-float-slow pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-20 w-[350px] h-[350px] rounded-full bg-[radial-gradient(circle,var(--tw-gradient-stops))] from-emerald-500/[0.08] to-transparent animate-float-slow-reverse pointer-events-none" />
+      {/* Soundwave Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[#050505]" />
+        <img src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
       {/* Minimal Header */}
