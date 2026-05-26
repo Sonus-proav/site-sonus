@@ -20,8 +20,6 @@ export function Navbar() {
     { name: "Início", path: "/" },
     { name: "Sobre Nós", path: "/#sobre" },
     { name: "Portfólio", path: "/projetos" },
-    { name: "Salas de Reunião", path: "/salas-reuniao" },
-    { name: "Ecossistema Q-SYS", path: "/qsys" },
     { name: "Contato", path: "/#contato" },
   ]
 

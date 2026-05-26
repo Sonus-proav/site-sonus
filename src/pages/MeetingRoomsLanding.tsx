@@ -3,6 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings, Quote } from "lucide-react"
 import { SEO } from "@/components/SEO"
+import { Navbar } from "@/components/layout/Navbar"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
 export function MeetingRoomsLanding() {
@@ -59,14 +60,7 @@ export function MeetingRoomsLanding() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
-      {/* Minimal Header */}
-      <header className="absolute top-0 left-0 right-0 z-50 py-6 md:py-8">
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center md:justify-start">
-          <a href="/" className="hover:opacity-80 transition-opacity" aria-label="Voltar para a Página Inicial">
-            <img src="/logo.png" alt="Logo Sonus" className="h-8 md:h-10 w-auto brightness-0 invert opacity-90" />
-          </a>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
