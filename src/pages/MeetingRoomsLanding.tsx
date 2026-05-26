@@ -594,7 +594,8 @@ export function MeetingRoomsLanding() {
               <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-orange-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-orange-400 uppercase tracking-wider border border-orange-500/20">Cresol Baser</span>
-                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Videoconferência</span>
+                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Projeto Q-SYS</span>
+                  <span className="px-3 py-1 bg-zinc-800/80 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-zinc-300 uppercase tracking-wider border border-white/10">Videoconferência</span>
                 </div>
                 <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">Sala de Reunião dos Diretores</h3>
                 <p className="text-zinc-300 text-sm md:text-base max-w-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-500">
