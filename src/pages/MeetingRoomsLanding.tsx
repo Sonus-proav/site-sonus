@@ -60,10 +60,12 @@ export function MeetingRoomsLanding() {
       </div>
 
       {/* Minimal Header */}
-      <header className="absolute top-0 left-0 right-0 z-50 p-6 md:p-8 flex items-center justify-between">
-        <a href="/" className="hover:opacity-80 transition-opacity" aria-label="Voltar para a Página Inicial">
-          <img src="/logo.png" alt="Logo Sonus" width="120" height="32" className="h-6 md:h-8 w-auto brightness-0 invert opacity-90" />
-        </a>
+      <header className="absolute top-0 left-0 right-0 z-50 py-6 md:py-8">
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-center md:justify-start">
+          <a href="/" className="hover:opacity-80 transition-opacity" aria-label="Voltar para a Página Inicial">
+            <img src="/logo.png" alt="Logo Sonus" className="h-8 md:h-10 w-auto brightness-0 invert opacity-90" />
+          </a>
+        </div>
       </header>
 
       {/* Hero Section */}
