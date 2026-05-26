@@ -734,7 +734,7 @@ export function MeetingRoomsLanding() {
                 </div>
                 <div>
                   <div className="text-base font-bold text-white flex items-center gap-2">
-                    Sonus Engenharia
+                    Sonus Pro AV
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" />
                   </div>
                   <div className="text-xs text-zinc-400 font-medium">Equipe de Projetos</div>
