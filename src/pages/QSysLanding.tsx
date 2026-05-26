@@ -49,7 +49,7 @@ export function QSysLanding() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
-      <Navbar />
+      <Navbar hideThemeToggle />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">

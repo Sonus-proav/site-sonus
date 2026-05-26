@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "../ThemeToggle"
 
-export function Navbar() {
+export function Navbar({ hideThemeToggle = false }: { hideThemeToggle?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -55,7 +55,7 @@ export function Navbar() {
             </Link>
           ))}
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            {!hideThemeToggle && <ThemeToggle />}
             <a
               href="/#contato"
               className="text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)] hover:shadow-[0_0_25px_rgba(41,128,185,0.6)]"
@@ -67,7 +67,7 @@ export function Navbar() {
 
         {/* Mobile Nav Toggle */}
         <div className="flex items-center gap-4 md:hidden">
-          <ThemeToggle />
+          {!hideThemeToggle && <ThemeToggle />}
           <button
             aria-label="Abrir menu"
             className="text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
