@@ -631,9 +631,15 @@ export function MeetingRoomsLanding() {
 
       {/* FAQ Section */}
       <section className="relative py-32 px-4 md:px-6 z-10 bg-[#050505] border-t border-white/5 overflow-hidden">
-        {/* Tech Background */}
-        <img src="/qsys-tech-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" alt="" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505]" />
+        {/* Subtle Ambient Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Faint Grid */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+          {/* Glowing Orbs */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none" />
         
         <div className="max-w-3xl mx-auto relative z-10">
           <FadeIn className="text-center mb-16">
