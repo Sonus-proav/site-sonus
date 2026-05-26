@@ -99,6 +99,8 @@
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  transform: translateZ(0); /* Hardware Acceleration / Composite layer */
+  backface-visibility: hidden;
 }
 .glass-card-strong {
   background: rgba(5, 5, 5, 0.4);
@@ -108,6 +110,8 @@
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Floating Orb Animations */
@@ -123,8 +127,18 @@
   50% { transform: translate(20px, -20px) scale(1.04); }
   75% { transform: translate(-10px, -15px) scale(1.01); }
 }
-.animate-float-slow { animation: float-slow 25s ease-in-out infinite; }
-.animate-float-slow-reverse { animation: float-slow-reverse 30s ease-in-out infinite; }
+.animate-float-slow { 
+  animation: float-slow 25s ease-in-out infinite; 
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.animate-float-slow-reverse { 
+  animation: float-slow-reverse 30s ease-in-out infinite; 
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
 
 /* Shimmer Effect for CTA Buttons */
 @keyframes shimmer-sweep {

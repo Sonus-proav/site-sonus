@@ -344,7 +344,7 @@ export function QSysLanding() {
                 ) : activeTab === "Câmeras PTZ" ? (
                   <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 h-full">
                     <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] shadow-inner">
-                      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-luminosity blur-[2px] transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }}></div>
+                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity blur-[2px] transition-all duration-1000 ease-in-out pointer-events-none" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       
                       {/* OSD Info */}
