@@ -631,8 +631,8 @@ export function MeetingRoomsLanding() {
 
       {/* FAQ Section */}
       <section className="relative py-32 px-4 md:px-6 z-10 bg-[#050505] border-t border-white/5 overflow-hidden">
-        {/* Mixer V.U. Background */}
-        <img src="/mixer-vu-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" alt="" />
+        {/* Tech Background */}
+        <img src="/qsys-tech-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" alt="" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505]" />
         
         <div className="max-w-3xl mx-auto relative z-10">
