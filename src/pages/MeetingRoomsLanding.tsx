@@ -684,84 +684,105 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      {/* Bottom CTA Banner */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
-        <FadeIn className="max-w-6xl mx-auto glass-card-strong bg-gradient-to-br from-blue-600/30 to-emerald-600/20 rounded-[3rem] p-8 md:p-16 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
-          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none" alt="Banner background" />
+      {/* Bottom CTA Banner (Holographic Glass Design) */}
+      <section className="relative py-32 px-4 md:px-6 z-10 bg-zinc-950 overflow-hidden flex items-center justify-center min-h-[80vh]">
+        {/* Ambient Glow Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] -translate-x-1/3 translate-y-1/3" />
+          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
-          <div className="relative z-10 flex-1 text-center lg:text-left">
-            <h2 className="text-[clamp(2rem,3.5vw,3.5rem)] font-black tracking-tight text-white mb-6 leading-tight">
-              Pronto para transformar a forma como sua empresa se comunica?
+          {/* Text Content */}
+          <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md mb-8">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-semibold text-zinc-300 uppercase tracking-widest">Suporte Dedicado</span>
+            </div>
+            
+            <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black tracking-tight text-white mb-6 leading-[1.1]">
+              Eleve o nível da <br className="hidden lg:block"/> sua comunicação.
             </h2>
-            <p className="text-white/80 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10">
-              Fale agora com nosso especialista. Vamos desenhar a arquitetura perfeita (e sem cabos) para a sua sala de reuniões.
+            <p className="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
+              Fale agora com nosso especialista. Desenhamos a arquitetura invisível e perfeita para sua sala de diretoria, sem cabos e sem ruídos.
             </p>
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn relative z-10 h-16 px-10 text-lg md:text-xl font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]">
-              Falar com Especialista
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 text-lg font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
+                Falar com Especialista
+              </Button>
+              <span className="text-sm text-zinc-500 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                Resposta em até 10 min
+              </span>
+            </div>
           </div>
 
-          <div className="relative z-10 w-full max-w-[320px] shrink-0">
-            {/* iPhone Mockup */}
-            <div className="w-full h-[620px] bg-zinc-950 rounded-[3rem] border-[8px] border-zinc-900 shadow-2xl overflow-hidden flex flex-col relative ring-1 ring-white/10">
-              {/* Notch */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-20 flex justify-end items-center px-3">
-                 <div className="w-2 h-2 rounded-full bg-emerald-500/30" />
-              </div>
+          {/* Holographic Chat Window */}
+          <div className="w-full max-w-[400px] shrink-0 perspective-1000 group">
+            <div className="w-full h-[580px] bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col relative transform-gpu transition-all duration-700 hover:rotate-y-0 rotate-y-[-12deg] rotate-x-[5deg]">
               
-              {/* Chat Header */}
-              <div className="bg-white/[0.03] border-b border-white/5 backdrop-blur-xl pt-14 pb-4 px-6 flex items-center gap-3 z-10">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-blue-600 p-[1px]">
-                  <div className="w-full h-full rounded-full bg-zinc-950 flex items-center justify-center">
-                    <img src="/favicon.svg" alt="Sonus" className="w-5 h-5 opacity-90" />
+              {/* Glass Header */}
+              <div className="bg-white/[0.02] border-b border-white/[0.05] p-6 flex items-center gap-4 relative z-10">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 p-[1px] shadow-lg">
+                  <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center overflow-hidden">
+                    <img src="/logo.png" alt="Sonus" className="w-16 h-auto brightness-0 invert opacity-50" />
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-white flex items-center gap-2">
-                    Sonus Pro AV
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
+                  <div className="text-base font-bold text-white flex items-center gap-2">
+                    Sonus Engenharia
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" />
                   </div>
-                  <div className="text-[10px] text-zinc-400">Equipe de Projetos</div>
+                  <div className="text-xs text-zinc-400 font-medium">Equipe de Projetos</div>
                 </div>
               </div>
 
               {/* Chat Body */}
-              <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden bg-[radial-gradient(ellipse_at_top,#111_0%,#000_100%)] relative">
-                {/* Sonus Message 1 */}
-                <div className="animate-chat-bubble flex items-end gap-2" style={{ animationDelay: '800ms' }}>
-                  <div className="bg-white/10 text-zinc-200 text-sm p-3.5 rounded-2xl rounded-bl-sm max-w-[90%] border border-white/5 backdrop-blur-md shadow-lg">
+              <div className="flex-1 p-6 flex flex-col gap-6 overflow-hidden relative z-0">
+                {/* Background ambient inside chat */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-emerald-500/10 blur-[80px]" />
+                
+                {/* Sonus Message */}
+                <div className="animate-chat-bubble flex items-end gap-2 relative" style={{ animationDelay: '500ms' }}>
+                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg backdrop-blur-md font-light leading-relaxed">
                     Olá! Vi que você tem interesse em atualizar a tecnologia das suas salas de reunião. Como posso ajudar?
                   </div>
                 </div>
                 
-                {/* Client Message 1 */}
-                <div className="animate-chat-bubble flex items-end justify-end gap-2" style={{ animationDelay: '2500ms' }}>
-                  <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 text-white text-sm p-3.5 rounded-2xl rounded-br-sm max-w-[90%] shadow-lg shadow-emerald-900/20">
-                    Precisamos de uma solução para nossa sala de diretoria. Atualmente o áudio está muito ruim nas videoconferências.
+                {/* Client Message */}
+                <div className="animate-chat-bubble flex items-end justify-end gap-2 relative mt-2" style={{ animationDelay: '2000ms' }}>
+                  <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-sm p-4 rounded-2xl rounded-br-sm max-w-[85%] shadow-[0_10px_20px_-5px_rgba(16,185,129,0.3)] font-medium leading-relaxed">
+                    Precisamos de uma solução para nossa sala de diretoria. Atualmente o áudio está ruim nas chamadas.
                   </div>
                 </div>
                 
-                {/* Sonus Message 2 */}
-                <div className="animate-chat-bubble flex items-end gap-2" style={{ animationDelay: '4800ms' }}>
-                  <div className="bg-white/10 text-zinc-200 text-sm p-3.5 rounded-2xl rounded-bl-sm max-w-[90%] border border-white/5 backdrop-blur-md shadow-lg">
-                    Perfeito! Nós fazemos o projeto acústico e de captação invisível (sem cabos na mesa). Vamos agendar um call rápido para entendermos o espaço?
+                {/* Sonus Message */}
+                <div className="animate-chat-bubble flex items-end gap-2 relative mt-2" style={{ animationDelay: '4000ms' }}>
+                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg backdrop-blur-md font-light leading-relaxed">
+                    Perfeito! Nós fazemos o projeto acústico e de captação invisível. Vamos agendar um call rápido para entendermos o espaço?
                   </div>
                 </div>
               </div>
 
               {/* Chat Input Bar */}
-              <div className="bg-zinc-950/80 p-4 border-t border-white/5 backdrop-blur-xl">
-                <div className="h-10 bg-white/5 rounded-full border border-white/10 flex items-center px-4 justify-between">
-                  <span className="text-zinc-500 text-sm font-light">Mensagem...</span>
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-emerald-500" />
+              <div className="p-5 relative z-10 border-t border-white/[0.05] bg-black/20">
+                <div className="h-12 bg-black/40 rounded-full border border-white/[0.08] flex items-center px-5 justify-between shadow-inner">
+                  <span className="text-zinc-500 text-sm">Digite sua mensagem...</span>
+                  <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-500" />
                   </div>
                 </div>
               </div>
             </div>
+            
+            {/* Holographic floor reflection */}
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-emerald-500/20 blur-[30px] rounded-full transform rotate-x-60 pointer-events-none" />
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       {/* Mini Footer */}
