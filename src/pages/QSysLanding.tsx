@@ -34,7 +34,7 @@ export function QSysLanding() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30">
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 noise-overlay">
       <SEO 
         title="Ecossistema Q-SYS | Padronização Corporativa Sonus" 
         description="Projetos profissionais com o Ecossistema Q-SYS. Controle de áudio, vídeo e automação centralizada com interface de alto padrão." 
@@ -45,6 +45,11 @@ export function QSysLanding() {
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0a0a0a] to-[#0a0a0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent" />
+        {/* Floating Orbs */}
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] animate-float-slow-reverse" />
+        <div className="absolute top-1/2 -left-20 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px] animate-float-slow" />
+        <div className="absolute bottom-1/4 -right-20 w-[350px] h-[350px] bg-emerald-500/[0.08] rounded-full blur-[100px] animate-float-slow-reverse" />
       </div>
 
       {/* Minimal Header */}
@@ -57,7 +62,7 @@ export function QSysLanding() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 hover:bg-white/10 transition-colors cursor-default">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
@@ -67,7 +72,7 @@ export function QSysLanding() {
 
           <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
             Controle Total da sua Empresa <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">em Uma Única Tela.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-glow-blue">em Uma Única Tela.</span>
           </h1>
 
           <p className="text-lg md:text-2xl text-zinc-400 font-light max-w-3xl text-balance leading-relaxed">
@@ -75,7 +80,7 @@ export function QSysLanding() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all">
+            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all shimmer-btn">
               Solicite um Orçamento
             </Button>
             <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-xl text-lg font-medium transition-all">
@@ -86,7 +91,7 @@ export function QSysLanding() {
 
         {/* Hero Image / Touch Panel Mockup */}
         <FadeIn delay={0.2} className="w-full max-w-5xl mx-auto mt-20 relative">
-          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.08] border border-white/20 shadow-2xl ring-1 ring-white/10 group">
+          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.06] border border-white/[0.15] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.08] group screen-sweep">
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
             
@@ -448,7 +453,7 @@ export function QSysLanding() {
       </section>
 
       {/* Trust Bar / Ecossistema */}
-      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-[#030303] z-10">
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01] backdrop-blur-xl z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Integração Nativa e Certificada</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -497,8 +502,8 @@ export function QSysLanding() {
               }
             ].map((feature, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="h-full rounded-3xl p-8 bg-white/[0.08] border border-white/10 hover:bg-white/[0.12] transition-colors duration-300 group shadow-lg">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/5 group-hover:scale-110 transition-transform duration-500">
+                <div className="h-full rounded-3xl p-8 glass-card hover:bg-white/[0.10] hover:border-white/[0.15] hover:shadow-[0_16px_48px_rgba(0,0,0,0.3)] hover:scale-[1.02] transition-all duration-500 group shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center mb-8 border border-white/5 group-hover:scale-110 transition-transform duration-500">
                     {feature.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
@@ -518,7 +523,7 @@ export function QSysLanding() {
       </section>
 
       {/* Scenarios - Horizontal Layout */}
-      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.03] border-y border-white/5 shadow-inner">
+      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.02] backdrop-blur-sm border-y border-white/[0.06] shadow-inner">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" className="space-y-8">
@@ -595,7 +600,7 @@ export function QSysLanding() {
       {/* CTA Section */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <FadeIn className="max-w-4xl mx-auto">
-          <div className="rounded-[3rem] p-12 md:p-20 bg-gradient-to-br from-blue-600 to-purple-700 text-center relative overflow-hidden border border-white/20 shadow-2xl">
+          <div className="rounded-[3rem] p-12 md:p-20 glass-card-strong bg-gradient-to-br from-blue-600/40 to-purple-700/40 text-center relative overflow-hidden border border-white/20 shadow-2xl">
             {/* Glass Highlights */}
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             
@@ -609,7 +614,7 @@ export function QSysLanding() {
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
-                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap shimmer-btn">
                   Consultoria Gratuita Q-SYS
                 </Button>
               </div>

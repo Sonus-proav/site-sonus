@@ -45,7 +45,7 @@ export function MeetingRoomsLanding() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
+    <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 noise-overlay">
       <SEO 
         title="Salas de Reunião Padrão Sonus | Automação e Áudio Invisível" 
         description="Transforme suas salas corporativas com a Sonus. Áudio invisível, automação nativa e zero complexidade para a sua diretoria." 
@@ -56,6 +56,11 @@ export function MeetingRoomsLanding() {
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/10 via-[#050505] to-[#050505]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent" />
+        {/* Floating Orbs */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute -bottom-32 -left-20 w-[400px] h-[400px] bg-blue-500/[0.12] rounded-full blur-[100px] animate-float-slow-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[80px] animate-float-slow" />
+        <div className="absolute -top-10 -left-10 w-[350px] h-[350px] bg-purple-500/[0.08] rounded-full blur-[100px] animate-float-slow-reverse" />
       </div>
 
       {/* Minimal Header */}
@@ -68,7 +73,7 @@ export function MeetingRoomsLanding() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 hover:bg-white/10 transition-colors cursor-default">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -78,7 +83,7 @@ export function MeetingRoomsLanding() {
 
           <h1 className="text-[clamp(2.5rem,5vw,5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
             Salas de Reunião <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Sem Fios e Sem Falhas.</span>
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent text-glow-emerald">Sem Fios e Sem Falhas.</span>
           </h1>
 
           <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-zinc-400 font-light max-w-2xl text-balance leading-relaxed">
@@ -87,7 +92,7 @@ export function MeetingRoomsLanding() {
 
           {/* Interactive Mockup Container */}
           <div className="w-full max-w-4xl mt-12 mb-8 perspective-1000 group">
-            <div className="w-full bg-gradient-to-b from-zinc-800 to-black rounded-[2rem] md:rounded-[3rem] p-1.5 md:p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,1)] border border-white/10 relative transform-gpu transition-transform duration-700 hover:rotate-x-0 rotate-x-2">
+            <div className="w-full bg-gradient-to-b from-zinc-800 to-black rounded-[2rem] md:rounded-[3rem] p-1.5 md:p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.9)] border border-white/[0.12] relative transform-gpu transition-transform duration-700 hover:rotate-x-0 rotate-x-2 screen-sweep">
               
               {/* Fake Bezel and Camera */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 md:w-48 h-6 md:h-8 bg-black rounded-b-3xl z-30 flex items-center justify-center gap-2 border-b border-x border-white/5">
@@ -288,7 +293,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
               Consultoria Online Gratuita
             </Button>
           </div>
@@ -302,7 +307,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Trust Bar / Ecossistema - Moved Outside for Better Breathing Room */}
-      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-[#030303] z-10">
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01] backdrop-blur-xl z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -330,7 +335,7 @@ export function MeetingRoomsLanding() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Huddle Room */}
-            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group">
+            <FadeIn className="glass-card rounded-[2rem] overflow-hidden group">
               <div className="h-64 bg-[url('https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               <div className="p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4">Salas Pequenas (Huddle)</h3>
@@ -341,7 +346,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* Medium Room */}
-            <FadeIn className="bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden group">
+            <FadeIn className="glass-card rounded-[2rem] overflow-hidden group">
               <div className="h-64 bg-[url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               <div className="p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
@@ -352,7 +357,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* Large Room / 18m Boardroom */}
-            <FadeIn className="col-span-1 md:col-span-2 bg-gradient-to-br from-blue-900/10 to-emerald-900/5 border border-white/10 rounded-[2rem] overflow-hidden group mt-4 relative">
+            <FadeIn className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity group-hover:opacity-30 transition-opacity duration-700" />
               <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
@@ -390,7 +395,7 @@ export function MeetingRoomsLanding() {
           </div>
           
           <FadeIn className="flex justify-center pt-8">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Solicitar Projeto para Minha Empresa
             </Button>
           </FadeIn>
@@ -411,7 +416,7 @@ export function MeetingRoomsLanding() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Old Way */}
-            <FadeIn className="bg-red-500/5 border border-red-500/20 rounded-3xl p-8 md:p-12">
+            <FadeIn className="glass-card border-red-500/20 rounded-3xl p-8 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
                   <XCircle className="w-6 h-6" />
@@ -435,7 +440,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             {/* The Sonus Way */}
-            <FadeIn className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 md:p-12">
+            <FadeIn className="glass-card border-emerald-500/20 rounded-3xl p-8 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
                   <CheckCircle2 className="w-6 h-6" />
@@ -460,7 +465,7 @@ export function MeetingRoomsLanding() {
           </div>
           
           <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
               Quero o Padrão Sonus na Minha Empresa
             </Button>
           </FadeIn>
@@ -480,7 +485,7 @@ export function MeetingRoomsLanding() {
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[250px]">
-            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 bg-gradient-to-br from-blue-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-blue-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                 <Settings className="w-8 h-8" />
               </div>
@@ -490,7 +495,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="min-h-[250px] md:min-h-0 bg-gradient-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-purple-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -500,7 +505,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="min-h-[250px] md:min-h-0 bg-gradient-to-br from-emerald-900/20 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-emerald-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-6 h-6" />
               </div>
@@ -510,7 +515,7 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group">
+            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-zinc-900/50 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
@@ -523,7 +528,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
               Solicitar Estudo Acústico
             </Button>
           </FadeIn>
@@ -551,7 +556,7 @@ export function MeetingRoomsLanding() {
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
-              <FadeIn key={i} className="relative z-10 bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl text-center group hover:bg-white/[0.02] transition-colors">
+              <FadeIn key={i} className="relative z-10 glass-card p-8 rounded-3xl text-center group hover:bg-white/[0.08] transition-colors">
                 <div className="w-16 h-16 mx-auto bg-black border border-white/10 rounded-full flex items-center justify-center mb-6 text-2xl font-black text-white/20 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors">
                   {item.step}
                 </div>
@@ -562,7 +567,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
               Falar com Especialista Sonus
             </Button>
           </FadeIn>
@@ -588,7 +593,7 @@ export function MeetingRoomsLanding() {
             {/* Project 1 */}
             <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -605,7 +610,7 @@ export function MeetingRoomsLanding() {
             {/* Project 2 */}
             <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -622,7 +627,7 @@ export function MeetingRoomsLanding() {
             {/* Project 3 */}
             <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-auto md:h-[500px]">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -638,7 +643,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Transformar Minha Sala
             </Button>
           </FadeIn>
@@ -649,7 +654,7 @@ export function MeetingRoomsLanding() {
       <section className="relative py-12 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
         <div className="max-w-4xl mx-auto relative z-10">
-          <FadeIn className="bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-[2rem] p-8 md:p-10 text-center">
+          <FadeIn className="glass-card-strong rounded-[2rem] p-8 md:p-10 text-center">
             <Quote className="w-8 h-8 text-blue-500/50 mx-auto mb-6" />
             <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-relaxed text-zinc-300 mb-8 italic">
               "A diferença entre comprar equipamentos soltos e contratar a Sonus foi a nossa paz de espírito. Eles não entregaram apenas microfones de teto, entregaram uma sala onde a diretoria senta e simplesmente faz a reunião acontecer. Zero chamados no suporte."
@@ -695,7 +700,7 @@ export function MeetingRoomsLanding() {
                 a: "O tempo de entrega varia pois cada cenário é único. Atuamos desde projetos na planta (onde acompanhamos a obra com a arquitetura) até reformas de salas já prontas. Após a aprovação e alinhamento do cronograma, a instalação física é feita de forma muito ágil para minimizar o impacto na rotina da sua empresa."
               }
             ].map((faq, i) => (
-              <div key={i} className="border border-white/10 rounded-2xl bg-white/[0.02] overflow-hidden">
+              <div key={i} className="glass-card rounded-2xl overflow-hidden">
                 <button 
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
@@ -715,7 +720,7 @@ export function MeetingRoomsLanding() {
       {/* Bottom CTA Banner */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
-        <FadeIn className="max-w-4xl mx-auto bg-gradient-to-br from-blue-600 to-emerald-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+        <FadeIn className="max-w-4xl mx-auto glass-card-strong bg-gradient-to-br from-blue-600/40 to-emerald-600/40 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay" />
           <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-black tracking-tight text-white mb-6 relative z-10 leading-tight">
             Pronto para transformar <br/> a forma como sua empresa se comunica?
@@ -723,7 +728,7 @@ export function MeetingRoomsLanding() {
           <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10">
             Fale agora com nosso especialista. Vamos desenhar a arquitetura perfeita (e sem cabos) para a sua sala de reuniões.
           </p>
-          <Button onClick={handleWhatsApp} size="lg" className="relative z-10 h-16 px-10 text-xl font-bold rounded-full bg-black text-white hover:bg-zinc-900 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
+          <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn relative z-10 h-16 px-10 text-xl font-bold rounded-full bg-black text-white hover:bg-zinc-900 hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
             Solicitar Consultoria Gratuita
           </Button>
         </FadeIn>
