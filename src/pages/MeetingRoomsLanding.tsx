@@ -158,7 +158,7 @@ export function MeetingRoomsLanding() {
                         <div className="w-full h-full flex flex-col bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative">
                           {/* Fake Meeting Video Area */}
                           <div className="flex-1 bg-black relative flex items-center justify-center overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" fetchPriority="high" loading="eager" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity" alt="Video Chamada" />
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" fetchPriority="high" loading="eager" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale" alt="Video Chamada" />
                             <div className="relative z-10 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 flex items-center gap-4">
                               <span className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
                               <span className="font-mono text-xl tracking-wider text-zinc-200">{formatTime(callTimer)}</span>
@@ -229,7 +229,7 @@ export function MeetingRoomsLanding() {
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
                       <div className="flex-1 bg-black rounded-3xl border border-white/5 relative overflow-hidden group">
                         {/* Fake Camera Feed Background */}
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity transition-all duration-1000 ease-in-out pointer-events-none" alt="Camera Feed"
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none" alt="Camera Feed"
                              style={{ 
                                transform: activeSpeaker === 0 ? 'scale(1.5) translate(10%, 10%)' : 
                                           activeSpeaker === 1 ? 'scale(1.5) translate(-10%, 10%)' :
@@ -357,7 +357,7 @@ export function MeetingRoomsLanding() {
 
             {/* Large Room / 18m Boardroom */}
             <FadeIn className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
-              <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
+              <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
               <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
@@ -720,7 +720,7 @@ export function MeetingRoomsLanding() {
       <section className="relative py-24 px-4 md:px-6 z-10 bg-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent" />
         <FadeIn className="max-w-4xl mx-auto glass-card-strong bg-gradient-to-br from-blue-600/40 to-emerald-600/40 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-overlay pointer-events-none" alt="Banner background" />
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none" alt="Banner background" />
           <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-black tracking-tight text-white mb-6 relative z-10 leading-tight">
             Pronto para transformar <br/> a forma como sua empresa se comunica?
           </h2>

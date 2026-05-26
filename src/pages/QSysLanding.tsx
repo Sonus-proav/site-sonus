@@ -310,7 +310,7 @@ export function QSysLanding() {
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic1: vol})) }}>
                           <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic1}%` }} />
-                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.mic1}</span></div>
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic1}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, mic1: p.mic1 === 0 ? 80 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic1 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
                           {audioLevels.mic1 === 0 ? <MicOff className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <Mic className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
@@ -321,7 +321,7 @@ export function QSysLanding() {
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic2: vol})) }}>
                           <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic2}%` }} />
-                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.mic2}</span></div>
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic2}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, mic2: p.mic2 === 0 ? 60 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic2 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
                           {audioLevels.mic2 === 0 ? <MicOff className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <Mic className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
@@ -332,7 +332,7 @@ export function QSysLanding() {
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, pc: vol})) }}>
                           <div className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(56,189,248,0.3)]" style={{ height: `${audioLevels.pc}%` }} />
-                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white mix-blend-difference">{audioLevels.pc}</span></div>
+                          <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.pc}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, pc: p.pc === 0 ? 100 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.pc === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
                           {audioLevels.pc === 0 ? <VolumeX className="w-5 h-5 md:w-6 md:h-6 text-red-400" /> : <MonitorPlay className="w-5 h-5 md:w-6 md:h-6 text-zinc-300" />}
@@ -344,7 +344,7 @@ export function QSysLanding() {
                 ) : activeTab === "Câmeras PTZ" ? (
                   <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 h-full">
                     <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] shadow-inner">
-                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity blur-[2px] transition-all duration-1000 ease-in-out pointer-events-none" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
+                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       
                       {/* OSD Info */}
@@ -411,7 +411,7 @@ export function QSysLanding() {
                 ) : (
                   <div className="flex-1 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500 gap-8 bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-6">
                     <div className="w-56 h-56 md:w-72 md:h-72 rounded-full border-[10px] border-black/60 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative flex items-center justify-center bg-gradient-to-b from-zinc-800 to-black overflow-hidden ring-1 ring-white/5">
-                      <div className={`absolute inset-0 transition-all duration-1000 mix-blend-screen ${hvacTemp < 21 ? 'bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3)_0%,transparent_70%)]' : hvacTemp > 24 ? 'bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3)_0%,transparent_70%)]' : 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_0%,transparent_70%)]'}`} />
+                      <div className={`absolute inset-0 transition-all duration-1000 ${hvacTemp < 21 ? 'bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3)_0%,transparent_70%)]' : hvacTemp > 24 ? 'bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3)_0%,transparent_70%)]' : 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_0%,transparent_70%)]'}`} />
                       <div className="flex flex-col items-center z-10 relative">
                         <span className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest font-bold mb-1">Setpoint</span>
                         <div className="flex items-start text-white">
@@ -558,7 +558,7 @@ export function QSysLanding() {
 
             <FadeIn direction="left" delay={0.2} className="relative">
               <div className="aspect-[4/5] rounded-[3rem] bg-gradient-to-br from-zinc-800 to-black p-1 border border-white/10 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 to-transparent mix-blend-screen" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 to-transparent" />
                 <div className="w-full h-full rounded-[2.8rem] bg-zinc-950 border border-white/5 overflow-hidden flex flex-col relative z-10 shadow-inner">
                   {/* Faux UI */}
                   <div className="h-16 border-b border-white/10 flex items-center px-8 bg-white/[0.02]">
