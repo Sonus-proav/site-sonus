@@ -16,6 +16,8 @@ const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding
 
 import { HelmetProvider } from "react-helmet-async"
 
+import { ScrollToTop } from "./components/ScrollToTop"
+
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
   <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center transition-colors duration-300">
@@ -28,6 +30,7 @@ function App() {
     <HelmetProvider>
       <AuthProvider>
         <ErrorBoundary>
+          <ScrollToTop />
           <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AppLayout />}>
