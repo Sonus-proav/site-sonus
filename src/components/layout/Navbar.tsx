@@ -20,6 +20,7 @@ export function Navbar({ hideThemeToggle = false }: { hideThemeToggle?: boolean 
     { name: "Início", path: "/" },
     { name: "Sobre Nós", path: "/#sobre" },
     { name: "Portfólio", path: "/projetos" },
+    { name: "Q-SYS", path: "/qsys" },
     { name: "Contato", path: "/#contato" },
   ]
 

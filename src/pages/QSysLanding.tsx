@@ -54,7 +54,7 @@ export function QSysLanding() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
@@ -75,7 +75,7 @@ export function QSysLanding() {
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all shimmer-btn">
               Solicite um Orçamento
             </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-xl text-lg font-medium transition-all">
+            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-medium transition-all">
               Conheça o Sistema <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
@@ -342,7 +342,7 @@ export function QSysLanding() {
                       {/* OSD Info */}
                       <div className="absolute top-4 left-4 md:top-6 md:left-6 flex gap-2">
                         <div className="px-2 py-1 bg-red-500/90 rounded text-[10px] font-bold flex items-center gap-1.5 shadow-[0_0_10px_rgba(239,68,68,0.5)]"><div className="w-2 h-2 rounded-full bg-white animate-pulse" /> REC</div>
-                        <div className="px-2 py-1 bg-black/60 backdrop-blur-md rounded border border-white/10 uppercase text-[10px] font-bold text-zinc-300">CAM 1</div>
+                        <div className="px-2 py-1 bg-black/60 rounded border border-white/10 uppercase text-[10px] font-bold text-zinc-300">CAM 1</div>
                       </div>
                       
                       {/* Center Crosshair (Subtle) */}
@@ -410,7 +410,7 @@ export function QSysLanding() {
                           <span className="text-7xl md:text-8xl font-black tracking-tighter tabular-nums">{hvacTemp}</span>
                           <span className="text-3xl md:text-4xl mt-2 font-light text-zinc-400">°C</span>
                         </div>
-                        <div className="px-4 py-1.5 rounded-full bg-black/50 border border-white/10 mt-3 flex items-center gap-2 backdrop-blur-md">
+                        <div className="px-4 py-1.5 rounded-full bg-black/50 border border-white/10 mt-3 flex items-center gap-2">
                           <Thermometer className={`w-3.5 h-3.5 ${hvacTemp < 21 ? 'text-blue-400' : hvacTemp > 24 ? 'text-orange-400' : 'text-emerald-400'}`} /> 
                           <span className="text-zinc-300 text-xs font-bold uppercase tracking-widest">Atual: {hvacTemp > 22 ? hvacTemp - 1 : hvacTemp < 20 ? hvacTemp + 1 : 22}°C</span>
                         </div>
@@ -445,7 +445,7 @@ export function QSysLanding() {
       </section>
 
       {/* Trust Bar / Ecossistema */}
-      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01] backdrop-blur-xl z-10">
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.02] z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Integração Nativa e Certificada</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
@@ -515,7 +515,7 @@ export function QSysLanding() {
       </section>
 
       {/* Scenarios - Horizontal Layout */}
-      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.02] backdrop-blur-sm border-y border-white/[0.06] shadow-inner">
+      <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.02] border-y border-white/[0.06] shadow-inner">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" className="space-y-8">
@@ -538,7 +538,7 @@ export function QSysLanding() {
                   { icon: <BrainCircuit className="w-5 h-5" />, text: "Câmeras PTZ com Rastreamento IA e Facial" },
                   { icon: <Sliders className="w-5 h-5" />, text: "Telas Touch com a Identidade Visual da sua Empresa" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 text-zinc-300 bg-black/20 p-4 rounded-2xl border border-white/5 backdrop-blur-md">
+                  <div key={i} className="flex items-center gap-4 text-zinc-300 bg-black/20 p-4 rounded-2xl border border-white/5">
                     <div className="p-2 bg-white/10 rounded-lg text-blue-400">
                       {item.icon}
                     </div>

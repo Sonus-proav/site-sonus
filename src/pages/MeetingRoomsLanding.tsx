@@ -46,7 +46,7 @@ export function MeetingRoomsLanding() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 noise-overlay">
+    <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 ">
       <SEO 
         title="Automação de Salas de Reunião e Videoconferência | Sonus Pro AV" 
         description="Projetos de captação de áudio invisível, acústica e automação para salas de diretoria. Instalação premium certificada Microsoft Teams e Zoom Rooms." 
@@ -65,7 +65,7 @@ export function MeetingRoomsLanding() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12]  shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -96,7 +96,7 @@ export function MeetingRoomsLanding() {
               <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20 screen-sweep">
                 
                 {/* Status Bar */}
-                <div className="h-8 md:h-12 bg-black/40 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative z-10 backdrop-blur-md">
+                <div className="h-8 md:h-12 bg-black/40 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative z-10 ">
                   <span className="text-[10px] md:text-xs font-bold tracking-widest text-zinc-500 uppercase">Boardroom 1</span>
                   <div className="flex items-center gap-4 text-zinc-400">
                     <Wifi className="w-3.5 h-3.5" />
@@ -151,7 +151,7 @@ export function MeetingRoomsLanding() {
                           {/* Fake Meeting Video Area */}
                           <div className="flex-1 bg-black relative flex items-center justify-center overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" fetchPriority="high" loading="eager" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale" alt="Video Chamada" />
-                            <div className="relative z-10 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 flex items-center gap-4">
+                            <div className="relative z-10 bg-black/60  px-6 py-3 rounded-full border border-white/10 flex items-center gap-4">
                               <span className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
                               <span className="font-mono text-xl tracking-wider text-zinc-200">{formatTime(callTimer)}</span>
                             </div>
@@ -184,7 +184,7 @@ export function MeetingRoomsLanding() {
 
                          <div className="relative w-64 h-40 md:w-80 md:h-48 border-2 border-white/10 rounded-[3rem] flex items-center justify-center">
                             {/* Fake Table */}
-                            <div className="absolute inset-2 bg-white/5 rounded-[2.5rem] backdrop-blur-sm" />
+                            <div className="absolute inset-2 bg-white/5 rounded-[2.5rem] " />
                             
                             {/* Fake Ceiling Mic directly above */}
                             <div className="absolute -top-12 w-12 h-12 border border-emerald-500/30 rounded-md bg-emerald-500/10 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)]">
@@ -243,13 +243,13 @@ export function MeetingRoomsLanding() {
                                 <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-blue-400" />
                                 <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-blue-400" />
                                 
-                                <div className="absolute top-2 right-2 flex items-center gap-1 bg-blue-500/20 px-2 py-0.5 rounded text-[8px] font-bold text-blue-300 uppercase backdrop-blur-md border border-blue-500/30">
+                                <div className="absolute top-2 right-2 flex items-center gap-1 bg-blue-500/20 px-2 py-0.5 rounded text-[8px] font-bold text-blue-300 uppercase  border border-blue-500/30">
                                   <Focus className="w-3 h-3" /> Auto Track
                                 </div>
                            </div>
                         </div>
 
-                        <div className="absolute bottom-6 left-6 text-[10px] md:text-xs text-white/70 bg-black/60 px-3 py-1.5 rounded-lg border border-white/10 backdrop-blur-md font-medium">
+                        <div className="absolute bottom-6 left-6 text-[10px] md:text-xs text-white/70 bg-black/60 px-3 py-1.5 rounded-lg border border-white/10  font-medium">
                           Posição comandada pelo Microfone Shure
                         </div>
                       </div>
@@ -298,7 +298,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Trust Bar / Ecossistema - Moved Outside for Better Breathing Room */}
-      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01] backdrop-blur-xl z-10">
+      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01]  z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
@@ -368,15 +368,15 @@ export function MeetingRoomsLanding() {
                 
                 {/* Tech Highlights */}
                 <div className="w-full md:w-1/3 flex flex-col gap-4">
-                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                   <div className="bg-black/50  border border-white/10 p-5 rounded-2xl">
                      <div className="text-emerald-400 font-bold text-xl mb-1">Áudio Sincronizado</div>
                      <div className="text-zinc-400 text-xs">Transmissão em tempo real e sem falhas na rede da empresa.</div>
                    </div>
-                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                   <div className="bg-black/50  border border-white/10 p-5 rounded-2xl">
                      <div className="text-blue-400 font-bold text-xl mb-1">Zero Eco Acústico</div>
                      <div className="text-zinc-400 text-xs">Processamento de estúdio para eliminar qualquer ruído ou reverberação.</div>
                    </div>
-                   <div className="bg-black/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl">
+                   <div className="bg-black/50  border border-white/10 p-5 rounded-2xl">
                      <div className="text-purple-400 font-bold text-xl mb-1">Amplificação Natural</div>
                      <div className="text-zinc-400 text-xs">A voz de quem está longe chega suavemente pelas caixas acústicas da sala.</div>
                    </div>
@@ -587,9 +587,9 @@ export function MeetingRoomsLanding() {
               
               <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 bg-orange-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-orange-400 uppercase tracking-wider border border-orange-500/20">Cresol Baser</span>
-                  <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Projeto Q-SYS</span>
-                  <span className="px-3 py-1 bg-zinc-800/80 backdrop-blur-md rounded-full text-[10px] md:text-xs font-bold text-zinc-300 uppercase tracking-wider border border-white/10">Videoconferência</span>
+                  <span className="px-3 py-1 bg-orange-500/20  rounded-full text-[10px] md:text-xs font-bold text-orange-400 uppercase tracking-wider border border-orange-500/20">Cresol Baser</span>
+                  <span className="px-3 py-1 bg-blue-500/20  rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Projeto Q-SYS</span>
+                  <span className="px-3 py-1 bg-zinc-800/80  rounded-full text-[10px] md:text-xs font-bold text-zinc-300 uppercase tracking-wider border border-white/10">Videoconferência</span>
                 </div>
                 <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">Sala de Reunião dos Diretores</h3>
                 <p className="text-zinc-300 text-sm md:text-base max-w-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-500">
@@ -698,7 +698,7 @@ export function MeetingRoomsLanding() {
           
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08]  mb-8">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-xs font-semibold text-zinc-300 uppercase tracking-widest">Suporte Dedicado</span>
             </div>
@@ -723,7 +723,7 @@ export function MeetingRoomsLanding() {
 
           {/* Holographic Chat Window */}
           <div className="w-full max-w-[400px] shrink-0 perspective-1000 group">
-            <div className="w-full h-[580px] bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col relative transform-gpu transition-all duration-700 hover:rotate-y-0 rotate-y-[-12deg] rotate-x-[5deg]">
+            <div className="w-full h-[580px] bg-white/[0.02]  border border-white/[0.08] rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col relative transform-gpu transition-all duration-700 hover:rotate-y-0 rotate-y-[-12deg] rotate-x-[5deg]">
               
               {/* Glass Header */}
               <div className="bg-white/[0.02] border-b border-white/[0.05] p-6 flex items-center gap-4 relative z-10">
@@ -748,7 +748,7 @@ export function MeetingRoomsLanding() {
                 
                 {/* Sonus Message */}
                 <div className="animate-chat-bubble flex items-end gap-2 relative" style={{ animationDelay: '500ms' }}>
-                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg backdrop-blur-md font-light leading-relaxed">
+                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg  font-light leading-relaxed">
                     Olá! Vi que você tem interesse em atualizar a tecnologia das suas salas de reunião. Como posso ajudar?
                   </div>
                 </div>
@@ -762,7 +762,7 @@ export function MeetingRoomsLanding() {
                 
                 {/* Sonus Message */}
                 <div className="animate-chat-bubble flex items-end gap-2 relative mt-2" style={{ animationDelay: '4000ms' }}>
-                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg backdrop-blur-md font-light leading-relaxed">
+                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg  font-light leading-relaxed">
                     Perfeito! Nós fazemos o projeto acústico e de captação invisível. Vamos agendar um call rápido para entendermos o espaço?
                   </div>
                 </div>
