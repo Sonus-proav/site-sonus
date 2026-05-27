@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
-import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan } from "lucide-react"
+import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan, Globe, Zap } from "lucide-react"
 import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
@@ -511,6 +511,76 @@ export function QSysLanding() {
               Quero Padronizar Minha Empresa
             </Button>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Global Success Cases */}
+      <section className="py-24 px-4 md:px-6 z-10 relative bg-[#050505]">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+              Poder de Fogo em Escala Global
+            </h2>
+            <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
+              O ecossistema Q-SYS é a espinha dorsal tecnológica das maiores infraestruturas do planeta.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FadeIn delay={0.1}>
+              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5"><Globe className="w-24 h-24" /></div>
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/20 text-blue-400">
+                  <Globe className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Operações de Escala Monumental</h3>
+                <p className="text-sm text-blue-300 font-medium mb-4">Estádio Camp Randall (Univ. de Wisconsin)</p>
+                <p className="text-zinc-400 text-sm mb-6 flex-1">
+                  <strong className="text-zinc-200">O Desafio:</strong> Distribuir áudio sem atrasos (latência zero) para mais de 80.000 torcedores e instalações atléticas pelo campus.<br/><br/>
+                  <strong className="text-zinc-200">A Solução:</strong> Arquitetura de processamento 100% em rede, eliminando cabos analógicos e unificando o controle da arena via software.
+                </p>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-xs text-zinc-500 italic font-medium">Se o Q-SYS gerencia o caos de um estádio lotado com perfeição, imagine a estabilidade no seu auditório.</p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-emerald-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5"><Zap className="w-24 h-24" /></div>
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/20 text-emerald-400">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Agilidade e Missão Crítica</h3>
+                <p className="text-sm text-emerald-300 font-medium mb-4">Vienna Univ. of Economics and Business</p>
+                <p className="text-zinc-400 text-sm mb-6 flex-1">
+                  <strong className="text-zinc-200">O Desafio:</strong> Modernizar dezenas de auditórios gigantes para ensino remoto simultâneo em tempo recorde.<br/><br/>
+                  <strong className="text-zinc-200">A Solução:</strong> Implementação nativa de TI permitiu equipar todos os espaços integrando áudio e vídeo em apenas 4 semanas.
+                </p>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-xs text-zinc-500 italic font-medium">Implementado na velocidade da TI, reduzindo severamente o tempo de obra e as pausas na operação.</p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5"><Sliders className="w-24 h-24" /></div>
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/20 text-purple-400">
+                  <Sliders className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Controle Simplificado</h3>
+                <p className="text-sm text-purple-300 font-medium mb-4">FC Twente Football Stadium (Holanda)</p>
+                <p className="text-zinc-400 text-sm mb-6 flex-1">
+                  <strong className="text-zinc-200">O Desafio:</strong> Modernizar o sistema AV com altíssima fidelidade sonora, mantendo a operação fácil para qualquer funcionário.<br/><br/>
+                  <strong className="text-zinc-200">A Solução:</strong> Painéis de toque customizados e hiper-intuitivos que roteiam áudios complexos com dois toques na tela.
+                </p>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-xs text-zinc-500 italic font-medium">Tecnologia avançada com interface de iPad. O CEO não precisa mais chamar o TI para iniciar a reunião.</p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
