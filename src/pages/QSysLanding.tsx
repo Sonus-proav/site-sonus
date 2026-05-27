@@ -528,55 +528,76 @@ export function QSysLanding() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FadeIn delay={0.1}>
-              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5"><Globe className="w-24 h-24" /></div>
-                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/20 text-blue-400">
-                  <Globe className="w-6 h-6" />
+              <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="h-48 w-full relative overflow-hidden shrink-0">
+                  <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop" alt="Camp Randall Stadium" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                  <div className="absolute bottom-4 left-6 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center border border-blue-500/30 text-blue-400">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Operações de Escala Monumental</h3>
-                <p className="text-sm text-blue-300 font-medium mb-4">Estádio Camp Randall (Univ. de Wisconsin)</p>
-                <p className="text-zinc-400 text-sm mb-6 flex-1">
-                  <strong className="text-zinc-200">O Desafio:</strong> Distribuir áudio sem atrasos (latência zero) para mais de 80.000 torcedores e instalações atléticas pelo campus.<br/><br/>
-                  <strong className="text-zinc-200">A Solução:</strong> Arquitetura de processamento 100% em rede, eliminando cabos analógicos e unificando o controle da arena via software.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-zinc-500 italic font-medium">Se o Q-SYS gerencia o caos de um estádio lotado com perfeição, imagine a estabilidade no seu auditório.</p>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">Operações em Escala Monumental</h3>
+                  <p className="text-sm text-blue-300 font-medium mb-4">Estádio Camp Randall (Univ. Wisconsin)</p>
+                  <p className="text-zinc-400 text-sm mb-6 flex-1">
+                    <strong className="text-zinc-200">O Desafio:</strong> Distribuir áudio sem atrasos para mais de 80.000 torcedores e instalações atléticas pelo campus.<br/><br/>
+                    <strong className="text-zinc-200">A Solução:</strong> Arquitetura de processamento 100% em rede, eliminando cabos analógicos e unificando o controle.
+                  </p>
+                  <div className="pt-4 border-t border-white/5">
+                    <p className="text-xs text-zinc-500 italic font-medium">Se gerencia o caos de um estádio lotado com perfeição, imagine a estabilidade no seu auditório.</p>
+                  </div>
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-emerald-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5"><Zap className="w-24 h-24" /></div>
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/20 text-emerald-400">
-                  <Zap className="w-6 h-6" />
+              <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-emerald-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="h-48 w-full relative overflow-hidden shrink-0">
+                  <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop" alt="Vienna University" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                  <div className="absolute bottom-4 left-6 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30 text-emerald-400">
+                      <Zap className="w-5 h-5" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Agilidade e Missão Crítica</h3>
-                <p className="text-sm text-emerald-300 font-medium mb-4">Vienna Univ. of Economics and Business</p>
-                <p className="text-zinc-400 text-sm mb-6 flex-1">
-                  <strong className="text-zinc-200">O Desafio:</strong> Modernizar dezenas de auditórios gigantes para ensino remoto simultâneo em tempo recorde.<br/><br/>
-                  <strong className="text-zinc-200">A Solução:</strong> Implementação nativa de TI permitiu equipar todos os espaços integrando áudio e vídeo em apenas 4 semanas.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-zinc-500 italic font-medium">Implementado na velocidade da TI, reduzindo severamente o tempo de obra e as pausas na operação.</p>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">Agilidade e Missão Crítica</h3>
+                  <p className="text-sm text-emerald-300 font-medium mb-4">Vienna Univ. of Economics & Business</p>
+                  <p className="text-zinc-400 text-sm mb-6 flex-1">
+                    <strong className="text-zinc-200">O Desafio:</strong> Modernizar dezenas de auditórios gigantes para ensino remoto simultâneo em tempo recorde.<br/><br/>
+                    <strong className="text-zinc-200">A Solução:</strong> Implementação nativa de TI permitiu equipar todos os espaços com AV integrado em apenas 4 semanas.
+                  </p>
+                  <div className="pt-4 border-t border-white/5">
+                    <p className="text-xs text-zinc-500 italic font-medium">Implementado na velocidade da TI, reduzindo severamente o tempo de obra e pausas na operação.</p>
+                  </div>
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <div className="h-full rounded-3xl p-8 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5"><Sliders className="w-24 h-24" /></div>
-                <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/20 text-purple-400">
-                  <Sliders className="w-6 h-6" />
+              <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
+                <div className="h-48 w-full relative overflow-hidden shrink-0">
+                  <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1000&auto=format&fit=crop" alt="FC Twente Stadium" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                  <div className="absolute bottom-4 left-6 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center border border-purple-500/30 text-purple-400">
+                      <Sliders className="w-5 h-5" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Controle Simplificado</h3>
-                <p className="text-sm text-purple-300 font-medium mb-4">FC Twente Football Stadium (Holanda)</p>
-                <p className="text-zinc-400 text-sm mb-6 flex-1">
-                  <strong className="text-zinc-200">O Desafio:</strong> Modernizar o sistema AV com altíssima fidelidade sonora, mantendo a operação fácil para qualquer funcionário.<br/><br/>
-                  <strong className="text-zinc-200">A Solução:</strong> Painéis de toque customizados e hiper-intuitivos que roteiam áudios complexos com dois toques na tela.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-zinc-500 italic font-medium">Tecnologia avançada com interface de iPad. O CEO não precisa mais chamar o TI para iniciar a reunião.</p>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">Controle Simplificado</h3>
+                  <p className="text-sm text-purple-300 font-medium mb-4">FC Twente Football Stadium (Holanda)</p>
+                  <p className="text-zinc-400 text-sm mb-6 flex-1">
+                    <strong className="text-zinc-200">O Desafio:</strong> Sistema AV com altíssima fidelidade sonora, mantendo a operação fácil para qualquer funcionário.<br/><br/>
+                    <strong className="text-zinc-200">A Solução:</strong> Painéis de toque hiper-intuitivos que roteiam áudios complexos com apenas dois toques na tela.
+                  </p>
+                  <div className="pt-4 border-t border-white/5">
+                    <p className="text-xs text-zinc-500 italic font-medium">Tecnologia avançada com interface amigável. O CEO não precisa chamar o TI para iniciar reuniões.</p>
+                  </div>
                 </div>
               </div>
             </FadeIn>
