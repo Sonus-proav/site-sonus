@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings, Quote } from "lucide-react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
+import { Footer } from "@/components/layout/Footer"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
-
 export function MeetingRoomsLanding() {
   const [activeTab, setActiveTab] = useState("Videoconferência")
   const [callState, setCallState] = useState<"idle" | "ringing" | "connected">("idle")
@@ -785,41 +785,7 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      {/* Mini Footer */}
-      <footer className="relative py-12 px-6 bg-black border-t border-white/5 z-10 text-center md:text-left">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-             <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck className="w-6 h-6 text-blue-500" />
-                <span className="font-bold text-lg tracking-tight">Sonus Corporativo</span>
-              </div>
-              <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
-                Tecnologia audiovisual de alto padrão para o mercado corporativo. Transformando salas de reunião em ambientes imersivos de decisão.
-              </p>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Contato</h4>
-            <div className="text-zinc-600 text-sm space-y-2">
-              <p>contato@sonus.pro.br</p>
-              <p>+55 (46) 92001-3151</p>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-white/80 font-bold text-sm uppercase tracking-widest">Empresa</h4>
-            <div className="text-zinc-600 text-sm space-y-2">
-              <p>Sonus Áudio e Vídeo Ltda</p>
-              <p>CNPJ: 43.149.336/0001-09</p>
-            </div>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 text-zinc-700 text-xs flex flex-col md:flex-row items-center justify-between">
-          <p>© {new Date().getFullYear()} Sonus. Todos os direitos reservados.</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-zinc-400 transition-colors">Política de Privacidade</a>
-            <a href="#" className="hover:text-zinc-400 transition-colors">Termos de Uso</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Floating WhatsApp Button directed to Specialist */}
       <WhatsAppButton 
