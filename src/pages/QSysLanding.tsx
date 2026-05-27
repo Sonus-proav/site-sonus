@@ -462,7 +462,7 @@ export function QSysLanding() {
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
           <FadeIn className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 leading-normal">
               Por que escolher o Ecossistema Q-SYS?
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
@@ -518,7 +518,7 @@ export function QSysLanding() {
       <section className="py-24 px-4 md:px-6 z-10 relative bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 leading-normal">
               Poder de Fogo em Escala Global
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
