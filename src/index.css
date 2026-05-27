@@ -184,6 +184,8 @@
   );
   animation: shimmer-sweep 4s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Screen Light Sweep (for mockups) */
@@ -209,6 +211,8 @@
   animation: light-sweep 8s ease-in-out infinite;
   pointer-events: none;
   z-index: 50;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Noise Texture Overlay */

@@ -35,7 +35,7 @@ export function QSysLanding() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 noise-overlay">
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30">
       <SEO 
         title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
         description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
@@ -43,10 +43,10 @@ export function QSysLanding() {
       />
 
       {/* Soundwave Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 transform-gpu">
         <div className="absolute inset-0 bg-[#050505]" />
-        <img src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
+        <img src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-10" alt="" loading="lazy" decoding="async" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/90 via-transparent to-[#050505]/90" />
       </div>
 
       <Navbar hideThemeToggle />
@@ -82,7 +82,7 @@ export function QSysLanding() {
         </FadeIn>
 
         {/* Hero Image / Touch Panel Mockup */}
-        <FadeIn delay={0.2} className="w-full max-w-5xl mx-auto mt-20 relative">
+        <div className="w-full max-w-5xl mx-auto mt-20 relative transform-gpu animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
           <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.06] border border-white/[0.15] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.08] group">
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
@@ -336,7 +336,7 @@ export function QSysLanding() {
                 ) : activeTab === "Câmeras PTZ" ? (
                   <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 h-full">
                     <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] shadow-inner">
-                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
+                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none will-change-transform" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       
                       {/* OSD Info */}
@@ -352,13 +352,13 @@ export function QSysLanding() {
 
                       {/* D-Pad PTZ Controls */}
                       <div className="relative z-10 flex flex-col items-center justify-center gap-2 md:gap-4 w-full mt-auto mb-6">
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronUp className="w-6 h-6 text-white" /></div>
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronUp className="w-6 h-6 text-white" /></div>
                         <div className="flex gap-8 md:gap-12 items-center">
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronLeft className="w-6 h-6 text-white" /></div>
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600/20 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/40 active:scale-90 transition-all backdrop-blur-md"><Target className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /></div>
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronRight className="w-6 h-6 text-white" /></div>
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronLeft className="w-6 h-6 text-white" /></div>
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600/30 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/50 active:scale-90 transition-all"><Target className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /></div>
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronRight className="w-6 h-6 text-white" /></div>
                         </div>
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 hover:border-white/20 active:bg-blue-600 active:scale-90 transition-all backdrop-blur-md"><ChevronDown className="w-6 h-6 text-white" /></div>
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronDown className="w-6 h-6 text-white" /></div>
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-2 md:gap-4 shrink-0">
@@ -441,7 +441,7 @@ export function QSysLanding() {
               <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
             </div>
           </div>
-        </FadeIn>
+          </div>
       </section>
 
       {/* Trust Bar / Ecossistema */}
