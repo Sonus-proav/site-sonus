@@ -621,7 +621,9 @@ export function QSysLanding() {
         </FadeIn>
       </section>
 
-      <Footer />
+      <div className="dark relative z-10 w-full bg-black">
+        <Footer />
+      </div>
       
       {/* Floating WhatsApp Button directed to Q-SYS Specialist */}
       <WhatsAppButton 

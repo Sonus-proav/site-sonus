@@ -785,7 +785,9 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      <Footer />
+      <div className="dark relative z-10 w-full bg-black">
+        <Footer />
+      </div>
 
       {/* Floating WhatsApp Button directed to Specialist */}
       <WhatsAppButton 
