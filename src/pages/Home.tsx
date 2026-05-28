@@ -1,13 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ChevronRight, Play, CheckCircle2 } from "lucide-react"
-import { Link } from "react-router-dom"
+import { ChevronRight, Play, CheckCircle2, AlertCircle } from "lucide-react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { SEO } from "../components/SEO"
 
 export function Home() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [show404, setShow404] = useState(false)
+
+  useEffect(() => {
+    if (location.state?.show404Toast) {
+      setShow404(true)
+      navigate("/", { replace: true, state: {} })
+      const timer = setTimeout(() => setShow404(false), 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [location, navigate])
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -38,6 +51,17 @@ ${formData.message}`
         description="Especialistas em integração audiovisual de alta performance. Projetos de sonorização, acústica e automação para empresas, auditórios e igrejas. 28 anos de mercado." 
         url="https://sonusproaudio.com.br/"
       />
+      
+      {/* 404 Toast Notification */}
+      {show404 && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-top-4 fade-in duration-300">
+          <div className="bg-red-500/10 border border-red-500/20 backdrop-blur-md text-red-500 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3">
+            <AlertCircle className="w-5 h-5" />
+            <span className="font-medium text-sm">Página não encontrada. Redirecionado para o Início.</span>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         {/* LCP Optimization: Usar <picture> com prioridade alta ao invés de background CSS */}
