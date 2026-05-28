@@ -15,11 +15,18 @@ export function Home() {
   useEffect(() => {
     if (location.state?.show404Toast) {
       setShow404(true)
+      // Limpa o state para não mostrar novamente em caso de refresh
       navigate("/", { replace: true, state: {} })
+    }
+  }, [location, navigate])
+
+  // Timer independente para não ser cancelado pelo navigate()
+  useEffect(() => {
+    if (show404) {
       const timer = setTimeout(() => setShow404(false), 5000)
       return () => clearTimeout(timer)
     }
-  }, [location, navigate])
+  }, [show404])
 
   const [formData, setFormData] = useState({
     name: "",
