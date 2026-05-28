@@ -53,10 +53,10 @@ export function QSysLanding() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
-        <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
+        <div className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className=" absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
             </span>
             <span className="text-sm font-medium tracking-wide text-zinc-300">Integração Certificada Sonus + Q-SYS</span>
@@ -72,14 +72,14 @@ export function QSysLanding() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all shimmer-btn">
+            <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all ">
               Solicite um Orçamento
             </Button>
             <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-medium transition-all">
               Conheça o Sistema <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
-        </FadeIn>
+        </div>
 
         {/* Hero Image / Touch Panel Mockup */}
         <div className="w-full max-w-5xl mx-auto mt-20 relative transform-gpu animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
@@ -87,7 +87,7 @@ export function QSysLanding() {
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
             
-            <div className="rounded-[2rem] overflow-hidden bg-zinc-950 relative w-full flex flex-col border border-white/10 shadow-inner min-h-[600px] screen-sweep">
+            <div className="rounded-[2rem] overflow-hidden bg-zinc-950 relative w-full flex flex-col border border-white/10 shadow-inner min-h-[600px] ">
               
               <div className="h-10 md:h-14 bg-white/[0.02] border-b border-white/5 flex items-center justify-between px-4 md:px-6">
                 <div className="flex items-center gap-3">
@@ -461,14 +461,14 @@ export function QSysLanding() {
       {/* Feature Grid - Glassmorphism */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
-          <FadeIn className="text-center mb-20">
+          <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 leading-normal">
               Por que escolher o Ecossistema Q-SYS?
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
               Abandone a complexidade de dezenas de equipamentos desconectados. O Q-SYS unifica tudo em um único cérebro digital, infinitamente expansível.
             </p>
-          </FadeIn>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -493,7 +493,7 @@ export function QSysLanding() {
                 desc: "Sensores preparam a sala antes de você entrar. Câmeras com IA rastreiam o orador. Fim dos chamados para o TI ligar o projetor."
               }
             ].map((feature, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
+              <div key={i}>
                 <div className="h-full rounded-3xl p-8 glass-card hover:bg-white/[0.10] hover:border-white/[0.15] hover:shadow-[0_16px_48px_rgba(0,0,0,0.3)] hover:scale-[1.02] transition-all duration-500 group shadow-lg">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center mb-8 border border-white/5 group-hover:scale-110 transition-transform duration-500">
                     {feature.icon}
@@ -503,31 +503,31 @@ export function QSysLanding() {
                     {feature.desc}
                   </p>
                 </div>
-              </FadeIn>
+              </div>
             ))}
           </div>
-          <FadeIn className="flex justify-center mt-16 relative z-10">
+          <div className="flex justify-center mt-16 relative z-10">
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Quero Padronizar Minha Empresa
             </Button>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Global Success Cases */}
       <section className="py-24 px-4 md:px-6 z-10 relative bg-[#050505]">
         <div className="max-w-7xl mx-auto">
-          <FadeIn className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 leading-normal">
               Poder de Fogo em Escala Global
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
               O ecossistema Q-SYS é a espinha dorsal tecnológica das maiores infraestruturas do planeta.
             </p>
-          </FadeIn>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FadeIn delay={0.1}>
+            <div>
               <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
                 <div className="h-48 w-full relative overflow-hidden shrink-0">
                   <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop" alt="Camp Randall Stadium" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
@@ -550,9 +550,9 @@ export function QSysLanding() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.2}>
+            <div>
               <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-emerald-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
                 <div className="h-48 w-full relative overflow-hidden shrink-0">
                   <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop" alt="Vienna University" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
@@ -575,9 +575,9 @@ export function QSysLanding() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.3}>
+            <div>
               <div className="h-full rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500 group shadow-lg flex flex-col relative overflow-hidden">
                 <div className="h-48 w-full relative overflow-hidden shrink-0">
                   <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1000&auto=format&fit=crop" alt="FC Twente Stadium" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-70" loading="lazy" decoding="async" />
@@ -600,7 +600,7 @@ export function QSysLanding() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -609,7 +609,7 @@ export function QSysLanding() {
       <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.02] border-y border-white/[0.06] shadow-inner">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <FadeIn direction="right" className="space-y-8">
+            <div className="space-y-8">
               <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 font-medium text-sm border border-blue-500/20">
                 Experiência de Usuário
               </div>
@@ -637,9 +637,9 @@ export function QSysLanding() {
                   </div>
                 ))}
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn direction="left" delay={0.2} className="relative">
+            <div className="relative">
               <div className="aspect-[4/5] rounded-[3rem] bg-gradient-to-br from-zinc-800 to-black p-1 border border-white/10 shadow-2xl relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 to-transparent" />
                 <div className="w-full h-full rounded-[2.8rem] bg-zinc-950 border border-white/5 overflow-hidden flex flex-col relative z-10 shadow-inner">
@@ -670,19 +670,19 @@ export function QSysLanding() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+            </div>
           </div>
-          <FadeIn className="flex justify-center mt-16 relative z-10">
+          <div className="flex justify-center mt-16 relative z-10">
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
               Agendar Consultoria Especializada
             </Button>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
-        <FadeIn className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="rounded-[3rem] p-12 md:p-20 glass-card-strong bg-gradient-to-br from-blue-600/40 to-purple-700/40 text-center relative overflow-hidden border border-white/20 shadow-2xl">
             {/* Glass Highlights */}
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
@@ -697,7 +697,7 @@ export function QSysLanding() {
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
-                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap shimmer-btn">
+                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap ">
                   Consultoria Gratuita Q-SYS
                 </Button>
               </div>
@@ -709,7 +709,7 @@ export function QSysLanding() {
               </div>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       <div className="dark relative z-10 w-full bg-black">
