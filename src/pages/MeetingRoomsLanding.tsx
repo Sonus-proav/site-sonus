@@ -64,10 +64,10 @@ export function MeetingRoomsLanding() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
-        <FadeIn className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
+        
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12]  shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className=" absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
             <span className="text-sm font-medium tracking-wide text-zinc-300">O Padrão Ouro em Áudio Corporativo</span>
@@ -93,7 +93,7 @@ export function MeetingRoomsLanding() {
               </div>
 
               {/* Screen Content */}
-              <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20 screen-sweep">
+              <div className="w-full min-h-[550px] md:min-h-0 md:aspect-[16/9] bg-[#0a0a0a] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden relative flex flex-col z-20 ">
                 
                 {/* Status Bar */}
                 <div className="h-8 md:h-12 bg-black/40 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative z-10 ">
@@ -204,7 +204,7 @@ export function MeetingRoomsLanding() {
                                 </div>
                                 {/* Visualization of sound wave capturing */}
                                 {activeSpeaker === speaker.id && (
-                                  <div className="absolute -z-10 w-24 h-24 border border-emerald-500/30 rounded-full animate-ping opacity-50" />
+                                  <div className="absolute -z-10 w-24 h-24 border border-emerald-500/30 rounded-full  opacity-50" />
                                 )}
                               </div>
                             ))}
@@ -284,7 +284,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+            <Button onClick={handleWhatsApp} size="lg" className=" h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
               Consultoria Online Gratuita
             </Button>
           </div>
@@ -294,7 +294,7 @@ export function MeetingRoomsLanding() {
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Integração Zoom Rooms</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Design sem cabos visíveis</span>
           </div>
-        </FadeIn>
+        
       </section>
 
       {/* Trust Bar / Ecossistema - Moved Outside for Better Breathing Room */}
@@ -315,18 +315,18 @@ export function MeetingRoomsLanding() {
       {/* Scalability Section */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
         <div className="max-w-7xl mx-auto space-y-20">
-          <FadeIn className="text-center max-w-3xl mx-auto">
+          
             <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black tracking-tight mb-6">
               Escalabilidade sem Limites.
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl leading-relaxed">
               Do Huddle Room rápido à mesa de diretoria de 18 metros. A plataforma Q-SYS permite que a Sonus construa a acústica e automação perfeitas, independente da complexidade da sua sala.
             </p>
-          </FadeIn>
+          
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Huddle Room */}
-            <FadeIn className="glass-card rounded-[2rem] overflow-hidden group">
+            
               <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Huddle Room" />
               <div className="p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4">Salas Pequenas (Huddle)</h3>
@@ -334,10 +334,10 @@ export function MeetingRoomsLanding() {
                   Para reuniões ágeis, focamos em sistemas All-in-One ou pequenos processadores Q-SYS Core Nano. Conexão rápida e BYOD, permitindo que a equipe conecte o laptop e comece a reunião em segundos, com áudio de classe empresarial.
                 </p>
               </div>
-            </FadeIn>
+            
 
             {/* Medium Room */}
-            <FadeIn className="glass-card rounded-[2rem] overflow-hidden group">
+            
               <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Salas de Conferência" />
               <div className="p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
@@ -345,10 +345,10 @@ export function MeetingRoomsLanding() {
                   O padrão ouro corporativo. Um único microfone de teto Shure MXA920 cobre toda a sala, limpando a mesa de fios. O Q-SYS distribui o áudio perfeitamente e gerencia a câmera PTZ que segue o locutor ativamente.
                 </p>
               </div>
-            </FadeIn>
+            
 
             {/* Large Room / 18m Boardroom */}
-            <FadeIn className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
+            
               <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
               <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
@@ -382,32 +382,32 @@ export function MeetingRoomsLanding() {
                    </div>
                 </div>
               </div>
-            </FadeIn>
+            
           </div>
           
-          <FadeIn className="flex justify-center pt-8">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+          
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Solicitar Projeto para Minha Empresa
             </Button>
-          </FadeIn>
+          
         </div>
       </section>
 
       {/* Pain vs Solution Section */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-16">
+          
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
               O fim dos 15 minutos perdidos antes de cada reunião.
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
               Nosso método elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.
             </p>
-          </FadeIn>
+          
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Old Way */}
-            <FadeIn className="glass-card border-red-500/20 rounded-3xl p-8 md:p-12">
+            
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
                   <XCircle className="w-6 h-6" />
@@ -428,10 +428,10 @@ export function MeetingRoomsLanding() {
                   <p className="text-zinc-400">Quem está remoto (em home office) escuta ecos horríveis e se sente excluído da reunião.</p>
                 </li>
               </ul>
-            </FadeIn>
+            
 
             {/* The Sonus Way */}
-            <FadeIn className="glass-card border-emerald-500/20 rounded-3xl p-8 md:p-12">
+            
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
                   <CheckCircle2 className="w-6 h-6" />
@@ -452,31 +452,31 @@ export function MeetingRoomsLanding() {
                   <p className="text-zinc-300"><strong>Equidade:</strong> O Q-SYS enquadra quem fala. Todos na chamada remota vêem os gestos e expressões de perto.</p>
                 </li>
               </ul>
-            </FadeIn>
+            
           </div>
           
-          <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
+          
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
               Quero o Padrão Sonus na Minha Empresa
             </Button>
-          </FadeIn>
+          
         </div>
       </section>
 
       {/* Benefits Bento Box */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <FadeIn className="mb-16">
+          
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
               Por que a <span className="text-blue-500">Sonus</span>?
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl">
               Nós não vendemos apenas caixas de equipamentos. Entregamos a sala pronta para uso, com tecnologia de ponta e respaldo técnico corporativo.
             </p>
-          </FadeIn>
+          
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[250px]">
-            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-blue-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                 <Settings className="w-8 h-8" />
               </div>
@@ -484,9 +484,9 @@ export function MeetingRoomsLanding() {
               <p className="text-zinc-400 text-lg relative z-10 max-w-md">
                 Desenhamos o comportamento do som em software 3D antes da instalação para garantir que sua sala não sofrerá com ecos ou reverberação.
               </p>
-            </FadeIn>
+            
 
-            <FadeIn className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-purple-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -494,9 +494,9 @@ export function MeetingRoomsLanding() {
               <p className="text-zinc-400 text-sm relative z-10">
                 Manutenção preventiva e corretiva com tempos de resposta garantidos em contrato.
               </p>
-            </FadeIn>
+            
 
-            <FadeIn className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-emerald-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-6 h-6" />
               </div>
@@ -504,9 +504,9 @@ export function MeetingRoomsLanding() {
               <p className="text-zinc-400 text-sm relative z-10">
                 Instalação silenciosa e rápida fora de horário comercial, se necessário.
               </p>
-            </FadeIn>
+            
 
-            <FadeIn className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-zinc-900/50 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            
               <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none" alt="Painéis" />
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
@@ -515,28 +515,28 @@ export function MeetingRoomsLanding() {
               <p className="text-zinc-400 text-lg relative z-10 max-w-md">
                 Interfaces simplificadas e desenhadas sob medida (com a logomarca da sua empresa). Qualquer executivo consegue iniciar a reunião sozinho.
               </p>
-            </FadeIn>
+            
           </div>
 
-          <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
+          
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
               Solicitar Estudo Acústico
             </Button>
-          </FadeIn>
+          
         </div>
       </section>
 
       {/* O Nosso Método */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#030303] border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-16">
+          
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
               Do Zero à Primeira Chamada em <span className="text-emerald-500">4 Passos</span>
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
               Processo previsível para que a sua diretoria saiba exatamente o que será entregue, sem surpresas no meio do caminho.
             </p>
-          </FadeIn>
+          
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
             <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -547,28 +547,28 @@ export function MeetingRoomsLanding() {
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
-              <FadeIn key={i} className="relative z-10 glass-card p-8 rounded-3xl text-center group hover:bg-white/[0.08] transition-colors">
+              
                 <div className="w-16 h-16 mx-auto bg-black border border-white/10 rounded-full flex items-center justify-center mb-6 text-2xl font-black text-white/20 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
-              </FadeIn>
+              
             ))}
           </div>
 
-          <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
+          
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95">
               Falar com Especialista Sonus
             </Button>
-          </FadeIn>
+          
         </div>
       </section>
 
       {/* Projetos Executados Section */}
       <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
-          <FadeIn className="text-center mb-16">
+          
              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
                Nosso Portfólio
              </div>
@@ -578,10 +578,10 @@ export function MeetingRoomsLanding() {
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
               Veja como transformamos salas reais aplicando acústica de precisão e design minimalista.
             </p>
-          </FadeIn>
+          
 
           <div className="max-w-4xl mx-auto mt-12">
-            <FadeIn className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-[21/9]">
+            
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Sala de Reunião Cresol Baser" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
@@ -596,14 +596,14 @@ export function MeetingRoomsLanding() {
                   Projeto de alto padrão executado para a Cresol Baser, integrando videoconferência avançada e captação de áudio invisível para reuniões executivas e decisões estratégicas sem barreiras tecnológicas.
                 </p>
               </div>
-            </FadeIn>
+            
           </div>
 
-          <FadeIn className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+          
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Transformar Minha Sala
             </Button>
-          </FadeIn>
+          
         </div>
       </section>
 
@@ -611,7 +611,7 @@ export function MeetingRoomsLanding() {
       <section className="relative py-12 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
         <div className="max-w-4xl mx-auto relative z-10">
-          <FadeIn className="glass-card-strong rounded-[2rem] p-8 md:p-10 text-center">
+          
             <Quote className="w-8 h-8 text-blue-500/50 mx-auto mb-6" />
             <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-relaxed text-zinc-300 mb-8 italic">
               "A diferença entre comprar equipamentos soltos e contratar a Sonus foi a nossa paz de espírito. Eles não entregaram apenas microfones de teto, entregaram uma sala onde a diretoria senta e simplesmente faz a reunião acontecer. Zero chamados no suporte."
@@ -625,7 +625,7 @@ export function MeetingRoomsLanding() {
                 <div className="text-zinc-500 text-xs">Multinacional - Faria Lima (SP)</div>
               </div>
             </div>
-          </FadeIn>
+          
         </div>
       </section>
 
@@ -642,11 +642,11 @@ export function MeetingRoomsLanding() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none" />
         
         <div className="max-w-3xl mx-auto relative z-10">
-          <FadeIn className="text-center mb-16">
+          
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
               Perguntas Frequentes
             </h2>
-          </FadeIn>
+          
 
           <div className="space-y-4">
             {[
@@ -711,7 +711,7 @@ export function MeetingRoomsLanding() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <Button onClick={handleWhatsApp} size="lg" className="shimmer-btn h-14 px-8 text-lg font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
+              <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 text-lg font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
                 Falar com Especialista
               </Button>
               <span className="text-sm text-zinc-500 flex items-center gap-2">
