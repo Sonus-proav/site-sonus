@@ -83,7 +83,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
   }
 
   const addImageField = () => {
-    if (images.length < 4) {
+    if (images.length < 6) {
       setImages([...images, ""])
     }
   }
@@ -223,8 +223,8 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-zinc-300">Imagens (Upload) - Máx 4</label>
-                {images.length < 4 && (
+                <label className="text-sm font-medium text-zinc-300">Imagens (Upload) - Máx 6</label>
+                {images.length < 6 && (
                   <button 
                     type="button" 
                     onClick={addImageField}
