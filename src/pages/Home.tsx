@@ -137,24 +137,34 @@ ${formData.message}`
               </div>
 
               {/* Card 2: Q-SYS Certified */}
-              <div className="col-span-1 row-span-1 rounded-[2rem] p-6 bg-gradient-to-br from-blue-900/40 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <Cpu className="w-32 h-32 text-blue-400 group-hover:scale-110 transition-transform duration-700" />
+              <Link to="/qsys" className="col-span-1 row-span-1 rounded-[2rem] p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
+                {/* VU Meter Interativo (Áudio) */}
+                <div className="absolute top-6 right-6 flex items-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="w-1.5 bg-blue-400 rounded-t-sm h-2 group-hover:animate-pulse transition-all duration-300 group-hover:h-6"></div>
+                  <div className="w-1.5 bg-blue-400 rounded-t-sm h-4 group-hover:animate-pulse transition-all duration-300 group-hover:h-3 delay-75"></div>
+                  <div className="w-1.5 bg-blue-400 rounded-t-sm h-3 group-hover:animate-pulse transition-all duration-300 group-hover:h-8 delay-150"></div>
+                  <div className="w-1.5 bg-blue-400 rounded-t-sm h-5 group-hover:animate-pulse transition-all duration-300 group-hover:h-4 delay-200"></div>
                 </div>
-                <div>
-                  <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/30">
-                    <CheckCircle2 className="w-5 h-5 text-blue-400" />
+
+                <div className="relative z-10">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/30 group-hover:scale-110 group-hover:bg-blue-500/40 transition-all duration-500">
+                    <Cpu className="w-5 h-5 lg:w-6 lg:h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1">Q-SYS Ecosystem</h3>
-                  <p className="text-blue-200/70 text-xs lg:text-sm">Automação centralizada</p>
+                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors">Ecossistema Q-SYS</h3>
+                  <p className="text-blue-200/70 text-xs lg:text-sm max-w-[80%]">O cérebro absoluto por trás de cada integração audiovisual.</p>
                 </div>
-                <div className="mt-4">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] lg:text-xs font-semibold text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20">
+                
+                <div className="mt-4 flex items-center justify-between relative z-10">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] lg:text-xs font-semibold text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                    Certificação Global
+                    Processamento Central
                   </span>
+                  
+                  <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                    <ChevronRight className="w-4 h-4 text-blue-400" />
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Card 3: Salas de Reunião Image */}
               <div className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
