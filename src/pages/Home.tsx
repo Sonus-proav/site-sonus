@@ -122,7 +122,7 @@ ${formData.message}`
             <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
-              <div className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl">
+              <Link to="/projetos/28" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer">
                 <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -130,11 +130,11 @@ ${formData.message}`
                     <h3 className="text-white font-bold text-2xl lg:text-3xl mb-1">Auditórios e Teatros</h3>
                     <p className="text-zinc-300 text-sm lg:text-base">Sonorização imersiva de grande escala</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                     <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Card 2: Q-SYS Certified */}
               <Link to="/qsys" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
