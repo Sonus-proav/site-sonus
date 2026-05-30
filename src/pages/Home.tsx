@@ -123,7 +123,7 @@ ${formData.message}`
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
               <div className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Auditório Moderno" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                   <div>
@@ -158,7 +158,7 @@ ${formData.message}`
 
               {/* Card 3: Salas de Reunião Image */}
               <div className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Sala de Reunião" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
                   <h3 className="text-white font-bold text-lg lg:text-xl mb-1">Salas Corporativas</h3>
