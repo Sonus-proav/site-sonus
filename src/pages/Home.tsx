@@ -151,7 +151,7 @@ ${formData.message}`
                     <Cpu className="w-5 h-5 lg:w-6 lg:h-6 text-blue-400" />
                   </div>
                   <h3 className="text-white font-bold text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors">Ecossistema Q-SYS</h3>
-                  <p className="text-blue-200/70 text-xs lg:text-sm max-w-[80%]">O cérebro absoluto por trás de cada integração audiovisual.</p>
+                  <p className="text-blue-200/70 text-xs lg:text-sm max-w-[85%]">O cérebro por trás das maiores automações e integrações audiovisuais do mundo!</p>
                 </div>
                 
                 <div className="mt-4 flex items-center justify-between relative z-10">
