@@ -167,14 +167,19 @@ ${formData.message}`
               </Link>
 
               {/* Card 3: Salas de Reunião Image */}
-              <div className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
+              <Link to="/projetos/23" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer">
                 <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
-                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6">
-                  <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1">Salas Corporativas</h3>
-                  <p className="text-zinc-400 text-[10px] sm:text-xs lg:text-sm">Videochamadas impecáveis</p>
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">
+                  <div>
+                    <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1">Salas Corporativas</h3>
+                    <p className="text-zinc-400 text-[10px] sm:text-xs lg:text-sm">Videochamadas impecáveis</p>
+                  </div>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  </div>
                 </div>
-              </div>
+              </Link>
 
             </div>
             
