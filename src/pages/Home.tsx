@@ -90,7 +90,7 @@ ${formData.message}`
               
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
                 Áudio e Vídeo <br className="hidden md:block" />
-                de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">alto nível.</span>
+                de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Alto Nível.</span>
               </h1>
               
               <div className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed space-y-4 max-w-lg">
