@@ -119,7 +119,7 @@ ${formData.message}`
             </div>
 
             {/* Right Side: Bento Box Grid */}
-            <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-4 h-[450px] sm:h-[500px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
+            <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
               <div className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl">
@@ -137,9 +137,9 @@ ${formData.message}`
               </div>
 
               {/* Card 2: Q-SYS Certified */}
-              <Link to="/qsys" className="col-span-1 row-span-1 rounded-[2rem] p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
+              <Link to="/qsys" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
                 {/* VU Meter Interativo (Áudio) */}
-                <div className="absolute top-6 right-6 flex items-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="w-1.5 bg-blue-400 rounded-t-sm h-2 group-hover:animate-pulse transition-all duration-300 group-hover:h-6"></div>
                   <div className="w-1.5 bg-blue-400 rounded-t-sm h-4 group-hover:animate-pulse transition-all duration-300 group-hover:h-3 delay-75"></div>
                   <div className="w-1.5 bg-blue-400 rounded-t-sm h-3 group-hover:animate-pulse transition-all duration-300 group-hover:h-8 delay-150"></div>
@@ -147,11 +147,11 @@ ${formData.message}`
                 </div>
 
                 <div className="relative z-10">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/30 group-hover:scale-110 group-hover:bg-blue-500/40 transition-all duration-500">
-                    <Cpu className="w-5 h-5 lg:w-6 lg:h-6 text-blue-400" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-2 sm:mb-4 border border-blue-500/30 group-hover:scale-110 group-hover:bg-blue-500/40 transition-all duration-500">
+                    <Cpu className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors">Ecossistema Q-SYS</h3>
-                  <p className="text-blue-200/70 text-xs lg:text-sm max-w-[85%]">O cérebro por trás das maiores automações e integrações audiovisuais do mundo!</p>
+                  <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors line-clamp-1">Ecossistema Q-SYS</h3>
+                  <p className="text-blue-200/70 text-[10px] sm:text-xs lg:text-sm line-clamp-3 sm:line-clamp-none">O cérebro por trás das maiores automações e integrações audiovisuais do mundo!</p>
                 </div>
                 
                 <div className="mt-4 flex items-center justify-between relative z-10">
@@ -167,12 +167,12 @@ ${formData.message}`
               </Link>
 
               {/* Card 3: Salas de Reunião Image */}
-              <div className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
+              <div className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
                 <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1">Salas Corporativas</h3>
-                  <p className="text-zinc-400 text-xs lg:text-sm">Videochamadas impecáveis</p>
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6">
+                  <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1">Salas Corporativas</h3>
+                  <p className="text-zinc-400 text-[10px] sm:text-xs lg:text-sm">Videochamadas impecáveis</p>
                 </div>
               </div>
 
