@@ -150,7 +150,7 @@ ${formData.message}`
                   <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-2 sm:mb-4 border border-blue-500/30 group-hover:scale-110 group-hover:bg-blue-500/40 transition-all duration-500">
                     <Cpu className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors line-clamp-1">Ecossistema Q-SYS</h3>
+                  <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1 group-hover:text-blue-300 transition-colors line-clamp-1">Q-SYS</h3>
                   <p className="text-blue-200/70 text-[10px] sm:text-xs lg:text-sm line-clamp-3 sm:line-clamp-none">O cérebro por trás das maiores automações e integrações audiovisuais do mundo!</p>
                 </div>
                 
