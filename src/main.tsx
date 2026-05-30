@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
-import { ThemeProvider } from './components/ThemeProvider.tsx'
 import { getProjects, optimizeImageUrl } from './lib/publicStorage.ts'
 
 // Inicia o fetch paralelo ao boot do React para zerar o delay de rede
@@ -24,11 +23,9 @@ getProjects().then(projects => {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HelmetProvider>
-      <ThemeProvider defaultTheme="dark" storageKey="sonus-ui-theme">
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>,
 )

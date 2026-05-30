@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ThemeToggle } from "../ThemeToggle"
 
-export function Navbar({ hideThemeToggle = false }: { hideThemeToggle?: boolean }) {
+
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -55,20 +55,17 @@ export function Navbar({ hideThemeToggle = false }: { hideThemeToggle?: boolean 
               {link.name}
             </Link>
           ))}
-          <div className="flex items-center gap-4">
-            {!hideThemeToggle && <ThemeToggle />}
-            <a
+          <a
               href="/#contato"
               className="text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)] hover:shadow-[0_0_25px_rgba(41,128,185,0.6)]"
             >
               Orçamento
             </a>
-          </div>
         </nav>
 
         {/* Mobile Nav Toggle */}
         <div className="flex items-center gap-4 md:hidden">
-          {!hideThemeToggle && <ThemeToggle />}
+
           <button
             aria-label="Abrir menu"
             className="text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
