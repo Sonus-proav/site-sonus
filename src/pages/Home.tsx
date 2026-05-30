@@ -122,7 +122,7 @@ ${formData.message}`
             <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
-              <Link to="/projetos/28" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer">
+              <Link to="/projetos/28" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)]">
                 <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -167,7 +167,7 @@ ${formData.message}`
               </Link>
 
               {/* Card 3: Salas de Reunião Image */}
-              <Link to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer">
+              <Link to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)]">
                 <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">
