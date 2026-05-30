@@ -3,7 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ChevronRight, Play, CheckCircle2, AlertCircle } from "lucide-react"
+import { ChevronRight, Play, CheckCircle2, AlertCircle, Cpu } from "lucide-react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { SEO } from "../components/SEO"
 
@@ -70,65 +70,105 @@ ${formData.message}`
       )}
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* LCP Optimization: Usar <picture> com prioridade alta ao invés de background CSS */}
-        <picture className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]">
-          <source srcSet="/sobre-sonus.webp" type="image/webp" />
-          <img 
-            src="/sobre-sonus.jpg" 
-            alt="Fundo Sonus" 
-            className="w-full h-full object-cover"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
-        {/* Máscaras de degradê para mesclar a imagem suavemente com o fundo */}
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-slate-50/60 dark:from-black/60 via-transparent to-slate-50 dark:to-black transition-colors duration-300" />
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-slate-50/80 dark:from-black/80 via-transparent to-slate-50/80 dark:to-black/80 transition-colors duration-300" />
-
-        {/* Background glow effects */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[128px] opacity-40 pointer-events-none z-0" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px] opacity-40 pointer-events-none z-0" />
+      <section className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-[#050505]">
+        {/* Background dark gradients */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] opacity-40 pointer-events-none z-0 translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] opacity-20 pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
         
-        <div className="container px-4 md:px-6 relative z-10">
-          <FadeIn className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-primary mb-4 backdrop-blur-md transition-colors duration-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
+        <div className="container px-4 md:px-6 relative z-10 mx-auto w-full max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Side: Impact Text */}
+            <div className="lg:col-span-5 flex flex-col items-start text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 fill-mode-both">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] text-primary backdrop-blur-md shadow-lg">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-40"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
+              </div>
+              
+              <h1 className="text-5xl lg:text-[4.5rem] font-extrabold tracking-tight text-white leading-[1.05]">
+                Engenharia Audiovisual que <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Transforma.</span>
+              </h1>
+              
+              <div className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed space-y-4 max-w-lg">
+                <p className="font-normal text-zinc-200">
+                  Infraestrutura de peso para quem não aceita falhas.
+                </p>
+                <p className="text-base lg:text-lg">
+                  Projetos personalizados e automatizados para Auditórios, Igrejas, Salas de Reunião e Teatros.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
+                <a href="#contato" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
+                    Inicie Seu Projeto
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
+                <Link to="/projetos" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-md transition-all">
+                    <Play className="mr-2 h-5 w-5 text-primary" />
+                    Ver Portfólio
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side: Bento Box Grid */}
+            <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-4 h-[450px] sm:h-[500px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
+              
+              {/* Card 1: Large Image (Corporate/Auditorium) */}
+              <div className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Auditório Moderno" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                  <div>
+                    <h3 className="text-white font-bold text-2xl lg:text-3xl mb-1">Auditórios e Teatros</h3>
+                    <p className="text-zinc-300 text-sm lg:text-base">Sonorização imersiva de grande escala</p>
+                  </div>
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                    <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Q-SYS Certified */}
+              <div className="col-span-1 row-span-1 rounded-[2rem] p-6 bg-gradient-to-br from-blue-900/40 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl">
+                <div className="absolute top-0 right-0 p-4 opacity-10">
+                  <Cpu className="w-32 h-32 text-blue-400 group-hover:scale-110 transition-transform duration-700" />
+                </div>
+                <div>
+                  <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/30">
+                    <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1">Q-SYS Ecosystem</h3>
+                  <p className="text-blue-200/70 text-xs lg:text-sm">Automação centralizada</p>
+                </div>
+                <div className="mt-4">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] lg:text-xs font-semibold text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                    Certificação Global
+                  </span>
+                </div>
+              </div>
+
+              {/* Card 3: Salas de Reunião Image */}
+              <div className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Sala de Reunião" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-white font-bold text-lg lg:text-xl mb-1">Salas Corporativas</h3>
+                  <p className="text-zinc-400 text-xs lg:text-sm">Videochamadas impecáveis</p>
+                </div>
+              </div>
+
             </div>
             
-            <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-black dark:text-white leading-tight transition-colors duration-300">
-              Som e Vídeo que <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Transformam Ambientes</span>
-            </h1>
-            
-            <div className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed space-y-3 sm:space-y-4 px-2 text-balance transition-colors duration-300">
-              <p className="font-normal text-zinc-800 dark:text-zinc-300">
-                Há 28 anos projetando e implantando o melhor.
-              </p>
-              <p>
-                Projetos personalizados e automatizados para Auditórios, Igrejas, Reunião Online, Salas de Treinamento e Teatros.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-              <a href="#contato" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
-                  Inicie Seu Projeto Conosco
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Button>
-              </a>
-              <Link to="/projetos" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 text-black dark:text-white backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all">
-                  <Play className="mr-2 h-5 w-5 text-primary" />
-                  Explore Nossos Projetos
-                </Button>
-              </Link>
-            </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
