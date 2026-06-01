@@ -35,6 +35,19 @@ function NotFoundRedirect() {
   return null
 }
 
+function SEORedirect({ hash }: { hash: string }) {
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate("/", { replace: true })
+    setTimeout(() => {
+      const element = document.getElementById(hash.replace('#', ''))
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 300)
+  }, [navigate, hash])
+  return null
+}
 function App() {
   return (
     <HelmetProvider>
@@ -50,6 +63,12 @@ function App() {
             </Route>
             <Route path="qsys" element={<QSysLanding />} />
             <Route path="salas-reuniao" element={<MeetingRoomsLanding />} />
+            
+            {/* SEO Redirects from Old Site */}
+            <Route path="contato" element={<SEORedirect hash="#contato" />} />
+            <Route path="sobre-nos" element={<SEORedirect hash="#sobre" />} />
+            <Route path="sobre-nós" element={<SEORedirect hash="#sobre" />} />
+            
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route 
               path="/admin-dashboard-sonus" 
