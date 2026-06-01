@@ -123,7 +123,7 @@ ${formData.message}`
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
               <Link to="/projetos/28" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
-                <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" decoding="async" />
+                <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                   <div>
@@ -168,7 +168,7 @@ ${formData.message}`
 
               {/* Card 3: Salas de Reunião Image */}
               <Link to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
-                <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" decoding="async" />
+                <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">
                   <div>
