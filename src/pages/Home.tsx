@@ -192,22 +192,22 @@ ${formData.message}`
             </p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-24 px-4">
               <img 
-                src="/cresol-dv.png" 
+                src="/clientes/cresol.png" 
                 alt="Cresol" 
                 className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
               />
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Logo_unoesc.png" 
+                src="/clientes/unoesc.png" 
                 alt="UNOESC" 
                 className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
               />
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_da_Universidade_Paranaense.svg/512px-Logo_da_Universidade_Paranaense.svg.png" 
+                src="/clientes/unipar.png" 
                 alt="UNIPAR" 
                 className="h-9 md:h-11 lg:h-14 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
               />
               <img 
-                src="https://www.unisep.edu.br/wp-content/uploads/2021/08/logo-unisep.png" 
+                src="/clientes/unisep.png" 
                 alt="Unisep" 
                 className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
               />
