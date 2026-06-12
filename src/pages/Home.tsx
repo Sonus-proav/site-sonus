@@ -184,6 +184,36 @@ ${formData.message}`
             </div>
             
           </div>
+          
+          {/* Trusted By / Client Logos Banner */}
+          <div className="w-full mt-24 mb-6 border-y border-white/5 py-8 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-700 fill-mode-both">
+            <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
+              Empresas que confiam na Sonus
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-24 px-4">
+              <img 
+                src="/cresol-dv.png" 
+                alt="Cresol" 
+                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
+              />
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Logo_unoesc.png" 
+                alt="UNOESC" 
+                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
+              />
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_da_Universidade_Paranaense.svg/512px-Logo_da_Universidade_Paranaense.svg.png" 
+                alt="UNIPAR" 
+                className="h-9 md:h-11 lg:h-14 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
+              />
+              <img 
+                src="https://www.unisep.edu.br/wp-content/uploads/2021/08/logo-unisep.png" 
+                alt="Unisep" 
+                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-500" 
+              />
+            </div>
+          </div>
+          
         </div>
       </section>
 
