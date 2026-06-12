@@ -186,7 +186,7 @@ ${formData.message}`
           </div>
           
           {/* Trusted By / Client Logos Banner */}
-          <div className="w-full mt-24 mb-6 border-y border-white/5 py-8 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-700 fill-mode-both">
+          <div className="w-full mt-16 mb-6 border-y border-white/5 py-10">
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
             </p>
