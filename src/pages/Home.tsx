@@ -185,7 +185,7 @@ ${formData.message}`
             
           </div>
           
-          {/* Trusted By / Client Logos Banner */}
+          {/* Trusted By / Client Logos Banner (Temporarily Disabled)
           <div className="w-full mt-16 mb-6 border-y border-white/5 py-10">
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
@@ -213,6 +213,7 @@ ${formData.message}`
               />
             </div>
           </div>
+          */}
           
         </div>
       </section>
