@@ -22,10 +22,19 @@ const compressImage = async (file: File): Promise<File> => {
       fileType: 'image/webp'
     };
     
-    return await imageCompression(file, options);
+    // Timeout de 12 segundos anti-travamento para navegadores mobile
+    const timeoutPromise = new Promise<File>((_, reject) => {
+      setTimeout(() => reject(new Error('Compression Timeout')), 12000);
+    });
+
+    return await Promise.race([
+      imageCompression(file, options),
+      timeoutPromise
+    ]);
   } catch (error) {
-    console.error('Error compressing image:', error);
-    throw error;
+    console.warn('Falha ao comprimir imagem, usando arquivo original:', error);
+    // Em caso de falha silenciosa do Web Worker ou timeout, retorna a imagem pesada original para o usuário não ficar travado
+    return file;
   }
 };
 
@@ -64,6 +73,10 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
 
   const handleImageUpload = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
+    
+    // Zera o input para permitir upload do mesmo arquivo caso algo falhe
+    e.target.value = '';
+    
     if (file) {
       setIsCompressing(true)
       try {
@@ -74,8 +87,8 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         newImages[index] = downloadURL
         setImages(newImages)
       } catch (err) {
-        console.error("Erro ao comprimir/upload da imagem", err)
-        alert("Ocorreu um erro ao processar a imagem. Tente outra.")
+        console.error("Erro ao fazer upload da imagem", err)
+        alert("Ocorreu um erro de rede ao subir a imagem para o banco de dados. Verifique sua conexão e tente novamente.")
       } finally {
         setIsCompressing(false)
       }
@@ -116,6 +129,9 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         images: cleanImages,
         seoAlt: `Projeto de ${category} - ${title}`
       })
+    } catch (error) {
+      console.error("Erro no handleSubmit do modal", error)
+      alert("Houve uma falha ao tentar salvar o projeto. A sua internet pode ter oscilado. Tente novamente.")
     } finally {
       setIsSaving(false)
     }

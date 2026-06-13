@@ -66,13 +66,38 @@ export function AdminDashboard() {
   }
 
   const handleSave = async (projectData: Omit<Project, "id">) => {
-    if (editingProject) {
-      await updateProject(editingProject.id, projectData)
-    } else {
-      await addProject(projectData)
+    try {
+      if (editingProject) {
+        // Optimistic update for edit
+        const updatedProject = { ...projectData, id: editingProject.id };
+        setProjects(prev => prev.map(p => p.id === editingProject.id ? updatedProject as Project : p));
+        setIsModalOpen(false);
+        
+        await updateProject(editingProject.id, projectData);
+      } else {
+        // Optimistic update for add
+        // Generate a temporary ID that is definitely higher than current ones
+        const tempId = Math.max(...projects.map(p => p.id), 0) + 1;
+        const newProject = { ...projectData, id: tempId };
+        setProjects(prev => [newProject as Project, ...prev]);
+        setIsModalOpen(false);
+        
+        await addProject(projectData);
+      }
+      
+      // Sync back with the exact state from DB
+      const freshData = await getProjects();
+      setProjects(freshData);
+      latestProjects.current = freshData;
+    } catch (error) {
+      console.error("Erro fatal ao salvar no banco", error);
+      alert("Erro ao salvar! As alterações foram revertidas. Tente novamente.");
+      // Rollback on failure
+      const revertedData = await getProjects();
+      setProjects(revertedData);
+      latestProjects.current = revertedData;
+      throw error; // Let ProjectModal know it failed
     }
-    setProjects(await getProjects())
-    setIsModalOpen(false)
   }
 
   return (
