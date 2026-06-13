@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import { Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
 
 export function AdminLogin() {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [isAttempting, setIsAttempting] = useState(false);
@@ -21,7 +22,7 @@ export function AdminLogin() {
     await new Promise(resolve => setTimeout(resolve, 800));
 
     try {
-      const success = await login(password);
+      const success = await login(email, password);
       
       if (success) {
         navigate("/admin-dashboard-sonus");
@@ -54,8 +55,23 @@ export function AdminLogin() {
             <p className="text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Insira a credencial master para acessar o painel de controle Sonus.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-4">
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                <input 
+                  type="email"
+                  value={email}
+                  onChange={e => {
+                    setEmail(e.target.value);
+                    if (error) setError(false);
+                  }}
+                  disabled={isAttempting}
+                  placeholder="Email de Administrador"
+                  className={`w-full bg-white/50 dark:bg-black/50 border ${error ? 'border-red-500/50 focus:ring-red-500/50' : 'border-black/10 dark:border-white/10 focus:ring-primary'} rounded-xl h-14 pl-12 pr-4 text-black dark:text-white focus:outline-none focus:ring-2 transition-all placeholder:text-zinc-500 dark:placeholder:text-zinc-600 disabled:opacity-50`}
+                />
+              </div>
+
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
                 <input 
@@ -77,8 +93,8 @@ export function AdminLogin() {
 
             <button 
               type="submit"
-              disabled={isAttempting || !password}
-              className="w-full h-14 bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(41,128,185,0.3)] group"
+              disabled={isAttempting || !password || !email}
+              className="w-full h-14 bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(41,128,185,0.3)] group mt-4"
             >
               {isAttempting ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
