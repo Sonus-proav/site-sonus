@@ -130,6 +130,11 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
   
   const hasMultipleImages = project.images && project.images.length > 1
   const images = hasMultipleImages ? project.images! : [project.image]
+  const [imgSrc, setImgSrc] = useState(() => optimizeImageUrl(images[0], 800))
+
+  useEffect(() => {
+    setImgSrc(optimizeImageUrl(images[currentImgIndex], 800))
+  }, [currentImgIndex, images])
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -158,14 +163,23 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           <AnimatePresence initial={false}>
             <motion.img 
               key={currentImgIndex}
-              src={optimizeImageUrl(images[currentImgIndex], 800)} 
+              src={imgSrc} 
               alt={project.seoAlt || project.title}
               width={800}
               height={600}
               loading={index < 4 ? "eager" : "lazy"}
               fetchPriority={index < 4 ? "high" : "auto"}
               decoding="async"
+              referrerPolicy="no-referrer"
               onLoad={() => setIsImageLoaded(true)}
+              onError={() => {
+                // Fallback para a URL original sem o proxy se o wsrv.nl bloquear (ex: Referer do Google)
+                if (imgSrc.includes('wsrv.nl')) {
+                  setImgSrc(images[currentImgIndex])
+                } else {
+                  setIsImageLoaded(true) // Evita skeleton infinito se até o original falhar
+                }
+              }}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: isImageLoaded ? 1 : 0, scale: isImageLoaded ? 1 : 1.05 }}
               exit={{ opacity: 0 }}
@@ -237,7 +251,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {hasMultipleImages && (
           <div className="hidden">
             {images.map((img, i) => (
-              i !== currentImgIndex && <img key={i} src={optimizeImageUrl(img, 800)} alt="preload" width={800} height={600} loading="eager" decoding="async" />
+              i !== currentImgIndex && <img key={i} src={optimizeImageUrl(img, 800)} alt="preload" width={800} height={600} loading="eager" decoding="async" referrerPolicy="no-referrer" />
             ))}
           </div>
         )}
