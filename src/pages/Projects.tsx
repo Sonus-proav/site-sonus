@@ -191,14 +191,14 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           {/* Tags */}
           {project.tags && project.tags.length > 0 && (
             <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2 pointer-events-none">
-              {project.tags.slice(0, 2).map((tag, i) => (
+              {project.tags.slice(0, 3).map((tag, i) => (
                 <span key={i} className="bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
                   {tag}
                 </span>
               ))}
-              {project.tags.length > 2 && (
+              {project.tags.length > 3 && (
                 <span className="bg-primary/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
-                  +{project.tags.length - 2}
+                  +{project.tags.length - 3}
                 </span>
               )}
             </div>
