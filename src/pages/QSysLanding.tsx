@@ -83,7 +83,7 @@ export function QSysLanding() {
 
         {/* Hero Image / Touch Panel Mockup */}
         <div className="w-full max-w-5xl mx-auto mt-20 relative transform-gpu animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
-          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.06] border border-white/[0.15] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.08] group">
+          <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.06] border border-white/[0.15] shadow-2xl md:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.08] group">
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
             
@@ -269,7 +269,7 @@ export function QSysLanding() {
                         }}
                       >
                         <div 
-                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1 transition-all duration-300 ease-out" 
+                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full relative md:shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-end pr-1 transition-all duration-200 ease-out" 
                           style={{ width: `${currentVolume}%` }}
                         >
                           <div className="w-6 h-6 md:w-10 md:h-10 bg-white rounded-full shadow-md scale-95 group-active:scale-110 transition-transform" />
@@ -301,7 +301,7 @@ export function QSysLanding() {
                       {/* Mixer Channel 1 */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic1: vol})) }}>
-                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic1}%` }} />
+                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic1}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic1}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, mic1: p.mic1 === 0 ? 80 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic1 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
@@ -312,7 +312,7 @@ export function QSysLanding() {
                       {/* Mixer Channel 2 */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic2: vol})) }}>
-                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic2}%` }} />
+                          <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic2}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic2}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, mic2: p.mic2 === 0 ? 60 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.mic2 === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
@@ -323,7 +323,7 @@ export function QSysLanding() {
                       {/* Mixer Channel 3 (PC) */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
                         <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, pc: vol})) }}>
-                          <div className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(56,189,248,0.3)]" style={{ height: `${audioLevels.pc}%` }} />
+                          <div className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(56,189,248,0.3)]" style={{ height: `${audioLevels.pc}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.pc}</span></div>
                         </div>
                         <button onClick={() => setAudioLevels(p => ({...p, pc: p.pc === 0 ? 100 : 0}))} className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-all ${audioLevels.pc === 0 ? 'bg-red-500/20 ring-1 ring-red-500/50' : 'bg-white/5 hover:bg-white/10'}`}>
@@ -375,7 +375,7 @@ export function QSysLanding() {
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-yellow-500" /> Luzes do Palco</span><span className="text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded-md">{lightLevels.palco}%</span></div>
                         <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, palco: Math.round((x/rect.width)*100)})) }}>
-                          <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-300 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(250,204,21,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.palco}%` }}>
+                          <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-300 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(250,204,21,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.palco}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
                         </div>
@@ -384,7 +384,7 @@ export function QSysLanding() {
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-amber-500" /> Luzes da Plateia</span><span className="text-amber-400 bg-amber-500/10 px-2 py-1 rounded-md">{lightLevels.plateia}%</span></div>
                         <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, plateia: Math.round((x/rect.width)*100)})) }}>
-                          <div className="h-full bg-gradient-to-r from-amber-600 to-amber-300 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(251,191,36,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.plateia}%` }}>
+                          <div className="h-full bg-gradient-to-r from-amber-600 to-amber-300 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(251,191,36,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.plateia}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
                         </div>
@@ -393,7 +393,7 @@ export function QSysLanding() {
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-blue-500" /> Sancas Decorativas</span><span className="text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md">{lightLevels.sanca}%</span></div>
                         <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, sanca: Math.round((x/rect.width)*100)})) }}>
-                          <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full transition-all duration-200 relative shadow-[0_0_15px_rgba(56,189,248,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.sanca}%` }}>
+                          <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(56,189,248,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.sanca}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
                         </div>
@@ -403,7 +403,9 @@ export function QSysLanding() {
                 ) : (
                   <div className="flex-1 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500 gap-8 bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl p-6">
                     <div className="w-56 h-56 md:w-72 md:h-72 rounded-full border-[10px] border-black/60 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative flex items-center justify-center bg-gradient-to-b from-zinc-800 to-black overflow-hidden ring-1 ring-white/5">
-                      <div className={`absolute inset-0 transition-all duration-1000 ${hvacTemp < 21 ? 'bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3)_0%,transparent_70%)]' : hvacTemp > 24 ? 'bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3)_0%,transparent_70%)]' : 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_0%,transparent_70%)]'}`} />
+                      <div className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3)_0%,transparent_70%)] transition-opacity duration-1000 ${hvacTemp < 21 ? 'opacity-100' : 'opacity-0'}`} />
+                      <div className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3)_0%,transparent_70%)] transition-opacity duration-1000 ${hvacTemp > 24 ? 'opacity-100' : 'opacity-0'}`} />
+                      <div className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_0%,transparent_70%)] transition-opacity duration-1000 ${hvacTemp >= 21 && hvacTemp <= 24 ? 'opacity-100' : 'opacity-0'}`} />
                       <div className="flex flex-col items-center z-10 relative">
                         <span className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest font-bold mb-1">Setpoint</span>
                         <div className="flex items-start text-white">
