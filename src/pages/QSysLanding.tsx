@@ -396,15 +396,17 @@ export function QSysLanding() {
                     <div className="flex flex-col gap-2 md:gap-3 shrink-0">
                       <div className="flex flex-col xl:flex-row gap-2 md:gap-3">
                         {/* Selector Câmeras */}
-                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5">
+                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5 relative">
+                           {aiTracking && <div className="absolute inset-0 z-10 cursor-not-allowed" title="Controle assumido pela IA" />}
                            {['CAM 1', 'CAM 2', 'CAM 3'].map(cam => (
-                             <button key={cam} onClick={() => setActiveCamera(cam)} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider ${activeCamera === cam ? 'bg-white/10 text-white shadow-md' : 'text-zinc-500 hover:text-zinc-300'}`}>{cam.replace('CAM', 'Câmera')}</button>
+                             <button key={cam} disabled={aiTracking} onClick={() => setActiveCamera(cam)} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider ${aiTracking ? 'opacity-30 cursor-not-allowed text-zinc-600' : activeCamera === cam ? 'bg-white/10 text-white shadow-md' : 'text-zinc-500 hover:text-zinc-300'}`}>{cam.replace('CAM', 'Câmera')}</button>
                            ))}
                         </div>
                         {/* Selector Presets */}
-                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5">
+                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5 relative">
+                           {aiTracking && <div className="absolute inset-0 z-10 cursor-not-allowed" title="Controle assumido pela IA" />}
                            {['Palco', 'Mesa', 'Plateia'].map(preset => (
-                             <button key={preset} onClick={() => {setCameraPreset(preset); setAiTracking(false);}} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider uppercase truncate px-1 ${cameraPreset === preset && !aiTracking ? 'bg-blue-600/20 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.2)] border border-blue-500/30' : 'text-zinc-500 hover:text-zinc-300'}`}>{preset}</button>
+                             <button key={preset} disabled={aiTracking} onClick={() => {setCameraPreset(preset); setAiTracking(false);}} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider uppercase truncate px-1 ${aiTracking ? 'opacity-30 cursor-not-allowed text-zinc-600' : cameraPreset === preset ? 'bg-blue-600/20 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.2)] border border-blue-500/30' : 'text-zinc-500 hover:text-zinc-300'}`}>{preset}</button>
                            ))}
                         </div>
                       </div>
