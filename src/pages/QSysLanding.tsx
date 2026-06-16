@@ -105,7 +105,7 @@ export function QSysLanding() {
               <div className="flex-1 flex flex-col md:flex-row p-3 md:p-6 gap-3 md:gap-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 to-black">
                 
                 {/* Sidebar Navigation */}
-                <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0">
+                <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0 px-1 md:px-0 [&::-webkit-scrollbar]:hidden shrink-0">
                   <div className="flex flex-row md:flex-col gap-2 md:gap-3 shrink-0">
                     {[
                       { icon: <MonitorPlay className="w-5 h-5 md:w-6 md:h-6" />, label: "Cenários", id: "Cenários" },
@@ -260,12 +260,18 @@ export function QSysLanding() {
                         <span className="text-blue-400 font-black text-[clamp(14px,1.5vw,20px)] transition-all duration-300">{currentVolume}%</span>
                       </div>
                       <div 
-                        className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner group"
-                        onClick={(e) => {
+                        className="h-8 md:h-12 bg-black/60 rounded-full p-1 border border-white/10 relative cursor-pointer shadow-inner group touch-none"
+                        onPointerDown={(e) => {
+                          e.currentTarget.setPointerCapture(e.pointerId);
                           const rect = e.currentTarget.getBoundingClientRect();
                           const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-                          const newVol = Math.round((x / rect.width) * 100);
-                          setCurrentVolume(newVol);
+                          setCurrentVolume(Math.round((x / rect.width) * 100));
+                        }}
+                        onPointerMove={(e) => {
+                          if (e.buttons !== 1) return;
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+                          setCurrentVolume(Math.round((x / rect.width) * 100));
                         }}
                       >
                         <div 
@@ -300,7 +306,7 @@ export function QSysLanding() {
                     <div className="flex justify-around flex-1 items-end gap-2 md:gap-4 pb-4">
                       {/* Mixer Channel 1 */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
-                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic1: vol})) }}>
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, mic1: Math.round((1 - y/rect.height)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, mic1: Math.round((1 - y/rect.height)*100)})) }}>
                           <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic1}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic1}</span></div>
                         </div>
@@ -311,7 +317,7 @@ export function QSysLanding() {
                       </div>
                       {/* Mixer Channel 2 */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
-                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, mic2: vol})) }}>
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, mic2: Math.round((1 - y/rect.height)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, mic2: Math.round((1 - y/rect.height)*100)})) }}>
                           <div className="w-full bg-gradient-to-t from-emerald-500 to-green-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(52,211,153,0.3)]" style={{ height: `${audioLevels.mic2}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.mic2}</span></div>
                         </div>
@@ -322,7 +328,7 @@ export function QSysLanding() {
                       </div>
                       {/* Mixer Channel 3 (PC) */}
                       <div className="flex flex-col items-center gap-4 w-16 md:w-24">
-                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); const vol = Math.round((1 - y/rect.height)*100); setAudioLevels(p => ({...p, pc: vol})) }}>
+                        <div className="flex-1 w-8 md:w-14 bg-black/60 rounded-full p-1 border border-white/10 relative flex flex-col justify-end overflow-hidden group cursor-pointer touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, pc: Math.round((1 - y/rect.height)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height)); setAudioLevels(p => ({...p, pc: Math.round((1 - y/rect.height)*100)})) }}>
                           <div className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-full transition-all duration-200 md:shadow-[0_0_15px_rgba(56,189,248,0.3)]" style={{ height: `${audioLevels.pc}%` }} />
                           <div className="absolute w-full bottom-0 h-full flex flex-col justify-end pb-3 opacity-0 group-hover:opacity-100 transition-opacity items-center pointer-events-none"><span className="text-xs font-bold text-white drop-shadow-md">{audioLevels.pc}</span></div>
                         </div>
@@ -374,7 +380,7 @@ export function QSysLanding() {
                       {/* Zona 1 */}
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-yellow-500" /> Luzes do Palco</span><span className="text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded-md">{lightLevels.palco}%</span></div>
-                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, palco: Math.round((x/rect.width)*100)})) }}>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, palco: Math.round((x/rect.width)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, palco: Math.round((x/rect.width)*100)})) }}>
                           <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-300 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(250,204,21,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.palco}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
@@ -383,7 +389,7 @@ export function QSysLanding() {
                       {/* Zona 2 */}
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-amber-500" /> Luzes da Plateia</span><span className="text-amber-400 bg-amber-500/10 px-2 py-1 rounded-md">{lightLevels.plateia}%</span></div>
-                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, plateia: Math.round((x/rect.width)*100)})) }}>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, plateia: Math.round((x/rect.width)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, plateia: Math.round((x/rect.width)*100)})) }}>
                           <div className="h-full bg-gradient-to-r from-amber-600 to-amber-300 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(251,191,36,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.plateia}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
@@ -392,7 +398,7 @@ export function QSysLanding() {
                       {/* Zona 3 */}
                       <div>
                         <div className="flex justify-between items-center mb-3 text-[10px] md:text-xs font-bold uppercase tracking-widest"><span className="text-zinc-300 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-blue-500" /> Sancas Decorativas</span><span className="text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md">{lightLevels.sanca}%</span></div>
-                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner" onClick={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, sanca: Math.round((x/rect.width)*100)})) }}>
+                        <div className="h-8 md:h-10 bg-black/60 rounded-full p-1.5 border border-white/10 cursor-pointer group shadow-inner touch-none" onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, sanca: Math.round((x/rect.width)*100)})) }} onPointerMove={(e) => { if (e.buttons !== 1) return; const rect = e.currentTarget.getBoundingClientRect(); const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); setLightLevels(p => ({...p, sanca: Math.round((x/rect.width)*100)})) }}>
                           <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full transition-all duration-200 relative md:shadow-[0_0_15px_rgba(56,189,248,0.4)] flex justify-end items-center pr-1" style={{ width: `${lightLevels.sanca}%` }}>
                             <div className="w-5 h-5 md:w-7 md:h-7 bg-white rounded-full shadow-md scale-90 group-active:scale-100 transition-transform" />
                           </div>
