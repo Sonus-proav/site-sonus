@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
-import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan, Globe, Zap } from "lucide-react"
+import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan, Globe, Zap, Bot } from "lucide-react"
 import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
@@ -21,6 +21,8 @@ export function QSysLanding() {
   const [lightLevels, setLightLevels] = useState({ palco: 100, plateia: 40, sanca: 80 })
   const [hvacTemp, setHvacTemp] = useState(22)
   const [cameraPreset, setCameraPreset] = useState("Palco")
+  const [activeCamera, setActiveCamera] = useState("CAM 1")
+  const [aiTracking, setAiTracking] = useState(false)
 
   const scenesData = [
     { title: "Apresentação", color: "from-blue-600 to-cyan-500", temp: "22°", light: "40%", vol: 75, activeColor: "rgba(56,189,248,1)" },
@@ -340,37 +342,83 @@ export function QSysLanding() {
                     </div>
                   </div>
                 ) : activeTab === "Câmeras PTZ" ? (
-                  <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300 h-full">
-                    <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] shadow-inner">
-                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none will-change-transform" style={{ transform: cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="flex-1 flex flex-col gap-3 md:gap-4 animate-in fade-in duration-300 h-full overflow-y-auto [&::-webkit-scrollbar]:hidden pb-4 md:pb-0">
+                    <div className="flex-1 bg-black/80 rounded-2xl md:rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[220px] md:min-h-[250px] shadow-inner shrink-0">
+                      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className={`absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none will-change-transform ${aiTracking ? 'scale-125' : ''}`} style={{ transform: aiTracking ? 'scale(1.2) translateY(-5%)' : cameraPreset === 'Palco' ? 'scale(1.2) translateX(-5%)' : cameraPreset === 'Plateia' ? 'scale(1.1) translateY(10%)' : 'scale(1.4) translateY(-10%)' }} alt="Camera Auto-Track" />
+                      
+                      {aiTracking && (
+                         <div className="absolute inset-0 bg-purple-500/10 pointer-events-none animate-pulse" />
+                      )}
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
                       
                       {/* OSD Info */}
-                      <div className="absolute top-4 left-4 md:top-6 md:left-6 flex gap-2">
-                        <div className="px-2 py-1 bg-red-500/90 rounded text-[10px] font-bold flex items-center gap-1.5 shadow-[0_0_10px_rgba(239,68,68,0.5)]"><div className="w-2 h-2 rounded-full bg-white animate-pulse" /> REC</div>
-                        <div className="px-2 py-1 bg-black/60 rounded border border-white/10 uppercase text-[10px] font-bold text-zinc-300">CAM 1</div>
+                      <div className="absolute top-3 left-3 md:top-6 md:left-6 flex flex-wrap gap-2 z-20 pointer-events-none pr-3">
+                        <div className="px-2 py-1 bg-red-500/90 rounded text-[10px] font-bold flex items-center gap-1.5 shadow-[0_0_10px_rgba(239,68,68,0.5)] shrink-0"><div className="w-2 h-2 rounded-full bg-white animate-pulse" /> REC</div>
+                        <div className="px-2 py-1 bg-black/60 rounded border border-white/10 uppercase text-[10px] font-bold text-zinc-300 shrink-0">{activeCamera}</div>
+                        {aiTracking && (
+                           <div className="px-2 py-1 bg-purple-600/90 rounded border border-purple-400 uppercase text-[10px] font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] flex items-center gap-1 shrink-0">
+                             <Bot className="w-3 h-3" /> IA ON
+                           </div>
+                        )}
                       </div>
                       
                       {/* Center Crosshair (Subtle) */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-white/10 rounded-full flex items-center justify-center pointer-events-none">
-                        <div className="w-1 h-1 bg-red-500/50 rounded-full" />
-                      </div>
+                      {!aiTracking && (
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-white/10 rounded-full flex items-center justify-center pointer-events-none">
+                          <div className="w-1 h-1 bg-red-500/50 rounded-full" />
+                        </div>
+                      )}
+
+                      {/* AI Face Tracking Box overlay */}
+                      {aiTracking && (
+                         <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-32 md:w-32 md:h-40 border-2 border-purple-500/50 rounded-lg pointer-events-none flex flex-col justify-end p-1 transition-all duration-[3s] ease-in-out" style={{ transform: 'translate(-40%, -40%) scale(1.1)' }}>
+                            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-purple-400 absolute top-0 left-0" />
+                            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-purple-400 absolute top-0 right-0" />
+                            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-purple-400 absolute bottom-0 left-0" />
+                            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-purple-400 absolute bottom-0 right-0" />
+                            <span className="text-[8px] font-bold text-purple-400 bg-black/60 px-1 rounded inline-block w-max">Tracking: CEO</span>
+                         </div>
+                      )}
 
                       {/* D-Pad PTZ Controls */}
-                      <div className="relative z-10 flex flex-col items-center justify-center gap-2 md:gap-4 w-full mt-auto mb-6">
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronUp className="w-6 h-6 text-white" /></div>
-                        <div className="flex gap-8 md:gap-12 items-center">
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronLeft className="w-6 h-6 text-white" /></div>
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600/30 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/50 active:scale-90 transition-all"><Target className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /></div>
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronRight className="w-6 h-6 text-white" /></div>
+                      <div className={`relative z-10 flex flex-col items-center justify-center gap-2 md:gap-4 w-full mt-auto mb-4 md:mb-6 transition-all duration-500 ${aiTracking ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}`}>
+                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronUp className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
+                        <div className="flex gap-6 md:gap-12 items-center">
+                          <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
+                          <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-blue-600/30 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/50 active:scale-90 transition-all"><Target className="w-4 h-4 md:w-6 md:h-6 text-blue-400" /></div>
+                          <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
                         </div>
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronDown className="w-6 h-6 text-white" /></div>
+                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronDown className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
                       </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 md:gap-4 shrink-0">
-                      {['Palco', 'Mesa', 'Plateia'].map(preset => (
-                        <button key={preset} onClick={() => setCameraPreset(preset)} className={`h-12 md:h-14 rounded-xl border transition-all text-[10px] md:text-xs font-bold uppercase tracking-widest ${cameraPreset === preset ? 'bg-blue-600/20 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] text-blue-300' : 'bg-white/5 border-white/10 text-zinc-400 hover:bg-white/10'}`}>{preset}</button>
-                      ))}
+                    
+                    <div className="flex flex-col gap-2 md:gap-3 shrink-0">
+                      <div className="flex flex-col xl:flex-row gap-2 md:gap-3">
+                        {/* Selector Câmeras */}
+                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5">
+                           {['CAM 1', 'CAM 2', 'CAM 3'].map(cam => (
+                             <button key={cam} onClick={() => setActiveCamera(cam)} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider ${activeCamera === cam ? 'bg-white/10 text-white shadow-md' : 'text-zinc-500 hover:text-zinc-300'}`}>{cam.replace('CAM', 'Câmera')}</button>
+                           ))}
+                        </div>
+                        {/* Selector Presets */}
+                        <div className="flex-1 grid grid-cols-3 gap-1 md:gap-2 p-1 bg-black/40 rounded-xl border border-white/5">
+                           {['Palco', 'Mesa', 'Plateia'].map(preset => (
+                             <button key={preset} onClick={() => {setCameraPreset(preset); setAiTracking(false);}} className={`h-10 md:h-12 rounded-lg transition-all text-[10px] md:text-xs font-bold tracking-wider uppercase truncate px-1 ${cameraPreset === preset && !aiTracking ? 'bg-blue-600/20 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.2)] border border-blue-500/30' : 'text-zinc-500 hover:text-zinc-300'}`}>{preset}</button>
+                           ))}
+                        </div>
+                      </div>
+
+                      {/* Botão Controle IA */}
+                      <button onClick={() => setAiTracking(!aiTracking)} className={`relative w-full h-12 md:h-14 rounded-xl overflow-hidden group transition-all duration-300 border ${aiTracking ? 'border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.3)]' : 'border-white/10 hover:border-purple-500/50'}`}>
+                         <div className={`absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-purple-600/20 transition-opacity duration-500 ${aiTracking ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                         <div className="relative h-full w-full flex items-center justify-center gap-2 md:gap-3 px-2 md:px-4">
+                           <Bot className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-300 shrink-0 ${aiTracking ? 'text-purple-300' : 'text-zinc-400 group-hover:text-purple-400'}`} /> 
+                           <span className={`text-[9px] md:text-xs font-bold uppercase tracking-widest transition-colors duration-300 truncate ${aiTracking ? 'text-purple-100' : 'text-zinc-400 group-hover:text-purple-200'}`}>
+                             {aiTracking ? 'Rastreamento por IA (Ativo)' : 'Controle Automático por IA'}
+                           </span>
+                         </div>
+                      </button>
                     </div>
                   </div>
                 ) : activeTab === "Iluminação" ? (
