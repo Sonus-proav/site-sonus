@@ -77,14 +77,14 @@ export function QSysLanding() {
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all ">
               Solicite um Orçamento
             </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-medium transition-all">
+            <Button onClick={() => document.getElementById('painel-interativo')?.scrollIntoView({ behavior: 'smooth' })} size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-medium transition-all">
               Conheça o Sistema <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
         </div>
 
         {/* Hero Image / Touch Panel Mockup */}
-        <div className="w-full max-w-5xl mx-auto mt-20 relative transform-gpu animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
+        <div id="painel-interativo" className="w-full max-w-5xl mx-auto mt-20 relative transform-gpu animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
           <div className="relative rounded-[2.5rem] p-2 md:p-4 bg-white/[0.06] border border-white/[0.15] shadow-2xl md:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.08] group">
             {/* Efeito de brilho de tela no fundo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-cyan-500/20 opacity-50 rounded-[2.5rem]" />
