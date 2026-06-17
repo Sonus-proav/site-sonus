@@ -213,16 +213,20 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           </div>
           <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3">{project.title}</h3>
           
-          {project.problem ? (
-            <div className="mt-1 mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-[150ms]">
-               <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
-               <p className="text-zinc-300 text-xs md:text-sm line-clamp-2 leading-relaxed">{project.problem}</p>
-            </div>
-          ) : null}
+          <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
+            {project.problem ? (
+              <div className="mb-4">
+                 <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
+                 <p className="text-zinc-300 text-sm line-clamp-2 leading-relaxed">{project.problem}</p>
+              </div>
+            ) : (
+              <p className="text-zinc-300 text-sm line-clamp-3 mb-4 leading-relaxed">{project.description}</p>
+            )}
 
-          <span className="text-white font-medium text-sm inline-flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-200 mt-auto">
-            {project.problem ? 'Ver Solução' : 'Ver projeto'} <ArrowRight className="w-4 h-4" />
-          </span>
+            <span className="text-primary hover:text-white font-medium text-sm inline-flex items-center gap-2 transition-colors duration-300 uppercase tracking-wider group/link">
+              {project.problem ? 'Ver Solução' : 'Ver Projeto'} <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+            </span>
+          </div>
         </div>
 
         {/* Carousel Controls */}
