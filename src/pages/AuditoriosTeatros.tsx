@@ -337,7 +337,7 @@ export function AuditoriosTeatros() {
             {/* Caso 1: Teatro UNISEP */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
               <FadeIn className="rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 relative group shadow-2xl">
-                <img src="/auditório cesul.jpg" alt="Teatro UNISEP" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src="/auditorio-sonus.jpg" alt="Teatro UNISEP" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6">
                   <h3 className="text-2xl font-bold text-white mb-1">Teatro UNISEP</h3>
@@ -367,7 +367,7 @@ export function AuditoriosTeatros() {
                 </div>
               </FadeIn>
               <FadeIn delay={0.2} className="order-1 md:order-2 rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 relative group shadow-2xl">
-                <img src="/cresol-chopinzinho.jpeg" alt="Auditório Sede Nacional CRESOL" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src="/cresol.jpg" alt="Auditório Sede Nacional CRESOL" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6">
                   <h3 className="text-2xl font-bold text-white mb-1">Sede Nacional CRESOL</h3>
