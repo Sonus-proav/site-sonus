@@ -205,11 +205,11 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
-          <p className="text-primary font-medium text-sm tracking-wider uppercase mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-5 pt-16 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
+          <p className="text-primary font-medium text-sm tracking-wider uppercase mb-1 md:mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block">
             {project.category}
           </p>
-          <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+          <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3">{project.title}</h3>
           
           {project.problem ? (
             <div className="mt-1 mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-[150ms]">
@@ -225,7 +225,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
         {/* Carousel Controls */}
         {hasMultipleImages && (
-          <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
+          <div className="absolute top-[35%] -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
             <button 
               onClick={prevImage}
               aria-label="Imagem anterior"
