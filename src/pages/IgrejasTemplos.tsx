@@ -123,15 +123,21 @@ export function IgrejasTemplos() {
   const portfolio = [
     {
       name: "Matriz de Xanxerê",
-      state: "SC"
+      state: "SC",
+      image: "/interior-matriz-xanxere.jpg",
+      description: "Projeto completo de sonorização focado na inteligibilidade da palavra falada, respeitando a arquitetura histórica do templo e proporcionando cobertura sonora uniforme para todos os fiéis."
     },
     {
       name: "Matriz de Concórdia",
-      state: "SC"
+      state: "SC",
+      image: "/concordia.jpg",
+      description: "Modernização do sistema de áudio com alinhamento acústico para reduzir a reverberação natural (eco), garantindo clareza absoluta desde a primeira até a última fileira de bancos."
     },
     {
       name: "Matriz de Pato Branco",
-      state: "PR"
+      state: "PR",
+      image: "/pato-branco.jpg",
+      description: "Implementação de tecnologia de processamento digital, eliminando microfonias indesejadas e facilitando o controle diário do áudio para a equipe de voluntários durante os cultos e louvores."
     }
   ]
 
@@ -271,14 +277,37 @@ export function IgrejasTemplos() {
               </p>
             </FadeIn>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {portfolio.map((item, index) => (
-                <FadeIn key={index} delay={index * 0.1}>
-                  <div className="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center hover:bg-white/[0.07] transition-all duration-300">
-                    <Church className="w-12 h-12 text-zinc-500 mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">{item.name}</h3>
-                    <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/10 text-xs font-medium text-zinc-300">
-                      {item.state}
+                <FadeIn key={index} delay={index * 0.1} className="h-full">
+                  <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden h-full flex flex-col hover:bg-white/[0.07] transition-all duration-300 group shadow-lg">
+                    {/* Imagem do Projeto */}
+                    <div className="relative aspect-video overflow-hidden bg-zinc-900 flex items-center justify-center border-b border-white/5">
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        onError={(e) => {
+                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Crect fill='%23111' width='800' height='400'/%3E%3Ctext fill='%23555' x='50%25' y='50%25' font-family='sans-serif' font-size='24' text-anchor='middle' alignment-baseline='middle'%3EImagem a Caminho%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+                      {/* Gradiente sobre a imagem */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                      
+                      {/* Badge do Estado */}
+                      <div className="absolute bottom-4 left-4">
+                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-xs font-semibold text-white shadow-sm tracking-wide">
+                          {item.state}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Conteúdo Textual */}
+                    <div className="p-8 flex-1 flex flex-col">
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-400 transition-colors">{item.name}</h3>
+                      <p className="text-zinc-400 leading-relaxed text-sm flex-1">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </FadeIn>
