@@ -225,7 +225,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
         {/* Carousel Controls */}
         {hasMultipleImages && (
-          <div className="absolute top-[35%] -translate-y-1/2 left-2 right-2 flex justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
+          <div className="absolute top-4 right-4 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-30 pointer-events-auto">
             <button 
               onClick={prevImage}
               aria-label="Imagem anterior"
