@@ -143,7 +143,7 @@ export function Home() {
             <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
-              <Link to="/projetos/28" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
+              <Link to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
                 <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">

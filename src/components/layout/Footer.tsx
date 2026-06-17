@@ -56,6 +56,7 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               <li><Link to="/" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Início</Link></li>
               <li><Link to="/projetos" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Portfólio de Projetos</Link></li>
+              <li><Link to="/auditorios-e-teatros" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Auditórios e Teatros</Link></li>
               <li><Link to="/qsys" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Ecossistema Q-SYS</Link></li>
               <li><a href="/#sobre" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Sobre a Empresa</a></li>
             </ul>
