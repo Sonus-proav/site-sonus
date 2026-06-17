@@ -17,7 +17,12 @@ import {
   Mic2, 
   ShieldCheck, 
   Handshake, 
-  ArrowRight
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
+  Video,
+  Lightbulb,
+  SlidersHorizontal
 } from "lucide-react"
 
 export function AuditoriosTeatros() {
@@ -201,23 +206,77 @@ export function AuditoriosTeatros() {
             
             {/* Esquerda: Mockup */}
             <FadeIn className="order-2 lg:order-1">
-              <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-black border border-white/10 shadow-[0_0_50px_rgba(41,128,185,0.15)] flex items-center justify-center p-8">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-[#080808] border border-white/5 shadow-[0_0_50px_rgba(41,128,185,0.1)] flex items-center justify-center p-4 sm:p-8 group perspective-1000">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(41,128,185,0.4)_0,transparent_100%)]" />
-                {/* Representação de um painel de controle */}
-                <div className="w-full max-w-sm aspect-[3/4] bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10">
-                  <div className="h-12 bg-black flex items-center px-4 border-b border-zinc-800">
-                    <span className="text-xs font-bold text-zinc-500 tracking-widest">Q-SYS TOUCH</span>
+                
+                {/* iPad Mockup */}
+                <div className="w-full max-w-lg aspect-[16/10] bg-zinc-950 border-[6px] border-zinc-800/80 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col z-10 relative transform transition-all duration-700 md:group-hover:rotate-y-[-5deg] md:group-hover:rotate-x-[2deg] md:group-hover:scale-105">
+                  
+                  {/* Status Bar */}
+                  <div className="h-6 sm:h-8 bg-zinc-900 flex items-center justify-between px-4 border-b border-zinc-800">
+                    <span className="text-[8px] sm:text-[10px] font-bold text-zinc-400 tracking-widest flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Q-SYS SYSTEM ACTIVE
+                    </span>
+                    <span className="text-[8px] sm:text-[10px] font-medium text-zinc-500">14:50</span>
                   </div>
-                  <div className="flex-1 p-6 flex flex-col gap-4">
-                    <div className="w-full h-24 bg-primary/20 rounded-xl border border-primary/30 flex items-center justify-center">
-                      <VolumeX className="w-8 h-8 text-primary opacity-50" />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="h-20 bg-white/5 rounded-xl border border-white/10" />
-                      <div className="h-20 bg-white/5 rounded-xl border border-white/10" />
-                      <div className="h-20 bg-white/5 rounded-xl border border-white/10" />
-                      <div className="h-20 bg-white/5 rounded-xl border border-white/10" />
-                    </div>
+
+                  {/* Interface */}
+                  <div className="flex-1 p-3 sm:p-5 flex gap-3 sm:gap-5 bg-black relative">
+                     {/* Background Tech Sutil */}
+                     <div className="absolute inset-0 bg-[url('/qsys-tech-bg.png')] opacity-10 bg-cover bg-center mix-blend-screen pointer-events-none" />
+
+                     {/* Left Sidebar (Scenes) */}
+                     <div className="w-[35%] flex flex-col gap-2 sm:gap-3 z-10">
+                       <div className="bg-primary/20 border border-primary/30 rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center justify-between cursor-pointer hover:bg-primary/30 transition-colors">
+                         <span className="text-[10px] sm:text-xs font-bold text-white">Palestra</span>
+                         <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                       </div>
+                       <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center justify-between text-zinc-500 cursor-pointer hover:bg-white/10 transition-colors">
+                         <span className="text-[10px] sm:text-xs font-semibold">Cinema</span>
+                       </div>
+                       <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center justify-between text-zinc-500 cursor-pointer hover:bg-white/10 transition-colors">
+                         <span className="text-[10px] sm:text-xs font-semibold">Desligar Tudo</span>
+                       </div>
+                     </div>
+
+                     {/* Right Content (Controls) */}
+                     <div className="w-[65%] flex flex-col gap-2 sm:gap-4 z-10">
+                        {/* Master Volume */}
+                        <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 flex flex-col gap-2 sm:gap-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[10px] sm:text-xs font-semibold text-zinc-300 flex items-center gap-2">
+                              <SlidersHorizontal className="w-3 h-3 sm:w-4 sm:h-4" /> Master
+                            </span>
+                            <span className="text-[10px] sm:text-xs font-bold text-primary">75%</span>
+                          </div>
+                          <div className="h-1.5 sm:h-2 bg-zinc-800 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 w-3/4 relative">
+                               <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/20 blur-[2px]" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Toggles */}
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3 flex-1">
+                          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg sm:rounded-xl flex flex-col items-center justify-center gap-1 sm:gap-2 p-2 cursor-pointer transition-colors shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+                            <Mic2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+                            <span className="text-[8px] sm:text-[10px] font-bold text-emerald-400">Mics On</span>
+                          </div>
+                          <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex flex-col items-center justify-center gap-1 sm:gap-2 p-2 cursor-pointer hover:bg-white/10 transition-colors">
+                            <Video className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-500" />
+                            <span className="text-[8px] sm:text-[10px] font-medium text-zinc-500">Projetor Off</span>
+                          </div>
+                          <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex flex-col items-center justify-center gap-1 sm:gap-2 p-2 cursor-pointer hover:bg-white/10 transition-colors">
+                            <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                            <span className="text-[8px] sm:text-[10px] font-medium text-zinc-300">Luzes 50%</span>
+                          </div>
+                          <div className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex flex-col items-center justify-center gap-1 sm:gap-2 p-2 cursor-pointer hover:bg-white/10 transition-colors">
+                            <Settings2 className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-400" />
+                            <span className="text-[8px] sm:text-[10px] font-medium text-zinc-400">Sistema</span>
+                          </div>
+                        </div>
+                     </div>
                   </div>
                 </div>
               </div>
