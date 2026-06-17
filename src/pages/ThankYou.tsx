@@ -1,9 +1,6 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { CheckCircle2, MessageSquare, ArrowLeft } from 'lucide-react'
-import { FadeIn } from '../components/animations/FadeIn'
-import { Button } from '../components/ui/Button'
+import { FadeIn } from '../components/ui/FadeIn'
 
 export function ThankYou() {
   const whatsappNumber = "554635237192"
