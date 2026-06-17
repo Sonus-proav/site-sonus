@@ -147,13 +147,24 @@ export function IgrejasTemplos() {
         title="Sonorização para Igrejas e Templos | Sonus Pro AV" 
         description="A mensagem de fé precisa ser ouvida com clareza. Soluções audiovisuais premium para igrejas, com foco em inteligibilidade e operação simplificada para voluntários." 
         url="https://sonusproaudio.com.br/igrejas-e-templos"
+        keywords="sonorização para igrejas, som para templo religioso, projeto acústico igreja matriz, resolver eco na igreja, sistema de som para louvor, automação Q-SYS igreja, sonorização templo, projeto de som igreja"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Sonorização para Igrejas e Templos",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Sonus Pro AV"
+          },
+          "description": "Projetos acústicos e de sonorização focados na inteligibilidade para igrejas e templos.",
+          "areaServed": "Brazil"
+        }}
       />
 
       {/* Decorative Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 transform-gpu">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-amber-500/10 blur-[120px] rounded-full mix-blend-screen" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-orange-600/10 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
       <Navbar />
@@ -286,6 +297,8 @@ export function IgrejasTemplos() {
                       <img 
                         src={item.image} 
                         alt={item.name} 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                         onError={(e) => {
                           e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Crect fill='%23111' width='800' height='400'/%3E%3Ctext fill='%23555' x='50%25' y='50%25' font-family='sans-serif' font-size='24' text-anchor='middle' alignment-baseline='middle'%3EImagem a Caminho%3C/text%3E%3C/svg%3E";

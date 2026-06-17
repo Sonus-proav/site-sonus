@@ -51,12 +51,24 @@ export function MeetingRoomsLanding() {
         title="Automação de Salas de Reunião e Videoconferência | Sonus Pro AV" 
         description="Projetos de captação de áudio invisível, acústica e automação para salas de diretoria. Instalação premium certificada Microsoft Teams e Zoom Rooms." 
         url="https://sonusproaudio.com.br/salas-reuniao"
+        keywords="automação corporativa, sala de reunião inteligente, videoconferência profissional, integração Q-SYS, sonorização de escritório, sistema Zoom Rooms, Microsoft Teams Rooms, microfone de teto shure"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Automação de Salas de Reunião e Videoconferência",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Sonus Pro AV"
+          },
+          "description": "Automação e projetos audiovisuais para salas de reunião e ambientes corporativos.",
+          "areaServed": "Brazil"
+        }}
       />
 
       {/* Soundwave Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#050505]" />
-        <img src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
+        <img fetchPriority="high" src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
@@ -690,7 +702,6 @@ export function MeetingRoomsLanding() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/3" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] -translate-x-1/3 translate-y-1/3" />
-          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </div>
 

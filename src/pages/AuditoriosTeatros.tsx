@@ -74,6 +74,18 @@ export function AuditoriosTeatros() {
         title="Áudio para Auditórios e Teatros | Sonus Pro AV" 
         description="Engenharia audiovisual de alta performance para grandes eventos. Integração Q-SYS e Shure com foco em inteligibilidade e falha zero." 
         url="https://sonusproaudio.com.br/auditorios-e-teatros"
+        keywords="sonorização para auditórios, projeto de áudio para teatro, automação audiovisual, sistema de som profissional, microfones shure para auditório, Q-SYS integração, sonorização teatro, som ambiente auditório"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Sonorização para Auditórios e Teatros",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Sonus Pro AV"
+          },
+          "description": "Projetos de engenharia audiovisual de alta performance para auditórios e teatros.",
+          "areaServed": "Brazil"
+        }}
       />
 
       <Navbar />
@@ -82,7 +94,7 @@ export function AuditoriosTeatros() {
       <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          <img src="/auditorio-sonus.jpg" className="w-full h-full object-cover opacity-30 object-[center_60%]" alt="Teatro com iluminação moderna" />
+          <img fetchPriority="high" src="/auditorio-sonus.jpg" className="w-full h-full object-cover opacity-30 object-[center_60%]" alt="Teatro com iluminação moderna" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-[#050505]/40" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent" />
         </div>

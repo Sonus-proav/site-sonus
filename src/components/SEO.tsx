@@ -7,6 +7,8 @@ interface SEOProps {
   url?: string;
   type?: string;
   noindex?: boolean;
+  keywords?: string;
+  schema?: object;
 }
 
 export function SEO({ 
@@ -15,7 +17,9 @@ export function SEO({
   image = 'https://sonusproaudio.com.br/sobre-sonus.jpg', 
   url = 'https://sonusproaudio.com.br',
   type = 'website',
-  noindex = false
+  noindex = false,
+  keywords,
+  schema
 }: SEOProps) {
   return (
     <Helmet>
@@ -24,6 +28,8 @@ export function SEO({
       <meta name="title" content={title} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <link rel="canonical" href={url} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
@@ -38,6 +44,13 @@ export function SEO({
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
+
+      {/* JSON-LD Schema Markup */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 }
