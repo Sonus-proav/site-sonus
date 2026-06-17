@@ -445,10 +445,15 @@ export function AuditoriosTeatros() {
                 <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Capacidade de pessoas, problemas atuais, objetivos do projeto..." className="bg-black/50 border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-white" />
               </div>
               
-              <div className="flex justify-center pt-2">
+              <div className="flex justify-center pt-2 min-h-[65px]">
                 <Turnstile 
                   siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
-                  onSuccess={(token) => setTurnstileToken(token)} 
+                  onSuccess={(token) => {
+                    setSubmitError("");
+                    setTurnstileToken(token);
+                  }}
+                  onError={() => setSubmitError("Erro ao carregar o sistema de segurança. Verifique se o domínio está liberado no Cloudflare ou desative seu Adblocker.")}
+                  onExpire={() => setTurnstileToken("")}
                   options={{ theme: 'dark' }} 
                 />
               </div>
