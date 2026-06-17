@@ -104,8 +104,8 @@ export function IgrejasTemplos() {
 
   const solutions = [
     {
-      title: "Áudio Inteligente e Simplificado",
-      description: "Apresentamos o ecossistema automatizado (Q-SYS). Esqueça as mesas de som assustadoras. Seu voluntário apenas toca em um botão na tela chamado 'Modo Culto de Domingo' e o sistema inteiro se ajusta sozinho.",
+      title: "Soluções na Medida Certa",
+      description: "De sistemas de áudio simples, fáceis de operar por voluntários, até tecnologias avançadas como QSC e Q-SYS — os mesmos sistemas que sonorizam o gigantesco Santuário Nacional de Nossa Senhora Aparecida. Entregamos exatamente o que a sua igreja precisa.",
       icon: <Settings2 className="w-6 h-6 text-amber-400" />
     },
     {
