@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CheckCircle2, MessageSquare, ArrowLeft } from 'lucide-react'
 import { FadeIn } from '../components/ui/FadeIn'
+import { SEO } from '../components/SEO'
 
 export function ThankYou() {
   const whatsappNumber = "554635237192"
@@ -9,6 +10,11 @@ export function ThankYou() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black pt-24 pb-12 flex items-center justify-center relative overflow-hidden transition-colors duration-300">
+      <SEO 
+        title="Obrigado pelo Contato | Sonus" 
+        description="Sua mensagem foi recebida com sucesso." 
+        noindex={true}
+      />
       {/* Background Decorativo igual ao formulário */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"

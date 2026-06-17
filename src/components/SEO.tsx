@@ -6,6 +6,7 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  noindex?: boolean;
 }
 
 export function SEO({ 
@@ -13,13 +14,15 @@ export function SEO({
   description, 
   image = 'https://sonusproaudio.com.br/sobre-sonus.jpg', 
   url = 'https://sonusproaudio.com.br',
-  type = 'website'
+  type = 'website',
+  noindex = false
 }: SEOProps) {
   return (
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{title}</title>
       <meta name="title" content={title} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <meta name="description" content={description} />
 
       {/* Open Graph / Facebook */}
