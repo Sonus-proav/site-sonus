@@ -20,6 +20,7 @@ export function Navbar() {
     { name: "Início", path: "/" },
     { name: "Sobre Nós", path: "/#sobre" },
     { name: "Portfólio", path: "/projetos" },
+    { name: "Igrejas", path: "/igrejas-e-templos" },
     { name: "Q-SYS", path: "/qsys" },
     { name: "Contato", path: "/#contato" },
   ]

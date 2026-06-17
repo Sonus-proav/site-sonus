@@ -8,7 +8,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const data = await request.json();
-    const { name, phone, email, message, turnstileToken, honeypot } = data;
+    const { name, phone, email, message, turnstileToken, honeypot, churchName, role, capacity } = data;
 
     // Honeypot invisível para pegar bots estúpidos
     if (honeypot) {
@@ -43,6 +43,9 @@ export async function onRequestPost({ request, env }) {
     const safePhone = sanitizeHTML(phone);
     const safeEmail = sanitizeHTML(email);
     const safeMessage = sanitizeHTML(message);
+    const safeChurchName = sanitizeHTML(churchName);
+    const safeRole = sanitizeHTML(role);
+    const safeCapacity = sanitizeHTML(capacity);
 
     // A chave da API do Resend deve ser configurada nas Variáveis de Ambiente do Cloudflare Pages
     const RESEND_API_KEY = env.RESEND_API_KEY;
@@ -66,6 +69,9 @@ export async function onRequestPost({ request, env }) {
           <li style="margin-bottom: 10px;"><strong>Nome:</strong> ${safeName}</li>
           <li style="margin-bottom: 10px;"><strong>E-mail:</strong> ${safeEmail}</li>
           <li style="margin-bottom: 10px;"><strong>Telefone/WhatsApp:</strong> ${safePhone}</li>
+          ${safeChurchName ? `<li style="margin-bottom: 10px;"><strong>Igreja/Templo:</strong> ${safeChurchName}</li>` : ""}
+          ${safeRole ? `<li style="margin-bottom: 10px;"><strong>Cargo:</strong> ${safeRole}</li>` : ""}
+          ${safeCapacity ? `<li style="margin-bottom: 10px;"><strong>Capacidade Aprox.:</strong> ${safeCapacity}</li>` : ""}
         </ul>
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px;">
           <p style="margin: 0; font-weight: bold;">Descrição do Projeto:</p>

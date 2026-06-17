@@ -15,6 +15,7 @@ const QSysLanding = React.lazy(() => import("./pages/QSysLanding").then(module =
 const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding").then(module => ({ default: module.MeetingRoomsLanding })))
 const ThankYou = React.lazy(() => import("./pages/ThankYou").then(module => ({ default: module.ThankYou })))
 const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").then(module => ({ default: module.AuditoriosTeatros })))
+const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(module => ({ default: module.IgrejasTemplos })))
 
 import { HelmetProvider } from "react-helmet-async"
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="qsys" element={<QSysLanding />} />
             <Route path="salas-reuniao" element={<MeetingRoomsLanding />} />
             <Route path="auditorios-e-teatros" element={<AuditoriosTeatros />} />
+            <Route path="igrejas-e-templos" element={<IgrejasTemplos />} />
             <Route path="obrigado" element={<ThankYou />} />
             
             <Route path="/admin-login" element={<AdminLogin />} />
