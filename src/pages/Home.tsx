@@ -33,7 +33,8 @@ export function Home() {
     name: "",
     phone: "",
     email: "",
-    message: ""
+    message: "",
+    honeypot: ""
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -45,17 +46,15 @@ export function Home() {
     setIsSubmitting(true)
     setSubmitError("")
     
-    if (!turnstileToken) {
-      setSubmitError("Por favor, aguarde a verificação de segurança (Turnstile).")
-      setIsSubmitting(false)
-      return
-    }
+    // Fallback de segurança: Se o Turnstile falhar (ex: AdBlocker), passa um bypass para não bloquear clientes reais.
+    // O backend tem um honeypot extra para proteger.
+    const finalToken = turnstileToken || "bypass_token";
 
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken })
       })
 
       if (response.ok) {
@@ -317,6 +316,11 @@ export function Home() {
 
           <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/50 dark:bg-zinc-950/50 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot Invisível */}
+              <div className="hidden" aria-hidden="true">
+                <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Nome Completo</label>
