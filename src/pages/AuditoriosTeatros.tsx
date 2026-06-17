@@ -18,7 +18,6 @@ import {
   ShieldCheck, 
   Handshake, 
   ArrowRight,
-  ChevronRight,
   CheckCircle2,
   Video,
   Lightbulb,
