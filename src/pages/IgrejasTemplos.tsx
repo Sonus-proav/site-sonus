@@ -136,7 +136,7 @@ export function IgrejasTemplos() {
     {
       name: "Matriz de Pato Branco",
       state: "PR",
-      image: "/matriz itapejara do oeste.jpg",
+      image: "/pato-branco.jpg",
       description: "Implementação de tecnologia de processamento digital, eliminando microfonias indesejadas e facilitando o controle diário do áudio para a equipe de voluntários durante os cultos e louvores."
     }
   ]
