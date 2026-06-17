@@ -178,11 +178,11 @@ export function IgrejasTemplos() {
               <span>Soluções para o Nicho Religioso</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
               A mensagem de fé precisa ser ouvida com clareza em todos os cantos do templo.
             </h1>
             
-            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-lg md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
               O fim das microfonias, do som embolado e da complexidade. Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong> para que seus voluntários operem sem medo.
             </p>
             
@@ -190,16 +190,16 @@ export function IgrejasTemplos() {
               <Button 
                 onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
                 size="lg" 
-                className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_40px_-10px_rgba(217,119,6,0.5)] transition-all hover:scale-105"
+                className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white rounded-full px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-medium shadow-[0_0_40px_-10px_rgba(217,119,6,0.5)] transition-all hover:scale-105 h-auto whitespace-normal"
               >
                 Agendar Consultoria para Meu Templo
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-5 h-5 shrink-0" />
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 onClick={handleWhatsApp}
-                className="w-full sm:w-auto rounded-full px-8 py-6 text-lg font-medium border-white/10 hover:bg-white/5"
+                className="w-full sm:w-auto rounded-full px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-medium border-white/10 hover:bg-white/5 h-auto"
               >
                 Falar no WhatsApp
               </Button>
@@ -212,7 +212,7 @@ export function IgrejasTemplos() {
           <div className="max-w-7xl mx-auto">
             <FadeIn>
               <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 tracking-tight">
-                Os maiores obstáculos para uma <br/><span className="text-amber-500">experiência espiritual imersiva</span>
+                Os maiores obstáculos para uma <br className="hidden md:block"/><span className="text-amber-500">experiência espiritual imersiva</span>
               </h2>
             </FadeIn>
             
@@ -343,7 +343,7 @@ export function IgrejasTemplos() {
               <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
                 28 Anos de Tradição e Excelência
               </h2>
-              <p className="text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto mb-12">
+              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto mb-12">
                 Nós não empurramos caixas de som. Entregamos um <strong className="text-white">projeto de engenharia acústica</strong> focado no conforto dos fiéis e na durabilidade do dízimo investido, evitando que sua igreja precise refazer o som a cada 5 anos.
               </p>
             </FadeIn>
@@ -359,7 +359,7 @@ export function IgrejasTemplos() {
               <p className="text-zinc-400 text-lg">Preencha os dados abaixo e agende uma consultoria especializada para o seu templo.</p>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl">
+            <FadeIn delay={0.2} className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 md:p-12 shadow-2xl">
               {isSuccess ? (
                 <div className="text-center py-12">
                   <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
