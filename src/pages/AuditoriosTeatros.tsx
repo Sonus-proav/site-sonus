@@ -32,7 +32,8 @@ export function AuditoriosTeatros() {
     name: "",
     phone: "",
     email: "",
-    message: ""
+    message: "",
+    honeypot: ""
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
@@ -43,17 +44,14 @@ export function AuditoriosTeatros() {
     setIsSubmitting(true)
     setSubmitError("")
     
-    if (!turnstileToken) {
-      setSubmitError("Por favor, aguarde a verificação de segurança (Turnstile).")
-      setIsSubmitting(false)
-      return
-    }
+    // Fallback de segurança: Se o Turnstile falhar (ex: AdBlocker), passa um bypass para não bloquear clientes reais.
+    const finalToken = turnstileToken || "bypass_token";
 
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken })
       })
 
       if (response.ok) {
@@ -426,6 +424,11 @@ export function AuditoriosTeatros() {
 
           <FadeIn delay={0.2} className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot Invisível */}
+              <div className="hidden" aria-hidden="true">
+                <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
