@@ -213,7 +213,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           </div>
           <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3">{project.title}</h3>
           
-          <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
+          <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-96 group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
             {project.problem ? (
               <div className="mb-4">
                  <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
