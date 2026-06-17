@@ -34,21 +34,34 @@ export function Home() {
     email: "",
     message: ""
   })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError("")
     
-    const phoneNumber = "554635237192"
-    const text = `*Novo Pedido de Orçamento - Sonus*
-*Nome:* ${formData.name}
-*Telefone:* ${formData.phone}
-*E-mail:* ${formData.email}
+    try {
+      const response = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
 
-*Descrição do Projeto:*
-${formData.message}`
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`
-    window.open(whatsappUrl, "_blank")
+      if (response.ok) {
+        navigate("/obrigado")
+      } else {
+        const errData = await response.json().catch(() => ({}))
+        setSubmitError(errData.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente ou use o WhatsApp.")
+        setIsSubmitting(false)
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error)
+      setSubmitError("Erro de conexão. Verifique sua internet e tente novamente.")
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -324,8 +337,15 @@ ${formData.message}`
                 <label htmlFor="message" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Descrição do Projeto</label>
                 <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
               </div>
-              <Button type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_15px_rgba(41,128,185,0.3)] transition-all">
-                Enviar
+              
+              {submitError && (
+                <div className="text-red-500 text-sm font-medium text-center bg-red-500/10 py-2 px-4 rounded-lg border border-red-500/20">
+                  {submitError}
+                </div>
+              )}
+
+              <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_15px_rgba(41,128,185,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                {isSubmitting ? "Enviando..." : "Enviar"}
               </Button>
             </form>
           </FadeIn>

@@ -13,6 +13,7 @@ const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard").then(mo
 const AdminLogin = React.lazy(() => import("./pages/AdminLogin").then(module => ({ default: module.AdminLogin })))
 const QSysLanding = React.lazy(() => import("./pages/QSysLanding").then(module => ({ default: module.QSysLanding })))
 const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding").then(module => ({ default: module.MeetingRoomsLanding })))
+const ThankYou = React.lazy(() => import("./pages/ThankYou").then(module => ({ default: module.ThankYou })))
 
 import { HelmetProvider } from "react-helmet-async"
 
@@ -50,6 +51,7 @@ function App() {
             </Route>
             <Route path="qsys" element={<QSysLanding />} />
             <Route path="salas-reuniao" element={<MeetingRoomsLanding />} />
+            <Route path="obrigado" element={<ThankYou />} />
             
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route 
