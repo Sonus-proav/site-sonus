@@ -3,6 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Turnstile } from '@marsidev/react-turnstile'
 import { ChevronRight, Play, CheckCircle2, AlertCircle, Cpu } from "lucide-react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { SEO } from "../components/SEO"
@@ -37,17 +38,24 @@ export function Home() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
+  const [turnstileToken, setTurnstileToken] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError("")
     
+    if (!turnstileToken) {
+      setSubmitError("Por favor, aguarde a verificação de segurança (Turnstile).")
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, turnstileToken })
       })
 
       if (response.ok) {
@@ -326,6 +334,14 @@ export function Home() {
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Descrição do Projeto</label>
                 <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
+              </div>
+
+              <div className="flex justify-center pt-2">
+                <Turnstile 
+                  siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                  onSuccess={(token) => setTurnstileToken(token)} 
+                  options={{ theme: 'auto' }} 
+                />
               </div>
               
               {submitError && (

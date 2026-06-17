@@ -1,7 +1,46 @@
 export async function onRequestPost({ request, env }) {
   try {
+    // 1. Validar Origem (CORS Básico)
+    const origin = request.headers.get("Origin") || "";
+    const isLocalhost = origin.startsWith("http://localhost:");
+    if (origin && origin !== "https://sonusproaudio.com.br" && !origin.endsWith(".sonusproaudio.com.br") && !isLocalhost) {
+      return new Response(JSON.stringify({ error: "Origem não autorizada." }), { status: 403, headers: { "Content-Type": "application/json" } });
+    }
+
     const data = await request.json();
-    const { name, phone, email, message } = data;
+    const { name, phone, email, message, turnstileToken } = data;
+
+    // 2. Validação Cloudflare Turnstile
+    if (!turnstileToken) {
+      return new Response(JSON.stringify({ error: "Token de segurança ausente." }), { status: 400, headers: { "Content-Type": "application/json" } });
+    }
+
+    const TURNSTILE_SECRET_KEY = env.TURNSTILE_SECRET_KEY;
+    if (TURNSTILE_SECRET_KEY) {
+      const turnstileFormData = new FormData();
+      turnstileFormData.append("secret", TURNSTILE_SECRET_KEY);
+      turnstileFormData.append("response", turnstileToken);
+      turnstileFormData.append("remoteip", request.headers.get("CF-Connecting-IP") || "");
+
+      const turnstileValidation = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        body: turnstileFormData,
+      });
+
+      const outcome = await turnstileValidation.json();
+      if (!outcome.success) {
+        return new Response(JSON.stringify({ error: "Falha na verificação de segurança (Bot detectado)." }), { status: 403, headers: { "Content-Type": "application/json" } });
+      }
+    } else {
+      console.warn("Atenção: TURNSTILE_SECRET_KEY não configurada. Verificação ignorada (Modo Dev).");
+    }
+
+    // 3. Sanitização contra XSS Injection
+    const sanitizeHTML = (str) => typeof str === 'string' ? str.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "";
+    const safeName = sanitizeHTML(name);
+    const safePhone = sanitizeHTML(phone);
+    const safeEmail = sanitizeHTML(email);
+    const safeMessage = sanitizeHTML(message);
 
     // A chave da API do Resend deve ser configurada nas Variáveis de Ambiente do Cloudflare Pages
     const RESEND_API_KEY = env.RESEND_API_KEY;
@@ -22,13 +61,13 @@ export async function onRequestPost({ request, env }) {
         <p>Você recebeu uma nova solicitação de contato pelo formulário principal da página inicial.</p>
         <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;" />
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 10px;"><strong>Nome:</strong> ${name}</li>
-          <li style="margin-bottom: 10px;"><strong>E-mail:</strong> ${email}</li>
-          <li style="margin-bottom: 10px;"><strong>Telefone/WhatsApp:</strong> ${phone}</li>
+          <li style="margin-bottom: 10px;"><strong>Nome:</strong> ${safeName}</li>
+          <li style="margin-bottom: 10px;"><strong>E-mail:</strong> ${safeEmail}</li>
+          <li style="margin-bottom: 10px;"><strong>Telefone/WhatsApp:</strong> ${safePhone}</li>
         </ul>
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px;">
           <p style="margin: 0; font-weight: bold;">Descrição do Projeto:</p>
-          <p style="margin-top: 10px; white-space: pre-wrap;">${message}</p>
+          <p style="margin-top: 10px; white-space: pre-wrap;">${safeMessage}</p>
         </div>
         <br/>
         <p style="font-size: 12px; color: #999;">Este é um e-mail automático enviado pelo sistema Cloudflare Pages via Resend.</p>
@@ -44,8 +83,8 @@ export async function onRequestPost({ request, env }) {
       body: JSON.stringify({
         from: `Site Sonus <${RESEND_FROM}>`,
         to: "sonusproaudio@gmail.com",
-        reply_to: email,
-        subject: `Novo Contato do Site: ${name} - Projeto Audiovisual`,
+        reply_to: safeEmail,
+        subject: `Novo Contato do Site: ${safeName} - Projeto Audiovisual`,
         html: htmlContent
       })
     });
