@@ -205,13 +205,21 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-6 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
           <p className="text-primary font-medium text-sm tracking-wider uppercase mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100">
             {project.category}
           </p>
           <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-          <span className="text-white font-medium text-sm inline-flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-200">
-            Ver projeto <ArrowRight className="w-4 h-4" />
+          
+          {project.problem ? (
+            <div className="mt-1 mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-[150ms]">
+               <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
+               <p className="text-zinc-300 text-xs md:text-sm line-clamp-2 leading-relaxed">{project.problem}</p>
+            </div>
+          ) : null}
+
+          <span className="text-white font-medium text-sm inline-flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-200 mt-auto">
+            {project.problem ? 'Ver Solução' : 'Ver projeto'} <ArrowRight className="w-4 h-4" />
           </span>
         </div>
 

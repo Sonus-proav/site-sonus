@@ -126,9 +126,14 @@ ${formData.message}`
                 <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-                  <div>
-                    <h3 className="text-white font-bold text-2xl lg:text-3xl mb-1">Auditórios e Teatros</h3>
-                    <p className="text-zinc-300 text-sm lg:text-base">Sonorização imersiva de grande escala</p>
+                  <div className="relative w-3/4">
+                    <h3 className="text-white font-bold text-2xl lg:text-3xl mb-1 relative z-10">Auditórios e Teatros</h3>
+                    <p className="text-zinc-300 text-sm lg:text-base opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">Sonorização imersiva de grande escala</p>
+                    
+                    <div className="absolute top-full left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:delay-[150ms] pointer-events-none -mt-5">
+                      <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
+                      <p className="text-zinc-300 text-xs sm:text-sm line-clamp-2 leading-relaxed">Como garantir inteligibilidade cristalina para a última fileira de um auditório lotado?</p>
+                    </div>
                   </div>
                   <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                     <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
@@ -171,9 +176,14 @@ ${formData.message}`
                 <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">
-                  <div>
-                    <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1">Salas Corporativas</h3>
-                    <p className="text-zinc-400 text-[10px] sm:text-xs lg:text-sm">Videochamadas impecáveis</p>
+                  <div className="relative w-3/4">
+                    <h3 className="text-white font-bold text-base sm:text-lg lg:text-xl mb-1 relative z-10">Salas Corporativas</h3>
+                    <p className="text-zinc-400 text-[10px] sm:text-xs lg:text-sm opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">Videochamadas impecáveis</p>
+                    
+                    <div className="absolute top-full left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:delay-[150ms] pointer-events-none -mt-4">
+                      <span className="inline-block bg-primary/20 text-primary text-[8px] sm:text-[10px] font-bold uppercase px-1.5 py-0.5 rounded border border-primary/30 mb-1 backdrop-blur-sm">O Desafio</span>
+                      <p className="text-zinc-300 text-[10px] sm:text-xs line-clamp-2 leading-relaxed">O fim do "vocês estão me ouvindo?". Como eliminamos o eco em salas todas de vidro.</p>
+                    </div>
                   </div>
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                     <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
