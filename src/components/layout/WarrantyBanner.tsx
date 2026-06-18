@@ -65,7 +65,7 @@ export function WarrantyBanner({ title, description, variant = 'default' }: Warr
   const renderChurch = () => (
     <section className="bg-[#030201] py-16 md:py-24 border-y border-amber-900/40 relative overflow-hidden">
       {/* Volumetric Light Rays */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-[conic-gradient(from_180deg_at_50%_-20%,rgba(245,158,11,0.15)_0deg,transparent_40deg,transparent_320deg,rgba(245,158,11,0.15)_360deg)] pointer-events-none mix-blend-screen" />
+      <div className="absolute inset-0 w-full h-full bg-[conic-gradient(from_180deg_at_50%_-20%,rgba(245,158,11,0.15)_0deg,transparent_40deg,transparent_320deg,rgba(245,158,11,0.15)_360deg)] pointer-events-none mix-blend-screen [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)] opacity-80" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,119,6,0.08)_0%,transparent_60%)]" />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
