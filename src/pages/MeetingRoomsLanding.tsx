@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
-import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ChevronDown, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings, Quote } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Turnstile } from '@marsidev/react-turnstile'
+import { db } from "@/lib/firebase"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { FadeIn } from "@/components/ui/FadeIn"
+import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Camera, Wifi, Volume2, Target, Focus, ShieldCheck, Zap, Wrench, XCircle, AlertCircle, Settings } from "lucide-react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
@@ -14,7 +20,42 @@ export function MeetingRoomsLanding() {
   const [micMuted, setMicMuted] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(0)
   const [presentationActive, setPresentationActive] = useState(false)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
+  
+
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "", honeypot: "" })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState("")
+  const [submitError, setSubmitError] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (formData.honeypot) return
+    if (!turnstileToken) {
+      setSubmitError("Por favor, valide que você é humano.")
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubmitError("")
+    
+    try {
+      await addDoc(collection(db, "leads"), {
+        ...formData,
+        source: "Landing Page Salas de Reunião",
+        status: "novo",
+        createdAt: serverTimestamp()
+      })
+      
+      setIsSuccess(true)
+      setFormData({ name: "", phone: "", email: "", message: "", honeypot: "" })
+    } catch (error) {
+      console.error("Error saving lead:", error)
+      setSubmitError("Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>
@@ -620,83 +661,6 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="relative py-12 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="glass-card-strong rounded-[2rem] p-8 md:p-10 text-center">
-            <Quote className="w-8 h-8 text-blue-500/50 mx-auto mb-6" />
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-relaxed text-zinc-300 mb-8 italic">
-              "A diferença entre comprar equipamentos soltos e contratar a Sonus foi a nossa paz de espírito. Eles não entregaram apenas microfones de teto, entregaram uma sala onde a diretoria senta e simplesmente faz a reunião acontecer. Zero chamados no suporte."
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-500 font-bold text-sm">
-                TI
-              </div>
-              <div className="text-left">
-                <div className="font-bold text-white text-sm">Diretor de Tecnologia</div>
-                <div className="text-zinc-500 text-xs">Multinacional - Faria Lima (SP)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="relative py-32 px-4 md:px-6 z-10 bg-[#050505] border-t border-white/5 overflow-hidden">
-        {/* Subtle Ambient Glow Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Faint Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-          {/* Glowing Orbs */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none" />
-        
-        <div className="max-w-3xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
-              Perguntas Frequentes
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                q: "Nossa empresa não fica em São Paulo. Vocês atendem?",
-                a: "Sim. Apesar da nossa sede técnica, enviamos nossa equipe técnica especializada para instalações corporativas críticas em todo o Brasil."
-              },
-              {
-                q: "Nossa empresa usa primariamente o Microsoft Teams. Tudo vai funcionar nativamente?",
-                a: "Com certeza. Somos especialistas em implantação MTR (Microsoft Teams Rooms). Nossas soluções baseadas em Q-SYS e Shure são certificadas oficialmente pela Microsoft, garantindo estabilidade e integrações profundas."
-              },
-              {
-                q: "Vocês fazem o estudo acústico ou só vendem os equipamentos?",
-                a: "Fazemos o projeto end-to-end. Um sistema caríssimo soará mal em uma sala com acústica ruim. Realizamos os cálculos de reverberação e orientamos eventuais tratamentos nas paredes e teto antes da instalação do áudio."
-              },
-              {
-                q: "Quanto tempo demora a implantação de uma sala de alto padrão?",
-                a: "O tempo de entrega varia pois cada cenário é único. Atuamos desde projetos na planta (onde acompanhamos a obra com a arquitetura) até reformas de salas já prontas. Após a aprovação e alinhamento do cronograma, a instalação física é feita de forma muito ágil para minimizar o impacto na rotina da sua empresa."
-              }
-            ].map((faq, i) => (
-              <div key={i} className="glass-card rounded-2xl overflow-hidden">
-                <button 
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
-                >
-                  <span className="font-bold text-lg text-zinc-200">{faq.q}</span>
-                  <ChevronDown className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-48' : 'max-h-0'}`}>
-                  <p className="px-6 pb-6 text-zinc-400">{faq.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Warranty Banner (Estratégico) */}
       <WarrantyBanner 
         variant="corporate"
@@ -804,7 +768,85 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      <div className="dark relative z-10 w-full bg-black">
+      
+      {/* Contact Section */}
+      <section id="contato" className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
+        <div className="container px-4 md:px-6 relative z-10">
+          <FadeIn className="max-w-2xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
+              Vamos conversar sobre o seu <span className="text-emerald-500">Projeto</span>?
+            </h2>
+            <p className="text-zinc-400 text-lg transition-colors duration-300">
+              Preencha o formulário abaixo e nossos especialistas entrarão em contato para desenhar a arquitetura ideal para sua sala.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
+            {isSuccess ? (
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 className="w-10 h-10 text-green-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Solicitação Enviada!</h3>
+                <p className="text-zinc-400 mb-8">Nossa equipe entrará em contato em breve para prosseguirmos.</p>
+                <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full">
+                  Enviar nova solicitação
+                </Button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="hidden" aria-hidden="true">
+                  <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Nome Completo</label>
+                    <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-emerald-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Telefone / WhatsApp</label>
+                    <Input required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-black/50 border-white/10 focus-visible:ring-emerald-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-zinc-300 transition-colors duration-300">E-mail Corporativo</label>
+                  <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-black/50 border-white/10 focus-visible:ring-emerald-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Como podemos ajudar?</label>
+                  <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Ex: Precisamos de uma solução Microsoft Teams para nossa sala de diretoria..." className="bg-black/50 border-white/10 focus-visible:ring-emerald-500 min-h-[150px] resize-none text-white transition-colors duration-300 rounded-xl" />
+                </div>
+
+                <div className="flex justify-center pt-2 min-h-[65px]">
+                  <Turnstile 
+                    siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                    onSuccess={(token) => {
+                      setSubmitError("");
+                      setTurnstileToken(token);
+                    }}
+                    onError={() => setSubmitError("Erro ao carregar o sistema de segurança. Verifique se o domínio está liberado ou desative seu Adblocker.")}
+                    onExpire={() => setTurnstileToken("")}
+                    options={{ theme: 'dark' }} 
+                  />
+                </div>
+                
+                {submitError && (
+                  <div className="text-red-500 text-sm font-medium text-center bg-red-500/10 py-2 px-4 rounded-lg border border-red-500/20">
+                    {submitError}
+                  </div>
+                )}
+
+                <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Enviando..." : "Solicitar Contato"}
+                </Button>
+              </form>
+            )}
+          </FadeIn>
+        </div>
+      </section>
+
+<div className="dark relative z-10 w-full bg-black">
         <Footer />
       </div>
 
