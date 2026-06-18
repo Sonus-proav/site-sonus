@@ -208,27 +208,27 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {/* Overlay de gradiente */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent pointer-events-none z-10 transition-opacity duration-300" />
 
-        {/* Conteúdo ancorado na base e que cresce livremente para cima */}
-        <div className="absolute inset-0 p-5 pb-8 md:p-6 md:pb-10 flex flex-col justify-end pointer-events-none z-20">
-          <div className="flex flex-col shrink-0 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
-            <div className="mb-2 md:mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block shrink-0">
+        {/* Conteúdo ancorado na base e que cresce livremente para cima, com proteção para não encostar nas tags */}
+        <div className="absolute inset-0 p-5 pt-16 pb-8 md:p-6 md:pt-16 md:pb-10 flex flex-col pointer-events-none z-20">
+          <div className="mt-auto flex flex-col shrink-0 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-auto overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="mb-1 md:mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block shrink-0">
               <span className="inline-block bg-black/50 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md shadow-lg">
                 {project.category}
               </span>
             </div>
-            <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3 leading-tight shrink-0">{project.title}</h3>
+            <h3 className="text-lg md:text-xl font-bold text-white mb-1 line-clamp-2 md:line-clamp-3 leading-tight shrink-0">{project.title}</h3>
             
-            <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[500px] group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2 shrink-0">
+            <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[500px] group-hover:opacity-100 shrink-0 mt-0 group-hover:mt-1">
               {project.problem ? (
-                <div className="mb-4">
-                   <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
-                   <p className="text-zinc-300 text-sm line-clamp-2 leading-relaxed">{project.problem}</p>
+                <div className="mb-2">
+                   <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1 backdrop-blur-sm">O Desafio</span>
+                   <p className="text-zinc-300 text-sm line-clamp-2 leading-snug">{project.problem}</p>
                 </div>
               ) : (
-                <p className="text-zinc-300 text-sm line-clamp-3 mb-4 leading-relaxed">{project.description}</p>
+                <p className="text-zinc-300 text-sm line-clamp-3 mb-2 leading-snug">{project.description}</p>
               )}
 
-              <span className="text-primary hover:text-white font-medium text-sm inline-flex items-center gap-2 transition-colors duration-300 uppercase tracking-wider group/link mb-2 md:mb-0">
+              <span className="text-primary hover:text-white font-medium text-sm inline-flex items-center gap-2 transition-colors duration-300 uppercase tracking-wider group/link mb-1 md:mb-0">
                 {project.problem ? 'Ver Solução' : 'Ver Projeto'} <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
               </span>
             </div>
