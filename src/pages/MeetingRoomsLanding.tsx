@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -68,42 +68,52 @@ export function MeetingRoomsLanding() {
     return () => clearInterval(interval)
   }, [callState])
 
+  const activeSpeakerRef = useRef(0);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
   useEffect(() => {
     let mounted = true;
-    let timeoutId: any;
+
+    const clearAllTimeouts = () => {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
 
     const runLoop = () => {
       if (!mounted) return;
       
-      setActiveSpeaker(prev => {
-        let nextSpeaker = Math.floor(Math.random() * 4);
-        while (nextSpeaker === prev) {
-           nextSpeaker = Math.floor(Math.random() * 4);
+      let nextSpeaker = Math.floor(Math.random() * 4);
+      while (nextSpeaker === activeSpeakerRef.current) {
+         nextSpeaker = Math.floor(Math.random() * 4);
+      }
+      
+      activeSpeakerRef.current = nextSpeaker;
+      setActiveSpeaker(nextSpeaker);
+      
+      // Cam 1 -> Bottom (2, 3)
+      // Cam 2 -> Top (0, 1)
+      // Cam 3 -> Geral/Wide
+      const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 2 : 1;
+      
+      setCameraState({ liveCam: 3, movingCam: targetCam });
+      
+      const moveTimeout = setTimeout(() => {
+        if (mounted) {
+          setCameraState({ liveCam: targetCam, movingCam: null });
         }
-        
-        // Cam 1 -> Bottom (2, 3)
-        // Cam 2 -> Top (0, 1)
-        // Cam 3 -> Geral/Wide
-        const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 2 : 1;
-        
-        setCameraState({ liveCam: 3, movingCam: targetCam });
-        
-        setTimeout(() => {
-          if (mounted) {
-            setCameraState({ liveCam: targetCam, movingCam: null });
-          }
-        }, 1800);
+      }, 1800);
+      timeoutsRef.current.push(moveTimeout);
 
-        timeoutId = setTimeout(runLoop, 6000);
-        return nextSpeaker;
-      });
+      const loopTimeout = setTimeout(runLoop, 6000);
+      timeoutsRef.current.push(loopTimeout);
     };
 
-    timeoutId = setTimeout(runLoop, 3000);
+    const initialTimeout = setTimeout(runLoop, 3000);
+    timeoutsRef.current.push(initialTimeout);
 
     return () => {
       mounted = false;
-      clearTimeout(timeoutId);
+      clearAllTimeouts();
     };
   }, [])
 
