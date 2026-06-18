@@ -4,6 +4,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Plus, Edit3, Trash2, Home, GripVertical, Eye, EyeOff } from "lucide-react"
 import { Link } from "react-router-dom"
 import { type Project, getProjects, deleteProject, addProject, updateProject, saveProjects } from "@/lib/storage"
+import { optimizeImageUrl } from "@/lib/publicStorage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
 
 export function AdminDashboard() {
@@ -152,7 +153,7 @@ export function AdminDashboard() {
                       </td>
                       <td className="p-4 md:p-6">
                         <div className="w-16 h-12 rounded-lg overflow-hidden bg-zinc-900 border border-white/10">
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover pointer-events-none" />
+                          <img src={optimizeImageUrl(project.image, 100)} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover pointer-events-none" />
                         </div>
                       </td>
                       <td className="p-4 md:p-6 font-medium text-white">

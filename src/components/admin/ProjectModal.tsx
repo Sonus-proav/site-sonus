@@ -166,7 +166,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/95"
         />
         
         {/* Modal */}
