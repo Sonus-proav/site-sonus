@@ -285,7 +285,7 @@ export function MeetingRoomsLanding() {
 
                              return (
                                <div key={camId} className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 relative min-w-[100px] md:min-w-0">
-                                 <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-transform duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-100' : 'border-white/10 bg-black scale-100'}`}>
+                                 <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-all duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-100' : 'border-white/10 bg-black scale-100'}`}>
                                    <Camera className={`w-5 h-5 md:w-6 md:h-6 ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400 animate-pulse' : 'text-zinc-600'}`} />
                                  </div>
                                  <div className="flex flex-col text-center md:text-left">
@@ -319,7 +319,7 @@ export function MeetingRoomsLanding() {
                               { id: 3, pos: "-bottom-6 right-1/4" },
                             ].map(speaker => (
                               <div key={speaker.id} className={`absolute ${speaker.pos} flex flex-col items-center transition-all duration-500 z-10`}>
-                                <div className={`w-10 h-10 rounded-full border-2 transition-transform duration-300 flex items-center justify-center ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-110' : 'border-white/10 bg-black scale-100'}`}>
+                                <div className={`w-10 h-10 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-110' : 'border-white/10 bg-black scale-100'}`}>
                                   <Users className={`w-5 h-5 transition-colors duration-300 ${activeSpeaker === speaker.id ? 'text-emerald-400' : 'text-zinc-600'}`} />
                                 </div>
                                 {activeSpeaker === speaker.id && (
