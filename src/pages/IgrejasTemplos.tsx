@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
 import { Link } from "react-router-dom"
+import { getProjects, optimizeImageUrl, type Project } from "@/lib/publicStorage"
 import { 
   VolumeX, 
   Settings2, 
@@ -40,6 +41,14 @@ export function IgrejasTemplos() {
   const [submitError, setSubmitError] = useState("")
   const [turnstileToken, setTurnstileToken] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    getProjects().then(data => {
+      const igrejas = data.filter(p => !p.isHidden && p.category.toLowerCase().includes("igrejas"))
+      setProjects(igrejas)
+    }).catch(err => console.error("Erro ao carregar projetos de igrejas", err))
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -120,26 +129,28 @@ export function IgrejasTemplos() {
     }
   ]
 
-  const portfolio = [
+  const fallbackPortfolio: any[] = [
     {
-      name: "Matriz de Xanxerê",
+      title: "Matriz de Xanxerê",
       state: "SC",
       image: "/interior-matriz-xanxere.jpg",
       description: "Projeto completo de sonorização focado na inteligibilidade da palavra falada, respeitando a arquitetura histórica do templo e proporcionando cobertura sonora uniforme para todos os fiéis."
     },
     {
-      name: "Matriz de Concórdia",
+      title: "Matriz de Concórdia",
       state: "SC",
       image: "/concordia.jpg",
       description: "Modernização do sistema de áudio com alinhamento acústico para reduzir a reverberação natural (eco), garantindo clareza absoluta desde a primeira até a última fileira de bancos."
     },
     {
-      name: "Matriz de Pato Branco",
+      title: "Matriz de Pato Branco",
       state: "PR",
       image: "/pato-branco.jpg",
       description: "Implementação de tecnologia de processamento digital, eliminando microfonias indesejadas e facilitando o controle diário do áudio para a equipe de voluntários durante os cultos e louvores."
     }
   ]
+
+  const displayPortfolio = projects.length > 0 ? projects : fallbackPortfolio
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-amber-500/30">
@@ -289,14 +300,14 @@ export function IgrejasTemplos() {
             </FadeIn>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {portfolio.map((item, index) => (
-                <FadeIn key={index} delay={index * 0.1} className="h-full">
+              {displayPortfolio.map((item, index) => (
+                <FadeIn key={item.id || index} delay={index * 0.1} className="h-full">
                   <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden h-full flex flex-col hover:bg-white/[0.07] transition-all duration-300 group shadow-lg">
                     {/* Imagem do Projeto */}
                     <div className="relative aspect-video overflow-hidden bg-zinc-900 flex items-center justify-center border-b border-white/5">
                       <img 
-                        src={item.image} 
-                        alt={item.name} 
+                        src={optimizeImageUrl(item.image)} 
+                        alt={item.title} 
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -308,16 +319,18 @@ export function IgrejasTemplos() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                       
                       {/* Badge do Estado */}
-                      <div className="absolute bottom-4 left-4">
-                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-xs font-semibold text-white shadow-sm tracking-wide">
-                          {item.state}
+                      {item.state && (
+                        <div className="absolute bottom-4 left-4">
+                          <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-xs font-semibold text-white shadow-sm tracking-wide uppercase">
+                            {item.state}
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                     
                     {/* Conteúdo Textual */}
                     <div className="p-8 flex-1 flex flex-col">
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-400 transition-colors">{item.name}</h3>
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-400 transition-colors">{item.title}</h3>
                       <p className="text-zinc-400 leading-relaxed text-sm flex-1">
                         {item.description}
                       </p>

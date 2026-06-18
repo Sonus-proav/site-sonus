@@ -45,6 +45,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
   const [problem, setProblem] = useState("")
   const [solution, setSolution] = useState("")
   const [tagsInput, setTagsInput] = useState("")
+  const [stateUF, setStateUF] = useState("")
   const [images, setImages] = useState<string[]>([""])
   const [isCompressing, setIsCompressing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -58,6 +59,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         setProblem(initialData.problem || "")
         setSolution(initialData.solution || "")
         setTagsInput(initialData.tags ? initialData.tags.join(", ") : "")
+        setStateUF(initialData.state || "")
         setImages(initialData.images && initialData.images.length > 0 ? initialData.images : [initialData.image])
       } else {
         setTitle("")
@@ -66,6 +68,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         setProblem("")
         setSolution("")
         setTagsInput("")
+        setStateUF("")
         setImages([""])
       }
     }
@@ -125,6 +128,7 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
         problem,
         solution,
         tags: tagsInput.split(",").map(t => t.trim()).filter(t => t !== ""),
+        state: stateUF.trim().toUpperCase(),
         image: cleanImages[0],
         images: cleanImages,
         seoAlt: `Projeto de ${category} - ${title}`
@@ -194,6 +198,18 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
                 <option value="igrejas">Igrejas e Templos</option>
                 <option value="corporativos">Corporativos</option>
               </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-300">Estado (UF)</label>
+              <input 
+                type="text" 
+                maxLength={2}
+                value={stateUF}
+                onChange={e => setStateUF(e.target.value.toUpperCase())}
+                className="w-full bg-black/50 border border-white/10 rounded-xl h-12 px-4 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase"
+                placeholder="Ex: SC, PR, SP"
+              />
             </div>
 
             <div className="space-y-2">

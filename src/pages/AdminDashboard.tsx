@@ -172,6 +172,11 @@ export function AdminDashboard() {
                       </td>
                       <td className="p-4 md:p-6 text-zinc-400 uppercase text-xs tracking-wider">
                         {project.category}
+                        {project.state && (
+                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-zinc-300 border border-white/10">
+                            {project.state}
+                          </span>
+                        )}
                       </td>
                       <td className="p-4 md:p-6 text-right space-x-2 relative z-10 flex justify-end">
                         <button 

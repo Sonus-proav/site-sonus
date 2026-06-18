@@ -15,6 +15,7 @@ export interface Project {
   problem?: string;
   solution?: string;
   tags?: string[];
+  state?: string;
 }
 
 export async function uploadImageToStorage(file: File): Promise<string> {

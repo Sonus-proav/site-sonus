@@ -11,6 +11,7 @@ export interface Project {
   problem?: string;
   solution?: string;
   tags?: string[];
+  state?: string;
 }
 
 export function optimizeImageUrl(url: string, width: number = 800): string {
@@ -56,7 +57,8 @@ export async function getProjects(): Promise<Project[]> {
           isHidden: f.isHidden?.booleanValue || false,
           problem: f.problem?.stringValue || "",
           solution: f.solution?.stringValue || "",
-          tags: tags
+          tags: tags,
+          state: f.state?.stringValue || ""
         };
       });
 
