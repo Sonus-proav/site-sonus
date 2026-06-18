@@ -44,12 +44,12 @@ export function Projects() {
 
         <FadeIn delay={0.2}>
           <Tabs defaultValue="todos" className="w-full flex flex-col items-center">
-            <TabsList className="bg-white/50 dark:bg-black/50 border border-black/10 dark:border-white/10 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12 transition-colors duration-300">
-              <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Todos</TabsTrigger>
-              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Auditórios</TabsTrigger>
-              <TabsTrigger value="teatros" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Teatros</TabsTrigger>
-              <TabsTrigger value="igrejas" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Igrejas e Templos</TabsTrigger>
-              <TabsTrigger value="corporativos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-400 transition-colors duration-300">Corporativos</TabsTrigger>
+            <TabsList className="bg-white/50 dark:bg-white/10 border border-black/10 dark:border-white/20 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12 transition-colors duration-300 shadow-lg">
+              <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Todos</TabsTrigger>
+              <TabsTrigger value="auditórios" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Auditórios</TabsTrigger>
+              <TabsTrigger value="teatros" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Teatros</TabsTrigger>
+              <TabsTrigger value="igrejas" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Igrejas e Templos</TabsTrigger>
+              <TabsTrigger value="corporativos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Corporativos</TabsTrigger>
             </TabsList>
 
             <TabsContent value="todos" className="w-full mt-0">
@@ -205,15 +205,15 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-5 pt-16 flex flex-col justify-end translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-5 pb-8 md:p-6 md:pb-10 flex flex-col justify-end translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
           <div className="mb-2 md:mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block">
             <span className="inline-block bg-black/50 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md shadow-lg">
               {project.category}
             </span>
           </div>
-          <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3">{project.title}</h3>
+          <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3 leading-tight">{project.title}</h3>
           
-          <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-96 group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
+          <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[500px] group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
             {project.problem ? (
               <div className="mb-4">
                  <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1.5 backdrop-blur-sm">O Desafio</span>
@@ -223,7 +223,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               <p className="text-zinc-300 text-sm line-clamp-3 mb-4 leading-relaxed">{project.description}</p>
             )}
 
-            <span className="text-primary hover:text-white font-medium text-sm inline-flex items-center gap-2 transition-colors duration-300 uppercase tracking-wider group/link">
+            <span className="text-primary hover:text-white font-medium text-sm inline-flex items-center gap-2 transition-colors duration-300 uppercase tracking-wider group/link mb-2 md:mb-0">
               {project.problem ? 'Ver Solução' : 'Ver Projeto'} <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </span>
           </div>
@@ -251,11 +251,11 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
         {/* Carousel Indicators */}
         {hasMultipleImages && (
-          <div className="absolute bottom-4 right-4 flex gap-1 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+          <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 flex gap-1.5 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
             {images.map((_, i) => (
               <div 
                 key={i} 
-                className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentImgIndex ? 'bg-primary w-3' : 'bg-white/50'}`} 
+                className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentImgIndex ? 'bg-primary w-4' : 'bg-white/50'}`} 
               />
             ))}
           </div>
