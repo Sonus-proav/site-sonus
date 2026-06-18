@@ -833,6 +833,12 @@ export function QSysLanding() {
         </div>
       </section>
 
+      {/* Warranty Banner (Estratégico) */}
+      <WarrantyBanner 
+        title="3 Anos de Garantia no Ecossistema"
+        description="Confiamos plenamente na robustez do sistema Q-SYS e em nossa execução. Toda a integração conta com 3 anos de garantia integral sobre qualquer defeito na infraestrutura e instalação. Seu projeto com funcionamento garantido e sem dores de cabeça."
+      />
+
       {/* Contact Section */}
       <section id="contato" className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
         <div className="container px-4 md:px-6 relative z-10">
@@ -911,8 +917,7 @@ export function QSysLanding() {
       </section>
 
       <div className="dark relative z-10 w-full bg-black">
-        <WarrantyBanner />
-      <Footer />
+        <Footer />
       </div>
       
       {/* Floating WhatsApp Button directed to Q-SYS Specialist */}

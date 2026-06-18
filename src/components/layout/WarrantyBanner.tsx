@@ -1,7 +1,15 @@
 import { ShieldCheck } from "lucide-react"
 import { FadeIn } from "@/components/ui/FadeIn"
 
-export function WarrantyBanner() {
+interface WarrantyBannerProps {
+  title?: string
+  description?: string
+}
+
+export function WarrantyBanner({ title, description }: WarrantyBannerProps) {
+  const defaultTitle = "3 Anos de Garantia de Instalação"
+  const defaultDesc = "Confiamos plenamente na qualidade do nosso serviço. Todos os projetos executados pela Sonus Pro AV contam com 3 anos de garantia integral sobre qualquer defeito de infraestrutura ou instalação. O seu investimento está 100% seguro."
+  
   return (
     <section className="bg-black/40 py-12 md:py-16 border-y border-white/5 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-cyan-900/10" />
@@ -13,10 +21,10 @@ export function WarrantyBanner() {
           </div>
           <div>
             <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-3">
-              3 Anos de Garantia de Instalação
+              {title || defaultTitle}
             </h3>
             <p className="text-zinc-400 max-w-3xl text-lg md:text-xl font-light leading-relaxed text-balance">
-              Confiamos plenamente na qualidade da nossa engenharia. Todos os projetos executados pela Sonus Pro AV contam com <strong className="text-white font-medium">3 anos de garantia integral</strong> sobre qualquer defeito de infraestrutura ou instalação. O seu investimento está 100% seguro.
+              {description || defaultDesc}
             </p>
           </div>
         </FadeIn>

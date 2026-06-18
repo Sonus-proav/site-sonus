@@ -364,6 +364,12 @@ export function IgrejasTemplos() {
           </div>
         </section>
 
+        {/* Warranty Banner (Estratégico) */}
+        <WarrantyBanner 
+          title="3 Anos de Garantia para o Seu Ministério"
+          description="Sabemos da importância de cada investimento feito pela igreja. Por isso, entregamos 3 anos de garantia total sobre qualquer defeito de instalação. Infraestrutura segura para que a mensagem seja sempre transmitida com clareza."
+        />
+
         {/* CTA / Formulário */}
         <section id="contato" className="py-24 px-4 relative">
           <div className="absolute inset-0 bg-amber-900/10 blur-3xl pointer-events-none" />
@@ -518,7 +524,6 @@ export function IgrejasTemplos() {
 
       </main>
 
-      <WarrantyBanner />
       <Footer />
       <WhatsAppButton />
     </div>

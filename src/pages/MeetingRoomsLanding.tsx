@@ -697,6 +697,12 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
+      {/* Warranty Banner (Estratégico) */}
+      <WarrantyBanner 
+        title="3 Anos de Garantia nas Salas de Reunião"
+        description="Garantimos a disponibilidade tecnológica das suas salas. Nossa instalação corporativa conta com 3 anos de cobertura total contra qualquer falha de infraestrutura. Reuniões sem interrupção e o investimento da sua empresa 100% protegido."
+      />
+
       {/* Bottom CTA Banner (Holographic Glass Design) */}
       <section className="relative py-32 px-4 md:px-6 z-10 bg-zinc-950 overflow-hidden flex items-center justify-center min-h-[80vh]">
         {/* Ambient Glow Background */}
@@ -798,7 +804,6 @@ export function MeetingRoomsLanding() {
       </section>
 
       <div className="dark relative z-10 w-full bg-black">
-        <WarrantyBanner />
         <Footer />
       </div>
 

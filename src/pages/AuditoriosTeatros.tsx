@@ -427,6 +427,12 @@ export function AuditoriosTeatros() {
         </div>
       </section>
 
+      {/* Warranty Banner (Estratégico) */}
+      <WarrantyBanner 
+        title="3 Anos de Garantia para Seu Auditório"
+        description="Projetos de grande porte exigem segurança e responsabilidade absoluta. Oferecemos 3 anos de garantia integral contra qualquer falha de instalação. A infraestrutura do seu auditório sempre pronta e impecável para o próximo grande evento."
+      />
+
       {/* 6. CONVERSÃO FINAL (Formulário) */}
       <section id="consultoria" className="py-24 relative z-10 px-4 md:px-6 bg-[#050505]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(41,128,185,0.1),transparent_50%)] pointer-events-none" />
@@ -496,7 +502,6 @@ export function AuditoriosTeatros() {
         </div>
       </section>
 
-      <WarrantyBanner />
       <Footer />
       <WhatsAppButton />
     </div>
