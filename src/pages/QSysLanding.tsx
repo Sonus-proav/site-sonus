@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
-import { FadeIn } from "@/components/animations/FadeIn"
+import { FadeIn } from "@/components/ui/FadeIn"
 import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan, Globe, Zap, Bot } from "lucide-react"
 import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
