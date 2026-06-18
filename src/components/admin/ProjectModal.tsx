@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Plus, Trash2, Upload, Image as ImageIcon } from "lucide-react"
+import { X, Plus, Trash2, Upload, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react"
 import type { Project } from "@/lib/storage"
 
 interface ProjectModalProps {
@@ -107,6 +107,20 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
   const removeImageField = (index: number) => {
     const newImages = images.filter((_, i) => i !== index)
     if (newImages.length === 0) newImages.push("")
+    setImages(newImages)
+  }
+
+  const moveImage = (index: number, direction: 'left' | 'right') => {
+    const newImages = [...images]
+    if (direction === 'left' && index > 0) {
+      const temp = newImages[index]
+      newImages[index] = newImages[index - 1]
+      newImages[index - 1] = temp
+    } else if (direction === 'right' && index < newImages.length - 1) {
+      const temp = newImages[index]
+      newImages[index] = newImages[index + 1]
+      newImages[index + 1] = temp
+    }
     setImages(newImages)
   }
 
@@ -273,18 +287,39 @@ export function ProjectModal({ isOpen, onClose, onSave, initialData }: ProjectMo
                     {img ? (
                       <>
                         <img src={img} alt={`Preview ${index}`} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                          <label className="cursor-pointer p-2 bg-primary/20 text-primary hover:bg-primary hover:text-white rounded-lg transition-colors">
-                            <Upload className="w-5 h-5" />
+                        <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 md:gap-2">
+                          {index > 0 && (
+                            <button 
+                              type="button" 
+                              onClick={() => moveImage(index, 'left')} 
+                              className="p-1.5 md:p-2 bg-white/10 text-white hover:bg-white/30 rounded-lg transition-colors"
+                              title="Mover para antes"
+                            >
+                              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+                            </button>
+                          )}
+                          <label className="cursor-pointer p-1.5 md:p-2 bg-primary/20 text-primary hover:bg-primary hover:text-white rounded-lg transition-colors" title="Substituir foto">
+                            <Upload className="w-4 h-4 md:w-5 md:h-5" />
                             <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(index, e)} />
                           </label>
                           {images.length > 1 && (
                             <button 
                               type="button"
                               onClick={() => removeImageField(index)}
-                              className="p-2 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
+                              className="p-1.5 md:p-2 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
+                              title="Excluir foto"
                             >
-                              <Trash2 className="w-5 h-5" />
+                              <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
+                            </button>
+                          )}
+                          {index < images.length - 1 && images[index + 1] !== undefined && (
+                            <button 
+                              type="button" 
+                              onClick={() => moveImage(index, 'right')} 
+                              className="p-1.5 md:p-2 bg-white/10 text-white hover:bg-white/30 rounded-lg transition-colors"
+                              title="Mover para depois"
+                            >
+                              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                             </button>
                           )}
                         </div>
