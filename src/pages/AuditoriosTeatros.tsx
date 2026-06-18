@@ -72,7 +72,7 @@ export function AuditoriosTeatros() {
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-primary/30">
       <SEO 
         title="Áudio para Auditórios e Teatros | Sonus Pro AV" 
-        description="Engenharia audiovisual de alta performance para grandes eventos. Integração Q-SYS e Shure com foco em inteligibilidade e falha zero." 
+        description="Soluções audiovisuais de alta performance para grandes eventos. Integração Q-SYS e Shure com foco em inteligibilidade e falha zero." 
         url="https://sonusproaudio.com.br/auditorios-e-teatros"
         keywords="sonorização para auditórios, projeto de áudio para teatro, automação audiovisual, sistema de som profissional, microfones shure para auditório, Q-SYS integração, sonorização teatro, som ambiente auditório"
         schema={{
@@ -83,7 +83,7 @@ export function AuditoriosTeatros() {
             "@type": "LocalBusiness",
             "name": "Sonus Pro AV"
           },
-          "description": "Projetos de engenharia audiovisual de alta performance para auditórios e teatros.",
+          "description": "Projetos audiovisuais de alta performance para auditórios e teatros.",
           "areaServed": "Brazil"
         }}
       />
@@ -104,32 +104,35 @@ export function AuditoriosTeatros() {
             <FadeIn>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs font-medium tracking-wider text-zinc-300 uppercase">Engenharia Audiovisual para Grandes Públicos</span>
+                <span className="text-xs font-medium tracking-wider text-zinc-300 uppercase">Soluções Audiovisuais para Grandes Públicos</span>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.1}>
               <h1 className="text-[clamp(2.5rem,4vw,4.5rem)] font-bold tracking-tight text-white leading-[1.1]">
-                Inteligibilidade Cristalina.<br />
+                Onde cada palavra importa,<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                  Zero Margem para Falhas
-                </span> em Grandes Eventos.
+                  não há espaço para improvisos.
+                </span>
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed mx-auto md:mx-0">
-                Projetamos e integramos sistemas audiovisuais onde a pressão sonora de alta performance encontra o respeito absoluto à arquitetura do seu espaço.
+                Sistemas audiovisuais completos para auditórios e teatros. Cobertura sonora uniforme e controle absoluto nas mãos do seu operador.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <a href="#consultoria" className="inline-block w-full sm:w-auto">
-                <Button size="lg" className="w-full h-14 px-8 text-lg font-semibold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_30px_rgba(41,128,185,0.4)] transition-all transform hover:scale-105">
-                  Solicitar Consultoria de Projeto
-                </Button>
-              </a>
-              <p className="mt-4 text-xs text-zinc-500 font-medium">Fale diretamente com nossos engenheiros especialistas.</p>
+              <Button 
+                onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+                size="lg" 
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_40px_-10px_rgba(41,128,185,0.5)] transition-all hover:scale-105"
+              >
+                Solicitar Consultoria Acústica
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <p className="mt-4 text-xs text-zinc-500 font-medium">Fale diretamente com nossos especialistas em áudio.</p>
             </FadeIn>
           </div>
           
@@ -160,7 +163,7 @@ export function AuditoriosTeatros() {
         <div className="container max-w-6xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
-              O preço de uma integração amadora<br className="hidden md:block" />
+              O preço de uma integração amadora <br className="hidden md:block" />
               é o <span className="text-red-500/90">fracasso do seu evento</span>.
             </h2>
             <p className="text-zinc-500 text-center max-w-2xl mx-auto mb-16 text-lg">
@@ -402,7 +405,7 @@ export function AuditoriosTeatros() {
         <div className="container max-w-5xl mx-auto">
           <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight">28 Anos de Engenharia Audiovisual Consolidada.</h2>
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight">28 Anos de Excelência Audiovisual Consolidada.</h2>
               <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-6">
                 <div className="flex items-center justify-center md:justify-start gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/10">
                   <ShieldCheck className="w-6 h-6 text-primary" />
@@ -430,7 +433,7 @@ export function AuditoriosTeatros() {
           <FadeIn className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Pronto para elevar o nível do seu espaço?</h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Descreva brevemente seu projeto e nossa equipe de engenharia elaborará uma análise técnica para sua empresa.
+              Descreva brevemente seu projeto e nossa equipe de especialistas elaborará uma análise técnica para sua empresa.
             </p>
           </FadeIn>
 

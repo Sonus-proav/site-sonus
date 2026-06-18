@@ -344,7 +344,7 @@ export function IgrejasTemplos() {
                 28 Anos de Tradição e Excelência
               </h2>
               <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto mb-12">
-                Nós não empurramos caixas de som. Entregamos um <strong className="text-white">projeto de engenharia acústica</strong> focado no conforto dos fiéis e na durabilidade do dízimo investido, evitando que sua igreja precise refazer o som a cada 5 anos.
+                Nós não empurramos caixas de som. Entregamos um <strong className="text-white">projeto acústico avançado</strong> focado no conforto dos fiéis e na durabilidade do dízimo investido, evitando que sua igreja precise refazer o som a cada 5 anos.
               </p>
             </FadeIn>
           </div>

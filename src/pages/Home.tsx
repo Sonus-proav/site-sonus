@@ -109,30 +109,30 @@ export function Home() {
               </div>
               
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
-                Áudio e Vídeo <br className="hidden md:block" />
-                de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Alto Nível.</span>
+                Inteligência Audiovisual <br className="hidden md:block" />
+                de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Alta Performance.</span>
               </h1>
               
               <div className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed space-y-4 max-w-lg">
                 <p className="font-normal text-zinc-200">
-                  Infraestrutura de peso para quem não aceita falhas.
+                  A infraestrutura invisível e impecável para quem não aceita falhas.
                 </p>
                 <p className="text-base lg:text-lg">
-                  Projetos personalizados e automatizados para Auditórios, Igrejas, Salas de Reunião e Teatros.
+                  Projetos de excelência para Auditórios, Igrejas e Salas Corporativas.
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
                 <a href="#contato" className="w-full sm:w-auto">
                   <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
-                    Inicie Seu Projeto
+                    Falar com um Especialista
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
                 <Link to="/projetos" className="w-full sm:w-auto">
                   <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-md transition-all">
                     <Play className="mr-2 h-5 w-5 text-primary" />
-                    Ver Portfólio
+                    Ver Projetos de Sucesso
                   </Button>
                 </Link>
               </div>

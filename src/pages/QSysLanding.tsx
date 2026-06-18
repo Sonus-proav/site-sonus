@@ -65,17 +65,17 @@ export function QSysLanding() {
           </div>
 
           <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
-            Controle Total da sua Empresa <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-glow-blue">em Uma Única Tela.</span>
+            O Cérebro da Sua <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-glow-blue">Infraestrutura Audiovisual.</span>
           </h1>
 
           <p className="text-lg md:text-2xl text-zinc-400 font-light max-w-3xl text-balance leading-relaxed">
-            Elimine de vez a bagunça de controles remotos e equipamentos incompatíveis. O Q-SYS unifica áudio, vídeo e automação em painéis simples que qualquer executivo consegue usar sem pedir ajuda.
+            Q-SYS consolida áudio, vídeo e controle em uma única plataforma baseada em software. Esqueça o pesadelo das matrizes antigas e hardware isolado.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-8 w-full sm:w-auto">
             <Button onClick={handleWhatsApp} size="lg" className="h-14 px-8 rounded-full bg-white text-black hover:bg-zinc-200 text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all ">
-              Solicite um Orçamento
+              Dimensionar Meu Projeto Q-SYS
             </Button>
             <Button onClick={() => document.getElementById('painel-interativo')?.scrollIntoView({ behavior: 'smooth' })} size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-medium transition-all">
               Conheça o Sistema <ChevronRight className="ml-2 w-5 h-5" />

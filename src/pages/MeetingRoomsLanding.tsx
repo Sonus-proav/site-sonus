@@ -85,13 +85,12 @@ export function MeetingRoomsLanding() {
             <span className="text-sm font-medium tracking-wide text-zinc-300">O Padrão Ouro em Áudio Corporativo</span>
           </div>
 
-          <h1 className="text-[clamp(2.5rem,5vw,5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 leading-[1.1]">
-            Salas de Reunião <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent text-glow-emerald">Sem Fios e Sem Falhas.</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
+            Reuniões Híbridas <br className="hidden md:block"/> Sem Falhas e Sem Atrasos.
           </h1>
-
-          <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-zinc-400 font-light max-w-2xl text-balance leading-relaxed">
-            Elimine a bagunça da mesa. Captação de áudio invisível pelo teto, câmeras que seguem quem fala automaticamente e início de reunião com 1 único toque.
+          
+          <p className="text-lg md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+            Chega de perder os primeiros 15 minutos de reunião tentando fazer o som funcionar. Integração perfeita com <strong className="text-white font-medium">Microsoft Teams, Zoom e Google Meet.</strong>
           </p>
 
           {/* Interactive Mockup Container */}
