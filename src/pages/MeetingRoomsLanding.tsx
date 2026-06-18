@@ -14,7 +14,7 @@ import { Footer } from "@/components/layout/Footer"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 export function MeetingRoomsLanding() {
-  const [activeTab, setActiveTab] = useState("Videoconferência")
+  const [activeTab, setActiveTab] = useState("Microfone Shure")
   const [callState, setCallState] = useState<"idle" | "ringing" | "connected">("idle")
   const [callTimer, setCallTimer] = useState(0)
   const [micMuted, setMicMuted] = useState(false)
@@ -206,8 +206,8 @@ export function MeetingRoomsLanding() {
                   <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0">
                     <div className="flex flex-row md:flex-col gap-2 md:gap-3 shrink-0">
                       {[
+                        { icon: <Mic className="w-5 h-5" />, label: "Microfone Shure" },
                         { icon: <Video className="w-5 h-5" />, label: "Videoconferência" },
-                        { icon: <Mic className="w-5 h-5" />, label: "Microfones Shure" },
                         { icon: <Camera className="w-5 h-5" />, label: "Câmeras Auto-Track" },
                         { icon: <Cast className="w-5 h-5" />, label: "Apresentação sem Fio" },
                       ].map((item, i) => (
@@ -266,7 +266,7 @@ export function MeetingRoomsLanding() {
                         </div>
                       )}
                     </div>
-                  ) : activeTab === "Microfones Shure" ? (
+                  ) : activeTab === "Microfone Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
                        <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 p-6 min-h-[350px]">
                          
