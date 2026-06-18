@@ -208,14 +208,14 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         {/* Overlay de gradiente */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent pointer-events-none z-10 transition-opacity duration-300" />
 
-        {/* Conteúdo ancorado na base */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 pb-8 md:p-6 md:pb-10 flex flex-col justify-end translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20 max-h-[calc(100%-4rem)]">
-          <div className="mb-2 md:mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block">
+        {/* Conteúdo ancorado na base com limite superior fixo via top-16 */}
+        <div className="absolute top-16 bottom-0 left-0 right-0 p-5 pb-8 md:p-6 md:pb-10 flex flex-col justify-end translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
+          <div className="mb-2 md:mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block shrink-0">
             <span className="inline-block bg-black/50 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md shadow-lg">
               {project.category}
             </span>
           </div>
-          <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3 leading-tight">{project.title}</h3>
+          <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 md:line-clamp-3 leading-tight shrink-0">{project.title}</h3>
           
           <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[500px] group-hover:opacity-100 pointer-events-auto mt-0 group-hover:mt-2">
             {project.problem ? (
