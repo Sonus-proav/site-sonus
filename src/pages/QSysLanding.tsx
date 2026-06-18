@@ -10,6 +10,11 @@ import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+
+import certLevel1 from "@/assets/cert-level1.png"
+import certVision from "@/assets/cert-vision.png"
+import certSales from "@/assets/cert-sales.png"
+
 export function QSysLanding() {
   const [activeScene, setActiveScene] = useState(0)
   const [currentVolume, setCurrentVolume] = useState(75)
@@ -550,9 +555,9 @@ export function QSysLanding() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center">Equipe Técnica Oficialmente Certificada Q-SYS</p>
             <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-90">
-              <img src="/certificados/qsys-level-1.png" alt="Q-SYS Level 1 Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
-              <img src="/certificados/qsys-visionsuite.png" alt="Q-SYS Visionsuite Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
-              <img src="/certificados/qsys-sales.png" alt="Q-SYS Sales Professional" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+              <img src={certLevel1} alt="Q-SYS Level 1 Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+              <img src={certVision} alt="Q-SYS Visionsuite Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+              <img src={certSales} alt="Q-SYS Sales Professional" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
 
