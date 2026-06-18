@@ -268,7 +268,7 @@ export function MeetingRoomsLanding() {
                     </div>
                   ) : activeTab === "Microfone Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
-                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 pt-16 pb-24 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
+                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 pt-20 pb-24 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
                          
                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.8)_0%,transparent_60%)] pointer-events-none" />
                          
@@ -277,7 +277,7 @@ export function MeetingRoomsLanding() {
                            Integração Shure + Q-SYS Auto Framing
                          </h3>
 
-                         <div className="flex flex-row md:flex-col gap-6 md:gap-8 z-20 w-full md:w-auto overflow-x-auto md:overflow-visible pb-4 md:pb-0 justify-center md:justify-start shrink-0">
+                         <div className="flex flex-row md:flex-col gap-6 md:gap-8 z-20 w-full md:w-auto overflow-x-auto md:overflow-visible pb-4 md:pb-0 justify-start shrink-0">
                            {[1, 2, 3].map(camId => {
                              const isLive = cameraState.liveCam === camId;
                              const isMoving = cameraState.movingCam === camId;
