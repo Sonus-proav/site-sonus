@@ -122,14 +122,14 @@ export function Home() {
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
-                <a href="#contato" className="w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row flex-wrap items-start gap-4 pt-4 w-full sm:w-auto">
+                <a href="#contato" className="w-full sm:w-auto xl:w-auto">
                   <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
                     Falar com um Especialista
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
-                <Link to="/projetos" className="w-full sm:w-auto">
+                <Link to="/projetos" className="w-full sm:w-auto xl:w-auto">
                   <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-md transition-all">
                     <Play className="mr-2 h-5 w-5 text-primary" />
                     Ver Projetos de Sucesso
