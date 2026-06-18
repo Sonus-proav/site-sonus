@@ -17,6 +17,35 @@ export function ProjectDetails() {
   const [loading, setLoading] = useState(!getCachedProjects())
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    
+    if (!project?.images) return
+    
+    if (isLeftSwipe && project.images.length > 1) {
+      setCurrentImgIndex((prev) => (prev + 1) % project.images!.length)
+    } else if (isRightSwipe && project.images.length > 1) {
+      setCurrentImgIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length)
+    }
+  }
+
   useEffect(() => {
     if (!getCachedProjects()) {
       getProjects().then(projects => {
@@ -97,7 +126,12 @@ export function ProjectDetails() {
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column: Image Gallery */}
           <FadeIn delay={0.1}>
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 relative group transition-colors duration-300">
+            <div 
+              className="rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 relative group transition-colors duration-300"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <AnimatePresence initial={false}>
                 <motion.img 
                   key={currentImgIndex}

@@ -136,16 +136,42 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
     setImgSrc(optimizeImageUrl(images[currentImgIndex], 800))
   }, [currentImgIndex, images])
 
-  const nextImage = (e: React.MouseEvent) => {
-    e.preventDefault()
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.preventDefault()
     setIsImageLoaded(false)
     setCurrentImgIndex((prev) => (prev + 1) % images.length)
   }
 
-  const prevImage = (e: React.MouseEvent) => {
-    e.preventDefault()
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.preventDefault()
     setIsImageLoaded(false)
     setCurrentImgIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isLeftSwipe && hasMultipleImages) {
+      nextImage()
+    } else if (isRightSwipe && hasMultipleImages) {
+      prevImage()
+    }
   }
 
   return (
@@ -156,7 +182,12 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         transition={{ duration: 0.5, delay: index * 0.1 }}
         className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 cursor-pointer h-full transition-colors duration-300"
       >
-        <div className="relative w-full h-full overflow-hidden">
+        <div 
+          className="relative w-full h-full overflow-hidden"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {!isImageLoaded && (
             <Skeleton className="absolute inset-0 w-full h-full rounded-none z-0" />
           )}
