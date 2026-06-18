@@ -502,17 +502,34 @@ export function QSysLanding() {
           </div>
       </section>
 
-      {/* Trust Bar / Ecossistema */}
-      <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.02] z-10">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Integração Nativa e Certificada</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
-            <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
-            <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
-            <img src="/shure-logo.png" alt="Shure" className="h-5 md:h-8 w-auto object-contain brightness-0 invert" />
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">BARCO</span>
+      {/* Trust Bar / Certificações e Ecossistema */}
+      <section className="relative py-16 px-4 border-t border-b border-white/5 bg-white/[0.02] z-10">
+        <div className="max-w-6xl mx-auto flex flex-col gap-12">
+          
+          {/* Certificações Sonus */}
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center">Equipe Técnica Oficialmente Certificada Q-SYS</p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-50 hover:opacity-100 transition-opacity duration-500">
+              <img src="/certificados/qsys-level-1.png" alt="Q-SYS Level 1 Certified" className="h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/certificados/qsys-visionsuite.png" alt="Q-SYS Visionsuite Certified" className="h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/certificados/qsys-sales.png" alt="Q-SYS Sales Professional" className="h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+            </div>
           </div>
+
+          <div className="w-full h-px bg-white/5 max-w-sm mx-auto"></div>
+
+          {/* Ecossistema */}
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center">Integração Nativa Garantida</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 hover:opacity-100 transition-opacity duration-500">
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
+              <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
+              <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
+              <img src="/shure-logo.png" alt="Shure" className="h-5 md:h-8 w-auto object-contain brightness-0 invert" />
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-white">BARCO</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
