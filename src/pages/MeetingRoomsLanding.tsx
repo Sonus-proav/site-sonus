@@ -268,7 +268,7 @@ export function MeetingRoomsLanding() {
                     </div>
                   ) : activeTab === "Microfone Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
-                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 p-6 min-h-[350px]">
+                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-10 md:gap-24 p-8 py-16 md:p-16 min-h-[450px]">
                          
                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.8)_0%,transparent_60%)] pointer-events-none" />
                          
@@ -288,7 +288,7 @@ export function MeetingRoomsLanding() {
                                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-all duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-100' : 'border-white/10 bg-black scale-100'}`}>
                                    <Camera className={`w-5 h-5 md:w-6 md:h-6 ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400 animate-pulse' : 'text-zinc-600'}`} />
                                  </div>
-                                 <div className="flex flex-col text-center md:text-left">
+                                 <div className="flex flex-col text-center md:text-left w-[120px] shrink-0">
                                    <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400' : 'text-zinc-500'}`}>
                                      {isWide ? 'Cam 2 (Geral)' : `Cam ${camId} (PTZ)`}
                                    </span>
