@@ -429,6 +429,7 @@ export function AuditoriosTeatros() {
 
       {/* Warranty Banner (Estratégico) */}
       <WarrantyBanner 
+        variant="auditorium"
         title="3 Anos de Garantia para Seu Auditório"
         description="Projetos de grande porte exigem segurança e responsabilidade absoluta. Oferecemos 3 anos de garantia integral contra qualquer falha de instalação. A infraestrutura do seu auditório sempre pronta e impecável para o próximo grande evento."
       />

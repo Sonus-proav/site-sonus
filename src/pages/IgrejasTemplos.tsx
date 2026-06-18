@@ -366,6 +366,7 @@ export function IgrejasTemplos() {
 
         {/* Warranty Banner (Estratégico) */}
         <WarrantyBanner 
+          variant="church"
           title="3 Anos de Garantia para o Seu Ministério"
           description="Sabemos da importância de cada investimento feito pela igreja. Por isso, entregamos 3 anos de garantia total sobre qualquer defeito de instalação. Infraestrutura segura para que a mensagem seja sempre transmitida com clareza."
         />

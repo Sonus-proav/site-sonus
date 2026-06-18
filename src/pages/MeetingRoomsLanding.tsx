@@ -699,6 +699,7 @@ export function MeetingRoomsLanding() {
 
       {/* Warranty Banner (Estratégico) */}
       <WarrantyBanner 
+        variant="corporate"
         title="3 Anos de Garantia nas Salas de Reunião"
         description="Garantimos a disponibilidade tecnológica das suas salas. Nossa instalação corporativa conta com 3 anos de cobertura total contra qualquer falha de infraestrutura. Reuniões sem interrupção e o investimento da sua empresa 100% protegido."
       />
