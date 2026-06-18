@@ -205,7 +205,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-5 pb-8 md:p-6 md:pb-10 flex flex-col justify-end translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-5 pt-20 pb-8 md:p-6 md:pt-24 md:pb-10 flex flex-col justify-end translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-20">
           <div className="mb-2 md:mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block">
             <span className="inline-block bg-black/50 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md shadow-lg">
               {project.category}
