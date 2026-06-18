@@ -54,7 +54,7 @@ export function Home() {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Página Inicial (Home)" })
       })
 
       if (response.ok) {

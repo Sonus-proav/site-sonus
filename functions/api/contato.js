@@ -8,7 +8,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const data = await request.json();
-    const { name, phone, email, message, turnstileToken, honeypot, churchName, role, capacity } = data;
+    const { name, phone, email, message, turnstileToken, honeypot, churchName, role, capacity, source } = data;
 
     // Honeypot invisível para pegar bots estúpidos
     if (honeypot) {
@@ -46,6 +46,7 @@ export async function onRequestPost({ request, env }) {
     const safeChurchName = sanitizeHTML(churchName);
     const safeRole = sanitizeHTML(role);
     const safeCapacity = sanitizeHTML(capacity);
+    const safeSource = sanitizeHTML(source) || "página inicial";
 
     // A chave da API do Resend deve ser configurada nas Variáveis de Ambiente do Cloudflare Pages
     const RESEND_API_KEY = env.RESEND_API_KEY;
@@ -63,7 +64,7 @@ export async function onRequestPost({ request, env }) {
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 10px;">
         <h2 style="color: #2980b9;">Novo Lead B2B - Site Sonus</h2>
-        <p>Você recebeu uma nova solicitação de contato pelo formulário principal da página inicial.</p>
+        <p>Você recebeu uma nova solicitação de contato pelo formulário da <strong>${safeSource}</strong>.</p>
         <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;" />
         <ul style="list-style: none; padding: 0;">
           <li style="margin-bottom: 10px;"><strong>Nome:</strong> ${safeName}</li>

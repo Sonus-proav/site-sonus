@@ -61,7 +61,8 @@ export function MeetingRoomsLanding() {
             "name": "Sonus Pro AV"
           },
           "description": "Automação e projetos audiovisuais para salas de reunião e ambientes corporativos.",
-          "areaServed": "Brazil"
+          "areaServed": "Brazil",
+          "source": "Landing Page Salas Corporativas"
         }}
       />
 

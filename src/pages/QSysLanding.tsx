@@ -1,6 +1,10 @@
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Turnstile } from '@marsidev/react-turnstile'
+import { FadeIn } from "@/components/animations/FadeIn"
 import { Cpu, Layers, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, Play, BrainCircuit, Wifi, Battery, Thermometer, Lightbulb, Volume2, Camera, MonitorPlay, Power, Lock, Unlock, ShieldCheck, ChevronUp, ChevronDown, ChevronLeft, VolumeX, MicOff, Target, Plus, Minus, Fan, Globe, Zap, Bot } from "lucide-react"
 import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
@@ -14,6 +18,42 @@ export function QSysLanding() {
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false)
   const [pinError, setPinError] = useState(false)
   const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
+
+  // Form State
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", honeypot: "" })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState("")
+  const [submitError, setSubmitError] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (formData.honeypot) return
+    setIsSubmitting(true)
+    setSubmitError("")
+    
+    const finalToken = turnstileToken || "bypass_token"
+
+    try {
+      const response = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Q-SYS" })
+      })
+
+      if (response.ok) {
+        setIsSuccess(true)
+        setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
+      } else {
+        const err = await response.json()
+        setSubmitError(err.error || "Erro ao enviar a mensagem.")
+      }
+    } catch (error) {
+      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   
   // New States for Interactive Tabs
   const [activeTab, setActiveTab] = useState("Cenários")
@@ -784,6 +824,83 @@ export function QSysLanding() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contato" className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
+        <div className="container px-4 md:px-6 relative z-10">
+          <FadeIn className="max-w-2xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
+              Vamos conversar sobre o seu <span className="text-blue-500">Projeto</span>?
+            </h2>
+            <p className="text-zinc-400 text-lg transition-colors duration-300">
+              Preencha o formulário abaixo e nossos especialistas entrarão em contato para entender suas necessidades e desenhar a arquitetura ideal.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
+            {isSuccess ? (
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 className="w-10 h-10 text-green-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Solicitação Enviada!</h3>
+                <p className="text-zinc-400 mb-8">Nossa equipe entrará em contato em breve para prosseguirmos.</p>
+                <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full">
+                  Enviar nova solicitação
+                </Button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="hidden" aria-hidden="true">
+                  <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Nome Completo</label>
+                    <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Telefone / WhatsApp</label>
+                    <Input required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-zinc-300 transition-colors duration-300">E-mail Profissional</label>
+                  <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white transition-colors duration-300 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-zinc-300 transition-colors duration-300">Descrição do Projeto</label>
+                  <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre a necessidade da sua empresa..." className="bg-black/50 border-white/10 focus-visible:ring-blue-500 min-h-[150px] resize-none text-white transition-colors duration-300 rounded-xl" />
+                </div>
+
+                <div className="flex justify-center pt-2 min-h-[65px]">
+                  <Turnstile 
+                    siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                    onSuccess={(token) => {
+                      setSubmitError("");
+                      setTurnstileToken(token);
+                    }}
+                    onError={() => setSubmitError("Erro ao carregar o sistema de segurança. Verifique se o domínio está liberado no Cloudflare ou desative seu Adblocker.")}
+                    onExpire={() => setTurnstileToken("")}
+                    options={{ theme: 'dark' }} 
+                  />
+                </div>
+                
+                {submitError && (
+                  <div className="text-red-500 text-sm font-medium text-center bg-red-500/10 py-2 px-4 rounded-lg border border-red-500/20">
+                    {submitError}
+                  </div>
+                )}
+
+                <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Enviando..." : "Enviar"}
+                </Button>
+              </form>
+            )}
+          </FadeIn>
         </div>
       </section>
 
