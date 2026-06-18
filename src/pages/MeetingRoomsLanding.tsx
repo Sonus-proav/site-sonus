@@ -91,11 +91,11 @@ export function MeetingRoomsLanding() {
       setActiveSpeaker(nextSpeaker);
       
       // Cam 1 -> Bottom (2, 3)
-      // Cam 2 -> Top (0, 1)
-      // Cam 3 -> Geral/Wide
-      const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 2 : 1;
+      // Cam 3 -> Top (0, 1)
+      // Cam 2 -> Geral/Wide
+      const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 3 : 1;
       
-      setCameraState({ liveCam: 3, movingCam: targetCam });
+      setCameraState({ liveCam: 2, movingCam: targetCam });
       
       const moveTimeout = setTimeout(() => {
         if (mounted) {
@@ -281,7 +281,7 @@ export function MeetingRoomsLanding() {
                            {[1, 2, 3].map(camId => {
                              const isLive = cameraState.liveCam === camId;
                              const isMoving = cameraState.movingCam === camId;
-                             const isWide = camId === 3;
+                             const isWide = camId === 2;
 
                              return (
                                <div key={camId} className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 relative min-w-[100px] md:min-w-0">
@@ -290,7 +290,7 @@ export function MeetingRoomsLanding() {
                                  </div>
                                  <div className="flex flex-col text-center md:text-left">
                                    <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400' : 'text-zinc-500'}`}>
-                                     {isWide ? 'Cam 3 (Geral)' : `Cam ${camId} (PTZ)`}
+                                     {isWide ? 'Cam 2 (Geral)' : `Cam ${camId} (PTZ)`}
                                    </span>
                                    <span className={`text-[8px] font-bold mt-0.5 transition-colors duration-300 ${isLive ? 'text-red-500' : isMoving ? 'text-yellow-500' : 'text-zinc-600'}`}>
                                      {isLive ? 'NO AR' : isMoving ? 'ENQUADRANDO...' : 'STANDBY'}
