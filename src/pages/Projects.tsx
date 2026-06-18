@@ -114,7 +114,7 @@ function ProjectGrid({ filter, projects, loading }: { filter: string, projects: 
             onClick={() => setVisibleCount(v => v + 6)}
             size="lg" 
             variant="outline" 
-            className="text-base font-medium px-8 h-12 rounded-full bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 text-black dark:text-white backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
+            className="text-base font-medium px-8 h-12 rounded-full bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 text-black dark:text-white transition-all"
           >
             Carregar mais projetos
           </Button>
@@ -154,7 +154,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 cursor-pointer h-full will-change-transform transition-colors duration-300"
+        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 cursor-pointer h-full transition-colors duration-300"
       >
         <div className="relative w-full h-full overflow-hidden">
           {!isImageLoaded && (
@@ -184,7 +184,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
               animate={{ opacity: isImageLoaded ? 1 : 0, scale: isImageLoaded ? 1 : 1.05 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10 will-change-transform"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10"
             />
           </AnimatePresence>
           
@@ -192,12 +192,12 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           {project.tags && project.tags.length > 0 && (
             <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2 pointer-events-none">
               {project.tags.slice(0, 3).map((tag, i) => (
-                <span key={i} className="bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
+                <span key={i} className="bg-black/70 border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
                   {tag}
                 </span>
               ))}
               {project.tags.length > 3 && (
-                <span className="bg-primary/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
+                <span className="bg-primary border border-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg">
                   +{project.tags.length - 3}
                 </span>
               )}
@@ -212,7 +212,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         <div className="absolute inset-0 p-5 pt-16 pb-8 md:p-6 md:pt-16 md:pb-10 flex flex-col pointer-events-none z-20">
           <div className="mt-auto flex flex-col shrink-0 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 pointer-events-auto overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="mb-1 md:mb-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:delay-100 hidden md:block shrink-0">
-              <span className="inline-block bg-black/50 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md shadow-lg">
+              <span className="inline-block bg-black/70 text-zinc-200 text-[10px] md:text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-white/10 shadow-lg">
                 {project.category}
               </span>
             </div>
@@ -221,7 +221,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
             <div className="hidden md:block overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[500px] group-hover:opacity-100 shrink-0 mt-0 group-hover:mt-1">
               {project.problem ? (
                 <div className="mb-2">
-                   <span className="inline-block bg-primary/20 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1 backdrop-blur-sm">O Desafio</span>
+                   <span className="inline-block bg-primary/30 text-primary text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-primary/30 mb-1">O Desafio</span>
                    <p className="text-zinc-300 text-sm line-clamp-2 leading-snug">{project.problem}</p>
                 </div>
               ) : (
@@ -241,14 +241,14 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
             <button 
               onClick={prevImage}
               aria-label="Imagem anterior"
-              className="p-1.5 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md transition-colors"
+              className="p-1.5 rounded-full bg-black/70 hover:bg-primary text-white transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button 
               onClick={nextImage}
               aria-label="Próxima imagem"
-              className="p-1.5 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md transition-colors"
+              className="p-1.5 rounded-full bg-black/70 hover:bg-primary text-white transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -267,14 +267,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           </div>
         )}
 
-        {/* Preload invisível das imagens secundárias para troca sem Skeleton */}
-        {hasMultipleImages && (
-          <div className="hidden">
-            {images.map((img, i) => (
-              i !== currentImgIndex && <img key={i} src={optimizeImageUrl(img, 800)} alt="preload" width={800} height={600} loading="eager" decoding="async" referrerPolicy="no-referrer" />
-            ))}
-          </div>
-        )}
+        {/* Removido o preload invisível que sobrecarregava a rede e a memória no celular */}
       </motion.article>
     </Link>
   )
