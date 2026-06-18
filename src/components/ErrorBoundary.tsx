@@ -24,6 +24,22 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo)
+    
+    const isChunkError = error.message && (
+      error.message.includes('Failed to fetch dynamically imported module') ||
+      error.message.includes('Importing a module script failed') ||
+      error.name === 'ChunkLoadError'
+    )
+
+    if (isChunkError) {
+      const hasReloaded = sessionStorage.getItem('chunk-error-reloaded');
+      if (!hasReloaded) {
+        sessionStorage.setItem('chunk-error-reloaded', 'true');
+        window.location.reload();
+        return;
+      }
+    }
+
     this.setState({ errorInfo })
   }
 
