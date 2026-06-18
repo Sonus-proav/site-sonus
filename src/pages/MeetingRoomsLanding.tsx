@@ -5,6 +5,7 @@ import { Video, Mic, Cast, PhoneCall, Users, PhoneOff, MicOff, CheckCircle2, Cam
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 export function MeetingRoomsLanding() {
   const [activeTab, setActiveTab] = useState("Videoconferência")
@@ -797,6 +798,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       <div className="dark relative z-10 w-full bg-black">
+        <WarrantyBanner />
         <Footer />
       </div>
 

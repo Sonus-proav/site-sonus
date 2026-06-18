@@ -10,6 +10,7 @@ import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 
 import certLevel1 from "@/assets/cert-level1.png"
 import certVision from "@/assets/cert-vision.png"
@@ -910,7 +911,8 @@ export function QSysLanding() {
       </section>
 
       <div className="dark relative z-10 w-full bg-black">
-        <Footer />
+        <WarrantyBanner />
+      <Footer />
       </div>
       
       {/* Floating WhatsApp Button directed to Q-SYS Specialist */}

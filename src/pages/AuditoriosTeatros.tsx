@@ -2,6 +2,7 @@ import { useState } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Button } from "@/components/ui/button"
@@ -495,6 +496,7 @@ export function AuditoriosTeatros() {
         </div>
       </section>
 
+      <WarrantyBanner />
       <Footer />
       <WhatsAppButton />
     </div>
