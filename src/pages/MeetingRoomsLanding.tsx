@@ -81,17 +81,20 @@ export function MeetingRoomsLanding() {
            nextSpeaker = Math.floor(Math.random() * 4);
         }
         
-        const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 1 : 3;
+        // Cam 1 -> Bottom (2, 3)
+        // Cam 2 -> Top (0, 1)
+        // Cam 3 -> Geral/Wide
+        const targetCam = (nextSpeaker === 0 || nextSpeaker === 1) ? 2 : 1;
         
-        setCameraState({ liveCam: 2, movingCam: targetCam });
+        setCameraState({ liveCam: 3, movingCam: targetCam });
         
         setTimeout(() => {
           if (mounted) {
             setCameraState({ liveCam: targetCam, movingCam: null });
           }
-        }, 1200);
+        }, 1800);
 
-        timeoutId = setTimeout(runLoop, 4000);
+        timeoutId = setTimeout(runLoop, 6000);
         return nextSpeaker;
       });
     };
@@ -255,7 +258,7 @@ export function MeetingRoomsLanding() {
                     </div>
                   ) : activeTab === "Microfones Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
-                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 p-6">
+                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 p-6 min-h-[350px]">
                          
                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.8)_0%,transparent_60%)] pointer-events-none" />
                          
@@ -268,23 +271,23 @@ export function MeetingRoomsLanding() {
                            {[1, 2, 3].map(camId => {
                              const isLive = cameraState.liveCam === camId;
                              const isMoving = cameraState.movingCam === camId;
-                             const isWide = camId === 2;
+                             const isWide = camId === 3;
 
                              return (
                                <div key={camId} className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 relative min-w-[100px] md:min-w-0">
-                                 <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-all duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)]' : 'border-white/10 bg-black'}`}>
+                                 <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-transform duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-100' : 'border-white/10 bg-black scale-100'}`}>
                                    <Camera className={`w-5 h-5 md:w-6 md:h-6 ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400 animate-pulse' : 'text-zinc-600'}`} />
                                  </div>
                                  <div className="flex flex-col text-center md:text-left">
                                    <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400' : 'text-zinc-500'}`}>
-                                     {isWide ? 'Cam 2 (Geral)' : `Cam ${camId} (PTZ)`}
+                                     {isWide ? 'Cam 3 (Geral)' : `Cam ${camId} (PTZ)`}
                                    </span>
-                                   <span className={`text-[8px] font-bold mt-0.5 ${isLive ? 'text-red-500' : isMoving ? 'text-yellow-500' : 'text-zinc-600'}`}>
+                                   <span className={`text-[8px] font-bold mt-0.5 transition-colors duration-300 ${isLive ? 'text-red-500' : isMoving ? 'text-yellow-500' : 'text-zinc-600'}`}>
                                      {isLive ? 'NO AR' : isMoving ? 'ENQUADRANDO...' : 'STANDBY'}
                                    </span>
                                  </div>
                                  
-                                 {isLive && (
+                                 {isLive && !isWide && (
                                    <div className="hidden md:block absolute left-full ml-2 top-6 w-16 border-t-2 border-red-500/30 border-dashed origin-left pointer-events-none transition-all duration-500" style={{ transform: 'translateY(-50%)' }} />
                                  )}
                                </div>
@@ -292,7 +295,7 @@ export function MeetingRoomsLanding() {
                            })}
                          </div>
 
-                         <div className="relative w-64 h-40 md:w-80 md:h-48 border-2 border-white/10 rounded-[3rem] flex items-center justify-center shrink-0 z-20">
+                         <div className="relative w-64 h-40 md:w-80 md:h-48 border-2 border-white/10 rounded-[3rem] flex items-center justify-center shrink-0 z-20 mt-4 md:mt-0">
                             <div className="absolute inset-2 bg-white/5 rounded-[2.5rem] " />
                             
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-emerald-500/30 rounded-md bg-emerald-500/10 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)] z-30">
@@ -306,8 +309,8 @@ export function MeetingRoomsLanding() {
                               { id: 3, pos: "-bottom-6 right-1/4" },
                             ].map(speaker => (
                               <div key={speaker.id} className={`absolute ${speaker.pos} flex flex-col items-center transition-all duration-500 z-10`}>
-                                <div className={`w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-110' : 'border-white/10 bg-black'}`}>
-                                  <Users className={`w-5 h-5 transition-colors ${activeSpeaker === speaker.id ? 'text-emerald-400' : 'text-zinc-600'}`} />
+                                <div className={`w-10 h-10 rounded-full border-2 transition-transform duration-300 flex items-center justify-center ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-110' : 'border-white/10 bg-black scale-100'}`}>
+                                  <Users className={`w-5 h-5 transition-colors duration-300 ${activeSpeaker === speaker.id ? 'text-emerald-400' : 'text-zinc-600'}`} />
                                 </div>
                                 {activeSpeaker === speaker.id && (
                                   <div className="absolute -z-10 w-24 h-24 border border-emerald-500/30 rounded-full animate-ping opacity-50" />
@@ -315,8 +318,8 @@ export function MeetingRoomsLanding() {
                               </div>
                             ))}
                             
-                            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-full text-center">
-                               <p className="text-emerald-400 text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-block">
+                            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[120%] text-center">
+                               <p className="text-emerald-400 text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-500/20 inline-block shadow-lg">
                                  Lóbulo direcionado ao Locutor {activeSpeaker + 1}
                                </p>
                             </div>
