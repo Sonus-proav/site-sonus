@@ -701,19 +701,13 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent">
-               {/* Animated Progress Line */}
+            {/* Base Fiber Optic Line */}
+            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-[2px] bg-white/[0.05] overflow-hidden rounded-full">
+               {/* Shooting Energy Beam */}
                <div 
-                 className="absolute top-0 left-0 h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.8)] transition-all duration-1000 ease-in-out" 
-                 style={{ width: `${(activeStep / 3) * 100}%` }}
+                 className="absolute top-0 h-full w-[25%] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_20px_rgba(16,185,129,1)] transition-all duration-1000 ease-in-out" 
+                 style={{ left: `${(activeStep / 3) * 100}%`, transform: 'translateX(-50%)' }}
                />
-               {/* Pulsing Dot */}
-               <div 
-                 className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_20px_rgba(16,185,129,1)] transition-all duration-1000 ease-in-out"
-                 style={{ left: `calc(${(activeStep / 3) * 100}% - 6px)` }}
-               >
-                 <div className="absolute inset-0 rounded-full border border-emerald-500 animate-ping" />
-               </div>
             </div>
             
             {[
@@ -722,15 +716,38 @@ export function MeetingRoomsLanding() {
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
-              <div key={i} className={`relative z-10 glass-card p-6 md:p-8 rounded-3xl text-center group transition-all duration-700 ${activeStep === i ? 'bg-white/[0.05] border-emerald-500/30 shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)] scale-[1.02]' : 'hover:bg-white/[0.08] hover:scale-[1.01]'}`}>
-                <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 text-2xl font-black transition-all duration-700 ${activeStep === i ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)] scale-110' : activeStep > i ? 'bg-black border border-white/10 text-white/20' : 'bg-emerald-900/40 text-emerald-500/80 border border-emerald-500/20'}`}>
-                  {item.step}
+              <div key={i} className={`relative z-10 p-6 md:p-8 rounded-[2rem] text-center group transition-all duration-700 overflow-hidden ${activeStep === i ? 'bg-[#0a0a0a] border border-emerald-500/30 shadow-[0_30px_60px_-15px_rgba(16,185,129,0.2)] -translate-y-2 scale-105' : 'bg-transparent border border-transparent hover:bg-white/[0.02]'}`}>
+                
+                {/* Active Background Glow */}
+                <div className={`absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.15)_0%,transparent_70%)] transition-opacity duration-700 ${activeStep === i ? 'opacity-100' : 'opacity-0'}`} />
+
+                {/* Step Circle */}
+                <div className="relative w-20 h-20 mx-auto mb-8">
+                  <div className={`absolute inset-0 rounded-full transition-all duration-700 ${activeStep === i ? 'bg-emerald-500/20 animate-ping opacity-50' : 'opacity-0'}`} />
+                  <div className={`relative w-full h-full rounded-full flex items-center justify-center text-3xl font-black transition-all duration-700 ${activeStep === i ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_0_40px_rgba(16,185,129,0.6)] border border-emerald-300/50' : activeStep > i ? 'bg-black border border-white/10 text-white/20' : 'bg-black border border-white/5 text-white/10'}`}>
+                    {item.step}
+                  </div>
+                  {/* Rotating dashed border for active */}
+                  {activeStep === i && (
+                    <svg className="absolute -inset-2 w-24 h-24 text-emerald-500/50 animate-[spin_4s_linear_infinite]" viewBox="0 0 100 100" style={{ animationDuration: '4s' }}>
+                      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="10 5" />
+                    </svg>
+                  )}
                 </div>
-                <h3 className={`text-xl font-bold mb-3 transition-colors duration-700 ${activeStep === i ? 'text-emerald-400' : 'text-white'}`}>{item.title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
-                {activeStep === i && (
-                   <div className="absolute inset-0 rounded-3xl border border-emerald-500/20 animate-pulse pointer-events-none" />
-                )}
+
+                <div className="relative z-10">
+                  <h3 className={`text-xl font-bold mb-3 transition-colors duration-700 ${activeStep === i ? 'text-white' : 'text-zinc-500'}`}>{item.title}</h3>
+                  <p className={`text-sm leading-relaxed transition-colors duration-700 ${activeStep === i ? 'text-zinc-300' : 'text-zinc-600'}`}>{item.desc}</p>
+                </div>
+                
+                {/* Loading Bar inside card */}
+                <div 
+                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald-600 to-emerald-400" 
+                  style={{ 
+                    width: activeStep === i ? '100%' : '0%', 
+                    transition: activeStep === i ? 'width 3s linear' : 'none' 
+                  }} 
+                />
               </div>
             ))}
           </div>
