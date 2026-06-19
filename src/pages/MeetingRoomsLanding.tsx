@@ -21,7 +21,14 @@ export function MeetingRoomsLanding() {
   const [activeSpeaker, setActiveSpeaker] = useState(0)
   const [cameraState, setCameraState] = useState({ liveCam: 2, movingCam: null as number | null })
   const [presentationActive, setPresentationActive] = useState(false)
-  
+  const [activeStep, setActiveStep] = useState(0)
+
+  useEffect(() => {
+    const stepInterval = setInterval(() => {
+      setActiveStep(prev => (prev + 1) % 4)
+    }, 3000)
+    return () => clearInterval(stepInterval)
+  }, [])
 
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "", honeypot: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -694,7 +701,20 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            <div className="hidden md:block absolute top-6 md:p-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent">
+               {/* Animated Progress Line */}
+               <div 
+                 className="absolute top-0 left-0 h-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.8)] transition-all duration-1000 ease-in-out" 
+                 style={{ width: `${(activeStep / 3) * 100}%` }}
+               />
+               {/* Pulsing Dot */}
+               <div 
+                 className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_20px_rgba(16,185,129,1)] transition-all duration-1000 ease-in-out"
+                 style={{ left: `calc(${(activeStep / 3) * 100}% - 6px)` }}
+               >
+                 <div className="absolute inset-0 rounded-full border border-emerald-500 animate-ping" />
+               </div>
+            </div>
             
             {[
               { step: "01", title: "Consultoria Inicial", desc: "Diagnóstico completo das necessidades da diretoria e mapeamento dos desafios arquitetônicos." },
@@ -702,12 +722,15 @@ export function MeetingRoomsLanding() {
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
-              <div key={i} className="relative z-10 glass-card p-6 md:p-8 rounded-3xl text-center group hover:bg-white/[0.08] transition-colors">
-                <div className="w-16 h-16 mx-auto bg-black border border-white/10 rounded-full flex items-center justify-center mb-6 text-2xl font-black text-white/20 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors">
+              <div key={i} className={`relative z-10 glass-card p-6 md:p-8 rounded-3xl text-center group transition-all duration-700 ${activeStep === i ? 'bg-white/[0.05] border-emerald-500/30 shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)] scale-[1.02]' : 'hover:bg-white/[0.08] hover:scale-[1.01]'}`}>
+                <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 text-2xl font-black transition-all duration-700 ${activeStep === i ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)] scale-110' : activeStep > i ? 'bg-black border border-white/10 text-white/20' : 'bg-emerald-900/40 text-emerald-500/80 border border-emerald-500/20'}`}>
                   {item.step}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <h3 className={`text-xl font-bold mb-3 transition-colors duration-700 ${activeStep === i ? 'text-emerald-400' : 'text-white'}`}>{item.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
+                {activeStep === i && (
+                   <div className="absolute inset-0 rounded-3xl border border-emerald-500/20 animate-pulse pointer-events-none" />
+                )}
               </div>
             ))}
           </div>
