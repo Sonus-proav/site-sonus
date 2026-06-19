@@ -173,14 +173,14 @@ export function MeetingRoomsLanding() {
       {/* Soundwave Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#050505]" />
-        <img fetchPriority="high" src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
+        <img fetchPriority="high" decoding="async" src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80" />
       </div>
 
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
+      <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh] overflow-x-hidden md:overflow-visible">
         <div className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12]  shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
@@ -224,7 +224,7 @@ export function MeetingRoomsLanding() {
                 <div className="flex-1 flex flex-col md:flex-row p-3 md:p-6 gap-3 md:gap-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 to-black">
                   
                   {/* Sidebar */}
-                  <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0">
+                  <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto pb-3 md:pb-0 [&::-webkit-scrollbar]:hidden shrink-0 snap-x snap-mandatory px-1">
                     <div className="flex flex-row md:flex-col gap-2 md:gap-3 shrink-0">
                       {[
                         { icon: <Mic className="w-5 h-5" />, label: "Microfone Shure" },
@@ -232,7 +232,7 @@ export function MeetingRoomsLanding() {
                         { icon: <Camera className="w-5 h-5" />, label: "Câmeras Auto-Track" },
                         { icon: <Cast className="w-5 h-5" />, label: "Apresentação sem Fio" },
                       ].map((item, i) => (
-                        <button key={i} onClick={() => setActiveTab(item.label)} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 ${activeTab === item.label ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] ring-1 ring-blue-400' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
+                        <button key={i} onClick={() => setActiveTab(item.label)} aria-label={item.label} className={`flex items-center justify-center md:justify-start gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl transition-all min-h-[48px] min-w-[48px] shrink-0 snap-center ${activeTab === item.label ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] ring-1 ring-blue-400' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5'}`}>
                           <div className="shrink-0">{item.icon}</div>
                           <span className="hidden md:block font-medium text-[clamp(12px,1.5vw,14px)] text-left leading-tight">{item.label}</span>
                         </button>
@@ -266,7 +266,7 @@ export function MeetingRoomsLanding() {
                         <div className="w-full h-full flex flex-col bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative">
                           {/* Fake Meeting Video Area */}
                           <div className="flex-1 bg-black relative flex items-center justify-center overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" fetchPriority="high" loading="eager" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale" alt="Video Chamada" />
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale" alt="Video Chamada" />
                             <div className="relative z-10 bg-black/60  px-6 py-3 rounded-full border border-white/10 flex items-center gap-4">
                               <span className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
                               <span className="font-mono text-xl tracking-wider text-zinc-200">{formatTime(callTimer)}</span>
@@ -364,7 +364,7 @@ export function MeetingRoomsLanding() {
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
                       <div className="flex-1 bg-black rounded-3xl border border-white/5 relative overflow-hidden group">
                         {/* Fake Camera Feed Background */}
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop" loading="eager" fetchPriority="high" decoding="sync" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none" alt="Camera Feed"
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-all duration-1000 ease-in-out pointer-events-none" alt="Camera Feed"
                              style={{ 
                                transform: activeSpeaker === 0 ? 'scale(1.5) translate(10%, 10%)' : 
                                           activeSpeaker === 1 ? 'scale(1.5) translate(-10%, 10%)' :
@@ -436,7 +436,7 @@ export function MeetingRoomsLanding() {
       {/* Trust Badge */}
       <div className="w-full max-w-4xl mx-auto border-t border-white/5 pt-8 flex flex-col items-center">
         <p className="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-6">Tecnologia aprovada por grandes corporações:</p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
