@@ -830,22 +830,15 @@ export function MeetingRoomsLanding() {
                 {/* Background ambient inside chat */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-emerald-500/10 blur-[80px]" />
                 
-                {/* Sonus Message */}
-                <div className="animate-chat-bubble flex items-end gap-2 relative" style={{ animationDelay: '500ms' }}>
-                  <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg  font-light leading-relaxed">
-                    Olá! Vi que você tem interesse em atualizar a tecnologia das suas salas de reunião. Como posso ajudar?
-                  </div>
-                </div>
-                
                 {/* Client Message */}
-                <div className="animate-chat-bubble flex items-end justify-end gap-2 relative mt-2" style={{ animationDelay: '2000ms' }}>
+                <div className="animate-chat-bubble flex items-end justify-end gap-2 relative mt-2" style={{ animationDelay: '500ms' }}>
                   <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-sm p-4 rounded-2xl rounded-br-sm max-w-[85%] shadow-[0_10px_20px_-5px_rgba(16,185,129,0.3)] font-medium leading-relaxed">
                     Precisamos de uma solução para nossa sala de diretoria. Atualmente o áudio está ruim nas chamadas.
                   </div>
                 </div>
                 
                 {/* Sonus Message */}
-                <div className="animate-chat-bubble flex items-end gap-2 relative mt-2" style={{ animationDelay: '4000ms' }}>
+                <div className="animate-chat-bubble flex items-end gap-2 relative mt-2" style={{ animationDelay: '2500ms' }}>
                   <div className="bg-white/[0.05] text-zinc-200 text-sm p-4 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/[0.05] shadow-lg  font-light leading-relaxed">
                     Perfeito! Nós fazemos o projeto acústico e de captação invisível. Vamos agendar um call rápido para entendermos o espaço?
                   </div>
