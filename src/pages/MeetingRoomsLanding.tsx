@@ -128,6 +128,20 @@ export function MeetingRoomsLanding() {
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
 
+  const getLineStyle = (camId: number, speaker: number) => {
+    if (camId === 1) { // Cam 1
+      if (speaker === 0 || speaker === 1) return { transform: 'translateY(-50%) rotate(45deg)', width: '200px' };
+      if (speaker === 2) return { transform: 'translateY(-50%) rotate(57deg)', width: '230px' };
+      if (speaker === 3) return { transform: 'translateY(-50%) rotate(34deg)', width: '350px' };
+    }
+    if (camId === 3) { // Cam 3
+      if (speaker === 0) return { transform: 'translateY(-50%) rotate(-57deg)', width: '230px' };
+      if (speaker === 1) return { transform: 'translateY(-50%) rotate(-34deg)', width: '350px' };
+      if (speaker === 2 || speaker === 3) return { transform: 'translateY(-50%) rotate(-45deg)', width: '200px' };
+    }
+    return { transform: 'translateY(-50%) rotate(0deg)', width: '0px' };
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 ">
       <SEO 
@@ -297,8 +311,11 @@ export function MeetingRoomsLanding() {
                                    </span>
                                  </div>
                                  
-                                 {isLive && !isWide && (
-                                   <div className="hidden md:block absolute left-full ml-2 top-6 w-16 border-t-2 border-red-500/30 border-dashed origin-left pointer-events-none transition-all duration-500" style={{ transform: 'translateY(-50%)' }} />
+                                 {!isWide && (
+                                   <div 
+                                     className={`hidden md:block absolute left-full ml-2 top-1/2 border-t-2 border-dashed origin-left pointer-events-none transition-all duration-700 ease-in-out ${isLive ? 'border-red-500/50 opacity-100 shadow-[0_0_10px_rgba(239,68,68,0.3)]' : isMoving ? 'border-yellow-500/50 opacity-100 shadow-[0_0_10px_rgba(234,179,8,0.3)]' : 'border-white/0 opacity-0'}`} 
+                                     style={getLineStyle(camId, activeSpeaker)} 
+                                   />
                                  )}
                                </div>
                              )
