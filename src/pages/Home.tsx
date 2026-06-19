@@ -96,7 +96,7 @@ export function Home() {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] opacity-20 pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
         
         <div className="container px-4 md:px-6 relative z-10 mx-auto w-full max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:p-12 lg:gap-8 items-center">
             
             {/* Left Side: Impact Text */}
             <div className="lg:col-span-5 flex flex-col items-start text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 fill-mode-both">
@@ -108,7 +108,7 @@ export function Home() {
                 <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+              <h1 className="text-4xl sm:text-3xl md:text-5xl md:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
                 Inteligência Audiovisual <br className="hidden md:block" />
                 de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Alta Performance.</span>
               </h1>
@@ -210,7 +210,7 @@ export function Home() {
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-24 px-4">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-8 md:gap-16 lg:gap-24 px-4">
               <img 
                 src="/clientes/cresol.png" 
                 alt="Cresol" 
@@ -239,9 +239,9 @@ export function Home() {
       </section>
 
       {/* About Section */}
-      <section id="sobre" className="py-24 md:py-32 relative">
+      <section id="sobre" className="py-12 md:py-24 md:py-32 relative">
         <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <FadeIn direction="right">
               <div className="relative rounded-2xl overflow-hidden aspect-square md:aspect-video lg:aspect-square bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 transition-colors duration-300">
                 <div className="absolute inset-0 bg-gradient-to-tr from-slate-50/90 dark:from-black/80 to-transparent z-10 transition-colors duration-300" />
@@ -252,14 +252,14 @@ export function Home() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-8 left-8 z-20 bg-white/80 dark:bg-black/60 backdrop-blur-xl border border-black/10 dark:border-white/10 p-6 rounded-2xl transition-colors duration-300">
-                  <div className="text-5xl font-black text-primary mb-2">+28</div>
+                  <div className="text-3xl md:text-5xl font-black text-primary mb-2">+28</div>
                   <div className="text-zinc-800 dark:text-zinc-300 font-medium transition-colors duration-300">Anos de Mercado<br/>CNPJ consolidado</div>
                 </div>
               </div>
             </FadeIn>
             
             <FadeIn direction="left" delay={0.2} className="space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight transition-colors duration-300">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight transition-colors duration-300">
                 Nossa História, <br />
                 <span className="text-primary">Sua Segurança</span>
               </h2>
@@ -291,7 +291,7 @@ export function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-24 md:py-32 relative border-t border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300">
+      <section id="contato" className="py-12 md:py-24 md:py-32 relative border-t border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300">
         {/* Imagem de Fundo da Cresol com Baixa Opacidade */}
         <div 
           className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
@@ -306,7 +306,7 @@ export function Home() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <FadeIn className="max-w-2xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight mb-6 transition-colors duration-300">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight mb-6 transition-colors duration-300">
               Vamos conversar sobre o seu <span className="text-primary">Projeto</span>?
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-lg transition-colors duration-300">
@@ -314,7 +314,7 @@ export function Home() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/50 dark:bg-zinc-950/50 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/50 dark:bg-zinc-950/50 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Honeypot Invisível */}
               <div className="hidden" aria-hidden="true">

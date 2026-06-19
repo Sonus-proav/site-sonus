@@ -28,7 +28,7 @@ export function ThankYou() {
 
       <div className="container px-4 relative z-10 max-w-2xl mx-auto">
         <FadeIn>
-          <div className="bg-white/60 dark:bg-zinc-950/60 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300 text-center">
+          <div className="bg-white/60 dark:bg-zinc-950/60 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300 text-center">
             
             <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-primary" />

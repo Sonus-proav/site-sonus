@@ -45,7 +45,7 @@ export function AdminLogin() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
       
       <FadeIn className="w-full max-w-md relative z-10">
-        <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl border border-black/10 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl transition-colors duration-300">
+        <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl border border-black/10 dark:border-white/10 p-8 md:p-6 md:p-12 rounded-3xl shadow-2xl transition-colors duration-300">
           
           <div className="flex flex-col items-center justify-center mb-10 text-center">
             <div className="w-16 h-16 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(41,128,185,0.2)]">

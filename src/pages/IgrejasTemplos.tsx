@@ -190,7 +190,7 @@ export function IgrejasTemplos() {
               <span>Soluções para o Nicho Religioso</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
+            <h1 className="text-4xl md:text-4xl md:text-6xl lg:text-7xl text-balance font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
               A mensagem de fé precisa ser ouvida com clareza em todos os cantos do templo.
             </h1>
             
@@ -220,10 +220,10 @@ export function IgrejasTemplos() {
         </section>
 
         {/* Agitação - Dores */}
-        <section className="py-24 px-4 bg-zinc-950/50 border-b border-white/5 relative">
+        <section className="py-12 md:py-24 px-4 bg-zinc-950/50 border-b border-white/5 relative">
           <div className="max-w-7xl mx-auto">
             <FadeIn>
-              <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 tracking-tight">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-center mb-16 tracking-tight">
                 Os maiores obstáculos para uma <br className="hidden md:block"/><span className="text-amber-500">experiência espiritual imersiva</span>
               </h2>
             </FadeIn>
@@ -245,12 +245,12 @@ export function IgrejasTemplos() {
         </section>
 
         {/* Solução */}
-        <section className="py-24 px-4 relative overflow-hidden">
+        <section className="py-12 md:py-24 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-amber-900/10 to-transparent pointer-events-none" />
           <div className="max-w-7xl mx-auto relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
               <FadeIn>
-                <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
+                <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-6 tracking-tight">
                   A Tecnologia que <span className="text-amber-500">Serve ao Propósito</span>
                 </h2>
                 <p className="text-xl text-zinc-400 mb-10 font-light leading-relaxed">
@@ -291,10 +291,10 @@ export function IgrejasTemplos() {
         </section>
 
         {/* Prova Social */}
-        <section className="py-24 px-4 bg-zinc-950/80 border-y border-white/5">
+        <section className="py-12 md:py-24 px-4 bg-zinc-950/80 border-y border-white/5">
           <div className="max-w-7xl mx-auto">
             <FadeIn className="text-center mb-16 max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Nosso Histórico de Fé</h2>
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-6 tracking-tight">Nosso Histórico de Fé</h2>
               <p className="text-lg text-zinc-400 leading-relaxed">
                 A Sonus tem sido a escolha de confiança para a modernização acústica das maiores paróquias e matrizes da nossa região. Projetos entregues com respeito ao sagrado e excelência técnica.
               </p>
@@ -350,11 +350,11 @@ export function IgrejasTemplos() {
         </section>
 
         {/* Autoridade */}
-        <section className="py-24 px-4 relative overflow-hidden">
+        <section className="py-12 md:py-24 px-4 relative overflow-hidden">
           <div className="max-w-5xl mx-auto text-center relative z-10">
             <FadeIn>
               <ShieldCheck className="w-16 h-16 text-amber-500 mx-auto mb-8" />
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-6 tracking-tight">
                 28 Anos de Tradição e Excelência
               </h2>
               <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto mb-12">
@@ -372,15 +372,15 @@ export function IgrejasTemplos() {
         />
 
         {/* CTA / Formulário */}
-        <section id="contato" className="py-24 px-4 relative">
+        <section id="contato" className="py-12 md:py-24 px-4 relative">
           <div className="absolute inset-0 bg-amber-900/10 blur-3xl pointer-events-none" />
           <div className="max-w-3xl mx-auto relative z-10">
             <FadeIn className="text-center mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Pronto para elevar a mensagem?</h2>
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Pronto para elevar a mensagem?</h2>
               <p className="text-zinc-400 text-lg">Preencha os dados abaixo e agende uma consultoria especializada para o seu templo.</p>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 md:p-12 shadow-2xl">
+            <FadeIn delay={0.2} className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 md:p-6 md:p-12 shadow-2xl">
               {isSuccess ? (
                 <div className="text-center py-12">
                   <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">

@@ -180,7 +180,7 @@ export function MeetingRoomsLanding() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh] overflow-x-hidden md:overflow-visible">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh] overflow-x-hidden md:overflow-visible">
         <div className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12]  shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
@@ -190,7 +190,7 @@ export function MeetingRoomsLanding() {
             <span className="text-sm font-medium tracking-wide text-zinc-300">O Padrão Ouro em Áudio Corporativo</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
+          <h1 className="text-4xl md:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
             A Tecnologia que a Sua Diretoria Exige. <br className="hidden md:block"/> A Estabilidade que a sua TI Precisa.
           </h1>
           
@@ -289,7 +289,7 @@ export function MeetingRoomsLanding() {
                     </div>
                   ) : activeTab === "Microfone Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
-                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 pt-16 pb-20 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
+                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6 md:p-12 px-4 pt-16 pb-20 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
                          
                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.8)_0%,transparent_60%)] pointer-events-none" />
                          
@@ -436,7 +436,7 @@ export function MeetingRoomsLanding() {
       {/* Trust Badge */}
       <div className="w-full max-w-4xl mx-auto border-t border-white/5 pt-8 flex flex-col items-center">
         <p className="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-6">Tecnologia aprovada por grandes corporações:</p>
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
@@ -456,7 +456,7 @@ export function MeetingRoomsLanding() {
       <section className="relative py-12 px-4 border-t border-b border-white/5 bg-white/[0.01]  z-10">
         <div className="max-w-6xl mx-auto">
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-8 text-center">Ecossistema Oficial de Parceiros</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500">
             <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
             <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
             <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
@@ -468,7 +468,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Scalability Section */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
+      <section className="relative py-12 md:py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
         <div className="max-w-7xl mx-auto space-y-20">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black tracking-tight mb-6">
@@ -479,7 +479,7 @@ export function MeetingRoomsLanding() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 md:p-12">
             {/* Huddle Room */}
             <div className="glass-card rounded-[2rem] overflow-hidden group">
               <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Huddle Room" />
@@ -505,12 +505,12 @@ export function MeetingRoomsLanding() {
             {/* Large Room / 18m Boardroom */}
             <div className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
               <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
-              <div className="relative z-10 p-6 md:p-16 lg:p-20 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
+              <div className="relative z-10 p-6 md:p-16 lg:p-20 flex flex-col md:flex-row gap-8 lg:gap-8 md:gap-16 items-center">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
                     Alta Tecnologia Sonus
                   </div>
-                  <h3 className="text-3xl md:text-5xl font-black leading-tight">
+                  <h3 className="text-3xl md:text-3xl md:text-5xl font-black leading-tight">
                     Boardrooms Extensas <br className="hidden lg:block" /> (Mesas de 18 Metros)
                   </h3>
                   <p className="text-zinc-300 text-lg leading-relaxed">
@@ -549,7 +549,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Pain vs Solution Section */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
+      <section className="relative py-12 md:py-24 px-4 md:px-6 z-10 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
@@ -562,7 +562,7 @@ export function MeetingRoomsLanding() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Old Way */}
-            <div className="glass-card border-red-500/20 rounded-3xl p-6 md:p-12">
+            <div className="glass-card border-red-500/20 rounded-3xl p-6 md:p-6 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
                   <XCircle className="w-6 h-6" />
@@ -586,7 +586,7 @@ export function MeetingRoomsLanding() {
             </div>
 
             {/* The Sonus Way */}
-            <div className="glass-card border-emerald-500/20 rounded-3xl p-6 md:p-12">
+            <div className="glass-card border-emerald-500/20 rounded-3xl p-6 md:p-6 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
                   <CheckCircle2 className="w-6 h-6" />
@@ -619,7 +619,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Benefits Bento Box */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
+      <section className="relative py-12 md:py-24 px-4 md:px-6 z-10 bg-[#020202] border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
@@ -682,7 +682,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* O Nosso Método */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#030303] border-t border-white/5">
+      <section className="relative py-12 md:py-24 px-4 md:px-6 z-10 bg-[#030303] border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-[clamp(2rem,3vw,3rem)] font-black tracking-tight mb-4">
@@ -694,7 +694,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="hidden md:block absolute top-6 md:p-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             
             {[
               { step: "01", title: "Consultoria Inicial", desc: "Diagnóstico completo das necessidades da diretoria e mapeamento dos desafios arquitetônicos." },
@@ -721,7 +721,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       {/* Projetos Executados Section */}
-      <section className="relative py-24 px-4 md:px-6 z-10 bg-[#050505]">
+      <section className="relative py-12 md:py-24 px-4 md:px-6 z-10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
@@ -740,7 +740,7 @@ export function MeetingRoomsLanding() {
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Sala de Reunião Cresol Baser" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
-              <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end">
+              <div className="absolute inset-0 p-6 md:p-6 md:p-12 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-orange-500/20  rounded-full text-[10px] md:text-xs font-bold text-orange-400 uppercase tracking-wider border border-orange-500/20">Cresol Baser</span>
                   <span className="px-3 py-1 bg-blue-500/20  rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Projeto Q-SYS</span>
@@ -778,7 +778,7 @@ export function MeetingRoomsLanding() {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </div>
 
-        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-8 md:gap-16 lg:gap-24">
           
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
@@ -871,10 +871,10 @@ export function MeetingRoomsLanding() {
 
       
       {/* Contact Section */}
-      <section id="contato" className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
+      <section id="contato" className="py-12 md:py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
         <div className="container px-4 md:px-6 relative z-10">
           <FadeIn className="max-w-2xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
               Vamos conversar sobre o seu <span className="text-emerald-500">Projeto</span>?
             </h2>
             <p className="text-zinc-400 text-lg transition-colors duration-300">
@@ -882,7 +882,7 @@ export function MeetingRoomsLanding() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:p-12 shadow-2xl transition-colors duration-300">
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
             {isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">

@@ -100,7 +100,7 @@ export function QSysLanding() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-4 md:px-6 z-10 flex flex-col items-center justify-center min-h-[90vh]">
         <div className="max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.2)] mb-6 hover:bg-white/10 transition-colors cursor-default">
             <span className="relative flex h-2.5 w-2.5">
@@ -430,7 +430,7 @@ export function QSysLanding() {
                       {/* D-Pad PTZ Controls */}
                       <div className={`relative z-10 flex flex-col items-center justify-center gap-2 md:gap-4 w-full mt-auto mb-4 md:mb-6 transition-all duration-500 ${aiTracking ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}`}>
                         <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronUp className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
-                        <div className="flex gap-6 md:gap-12 items-center">
+                        <div className="flex gap-6 md:gap-6 md:p-12 items-center">
                           <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
                           <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-blue-600/30 border border-blue-500/50 flex items-center justify-center cursor-pointer hover:bg-blue-600/50 active:scale-90 transition-all"><Target className="w-4 h-4 md:w-6 md:h-6 text-blue-400" /></div>
                           <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 active:bg-blue-600 active:scale-90 transition-all"><ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" /></div>
@@ -550,12 +550,12 @@ export function QSysLanding() {
 
       {/* Trust Bar / Certificações e Ecossistema */}
       <section className="relative py-16 px-4 border-t border-b border-white/5 bg-white/[0.02] z-10">
-        <div className="max-w-6xl mx-auto flex flex-col gap-12">
+        <div className="max-w-6xl mx-auto flex flex-col gap-6 md:p-12">
           
           {/* Certificações Sonus */}
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center">Equipe Técnica Oficialmente Certificada Q-SYS</p>
-            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-90">
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-6 md:p-12 opacity-90">
               <img src={certLevel1} alt="Q-SYS Level 1 Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
               <img src={certVision} alt="Q-SYS Visionsuite Certified" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
               <img src={certSales} alt="Q-SYS Sales Professional" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform duration-300" />
@@ -567,7 +567,7 @@ export function QSysLanding() {
           {/* Ecossistema */}
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center">Integração Nativa Garantida</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 hover:opacity-100 transition-opacity duration-500">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-8 md:gap-16 opacity-40 hover:opacity-100 transition-opacity duration-500">
               <span className="text-xl md:text-2xl font-black tracking-tighter text-white">Microsoft Teams</span>
               <img src="/zoom-logo.png" alt="Zoom" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
               <img src="/google-meet-logo.png" alt="Google Meet" className="h-6 md:h-10 w-auto object-contain brightness-0 invert" />
@@ -583,7 +583,7 @@ export function QSysLanding() {
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 leading-normal">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 leading-normal">
               Por que escolher o Ecossistema Q-SYS?
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
@@ -636,10 +636,10 @@ export function QSysLanding() {
       </section>
 
       {/* Global Success Cases */}
-      <section className="py-24 px-4 md:px-6 z-10 relative bg-[#050505]">
+      <section className="py-12 md:py-24 px-4 md:px-6 z-10 relative bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 leading-normal">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-4 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 leading-normal">
               Poder de Fogo em Escala Global
             </h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto font-light text-balance">
@@ -729,12 +729,12 @@ export function QSysLanding() {
       {/* Scenarios - Horizontal Layout */}
       <section className="py-32 px-4 md:px-6 z-10 relative bg-white/[0.02] border-y border-white/[0.06] shadow-inner">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="space-y-8">
               <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 font-medium text-sm border border-blue-500/20">
                 Experiência de Usuário
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold leading-tight">
                 Um Toque. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-zinc-600">A Sala Perfeita.</span>
               </h2>
@@ -804,12 +804,12 @@ export function QSysLanding() {
       {/* CTA Section */}
       <section className="py-32 px-4 md:px-6 z-10 relative">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-[3rem] p-12 md:p-20 glass-card-strong bg-gradient-to-br from-blue-600/40 to-purple-700/40 text-center relative overflow-hidden border border-white/20 shadow-2xl">
+          <div className="rounded-[3rem] p-6 md:p-12 md:p-20 glass-card-strong bg-gradient-to-br from-blue-600/40 to-purple-700/40 text-center relative overflow-hidden border border-white/20 shadow-2xl">
             {/* Glass Highlights */}
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             
             <div className="relative z-10 space-y-8 flex flex-col items-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-white leading-tight">
                 Tecnologia de Ponta.<br />
                 Padrão Sonus de Qualidade.
               </h2>
@@ -818,7 +818,7 @@ export function QSysLanding() {
               </p>
               
               <div className="pt-8 w-full sm:w-auto">
-                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap ">
+                <Button onClick={handleWhatsApp} size="lg" className="h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center  ">
                   Consultoria Gratuita Q-SYS
                 </Button>
               </div>
@@ -841,10 +841,10 @@ export function QSysLanding() {
       />
 
       {/* Contact Section */}
-      <section id="contato" className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
+      <section id="contato" className="py-12 md:py-24 md:py-32 relative border-t border-white/5 overflow-hidden transition-colors duration-300">
         <div className="container px-4 md:px-6 relative z-10">
           <FadeIn className="max-w-2xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 transition-colors duration-300">
               Vamos conversar sobre o seu <span className="text-blue-500">Projeto</span>?
             </h2>
             <p className="text-zinc-400 text-lg transition-colors duration-300">
@@ -852,7 +852,7 @@ export function QSysLanding() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
             {isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">

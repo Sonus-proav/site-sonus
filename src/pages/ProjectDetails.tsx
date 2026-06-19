@@ -61,13 +61,13 @@ export function ProjectDetails() {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-32 pb-24">
+      <div className="min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="container px-4 md:px-6">
           <Skeleton className="w-48 h-10 rounded-full mb-8" />
-          <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <article className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:p-12 items-start">
             <Skeleton className="w-full aspect-[4/3] rounded-2xl" />
             <div className="flex flex-col h-full justify-center">
-              <div className="bg-white/50 dark:bg-black/40 border border-black/10 dark:border-white/10 p-8 md:p-12 rounded-3xl transition-colors duration-300">
+              <div className="bg-white/50 dark:bg-black/40 border border-black/10 dark:border-white/10 p-8 md:p-6 md:p-12 rounded-3xl transition-colors duration-300">
                 <Skeleton className="w-32 h-4 mb-4" />
                 <Skeleton className="w-3/4 h-10 mb-4" />
                 <Skeleton className="w-full h-32" />
@@ -83,7 +83,7 @@ export function ProjectDetails() {
 
   if (!project) {
     return (
-      <div className="min-h-screen pt-32 pb-24 flex flex-col items-center justify-center">
+      <div className="min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 flex flex-col items-center justify-center">
         <SEO 
           title="Projeto não encontrado | Sonus" 
           description="O projeto que você está procurando não existe." 
@@ -97,7 +97,7 @@ export function ProjectDetails() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-24">
+    <div className="min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
       <SEO 
         title={`${project.title} | Portfólio Sonus`} 
         description={project.description?.substring(0, 155) + "..." || "Conheça mais este incrível projeto audiovisual realizado pela Sonus."} 
@@ -123,7 +123,7 @@ export function ProjectDetails() {
           </Link>
         </FadeIn>
 
-        <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <article className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:p-12 items-start">
           {/* Left Column: Image Gallery */}
           <FadeIn delay={0.1}>
             <div 
@@ -201,7 +201,7 @@ export function ProjectDetails() {
                 ))}
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-black dark:text-white mb-8 leading-snug transition-colors duration-300 relative z-10">
+              <h1 className="text-3xl md:text-3xl md:text-5xl font-bold tracking-tight text-black dark:text-white mb-8 leading-snug transition-colors duration-300 relative z-10">
                 {project.title}
               </h1>
               

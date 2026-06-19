@@ -32,9 +32,9 @@ export function Projects() {
         description="Conheça nossos cases de sucesso em sonorização e automação corporativa para empresas, auditórios e igrejas." 
         url="https://sonusproaudio.com.br/projetos"
       />
-      <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-20">
+      <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-10 md:py-20">
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
+          <h1 className="text-4xl md:text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
             Nosso Portfólio Profissional
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light transition-colors duration-300">

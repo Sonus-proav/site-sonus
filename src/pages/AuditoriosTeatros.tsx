@@ -92,7 +92,7 @@ export function AuditoriosTeatros() {
       <Navbar />
 
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-24 px-4 md:px-6 z-10 min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-4 md:px-6 z-10 min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <img fetchPriority="high" src="/auditorio-sonus.jpg" className="w-full h-full object-cover opacity-30 object-[center_60%]" alt="Teatro com iluminação moderna" />
@@ -100,7 +100,7 @@ export function AuditoriosTeatros() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent" />
         </div>
 
-        <div className="container max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
+        <div className="container max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-6 md:p-12">
           <div className="w-full md:w-3/5 space-y-8 text-center md:text-left">
             <FadeIn>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
@@ -160,10 +160,10 @@ export function AuditoriosTeatros() {
       </section>
 
       {/* 2. DORES / AGITAÇÃO */}
-      <section className="py-24 bg-[#050505] relative z-10 px-4 md:px-6 border-t border-white/5">
+      <section className="py-12 md:py-24 bg-[#050505] relative z-10 px-4 md:px-6 border-t border-white/5">
         <div className="container max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold text-center mb-4">
               O preço de uma integração amadora <br className="hidden md:block" />
               é o <span className="text-red-500/90">fracasso do seu evento</span>.
             </h2>
@@ -213,9 +213,9 @@ export function AuditoriosTeatros() {
       </section>
 
       {/* 3. A SOLUÇÃO (ECOSSISTEMA) */}
-      <section className="py-24 bg-gradient-to-b from-blue-950/20 to-[#050505] relative z-10 px-4 md:px-6">
+      <section className="py-12 md:py-24 bg-gradient-to-b from-blue-950/20 to-[#050505] relative z-10 px-4 md:px-6">
         <div className="container max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
             
             {/* Esquerda: Mockup */}
             <FadeIn className="order-2 lg:order-1">
@@ -297,7 +297,7 @@ export function AuditoriosTeatros() {
 
             {/* Direita: Copy */}
             <FadeIn delay={0.2} className="order-1 lg:order-2 space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              <h2 className="text-3xl md:text-3xl md:text-5xl font-bold leading-tight">
                 Controle Total em<br />
                 <span className="text-primary">Uma Única Tela.</span>
               </h2>
@@ -337,18 +337,18 @@ export function AuditoriosTeatros() {
       </section>
 
       {/* 4. PROVA SOCIAL */}
-      <section className="py-24 bg-[#050505] relative z-10 px-4 md:px-6">
+      <section className="py-12 md:py-24 bg-[#050505] relative z-10 px-4 md:px-6">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         
         <div className="container max-w-6xl mx-auto relative z-10">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Onde a Exigência é Máxima,<br />a Sonus é a Escolha.</h2>
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-6">Onde a Exigência é Máxima,<br />a Sonus é a Escolha.</h2>
           </FadeIn>
 
           <div className="space-y-12 md:space-y-24">
             
             {/* Caso 1: Teatro UNISEP */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 md:gap-16 items-center">
               <FadeIn className="rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 relative group shadow-2xl">
                 <img src="https://firebasestorage.googleapis.com/v0/b/sonus-site-ae590.firebasestorage.app/o/projects%2F1779662520044-audiotriounisep.jpg?alt=media&token=d0dd2f7b-6cca-49f1-b120-ce746956cd94" alt="Teatro UNISEP" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
@@ -369,7 +369,7 @@ export function AuditoriosTeatros() {
             </div>
 
             {/* Caso 2: CRESOL */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 md:gap-16 items-center">
               <FadeIn className="order-2 md:order-1 space-y-6">
                 <div className="inline-block bg-primary/20 text-primary text-xs font-bold uppercase px-3 py-1 rounded border border-primary/30 backdrop-blur-sm">O Desafio</div>
                 <p className="text-xl text-zinc-300 leading-relaxed font-medium">Garantir conforto acústico e foco durante treinamentos e convenções extensas, mantendo um alto custo-benefício.</p>
@@ -402,9 +402,9 @@ export function AuditoriosTeatros() {
       </section>
 
       {/* 5. AUTORIDADE */}
-      <section className="py-20 bg-white/[0.02] border-y border-white/5 relative z-10 px-4">
+      <section className="py-10 md:py-20 bg-white/[0.02] border-y border-white/5 relative z-10 px-4">
         <div className="container max-w-5xl mx-auto">
-          <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-6 md:p-12 items-center">
             <div className="space-y-6 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">28 Anos de Excelência Audiovisual Consolidada.</h2>
               <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-6">
@@ -435,17 +435,17 @@ export function AuditoriosTeatros() {
       />
 
       {/* 6. CONVERSÃO FINAL (Formulário) */}
-      <section id="consultoria" className="py-24 relative z-10 px-4 md:px-6 bg-[#050505]">
+      <section id="consultoria" className="py-12 md:py-24 relative z-10 px-4 md:px-6 bg-[#050505]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(41,128,185,0.1),transparent_50%)] pointer-events-none" />
         <div className="container max-w-3xl mx-auto relative z-10">
           <FadeIn className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Pronto para elevar o nível do seu espaço?</h2>
+            <h2 className="text-3xl md:text-3xl md:text-5xl font-bold mb-4">Pronto para elevar o nível do seu espaço?</h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
               Descreva brevemente seu projeto e nossa equipe de especialistas elaborará uma análise técnica para sua empresa.
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
+          <FadeIn delay={0.2} className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-6 md:p-12 shadow-2xl">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Honeypot Invisível */}
               <div className="hidden" aria-hidden="true">
