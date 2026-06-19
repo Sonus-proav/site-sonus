@@ -48,7 +48,7 @@ export function WarrantyBanner({ title, description, variant = 'default' }: Warr
           <div className="mb-8 relative">
             <div className="absolute inset-0 bg-zinc-300/10 blur-2xl rounded-full" />
             <div className="bg-gradient-to-b from-zinc-800 to-black p-5 rounded-full border border-zinc-600/50 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative z-10 flex items-center justify-center">
-              <ShieldCheck className="w-10 h-10 md:w-12 md:h-12 text-zinc-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" strokeWidth={1} />
+              <ShieldCheck className="w-10 h-10 md:w-12 md:h-12 text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]" strokeWidth={1.5} />
             </div>
           </div>
           <h3 className="text-2xl md:text-4xl font-light tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 mb-5 uppercase">

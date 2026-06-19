@@ -184,11 +184,11 @@ export function MeetingRoomsLanding() {
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 leading-tight pb-2">
-            Reuniões Híbridas <br className="hidden md:block"/> Sem Falhas e Sem Atrasos.
+            A Tecnologia que a Sua Diretoria Exige. <br className="hidden md:block"/> A Estabilidade que a sua TI Precisa.
           </h1>
           
           <p className="text-lg md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
-            Chega de perder os primeiros 15 minutos de reunião tentando fazer o som funcionar. Integração perfeita com <strong className="text-white font-medium">Microsoft Teams, Zoom e Google Meet.</strong>
+            Chega de perder os primeiros 15 minutos de reunião tentando fazer o som funcionar. A união perfeita entre o ecossistema <strong>Q-SYS</strong> e a captação <strong>Shure</strong>, totalmente homologada para <strong className="text-white font-medium">Microsoft Teams, Zoom e Google Meet.</strong>
           </p>
 
           {/* Interactive Mockup Container */}
@@ -420,10 +420,22 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className=" h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-white text-blue-700 hover:bg-zinc-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+            <Button onClick={handleWhatsApp} size="lg" className=" h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-emerald-600 text-white hover:bg-emerald-500 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
               Consultoria Online Gratuita
             </Button>
           </div>
+
+          
+      {/* Trust Badge */}
+      <div className="w-full max-w-4xl mx-auto border-t border-white/5 pt-8 flex flex-col items-center">
+        <p className="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-6">Tecnologia aprovada por grandes corporações:</p>
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+          <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
+          <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
+          <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
+          <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
+        </div>
+      </div>
 
           <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/60 text-sm font-medium">
             <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Soluções Microsoft Teams Rooms</span>
@@ -464,7 +476,7 @@ export function MeetingRoomsLanding() {
             {/* Huddle Room */}
             <div className="glass-card rounded-[2rem] overflow-hidden group">
               <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Huddle Room" />
-              <div className="p-8 md:p-10">
+              <div className="p-10 md:p-14">
                 <h3 className="text-2xl font-bold mb-4">Salas Pequenas (Huddle)</h3>
                 <p className="text-zinc-400 leading-relaxed">
                   Para reuniões ágeis, focamos em sistemas All-in-One ou pequenos processadores Q-SYS Core Nano. Conexão rápida e BYOD, permitindo que a equipe conecte o laptop e comece a reunião em segundos, com áudio de classe empresarial.
@@ -475,7 +487,7 @@ export function MeetingRoomsLanding() {
             {/* Medium Room */}
             <div className="glass-card rounded-[2rem] overflow-hidden group">
               <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Salas de Conferência" />
-              <div className="p-8 md:p-10">
+              <div className="p-10 md:p-14">
                 <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
                 <p className="text-zinc-400 leading-relaxed">
                   O padrão ouro corporativo. Um único microfone de teto Shure MXA920 cobre toda a sala, limpando a mesa de fios. O Q-SYS distribui o áudio perfeitamente e gerencia a câmera PTZ que segue o locutor ativamente.
@@ -486,7 +498,7 @@ export function MeetingRoomsLanding() {
             {/* Large Room / 18m Boardroom */}
             <div className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
               <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
-              <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
+              <div className="relative z-10 p-10 md:p-16 lg:p-20 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
                     Alta Tecnologia Sonus
@@ -537,7 +549,7 @@ export function MeetingRoomsLanding() {
               O fim dos 15 minutos perdidos antes de cada reunião.
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Nosso método elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.
+              Nosso método elimina a frustração do usuário final, garantindo que o tempo da diretoria seja gasto em decisões, não tentando fazer o áudio funcionar.<br/><br/><span className="text-emerald-400 font-bold block mt-4 bg-emerald-500/10 p-4 rounded-xl border border-emerald-500/20">Calcule o custo da hora de 5 diretores parados tentando fazer o áudio funcionar. Nós zeramos essa conta.</span>
             </p>
           </div>
 
@@ -592,7 +604,7 @@ export function MeetingRoomsLanding() {
           </div>
           
           <div className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(37,99,235,0.2)] transition-all hover:scale-105 active:scale-95">
               Quero o Padrão Sonus na Minha Empresa
             </Button>
           </div>
@@ -717,7 +729,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="max-w-4xl mx-auto mt-12">
-            <div className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-[21/9]">
+            <div className="group relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/5] md:aspect-[21/9] flex items-center">
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Sala de Reunião Cresol Baser" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
@@ -729,14 +741,14 @@ export function MeetingRoomsLanding() {
                 </div>
                 <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">Sala de Reunião dos Diretores</h3>
                 <p className="text-zinc-300 text-sm md:text-base max-w-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-500">
-                  Projeto de alto padrão executado para a Cresol Baser, integrando videoconferência avançada e captação de áudio invisível para reuniões executivas e decisões estratégicas sem barreiras tecnológicas.
+                  <strong>Desafio Resolvido:</strong> Eliminar o eco acústico em uma mesa extensa e garantir que a voz de qualquer diretor fosse captada sem necessidade de microfones de mesa, utilizando a tecnologia invisível Shure + Q-SYS.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="flex justify-center mt-16 relative z-10">
-            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-white hover:bg-zinc-200 text-black text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
+            <Button onClick={handleWhatsApp} size="lg" className=" h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 active:scale-95">
               Transformar Minha Sala
             </Button>
           </div>
@@ -746,8 +758,8 @@ export function MeetingRoomsLanding() {
       {/* Warranty Banner (Estratégico) */}
       <WarrantyBanner 
         variant="corporate"
-        title="3 Anos de Garantia nas Salas de Reunião"
-        description="Garantimos a disponibilidade tecnológica das suas salas. Nossa instalação corporativa conta com 3 anos de cobertura total contra qualquer falha de infraestrutura. Reuniões sem interrupção e o investimento da sua empresa 100% protegido."
+        title="5 Anos de Garantia nas Salas de Reunião"
+        description="Garantimos a disponibilidade tecnológica das suas salas. Nossa instalação corporativa conta com 5 anos de cobertura total contra qualquer falha de infraestrutura. Reuniões sem interrupção e o investimento da sua empresa 100% protegido."
       />
 
       {/* Bottom CTA Banner (Holographic Glass Design) */}
@@ -920,7 +932,7 @@ export function MeetingRoomsLanding() {
                 )}
 
                 <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
-                  {isSubmitting ? "Enviando..." : "Solicitar Contato"}
+                  {isSubmitting ? "Enviando..." : "Falar com Especialista em Projetos"}
                 </Button>
               </form>
             )}
