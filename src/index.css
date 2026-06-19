@@ -155,8 +155,7 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .animate-chat-bubble {
-  animation: chat-bubble-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
+  animation: chat-bubble-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes type-dot {
   0%, 100% { opacity: 0.4; transform: scale(1); }
