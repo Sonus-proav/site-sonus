@@ -47,15 +47,13 @@ export function ProjectDetails() {
   }
 
   useEffect(() => {
-    if (!getCachedProjects()) {
-      getProjects().then(projects => {
-        setProject(projects.find(p => p.id === Number(id)) || null)
-        setLoading(false)
-      }).catch(() => {
-        setProject(null)
-        setLoading(false)
-      })
-    }
+    getProjects().then(projects => {
+      setProject(projects.find(p => p.id === Number(id)) || null)
+      setLoading(false)
+    }).catch(() => {
+      setProject(null)
+      setLoading(false)
+    })
   }, [id])
 
 

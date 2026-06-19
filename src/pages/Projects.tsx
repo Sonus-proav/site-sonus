@@ -14,15 +14,13 @@ export function Projects() {
   const [isLoading, setIsLoading] = useState(!getCachedProjects())
 
   useEffect(() => {
-    if (!getCachedProjects()) {
-      getProjects().then(data => {
-        setProjectsData(data)
-        setIsLoading(false)
-      }).catch(() => {
-        setProjectsData([])
-        setIsLoading(false)
-      })
-    }
+    getProjects().then(data => {
+      setProjectsData(data)
+      setIsLoading(false)
+    }).catch(() => {
+      setProjectsData([])
+      setIsLoading(false)
+    })
   }, [])
 
   return (
