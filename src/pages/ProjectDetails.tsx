@@ -123,7 +123,7 @@ export function ProjectDetails() {
 
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:p-12 items-start">
           {/* Left Column: Image Gallery */}
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.1} className="lg:sticky lg:top-28 z-10">
             <div 
               className="rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 relative group transition-colors duration-300"
               onTouchStart={onTouchStart}
