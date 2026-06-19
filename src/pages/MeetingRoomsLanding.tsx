@@ -313,7 +313,7 @@ export function MeetingRoomsLanding() {
                                  
                                  {!isWide && (
                                    <div 
-                                     className={`hidden md:block absolute left-full ml-2 top-1/2 border-t-2 border-dashed origin-left pointer-events-none transition-all duration-700 ease-in-out ${isLive ? 'border-red-500/50 opacity-100 shadow-[0_0_10px_rgba(239,68,68,0.3)]' : isMoving ? 'border-yellow-500/50 opacity-100 shadow-[0_0_10px_rgba(234,179,8,0.3)]' : 'border-white/0 opacity-0'}`} 
+                                     className={`hidden md:block absolute left-full ml-2 top-1/2 h-[2px] rounded-full origin-left pointer-events-none transition-all duration-700 ease-in-out z-10 ${isLive ? 'bg-gradient-to-r from-red-500 to-transparent shadow-[0_0_15px_rgba(239,68,68,0.8)] opacity-100' : isMoving ? 'bg-gradient-to-r from-yellow-400 to-transparent shadow-[0_0_15px_rgba(250,204,21,0.8)] opacity-100' : 'bg-transparent opacity-0'}`} 
                                      style={getLineStyle(camId, activeSpeaker)} 
                                    />
                                  )}
