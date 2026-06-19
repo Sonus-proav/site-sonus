@@ -244,7 +244,7 @@ export function MeetingRoomsLanding() {
                   {activeTab === "Videoconferência" ? (
                     <div className="flex-1 flex flex-col items-center justify-center gap-6 animate-in fade-in duration-300">
                       {callState === "idle" ? (
-                        <div className="w-full max-w-md bg-white/[0.02] border border-white/5 rounded-3xl p-8 flex flex-col items-center shadow-2xl">
+                        <div className="w-full max-w-md bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col items-center shadow-2xl">
                           <div className="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mb-6 ring-1 ring-blue-500/50">
                             <Users className="w-10 h-10 text-blue-400" />
                           </div>
@@ -255,7 +255,7 @@ export function MeetingRoomsLanding() {
                           </button>
                         </div>
                       ) : callState === "ringing" ? (
-                        <div className="w-full max-w-md bg-white/[0.02] border border-white/5 rounded-3xl p-8 flex flex-col items-center shadow-2xl">
+                        <div className="w-full max-w-md bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col items-center shadow-2xl">
                           <div className="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mb-6 ring-1 ring-blue-500/50 animate-pulse">
                             <PhoneCall className="w-10 h-10 text-blue-400 animate-bounce" />
                           </div>
@@ -289,7 +289,7 @@ export function MeetingRoomsLanding() {
                     </div>
                   ) : activeTab === "Microfone Shure" ? (
                     <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
-                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 pt-20 pb-24 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
+                       <div className="flex-1 bg-black/50 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 pt-16 pb-20 md:px-10 md:pt-16 md:pb-24 min-h-[450px]">
                          
                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.8)_0%,transparent_60%)] pointer-events-none" />
                          
@@ -298,18 +298,18 @@ export function MeetingRoomsLanding() {
                            Integração Shure + Q-SYS Auto Framing
                          </h3>
 
-                         <div className="flex flex-row md:flex-col gap-6 md:gap-8 z-20 w-full md:w-auto overflow-x-auto md:overflow-visible pb-4 md:pb-0 justify-start shrink-0">
+                         <div className="flex flex-col gap-4 md:gap-8 z-20 w-full md:w-auto pb-4 md:pb-0 justify-start shrink-0">
                            {[1, 2, 3].map(camId => {
                              const isLive = cameraState.liveCam === camId;
                              const isMoving = cameraState.movingCam === camId;
                              const isWide = camId === 2;
 
                              return (
-                               <div key={camId} className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 relative min-w-[100px] md:min-w-0">
+                               <div key={camId} className="flex flex-row items-center gap-3 relative w-full md:w-auto">
                                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center border-2 transition-all duration-300 shrink-0 ${isLive ? 'border-red-500 bg-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-100' : 'border-white/10 bg-black scale-100'}`}>
                                    <Camera className={`w-5 h-5 md:w-6 md:h-6 ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400 animate-pulse' : 'text-zinc-600'}`} />
                                  </div>
-                                 <div className="flex flex-col text-center md:text-left w-[95px] shrink-0">
+                                 <div className="flex flex-col text-left w-[95px] shrink-0">
                                    <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400' : 'text-zinc-500'}`}>
                                      {isWide ? 'Cam 2 (Geral)' : `Cam ${camId} (PTZ)`}
                                    </span>
@@ -329,7 +329,7 @@ export function MeetingRoomsLanding() {
                            })}
                          </div>
 
-                         <div className="relative w-64 h-40 md:w-80 md:h-48 border-2 border-white/10 rounded-[3rem] flex items-center justify-center shrink-0 z-20 mt-4 md:mt-0">
+                         <div className="relative w-52 h-32 md:w-80 md:h-48 border-2 border-white/10 rounded-[2.5rem] md:rounded-[3rem] flex items-center justify-center shrink-0 z-20 mt-8 md:mt-0">
                             <div className="absolute inset-2 bg-white/5 rounded-[2.5rem] " />
                             
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-emerald-500/30 rounded-md bg-emerald-500/10 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)] z-30">
@@ -352,7 +352,7 @@ export function MeetingRoomsLanding() {
                               </div>
                             ))}
                             
-                            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[120%] text-center">
+                            <div className="absolute -bottom-12 md:-bottom-16 left-1/2 -translate-x-1/2 w-[140%] md:w-[120%] text-center">
                                <p className="text-emerald-400 text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-500/20 inline-block shadow-lg">
                                  Lóbulo direcionado ao Locutor {activeSpeaker + 1}
                                </p>
@@ -427,7 +427,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="pt-8 w-full sm:w-auto">
-            <Button onClick={handleWhatsApp} size="lg" className=" h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-emerald-600 text-white hover:bg-emerald-500 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center whitespace-nowrap">
+            <Button onClick={handleWhatsApp} size="lg" className=" h-16 px-4 md:px-10 text-[clamp(14px,2vw,20px)] font-bold rounded-full bg-emerald-600 text-white hover:bg-emerald-500 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-all w-full flex items-center justify-center ">
               Consultoria Online Gratuita
             </Button>
           </div>
@@ -436,7 +436,7 @@ export function MeetingRoomsLanding() {
       {/* Trust Badge */}
       <div className="w-full max-w-4xl mx-auto border-t border-white/5 pt-8 flex flex-col items-center">
         <p className="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-6">Tecnologia aprovada por grandes corporações:</p>
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
           <div className="h-8 w-24 bg-white/10 rounded animate-pulse" title="Logo Placeholder"></div>
@@ -483,7 +483,7 @@ export function MeetingRoomsLanding() {
             {/* Huddle Room */}
             <div className="glass-card rounded-[2rem] overflow-hidden group">
               <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Huddle Room" />
-              <div className="p-10 md:p-14">
+              <div className="p-6 md:p-14">
                 <h3 className="text-2xl font-bold mb-4">Salas Pequenas (Huddle)</h3>
                 <p className="text-zinc-400 leading-relaxed">
                   Para reuniões ágeis, focamos em sistemas All-in-One ou pequenos processadores Q-SYS Core Nano. Conexão rápida e BYOD, permitindo que a equipe conecte o laptop e comece a reunião em segundos, com áudio de classe empresarial.
@@ -494,7 +494,7 @@ export function MeetingRoomsLanding() {
             {/* Medium Room */}
             <div className="glass-card rounded-[2rem] overflow-hidden group">
               <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="h-64 w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" alt="Salas de Conferência" />
-              <div className="p-10 md:p-14">
+              <div className="p-6 md:p-14">
                 <h3 className="text-2xl font-bold mb-4">Salas de Conferência</h3>
                 <p className="text-zinc-400 leading-relaxed">
                   O padrão ouro corporativo. Um único microfone de teto Shure MXA920 cobre toda a sala, limpando a mesa de fios. O Q-SYS distribui o áudio perfeitamente e gerencia a câmera PTZ que segue o locutor ativamente.
@@ -505,7 +505,7 @@ export function MeetingRoomsLanding() {
             {/* Large Room / 18m Boardroom */}
             <div className="col-span-1 md:col-span-2 glass-card-strong bg-gradient-to-br from-blue-900/10 to-emerald-900/5 rounded-[2rem] overflow-hidden group mt-4 relative">
               <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" alt="Boardroom" />
-              <div className="relative z-10 p-10 md:p-16 lg:p-20 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
+              <div className="relative z-10 p-6 md:p-16 lg:p-20 flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
                     Alta Tecnologia Sonus
@@ -562,7 +562,7 @@ export function MeetingRoomsLanding() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Old Way */}
-            <div className="glass-card border-red-500/20 rounded-3xl p-8 md:p-12">
+            <div className="glass-card border-red-500/20 rounded-3xl p-6 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
                   <XCircle className="w-6 h-6" />
@@ -586,7 +586,7 @@ export function MeetingRoomsLanding() {
             </div>
 
             {/* The Sonus Way */}
-            <div className="glass-card border-emerald-500/20 rounded-3xl p-8 md:p-12">
+            <div className="glass-card border-emerald-500/20 rounded-3xl p-6 md:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
                   <CheckCircle2 className="w-6 h-6" />
@@ -631,7 +631,7 @@ export function MeetingRoomsLanding() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[250px]">
-            <div className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-blue-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            <div className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-blue-900/20 to-black rounded-3xl p-6 md:p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                 <Settings className="w-8 h-8" />
               </div>
@@ -641,7 +641,7 @@ export function MeetingRoomsLanding() {
               </p>
             </div>
 
-            <div className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-purple-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            <div className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-purple-900/20 to-black rounded-3xl p-6 md:p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -651,7 +651,7 @@ export function MeetingRoomsLanding() {
               </p>
             </div>
 
-            <div className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-emerald-900/20 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            <div className="min-h-[250px] md:min-h-0 glass-card bg-gradient-to-br from-emerald-900/20 to-black rounded-3xl p-6 md:p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-6 h-6" />
               </div>
@@ -661,7 +661,7 @@ export function MeetingRoomsLanding() {
               </p>
             </div>
 
-            <div className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-zinc-900/50 to-black rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
+            <div className="min-h-[250px] md:min-h-0 md:col-span-2 glass-card bg-gradient-to-br from-zinc-900/50 to-black rounded-3xl p-6 md:p-8 flex flex-col justify-end relative overflow-hidden group hover:bg-white/[0.08] hover:scale-[1.01] transition-all duration-500">
               <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none" alt="Painéis" />
               <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
                 <Wrench className="w-8 h-8" />
@@ -702,7 +702,7 @@ export function MeetingRoomsLanding() {
               { step: "03", title: "Zero Downtime", desc: "Instalação física limpa. Equipe técnica atua sem interromper a rotina do seu escritório." },
               { step: "04", title: "SLA Contínuo", desc: "Sala entregue rodando liso. Suporte corporativo e manutenção preventiva garantida." }
             ].map((item, i) => (
-              <div key={i} className="relative z-10 glass-card p-8 rounded-3xl text-center group hover:bg-white/[0.08] transition-colors">
+              <div key={i} className="relative z-10 glass-card p-6 md:p-8 rounded-3xl text-center group hover:bg-white/[0.08] transition-colors">
                 <div className="w-16 h-16 mx-auto bg-black border border-white/10 rounded-full flex items-center justify-center mb-6 text-2xl font-black text-white/20 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors">
                   {item.step}
                 </div>
@@ -740,7 +740,7 @@ export function MeetingRoomsLanding() {
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="Sala de Reunião Cresol Baser" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
-              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+              <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-orange-500/20  rounded-full text-[10px] md:text-xs font-bold text-orange-400 uppercase tracking-wider border border-orange-500/20">Cresol Baser</span>
                   <span className="px-3 py-1 bg-blue-500/20  rounded-full text-[10px] md:text-xs font-bold text-blue-400 uppercase tracking-wider border border-blue-500/20">Projeto Q-SYS</span>
@@ -882,7 +882,7 @@ export function MeetingRoomsLanding() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl transition-colors duration-300">
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-zinc-950/50 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:p-12 shadow-2xl transition-colors duration-300">
             {isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
