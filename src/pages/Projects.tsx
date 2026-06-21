@@ -28,6 +28,7 @@ export function Projects() {
       <SEO 
         title="Portfólio de Projetos Audiovisuais | Sonus Pro AV" 
         description="Conheça nossos cases de sucesso em sonorização e automação corporativa para empresas, auditórios e igrejas." 
+        image="/pato-branco.jpg"
         url="https://sonusproaudio.com.br/projetos"
       />
       <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-10 md:py-20">

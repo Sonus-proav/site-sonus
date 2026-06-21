@@ -161,6 +161,7 @@ export function MeetingRoomsLanding() {
       <SEO 
         title="Automação de Salas de Reunião e Videoconferência | Sonus Pro AV" 
         description="Projetos de captação de áudio invisível, acústica e automação para salas de diretoria. Instalação premium certificada Microsoft Teams e Zoom Rooms." 
+        image="/salas-corporativas.jpg"
         url="https://sonusproaudio.com.br/salas-reuniao"
         keywords="automação corporativa, sala de reunião inteligente, videoconferência profissional, integração Q-SYS, sonorização de escritório, sistema Zoom Rooms, Microsoft Teams Rooms, microfone de teto shure"
         schema={{

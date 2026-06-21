@@ -158,6 +158,7 @@ export function IgrejasTemplos() {
       <SEO 
         title="Sonorização para Igrejas e Templos | Sonus Pro AV" 
         description="A mensagem de fé precisa ser ouvida com clareza. Soluções audiovisuais premium para igrejas, com foco em inteligibilidade e operação simplificada para voluntários." 
+        image="/interior-matriz-xanxere.jpg"
         url="https://sonusproaudio.com.br/igrejas-e-templos"
         keywords="sonorização para igrejas, som para templo religioso, projeto acústico igreja matriz, resolver eco na igreja, sistema de som para louvor, automação Q-SYS igreja, sonorização templo, projeto de som igreja"
         schema={{

@@ -87,6 +87,7 @@ export function QSysLanding() {
       <SEO 
         title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
         description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
+        image="/qsys-tech-bg.png"
         url="https://sonusproaudio.com.br/qsys"
       />
 

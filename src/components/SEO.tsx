@@ -21,6 +21,8 @@ export function SEO({
   keywords,
   schema
 }: SEOProps) {
+  const absoluteImage = image.startsWith('http') ? image : `https://sonusproaudio.com.br${image.startsWith('/') ? '' : '/'}${image}`;
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
@@ -36,14 +38,14 @@ export function SEO({
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteImage} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
+      <meta property="twitter:image" content={absoluteImage} />
 
       {/* JSON-LD Schema Markup */}
       {schema && (

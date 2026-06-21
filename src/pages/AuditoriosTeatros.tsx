@@ -74,6 +74,7 @@ export function AuditoriosTeatros() {
       <SEO 
         title="Áudio para Auditórios e Teatros | Sonus Pro AV" 
         description="Soluções audiovisuais de alta performance para grandes eventos. Integração Q-SYS e Shure com foco em inteligibilidade e falha zero." 
+        image="/auditorio-sonus.jpg"
         url="https://sonusproaudio.com.br/auditorios-e-teatros"
         keywords="sonorização para auditórios, projeto de áudio para teatro, automação audiovisual, sistema de som profissional, microfones shure para auditório, Q-SYS integração, sonorização teatro, som ambiente auditório"
         schema={{
