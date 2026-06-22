@@ -49,13 +49,23 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
-            >
-              {link.name}
-            </Link>
+            link.path.includes("#") ? (
+              <a
+                key={link.name}
+                href={link.path}
+                className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <a
               href="/#contato"
@@ -82,15 +92,35 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 py-4 px-4 flex flex-col gap-4 shadow-xl">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-base font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors px-2 py-1"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
+            link.path.includes("#") ? (
+              <a
+                key={link.name}
+                href={link.path}
+                className="text-base font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors px-2 py-1"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-base font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors px-2 py-1"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
+          <div className="pt-4 border-t border-black/5 dark:border-white/5 pb-2">
+            <a
+              href="/#contato"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex justify-center text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-3 rounded-full transition-all shadow-[0_0_15px_rgba(41,128,185,0.4)]"
+            >
+              Orçamento
+            </a>
+          </div>
         </div>
       )}
     </header>
