@@ -99,7 +99,7 @@ export function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:p-12 lg:gap-8 items-center">
             
             {/* Left Side: Impact Text */}
-            <div className="lg:col-span-5 flex flex-col items-start text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 fill-mode-both">
+            <div className="lg:col-span-6 flex flex-col items-start text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 fill-mode-both">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] text-primary backdrop-blur-md shadow-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-40"></span>
@@ -108,7 +108,7 @@ export function Home() {
                 <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[6.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
                 INTELIGÊNCIA <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
               </h1>
@@ -139,7 +139,7 @@ export function Home() {
             </div>
 
             {/* Right Side: Bento Box Grid */}
-            <div className="lg:col-span-7 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
+            <div className="lg:col-span-6 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
               <Link to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
