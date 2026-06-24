@@ -111,7 +111,7 @@ export function Home() {
               </div>
               
               <Reveal>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[6.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
                   INTELIGÊNCIA <br className="hidden md:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
                 </h1>
