@@ -29,9 +29,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent",
         isScrolled
-          ? "bg-white/95 dark:bg-black/95 md:bg-white/80 md:dark:bg-black/60 md:backdrop-blur-md border-black/10 dark:border-white/10 shadow-lg py-3"
+          ? "bg-white/80 dark:bg-[#05060A]/70 backdrop-blur-xl border-black/5 dark:border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,200,255,0.03)] py-3"
           : "bg-transparent py-5"
       )}
     >
@@ -99,7 +99,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 py-4 px-4 flex flex-col gap-4 shadow-xl">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white/80 dark:bg-[#05060A]/80 backdrop-blur-2xl border-b border-black/5 dark:border-white/5 py-4 px-4 flex flex-col gap-4 shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
           {navLinks.map((link) => (
             <Link
               key={link.name}
