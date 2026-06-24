@@ -5,6 +5,8 @@ import { Footer } from "@/components/layout/Footer"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { FadeIn } from "@/components/ui/FadeIn"
+import { Reveal } from "@/components/ui/Reveal"
+import { Magnetic } from "@/components/ui/Magnetic"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -110,7 +112,7 @@ export function AuditoriosTeatros() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.1}>
+            <Reveal delay={0.1}>
               <h1 className="text-[3rem] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] font-black tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
                 ONDE CADA<br />
                 PALAVRA<br />
@@ -118,7 +120,7 @@ export function AuditoriosTeatros() {
                   IMPORTA.
                 </span>
               </h1>
-            </FadeIn>
+            </Reveal>
 
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed mx-auto md:mx-0">
@@ -127,14 +129,16 @@ export function AuditoriosTeatros() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <Button 
-                onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-                size="lg" 
-                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_40px_-10px_rgba(41,128,185,0.5)] transition-all hover:scale-105"
-              >
-                Solicitar Consultoria Acústica
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <Magnetic>
+                <Button 
+                  onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+                  size="lg" 
+                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_40px_-10px_rgba(41,128,185,0.5)] transition-all hover:scale-105"
+                >
+                  Solicitar Consultoria Acústica
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Magnetic>
               <p className="mt-4 text-xs text-zinc-500 font-medium">Fale diretamente com nossos especialistas em áudio.</p>
             </FadeIn>
           </div>

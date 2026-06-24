@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
+import { Reveal } from "@/components/ui/Reveal"
+import { Magnetic } from "@/components/ui/Magnetic"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -108,10 +110,12 @@ export function Home() {
                 <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[6.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
-                INTELIGÊNCIA <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
-              </h1>
+              <Reveal>
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[6.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
+                  INTELIGÊNCIA <br className="hidden md:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
+                </h1>
+              </Reveal>
               
               <div className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed space-y-4 max-w-lg">
                 <p className="font-normal text-zinc-200">
@@ -124,16 +128,20 @@ export function Home() {
               
               <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row flex-wrap items-start gap-4 pt-4 w-full sm:w-auto">
                 <a href="#contato" className="w-full sm:w-auto xl:w-auto">
-                  <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
-                    Falar com um Especialista
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Magnetic>
+                    <Button size="lg" className="w-full text-base font-semibold px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(41,128,185,0.4)] hover:shadow-[0_0_30px_rgba(41,128,185,0.6)] transition-all">
+                      Falar com um Especialista
+                      <ChevronRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Magnetic>
                 </a>
                 <Link to="/projetos" className="w-full sm:w-auto xl:w-auto">
-                  <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-md transition-all">
-                    <Play className="mr-2 h-5 w-5 text-primary" />
-                    Ver Projetos de Sucesso
-                  </Button>
+                  <Magnetic>
+                    <Button size="lg" variant="outline" className="w-full text-base font-medium px-8 h-14 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white backdrop-blur-md transition-all">
+                      <Play className="mr-2 h-5 w-5 text-primary" />
+                      Ver Projetos de Sucesso
+                    </Button>
+                  </Magnetic>
                 </Link>
               </div>
             </div>
