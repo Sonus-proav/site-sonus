@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 
 export function Reveal({ children, delay = 0, className }: { children: React.ReactNode, delay?: number, className?: string }) {
   return (
-    <div className={className} style={{ position: "relative", overflow: "hidden" }}>
+    <div className={className} style={{ position: "relative", overflow: "visible" }}>
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 100, rotateX: -20 },
