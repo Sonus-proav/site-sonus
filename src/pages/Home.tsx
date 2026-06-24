@@ -98,7 +98,7 @@ export function Home() {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] opacity-20 pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
         
         <div className="container px-4 md:px-6 relative z-10 mx-auto w-full max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:p-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:p-12 lg:gap-12 xl:gap-20 items-center">
             
             {/* Left Side: Impact Text */}
             <div className="lg:col-span-6 flex flex-col items-start text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 fill-mode-both">
@@ -111,7 +111,7 @@ export function Home() {
               </div>
               
               <Reveal>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[3.2rem] xl:text-[4.2rem] 2xl:text-[5.2rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
                   INTELIGÊNCIA <br className="hidden md:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
                 </h1>
