@@ -111,10 +111,11 @@ export function AuditoriosTeatros() {
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <h1 className="text-[clamp(2.5rem,4vw,4.5rem)] font-bold tracking-tight text-white leading-[1.1]">
-                Onde cada palavra importa,<br />
+              <h1 className="text-[3rem] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] font-black tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
+                ONDE CADA<br />
+                PALAVRA<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                  não há espaço para improvisos.
+                  IMPORTA.
                 </span>
               </h1>
             </FadeIn>
@@ -138,10 +139,10 @@ export function AuditoriosTeatros() {
             </FadeIn>
           </div>
           
-          {/* Gráficos Sonoros (Decorativo) */}
-          <div className="hidden md:flex w-full md:w-2/5 justify-center items-center">
-            <FadeIn delay={0.4} className="relative h-[300px] w-full flex items-center justify-center">
-              <div className="absolute inset-0 bg-primary/10 rounded-full blur-[100px]" />
+          {/* Gráficos Sonoros (Decorativo) - Flutuante */}
+          <div className="absolute right-0 bottom-1/4 hidden lg:flex w-[400px] justify-end items-center pr-12 mix-blend-screen pointer-events-none">
+            <FadeIn delay={0.4} className="relative h-[400px] w-full flex items-center justify-end">
+              <div className="absolute right-0 bg-primary/20 rounded-full blur-[120px] w-full h-full" />
               <div className="relative z-10 flex items-center gap-3 h-32 opacity-80">
                 {[...Array(8)].map((_, i) => (
                   <div 

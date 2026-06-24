@@ -101,9 +101,11 @@ function ProjectGrid({ filter, projects, loading }: { filter: string, projects: 
 
   return (
     <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-6 w-full space-y-6">
         {currentProjects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <div key={project.id} className="break-inside-avoid">
+            <ProjectCard project={project} index={index} />
+          </div>
         ))}
       </div>
       
@@ -173,13 +175,16 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
     }
   }
 
+  const isTall = index % 5 === 0 || index % 5 === 3;
+  const heightClass = isTall ? "aspect-[3/4]" : "aspect-square md:aspect-[4/3]";
+
   return (
     <Link to={`/projetos/${project.id}`}>
       <motion.article
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 cursor-pointer h-full transition-colors duration-300"
+        transition={{ duration: 0.5, delay: (index % 6) * 0.1 }}
+        className={`group relative rounded-[2rem] overflow-hidden bg-white dark:bg-[#05060A]/50 backdrop-blur-sm border border-black/5 dark:border-white/5 cursor-pointer transition-colors duration-300 ${heightClass}`}
       >
         <div 
           className="relative w-full h-full overflow-hidden"

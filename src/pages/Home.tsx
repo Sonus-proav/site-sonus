@@ -108,9 +108,9 @@ export function Home() {
                 <span className="text-sm font-medium tracking-wide">28 Anos de Tradição e Inovação</span>
               </div>
               
-              <h1 className="text-4xl sm:text-3xl md:text-5xl md:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
-                Inteligência Audiovisual <br className="hidden md:block" />
-                de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Alta Performance.</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-black tracking-tighter text-white leading-[0.9] drop-shadow-2xl">
+                INTELIGÊNCIA <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">AUDIOVISUAL</span>
               </h1>
               
               <div className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed space-y-4 max-w-lg">
@@ -243,17 +243,17 @@ export function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <FadeIn direction="right">
-              <div className="relative rounded-2xl overflow-hidden aspect-square md:aspect-video lg:aspect-square bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 transition-colors duration-300">
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-50/90 dark:from-black/80 to-transparent z-10 transition-colors duration-300" />
+              <div className="relative rounded-[2.5rem] overflow-hidden aspect-[3/4] md:aspect-square bg-[#05060A] border border-white/5 transition-colors duration-300 -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-700 shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent z-10 transition-colors duration-300" />
                 <img 
                   src="/sobre-sonus.jpg" 
                   alt="Instalação de sistema de áudio e sonorização em auditório corporativo" 
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-80"
                 />
-                <div className="absolute bottom-8 left-8 z-20 bg-white/80 dark:bg-black/60 backdrop-blur-xl border border-black/10 dark:border-white/10 p-6 rounded-2xl transition-colors duration-300">
-                  <div className="text-3xl md:text-5xl font-black text-primary mb-2">+28</div>
-                  <div className="text-zinc-800 dark:text-zinc-300 font-medium transition-colors duration-300">Anos de Mercado<br/>CNPJ consolidado</div>
+                <div className="absolute bottom-8 left-8 z-20 bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl transition-colors duration-300 shadow-2xl">
+                  <div className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-2">+28</div>
+                  <div className="text-zinc-300 font-medium transition-colors duration-300 tracking-widest uppercase text-sm">Anos de Mercado<br/>CNPJ consolidado</div>
                 </div>
               </div>
             </FadeIn>
