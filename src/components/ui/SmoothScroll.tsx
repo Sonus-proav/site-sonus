@@ -9,7 +9,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
+      syncTouch: false,
       touchMultiplier: 2,
     })
 

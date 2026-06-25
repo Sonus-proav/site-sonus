@@ -5,10 +5,18 @@ export function Magnetic({ children, className }: { children: React.ReactNode, c
   const ref = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
+  const rectRef = useRef<DOMRect | null>(null)
+
+  const handleMouseEnter = () => {
+    if (ref.current) {
+      rectRef.current = ref.current.getBoundingClientRect()
+    }
+  }
+
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
+    if (!rectRef.current) return
     const { clientX, clientY } = e
-    const { height, width, left, top } = ref.current.getBoundingClientRect()
+    const { height, width, left, top } = rectRef.current
     const middleX = clientX - (left + width / 2)
     const middleY = clientY - (top + height / 2)
     setPosition({ x: middleX * 0.15, y: middleY * 0.15 })
@@ -16,6 +24,7 @@ export function Magnetic({ children, className }: { children: React.ReactNode, c
 
   const reset = () => {
     setPosition({ x: 0, y: 0 })
+    rectRef.current = null
   }
 
   const { x, y } = position
@@ -24,6 +33,7 @@ export function Magnetic({ children, className }: { children: React.ReactNode, c
       className={className}
       style={{ position: "relative", display: "inline-block" }}
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x, y }}
