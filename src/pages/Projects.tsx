@@ -184,7 +184,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: (index % 6) * 0.1 }}
-        className={`group relative rounded-[2rem] overflow-hidden bg-white dark:bg-[#05060A]/50 backdrop-blur-sm border border-black/5 dark:border-white/5 cursor-pointer transition-colors duration-300 ${heightClass}`}
+        className={`group relative rounded-[2rem] overflow-hidden bg-zinc-100 dark:bg-[#05060A] border border-black/5 dark:border-white/5 cursor-pointer transition-colors duration-300 [transform:translateZ(0)] will-change-transform ${heightClass}`}
       >
         <div 
           className="relative w-full h-full overflow-hidden"
@@ -196,31 +196,30 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
             <Skeleton className="absolute inset-0 w-full h-full rounded-none z-0" />
           )}
           <AnimatePresence initial={false}>
-            <motion.img 
-              key={currentImgIndex}
-              src={imgSrc} 
-              alt={project.seoAlt || project.title}
-              width={800}
-              height={600}
-              loading={index < 4 ? "eager" : "lazy"}
-              fetchPriority={index < 4 ? "high" : "auto"}
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onLoad={() => setIsImageLoaded(true)}
-              onError={() => {
-                // Fallback para a URL original sem o proxy se o wsrv.nl bloquear (ex: Referer do Google)
-                if (imgSrc.includes('wsrv.nl')) {
-                  setImgSrc(images[currentImgIndex])
-                } else {
-                  setIsImageLoaded(true) // Evita skeleton infinito se até o original falhar
-                }
-              }}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: isImageLoaded ? 1 : 0, scale: isImageLoaded ? 1 : 1.05 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10"
-            />
+              <motion.img 
+                key={currentImgIndex}
+                src={imgSrc} 
+                alt={project.seoAlt || project.title}
+                width={800}
+                height={600}
+                loading={index < 4 ? "eager" : "lazy"}
+                fetchPriority={index < 4 ? "high" : "auto"}
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onLoad={() => setIsImageLoaded(true)}
+                onError={() => {
+                  if (imgSrc.includes('wsrv.nl')) {
+                    setImgSrc(images[currentImgIndex])
+                  } else {
+                    setIsImageLoaded(true)
+                  }
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isImageLoaded ? 1 : 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 z-10 [transform:translateZ(0)]"
+              />
           </AnimatePresence>
           
           {/* Tags */}
