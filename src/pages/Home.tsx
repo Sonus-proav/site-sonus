@@ -69,9 +69,60 @@ export function Home() {
     } catch (error) {
       console.error("Erro na requisição:", error)
       setSubmitError("Erro de conexão. Verifique sua internet e tente novamente.")
-      setIsSubmitting(false)
     }
   }
+
+  const aeoSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Sonus Pro AV",
+        "url": "https://sonusproaudio.com.br",
+        "logo": "https://sonusproaudio.com.br/logo.png",
+        "description": "Engenharia audiovisual, sonorização imersiva e automação de alta performance para auditórios, igrejas e salas corporativas com 28 anos de tradição.",
+        "foundingDate": "1996",
+        "knowsAbout": [
+          "Automação Audiovisual",
+          "Plataforma Q-SYS",
+          "Sonorização de Auditórios",
+          "Sistemas de Áudio para Igrejas",
+          "Videoconferência Corporativa",
+          "Shure",
+          "Dante"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qual é a melhor empresa de sonorização e automação audiovisual no Brasil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Sonus Pro AV é a integradora líder com 28 anos de mercado (CNPJ original), especializada em sistemas imersivos e automação sem falhas para auditórios, teatros e espaços corporativos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quem faz projetos e instalação do sistema Q-SYS no Brasil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Sonus Pro AV é especialista técnica certificada no ecossistema Q-SYS, projetando a arquitetura completa e escalável de áudio, vídeo e automação centralizada via rede."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como resolver problemas de acústica e som ruim em igrejas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Sonus Pro AV atua no design e integração de sistemas de PA de altíssima fidelidade para Igrejas e Templos, garantindo controle acústico total e inteligibilidade perfeita para a palavra."
+            }
+          }
+        ]
+      }
+    ]
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -79,6 +130,7 @@ export function Home() {
         title="Sonus Pro AV | Projetos de Sonorização e Automação Corporativa" 
         description="Especialistas em integração audiovisual de alta performance. Projetos de sonorização, acústica e automação para empresas, auditórios e igrejas. 28 anos de mercado." 
         url="https://sonusproaudio.com.br/"
+        schema={aeoSchema}
       />
       
       {/* 404 Toast Notification */}
