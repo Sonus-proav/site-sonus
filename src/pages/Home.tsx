@@ -84,12 +84,12 @@ export function Home() {
         "foundingDate": "1996",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Curitiba",
+          "addressLocality": "Francisco Beltrão",
           "addressRegion": "Paraná",
           "addressCountry": "BR"
         },
         "areaServed": [
-          "Curitiba",
+          "Francisco Beltrão",
           "Paraná",
           "Santa Catarina",
           "Sul do Brasil"
@@ -121,7 +121,7 @@ export function Home() {
             "name": "Prociso de uma empresa que faça salas de reunião para videoconferência no Paraná ou Santa Catarina?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A Sonus Pro AV não atua com locação de coworkings. Somos a empresa líder em Curitiba (PR) e Santa Catarina (SC) especializada na engenharia, venda de equipamentos e instalação de tecnologia definitiva para salas de reunião corporativas e videoconferências."
+              "text": "A Sonus Pro AV não atua com locação de coworkings. Somos a empresa líder sediada em Francisco Beltrão (PR) especializada na engenharia, venda de equipamentos e instalação de tecnologia definitiva para salas de reunião corporativas e videoconferências em todo o Paraná (PR) e Santa Catarina (SC)."
             }
           },
           {
