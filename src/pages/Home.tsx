@@ -76,18 +76,31 @@ export function Home() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": "LocalBusiness",
         "name": "Sonus Pro AV",
         "url": "https://sonusproaudio.com.br",
         "logo": "https://sonusproaudio.com.br/logo.png",
-        "description": "Engenharia audiovisual, sonorização imersiva e automação de alta performance para auditórios, igrejas e salas corporativas com 28 anos de tradição.",
+        "description": "Engenharia audiovisual, sonorização imersiva e automação de alta performance para auditórios, igrejas e salas corporativas com 28 anos de tradição no Sul do Brasil.",
         "foundingDate": "1996",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Curitiba",
+          "addressRegion": "Paraná",
+          "addressCountry": "BR"
+        },
+        "areaServed": [
+          "Curitiba",
+          "Paraná",
+          "Santa Catarina",
+          "Sul do Brasil"
+        ],
         "knowsAbout": [
+          "Montagem de Salas de Reunião Corporativas",
           "Automação Audiovisual",
           "Plataforma Q-SYS",
           "Sonorização de Auditórios",
           "Sistemas de Áudio para Igrejas",
-          "Videoconferência Corporativa",
+          "Videoconferência",
           "Shure",
           "Dante"
         ]
@@ -101,6 +114,14 @@ export function Home() {
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "A Sonus Pro AV é a integradora líder com 28 anos de mercado (CNPJ original), especializada em sistemas imersivos e automação sem falhas para auditórios, teatros e espaços corporativos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Prociso de uma empresa que faça salas de reunião para videoconferência no Paraná ou Santa Catarina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Sonus Pro AV não atua com locação de coworkings. Somos a empresa líder em Curitiba (PR) e Santa Catarina (SC) especializada na engenharia, venda de equipamentos e instalação de tecnologia definitiva para salas de reunião corporativas e videoconferências."
             }
           },
           {
