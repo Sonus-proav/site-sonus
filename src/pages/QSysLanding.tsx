@@ -209,39 +209,54 @@ export function QSysLanding() {
                   </div>
 
                   {/* Main Action Area */}
-                  <div className="flex-1 flex flex-col gap-3 md:gap-6">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 flex-1">
+                  <div className="flex-1 flex flex-col gap-4 md:gap-6 relative bg-black/40 border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 overflow-hidden">
+                    {/* Background Scenes */}
+                    <div className={`absolute inset-0 transition-opacity duration-1000 ${activeFauxScene === "presentation" ? 'opacity-20' : 'opacity-0'}`}>
+                      <img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Apresentação" />
+                    </div>
+                    <div className={`absolute inset-0 transition-opacity duration-1000 ${activeFauxScene === "video" ? 'opacity-20' : 'opacity-0'}`}>
+                      <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Videochamada" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
-                        { id: "presentation", title: "Apresentação", color: "blue", active: activeFauxScene === "presentation" },
-                        { id: "video", title: "Videochamada", color: "purple", active: activeFauxScene === "video" },
+                        { id: "presentation", title: "Apresentação", color: "blue", active: activeFauxScene === "presentation", desc: "Display On • Áudio PC" },
+                        { id: "video", title: "Videochamada", color: "purple", active: activeFauxScene === "video", desc: "Teams • Câmeras Auto" },
                       ].map((scene) => (
                         <div 
                           key={scene.id} 
                           onClick={() => setActiveFauxScene(scene.id as any)} 
-                          className={`rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all border ${scene.active ? `bg-${scene.color}-500/20 border-${scene.color}-500/40 text-${scene.color}-300 scale-[1.02] shadow-[0_0_30px_rgba(0,0,0,0.5)]` : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
+                          className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? `bg-${scene.color}-500/20 border-${scene.color}-500/50 text-${scene.color}-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]` : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
                         >
-                          {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-12 md:h-12" /> : <Video className="w-8 h-8 md:w-12 md:h-12" />}
-                          <span className="font-bold text-xs md:text-base text-center">{scene.title}</span>
+                          {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-10 md:h-10 mb-2" /> : <Video className="w-8 h-8 md:w-10 md:h-10 mb-2" />}
+                          <span className="font-bold text-sm md:text-base text-center">{scene.title}</span>
+                          {scene.active && <span className="text-[10px] uppercase font-mono tracking-wider opacity-80">{scene.desc}</span>}
                         </div>
                       ))}
                       
-                      <div className="rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col items-center justify-center gap-3 cursor-not-allowed border bg-white/5 border-white/10 text-zinc-500 opacity-50">
-                        <Lock className="w-8 h-8 md:w-12 md:h-12" />
-                        <span className="font-bold text-xs md:text-base text-center">Modo Confidencial</span>
+                      <div className="rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-not-allowed border bg-white/5 border-white/10 text-zinc-500 opacity-50 backdrop-blur-md">
+                        <Lock className="w-8 h-8 md:w-10 md:h-10 mb-2" />
+                        <span className="font-bold text-sm md:text-base text-center">Painel Privado</span>
                       </div>
                     </div>
                     
                     {/* Controls Footer */}
-                    <div className="h-32 md:h-40 rounded-2xl md:rounded-3xl bg-white/5 border border-white/10 p-4 md:p-6 flex flex-col justify-center">
-                      <div className="flex justify-between items-end mb-4">
-                        <div className="flex items-center gap-2 md:gap-3 text-zinc-300">
+                    <div className="relative z-10 h-auto rounded-2xl md:rounded-3xl bg-zinc-950/80 border border-white/10 p-5 md:p-8 flex flex-col justify-center backdrop-blur-xl">
+                      <div className="flex justify-between items-end mb-5">
+                        <div className="flex items-center gap-3 text-zinc-300">
                           <SlidersHorizontal className="w-5 h-5 md:w-6 md:h-6" />
-                          <span className="font-semibold text-sm md:text-lg">Volume Principal</span>
+                          <div>
+                            <span className="block font-semibold text-sm md:text-lg">Volume {activeFauxScene === "presentation" ? 'Sala (Apresentação)' : 'Recepção Teams'}</span>
+                            <span className="text-xs text-zinc-500 font-mono">Q-SYS DSP Automix Ativo</span>
+                          </div>
                         </div>
-                        <span className="text-xl md:text-3xl font-black text-white">{activeFauxScene === "presentation" ? '75%' : '60%'}</span>
+                        <span className="text-2xl md:text-4xl font-black text-white">{activeFauxScene === "presentation" ? '75%' : '60%'}</span>
                       </div>
-                      <div className="h-4 md:h-6 bg-black rounded-full p-1 border border-white/10">
-                        <div className={`h-full rounded-full transition-all duration-1000 ease-out ${activeFauxScene === "presentation" ? 'w-[75%] bg-blue-500' : 'w-[60%] bg-purple-500'}`} />
+                      <div className="h-5 md:h-6 bg-black rounded-full p-1 border border-white/10 relative overflow-hidden">
+                        <div className={`h-full rounded-full transition-all duration-1000 ease-out relative ${activeFauxScene === "presentation" ? 'w-[75%] bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)]' : 'w-[60%] bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]'}`}>
+                          <div className="absolute inset-0 bg-white/20 w-full h-full animate-pulse" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -294,51 +309,52 @@ export function QSysLanding() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col lg:flex-row gap-6 items-stretch">
             {/* Bento 1: Grande esquerda */}
-            <FadeIn className="md:col-span-2 md:row-span-2">
+            <FadeIn className="lg:w-2/3 h-full">
               <SpotlightCard className="h-full rounded-3xl p-8 border border-white/10 bg-zinc-950/80 group">
                 <div className="h-full flex flex-col">
                   <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
                     <Cpu className="w-7 h-7" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Processamento via Software</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">Processamento via Software</h3>
                   <p className="text-zinc-400 leading-relaxed text-lg flex-1">
                     Enquanto sistemas antigos precisam de hardware físico para cada função (matriz, cancelador de eco, processador de vídeo), o Q-SYS executa tudo isso via software em um único Core processador padrão de TI. Atualizações remotas, segurança em rede e zero obsolescência.
                   </p>
-                  <div className="mt-8 pt-6 border-t border-white/5 flex gap-4 text-sm text-zinc-500 font-mono">
+                  <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-4 text-sm text-zinc-500 font-mono">
                     <span className="flex items-center gap-1"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Criptografia 802.1x</span>
-                    <span className="flex items-center gap-1"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Escalonável</span>
+                    <span className="flex items-center gap-1"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Escalonável Infinitamente</span>
                   </div>
                 </div>
               </SpotlightCard>
             </FadeIn>
 
-            {/* Bento 2: Menor cima direita */}
-            <FadeIn delay={0.1}>
-              <SpotlightCard className="h-full rounded-3xl p-8 border border-white/10 bg-zinc-950/80 group">
-                <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 text-purple-400">
-                  <Network className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Padrão Corporativo</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  A mesma interface (e código) na sala de reunião de 4 lugares e no auditório de 400. Sua equipe aprende a usar o sistema apenas uma vez.
-                </p>
-              </SpotlightCard>
-            </FadeIn>
+            {/* Bentos Menores (Direita) */}
+            <div className="lg:w-1/3 flex flex-col gap-6">
+              <FadeIn delay={0.1} className="h-full">
+                <SpotlightCard className="h-full rounded-3xl p-8 border border-white/10 bg-zinc-950/80 group flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 text-purple-400">
+                    <Network className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Padrão Corporativo</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed flex-1">
+                    A mesma interface (e código) na sala de 4 lugares e no auditório de 400.
+                  </p>
+                </SpotlightCard>
+              </FadeIn>
 
-            {/* Bento 3: Menor baixo direita */}
-            <FadeIn delay={0.2}>
-              <SpotlightCard className="h-full rounded-3xl p-8 border border-white/10 bg-zinc-950/80 group">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
-                  <BrainCircuit className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Salas Autônomas</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Câmeras AI rastreiam quem está falando e ajustam o enquadramento. O sistema ativa recursos automaticamente sem precisar de toques.
-                </p>
-              </SpotlightCard>
-            </FadeIn>
+              <FadeIn delay={0.2} className="h-full">
+                <SpotlightCard className="h-full rounded-3xl p-8 border border-white/10 bg-zinc-950/80 group flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
+                    <BrainCircuit className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Salas Autônomas</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed flex-1">
+                    Câmeras AI rastreiam fala ativando recursos sem precisar de toques.
+                  </p>
+                </SpotlightCard>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -367,7 +383,7 @@ export function QSysLanding() {
               ].map((c, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <div className="group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-xl hover:bg-white/[0.05] transition-all duration-300">
-                    <div className="w-full md:w-2/5 aspect-[16/10] md:aspect-square overflow-hidden relative">
+                    <div className="w-full md:w-2/5 aspect-[16/10] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden relative shrink-0">
                       <img src={c.img} alt={c.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:hidden" />
                       <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-blue-500/80 text-white flex items-center justify-center backdrop-blur-md md:hidden">
@@ -399,17 +415,17 @@ export function QSysLanding() {
       {/* FULL-BLEED CTA WITH MAGNETIC                  */}
       {/* ══════════════════════════════════════════════ */}
       <section className="py-20 md:py-32 px-4 z-10 relative">
-        <div className="max-w-5xl mx-auto rounded-[3rem] p-10 md:p-20 bg-gradient-to-br from-blue-900 to-blue-950 border border-blue-500/20 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[url('/soundwave-bg.png')] opacity-10 mix-blend-overlay" />
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
+        <div className="max-w-7xl mx-auto rounded-[3rem] p-10 md:p-24 bg-gradient-to-br from-blue-950 via-blue-900 to-black border border-blue-500/30 text-center relative overflow-hidden shadow-2xl flex flex-col items-center justify-center">
+          <div className="absolute inset-0 bg-[url('/soundwave-bg.png')] opacity-20 mix-blend-overlay" />
+          <div className="relative z-10 max-w-4xl">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8">
               Padrão Sonus.<br />
-              <span className="text-blue-300">Paz de Espírito Corporativa.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Paz de Espírito Corporativa.</span>
             </h2>
             <Magnetic>
-              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-10 rounded-full bg-white text-blue-900 text-lg font-bold shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
+              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-12 rounded-full bg-white text-blue-950 text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all hover:scale-105 mt-4">
                 Dimensionar Q-SYS Agora
-                <ChevronRight className="ml-2 w-5 h-5" />
+                <ChevronRight className="ml-2 w-6 h-6" />
               </Button>
             </Magnetic>
           </div>
@@ -448,20 +464,20 @@ export function QSysLanding() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                      <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white rounded-xl" />
+                      <Input required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
-                      <Input required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white rounded-xl" />
+                      <Input required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                    <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-black/50 border-white/10 focus-visible:ring-blue-500 h-12 text-white rounded-xl" />
+                    <Input required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descrição do Projeto</label>
-                    <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre a necessidade da sua empresa..." className="bg-black/50 border-white/10 focus-visible:ring-blue-500 min-h-[150px] resize-none text-white rounded-xl" />
+                    <Textarea required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre a necessidade da sua empresa..." className="bg-white/5 border-white/10 focus-visible:ring-blue-500 min-h-[140px] resize-none text-white placeholder:text-zinc-500 p-4 rounded-xl" />
                   </div>
 
                   <div className="flex justify-center pt-2 min-h-[65px]">

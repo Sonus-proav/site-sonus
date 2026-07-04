@@ -270,7 +270,7 @@ export function MeetingRoomsLanding() {
                           const isMoving = cameraState.movingCam === camId;
                           return (
                             <div key={camId} className="flex items-center gap-3 relative">
-                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border-2 transition-all ${isLive ? 'border-red-500 bg-red-500/20 scale-110' : isMoving ? 'border-yellow-500 bg-yellow-500/20' : 'border-white/10 bg-black'}`}>
+                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border-2 transition-all ${isLive ? 'border-red-500 bg-red-500/20 scale-110 shadow-[0_0_15px_rgba(239,68,68,0.5)]' : isMoving ? 'border-yellow-500 bg-yellow-500/20' : 'border-white/10 bg-black'}`}>
                                 <Camera className={`w-4 h-4 ${isLive ? 'text-red-400' : isMoving ? 'text-yellow-400' : 'text-zinc-600'}`} />
                               </div>
                               <div className="flex flex-col">
@@ -281,6 +281,26 @@ export function MeetingRoomsLanding() {
                           )
                         })}
                       </div>
+
+                      {/* Lóbulos da Câmera Simulados via SVG */}
+                      <svg className="absolute right-4 bottom-4 top-16 w-48 md:w-64 pointer-events-none z-10" style={{ filter: 'drop-shadow(0 0 10px rgba(52,211,153,0.8))' }}>
+                        {[
+                          { id: 0, x2: "25%", y2: "25%" },
+                          { id: 1, x2: "75%", y2: "25%" },
+                          { id: 2, x2: "25%", y2: "75%" },
+                          { id: 3, x2: "75%", y2: "75%" },
+                        ].map(speaker => (
+                          <line 
+                            key={speaker.id} 
+                            x1="50%" y1="50%" 
+                            x2={speaker.x2} y2={speaker.y2} 
+                            stroke="currentColor"
+                            strokeWidth="2" 
+                            strokeDasharray="4 4" 
+                            className={`text-emerald-400 transition-opacity duration-500 ${activeSpeaker === speaker.id ? 'opacity-100 animate-pulse' : 'opacity-0'}`} 
+                          />
+                        ))}
+                      </svg>
 
                       {/* Mesa e Lóbulos */}
                       <div className="absolute right-4 bottom-4 top-16 w-48 md:w-64 border-2 border-white/10 rounded-[3rem] flex items-center justify-center z-10">
@@ -420,21 +440,23 @@ export function MeetingRoomsLanding() {
               </SpotlightCard>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="md:col-span-3">
-              <SpotlightCard className="rounded-3xl p-8 border border-white/10 bg-zinc-950/80 md:flex items-center justify-between gap-8">
-                <div className="md:w-1/2 mb-8 md:mb-0">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
-                    <Mic className="w-7 h-7" />
+            <FadeIn delay={0.2} className="md:col-span-3 h-full">
+              <SpotlightCard className="h-full rounded-3xl p-8 md:p-10 border border-white/10 bg-zinc-950/80">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 h-full">
+                  <div className="w-full md:w-1/2">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
+                      <Mic className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Estudo Acústico 3D Gratuito</h3>
+                    <p className="text-zinc-400 leading-relaxed text-lg">
+                      Antes de qualquer cabo ser passado, nossa engenharia desenha sua sala em software 3D para prever reverberações e definir a angulação exata dos microfones de teto.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Estudo Acústico 3D Gratuito</h3>
-                  <p className="text-zinc-400 leading-relaxed text-lg">
-                    Antes de qualquer cabo ser passado, nossa engenharia desenha sua sala em software 3D para prever reverberações e definir a angulação exata dos microfones de teto.
-                  </p>
-                </div>
-                <div className="md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" className="w-full h-48 object-cover rounded-xl opacity-50 grayscale" alt="Estudo" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="bg-emerald-500/20 text-emerald-400 font-mono text-sm px-4 py-2 border border-emerald-500/30 rounded backdrop-blur">Simulação EASE Focus Finalizada</span>
+                  <div className="w-full md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden h-64 md:h-72">
+                    <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover rounded-xl opacity-60 mix-blend-luminosity" alt="Estudo" />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <span className="bg-emerald-500/20 text-emerald-400 font-mono text-xs md:text-sm px-4 py-2 border border-emerald-500/30 rounded backdrop-blur shadow-xl">Simulação EASE Focus Finalizada</span>
+                    </div>
                   </div>
                 </div>
               </SpotlightCard>
@@ -454,25 +476,25 @@ export function MeetingRoomsLanding() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative mt-12">
             <div className="hidden md:block absolute top-10 left-[12%] right-[12%] h-0.5 bg-white/5 rounded-full overflow-hidden">
                <div className="absolute top-0 h-full w-1/4 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,1)] transition-all duration-1000 ease-in-out" style={{ left: `${(activeStep / 3) * 100}%`, transform: 'translateX(-50%)' }} />
             </div>
             
             {[
-              { step: "01", title: "Consultoria", desc: "Mapeamento dos desafios arquitetônicos da diretoria." },
-              { step: "02", title: "Projeto", desc: "Desenho da arquitetura de TI/AV em planta 3D." },
-              { step: "03", title: "Instalação", desc: "Equipe atua sem interromper a rotina corporativa." },
-              { step: "04", title: "SLA", desc: "Sala rodando lisa com suporte corporativo 24/7." }
+              { step: "01", title: "Consultoria", desc: "Mapeamento dos desafios de TI." },
+              { step: "02", title: "Projeto", desc: "Arquitetura e acústica em 3D." },
+              { step: "03", title: "Instalação", desc: "Implantação sem downtime." },
+              { step: "04", title: "SLA", desc: "Suporte e monitoramento 24/7." }
             ].map((item, i) => (
-              <div key={i} className={`relative z-10 p-6 rounded-3xl text-center transition-all duration-700 ${activeStep === i ? 'bg-zinc-900 border border-emerald-500/30 shadow-2xl -translate-y-2' : 'bg-transparent border-transparent'}`}>
-                <div className="relative w-16 h-16 mx-auto mb-6">
-                  <div className={`relative w-full h-full rounded-full flex items-center justify-center text-2xl font-black transition-all ${activeStep === i ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.5)]' : 'bg-black border border-white/10 text-zinc-600'}`}>
+              <div key={i} className={`relative z-10 p-4 md:p-6 rounded-3xl text-center transition-all duration-700 flex flex-col items-center justify-start ${activeStep === i ? 'bg-zinc-900 border border-emerald-500/30 shadow-[0_0_40px_rgba(16,185,129,0.15)] -translate-y-2' : 'bg-transparent border-transparent'}`}>
+                <div className="relative w-14 h-14 md:w-16 md:h-16 mb-4 md:mb-6 shrink-0">
+                  <div className={`relative w-full h-full rounded-full flex items-center justify-center text-xl md:text-2xl font-black transition-all ${activeStep === i ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.5)]' : 'bg-black border border-white/10 text-zinc-600'}`}>
                     {item.step}
                   </div>
                 </div>
-                <h3 className={`text-xl font-bold mb-2 ${activeStep === i ? 'text-white' : 'text-zinc-500'}`}>{item.title}</h3>
-                <p className={`text-sm ${activeStep === i ? 'text-zinc-300' : 'text-zinc-600'}`}>{item.desc}</p>
+                <h3 className={`text-lg md:text-xl font-bold mb-2 ${activeStep === i ? 'text-white' : 'text-zinc-500'}`}>{item.title}</h3>
+                <p className={`text-xs md:text-sm font-medium px-2 ${activeStep === i ? 'text-zinc-300' : 'text-zinc-600'}`}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -505,22 +527,22 @@ export function MeetingRoomsLanding() {
                 <input type="text" name="honeypot" className="hidden" value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-sm text-zinc-400">Nome</label>
-                    <Input required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="bg-black border-white/10 mt-1" />
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-zinc-300">Nome</label>
+                    <Input required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
-                  <div>
-                    <label className="text-sm text-zinc-400">WhatsApp/Telefone</label>
-                    <Input required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="bg-black border-white/10 mt-1" />
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-zinc-300">WhatsApp/Telefone</label>
+                    <Input required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                 </div>
-                <div>
-                  <label className="text-sm text-zinc-400">E-mail Profissional</label>
-                  <Input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="bg-black border-white/10 mt-1" />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
+                  <Input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
-                <div>
-                  <label className="text-sm text-zinc-400">Quantas salas você precisa otimizar?</label>
-                  <Textarea required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="bg-black border-white/10 mt-1 h-32" />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-zinc-300">Quantas salas você precisa otimizar?</label>
+                  <Textarea required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">
