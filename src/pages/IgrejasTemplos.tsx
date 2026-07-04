@@ -69,7 +69,7 @@ function CoverageHeatmap() {
   ]
 
   return (
-    <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
+    <div className="relative aspect-square md:aspect-[4/5] w-full max-w-sm mx-auto">
       {/* Church floor plan outline */}
       <div className="absolute inset-0 rounded-3xl border border-amber-500/20 bg-zinc-950/80 overflow-hidden">
         {/* Cross shape at altar */}
@@ -324,10 +324,10 @@ export function IgrejasTemplos() {
               </h2>
             </FadeIn>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* BEFORE */}
-              <FadeIn className="relative">
-                <div className="bg-red-950/20 border border-red-500/10 rounded-3xl md:rounded-r-none p-8 md:p-12 h-full">
+              <FadeIn className="relative h-full">
+                <div className="bg-red-950/20 border border-red-500/20 rounded-3xl p-8 md:p-12 h-full flex flex-col justify-center shadow-lg shadow-red-900/5">
                   <div className="flex items-center gap-3 mb-8">
                     <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
                     <span className="text-red-400 font-mono text-sm uppercase tracking-widest">Sem tratamento</span>
@@ -359,8 +359,8 @@ export function IgrejasTemplos() {
               </FadeIn>
 
               {/* AFTER */}
-              <FadeIn delay={0.2} className="relative">
-                <div className="bg-amber-950/10 border border-amber-500/20 rounded-3xl md:rounded-l-none p-8 md:p-12 h-full">
+              <FadeIn delay={0.2} className="relative h-full">
+                <div className="bg-amber-950/10 border border-amber-500/20 rounded-3xl p-8 md:p-12 h-full flex flex-col justify-center shadow-lg shadow-amber-900/5">
                   <div className="flex items-center gap-3 mb-8">
                     <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.6)]" />
                     <span className="text-amber-400 font-mono text-sm uppercase tracking-widest">Com Sonus Pro AV</span>
@@ -482,11 +482,11 @@ export function IgrejasTemplos() {
           {/* Carousel */}
           <div 
             ref={carouselRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 md:px-[max(1rem,calc((100vw-80rem)/2+1rem))] pb-4 no-scrollbar"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 md:px-12 lg:px-24 pb-8 no-scrollbar"
             style={{ scrollbarWidth: "none" }}
           >
             {displayPortfolio.map((item, index) => (
-              <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] snap-start">
+              <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[85vw] md:w-[45vw] lg:w-[400px] snap-center md:snap-start">
                 <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/5] bg-zinc-900">
                   <img 
                     src={optimizeImageUrl(item.image)} 
@@ -586,7 +586,7 @@ export function IgrejasTemplos() {
                           placeholder="Seu nome"
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                       
@@ -598,7 +598,7 @@ export function IgrejasTemplos() {
                           placeholder="Ex: Pastor, Padre, Técnico, Conselho"
                           value={formData.role}
                           onChange={(e) => setFormData({...formData, role: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                     </div>
@@ -612,7 +612,7 @@ export function IgrejasTemplos() {
                           placeholder="Ex: Igreja Matriz São José"
                           value={formData.churchName}
                           onChange={(e) => setFormData({...formData, churchName: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
 
@@ -624,7 +624,7 @@ export function IgrejasTemplos() {
                           placeholder="Ex: 500 pessoas"
                           value={formData.capacity}
                           onChange={(e) => setFormData({...formData, capacity: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                     </div>
@@ -638,7 +638,7 @@ export function IgrejasTemplos() {
                           placeholder="(00) 00000-0000"
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                       
@@ -651,7 +651,7 @@ export function IgrejasTemplos() {
                           placeholder="seu@email.com"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="bg-black/50 border-white/10 focus-visible:ring-amber-500 h-12 rounded-xl"
+                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                     </div>
@@ -664,7 +664,7 @@ export function IgrejasTemplos() {
                         placeholder="Conte um pouco sobre as dificuldades com o som ou vídeo atualmente..."
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="bg-black/50 border-white/10 focus-visible:ring-amber-500 min-h-[120px] rounded-xl resize-none"
+                        className="bg-white/5 border-white/10 focus-visible:ring-amber-500 min-h-[140px] rounded-xl resize-none text-white placeholder:text-zinc-500 p-4"
                       />
                     </div>
 
