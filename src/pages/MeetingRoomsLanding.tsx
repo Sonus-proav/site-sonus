@@ -282,30 +282,26 @@ export function MeetingRoomsLanding() {
                         })}
                       </div>
 
-                      {/* Lóbulos da Câmera Simulados via SVG */}
-                      <svg className="absolute right-4 bottom-4 top-16 w-48 md:w-64 pointer-events-none z-10" style={{ filter: 'drop-shadow(0 0 10px rgba(52,211,153,0.8))' }}>
-                        {[
-                          { id: 0, x2: "25%", y2: "25%" },
-                          { id: 1, x2: "75%", y2: "25%" },
-                          { id: 2, x2: "25%", y2: "75%" },
-                          { id: 3, x2: "75%", y2: "75%" },
-                        ].map(speaker => (
-                          <line 
-                            key={speaker.id} 
-                            x1="50%" y1="50%" 
-                            x2={speaker.x2} y2={speaker.y2} 
-                            stroke="currentColor"
-                            strokeWidth="2" 
-                            strokeDasharray="4 4" 
-                            className={`text-emerald-400 transition-opacity duration-500 ${activeSpeaker === speaker.id ? 'opacity-100 animate-pulse' : 'opacity-0'}`} 
-                          />
-                        ))}
-                      </svg>
+                      {/* Lóbulos e rastreio foram movidos para dentro da div da mesa para herdar coordenadas exatas */}
 
                       {/* Mesa e Lóbulos */}
                       <div className="absolute right-4 bottom-4 top-16 w-48 md:w-64 border-2 border-white/10 rounded-[3rem] flex items-center justify-center z-10">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border border-emerald-500/30 rounded-md bg-emerald-500/10 flex items-center justify-center">
-                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                        {/* Radar da Câmera PTZ */}
+                        <div 
+                          className="absolute w-[55%] md:w-[60%] border-t-2 border-dashed border-emerald-400 opacity-90 z-10 origin-left transition-all duration-700 ease-in-out"
+                          style={{
+                            top: "50%",
+                            left: "50%",
+                            filter: "drop-shadow(0 0 8px rgba(52,211,153,1))",
+                            transform: activeSpeaker === 0 ? "rotate(-120deg)" : 
+                                       activeSpeaker === 1 ? "rotate(-60deg)" : 
+                                       activeSpeaker === 2 ? "rotate(120deg)" : 
+                                       "rotate(60deg)"
+                          }}
+                        />
+
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border border-emerald-500/30 rounded-md bg-emerald-500/10 flex items-center justify-center z-20">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,1)]" />
                         </div>
                         {[
                           { id: 0, pos: "-top-5 left-1/4" },
@@ -313,11 +309,11 @@ export function MeetingRoomsLanding() {
                           { id: 2, pos: "-bottom-5 left-1/4" },
                           { id: 3, pos: "-bottom-5 right-1/4" },
                         ].map(speaker => (
-                          <div key={speaker.id} className={`absolute ${speaker.pos} flex flex-col items-center transition-all z-10`}>
-                            <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 scale-110' : 'border-white/10 bg-black'}`}>
-                              <Users className={`w-4 h-4 ${activeSpeaker === speaker.id ? 'text-emerald-400' : 'text-zinc-600'}`} />
+                          <div key={speaker.id} className={`absolute ${speaker.pos} flex flex-col items-center transition-all z-20`}>
+                            <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${activeSpeaker === speaker.id ? 'border-emerald-400 bg-emerald-400/20 scale-110 shadow-[0_0_15px_rgba(52,211,153,0.5)]' : 'border-white/10 bg-black'}`}>
+                              <Users className={`w-4 h-4 transition-colors ${activeSpeaker === speaker.id ? 'text-emerald-400' : 'text-zinc-600'}`} />
                             </div>
-                            {activeSpeaker === speaker.id && <div className="absolute -z-10 w-16 h-16 border border-emerald-500/30 rounded-full animate-ping opacity-50" />}
+                            {activeSpeaker === speaker.id && <div className="absolute -z-10 w-16 h-16 border border-emerald-500/40 rounded-full animate-ping opacity-50" />}
                           </div>
                         ))}
                       </div>
