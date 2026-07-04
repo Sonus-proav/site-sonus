@@ -57,6 +57,15 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className="text-zinc-500 dark:text-zinc-400 mb-8 text-sm">
               Houve um problema ao carregar esta página. Tente recarregar.
             </p>
+
+            {this.state.error && (
+              <div className="mb-8 p-4 bg-red-950/50 border border-red-500/20 rounded-xl text-left w-full max-w-md overflow-auto text-xs font-mono text-red-200">
+                <p className="font-bold mb-2">Detalhes técnicos (envie um print para o suporte):</p>
+                <p>{this.state.error.message}</p>
+                <p className="opacity-50 mt-2 truncate">{this.state.error.stack?.split('\n')[1]}</p>
+              </div>
+            )}
+
             <button
               className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
               onClick={() => window.location.reload()}

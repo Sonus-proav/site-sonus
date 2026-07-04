@@ -47,6 +47,7 @@ function AnimatedCounter({ from = 0, to, duration = 2, prefix = "", suffix = "",
 
 export function QSysLanding() {
   const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
+  const [activeDashboardTab, setActiveDashboardTab] = useState("Cenários")
 
   // Form State
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", honeypot: "" })
@@ -194,71 +195,112 @@ export function QSysLanding() {
                 {/* Dashboard Body */}
                 <div className="flex-1 flex flex-col md:flex-row p-3 md:p-6 gap-3 md:gap-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 to-black">
                   {/* Left Nav */}
-                  <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 shrink-0">
+                  <div className="w-full md:w-64 flex flex-row md:flex-col gap-2 shrink-0 overflow-x-auto no-scrollbar" style={{ scrollbarWidth: "none" }}>
                     {[
-                      { icon: <MonitorPlay className="w-5 h-5" />, label: "Cenários", active: true },
-                      { icon: <Mic className="w-5 h-5" />, label: "Áudio", active: false },
-                      { icon: <Video className="w-5 h-5" />, label: "Câmeras", active: false },
-                      { icon: <Settings className="w-5 h-5" />, label: "Sistema", active: false },
-                    ].map((item, idx) => (
-                      <div key={idx} className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all ${item.active ? 'bg-white/10 text-white shadow-lg border border-white/10' : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}>
-                        {item.icon}
-                        <span className="font-semibold text-xs md:text-sm">{item.label}</span>
-                      </div>
-                    ))}
+                      { icon: <MonitorPlay className="w-5 h-5" />, label: "Cenários" },
+                      { icon: <Mic className="w-5 h-5" />, label: "Áudio" },
+                      { icon: <Video className="w-5 h-5" />, label: "Câmeras" },
+                      { icon: <Settings className="w-5 h-5" />, label: "Sistema" },
+                    ].map((item, idx) => {
+                      const isActive = activeDashboardTab === item.label;
+                      return (
+                        <div 
+                          key={idx} 
+                          onClick={() => setActiveDashboardTab(item.label)}
+                          className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all shrink-0 ${isActive ? 'bg-white/10 text-white shadow-lg border border-white/10' : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}
+                        >
+                          {item.icon}
+                          <span className="font-semibold text-xs md:text-sm">{item.label}</span>
+                        </div>
+                      )
+                    })}
                   </div>
 
                   {/* Main Action Area */}
-                  <div className="flex-1 flex flex-col gap-4 md:gap-6 relative bg-black/40 border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 overflow-hidden">
-                    {/* Background Scenes */}
-                    <div className={`absolute inset-0 transition-opacity duration-1000 ${activeFauxScene === "presentation" ? 'opacity-20' : 'opacity-0'}`}>
-                      <img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Apresentação" />
-                    </div>
-                    <div className={`absolute inset-0 transition-opacity duration-1000 ${activeFauxScene === "video" ? 'opacity-20' : 'opacity-0'}`}>
-                      <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Videochamada" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative z-10 flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { id: "presentation", title: "Apresentação", color: "blue", active: activeFauxScene === "presentation", desc: "Display On • Áudio PC" },
-                        { id: "video", title: "Videochamada", color: "purple", active: activeFauxScene === "video", desc: "Teams • Câmeras Auto" },
-                      ].map((scene) => (
-                        <div 
-                          key={scene.id} 
-                          onClick={() => setActiveFauxScene(scene.id as any)} 
-                          className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? `bg-${scene.color}-500/20 border-${scene.color}-500/50 text-${scene.color}-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]` : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
-                        >
-                          {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-10 md:h-10 mb-2" /> : <Video className="w-8 h-8 md:w-10 md:h-10 mb-2" />}
-                          <span className="font-bold text-sm md:text-base text-center">{scene.title}</span>
-                          {scene.active && <span className="text-[10px] uppercase font-mono tracking-wider opacity-80">{scene.desc}</span>}
+                  <div className="flex-1 flex flex-col gap-4 md:gap-6 relative bg-black/40 border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 overflow-hidden min-h-[300px]">
+                    {activeDashboardTab === "Cenários" && (
+                      <div className="flex-1 flex flex-col gap-4 md:gap-6 animate-in fade-in zoom-in-95 duration-500 relative">
+                        {/* Background Scenes */}
+                        <div className={`absolute -inset-6 transition-opacity duration-1000 pointer-events-none ${activeFauxScene === "presentation" ? 'opacity-20' : 'opacity-0'}`}>
+                          <img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Apresentação" />
                         </div>
-                      ))}
-                      
-                      <div className="rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-not-allowed border bg-white/5 border-white/10 text-zinc-500 opacity-50 backdrop-blur-md">
-                        <Lock className="w-8 h-8 md:w-10 md:h-10 mb-2" />
-                        <span className="font-bold text-sm md:text-base text-center">Painel Privado</span>
-                      </div>
-                    </div>
-                    
-                    {/* Controls Footer */}
-                    <div className="relative z-10 h-auto rounded-2xl md:rounded-3xl bg-zinc-950/80 border border-white/10 p-5 md:p-8 flex flex-col justify-center backdrop-blur-xl">
-                      <div className="flex justify-between items-end mb-5">
-                        <div className="flex items-center gap-3 text-zinc-300">
-                          <SlidersHorizontal className="w-5 h-5 md:w-6 md:h-6" />
-                          <div>
-                            <span className="block font-semibold text-sm md:text-lg">Volume {activeFauxScene === "presentation" ? 'Sala (Apresentação)' : 'Recepção Teams'}</span>
-                            <span className="text-xs text-zinc-500 font-mono">Q-SYS DSP Automix Ativo</span>
+                        <div className={`absolute -inset-6 transition-opacity duration-1000 pointer-events-none ${activeFauxScene === "video" ? 'opacity-20' : 'opacity-0'}`}>
+                          <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Videochamada" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="relative z-10 flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
+                          {[
+                            { id: "presentation", title: "Apresentação", color: "blue", active: activeFauxScene === "presentation", desc: "Display On • Áudio PC" },
+                            { id: "video", title: "Videochamada", color: "purple", active: activeFauxScene === "video", desc: "Teams • Câmeras Auto" },
+                          ].map((scene) => (
+                            <div 
+                              key={scene.id} 
+                              onClick={() => setActiveFauxScene(scene.id as any)} 
+                              className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? `bg-${scene.color}-500/20 border-${scene.color}-500/50 text-${scene.color}-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]` : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
+                            >
+                              {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-10 md:h-10 mb-2" /> : <Video className="w-8 h-8 md:w-10 md:h-10 mb-2" />}
+                              <span className="font-bold text-sm md:text-base text-center">{scene.title}</span>
+                              {scene.active && <span className="text-[10px] uppercase font-mono tracking-wider opacity-80">{scene.desc}</span>}
+                            </div>
+                          ))}
+                          
+                          <div className="rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-not-allowed border bg-white/5 border-white/10 text-zinc-500 opacity-50 backdrop-blur-md">
+                            <Lock className="w-8 h-8 md:w-10 md:h-10 mb-2" />
+                            <span className="font-bold text-sm md:text-base text-center">Painel Privado</span>
                           </div>
                         </div>
-                        <span className="text-2xl md:text-4xl font-black text-white">{activeFauxScene === "presentation" ? '75%' : '60%'}</span>
-                      </div>
-                      <div className="h-5 md:h-6 bg-black rounded-full p-1 border border-white/10 relative overflow-hidden">
-                        <div className={`h-full rounded-full transition-all duration-1000 ease-out relative ${activeFauxScene === "presentation" ? 'w-[75%] bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)]' : 'w-[60%] bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]'}`}>
-                          <div className="absolute inset-0 bg-white/20 w-full h-full animate-pulse" />
+                        
+                        {/* Controls Footer */}
+                        <div className="relative z-10 h-auto rounded-2xl md:rounded-3xl bg-zinc-950/80 border border-white/10 p-5 md:p-8 flex flex-col justify-center backdrop-blur-xl mt-auto">
+                          <div className="flex justify-between items-end mb-5">
+                            <div className="flex items-center gap-3 text-zinc-300">
+                              <SlidersHorizontal className="w-5 h-5 md:w-6 md:h-6" />
+                              <div>
+                                <span className="block font-semibold text-sm md:text-lg">Volume {activeFauxScene === "presentation" ? 'Sala (Apresentação)' : 'Recepção Teams'}</span>
+                                <span className="text-xs text-zinc-500 font-mono">Q-SYS DSP Automix Ativo</span>
+                              </div>
+                            </div>
+                            <span className="text-2xl md:text-4xl font-black text-white">{activeFauxScene === "presentation" ? '75%' : '60%'}</span>
+                          </div>
+                          <div className="h-5 md:h-6 bg-black rounded-full p-1 border border-white/10 relative overflow-hidden">
+                            <div className={`h-full rounded-full transition-all duration-1000 ease-out relative ${activeFauxScene === "presentation" ? 'w-[75%] bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)]' : 'w-[60%] bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]'}`}>
+                              <div className="absolute inset-0 bg-white/20 w-full h-full animate-pulse" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
+                    
+                    {activeDashboardTab === "Áudio" && (
+                      <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
+                        <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
+                          <Mic className="w-16 h-16 mx-auto mb-6 text-blue-500 opacity-60 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+                          <h3 className="text-2xl font-bold text-white mb-3">Controle DSP Avançado</h3>
+                          <p className="text-sm text-zinc-400">O roteamento de áudio é nativo e automatizado. Nenhuma matriz analógica externa é necessária.</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {activeDashboardTab === "Câmeras" && (
+                      <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
+                        <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
+                          <Video className="w-16 h-16 mx-auto mb-6 text-purple-500 opacity-60 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
+                          <h3 className="text-2xl font-bold text-white mb-3">Comutação Automática</h3>
+                          <p className="text-sm text-zinc-400">As câmeras PTZ rastreiam quem está falando via processamento de rede sem intervenção manual.</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {activeDashboardTab === "Sistema" && (
+                      <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
+                        <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
+                          <Settings className="w-16 h-16 mx-auto mb-6 text-emerald-500 opacity-60 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
+                          <h3 className="text-2xl font-bold text-white mb-3">Saúde do Ecossistema</h3>
+                          <p className="text-sm text-zinc-400">Todos os endpoints e periféricos AV estão on-line, em sync e reportando status saudável (Verde).</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

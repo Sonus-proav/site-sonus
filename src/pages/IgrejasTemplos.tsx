@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
 import { Link } from "react-router-dom"
-import { getProjects, optimizeImageUrl, type Project } from "@/lib/publicStorage"
+import { getProjects, type Project } from "@/lib/publicStorage"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { 
   VolumeX, 
@@ -79,23 +79,27 @@ function CoverageHeatmap() {
         {zones.map((zone) => (
           <motion.div
             key={zone.id}
-            className="absolute cursor-pointer rounded-xl transition-all duration-500"
+            className="absolute cursor-pointer rounded-xl transition-all duration-500 overflow-hidden"
             style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
             animate={{
+              boxShadow: activeZone === zone.id ? "0 0 35px 5px rgba(245,158,11,0.3)" : "0 0 0px 0px rgba(0,0,0,0)",
               backgroundColor: activeZone === zone.id 
-                ? "rgba(245,158,11,0.35)" 
-                : `rgba(245,158,11,${0.08 + (zone.coverage / 100) * 0.15})`,
+                ? "rgba(245,158,11,0.3)" 
+                : `rgba(245,158,11,${0.03 + (zone.coverage / 100) * 0.05})`,
               borderColor: activeZone === zone.id 
                 ? "rgba(245,158,11,0.6)" 
-                : "rgba(245,158,11,0.15)",
+                : "rgba(245,158,11,0.05)",
             }}
             onMouseEnter={() => setActiveZone(zone.id)}
             onMouseLeave={() => setActiveZone(null)}
             whileHover={{ scale: 1.05 }}
           >
-            <div className={`absolute inset-0 flex flex-col items-center justify-center text-xs transition-opacity duration-300 ${activeZone === zone.id ? 'opacity-100' : 'opacity-0'}`}>
-              <span className="text-amber-400 font-bold text-sm">{zone.coverage}%</span>
-              <span className="text-amber-300/70 text-[10px]">{zone.label}</span>
+            {/* Heat Gradient Layer */}
+            <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-300/40 via-amber-500/10 to-transparent transition-opacity duration-500 ${activeZone === zone.id ? 'opacity-100' : 'opacity-0'}`} />
+            
+            <div className={`absolute inset-0 flex flex-col items-center justify-center text-xs transition-opacity duration-300 z-10 ${activeZone === zone.id ? 'opacity-100' : 'opacity-0'}`}>
+              <span className="text-amber-200 font-black text-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{zone.coverage}%</span>
+              <span className="text-amber-100/90 text-[9px] uppercase tracking-wider font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{zone.label}</span>
             </div>
           </motion.div>
         ))}
@@ -486,10 +490,10 @@ export function IgrejasTemplos() {
             style={{ scrollbarWidth: "none" }}
           >
             {displayPortfolio.map((item, index) => (
-              <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[85vw] md:w-[45vw] lg:w-[400px] snap-center md:snap-start">
-                <div className="group relative rounded-[2rem] overflow-hidden aspect-[4/5] bg-zinc-900">
+              <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[90vw] md:w-[60vw] lg:w-[600px] snap-center md:snap-start">
+                <div className="group relative rounded-[2rem] overflow-hidden aspect-video md:aspect-[16/10] bg-zinc-900 border border-white/5">
                   <img 
-                    src={optimizeImageUrl(item.image)} 
+                    src={item.image} 
                     alt={item.title} 
                     loading="lazy"
                     decoding="async"
