@@ -58,16 +58,17 @@ function SoundWaves() {
 
 // --- Sound Coverage Heatmap ---
 function CoverageHeatmap() {
-  const [activeZone, setActiveZone] = useState<number | null>(null)
+  const [activeZone, setActiveZone] = useState<number | null>(0)
   const [autoPlay, setAutoPlay] = useState(true)
   const autoPlayRef = useRef(true)
+  const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   
   const zones = [
-    { id: 0, label: "Altar", x: "38%", y: "8%", w: "24%", h: "18%", coverage: 98 },
-    { id: 1, label: "Nave Central", x: "22%", y: "30%", w: "56%", h: "28%", coverage: 95 },
-    { id: 2, label: "Lateral Esq.", x: "5%", y: "28%", w: "14%", h: "35%", coverage: 92 },
-    { id: 3, label: "Lateral Dir.", x: "81%", y: "28%", w: "14%", h: "35%", coverage: 92 },
-    { id: 4, label: "Fundo", x: "15%", y: "65%", w: "70%", h: "18%", coverage: 88 },
+    { id: 0, label: "Altar", x: "33%", y: "6%", w: "34%", h: "16%", coverage: 98, desc: "Cobertura direcional de alta precisão" },
+    { id: 1, label: "Nave Central", x: "20%", y: "26%", w: "60%", h: "30%", coverage: 95, desc: "Dispersão uniforme em toda a extensão" },
+    { id: 2, label: "Lateral Esq.", x: "4%", y: "24%", w: "13%", h: "40%", coverage: 92, desc: "Caixas anguladas para cobertura lateral" },
+    { id: 3, label: "Lateral Dir.", x: "83%", y: "24%", w: "13%", h: "40%", coverage: 92, desc: "Caixas anguladas para cobertura lateral" },
+    { id: 4, label: "Fundo", x: "12%", y: "60%", w: "76%", h: "16%", coverage: 88, desc: "Delay line para alcance dos últimos bancos" },
   ]
 
   // Auto-cycle through zones
@@ -85,104 +86,92 @@ function CoverageHeatmap() {
 
   const handleMouseEnter = (id: number) => {
     setAutoPlay(false)
+    if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current)
     setActiveZone(id)
   }
   const handleMouseLeave = () => {
-    setActiveZone(null)
-    // Resume auto-play after a delay
-    setTimeout(() => setAutoPlay(true), 1000)
+    if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current)
+    autoPlayTimerRef.current = setTimeout(() => setAutoPlay(true), 2000)
   }
 
-  return (
-    <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
-      <div className="absolute inset-0 rounded-3xl border border-amber-500/20 bg-zinc-950/90 overflow-hidden shadow-[0_0_80px_-20px_rgba(245,158,11,0.15)]">
-        
-        {/* Church shape outline */}
-        <div className="absolute inset-[6%] border border-dashed border-amber-500/10 rounded-2xl" />
-        {/* Apse / Altar semicircle */}
-        <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[30%] h-[12%] border border-amber-500/15 rounded-b-full border-t-0" />
-        
-        {/* Cross at altar */}
-        <div className="absolute top-[5%] left-1/2 -translate-x-1/2 text-amber-500/40 text-3xl font-serif select-none">✝</div>
-        
-        {/* Speaker icon at center-top (source) */}
-        <div className="absolute top-[14%] left-1/2 -translate-x-1/2 z-20">
-          <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${activeZone !== null ? 'bg-amber-500 shadow-[0_0_20px_5px_rgba(245,158,11,0.5)]' : 'bg-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.2)]'}`}>
-            <SlidersHorizontal className="w-3 h-3 text-black" />
-          </div>
-        </div>
+  const activeData = zones.find(z => z.id === activeZone)
 
-        {/* Emission lines from speaker to active zone */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+  return (
+    <div className="relative w-full max-w-lg mx-auto flex flex-col gap-4">
+      {/* Main heatmap */}
+      <div className="relative aspect-[5/4] w-full">
+        <div className="absolute inset-0 rounded-2xl border border-amber-500/20 bg-zinc-950/90 overflow-hidden shadow-[0_0_60px_-15px_rgba(245,158,11,0.12)]">
+          
+          {/* Church floor outline */}
+          <div className="absolute inset-[5%] border border-dashed border-amber-500/8 rounded-xl pointer-events-none" />
+
+          {/* Coverage zones */}
           {zones.map((zone) => {
-            const zoneX = parseFloat(zone.x) + parseFloat(zone.w) / 2
-            const zoneY = parseFloat(zone.y) + parseFloat(zone.h) / 2
             const isActive = activeZone === zone.id
             return (
-              <line
+              <motion.div
                 key={zone.id}
-                x1="50" y1="17"
-                x2={zoneX} y2={zoneY}
-                stroke="rgba(245,158,11,0.4)"
-                strokeWidth="0.4"
-                strokeDasharray="2 2"
-                className={`transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}
-              />
+                className="absolute cursor-pointer rounded-lg border overflow-hidden z-10"
+                style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
+                animate={{
+                  boxShadow: isActive ? "0 0 25px 3px rgba(245,158,11,0.2)" : "0 0 0px 0px rgba(0,0,0,0)",
+                  backgroundColor: isActive 
+                    ? "rgba(245,158,11,0.2)" 
+                    : "rgba(245,158,11,0.04)",
+                  borderColor: isActive 
+                    ? "rgba(245,158,11,0.5)" 
+                    : "rgba(245,158,11,0.1)",
+                }}
+                transition={{ duration: 0.4 }}
+                onMouseEnter={() => handleMouseEnter(zone.id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* Glow */}
+                <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.3),transparent_70%)] transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                
+                {/* Label */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                  <span className={`font-black transition-all duration-300 ${isActive ? 'text-amber-100 text-base drop-shadow-[0_1px_6px_rgba(245,158,11,0.6)]' : 'text-amber-500/30 text-xs'}`}>
+                    {zone.coverage}%
+                  </span>
+                  <span className={`uppercase tracking-wider font-semibold transition-all duration-300 ${isActive ? 'text-amber-200/80 text-[10px]' : 'text-amber-500/20 text-[8px]'}`}>
+                    {zone.label}
+                  </span>
+                </div>
+              </motion.div>
             )
           })}
-        </svg>
 
-        {/* Coverage zones */}
-        {zones.map((zone) => {
-          const isActive = activeZone === zone.id
-          return (
-            <motion.div
-              key={zone.id}
-              className="absolute cursor-pointer rounded-xl border overflow-hidden z-10"
-              style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
-              animate={{
-                boxShadow: isActive ? "0 0 30px 4px rgba(245,158,11,0.25)" : "0 0 0px 0px rgba(0,0,0,0)",
-                backgroundColor: isActive 
-                  ? "rgba(245,158,11,0.25)" 
-                  : "rgba(245,158,11,0.06)",
-                borderColor: isActive 
-                  ? "rgba(245,158,11,0.5)" 
-                  : "rgba(245,158,11,0.12)",
-              }}
-              transition={{ duration: 0.5 }}
-              onMouseEnter={() => handleMouseEnter(zone.id)}
-              onMouseLeave={handleMouseLeave}
-              whileHover={{ scale: 1.04 }}
-            >
-              {/* Heat glow */}
-              <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.35),rgba(245,158,11,0.05),transparent)] transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-              
-              {/* Always-visible zone label (dimmed when inactive) */}
-              <div className={`absolute inset-0 flex flex-col items-center justify-center text-xs z-10 transition-all duration-300`}>
-                <span className={`font-black text-sm transition-all duration-300 ${isActive ? 'text-amber-200 drop-shadow-[0_2px_8px_rgba(245,158,11,0.8)] scale-110' : 'text-amber-500/40 text-[10px]'}`}>
-                  {zone.coverage}%
-                </span>
-                <span className={`uppercase tracking-wider font-bold transition-all duration-300 ${isActive ? 'text-amber-100/90 text-[9px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]' : 'text-amber-500/25 text-[7px]'}`}>
-                  {zone.label}
-                </span>
-              </div>
-            </motion.div>
-          )
-        })}
-
-        {/* Concentric coverage rings */}
-        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[50%] aspect-square rounded-full border border-amber-500/8 pointer-events-none" />
-        <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[75%] aspect-square rounded-full border border-amber-500/5 pointer-events-none" />
-
-        {/* Legend */}
-        <div className="absolute bottom-3 left-4 right-4 flex justify-between text-[9px] text-zinc-600 z-20">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-sm bg-amber-500/30 border border-amber-500/40" />
-            Cobertura Sonora
-          </span>
-          <span className="text-amber-500/50 italic">Passe o mouse nas zonas ↑</span>
+          {/* Legend bottom */}
+          <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[8px] text-zinc-600 z-20 pointer-events-none">
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-sm bg-amber-500/30 border border-amber-500/30" />
+              Cobertura Sonora
+            </span>
+            <span className="text-amber-500/40">Toque nas zonas</span>
+          </div>
         </div>
       </div>
+
+      {/* Active zone info panel */}
+      <motion.div 
+        className="rounded-xl border border-amber-500/15 bg-zinc-950/80 px-5 py-3 flex items-center gap-4 min-h-[56px]"
+        animate={{ borderColor: activeData ? "rgba(245,158,11,0.3)" : "rgba(245,158,11,0.1)" }}
+      >
+        {activeData ? (
+          <>
+            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 shrink-0">
+              <span className="text-amber-400 font-black text-sm">{activeData.coverage}%</span>
+            </div>
+            <div className="min-w-0">
+              <p className="text-white font-bold text-sm truncate">{activeData.label}</p>
+              <p className="text-zinc-500 text-xs truncate">{activeData.desc}</p>
+            </div>
+          </>
+        ) : (
+          <p className="text-zinc-600 text-xs italic w-full text-center">Selecione uma zona no mapa acima</p>
+        )}
+      </motion.div>
     </div>
   )
 }
