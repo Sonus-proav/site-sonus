@@ -1,7 +1,7 @@
 import { useState, useRef } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
+import { LPFooter } from "@/components/layout/LPFooter"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
@@ -541,7 +541,7 @@ export function AuditoriosTeatros() {
       </section>
 
       <TestimonialSection />
-      <Footer />
+      <LPFooter />
       <WhatsAppButton message="Olá, gostaria de saber mais sobre projetos para auditórios." />
       <StickyCtaBar />
     </div>

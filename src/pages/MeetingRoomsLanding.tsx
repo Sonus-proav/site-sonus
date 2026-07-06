@@ -14,7 +14,7 @@ import {
 } from "lucide-react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
+import { LPFooter } from "@/components/layout/LPFooter"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
@@ -117,7 +117,7 @@ export function MeetingRoomsLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
+    <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
       <SEO 
         title="Automação de Salas de Reunião | Sonus Pro AV" 
         description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 
@@ -556,7 +556,7 @@ export function MeetingRoomsLanding() {
       </section>
 
       <TestimonialSection />
-      <Footer />
+      <LPFooter />
       <WhatsAppButton message="Olá! Gostaria de otimizar minha sala de reunião." />
       <StickyCtaBar />
     </div>

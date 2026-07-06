@@ -14,7 +14,7 @@ import {
 import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
+import { LPFooter } from "@/components/layout/LPFooter"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
@@ -553,7 +553,7 @@ export function QSysLanding() {
       </section>
 
       <TestimonialSection />
-      <Footer />
+      <LPFooter />
       <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />
       <StickyCtaBar />
     </div>
