@@ -2,6 +2,8 @@ import { useState, useRef } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { TestimonialSection } from "@/components/ui/TestimonialSection"
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -161,6 +163,7 @@ export function AuditoriosTeatros() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
     
@@ -174,6 +177,7 @@ export function AuditoriosTeatros() {
       })
 
       if (response.ok) {
+        setIsSubmitting(false)
         navigate("/obrigado")
       } else {
         const errData = await response.json().catch(() => ({}))
@@ -226,7 +230,7 @@ export function AuditoriosTeatros() {
             <Reveal delay={0.1}>
               <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[6rem] font-black tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
                 ONDE CADA<br />
-                PALAVRA<br />
+                NOTA<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
                   IMPORTA.
                 </span>
@@ -240,16 +244,29 @@ export function AuditoriosTeatros() {
             </FadeIn>
 
             <FadeIn delay={0.4}>
-              <Magnetic>
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                <Magnetic>
+                  <Button 
+                    onClick={() => document.getElementById('consultoria')?.scrollIntoView({ behavior: 'smooth' })}
+                    size="lg" 
+                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_60px_-10px_rgba(41,128,185,0.5)] transition-all hover:shadow-[0_0_80px_-10px_rgba(41,128,185,0.7)] h-auto"
+                  >
+                    Solicitar Consultoria Acústica
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Magnetic>
                 <Button 
-                  onClick={() => document.getElementById('consultoria')?.scrollIntoView({ behavior: 'smooth' })}
-                  size="lg" 
-                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_60px_-10px_rgba(41,128,185,0.5)] transition-all hover:shadow-[0_0_80px_-10px_rgba(41,128,185,0.7)] h-auto"
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => {
+                    const text = `Olá! Gostaria de falar com um especialista sobre o som do meu Auditório / Teatro.`
+                    window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
+                  }}
+                  className="w-full sm:w-auto rounded-full px-8 py-6 text-lg font-medium border-white/10 hover:bg-white/5 h-auto"
                 >
-                  Solicitar Consultoria Acústica
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  Falar no WhatsApp
                 </Button>
-              </Magnetic>
+              </div>
             </FadeIn>
           </div>
         </motion.div>
@@ -338,12 +355,12 @@ export function AuditoriosTeatros() {
 
               <div className="space-y-6 pt-4">
                 {[
-                  { icon: <Settings2 className="w-5 h-5" />, label: "Q-SYS", title: "O Cérebro", desc: "Processamento central que gerencia áudio e automação de forma fluida e escalável.", color: "blue" },
-                  { icon: <Mic2 className="w-5 h-5" />, label: "SHURE", title: "A Captação", desc: "Padrão ouro mundial: cada palavra captada com precisão cristalina, sem interferências.", color: "emerald" },
+                  { icon: <Settings2 className="w-5 h-5" />, label: "Q-SYS", title: "O Cérebro", desc: "Processamento central que gerencia áudio e automação de forma fluida e escalável.", colorClass: "bg-blue-500/10 border-blue-500/20 text-blue-400 group-hover:bg-blue-500/20" },
+                  { icon: <Mic2 className="w-5 h-5" />, label: "SHURE", title: "A Captação", desc: "Padrão ouro mundial: cada palavra captada com precisão cristalina, sem interferências.", colorClass: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500/20" },
                 ].map((item, i) => (
                   <FadeIn key={i} delay={0.3 + i * 0.1}>
                     <div className="flex gap-4 group">
-                      <div className={`w-12 h-12 shrink-0 rounded-xl bg-${item.color}-500/10 flex items-center justify-center border border-${item.color}-500/20 text-${item.color}-400 group-hover:bg-${item.color}-500/20 transition-colors`}>
+                      <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center border transition-colors ${item.colorClass}`}>
                         {item.icon}
                       </div>
                       <div>
@@ -523,8 +540,10 @@ export function AuditoriosTeatros() {
         </div>
       </section>
 
+      <TestimonialSection />
       <Footer />
-      <WhatsAppButton />
+      <WhatsAppButton message="Olá, gostaria de saber mais sobre projetos para auditórios." />
+      <StickyCtaBar />
     </div>
   )
 }

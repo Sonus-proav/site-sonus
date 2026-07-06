@@ -15,6 +15,8 @@ import { SEO } from "../components/SEO"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { TestimonialSection } from "@/components/ui/TestimonialSection"
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { motion, useScroll, useTransform, useInView, animate } from "framer-motion"
 
@@ -237,7 +239,7 @@ export function QSysLanding() {
                             <div 
                               key={scene.id} 
                               onClick={() => setActiveFauxScene(scene.id as any)} 
-                              className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? `bg-${scene.color}-500/20 border-${scene.color}-500/50 text-${scene.color}-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]` : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
+                              className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? (scene.id === 'presentation' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]' : 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]') : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
                             >
                               {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-10 md:h-10 mb-2" /> : <Video className="w-8 h-8 md:w-10 md:h-10 mb-2" />}
                               <span className="font-bold text-sm md:text-base text-center">{scene.title}</span>
@@ -550,8 +552,10 @@ export function QSysLanding() {
         </div>
       </section>
 
+      <TestimonialSection />
       <Footer />
-      <WhatsAppButton phone="5546920013151" message="Olá! Gostaria de falar com o especialista Q-SYS." />
+      <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />
+      <StickyCtaBar />
     </div>
   )
 }

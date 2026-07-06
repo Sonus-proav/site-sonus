@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { TestimonialSection } from "@/components/ui/TestimonialSection"
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -182,9 +184,6 @@ export function IgrejasTemplos() {
   // Form State
   const [formData, setFormData] = useState({
     name: "",
-    role: "", // Cargo na Igreja
-    churchName: "", // Nome da Igreja
-    capacity: "", // Capacidade de Fiéis
     phone: "",
     email: "",
     message: "",
@@ -213,6 +212,7 @@ export function IgrejasTemplos() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
     
@@ -229,9 +229,6 @@ export function IgrejasTemplos() {
         setIsSuccess(true)
         setFormData({
           name: "",
-          role: "",
-          churchName: "",
-          capacity: "",
           phone: "",
           email: "",
           message: "",
@@ -397,10 +394,9 @@ export function IgrejasTemplos() {
                   
                   {/* Distorted wave visualization */}
                   <div className="flex items-end gap-[3px] h-24 mb-10">
-                    {[...Array(32)].map((_, i) => {
-                      const h = Math.random() * 100
-                      return <div key={i} className="flex-1 bg-red-500/30 rounded-full" style={{ height: `${h}%` }} />
-                    })}
+                    {[45, 82, 34, 91, 55, 10, 76, 23, 88, 42, 15, 67, 95, 31, 73, 50, 28, 84, 61, 19, 97, 38, 71, 44, 89, 12, 65, 58, 25, 79, 36, 92].map((h, i) => (
+                      <div key={i} className="flex-1 bg-red-500/30 rounded-full" style={{ height: `${h}%` }} />
+                    ))}
                   </div>
 
                   <div className="space-y-5">
@@ -653,46 +649,6 @@ export function IgrejasTemplos() {
                       </div>
                       
                       <div className="space-y-2">
-                        <label htmlFor="role" className="text-sm font-medium text-zinc-300">Cargo na Igreja</label>
-                        <Input 
-                          id="role" 
-                          required 
-                          placeholder="Ex: Pastor, Padre, Técnico, Conselho"
-                          value={formData.role}
-                          onChange={(e) => setFormData({...formData, role: e.target.value})}
-                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div className="space-y-2">
-                        <label htmlFor="churchName" className="text-sm font-medium text-zinc-300">Nome da Igreja / Templo</label>
-                        <Input 
-                          id="churchName" 
-                          required 
-                          placeholder="Ex: Igreja Matriz São José"
-                          value={formData.churchName}
-                          onChange={(e) => setFormData({...formData, churchName: e.target.value})}
-                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <label htmlFor="capacity" className="text-sm font-medium text-zinc-300">Capacidade de Fiéis (Aprox.)</label>
-                        <Input 
-                          id="capacity" 
-                          required 
-                          placeholder="Ex: 500 pessoas"
-                          value={formData.capacity}
-                          onChange={(e) => setFormData({...formData, capacity: e.target.value})}
-                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
                         <Input 
                           id="phone" 
@@ -703,19 +659,19 @@ export function IgrejasTemplos() {
                           className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
-                      
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                        <Input 
-                          id="email" 
-                          type="email" 
-                          required 
-                          placeholder="seu@email.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
-                        />
-                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail</label>
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        required 
+                        placeholder="seu@email.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
+                      />
                     </div>
 
                     <div className="space-y-2">
@@ -723,7 +679,7 @@ export function IgrejasTemplos() {
                       <Textarea 
                         id="message" 
                         required 
-                        placeholder="Conte um pouco sobre as dificuldades com o som ou vídeo atualmente..."
+                        placeholder="Conte sobre sua igreja (Ex: Matriz com 500 lugares) e o problema atual..."
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
                         className="bg-white/5 border-white/10 focus-visible:ring-amber-500 min-h-[140px] rounded-xl resize-none text-white placeholder:text-zinc-500 p-4"
@@ -768,8 +724,10 @@ export function IgrejasTemplos() {
 
       </main>
 
+      <TestimonialSection />
       <Footer />
       <WhatsAppButton />
+      <StickyCtaBar />
     </div>
   )
 }

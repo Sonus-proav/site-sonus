@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
-import { db } from "@/lib/firebase"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -17,6 +15,8 @@ import {
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { TestimonialSection } from "@/components/ui/TestimonialSection"
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 
@@ -50,13 +50,10 @@ export function MeetingRoomsLanding() {
     const finalToken = turnstileToken || "bypass_token"
     
     try {
-      await addDoc(collection(db, "leads"), {
-        ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião", status: "novo", createdAt: serverTimestamp()
-      })
       await fetch('/api/contato', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião" })
-      }).catch(e => console.log('Fetch API secundário falhou', e));
+      })
 
       window.location.href = '/obrigado';
     } catch (error) {
@@ -177,7 +174,7 @@ export function MeetingRoomsLanding() {
                 </Button>
               </Magnetic>
               <Button onClick={handleWhatsApp} variant="outline" size="lg" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg transition-all">
-                Ver Funcionando <ChevronRight className="ml-2 w-4 h-4" />
+                Falar no WhatsApp <ChevronRight className="ml-2 w-4 h-4" />
               </Button>
             </FadeIn>
           </div>
@@ -558,8 +555,10 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
+      <TestimonialSection />
       <Footer />
-      <WhatsAppButton phone="5546920013151" message="Olá! Gostaria de falar sobre Automação de Salas de Reunião." />
+      <WhatsAppButton message="Olá! Gostaria de otimizar minha sala de reunião." />
+      <StickyCtaBar />
     </div>
   )
 }
