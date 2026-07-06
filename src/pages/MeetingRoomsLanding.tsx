@@ -117,7 +117,7 @@ export function MeetingRoomsLanding() {
   }
 
   return (
-    <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
       <SEO 
         title="Automação de Salas de Reunião | Sonus Pro AV" 
         description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 
