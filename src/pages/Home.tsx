@@ -298,7 +298,7 @@ export function Home() {
               <img 
                 src="/clientes/cresol.png" 
                 alt="Cresol" 
-                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-16 md:h-24 lg:h-32 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.png" 
@@ -308,7 +308,7 @@ export function Home() {
               <img 
                 src="/clientes/unipar.png" 
                 alt="UNIPAR" 
-                className="h-7 md:h-8 lg:h-10 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.png" 
