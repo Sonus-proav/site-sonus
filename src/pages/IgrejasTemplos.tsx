@@ -319,7 +319,7 @@ export function IgrejasTemplos() {
             className="relative z-10 max-w-5xl mx-auto text-center space-y-10"
           >
             <Reveal>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.9]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] md:leading-[0.9]">
                 <span className="text-white">ONDE CADA</span>
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">

@@ -152,7 +152,7 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             <Reveal>
-              <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-tighter leading-[0.9]">
+              <h1 className="text-5xl sm:text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-tighter leading-[1] md:leading-[0.9]">
                 Fim do <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                   Improviso.
@@ -167,13 +167,15 @@ export function MeetingRoomsLanding() {
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Magnetic>
-                <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all hover:scale-105">
-                  Projetar Minha Sala
-                </Button>
-              </Magnetic>
-              <Button onClick={handleWhatsApp} variant="outline" size="lg" className="h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg transition-all">
+            <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
+              <div className="w-full sm:w-auto">
+                <Magnetic>
+                  <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all hover:scale-105">
+                    Projetar Minha Sala
+                  </Button>
+                </Magnetic>
+              </div>
+              <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg transition-all">
                 Falar no WhatsApp <ChevronRight className="ml-2 w-4 h-4" />
               </Button>
             </FadeIn>

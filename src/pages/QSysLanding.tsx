@@ -128,7 +128,7 @@ export function QSysLanding() {
           </FadeIn>
 
           <Reveal>
-            <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] font-black tracking-tighter leading-[0.85] text-white">
+            <h1 className="text-5xl sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] font-black tracking-tighter leading-[1] md:leading-[0.85] text-white">
               O CÉREBRO<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">
                 INTELIGENTE.
@@ -157,14 +157,16 @@ export function QSysLanding() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.5} className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Magnetic>
-              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
-                Dimensionar Meu Projeto
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Magnetic>
-            <Button onClick={handleWhatsApp} variant="outline" size="lg" className="h-16 px-10 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-bold transition-all">
+          <FadeIn delay={0.5} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
+            <div className="w-full sm:w-auto">
+              <Magnetic>
+                <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
+                  Dimensionar Meu Projeto
+                  <ChevronRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Magnetic>
+            </div>
+            <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-bold transition-all">
               Falar no WhatsApp
             </Button>
           </FadeIn>
