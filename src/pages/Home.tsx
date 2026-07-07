@@ -294,26 +294,26 @@ export function Home() {
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-24 px-4">
+            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-24 px-4">
               <img 
                 src="/clientes/cresol.png" 
                 alt="Cresol" 
-                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 hover:grayscale-0 hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
               />
               <img 
                 src="/clientes/unoesc.png" 
                 alt="UNOESC" 
-                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 hover:grayscale-0 hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
               />
               <img 
                 src="/clientes/unipar.png" 
                 alt="UNIPAR" 
-                className="h-9 md:h-11 lg:h-14 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 hover:grayscale-0 hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-7 md:h-8 lg:h-10 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
               />
               <img 
                 src="/clientes/unisep.png" 
                 alt="Unisep" 
-                className="h-8 md:h-10 lg:h-12 object-contain filter grayscale brightness-0 invert opacity-40 hover:opacity-100 hover:grayscale-0 hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
               />
             </div>
           </div>
