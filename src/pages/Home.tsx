@@ -298,22 +298,22 @@ export function Home() {
               <img 
                 src="/clientes/cresol.png" 
                 alt="Cresol" 
-                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.png" 
                 alt="UNOESC" 
-                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unipar.png" 
                 alt="UNIPAR" 
-                className="h-7 md:h-8 lg:h-10 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-7 md:h-8 lg:h-10 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.png" 
                 alt="Unisep" 
-                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-500" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
           </div>
