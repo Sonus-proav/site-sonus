@@ -24,6 +24,7 @@ import { motion, useScroll, useTransform, useInView, animate } from "framer-moti
 import certLevel1 from "@/assets/cert-level1.png"
 import certVision from "@/assets/cert-vision.png"
 import certSales from "@/assets/cert-sales.png"
+import { useLocation } from "react-router-dom"
 
 // --- Animated Counter Component ---
 function AnimatedCounter({ from = 0, to, duration = 2, prefix = "", suffix = "", decimals = 0 }: { from?: number, to: number, duration?: number, prefix?: string, suffix?: string, decimals?: number }) {
@@ -49,6 +50,12 @@ function AnimatedCounter({ from = 0, to, duration = 2, prefix = "", suffix = "",
 }
 
 export function QSysLanding() {
+  const location = useLocation()
+  
+  useEffect(() => {
+    if (!location.hash) window.scrollTo(0, 0)
+  }, [location.pathname, location.hash])
+
   const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
   const [activeDashboardTab, setActiveDashboardTab] = useState("Cenários")
 

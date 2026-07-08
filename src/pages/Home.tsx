@@ -19,6 +19,13 @@ export function Home() {
   const navigate = useNavigate()
   const [show404, setShow404] = useState(false)
 
+  // Reset de scroll atrelado à montagem real da página (pós-Suspense)
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname, location.hash])
+
   useEffect(() => {
     if (location.state?.show404Toast) {
       setShow404(true)

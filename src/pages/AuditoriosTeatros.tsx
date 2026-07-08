@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { 
   Settings2, 
@@ -143,6 +143,11 @@ function InteractivePanelMockup() {
 
 
 export function AuditoriosTeatros() {
+  const location = useLocation()
+  useEffect(() => {
+    if (!location.hash) window.scrollTo(0, 0)
+  }, [location.pathname, location.hash])
+
   const navigate = useNavigate()
   const heroRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })

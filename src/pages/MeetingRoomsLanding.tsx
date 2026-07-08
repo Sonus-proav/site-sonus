@@ -19,8 +19,13 @@ import { TestimonialSection } from "@/components/ui/TestimonialSection"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
+import { useLocation } from "react-router-dom"
 
 export function MeetingRoomsLanding() {
+  const location = useLocation()
+  useEffect(() => {
+    if (!location.hash) window.scrollTo(0, 0)
+  }, [location.pathname, location.hash])
   const [activeTab, setActiveTab] = useState("Microfone Shure")
   const [callState, setCallState] = useState<"idle" | "ringing" | "connected">("idle")
   const [callTimer, setCallTimer] = useState(0)
