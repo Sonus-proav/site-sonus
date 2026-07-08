@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
 import { ChevronRight, Play, CheckCircle2, AlertCircle, Cpu } from "lucide-react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { SEO } from "../components/SEO"
 import { SocialProofBar } from "@/components/ui/SocialProofBar"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
@@ -150,10 +151,14 @@ export function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <link rel="preload" href="/auditorio-sonus.jpg" as="image" fetchPriority="high" />
+      </Helmet>
       <SEO 
-        title="Sonus Pro AV | Projetos de Sonorização e Automação Corporativa" 
-        description="Especialistas em integração audiovisual de alta performance. Projetos de sonorização, acústica e automação para empresas, auditórios e igrejas. 28 anos de mercado." 
-        url="https://sonusproaudio.com.br/"
+        title="Sonus | Soluções em Áudio e Vídeo Profissional" 
+        description="Especialistas em projetos de integração audiovisual de alta performance, automação de salas de reunião e acústica para igrejas. 28 anos de experiência."
+        image="/sobre-sonus.jpg"
+        url="https://sonusproaudio.com.br"
         schema={aeoSchema}
       />
       

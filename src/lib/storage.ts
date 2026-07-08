@@ -55,18 +55,8 @@ export async function getProjects(): Promise<Project[]> {
       const querySnapshot = await getDocs(collection(db, "projects"));
       
       if (querySnapshot.empty) {
-        console.log("Migrando banco de dados para o Firebase...");
-        const { default: defaultProjects } = await import("../../data/projects.json");
-        const batch = writeBatch(db);
-        defaultProjects.forEach((proj, index) => {
-          const p = { ...proj, order: index } as Project;
-          const docRef = doc(db, "projects", p.id.toString());
-          batch.set(docRef, p);
-        });
-        await batch.commit();
-        
-        const projects = defaultProjects as Project[];
-        projectsCache = projects.map((p, i) => ({ ...p, order: i }));
+        console.warn("Banco de dados do Firebase vazio. Não retornando projetos.");
+        projectsCache = [];
         return projectsCache;
       }
 
@@ -79,8 +69,7 @@ export async function getProjects(): Promise<Project[]> {
       return projectsCache;
     } catch (error) {
       console.error("Erro ao buscar projetos do Firebase:", error);
-      const { default: defaultProjects } = await import("../../data/projects.json");
-      return defaultProjects as Project[];
+      return [];
     } finally {
       // Limpa a promessa para que futuras chamadas não travem se der erro
       cachePromise = null;
