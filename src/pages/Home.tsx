@@ -403,7 +403,7 @@ export function Home() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/50 dark:bg-zinc-950/50 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
+          <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/90 dark:bg-zinc-950/90 border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Honeypot Invisível */}
               <div className="hidden" aria-hidden="true">

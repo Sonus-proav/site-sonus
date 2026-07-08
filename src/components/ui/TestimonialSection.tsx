@@ -78,7 +78,7 @@ export function TestimonialSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="bg-zinc-900/40 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-zinc-900/60 hover:border-white/20 transition-all duration-500 flex flex-col h-full group"
+              className="bg-zinc-900/80 border border-white/10 rounded-3xl p-8 hover:bg-zinc-800 hover:border-white/20 transition-all duration-300 flex flex-col h-full group"
             >
               <div className="flex text-amber-400 mb-6 gap-1">
                 {[...Array(5)].map((_, idx) => (
