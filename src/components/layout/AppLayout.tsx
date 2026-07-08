@@ -18,8 +18,6 @@ export function AppLayout() {
           element.scrollIntoView({ behavior: 'smooth' })
         }
       }, 300)
-    } else {
-      window.scrollTo(0, 0)
     }
   }, [pathname, hash])
 

@@ -19,7 +19,6 @@ const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(mo
 
 import { HelmetProvider } from "react-helmet-async"
 
-import { ScrollToTop } from "./components/ScrollToTop"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
@@ -43,7 +42,6 @@ function App() {
     <HelmetProvider>
       <AuthProvider>
         <ErrorBoundary>
-          <ScrollToTop />
           <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AppLayout />}>
