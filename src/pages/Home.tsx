@@ -169,9 +169,9 @@ export function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-[#050505]">
-        {/* Background dark gradients */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] opacity-40 pointer-events-none z-0 translate-x-1/3 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] opacity-20 pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
+        {/* Background dark gradients otimizados (sem blur nativo para zero lag) */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(41,128,185,0.06)_0%,transparent_70%)] pointer-events-none z-0 translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03)_0%,transparent_70%)] pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
         
         <div className="container px-4 md:px-6 relative z-10 mx-auto w-full max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:p-12 lg:gap-12 xl:gap-20 items-center">
