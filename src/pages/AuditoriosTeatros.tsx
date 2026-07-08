@@ -23,7 +23,10 @@ import {
   CheckCircle2,
   Video,
   Lightbulb,
-  SlidersHorizontal
+  SlidersHorizontal,
+  VolumeX,
+  Wrench,
+  EyeOff
 } from "lucide-react"
 
 // --- Interactive iPad Mockup ---
@@ -305,31 +308,75 @@ export function AuditoriosTeatros() {
               </h2>
             </FadeIn>
 
-            <FadeIn delay={0.2}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                <div className="border-t border-white/10 pt-6">
-                  <span className="text-6xl font-black text-white/5">01</span>
-                  <h3 className="text-lg font-bold mt-2 mb-3">Fadiga Auditiva</h3>
-                  <p className="text-zinc-500 text-sm leading-relaxed">
-                    Ecos, cortes e ruídos que destroem a mensagem do palestrante após longas horas. O público sai antes do fim.
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              
+              {/* Card 1 */}
+              <FadeIn delay={0.2} className="h-full">
+                <SpotlightCard className="h-full bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/5 p-8 flex flex-col group hover:border-red-500/30 transition-colors duration-500 rounded-3xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/20 transition-all duration-700" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mb-8 border border-red-500/20 group-hover:scale-110 transition-transform duration-500">
+                    <VolumeX className="w-7 h-7 text-red-400" />
+                  </div>
+                  
+                  <span className="absolute top-8 right-8 text-7xl font-black text-white/[0.02] group-hover:text-red-500/[0.05] transition-colors duration-500 select-none">
+                    01
+                  </span>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-red-100 transition-colors">
+                    Fadiga Auditiva
+                  </h3>
+                  <p className="text-zinc-400 text-base leading-relaxed">
+                    Ecos, cortes e ruídos que destroem a mensagem do palestrante após longas horas. O público abandona a apresentação antes do fim por puro cansaço mental.
                   </p>
-                </div>
-                <div className="border-t border-white/10 pt-6">
-                  <span className="text-6xl font-black text-white/5">02</span>
-                  <h3 className="text-lg font-bold mt-2 mb-3">Dependência Técnica</h3>
-                  <p className="text-zinc-500 text-sm leading-relaxed">
-                    Sistemas desintegrados que exigem TI presente para "apertar botões" e resolver quedas no meio da apresentação.
+                </SpotlightCard>
+              </FadeIn>
+
+              {/* Card 2 */}
+              <FadeIn delay={0.3} className="h-full">
+                <SpotlightCard className="h-full bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/5 p-8 flex flex-col group hover:border-orange-500/30 transition-colors duration-500 rounded-3xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all duration-700" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-8 border border-orange-500/20 group-hover:scale-110 transition-transform duration-500">
+                    <Wrench className="w-7 h-7 text-orange-400" />
+                  </div>
+
+                  <span className="absolute top-8 right-8 text-7xl font-black text-white/[0.02] group-hover:text-orange-500/[0.05] transition-colors duration-500 select-none">
+                    02
+                  </span>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-orange-100 transition-colors">
+                    Dependência Técnica
+                  </h3>
+                  <p className="text-zinc-400 text-base leading-relaxed">
+                    Sistemas desintegrados que exigem um profissional de TI sempre presente para "apertar botões", conectar cabos e resolver quedas no meio da apresentação.
                   </p>
-                </div>
-                <div className="border-t border-white/10 pt-6">
-                  <span className="text-6xl font-black text-white/5">03</span>
-                  <h3 className="text-lg font-bold mt-2 mb-3">Poluição Visual</h3>
-                  <p className="text-zinc-500 text-sm leading-relaxed">
-                    Caixas gigantescas e cabos expostos que arruínam o design de interiores em que milhões foram investidos.
+                </SpotlightCard>
+              </FadeIn>
+
+              {/* Card 3 */}
+              <FadeIn delay={0.4} className="h-full">
+                <SpotlightCard className="h-full bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/5 p-8 flex flex-col group hover:border-purple-500/30 transition-colors duration-500 rounded-3xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-8 border border-purple-500/20 group-hover:scale-110 transition-transform duration-500">
+                    <EyeOff className="w-7 h-7 text-purple-400" />
+                  </div>
+
+                  <span className="absolute top-8 right-8 text-7xl font-black text-white/[0.02] group-hover:text-purple-500/[0.05] transition-colors duration-500 select-none">
+                    03
+                  </span>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-purple-100 transition-colors">
+                    Poluição Visual
+                  </h3>
+                  <p className="text-zinc-400 text-base leading-relaxed">
+                    Caixas de som gigantescas e pilhas de cabos expostos que arruínam completamente o design de interiores arquitetônico em que milhões foram investidos.
                   </p>
-                </div>
-              </div>
-            </FadeIn>
+                </SpotlightCard>
+              </FadeIn>
+
+            </div>
           </div>
         </div>
       </section>
