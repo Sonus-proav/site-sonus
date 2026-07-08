@@ -18,9 +18,9 @@ const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").t
 const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(module => ({ default: module.IgrejasTemplos })))
 
 import { HelmetProvider } from "react-helmet-async"
-
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
+import { ScrollReset } from "./components/ScrollReset"
 
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
@@ -42,6 +42,7 @@ function App() {
     <HelmetProvider>
       <AuthProvider>
         <ErrorBoundary>
+          <ScrollReset />
           <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AppLayout />}>
