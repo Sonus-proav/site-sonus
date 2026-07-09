@@ -453,7 +453,7 @@ export function MeetingRoomsLanding() {
                     </p>
                   </div>
                   <div className="w-full md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden h-64 md:h-72">
-                    <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover rounded-xl opacity-60 mix-blend-luminosity" alt="Estudo" />
+                    <img src="/ease-focus-sim.png" className="w-full h-full object-cover rounded-xl opacity-80" alt="Simulação EASE Focus" />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <span className="bg-emerald-500/20 text-emerald-400 font-mono text-xs md:text-sm px-4 py-2 border border-emerald-500/30 rounded backdrop-blur shadow-xl">Simulação EASE Focus Finalizada</span>
                     </div>
