@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="dark overflow-x-hidden">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/sonus-favicon.svg" />
@@ -100,7 +100,7 @@
     }
     </script>
   </head>
-  <body class="overflow-x-hidden bg-white dark:bg-[#050505]">
+  <body class="bg-white dark:bg-[#050505]">
     <style>
       body { margin: 0; }
       .initial-loader-container {
@@ -115,7 +115,7 @@
       }
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
-    <div id="root">
+    <div id="root" class="overflow-x-hidden w-full relative">
       <div class="initial-loader-container"><div class="initial-loader"></div></div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
