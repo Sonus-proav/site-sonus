@@ -544,7 +544,7 @@ export function IgrejasTemplos() {
           {/* Carousel */}
           <div 
             ref={carouselRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 md:px-12 lg:px-24 pb-8 no-scrollbar"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 md:px-12 lg:px-24 pb-8 no-scrollbar scroll-pl-4 md:scroll-pl-12 lg:scroll-pl-24"
             style={{ scrollbarWidth: "none" }}
           >
             {displayPortfolio.map((item, index) => (

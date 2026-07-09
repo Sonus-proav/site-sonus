@@ -122,7 +122,7 @@ export function QSysLanding() {
       {/* ══════════════════════════════════════════════ */}
       {/* HERO — Animated Counters + Oversized Typography */}
       {/* ══════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-4 md:px-6 min-h-[95vh] flex flex-col items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative pt-32 pb-32 md:pt-40 md:pb-32 px-4 md:px-6 min-h-[100dvh] flex flex-col items-center justify-center overflow-x-hidden">
         {/* Tech Background Network Grid */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
@@ -168,18 +168,20 @@ export function QSysLanding() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.5} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
+          <FadeIn delay={0.5} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto max-w-[400px] sm:max-w-none mx-auto pb-12 md:pb-0">
             <div className="w-full sm:w-auto">
               <Magnetic>
-                <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
+                <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
                   Dimensionar Meu Projeto
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
               </Magnetic>
             </div>
-            <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-bold transition-all">
-              Falar no WhatsApp
-            </Button>
+            <div className="w-full sm:w-auto">
+              <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg font-bold transition-all">
+                Falar no WhatsApp
+              </Button>
+            </div>
           </FadeIn>
         </motion.div>
       </section>
