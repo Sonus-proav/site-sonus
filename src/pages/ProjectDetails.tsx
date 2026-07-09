@@ -3,7 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { ArrowLeft, ChevronLeft, ChevronRight, AlertCircle, CheckCircle2 } from "lucide-react"
 import { getProjects, getCachedProjects, type Project } from "@/lib/publicStorage"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { SEO } from "../components/SEO"
 import { Helmet } from "react-helmet-async"
@@ -18,22 +18,22 @@ export function ProjectDetails() {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
   const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const touchEndRef = useRef<number | null>(null)
 
   const minSwipeDistance = 50
 
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null)
+    touchEndRef.current = null
     setTouchStart(e.targetTouches[0].clientX)
   }
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+    touchEndRef.current = e.targetTouches[0].clientX
   }
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
+    if (!touchStart || !touchEndRef.current) return
+    const distance = touchStart - touchEndRef.current
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
     
