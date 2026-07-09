@@ -121,9 +121,10 @@ export function ProjectDetails() {
           </Link>
         </FadeIn>
 
-        <article className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:p-12 items-start">
+        <article className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:p-12 items-stretch h-full">
           {/* Left Column: Image Gallery */}
-          <FadeIn delay={0.1} className="lg:sticky lg:top-28 z-10">
+          <div className="lg:sticky lg:top-28 z-10">
+            <FadeIn delay={0.1}>
             <div 
               className="rounded-2xl overflow-hidden aspect-[4/3] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 relative group transition-colors duration-300"
               onTouchStart={onTouchStart}
@@ -181,7 +182,8 @@ export function ProjectDetails() {
                 </>
               )}
             </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
 
           {/* Right Column: Content */}
           <FadeIn delay={0.2} className="flex flex-col h-full justify-center">
