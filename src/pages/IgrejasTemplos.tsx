@@ -561,14 +561,7 @@ export function IgrejasTemplos() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   
-                  {/* State badge */}
-                  {item.state && (
-                    <div className="absolute top-6 left-6">
-                      <div className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-                        {item.state}
-                      </div>
-                    </div>
-                  )}
+                  {/* State badge removida a pedido */}
 
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-8">
