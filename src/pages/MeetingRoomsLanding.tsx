@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -123,6 +124,9 @@ export function MeetingRoomsLanding() {
 
   return (
     <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
+      <Helmet>
+        <link rel="preload" href="/soundwave-bg.png" as="image" fetchPriority="high" />
+      </Helmet>
       <SEO 
         title="Automação de Salas de Reunião | Sonus Pro AV" 
         description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 

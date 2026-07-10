@@ -108,7 +108,6 @@ export function QSysLanding() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30">
       <Helmet>
-        <link rel="preload" href="/qsys-tech-bg.png" as="image" fetchPriority="high" />
       </Helmet>
       <SEO 
         title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 

@@ -38,11 +38,10 @@ function SoundWaves() {
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full border border-amber-500/40"
-          initial={{ width: 40, height: 40, opacity: 0.8 }}
+          className="absolute rounded-full border border-amber-500/40 w-10 h-10"
+          initial={{ scale: 1, opacity: 0.8 }}
           animate={{
-            width: [40, 600 + i * 200],
-            height: [40, 600 + i * 200],
+            scale: [1, 15 + i * 5],
             opacity: [0.6, 0],
           }}
           transition={{
@@ -116,7 +115,6 @@ function CoverageHeatmap() {
                 className="absolute cursor-pointer rounded-lg border overflow-hidden z-10"
                 style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
                 animate={{
-                  boxShadow: isActive ? "0 0 25px 3px rgba(245,158,11,0.2)" : "0 0 0px 0px rgba(0,0,0,0)",
                   backgroundColor: isActive 
                     ? "rgba(245,158,11,0.2)" 
                     : "rgba(245,158,11,0.04)",
