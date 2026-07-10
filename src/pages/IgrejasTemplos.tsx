@@ -103,8 +103,7 @@ function CoverageHeatmap() {
       <div className="relative aspect-[5/4] w-full">
         <div className="absolute inset-0 rounded-2xl border border-amber-500/20 bg-zinc-950/90 overflow-hidden shadow-[0_0_60px_-15px_rgba(245,158,11,0.12)]">
           
-          {/* Church floor outline */}
-          <div className="absolute inset-[5%] border border-dashed border-amber-500/8 rounded-xl pointer-events-none" />
+          {/* Outline tracejado removido */}
 
           {/* Coverage zones */}
           {zones.map((zone) => {
