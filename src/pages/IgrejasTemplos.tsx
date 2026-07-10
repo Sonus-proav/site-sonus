@@ -256,19 +256,19 @@ export function IgrejasTemplos() {
     {
       title: "Matriz de Xanxerê",
       state: "SC",
-      image: "/interior-matriz-xanxere.jpg",
+      image: "/interior-matriz-xanxere.webp",
       description: "Projeto completo de sonorização focado na inteligibilidade da palavra falada, respeitando a arquitetura histórica do templo e proporcionando cobertura sonora uniforme para todos os fiéis."
     },
     {
       title: "Matriz de Concórdia",
       state: "SC",
-      image: "/concordia.jpg",
+      image: "/concordia.webp",
       description: "Modernização do sistema de áudio com alinhamento acústico para reduzir a reverberação natural (eco), garantindo clareza absoluta desde a primeira até a última fileira de bancos."
     },
     {
       title: "Matriz de Pato Branco",
       state: "PR",
-      image: "/pato-branco.jpg",
+      image: "/pato-branco.webp",
       description: "Implementação de tecnologia de processamento digital, eliminando microfonias indesejadas e facilitando o controle diário do áudio para a equipe de voluntários durante os cultos e louvores."
     }
   ]
@@ -290,7 +290,7 @@ export function IgrejasTemplos() {
       <SEO 
         title="Sonorização para Igrejas e Templos | Sonus Pro AV" 
         description="A mensagem de fé precisa ser ouvida com clareza. Soluções audiovisuais premium para igrejas, com foco em inteligibilidade e operação simplificada para voluntários." 
-        image="/interior-matriz-xanxere.jpg"
+        image="/interior-matriz-xanxere.webp"
         url="https://sonusproaudio.com.br/igrejas-e-templos"
         keywords="sonorização para igrejas, som para templo religioso, projeto acústico igreja matriz, resolver eco na igreja, sistema de som para louvor, automação Q-SYS igreja, sonorização templo, projeto de som igreja"
         schema={{

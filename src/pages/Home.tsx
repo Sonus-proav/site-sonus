@@ -159,12 +159,12 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <link rel="preload" href="/auditorio-sonus.jpg" as="image" fetchPriority="high" />
+        <link rel="preload" href="/auditorio-sonus.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO 
         title="Sonus | Soluções em Áudio e Vídeo Profissional" 
         description="Especialistas em projetos de integração audiovisual de alta performance, automação de salas de reunião e acústica para igrejas. 28 anos de experiência."
-        image="/sobre-sonus.jpg"
+        image="/sobre-sonus.webp"
         url="https://sonusproaudio.com.br"
         schema={aeoSchema}
       />
@@ -239,7 +239,7 @@ export function Home() {
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
               <Link to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
-                <img src="/auditorio-sonus.jpg" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
+                <img src="/auditorio-sonus.webp" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                   <div className="relative w-3/4">
@@ -284,7 +284,7 @@ export function Home() {
 
               {/* Card 3: Salas de Reunião Image */}
               <Link to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
-                <img src="/salas-corporativas.jpg" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
+                <img src="/salas-corporativas.webp" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">
                   <div className="relative w-3/4">
@@ -308,22 +308,22 @@ export function Home() {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-24 px-4">
               <img 
-                src="/clientes/cresol.png" 
+                src="/clientes/cresol.webp" 
                 alt="Cresol" 
                 className="h-16 md:h-24 lg:h-32 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
-                src="/clientes/unoesc.png" 
+                src="/clientes/unoesc.webp" 
                 alt="UNOESC" 
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
-                src="/clientes/unipar.png" 
+                src="/clientes/unipar.webp" 
                 alt="UNIPAR" 
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
-                src="/clientes/unisep.png" 
+                src="/clientes/unisep.webp" 
                 alt="Unisep" 
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
@@ -344,7 +344,7 @@ export function Home() {
               <div className="relative rounded-[2.5rem] overflow-hidden aspect-[3/4] md:aspect-square bg-[#05060A] border border-white/5 transition-colors duration-300 -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-700 shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent z-10 transition-colors duration-300" />
                 <img 
-                  src="/sobre-sonus.jpg" 
+                  src="/sobre-sonus.webp" 
                   alt="Instalação de sistema de áudio e sonorização em auditório corporativo" 
                   loading="lazy"
                   className="w-full h-full object-cover opacity-80"
@@ -397,7 +397,7 @@ export function Home() {
         <div 
           className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
           style={{
-            backgroundImage: "url('/cresol.jpg')",
+            backgroundImage: "url('/cresol.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

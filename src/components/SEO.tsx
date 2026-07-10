@@ -14,7 +14,7 @@ interface SEOProps {
 export function SEO({ 
   title, 
   description, 
-  image = 'https://sonusproaudio.com.br/sobre-sonus.jpg', 
+  image = 'https://sonusproaudio.com.br/sobre-sonus.webp', 
   url = 'https://sonusproaudio.com.br',
   type = 'website',
   noindex = false,

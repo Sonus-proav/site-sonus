@@ -21,9 +21,9 @@ import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
 import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
 import { motion, useScroll, useTransform, useInView, animate } from "framer-motion"
 
-import certLevel1 from "@/assets/cert-level1.png"
-import certVision from "@/assets/cert-vision.png"
-import certSales from "@/assets/cert-sales.png"
+import certLevel1 from "@/assets/cert-level1.webp"
+import certVision from "@/assets/cert-vision.webp"
+import certSales from "@/assets/cert-sales.webp"
 import { useLocation } from "react-router-dom"
 
 // --- Animated Counter Component ---
@@ -112,7 +112,7 @@ export function QSysLanding() {
       <SEO 
         title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
         description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
-        image="/qsys-tech-bg.png"
+        image="/qsys-tech-bg.webp"
         url="https://sonusproaudio.com.br/qsys"
       />
 
@@ -474,7 +474,7 @@ export function QSysLanding() {
       {/* ══════════════════════════════════════════════ */}
       <section className="py-20 md:py-32 px-4 z-10 relative">
         <div className="max-w-7xl mx-auto rounded-[3rem] p-10 md:p-24 bg-gradient-to-br from-blue-950 via-blue-900 to-black border border-blue-500/30 text-center relative overflow-hidden shadow-2xl flex flex-col items-center justify-center">
-          <div className="absolute inset-0 bg-[url('/soundwave-bg.png')] opacity-20 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-[url('/soundwave-bg.webp')] opacity-20 mix-blend-overlay" />
           <div className="relative z-10 max-w-4xl">
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8">
               Padrão Sonus.<br />

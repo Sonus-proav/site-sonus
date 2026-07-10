@@ -19,7 +19,7 @@ export function ThankYou() {
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
         style={{
-          backgroundImage: "url('/cresol.jpg')",
+          backgroundImage: "url('/cresol.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

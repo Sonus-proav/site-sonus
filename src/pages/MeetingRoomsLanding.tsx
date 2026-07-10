@@ -125,18 +125,18 @@ export function MeetingRoomsLanding() {
   return (
     <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
       <Helmet>
-        <link rel="preload" href="/soundwave-bg.png" as="image" fetchPriority="high" />
+        <link rel="preload" href="/soundwave-bg.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO 
         title="Automação de Salas de Reunião | Sonus Pro AV" 
         description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 
-        image="/salas-corporativas.jpg"
+        image="/salas-corporativas.webp"
         url="https://sonusproaudio.com.br/salas-reuniao"
       />
 
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#050505]" />
-        <img fetchPriority="high" decoding="async" src="/soundwave-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-20" alt="" />
+        <img fetchPriority="high" decoding="async" src="/soundwave-bg.webp" className="absolute inset-0 w-full h-full object-cover opacity-20" alt="" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/90 via-transparent to-[#050505]/90" />
       </div>
 
@@ -457,7 +457,7 @@ export function MeetingRoomsLanding() {
                     </p>
                   </div>
                   <div className="w-full md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden h-64 md:h-72">
-                    <img src="/ease-focus-sim.png" className="w-full h-full object-cover rounded-xl opacity-80" alt="Simulação EASE Focus" />
+                    <img src="/ease-focus-sim.webp" className="w-full h-full object-cover rounded-xl opacity-80" alt="Simulação EASE Focus" />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <span className="bg-emerald-500/20 text-emerald-400 font-mono text-xs md:text-sm px-4 py-2 border border-emerald-500/30 rounded backdrop-blur shadow-xl">Simulação EASE Focus Finalizada</span>
                     </div>
