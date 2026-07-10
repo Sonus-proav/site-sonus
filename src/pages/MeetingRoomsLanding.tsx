@@ -453,7 +453,7 @@ export function MeetingRoomsLanding() {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">Estudo Acústico 3D Gratuito</h3>
                     <p className="text-zinc-400 leading-relaxed text-lg">
-                      Antes de qualquer cabo ser passado, nossa engenharia desenha sua sala em software 3D para prever reverberações e definir a angulação exata dos microfones de teto.
+                      Antes de qualquer cabo ser passado, nossa equipe desenha sua sala em software 3D para prever reverberações e definir a angulação exata dos microfones de teto.
                     </p>
                   </div>
                   <div className="w-full md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden h-64 md:h-72">
@@ -516,7 +516,7 @@ export function MeetingRoomsLanding() {
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
               Otimize Sua <span className="text-emerald-500">Boardroom</span>
             </h2>
-            <p className="text-zinc-400">Nossos engenheiros entrarão em contato para um diagnóstico sem compromisso.</p>
+            <p className="text-zinc-400">Nossos especialistas entrarão em contato para um diagnóstico sem compromisso.</p>
           </div>
 
           <SpotlightCard className="rounded-[2rem] p-6 md:p-12 border border-white/10 bg-zinc-950/50">
@@ -557,7 +557,7 @@ export function MeetingRoomsLanding() {
 
                 <Magnetic>
                   <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-lg font-bold">
-                    {isSubmitting ? "Enviando..." : "Falar com Engenheiro"}
+                    {isSubmitting ? "Enviando..." : "Falar com Especialista"}
                   </Button>
                 </Magnetic>
               </form>

@@ -91,7 +91,7 @@ export function Home() {
         "name": "Sonus Pro AV",
         "url": "https://sonusproaudio.com.br",
         "logo": "https://sonusproaudio.com.br/logo.png",
-        "description": "Engenharia audiovisual, sonorização imersiva e automação de alta performance para auditórios, igrejas e salas corporativas com 28 anos de tradição no Sul do Brasil.",
+        "description": "Projetos audiovisuais, sonorização imersiva e automação de alta performance para auditórios, igrejas e salas corporativas com 28 anos de tradição no Sul do Brasil.",
         "foundingDate": "1996",
         "address": {
           "@type": "PostalAddress",
@@ -132,7 +132,7 @@ export function Home() {
             "name": "Prociso de uma empresa que faça salas de reunião para videoconferência no Paraná ou Santa Catarina?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A Sonus Pro AV não atua com locação de coworkings. Somos a empresa líder sediada em Francisco Beltrão (PR) especializada na engenharia, venda de equipamentos e instalação de tecnologia definitiva para salas de reunião corporativas e videoconferências em todo o Paraná (PR) e Santa Catarina (SC)."
+              "text": "A Sonus Pro AV não atua com locação de coworkings. Somos a empresa líder sediada em Francisco Beltrão (PR) especializada no projeto, venda de equipamentos e instalação de tecnologia definitiva para salas de reunião corporativas e videoconferências em todo o Paraná (PR) e Santa Catarina (SC)."
             }
           },
           {

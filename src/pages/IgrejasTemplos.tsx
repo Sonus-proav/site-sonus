@@ -469,7 +469,7 @@ export function IgrejasTemplos() {
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
               <FadeIn>
-                <span className="text-amber-500 font-mono text-sm uppercase tracking-widest mb-6 block">Engenharia Acústica</span>
+                <span className="text-amber-500 font-mono text-sm uppercase tracking-widest mb-6 block">Inteligência Acústica</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-8 leading-[1.05]">
                   Cobertura sonora de parede a parede
                 </h2>
@@ -515,7 +515,7 @@ export function IgrejasTemplos() {
                 <div>
                   <span className="text-amber-500 font-mono text-sm uppercase tracking-widest mb-4 block">Portfólio Sagrado</span>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
-                    Templos que confiam<br className="hidden md:block" /> na nossa engenharia
+                    Templos que confiam<br className="hidden md:block" /> na nossa tecnologia
                   </h2>
                 </div>
                 <div className="flex gap-3">
