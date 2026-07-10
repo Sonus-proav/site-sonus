@@ -4,7 +4,7 @@ import { FadeIn } from '../components/ui/FadeIn'
 import { SEO } from '../components/SEO'
 
 export function ThankYou() {
-  const whatsappNumber = "554635237192"
+  const whatsappNumber = "5546920013151"
   const whatsappText = encodeURIComponent("Olá, acabei de preencher o formulário no site e meu projeto tem urgência.")
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
 

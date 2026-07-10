@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react"
 
 export function WhatsAppButton({ 
-  phone = "554635237192", 
+  phone = "5546920013151", 
   message = "Olá! Gostaria de falar sobre um projeto." 
 }: { 
   phone?: string, 
