@@ -9,7 +9,7 @@ interface StickyCtaBarProps {
 }
 
 export function StickyCtaBar({
-  buttonText = "Falar com Engenheiro",
+  buttonText = "Falar com Especialista",
   messageText = "Olá, gostaria de tirar dúvidas e solicitar um orçamento.",
   phoneNumber = "5546920013151" // Same as WhatsAppButton
 }: StickyCtaBarProps) {
@@ -55,7 +55,7 @@ export function StickyCtaBar({
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </span>
               <div className="flex flex-col">
-                <span className="text-white text-xs font-semibold">Engenharia Online</span>
+                <span className="text-white text-xs font-semibold">Especialista Online</span>
                 <span className="text-zinc-400 text-[10px] flex items-center gap-1">
                   <Clock className="w-3 h-3" /> Resposta rápida
                 </span>
