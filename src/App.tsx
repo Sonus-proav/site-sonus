@@ -21,6 +21,7 @@ import { HelmetProvider } from "react-helmet-async"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { ScrollReset } from "./components/ScrollReset"
+import { AnalyticsTracker } from "./components/AnalyticsTracker"
 
 // Skeleton fallback that matches the site's background
 const PageLoader = () => (
@@ -43,6 +44,7 @@ function App() {
       <AuthProvider>
         <ErrorBoundary>
           <ScrollReset />
+          <AnalyticsTracker />
           <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AppLayout />}>

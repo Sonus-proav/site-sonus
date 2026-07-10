@@ -6,8 +6,10 @@ import { Link } from "react-router-dom"
 import { type Project, getProjects, deleteProject, addProject, updateProject, saveProjects } from "@/lib/storage"
 import { optimizeImageUrl } from "@/lib/publicStorage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
+import { AnalyticsDashboardTab } from "@/components/admin/AnalyticsDashboardTab"
 
 export function AdminDashboard() {
+  const [activeTab, setActiveTab] = useState<"projects" | "analytics">("projects")
   const [projects, setProjects] = useState<Project[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingProject, setEditingProject] = useState<Project | null>(null)
@@ -125,7 +127,30 @@ export function AdminDashboard() {
           </div>
         </FadeIn>
 
+        {/* Tabs */}
+        <FadeIn delay={0.05}>
+          <div className="flex gap-6 border-b border-white/10 pb-4">
+            <button 
+              onClick={() => setActiveTab("projects")}
+              className={`font-semibold text-lg flex items-center gap-2 transition-colors ${activeTab === "projects" ? "text-primary" : "text-zinc-500 hover:text-white"}`}
+            >
+              Projetos
+            </button>
+            <button 
+              onClick={() => setActiveTab("analytics")}
+              className={`font-semibold text-lg flex items-center gap-2 transition-colors ${activeTab === "analytics" ? "text-emerald-400" : "text-zinc-500 hover:text-white"}`}
+            >
+              Métricas de Tráfego
+            </button>
+          </div>
+        </FadeIn>
+
+        {activeTab === "analytics" && (
+          <AnalyticsDashboardTab />
+        )}
+
         {/* Projects Grid/Table */}
+        {activeTab === "projects" && (
         <FadeIn delay={0.1}>
           <div className="bg-zinc-950 border border-white/10 rounded-3xl overflow-hidden">
             <div className="overflow-x-auto">
@@ -216,15 +241,17 @@ export function AdminDashboard() {
             </div>
           </div>
         </FadeIn>
-
+        )}
       </div>
 
-      <ProjectModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onSave={handleSave} 
-        initialData={editingProject} 
-      />
+      {isModalOpen && (
+        <ProjectModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          onSave={handleSave} 
+          initialData={editingProject} 
+        />
+      )}
     </div>
   )
 }
