@@ -13,6 +13,7 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { LazyMount } from "@/components/ui/LazyMount"
 import { Turnstile } from '@marsidev/react-turnstile'
 import { Link, useLocation } from "react-router-dom"
 import { getProjects, type Project } from "@/lib/publicStorage"
@@ -383,9 +384,11 @@ export function IgrejasTemplos() {
               </FadeIn>
               
               <FadeIn delay={0.3} className="relative">
-                <Suspense fallback={<div className="w-full aspect-[5/4] bg-zinc-900/50 animate-pulse rounded-2xl border border-white/5" />}>
-                  <CoverageHeatmap />
-                </Suspense>
+                <LazyMount minHeight="400px">
+                  <Suspense fallback={<div className="w-full aspect-[5/4] bg-zinc-900/50 animate-pulse rounded-2xl border border-white/5" />}>
+                    <CoverageHeatmap />
+                  </Suspense>
+                </LazyMount>
               </FadeIn>
             </div>
           </div>
@@ -394,6 +397,7 @@ export function IgrejasTemplos() {
         {/* ══════════════════════════════════════════════ */}
         {/* PORTFOLIO — Horizontal Full-Bleed Carousel    */}
         {/* ══════════════════════════════════════════════ */}
+        <LazyMount minHeight="600px" margin="600px">
         <section className="py-20 md:py-32 relative">
           <div className="max-w-7xl mx-auto px-4 mb-12">
             <FadeIn>
@@ -601,6 +605,7 @@ export function IgrejasTemplos() {
             </FadeIn>
           </div>
         </section>
+        </LazyMount>
 
       </main>
 
