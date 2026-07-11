@@ -293,7 +293,7 @@ export function MeetingRoomsLanding() {
                       {/* Lóbulos e rastreio foram movidos para dentro da div da mesa para herdar coordenadas exatas */}
 
                       {/* Mesa e Lóbulos */}
-                      <div className="absolute right-4 bottom-8 top-16 w-48 md:w-64 border-2 border-white/10 rounded-[3rem] flex items-center justify-center z-10">
+                      <div className="relative mt-8 mb-8 mx-auto w-48 h-48 md:absolute md:right-4 md:bottom-8 md:top-16 md:w-64 md:h-auto md:mt-0 md:mb-0 md:mx-0 border-2 border-white/10 rounded-[3rem] flex items-center justify-center z-10 shrink-0">
                         {/* Radar da Câmera PTZ */}
                         <div 
                           className="absolute w-[55%] md:w-[60%] border-t-2 border-dashed border-emerald-400 opacity-90 z-10 origin-left transition-all duration-700 ease-in-out"
