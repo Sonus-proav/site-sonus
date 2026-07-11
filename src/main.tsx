@@ -8,7 +8,11 @@ import { getProjects, optimizeImageUrl } from './lib/publicStorage.ts'
 
 // Auto-recarregar a página caso haja erro de cache do Vite (ex: após atualizarmos o servidor)
 window.addEventListener('vite:preloadError', () => {
-  window.location.reload();
+  const hasReloaded = sessionStorage.getItem('vite_reloaded');
+  if (!hasReloaded) {
+    sessionStorage.setItem('vite_reloaded', 'true');
+    window.location.reload();
+  }
 });
 
 // Inicia o fetch paralelo ao boot do React para zerar o delay de rede
