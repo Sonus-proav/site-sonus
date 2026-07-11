@@ -82,6 +82,9 @@ export function QSysLanding() {
       })
 
       if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'lead_qsys_sucesso', lead_type: 'form_qsys' });
+
         setIsSuccess(true)
         setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
       } else {

@@ -56,14 +56,23 @@ export function MeetingRoomsLanding() {
     const finalToken = turnstileToken || "bypass_token"
     
     try {
-      await fetch('/api/contato', {
+      const response = await fetch('/api/contato', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião" })
       })
 
-      window.location.href = '/obrigado';
+      if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'lead_salas_sucesso', lead_type: 'form_salas' });
+        
+        window.location.href = '/obrigado';
+      } else {
+        const errData = await response.json().catch(() => ({}))
+        setSubmitError(errData.error || "Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.")
+        setIsSubmitting(false)
+      }
     } catch (error) {
-      setSubmitError("Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.")
+      setSubmitError("Erro de conexão. Verifique sua internet e tente novamente.")
       setIsSubmitting(false)
     }
   }

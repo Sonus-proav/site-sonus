@@ -102,6 +102,9 @@ export function IgrejasTemplos() {
       })
 
       if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'lead_igreja_sucesso', lead_type: 'form_igrejas' });
+        
         setIsSuccess(true)
         setFormData({
           name: "",
