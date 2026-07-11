@@ -6,6 +6,11 @@ import App from './App.tsx'
 import './index.css'
 import { getProjects, optimizeImageUrl } from './lib/publicStorage.ts'
 
+// Auto-recarregar a página caso haja erro de cache do Vite (ex: após atualizarmos o servidor)
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload();
+});
+
 // Inicia o fetch paralelo ao boot do React para zerar o delay de rede
 getProjects().then(projects => {
   // Preload agressivo da imagem LCP (First Project) antes mesmo do React renderizar a tela!
