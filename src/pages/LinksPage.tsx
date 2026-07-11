@@ -1,5 +1,4 @@
-import React from "react"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import { Link } from "react-router-dom"
 import { SEO } from "@/components/SEO"
 import { MessageCircle, Building2, Image as ImageIcon, ArrowRight } from "lucide-react"
@@ -9,7 +8,7 @@ export function LinksPage() {
   const WHATSAPP_MESSAGE = "Olá! Vim pelo Instagram e gostaria de falar com um Especialista.";
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -17,7 +16,7 @@ export function LinksPage() {
     }
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
