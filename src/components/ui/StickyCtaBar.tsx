@@ -14,6 +14,31 @@ export function StickyCtaBar({
   phoneNumber = "5546920013151" // Same as WhatsAppButton
 }: StickyCtaBarProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [isOnline, setIsOnline] = useState(true)
+
+  // Verifica horário comercial (08:00 as 18:00 BRT)
+  useEffect(() => {
+    const checkBusinessHours = () => {
+      try {
+        const formatter = new Intl.DateTimeFormat('pt-BR', {
+          timeZone: 'America/Sao_Paulo',
+          hour: 'numeric',
+          hour12: false
+        })
+        const currentHour = parseInt(formatter.format(new Date()), 10)
+        
+        // 8h as 17:59 (menor que 18)
+        setIsOnline(currentHour >= 8 && currentHour < 18)
+      } catch (e) {
+        // Fallback in case Intl.DateTimeFormat fails
+        setIsOnline(true)
+      }
+    }
+
+    checkBusinessHours()
+    const interval = setInterval(checkBusinessHours, 60000) // Re-check every minute
+    return () => clearInterval(interval)
+  }, [])
 
   // Show after scrolling 300px
   useEffect(() => {
@@ -51,24 +76,28 @@ export function StickyCtaBar({
             
             <div className="flex items-center gap-2 pl-2">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                {isOnline && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
+                <span className={`relative inline-flex rounded-full h-3 w-3 ${isOnline ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
               </span>
               <div className="flex flex-col">
-                <span className="text-white text-xs font-semibold">Especialista Online</span>
+                <span className="text-white text-xs font-semibold">{isOnline ? 'Especialista Online' : 'Especialista Offline'}</span>
                 <span className="text-zinc-400 text-[10px] flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> Resposta rápida
+                  <Clock className="w-3 h-3" /> {isOnline ? 'Resposta rápida' : 'Deixe uma mensagem'}
                 </span>
               </div>
             </div>
 
             <button
               onClick={handleWhatsApp}
-              className="w-full md:w-auto relative group overflow-hidden rounded-xl md:rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-emerald-500/25 active:scale-95 flex items-center justify-center gap-2"
+              className={`w-full md:w-auto relative group overflow-hidden rounded-xl md:rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ${
+                isOnline 
+                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 hover:shadow-emerald-500/25' 
+                  : 'bg-gradient-to-r from-red-600 to-red-500 hover:shadow-red-500/25'
+              }`}
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <MessageCircle className="w-4 h-4 relative z-10" />
-              <span className="relative z-10">{buttonText}</span>
+              <span className="relative z-10">{isOnline ? buttonText : "Deixar Mensagem"}</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
