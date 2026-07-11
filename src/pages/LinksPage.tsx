@@ -17,6 +17,7 @@ export function LinksPage() {
     <>
       <Helmet>
         <link rel="preconnect" href="https://api.whatsapp.com" />
+        <link rel="preload" as="image" href="/links-bg.webp" type="image/webp" />
       </Helmet>
       
       <SEO 
@@ -27,8 +28,15 @@ export function LinksPage() {
       
       <main className="min-h-[100dvh] bg-[#0B0F19] flex flex-col items-center py-12 px-5 relative overflow-hidden font-sans">
         
+        {/* Background Image (Optimized) */}
+        <div 
+          className="absolute inset-0 z-0 opacity-30 pointer-events-none" 
+          style={{ backgroundImage: 'url(/links-bg.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+          aria-hidden="true" 
+        />
+        
         {/* Subtle Ambient Light */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_top,rgba(30,58,138,0.15)_0%,transparent_70%)] pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_top,rgba(30,58,138,0.15)_0%,transparent_70%)] pointer-events-none z-0" aria-hidden="true" />
         
         <div className="w-full max-w-md relative z-10 flex flex-col items-center">
           
