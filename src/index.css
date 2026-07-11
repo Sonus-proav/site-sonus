@@ -282,3 +282,15 @@
   animation: gpu-soundwave 4.2s cubic-bezier(0.1, 0.2, 0.3, 1) infinite;
   will-change: transform, opacity;
 }
+
+/* Instant CSS Animations for Webviews */
+@keyframes slide-up-fade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up-fade {
+  opacity: 0; /* starts hidden */
+  animation: slide-up-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
