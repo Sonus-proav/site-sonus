@@ -37,20 +37,10 @@ function SoundWaves() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
       {[...Array(6)].map((_, i) => (
-        <motion.div
+        <div
           key={i}
-          className="absolute rounded-full border border-amber-500/40 w-10 h-10"
-          initial={{ scale: 1, opacity: 0.8 }}
-          animate={{
-            scale: [1, 15 + i * 5],
-            opacity: [0.6, 0],
-          }}
-          transition={{
-            duration: 4,
-            delay: i * 0.7,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
+          className="absolute rounded-full border border-amber-500/40 w-10 h-10 animate-gpu-soundwave"
+          style={{ animationDelay: `${i * 0.7}s` }}
         />
       ))}
       <div className="w-3 h-3 rounded-full bg-amber-500 relative z-10 shadow-[0_0_40px_10px_rgba(245,158,11,0.4)]" />
