@@ -134,7 +134,7 @@ export function LinksPage() {
             <div className="w-full mt-2 animate-slide-up-fade" style={{ animationDelay: '0.4s' }}>
               <Link 
                 to="/"
-                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
+                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-blue-900/20 backdrop-blur-lg border border-white/10 hover:border-blue-500/30 rounded-2xl transition-all duration-300 overflow-hidden"
                 data-tracking="link-home"
                 onClick={() => {
                   (window as any).dataLayer = (window as any).dataLayer || [];
@@ -142,12 +142,13 @@ export function LinksPage() {
                 }}
               >
                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={noiseStyle} />
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-105 transition-transform duration-300">
-                  <Globe className="w-5 h-5 text-zinc-300 group-hover:text-white transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center shrink-0 border border-blue-500/30 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(37,99,235,0.15)]">
+                  <Globe className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
                 </div>
                 <div className="ml-4 flex-1">
-                  <h2 className="text-white font-semibold text-base">Site Institucional</h2>
-                  <p className="text-zinc-300 text-xs mt-0.5">Visite a nossa página oficial</p>
+                  <h2 className="text-white font-semibold text-base group-hover:text-blue-50 transition-colors">Site Institucional</h2>
+                  <p className="text-blue-200/60 text-xs mt-0.5 group-hover:text-blue-200/80 transition-colors">Visite a nossa página oficial</p>
                 </div>
               </Link>
             </div>
