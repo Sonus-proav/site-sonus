@@ -50,9 +50,9 @@ export function LinksPage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-12 flex flex-col items-center"
           >
-            <img src="/logo.png" alt="Sonus Logo" className="h-10 mb-6 object-contain invert brightness-0" style={{ filter: "brightness(0) invert(1)" }} />
+            <img src="/logo.png" alt="Sonus Logo" className="h-6 md:h-7 mb-6 object-contain invert brightness-0" style={{ filter: "brightness(0) invert(1)" }} />
             <h1 className="text-white text-xl font-bold tracking-tight">Soluções Audiovisuais</h1>
-            <p className="text-zinc-400 text-sm mt-1">Engenharia e Tecnologia de Ponta</p>
+            <p className="text-zinc-400 text-sm mt-1">Projetos e Tecnologia de Alta Performance</p>
           </motion.div>
 
           {/* Links Container */}
