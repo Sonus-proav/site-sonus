@@ -284,15 +284,16 @@ export function AuditoriosTeatros() {
         </motion.div>
 
         {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-            <div className="w-1 h-2 bg-primary rounded-full" />
-          </div>
-        </motion.div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+              <div className="w-1 h-2 bg-primary rounded-full" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════ */}
