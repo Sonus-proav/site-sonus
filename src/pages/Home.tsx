@@ -71,6 +71,9 @@ export function Home() {
       })
 
       if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'lead_contato_home', lead_type: 'form_home' });
+
         navigate("/obrigado")
       } else {
         const errData = await response.json().catch(() => ({}))

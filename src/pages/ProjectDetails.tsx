@@ -56,6 +56,17 @@ export function ProjectDetails() {
     })
   }, [id])
 
+  useEffect(() => {
+    if (project) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ 
+        event: 'view_case_study', 
+        project_name: project.title,
+        project_category: project.category 
+      });
+    }
+  }, [project])
+
 
   if (loading) {
     return (
