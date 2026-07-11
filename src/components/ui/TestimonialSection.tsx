@@ -80,13 +80,13 @@ export function TestimonialSection({
               transition={{ delay: i * 0.15, duration: 0.6 }}
               className="bg-zinc-900/80 border border-white/10 rounded-3xl p-8 hover:bg-zinc-800 hover:border-white/20 transition-all duration-300 flex flex-col h-full group"
             >
-              <div className="flex text-amber-400 mb-6 gap-1">
+              <div className="flex text-amber-400 mb-6 gap-1" aria-hidden="true">
                 {[...Array(5)].map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 fill-current" />
                 ))}
               </div>
               
-              <Quote className="w-10 h-10 text-white/5 mb-4 group-hover:text-blue-500/20 transition-colors duration-500" />
+              <Quote className="w-10 h-10 text-white/5 mb-4 group-hover:text-blue-500/20 transition-colors duration-500" aria-hidden="true" />
               
               <p className="text-zinc-300 leading-relaxed font-light flex-grow mb-8 text-sm md:text-base">
                 "{t.text}"
