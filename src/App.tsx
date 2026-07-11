@@ -16,6 +16,7 @@ const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding
 const ThankYou = React.lazy(() => import("./pages/ThankYou").then(module => ({ default: module.ThankYou })))
 const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").then(module => ({ default: module.AuditoriosTeatros })))
 const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(module => ({ default: module.IgrejasTemplos })))
+const LinksPage = React.lazy(() => import("./pages/LinksPage").then(module => ({ default: module.LinksPage })))
 
 import { HelmetProvider } from "react-helmet-async"
 import { useNavigate } from "react-router-dom"
@@ -47,6 +48,8 @@ function App() {
           <AnalyticsTracker />
           <Suspense fallback={<PageLoader />}>
           <Routes>
+            <Route path="/links" element={<LinksPage />} />
+            
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
               <Route path="projetos" element={<Projects />} />
