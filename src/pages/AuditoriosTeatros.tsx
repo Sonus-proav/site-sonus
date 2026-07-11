@@ -186,6 +186,9 @@ export function AuditoriosTeatros() {
       })
 
       if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'lead_auditorio_sucesso', lead_type: 'form_auditorios' });
+        
         setIsSubmitting(false)
         navigate("/obrigado")
       } else {

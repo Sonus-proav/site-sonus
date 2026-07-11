@@ -61,6 +61,10 @@ export function LinksPage() {
               className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden animate-slide-up-fade"
               style={{ animationDelay: '0.1s' }}
               data-tracking="link-whatsapp"
+              onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'falar_engenheiro_whatsapp', source: 'links_page' });
+              }}
             >
               {/* Opacity only noise - vastly more performant than mix-blend-overlay */}
               <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={noiseStyle} />
