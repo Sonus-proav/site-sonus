@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
-import { MessageCircle, Building2, Image as ImageIcon, ArrowRight } from "lucide-react"
+import { MessageCircle, Building2, Image as ImageIcon, ArrowRight, Globe } from "lucide-react"
 
 export function LinksPage() {
   const WHATSAPP_NUMBER = "5546920013151";
@@ -126,15 +126,21 @@ export function LinksPage() {
             <div className="w-full mt-2 animate-slide-up-fade" style={{ animationDelay: '0.4s' }}>
               <Link 
                 to="/"
-                className="group w-full flex items-center justify-center p-4 rounded-2xl text-zinc-300 hover:text-white hover:bg-white/5 transition-all duration-300"
+                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
                 data-tracking="link-home"
                 onClick={() => {
                   (window as any).dataLayer = (window as any).dataLayer || [];
                   (window as any).dataLayer.push({ event: 'click_links_home', source: 'links_page' });
                 }}
               >
-                <span className="font-medium text-sm">Acessar Site Institucional</span>
-                <ArrowRight className="w-4 h-4 ml-2 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={noiseStyle} />
+                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-105 transition-transform duration-300">
+                  <Globe className="w-5 h-5 text-zinc-300 group-hover:text-white transition-colors" />
+                </div>
+                <div className="ml-4 flex-1">
+                  <h2 className="text-white font-semibold text-base">Site Institucional</h2>
+                  <p className="text-zinc-300 text-xs mt-0.5">Visite a nossa página oficial</p>
+                </div>
               </Link>
             </div>
           </div>
