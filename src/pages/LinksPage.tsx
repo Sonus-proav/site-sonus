@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
-import { MessageCircle, Building2, Image as ImageIcon, ArrowRight, Globe } from "lucide-react"
+import { MessageCircle, Building2, Image as ImageIcon, Globe } from "lucide-react"
 
 export function LinksPage() {
   const WHATSAPP_NUMBER = "5546920013151";
