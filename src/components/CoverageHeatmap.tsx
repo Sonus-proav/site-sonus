@@ -16,7 +16,7 @@ export function CoverageHeatmap() {
     { id: 1, label: "Nave Central", x: "20%", y: "26%", w: "60%", h: "30%", coverage: 95, desc: "Dispersão uniforme em toda a extensão" },
     { id: 2, label: "Lateral Esq.", x: "4%", y: "24%", w: "13%", h: "40%", coverage: 92, desc: "Caixas anguladas para cobertura lateral" },
     { id: 3, label: "Lateral Dir.", x: "83%", y: "24%", w: "13%", h: "40%", coverage: 92, desc: "Caixas anguladas para cobertura lateral" },
-    { id: 4, label: "Fundo", x: "12%", y: "60%", w: "76%", h: "16%", coverage: 88, desc: "Delay line para alcance dos últimos bancos" },
+    { id: 4, label: "Fundo", x: "12%", y: "68%", w: "76%", h: "16%", coverage: 88, desc: "Delay line para alcance dos últimos bancos" },
   ]
 
   // Auto-cycle through zones

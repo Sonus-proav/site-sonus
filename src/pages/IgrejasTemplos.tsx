@@ -436,7 +436,7 @@ export function IgrejasTemplos() {
           >
             {displayPortfolio.map((item, index) => (
               <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[90vw] md:w-[60vw] lg:w-[600px] snap-center md:snap-start">
-                <div className="group relative rounded-[2rem] overflow-hidden aspect-video md:aspect-[16/10] bg-zinc-900 border border-white/5">
+                <div className="group relative rounded-[2rem] overflow-hidden aspect-video md:aspect-[16/10] bg-zinc-900 border border-white/5 isolation-isolate [transform:translateZ(0)]">
                   <img 
                     src={item.image} 
                     alt={item.title} 

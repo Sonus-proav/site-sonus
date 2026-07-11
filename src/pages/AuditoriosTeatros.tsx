@@ -47,7 +47,7 @@ function InteractivePanelMockup() {
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(41,128,185,0.4)_0,transparent_100%)]" />
       
       {/* iPad Frame */}
-      <div className="w-full max-w-lg aspect-[16/10] bg-zinc-950 border-[6px] border-zinc-800/80 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col z-10 relative">
+      <div className="w-full max-w-lg aspect-auto sm:aspect-[16/10] min-h-[300px] bg-zinc-950 border-[6px] border-zinc-800/80 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col z-10 relative">
         
         {/* Status Bar */}
         <div className="h-6 sm:h-8 bg-zinc-900 flex items-center justify-between px-4 border-b border-zinc-800">
@@ -452,7 +452,7 @@ export function AuditoriosTeatros() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
               <FadeIn className="md:sticky md:top-32">
                 <div className="rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 relative group shadow-2xl">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/sonus-site-ae590.firebasestorage.app/o/projects%2F1779662520044-audiotriounisep.webp?alt=media&token=d0dd2f7b-6cca-49f1-b120-ce746956cd94" alt="Teatro UNISEP" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 [transform:translateZ(0)]" />
+                  <img src="/auditorio-sonus.webp" alt="Teatro UNISEP" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 [transform:translateZ(0)]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-bold text-white mb-1">Teatro UNISEP</h3>
@@ -492,7 +492,7 @@ export function AuditoriosTeatros() {
               </FadeIn>
               <FadeIn delay={0.2} className="order-1 md:order-2 md:sticky md:top-32">
                 <div className="rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 relative group shadow-2xl">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/sonus-site-ae590.firebasestorage.app/o/projects%2F1780178371239-IMG202605301654381.webp?alt=media&token=b2697a4f-9255-4164-9546-66235231fde8" alt="Auditório CRESOL" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 [transform:translateZ(0)]" />
+                  <img src="/cresol.webp" alt="Auditório CRESOL" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 [transform:translateZ(0)]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-bold text-white mb-1">Auditório CRESOL</h3>

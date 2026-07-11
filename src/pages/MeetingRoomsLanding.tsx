@@ -184,7 +184,7 @@ export function MeetingRoomsLanding() {
                   </Button>
                 </Magnetic>
               </div>
-              <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg transition-all">
+              <Button onClick={handleWhatsApp} variant="outline" size="lg" className="w-fit sm:w-auto h-14 px-8 rounded-full bg-white/5 border-white/10 hover:bg-white/10 text-white text-lg transition-all">
                 Falar no WhatsApp <ChevronRight className="ml-2 w-4 h-4" />
               </Button>
             </FadeIn>
@@ -200,7 +200,7 @@ export function MeetingRoomsLanding() {
               </div>
 
               {/* Screen Content */}
-              <div className="w-full aspect-[4/3] md:aspect-[16/10] bg-[#0a0a0a] rounded-[2rem] overflow-hidden relative flex flex-col z-20">
+              <div className="w-full aspect-auto min-h-[400px] sm:min-h-0 sm:aspect-[4/3] md:aspect-[16/10] bg-[#0a0a0a] rounded-[2rem] overflow-hidden relative flex flex-col z-20">
                 
                 {/* Status Bar */}
                 <div className="h-10 bg-black/40 flex items-center justify-between px-6 border-b border-white/5 shrink-0">

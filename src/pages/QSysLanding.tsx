@@ -473,7 +473,7 @@ export function QSysLanding() {
       {/* FULL-BLEED CTA WITH MAGNETIC                  */}
       {/* ══════════════════════════════════════════════ */}
       <section className="py-20 md:py-32 px-4 z-10 relative">
-        <div className="max-w-7xl mx-auto rounded-[3rem] p-10 md:p-24 bg-gradient-to-br from-blue-950 via-blue-900 to-black border border-blue-500/30 text-center relative overflow-hidden shadow-2xl flex flex-col items-center justify-center">
+        <div className="max-w-7xl mx-auto rounded-[3rem] p-6 sm:p-10 md:p-24 bg-gradient-to-br from-blue-950 via-blue-900 to-black border border-blue-500/30 text-center relative overflow-hidden shadow-2xl flex flex-col items-center justify-center">
           <div className="absolute inset-0 bg-[url('/soundwave-bg.webp')] opacity-20 mix-blend-overlay" />
           <div className="relative z-10 max-w-4xl">
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8">
@@ -481,7 +481,7 @@ export function QSysLanding() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Paz de Espírito Corporativa.</span>
             </h2>
             <Magnetic>
-              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-12 rounded-full bg-white text-blue-950 text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all hover:scale-105 mt-4">
+              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-6 sm:px-8 md:px-12 rounded-full bg-white text-blue-950 text-base md:text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all hover:scale-105 mt-4 w-full sm:w-auto flex justify-center">
                 Dimensionar Q-SYS Agora
                 <ChevronRight className="ml-2 w-6 h-6" />
               </Button>

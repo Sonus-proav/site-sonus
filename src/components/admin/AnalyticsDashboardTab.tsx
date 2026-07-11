@@ -28,11 +28,14 @@ export function AnalyticsDashboardTab() {
       ? Math.floor(validTimes.reduce((acc, curr) => acc + curr.timeSpent, 0) / validTimes.length) 
       : 0;
 
-    // Ranking de Cidades
+    // Ranking de Localidades (Cidade - Estado)
     const cityMap: Record<string, number> = {};
     data.forEach(v => {
       if(v.city !== "Desconhecida") {
-        cityMap[v.city] = (cityMap[v.city] || 0) + 1;
+        const locationStr = v.region && v.region !== "Desconhecida" 
+          ? `${v.city} - ${v.region}`
+          : v.city;
+        cityMap[locationStr] = (cityMap[locationStr] || 0) + 1;
       }
     });
     const topCities = Object.entries(cityMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
@@ -107,9 +110,9 @@ export function AnalyticsDashboardTab() {
           <div className="bg-zinc-950 border border-white/10 rounded-2xl p-6">
             <div className="flex items-center gap-3 text-purple-400 mb-2">
               <MapPin className="w-5 h-5" />
-              <h3 className="font-semibold text-sm">Top Cidade</h3>
+              <h3 className="font-semibold text-sm">Top Local</h3>
             </div>
-            <p className="text-3xl font-black text-white">{stats.topCities[0]?.[0] || "-"}</p>
+            <p className="text-xl md:text-2xl font-black text-white truncate" title={stats.topCities[0]?.[0] || "-"}>{stats.topCities[0]?.[0] || "-"}</p>
           </div>
         </FadeIn>
       </div>
@@ -118,7 +121,7 @@ export function AnalyticsDashboardTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <FadeIn delay={0.5}>
           <div className="bg-zinc-950 border border-white/10 rounded-3xl p-8">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2"><MapPin className="text-zinc-500 w-5 h-5"/> Cidades de Origem</h3>
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2"><MapPin className="text-zinc-500 w-5 h-5"/> Locais de Origem</h3>
             <div className="space-y-4">
               {stats.topCities.length > 0 ? stats.topCities.map((city, idx) => (
                 <div key={idx} className="flex justify-between items-center bg-black/30 p-3 rounded-lg border border-white/5">
