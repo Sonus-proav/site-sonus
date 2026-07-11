@@ -204,7 +204,7 @@ export function MeetingRoomsLanding() {
                 
                 {/* Status Bar */}
                 <div className="h-10 bg-black/40 flex items-center justify-between px-6 border-b border-white/5 shrink-0">
-                  <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Boardroom Alpha</span>
+                  <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">REUNIÃO 1</span>
                   <div className="flex items-center gap-3 text-zinc-400">
                     <Wifi className="w-3.5 h-3.5 text-emerald-500" />
                     <span className="text-xs font-mono font-medium">10:00 AM</span>
