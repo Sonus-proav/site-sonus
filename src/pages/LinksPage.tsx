@@ -34,6 +34,7 @@ export function LinksPage() {
       <SEO 
         title="Links Oficiais | Sonus" 
         description="Acesse nossas soluções audiovisuais, portfólio e atendimento direto." 
+        noindex
       />
       
       <div className="min-h-[100dvh] bg-[#0B0F19] flex flex-col items-center py-12 px-5 relative overflow-hidden font-sans">
