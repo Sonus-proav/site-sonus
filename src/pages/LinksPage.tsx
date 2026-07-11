@@ -26,7 +26,7 @@ export function LinksPage() {
         noindex
       />
       
-      <main className="min-h-[100dvh] bg-[#0B0F19] flex flex-col items-center py-12 px-5 relative overflow-hidden font-sans">
+      <main className="fixed inset-0 w-full h-[100dvh] bg-[#0B0F19] flex flex-col items-center pt-10 pb-6 px-5 overflow-hidden overscroll-none font-sans">
         
         {/* Background Image (Optimized) */}
         <div 
