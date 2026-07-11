@@ -25,7 +25,7 @@ export function LinksPage() {
         noindex
       />
       
-      <div className="min-h-[100dvh] bg-[#0B0F19] flex flex-col items-center py-12 px-5 relative overflow-hidden font-sans">
+      <main className="min-h-[100dvh] bg-[#0B0F19] flex flex-col items-center py-12 px-5 relative overflow-hidden font-sans">
         
         {/* Subtle Ambient Light */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_top,rgba(30,58,138,0.15)_0%,transparent_70%)] pointer-events-none" aria-hidden="true" />
@@ -37,9 +37,17 @@ export function LinksPage() {
             className="mb-12 flex flex-col items-center animate-slide-up-fade"
             style={{ animationDelay: '0s' }}
           >
-            <img src="/logo.png" alt="Sonus Logo" className="h-6 md:h-7 mb-6 object-contain invert brightness-0" style={{ filter: "brightness(0) invert(1)" }} />
+            <img 
+              src="/logo.png" 
+              alt="Sonus Logo" 
+              width={160} 
+              height={40} 
+              fetchPriority="high"
+              className="h-6 md:h-7 mb-6 object-contain invert brightness-0" 
+              style={{ filter: "brightness(0) invert(1)" }} 
+            />
             <h1 className="text-white text-xl font-bold tracking-tight">Soluções Audiovisuais</h1>
-            <p className="text-zinc-400 text-sm mt-1">Projetos e Tecnologia de Alta Performance</p>
+            <p className="text-zinc-300 text-sm mt-1">Projetos e Tecnologia de Alta Performance</p>
           </div>
 
           {/* Links Container */}
@@ -62,7 +70,7 @@ export function LinksPage() {
               </div>
               <div className="ml-4 flex-1">
                 <h2 className="text-white font-semibold text-base">Falar com um Especialista</h2>
-                <p className="text-zinc-400 text-xs mt-0.5">Atendimento via WhatsApp</p>
+                <p className="text-zinc-300 text-xs mt-0.5">Atendimento via WhatsApp</p>
               </div>
             </a>
 
@@ -79,7 +87,7 @@ export function LinksPage() {
                 </div>
                 <div className="ml-4 flex-1">
                   <h2 className="text-white font-semibold text-base">O Fim do Improviso</h2>
-                  <p className="text-zinc-400 text-xs mt-0.5">Soluções Corporativas</p>
+                  <p className="text-zinc-300 text-xs mt-0.5">Soluções Corporativas</p>
                 </div>
               </Link>
             </div>
@@ -97,7 +105,7 @@ export function LinksPage() {
                 </div>
                 <div className="ml-4 flex-1">
                   <h2 className="text-white font-semibold text-base">Ver Portfólio</h2>
-                  <p className="text-zinc-400 text-xs mt-0.5">Projetos Cresol, Unisep...</p>
+                  <p className="text-zinc-300 text-xs mt-0.5">Projetos Cresol, Unisep...</p>
                 </div>
               </Link>
             </div>
@@ -106,7 +114,7 @@ export function LinksPage() {
             <div className="w-full mt-2 animate-slide-up-fade" style={{ animationDelay: '0.4s' }}>
               <Link 
                 to="/"
-                className="group w-full flex items-center justify-center p-4 rounded-2xl text-zinc-400 hover:text-white hover:bg-white/5 transition-all duration-300"
+                className="group w-full flex items-center justify-center p-4 rounded-2xl text-zinc-300 hover:text-white hover:bg-white/5 transition-all duration-300"
                 data-tracking="link-home"
               >
                 <span className="font-medium text-sm">Acessar Site Institucional</span>
@@ -132,7 +140,7 @@ export function LinksPage() {
           </div>
 
         </div>
-      </div>
+      </main>
     </>
   )
 }
