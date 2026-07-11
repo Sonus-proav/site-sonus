@@ -425,7 +425,7 @@ export function IgrejasTemplos() {
             style={{ scrollbarWidth: "none" }}
           >
             {displayPortfolio.map((item, index) => (
-              <FadeIn key={item.id || index} delay={index * 0.1} className="shrink-0 w-[90vw] md:w-[60vw] lg:w-[600px] snap-center md:snap-start">
+              <div key={item.id || index} className="shrink-0 w-[90vw] md:w-[60vw] lg:w-[600px] snap-center md:snap-start">
                 <div className="group relative rounded-[2rem] overflow-hidden aspect-video md:aspect-[16/10] bg-zinc-900 border border-white/5 isolation-isolate [transform:translateZ(0)]">
                   <img 
                     src={item.image} 
@@ -440,15 +440,13 @@ export function IgrejasTemplos() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   
-                  {/* State badge removida a pedido */}
-
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3>
                     <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3">{item.description}</p>
                   </div>
                 </div>
-              </FadeIn>
+              </div>
             ))}
           </div>
           
