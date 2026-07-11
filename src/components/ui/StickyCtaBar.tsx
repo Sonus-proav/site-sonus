@@ -58,6 +58,12 @@ export function StickyCtaBar({
   }, [])
 
   const handleWhatsApp = () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ 
+      event: 'falar_especialista_sticky', 
+      button_status: isOnline ? 'online' : 'offline'
+    });
+
     const encodedMessage = encodeURIComponent(messageText)
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank')
   }
