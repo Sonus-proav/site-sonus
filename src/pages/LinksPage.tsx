@@ -25,6 +25,10 @@ export function LinksPage() {
     }
   }
 
+  const noiseStyle = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+  };
+
   return (
     <>
       <SEO 
@@ -65,10 +69,11 @@ export function LinksPage() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
+              className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl backdrop-saturate-150 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
               data-tracking="link-whatsapp"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={noiseStyle} />
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center shrink-0 border border-emerald-500/20 group-hover:scale-105 transition-transform duration-300">
                 <MessageCircle className="w-6 h-6 text-emerald-400" />
               </div>
@@ -82,9 +87,10 @@ export function LinksPage() {
             <motion.div variants={itemVariants} className="w-full">
               <Link 
                 to="/auditorios-e-teatros"
-                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300"
+                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl backdrop-saturate-150 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
                 data-tracking="link-corporative"
               >
+                <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={noiseStyle} />
                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-105 transition-transform duration-300">
                   <Building2 className="w-5 h-5 text-zinc-300 group-hover:text-white transition-colors" />
                 </div>
@@ -99,9 +105,10 @@ export function LinksPage() {
             <motion.div variants={itemVariants} className="w-full">
               <Link 
                 to="/projetos"
-                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300"
+                className="group relative w-full flex items-center p-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl backdrop-saturate-150 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden"
                 data-tracking="link-portfolio"
               >
+                <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={noiseStyle} />
                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-105 transition-transform duration-300">
                   <ImageIcon className="w-5 h-5 text-zinc-300 group-hover:text-white transition-colors" />
                 </div>
