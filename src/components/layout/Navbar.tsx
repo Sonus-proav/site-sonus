@@ -16,6 +16,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: "Início", path: "/" },
     { name: "Sobre Nós", path: "/#sobre" },
@@ -30,7 +42,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent",
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 border-b border-transparent",
         isScrolled
           ? "bg-white/80 dark:bg-[#05060A]/70 backdrop-blur-xl border-black/5 dark:border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,200,255,0.03)] py-3"
           : "bg-transparent py-5"
@@ -98,9 +110,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/80 dark:bg-[#05060A]/80 backdrop-blur-2xl border-b border-black/5 dark:border-white/5 py-4 px-4 flex flex-col gap-4 shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+        <div className="md:hidden fixed inset-0 h-[100dvh] bg-white/90 dark:bg-[#05060A]/90 backdrop-blur-2xl z-[-1] pt-[100px] px-6 flex flex-col gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
