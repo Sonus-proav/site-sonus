@@ -22,6 +22,7 @@ export function Navbar() {
     { name: "Portfólio", path: "/projetos" },
     { name: "Auditórios", path: "/auditorios-e-teatros" },
     { name: "Igrejas", path: "/igrejas-e-templos" },
+    { name: "Salas", path: "/salas-reuniao" },
     { name: "Q-SYS", path: "/qsys" },
     { name: "Contato", path: "/#contato" },
   ]
