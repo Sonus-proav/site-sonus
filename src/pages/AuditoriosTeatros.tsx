@@ -69,7 +69,11 @@ function InteractivePanelMockup() {
              {(["palestra", "cinema", "off"] as const).map((scene) => (
                <motion.div
                  key={scene}
-                 onClick={() => setActiveScene(scene)}
+                 onClick={() => {
+                   setActiveScene(scene);
+                   (window as any).dataLayer = (window as any).dataLayer || [];
+                   (window as any).dataLayer.push({ event: 'interact_auditorio_simulator', scene_name: scene });
+                 }}
                  className={`rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center justify-between cursor-pointer transition-all duration-300 ${
                    activeScene === scene 
                      ? 'bg-primary/20 border border-primary/30' 

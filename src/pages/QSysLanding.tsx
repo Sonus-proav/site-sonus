@@ -225,7 +225,11 @@ export function QSysLanding() {
                       return (
                         <div 
                           key={idx} 
-                          onClick={() => setActiveDashboardTab(item.label)}
+                          onClick={() => {
+                            setActiveDashboardTab(item.label);
+                            (window as any).dataLayer = (window as any).dataLayer || [];
+                            (window as any).dataLayer.push({ event: 'interact_qsys_dashboard', tab_name: item.label });
+                          }}
                           className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all shrink-0 ${isActive ? 'bg-white/10 text-white shadow-lg border border-white/10' : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}
                         >
                           {item.icon}
@@ -255,7 +259,11 @@ export function QSysLanding() {
                           ].map((scene) => (
                             <div 
                               key={scene.id} 
-                              onClick={() => setActiveFauxScene(scene.id as any)} 
+                              onClick={() => {
+                                setActiveFauxScene(scene.id as any);
+                                (window as any).dataLayer = (window as any).dataLayer || [];
+                                (window as any).dataLayer.push({ event: 'interact_qsys_scene', scene_type: scene.id });
+                              }} 
                               className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? (scene.id === 'presentation' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]' : 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]') : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
                             >
                               {scene.id === "presentation" ? <Play className="w-8 h-8 md:w-10 md:h-10 mb-2" /> : <Video className="w-8 h-8 md:w-10 md:h-10 mb-2" />}
