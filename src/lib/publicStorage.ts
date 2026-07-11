@@ -12,6 +12,8 @@ export interface Project {
   solution?: string;
   tags?: string[];
   state?: string;
+  slug?: string;
+  content?: string;
 }
 
 export function optimizeImageUrl(url: string, width: number = 800): string {

@@ -159,6 +159,37 @@ export function IgrejasTemplos() {
     }
   }
 
+  const igrejaSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Projetos Acústicos para Templos e Sonorização Profissional",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Sonus Pro Audio e Video"
+    },
+    "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Equipamentos de Autoridade",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Sistemas Q-SYS"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Microfones Shure"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-amber-500/30">
       <SEO 
@@ -167,17 +198,7 @@ export function IgrejasTemplos() {
         image="/interior-matriz-xanxere.webp"
         url="https://sonusproaudio.com.br/igrejas-e-templos"
         keywords="sonorização para igrejas, som para templo religioso, projeto acústico igreja matriz, resolver eco na igreja, sistema de som para louvor, automação Q-SYS igreja, sonorização templo, projeto de som igreja"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Sonorização para Igrejas e Templos",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Sonus Pro AV"
-          },
-          "description": "Projetos acústicos e de sonorização focados na inteligibilidade para igrejas e templos.",
-          "areaServed": "Brazil"
-        }}
+        schema={igrejaSchema}
       />
 
       <Navbar />

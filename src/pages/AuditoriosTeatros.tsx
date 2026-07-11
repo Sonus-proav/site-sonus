@@ -200,6 +200,37 @@ export function AuditoriosTeatros() {
     }
   }
 
+  const auditorioSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Automação Corporativa e Integração de Sistemas",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Sonus Pro Audio e Video"
+    },
+    "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Equipamentos de Autoridade",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Sistemas Q-SYS"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Microfones Shure"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
       <Helmet>
@@ -211,17 +242,7 @@ export function AuditoriosTeatros() {
         image="/auditorio-sonus.webp"
         url="https://sonusproaudio.com.br/auditorios-e-teatros"
         keywords="sonorização para auditórios, projeto de áudio para teatro, automação audiovisual, sistema de som profissional, microfones shure para auditório, Q-SYS integração, sonorização teatro, som ambiente auditório"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Sonorização para Auditórios e Teatros",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Sonus Pro AV"
-          },
-          "description": "Projetos audiovisuais de alta performance para auditórios e teatros.",
-          "areaServed": "Brazil"
-        }}
+        schema={auditorioSchema}
       />
 
       <Navbar />

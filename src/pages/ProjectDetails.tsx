@@ -94,6 +94,28 @@ export function ProjectDetails() {
     )
   }
 
+  const articleSchema = project ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": project.title,
+    "image": project.images ? [project.image, ...project.images] : [project.image],
+    "author": {
+      "@type": "Organization",
+      "name": "Sonus Pro Audio e Video",
+      "url": "https://sonusproaudio.com.br"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Sonus Pro Audio e Video",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sonusproaudio.com.br/logo.png"
+      }
+    },
+    "description": project.description || "Estudo de caso e projeto audiovisual.",
+    "articleSection": project.category
+  } : undefined;
+
   return (
     <div className="min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
       <SEO 
@@ -102,6 +124,7 @@ export function ProjectDetails() {
         image={project.image}
         url={`https://sonusproaudio.com.br/projetos/${project.id}`}
         type="article"
+        schema={articleSchema}
       />
       <Helmet>
         {/* Preload de todas as imagens do carrossel para troca instantânea */}
@@ -237,7 +260,15 @@ export function ProjectDetails() {
                   </div>
                 )}
 
-                {!project.description && !project.problem && !project.solution && (
+                {/* Renderizador de Conteúdo Rico (Estudos de Caso / H2 / H3 / Artigos Longos) */}
+                {project.content && (
+                  <div 
+                    className="prose prose-invert max-w-none text-black/80 dark:text-white/80"
+                    dangerouslySetInnerHTML={{ __html: project.content }}
+                  />
+                )}
+
+                {!project.description && !project.problem && !project.solution && !project.content && (
                   <p className="italic opacity-50">Nenhum detalhe disponível para este projeto.</p>
                 )}
               </div>
