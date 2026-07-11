@@ -17,25 +17,25 @@ interface TestimonialSectionProps {
 
 const defaultTestimonials: Testimonial[] = [
   {
-    name: "Carlos Eduardo",
-    role: "Diretor de TI",
-    company: "Grupo Corporativo",
-    initials: "CE",
-    text: "Antes da Sonus, nossas reuniões eram um caos técnico diário. A padronização que fizeram em nossas 15 salas mudou completamente a experiência. O sistema apenas funciona, sem fricção."
+    name: "Felipe Rodrigues",
+    role: "Gerente de Infraestrutura",
+    company: "Multinacional Corporativa",
+    initials: "FR",
+    text: "A gente perdia pelo menos uns 15 minutos de cada reunião só tentando fazer o áudio funcionar nas salas antigas. O que a Sonus fez aqui foi absurdo: eles padronizaram tudo. Hoje a diretoria entra, aperta um único botão na tela e a videoconferência simplesmente liga. Zeramos os chamados no TI por conta de microfone mudo."
   },
   {
-    name: "Pr. Marcos Silva",
-    role: "Pastor Sênior",
-    company: "Igreja Matriz",
-    initials: "MS",
-    text: "O projeto acústico transformou nosso templo. A clareza da palavra agora chega a todos os fiéis, do altar até o último banco. Os voluntários operam a mesa sem medo algum."
+    name: "Pr. Leandro Costa",
+    role: "Pastor Presidente",
+    company: "Comunidade Cristã",
+    initials: "LC",
+    text: "Sempre sofríamos com aquele som embolado na igreja, onde a pessoa que estava lá no fundo não entendia metade da pregação e as caixas viviam dando microfonia. O projeto da Sonus mudou a história do nosso ministério. O som ficou tão limpo e potente que até a equipe de voluntários trabalha com mais alegria, porque o sistema é super fácil de mexer."
   },
   {
-    name: "Juliana Mendes",
-    role: "Pró-Reitora",
+    name: "Dra. Helena Vanz",
+    role: "Diretora Acadêmica",
     company: "Centro Universitário",
-    initials: "JM",
-    text: "O auditório se tornou o espaço mais disputado do campus. A automação Q-SYS permite que qualquer professor chegue, aperte um botão e comece sua palestra com áudio e vídeo impecáveis."
+    initials: "HV",
+    text: "Tínhamos muito receio de investir alto no auditório e acabar com um sistema tão complexo que nenhum professor saberia usar. A Sonus entregou uma automação tão inteligente que hoje qualquer convidado sobe no palco, toca no painelzinho e as luzes, o projetor e o microfone se ajustam sozinhos. Valeu cada centavo."
   }
 ]
 
