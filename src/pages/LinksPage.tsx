@@ -1,4 +1,4 @@
-import { motion, Variants } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { Link } from "react-router-dom"
 import { SEO } from "@/components/SEO"
 import { MessageCircle, Building2, Image as ImageIcon, ArrowRight } from "lucide-react"
