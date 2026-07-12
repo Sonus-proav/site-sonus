@@ -431,7 +431,7 @@ export function Home() {
           </FadeIn>
 
           <FadeIn delay={0.2} className="max-w-3xl mx-auto bg-white/90 dark:bg-zinc-950/90 border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-6 md:p-12 shadow-2xl transition-colors duration-300">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={handleSubmit} onInvalid={(e) => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_error', error_type: 'html_validation_failed' }); }}>
               {/* Honeypot Invisível */}
               <div className="hidden" aria-hidden="true">
                 <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />

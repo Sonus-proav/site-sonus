@@ -508,7 +508,7 @@ export function QSysLanding() {
                   </Button>
                 </div>
               ) : (
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-6" onSubmit={handleSubmit} onInvalid={(e) => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_error', error_type: 'html_validation_failed' }); }}>
                   <div className="hidden" aria-hidden="true">
                     <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
                   </div>

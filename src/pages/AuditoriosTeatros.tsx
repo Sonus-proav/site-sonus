@@ -582,7 +582,7 @@ export function AuditoriosTeatros() {
 
           <FadeIn delay={0.2}>
             <SpotlightCard className="rounded-[2rem] p-6 md:p-10 border border-white/10 bg-zinc-950/50">
-              <form className="space-y-6" onSubmit={handleSubmit}>
+              <form className="space-y-6" onSubmit={handleSubmit} onInvalid={(e) => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_error', error_type: 'html_validation_failed' }); }}>
                 {/* Honeypot */}
                 <div className="hidden" aria-hidden="true">
                   <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />

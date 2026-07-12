@@ -556,7 +556,7 @@ export function MeetingRoomsLanding() {
                 <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full">Nova solicitação</Button>
               </div>
             ) : (
-              <form className="space-y-6" onSubmit={handleSubmit}>
+              <form className="space-y-6" onSubmit={handleSubmit} onInvalid={(e) => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_error', error_type: 'html_validation_failed' }); }}>
                 <input type="text" name="honeypot" className="hidden" value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
