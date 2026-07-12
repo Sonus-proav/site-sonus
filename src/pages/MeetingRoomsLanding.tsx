@@ -63,16 +63,22 @@ export function MeetingRoomsLanding() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'lead_salas_sucesso', lead_type: 'form_salas' });
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_salas', value: 500, currency: 'BRL' });
         
         window.location.href = '/obrigado';
       } else {
         const errData = await response.json().catch(() => ({}))
         setSubmitError(errData.error || "Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.")
         setIsSubmitting(false)
+        ;(window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'form_error', error_type: 'api_rejection' });
       }
     } catch (error) {
-      setSubmitError("Erro de conexão. Verifique sua internet e tente novamente.")
+      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
       setIsSubmitting(false)
     }
   }
@@ -133,12 +139,24 @@ export function MeetingRoomsLanding() {
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
 
+  const salasSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Automação de Salas de Reunião Corporativas",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Sonus Pro AV"
+    },
+    "areaServed": "BR",
+    "description": "Sistemas de videoconferência de alta performance, automação e sonorização corporativa (Shure, Q-SYS, Zoom, Teams)."
+  };
+
   return (
     <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
       <Helmet>
         <link rel="preload" href="/soundwave-bg.webp" as="image" fetchPriority="high" />
       </Helmet>
-      <SEO 
+      <SEO schema={salasSchema} 
         title="Automação de Salas de Reunião | Sonus Pro AV" 
         description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 
         image="/salas-corporativas.webp"

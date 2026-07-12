@@ -78,17 +78,23 @@ export function Home() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'lead_contato_home', lead_type: 'form_home' });
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_home', value: 500, currency: 'BRL' });
 
         navigate("/obrigado")
       } else {
         const errData = await response.json().catch(() => ({}))
         setSubmitError(errData.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente ou use o WhatsApp.")
         setIsSubmitting(false)
+        ;(window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: 'form_error', error_type: 'api_rejection' });
       }
     } catch (error) {
       console.error("Erro na requisição:", error)
-      setSubmitError("Erro de conexão. Verifique sua internet e tente novamente.")
+      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
     }
   }
 

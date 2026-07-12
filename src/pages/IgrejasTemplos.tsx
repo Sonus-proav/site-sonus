@@ -109,7 +109,7 @@ export function IgrejasTemplos() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'lead_igreja_sucesso', lead_type: 'form_igrejas' });
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_igrejas', value: 500, currency: 'BRL' });
         
         setIsSuccess(true)
         setFormData({
@@ -124,7 +124,11 @@ export function IgrejasTemplos() {
         setSubmitError(errorData?.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente.")
       }
     } catch (error) {
-      setSubmitError("Erro de conexão. Por favor, verifique sua internet e tente novamente.")
+      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
+      ;(window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
     } finally {
       setIsSubmitting(false)
     }
