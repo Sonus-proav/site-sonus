@@ -74,6 +74,12 @@ export function QSysLanding() {
     
     const finalToken = turnstileToken || "bypass_token"
 
+    let utms = null;
+    try {
+      const stored = localStorage.getItem('sonus_utms');
+      if (stored) utms = JSON.parse(stored);
+    } catch(err) {}
+
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
@@ -83,7 +89,7 @@ export function QSysLanding() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_qsys', value: 500, currency: 'BRL' });
+        (window as any).dataLayer.push({ event: 'lead_qsys_sucesso', lead_type: 'form_qsys' });
 
         setIsSuccess(true)
         setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
@@ -93,10 +99,6 @@ export function QSysLanding() {
       }
     } catch (error) {
       setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
     } finally {
       setIsSubmitting(false)
     }
@@ -105,6 +107,42 @@ export function QSysLanding() {
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'click_whatsapp_qsys', source: 'hero_button' });
+    const text = `Olá! Gostaria de falar com o especialista Q-SYS sobre o meu projeto.`
+    window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
+  }
+
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
+
+  const qsysSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Instalação e Integração Q-SYS",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Sonus Pro AV"
+    },
+    "areaServed": "BR",
+    "description": "Especialistas em integração do ecossistema Q-SYS para controle centralizado de áudio, vídeo e automação corporativa."
+  };
+
+
+  return (
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30">
+      <Helmet>
+      </Helmet>
+      <SEO schema={qsysSchema} 
+        title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
+        description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
+        image="/qsys-tech-bg.webp"
+        url="https://sonusproaudio.com.br/qsys"
+      />
+
+      <Navbar />
+
+      {/* ══════════════════════════════════════════════ */}
       {/* HERO — Animated Counters + Oversized Typography */}
       {/* ══════════════════════════════════════════════ */}
       <section ref={heroRef} className="relative pt-32 pb-32 md:pt-40 md:pb-32 px-4 md:px-6 min-h-[100dvh] flex flex-col items-center justify-center overflow-x-hidden">
@@ -508,7 +546,7 @@ export function QSysLanding() {
                   </Button>
                 </div>
               ) : (
-                <form className="space-y-6" onSubmit={handleSubmit} onInvalid={(e) => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_error', error_type: 'html_validation_failed' }); }}>
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="hidden" aria-hidden="true">
                     <input type="text" name="honeypot" tabIndex={-1} value={formData.honeypot} onChange={(e) => setFormData({...formData, honeypot: e.target.value})} />
                   </div>
