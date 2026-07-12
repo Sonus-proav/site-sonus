@@ -125,6 +125,8 @@ export function IgrejasTemplos() {
   }
 
   const handleWhatsApp = () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'click_whatsapp_igrejas', source: 'hero_button' });
     const text = `Olá! Gostaria de falar com um especialista sobre o som da minha Igreja.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
@@ -239,11 +241,7 @@ export function IgrejasTemplos() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Magnetic>
                   <Button 
-                    onClick={() => {
-                      const el = document.getElementById('contato');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      else window.location.hash = 'contato';
-                    }}
+                    onClick={handleWhatsApp}
                     size="lg" 
                     className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-[0_0_60px_-10px_rgba(245,158,11,0.5)] transition-all hover:shadow-[0_0_80px_-10px_rgba(245,158,11,0.7)] h-auto"
                   >
