@@ -72,7 +72,7 @@ function InteractivePanelMockup() {
                  onClick={() => {
                    setActiveScene(scene);
                    (window as any).dataLayer = (window as any).dataLayer || [];
-                   (window as any).dataLayer.push({ event: 'interact_auditorio_simulator', scene_name: scene }); if(typeof window.fbq === 'function') window.fbq('track', 'CustomizeProduct');
+                   (window as any).dataLayer.push({ event: 'interact_auditorio_simulator', scene_name: scene }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'CustomizeProduct');
                  }}
                  className={`rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center justify-between cursor-pointer transition-all duration-300 ${
                    activeScene === scene 
@@ -197,7 +197,7 @@ export function AuditoriosTeatros() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_auditorios', value: 500, currency: 'BRL' }); if(typeof window.fbq === 'function') window.fbq('track', 'Lead');
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_auditorios', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
         
         setIsSubmitting(false)
         navigate("/obrigado")
@@ -310,7 +310,7 @@ export function AuditoriosTeatros() {
                   size="lg"
                   onClick={() => {
                     (window as any).dataLayer = (window as any).dataLayer || [];
-                    (window as any).dataLayer.push({ event: 'click_whatsapp_auditorios', source: 'hero_button' }); if(typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: 'WhatsApp' });
+                    (window as any).dataLayer.push({ event: 'click_whatsapp_auditorios', source: 'hero_button' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
                     const text = `Olá! Gostaria de falar com um especialista sobre o som do meu Auditório / Teatro.`
                     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
                   }}
@@ -591,20 +591,20 @@ export function AuditoriosTeatros() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-black/50 border-white/10 focus-visible:ring-primary h-12 text-white rounded-xl" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descreva o escopo do seu Auditório ou Teatro</label>
-                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Capacidade de pessoas, problemas atuais, objetivos do projeto..." className="bg-black/50 border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-white rounded-xl" />
+                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'auditorios' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Capacidade de pessoas, problemas atuais, objetivos do projeto..." className="bg-black/50 border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-white rounded-xl" />
                 </div>
                 
                 <div className="flex justify-center pt-2 min-h-[65px]">

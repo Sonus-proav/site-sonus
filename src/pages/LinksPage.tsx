@@ -71,7 +71,7 @@ export function LinksPage() {
               data-tracking="link-whatsapp"
               onClick={() => {
                 (window as any).dataLayer = (window as any).dataLayer || [];
-                (window as any).dataLayer.push({ event: 'falar_engenheiro_whatsapp', source: 'links_page' }); if(typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: 'WhatsApp' });
+                (window as any).dataLayer.push({ event: 'falar_engenheiro_whatsapp', source: 'links_page' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
               }}
             >
               {/* Opacity only noise - vastly more performant than mix-blend-overlay */}

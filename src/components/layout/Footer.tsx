@@ -79,7 +79,7 @@ export function Footer() {
                   <span 
                     onCopy={() => {
                       (window as any).dataLayer = (window as any).dataLayer || [];
-                      (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'phone' }); if(typeof window.fbq === 'function') window.fbq('track', 'FindLocation');
+                      (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'phone' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'FindLocation');
                     }}
                     className="selection:bg-primary/30"
                   >
@@ -92,7 +92,7 @@ export function Footer() {
                 <span 
                   onCopy={() => {
                     (window as any).dataLayer = (window as any).dataLayer || [];
-                    (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'email' }); if(typeof window.fbq === 'function') window.fbq('track', 'FindLocation');
+                    (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'email' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'FindLocation');
                   }}
                   className="selection:bg-primary/30"
                 >

@@ -44,7 +44,7 @@ export function Projects() {
         <FadeIn delay={0.2}>
           <Tabs defaultValue="todos" className="w-full flex flex-col items-center" onValueChange={(value) => {
             (window as any).dataLayer = (window as any).dataLayer || [];
-            (window as any).dataLayer.push({ event: 'filter_portfolio', category: value }); if(typeof window.fbq === 'function') window.fbq('track', 'ViewContent');
+            (window as any).dataLayer.push({ event: 'filter_portfolio', category: value }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent');
           }}>
             <TabsList className="bg-white/50 dark:bg-white/10 border border-black/10 dark:border-white/20 backdrop-blur-md p-1 rounded-full h-auto flex flex-wrap justify-center gap-1 mb-12 transition-colors duration-300 shadow-lg">
               <TabsTrigger value="todos" className="rounded-full px-6 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors duration-300">Todos</TabsTrigger>
@@ -190,7 +190,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           event: 'view_project_details', 
           project_name: project.title,
           project_category: project.category 
-        }); if(typeof window.fbq === 'function') window.fbq('track', 'ViewContent');
+        }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent');
       }}
     >
       <motion.article

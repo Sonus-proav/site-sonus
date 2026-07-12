@@ -30,7 +30,7 @@ export function useEngagedSession(thresholdSeconds = 60) {
           (window as any).dataLayer.push({ 
             event: 'engaged_reader_60s',
             seconds_active: thresholdSeconds
-          }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Engaged_User');
+          }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Engaged_User');
         }
       }
     }, 1000);

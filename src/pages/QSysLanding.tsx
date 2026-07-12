@@ -89,7 +89,7 @@ export function QSysLanding() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'lead_qsys_sucesso', lead_type: 'form_qsys' }); if(typeof window.fbq === 'function') window.fbq('track', 'Lead');
+        (window as any).dataLayer.push({ event: 'lead_qsys_sucesso', lead_type: 'form_qsys' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
 
         setIsSuccess(true)
         setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
@@ -106,7 +106,7 @@ export function QSysLanding() {
 
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({ event: 'click_whatsapp_qsys', source: 'hero_button' }); if(typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: 'WhatsApp' });
+    (window as any).dataLayer.push({ event: 'click_whatsapp_qsys', source: 'hero_button' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
     const text = `Olá! Gostaria de falar com o especialista Q-SYS sobre o meu projeto.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
@@ -249,7 +249,7 @@ export function QSysLanding() {
                           onClick={() => {
                             setActiveDashboardTab(item.label);
                             (window as any).dataLayer = (window as any).dataLayer || [];
-                            (window as any).dataLayer.push({ event: 'interact_qsys_dashboard', tab_name: item.label }); if(typeof window.fbq === 'function') window.fbq('track', 'CustomizeProduct');
+                            (window as any).dataLayer.push({ event: 'interact_qsys_dashboard', tab_name: item.label }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'CustomizeProduct');
                           }}
                           className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all shrink-0 ${isActive ? 'bg-white/10 text-white shadow-lg border border-white/10' : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}
                         >
@@ -283,7 +283,7 @@ export function QSysLanding() {
                               onClick={() => {
                                 setActiveFauxScene(scene.id as any);
                                 (window as any).dataLayer = (window as any).dataLayer || [];
-                                (window as any).dataLayer.push({ event: 'interact_qsys_scene', scene_type: scene.id }); if(typeof window.fbq === 'function') window.fbq('track', 'CustomizeProduct');
+                                (window as any).dataLayer.push({ event: 'interact_qsys_scene', scene_type: scene.id }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'CustomizeProduct');
                               }} 
                               className={`rounded-2xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all border backdrop-blur-md ${scene.active ? (scene.id === 'presentation' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]' : 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-[0_0_40px_rgba(0,0,0,0.6)] scale-[1.03]') : 'bg-white/5 border-white/10 text-zinc-500 hover:bg-white/10'}`}
                             >
@@ -554,20 +554,20 @@ export function QSysLanding() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
-                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descrição do Projeto</label>
-                    <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre a necessidade da sua empresa..." className="bg-white/5 border-white/10 focus-visible:ring-blue-500 min-h-[140px] resize-none text-white placeholder:text-zinc-500 p-4 rounded-xl" />
+                    <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'qsys' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre a necessidade da sua empresa..." className="bg-white/5 border-white/10 focus-visible:ring-blue-500 min-h-[140px] resize-none text-white placeholder:text-zinc-500 p-4 rounded-xl" />
                   </div>
 
                   <div className="flex justify-center pt-2 min-h-[65px]">

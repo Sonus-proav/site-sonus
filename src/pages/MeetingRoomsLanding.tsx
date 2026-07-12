@@ -69,7 +69,7 @@ export function MeetingRoomsLanding() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_salas', value: 500, currency: 'BRL' }); if(typeof window.fbq === 'function') window.fbq('track', 'Lead');
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_salas', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
         
         window.location.href = '/obrigado';
       } else {
@@ -140,7 +140,7 @@ export function MeetingRoomsLanding() {
 
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({ event: 'click_whatsapp_corporativo', source: 'hero_button' }); if(typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: 'WhatsApp' });
+    (window as any).dataLayer.push({ event: 'click_whatsapp_corporativo', source: 'hero_button' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
     const text = `Olá! Gostaria de falar com o especialista em Salas de Reunião Corporativas.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
@@ -568,20 +568,20 @@ export function MeetingRoomsLanding() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">Nome</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">WhatsApp/Telefone</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">Quantas salas você precisa otimizar?</label>
-                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">
