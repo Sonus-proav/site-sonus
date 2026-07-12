@@ -67,6 +67,12 @@ export function Navbar() {
               to={link.path}
               className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
               onClick={(e) => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ 
+                  event: 'nav_click', 
+                  destination: link.name,
+                  source_path: window.location.pathname
+                });
                 if (link.path.includes("#")) {
                   const targetHash = link.path.split("#")[1];
                   const currentPath = window.location.pathname;
@@ -84,6 +90,11 @@ export function Navbar() {
           <Link
               to="/#contato"
               onClick={(e) => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ 
+                  event: 'click_orcamento_menu',
+                  source_path: window.location.pathname
+                });
                 const currentPath = window.location.pathname;
                 if (currentPath === "/") {
                   e.preventDefault();
@@ -119,6 +130,12 @@ export function Navbar() {
               to={link.path}
               className="text-base font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors px-2 py-1"
               onClick={(e) => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ 
+                  event: 'nav_click', 
+                  destination: link.name,
+                  source_path: window.location.pathname
+                });
                 setIsMobileMenuOpen(false);
                 if (link.path.includes("#")) {
                   const targetHash = link.path.split("#")[1];
@@ -140,6 +157,11 @@ export function Navbar() {
             <Link
               to="/#contato"
               onClick={(e) => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ 
+                  event: 'click_orcamento_menu',
+                  source_path: window.location.pathname
+                });
                 setIsMobileMenuOpen(false);
                 const currentPath = window.location.pathname;
                 if (currentPath === "/") {
