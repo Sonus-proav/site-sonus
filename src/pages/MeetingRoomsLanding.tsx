@@ -127,6 +127,8 @@ export function MeetingRoomsLanding() {
   }
 
   const handleWhatsApp = () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'click_whatsapp_corporativo', source: 'hero_button' });
     const text = `Olá! Gostaria de falar com o especialista em Salas de Reunião Corporativas.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }

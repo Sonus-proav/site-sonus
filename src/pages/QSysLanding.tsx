@@ -99,6 +99,8 @@ export function QSysLanding() {
   }
 
   const handleWhatsApp = () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'click_whatsapp_qsys', source: 'hero_button' });
     const text = `Olá! Gostaria de falar com o especialista Q-SYS sobre o meu projeto.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
