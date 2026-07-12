@@ -78,7 +78,7 @@ export function Home() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_home', value: 500, currency: 'BRL' });
+        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_home', value: 500, currency: 'BRL' }); if(typeof window.fbq === 'function') window.fbq('track', 'Lead');
 
         navigate("/obrigado")
       } else {
@@ -440,20 +440,20 @@ export function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Nome Completo</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Telefone / WhatsApp</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">E-mail Profissional</label>
-                <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Descrição do Projeto</label>
-                <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
+                <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof window.fbq === 'function') window.fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
               </div>
 
               <div className="flex justify-center pt-2 min-h-[65px]">
