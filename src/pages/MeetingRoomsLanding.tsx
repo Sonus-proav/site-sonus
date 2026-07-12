@@ -544,20 +544,20 @@ export function MeetingRoomsLanding() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">Nome</label>
-                    <Input required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); } }} required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">WhatsApp/Telefone</label>
-                    <Input required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); } }} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                  <Input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); } }} required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">Quantas salas você precisa otimizar?</label>
-                  <Textarea required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); } }} required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">

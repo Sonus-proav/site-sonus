@@ -537,24 +537,24 @@ export function IgrejasTemplos() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                        <Input 
+                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); } }} 
                           id="name" 
                           required 
                           placeholder="Seu nome"
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'name', page: 'igrejas' }); } }})}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
                           className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
                       
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
-                        <Input 
+                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); } }} 
                           id="phone" 
                           required 
                           placeholder="(00) 00000-0000"
                           value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'phone', page: 'igrejas' }); } }})}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
                           className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
@@ -562,25 +562,25 @@ export function IgrejasTemplos() {
 
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail</label>
-                      <Input 
+                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); } }} 
                         id="email" 
                         type="email" 
                         required 
                         placeholder="seu@email.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'email', page: 'igrejas' }); } }})}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descrição do Problema Atual</label>
-                      <Textarea 
+                      <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); } }} 
                         id="message" 
                         required 
                         placeholder="Conte sobre sua igreja (Ex: Matriz com 500 lugares) e o problema atual..."
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'message', page: 'igrejas' }); } }})}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
                         className="bg-white/5 border-white/10 focus-visible:ring-amber-500 min-h-[140px] rounded-xl resize-none text-white placeholder:text-zinc-500 p-4"
                       />
                     </div>
