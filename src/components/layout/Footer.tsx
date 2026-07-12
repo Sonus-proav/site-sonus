@@ -76,12 +76,28 @@ export function Footer() {
               <li className="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
                <div className="flex flex-col gap-1">
-                  <span>(46) 92001-3151</span>
+                  <span 
+                    onCopy={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'phone' });
+                    }}
+                    className="selection:bg-primary/30"
+                  >
+                    (46) 92001-3151
+                  </span>
                </div>
              </li>
               <li className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <Mail className="h-5 w-5 text-primary shrink-0" aria-hidden="true" />
-                <span>sonusproaudio@gmail.com</span>
+                <span 
+                  onCopy={() => {
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'email' });
+                  }}
+                  className="selection:bg-primary/30"
+                >
+                  sonusproaudio@gmail.com
+                </span>
               </li>
             </ul>
           </div>
