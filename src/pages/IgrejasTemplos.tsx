@@ -542,7 +542,7 @@ export function IgrejasTemplos() {
                           required 
                           placeholder="Seu nome"
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          onChange={(e) => setFormData({...formData, name: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'name', page: 'igrejas' }); } }})}
                           className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
@@ -554,7 +554,7 @@ export function IgrejasTemplos() {
                           required 
                           placeholder="(00) 00000-0000"
                           value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'phone', page: 'igrejas' }); } }})}
                           className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                         />
                       </div>
@@ -568,7 +568,7 @@ export function IgrejasTemplos() {
                         required 
                         placeholder="seu@email.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => setFormData({...formData, email: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'email', page: 'igrejas' }); } }})}
                         className="bg-white/5 border-white/10 focus-visible:ring-amber-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
                       />
                     </div>
@@ -580,7 +580,7 @@ export function IgrejasTemplos() {
                         required 
                         placeholder="Conte sobre sua igreja (Ex: Matriz com 500 lugares) e o problema atual..."
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e) => setFormData({...formData, message: e.target.value} onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: 'message', page: 'igrejas' }); } }})}
                         className="bg-white/5 border-white/10 focus-visible:ring-amber-500 min-h-[140px] rounded-xl resize-none text-white placeholder:text-zinc-500 p-4"
                       />
                     </div>
