@@ -182,7 +182,17 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
   const heightClass = isTall ? "aspect-[3/4]" : "aspect-square md:aspect-[4/3]";
 
   return (
-    <Link to={`/projetos/${project.id}`}>
+    <Link 
+      to={`/projetos/${project.id}`}
+      onClick={() => {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ 
+          event: 'view_project_details', 
+          project_name: project.title,
+          project_category: project.category 
+        });
+      }}
+    >
       <motion.article
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

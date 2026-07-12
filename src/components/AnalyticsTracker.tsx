@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { logPageView, updateTimeSpent } from "@/lib/analytics";
+import { useEngagedSession } from "@/hooks/useEngagedSession";
 
 // Variável global fora do componente para manter o cache de localização
 // e evitar bater na API toda hora que o usuário trocar de página (SPA)
 let cachedLocation: { city: string, region: string } | null = null;
 
 export function AnalyticsTracker() {
+  useEngagedSession(60); // Inicia o rastreador global de leitura profunda
   const location = useLocation();
   const currentDocId = useRef<string | null>(null);
   const startTime = useRef<number>(Date.now());
