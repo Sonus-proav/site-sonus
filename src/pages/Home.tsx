@@ -63,11 +63,17 @@ export function Home() {
     // O backend tem um honeypot extra para proteger.
     const finalToken = turnstileToken || "bypass_token";
 
+    let utms = null;
+    try {
+      const stored = localStorage.getItem('sonus_utms');
+      if (stored) utms = JSON.parse(stored);
+    } catch(e) {}
+
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Página Inicial (Home)" })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Página Inicial (Home)", utms })
       })
 
       if (response.ok) {

@@ -58,7 +58,7 @@ export function MeetingRoomsLanding() {
     try {
       const response = await fetch('/api/contato', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião" })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião", utms })
       })
 
       if (response.ok) {

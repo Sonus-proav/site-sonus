@@ -8,7 +8,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const data = await request.json();
-    const { name, phone, email, message, turnstileToken, honeypot, churchName, role, capacity, source } = data;
+    const { name, phone, email, message, turnstileToken, honeypot, churchName, role, capacity, source, utms } = data;
 
     // Honeypot invisível para pegar bots estúpidos
     if (honeypot) {
@@ -78,6 +78,16 @@ export async function onRequestPost({ request, env }) {
           <p style="margin: 0; font-weight: bold;">Descrição do Projeto:</p>
           <p style="margin-top: 10px; white-space: pre-wrap;">${safeMessage}</p>
         </div>
+        ${utms ? `
+        <div style="background-color: #f0f7ff; padding: 15px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #2980b9;">
+          <p style="margin: 0; font-weight: bold; color: #2980b9;">🎯 Origem da Campanha (UTM)</p>
+          <ul style="list-style: none; padding: 0; margin-top: 10px;">
+            <li style="margin-bottom: 5px;"><strong>Fonte (Source):</strong> ${sanitizeHTML(utms.source) || 'N/A'}</li>
+            <li style="margin-bottom: 5px;"><strong>Campanha (Campaign):</strong> ${sanitizeHTML(utms.campaign) || 'N/A'}</li>
+            <li style="margin-bottom: 5px;"><strong>Mídia (Medium):</strong> ${sanitizeHTML(utms.medium) || 'N/A'}</li>
+          </ul>
+        </div>
+        ` : ''}
         <br/>
         <p style="font-size: 12px; color: #999;">Este é um e-mail automático enviado pelo sistema Cloudflare Pages via Resend.</p>
       </div>

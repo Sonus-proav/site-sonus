@@ -78,7 +78,7 @@ export function QSysLanding() {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Q-SYS" })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Q-SYS", utms })
       })
 
       if (response.ok) {

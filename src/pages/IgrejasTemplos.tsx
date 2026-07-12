@@ -94,11 +94,17 @@ export function IgrejasTemplos() {
     
     const finalToken = turnstileToken || "bypass_token";
 
+    let utms = null;
+    try {
+      const stored = localStorage.getItem('sonus_utms');
+      if (stored) utms = JSON.parse(stored);
+    } catch(e) {}
+
     try {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Igrejas e Templos" })
+        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Igrejas e Templos", utms })
       })
 
       if (response.ok) {

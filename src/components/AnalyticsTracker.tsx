@@ -38,6 +38,22 @@ export function AnalyticsTracker() {
   };
 
   useEffect(() => {
+    // 1. Guardião de UTMs (Salva na memória se a URL tiver parâmetros de campanha)
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get('utm_source');
+    const utmCampaign = params.get('utm_campaign');
+    const utmMedium = params.get('utm_medium');
+    
+    if (utmSource || utmCampaign || utmMedium) {
+      const utms = {
+        source: utmSource || '',
+        campaign: utmCampaign || '',
+        medium: utmMedium || '',
+        date: new Date().toISOString()
+      };
+      localStorage.setItem('sonus_utms', JSON.stringify(utms));
+    }
+
     // Quando a URL muda, registramos a saída da página ANTERIOR (se houver)
     if (currentDocId.current) {
       const timeSpent = Math.floor((Date.now() - startTime.current) / 1000);
