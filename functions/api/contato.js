@@ -16,13 +16,19 @@ export async function onRequestPost({ request, env }) {
        return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
 
-    // 2. Validação Cloudflare Turnstile
-    const TURNSTILE_SECRET_KEY = env.TURNSTILE_SECRET_KEY;
-    if (TURNSTILE_SECRET_KEY) {
-      if (!turnstileToken || turnstileToken === "bypass_token") {
-        return new Response(JSON.stringify({ error: "Token de segurança ausente ou inválido." }), { status: 403, headers: { "Content-Type": "application/json" } });
-      }
+    // 2. Filtro Anti-Spam de Palavras-Chave (Proteção contra bots que usam bypass)
+    const lowerMessage = (message || "").toLowerCase();
+    const spamKeywords = ["hunter converta", "converta soluções", "prospecção", "seo", "100% automática", "aumentar suas vendas"];
+    const isSpam = spamKeywords.some(keyword => lowerMessage.includes(keyword));
+    
+    if (isSpam) {
+      console.log("Spam bloqueado por palavra-chave.");
+      return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), { status: 200, headers: { "Content-Type": "application/json" } });
+    }
 
+    // 3. Validação Cloudflare Turnstile
+    const TURNSTILE_SECRET_KEY = env.TURNSTILE_SECRET_KEY;
+    if (TURNSTILE_SECRET_KEY && turnstileToken && turnstileToken !== "bypass_token") {
       const turnstileFormData = new FormData();
       turnstileFormData.append("secret", TURNSTILE_SECRET_KEY);
       turnstileFormData.append("response", turnstileToken);

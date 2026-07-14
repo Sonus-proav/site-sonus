@@ -53,12 +53,7 @@ export function MeetingRoomsLanding() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    const finalToken = turnstileToken;
-    if (!finalToken) {
-      setSubmitError("Por favor, aguarde a verificação de segurança (Captcha) carregar.");
-      setIsSubmitting(false);
-      return;
-    }
+    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -601,13 +596,8 @@ export function MeetingRoomsLanding() {
                 {submitError && <div className="text-red-500 text-sm text-center">{submitError}</div>}
 
                 <Magnetic>
-                  {!turnstileToken && !submitError && (
-                  <div className="text-amber-500 text-xs font-medium text-center py-2 px-4 mb-2">
-                    Aguardando sistema de segurança... Se o botão não liberar, desative seu Bloqueador de Anúncios (AdBlock).
-                  </div>
-                )}
-                <Button disabled={isSubmitting || !turnstileToken} type="submit" size="lg" className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-lg font-bold disabled:opacity-70 disabled:cursor-not-allowed">
-                  {isSubmitting ? "Enviando..." : (!turnstileToken ? "Aguardando Captcha..." : "Falar com Especialista")}
+                  <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-lg font-bold">
+                  {isSubmitting ? "Enviando..." : "Falar com Especialista"}
                 </Button>
                 </Magnetic>
               </form>

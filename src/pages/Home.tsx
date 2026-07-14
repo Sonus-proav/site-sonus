@@ -60,13 +60,7 @@ export function Home() {
     setSubmitError("")
     
     // Cloudflare Turnstile
-    const finalToken = turnstileToken;
-    
-    if (!finalToken) {
-      setSubmitError("Por favor, aguarde a verificação de segurança (Captcha) carregar.");
-      setIsSubmitting(false);
-      return;
-    }
+    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -492,15 +486,9 @@ export function Home() {
                 </div>
               )}
 
-              {!turnstileToken && !submitError && (
-                <div className="text-amber-500 text-xs font-medium text-center py-2 px-4">
-                  Aguardando sistema de segurança... Se o botão não liberar, desative seu Bloqueador de Anúncios (AdBlock).
-                </div>
-              )}
-
-              <Button disabled={isSubmitting || !turnstileToken} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_15px_rgba(41,128,185,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
-                {isSubmitting ? "Enviando..." : (!turnstileToken ? "Aguardando Captcha..." : "Enviar")}
-              </Button>
+              <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_15px_rgba(41,128,185,0.3)] transition-all">
+                  {isSubmitting ? "Enviando..." : "Enviar"}
+                </Button>
             </form>
           </FadeIn>
         </div>
