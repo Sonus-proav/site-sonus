@@ -18,7 +18,13 @@ export async function onRequestPost({ request, env }) {
 
     // 2. Filtro Anti-Spam de Palavras-Chave (Proteção contra bots que usam bypass)
     const lowerMessage = (message || "").toLowerCase();
-    const spamKeywords = ["hunter converta", "converta soluções", "prospecção", "seo", "100% automática", "aumentar suas vendas"];
+    const spamKeywords = [
+      "hunter converta", "converta soluções", "prospecção", "seo", "100% automática", 
+      "aumentar suas vendas", "marketing digital", "oferecer nossos serviços", 
+      "criação de sites", "tráfego pago", "gestão de redes sociais", "gerar leads", 
+      "primeira página do google", "terceirização", "banco de dados de empresas",
+      "lista de contatos"
+    ];
     const isSpam = spamKeywords.some(keyword => lowerMessage.includes(keyword));
     
     if (isSpam) {
