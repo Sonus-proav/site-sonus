@@ -602,9 +602,14 @@ export function QSysLanding() {
                   )}
 
                   <Magnetic>
-                    <Button disabled={isSubmitting} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all">
-                      {isSubmitting ? "Enviando..." : "Enviar Solicitação"}
-                    </Button>
+                    {!turnstileToken && !submitError && (
+                  <div className="text-amber-500 text-xs font-medium text-center py-2 px-4 mb-2">
+                    Aguardando sistema de segurança... Se o botão não liberar, desative seu Bloqueador de Anúncios (AdBlock).
+                  </div>
+                )}
+                <Button disabled={isSubmitting || !turnstileToken} type="submit" size="lg" className="w-full h-14 text-lg font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Enviando..." : (!turnstileToken ? "Aguardando Captcha..." : "Enviar Solicitação")}
+                </Button>
                   </Magnetic>
                 </form>
               )}
