@@ -214,7 +214,12 @@ export function MeetingRoomsLanding() {
             <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
               <div className="w-full sm:w-auto">
                 <Magnetic>
-                  <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all hover:scale-105">
+                  <Button onClick={() => {
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({ event: 'intent_to_convert_corporativo', source: 'hero' });
+                    if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Intent_Corporativo');
+                    document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                  }} size="lg" className="w-full h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all hover:scale-105">
                     Projetar Minha Sala
                   </Button>
                 </Magnetic>

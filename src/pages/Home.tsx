@@ -253,7 +253,11 @@ export function Home() {
             <div className="lg:col-span-6 grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4 h-[550px] sm:h-[600px] lg:h-[650px] animate-in fade-in slide-in-from-right-8 duration-1000 delay-300 fill-mode-both">
               
               {/* Card 1: Large Image (Corporate/Auditorium) */}
-              <Link to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
+              <Link onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'click_nav_auditorios', source: 'home_bento_grid' });
+                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'Auditorios' });
+              }} to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
                 <img src="/auditorio-sonus.webp" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -268,7 +272,11 @@ export function Home() {
               </Link>
 
               {/* Card 2: Q-SYS Certified */}
-              <Link to="/qsys" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
+              <Link onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'click_nav_qsys', source: 'home_bento_grid' });
+                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'QSYS' });
+              }} to="/qsys" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
                 {/* VU Meter Interativo (Áudio) */}
                 <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="w-1.5 bg-blue-400 rounded-t-sm h-2 group-hover:animate-pulse transition-all duration-300 group-hover:h-6"></div>
@@ -298,7 +306,11 @@ export function Home() {
               </Link>
 
               {/* Card 3: Salas de Reunião Image */}
-              <Link to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
+              <Link onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'click_nav_corporativo', source: 'home_bento_grid' });
+                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'Salas Corporativas' });
+              }} to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
                 <img src="/salas-corporativas.webp" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex justify-between items-end">

@@ -56,12 +56,24 @@ export function ThankYou() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex w-full sm:w-auto h-14 items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-lg font-semibold rounded-xl px-8 shadow-[0_0_20px_rgba(37,211,102,0.3)] transition-all transform hover:scale-105"
+                onClick={() => {
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({ event: 'whatsapp_thank_you_page', source: 'thank_you_page' });
+                  if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp_Urgente_ThankYou' });
+                }}
               >
                 Falar no WhatsApp
               </a>
             </div>
 
-            <Link to="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-primary transition-colors font-medium">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 text-zinc-500 hover:text-primary transition-colors font-medium"
+              onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'voltar_home_thankyou' });
+              }}
+            >
               <ArrowLeft className="w-4 h-4" />
               Voltar para a página inicial
             </Link>

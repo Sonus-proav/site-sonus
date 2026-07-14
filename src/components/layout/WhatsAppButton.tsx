@@ -19,6 +19,7 @@ export function WhatsAppButton({
       onClick={() => {
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({ event: 'falar_whatsapp_global', source: 'whatsapp_global' });
+        if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp_Flutuante' });
       }}
     >
       <div className="relative">

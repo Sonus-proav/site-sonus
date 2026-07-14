@@ -194,7 +194,12 @@ export function QSysLanding() {
           <FadeIn delay={0.5} className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto max-w-[400px] sm:max-w-none mx-auto pb-12 md:pb-0">
             <div className="w-full sm:w-auto">
               <Magnetic>
-                <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
+                <Button onClick={() => {
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({ event: 'intent_to_convert_qsys', source: 'hero' });
+                  if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Intent_Qsys');
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }} size="lg" className="w-full sm:w-auto h-16 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all hover:scale-105">
                   Dimensionar Meu Projeto
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -513,7 +518,12 @@ export function QSysLanding() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Paz de Espírito Corporativa.</span>
             </h2>
             <Magnetic>
-              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} size="lg" className="h-16 px-6 sm:px-8 md:px-12 rounded-full bg-white text-blue-950 text-base md:text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all hover:scale-105 mt-4 w-full sm:w-auto flex justify-center">
+              <Button onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({ event: 'intent_to_convert_qsys', source: 'footer_cta' });
+                if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Intent_Qsys');
+                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+              }} size="lg" className="h-16 px-6 sm:px-8 md:px-12 rounded-full bg-white text-blue-950 text-base md:text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all hover:scale-105 mt-4 w-full sm:w-auto flex justify-center">
                 Dimensionar Q-SYS Agora
                 <ChevronRight className="ml-2 w-6 h-6" />
               </Button>
