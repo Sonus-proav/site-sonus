@@ -16,19 +16,26 @@ export async function onRequestPost({ request, env }) {
        return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
 
-    // 2. Filtro Anti-Spam de Palavras-Chave (Proteção contra bots que usam bypass)
+    // 2. Filtro Anti-Spam de Palavras-Chave Seguro (RegEx com Word Boundaries)
     const lowerMessage = (message || "").toLowerCase();
-    const spamKeywords = [
-      "hunter converta", "converta soluções", "prospecção", "seo", "100% automática", 
-      "aumentar suas vendas", "marketing digital", "oferecer nossos serviços", 
-      "criação de sites", "tráfego pago", "gestão de redes sociais", "gerar leads", 
-      "primeira página do google", "terceirização", "banco de dados de empresas",
-      "lista de contatos"
+    
+    // Expressões regulares garantem que a palavra exata seja encontrada, 
+    // evitando que 'seo' bloqueie a palavra 'coliseo', por exemplo.
+    const spamPatterns = [
+      /\bhunter converta\b/, 
+      /\bconverta soluções\b/, 
+      /\boferecer nossos serviços\b/, 
+      /\bcriação de sites\b/, 
+      /\bprimeira página do google\b/, 
+      /\bbanco de dados de empresas\b/,
+      /\bgerar leads\b/,
+      /\bmarketing digital\b/
     ];
-    const isSpam = spamKeywords.some(keyword => lowerMessage.includes(keyword));
+    
+    const isSpam = spamPatterns.some(pattern => pattern.test(lowerMessage));
     
     if (isSpam) {
-      console.log("Spam bloqueado por palavra-chave.");
+      console.log("Spam bloqueado preventivamente por padrao exato.");
       return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
 
