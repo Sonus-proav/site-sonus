@@ -200,7 +200,7 @@ export function AuditoriosTeatros() {
         (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_auditorios', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
         
         setIsSubmitting(false)
-        navigate("/obrigado")
+        localStorage.removeItem('sonus_utms'); navigate("/obrigado")
       } else {
         const errData = await response.json().catch(() => ({}))
         setSubmitError(errData.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente ou use o WhatsApp.")
