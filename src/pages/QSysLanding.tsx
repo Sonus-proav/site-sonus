@@ -72,7 +72,12 @@ export function QSysLanding() {
     setIsSubmitting(true)
     setSubmitError("")
     
-    const finalToken = turnstileToken || "bypass_token"
+    const finalToken = turnstileToken;
+    if (!finalToken) {
+      setSubmitError("Por favor, aguarde a verificação de segurança (Captcha) carregar.");
+      setIsSubmitting(false);
+      return;
+    }
 
     let utms = null;
     try {

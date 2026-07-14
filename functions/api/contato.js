@@ -16,9 +16,13 @@ export async function onRequestPost({ request, env }) {
        return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
 
-    // 2. Validação Cloudflare Turnstile (Tornado opcional temporariamente para evitar bloqueio de clientes reais)
+    // 2. Validação Cloudflare Turnstile
     const TURNSTILE_SECRET_KEY = env.TURNSTILE_SECRET_KEY;
-    if (TURNSTILE_SECRET_KEY && turnstileToken && turnstileToken !== "bypass_token") {
+    if (TURNSTILE_SECRET_KEY) {
+      if (!turnstileToken || turnstileToken === "bypass_token") {
+        return new Response(JSON.stringify({ error: "Token de segurança ausente ou inválido." }), { status: 403, headers: { "Content-Type": "application/json" } });
+      }
+
       const turnstileFormData = new FormData();
       turnstileFormData.append("secret", TURNSTILE_SECRET_KEY);
       turnstileFormData.append("response", turnstileToken);

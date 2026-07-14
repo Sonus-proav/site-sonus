@@ -59,9 +59,14 @@ export function Home() {
     setIsSubmitting(true)
     setSubmitError("")
     
-    // Fallback de segurança: Se o Turnstile falhar (ex: AdBlocker), passa um bypass para não bloquear clientes reais.
-    // O backend tem um honeypot extra para proteger.
-    const finalToken = turnstileToken || "bypass_token";
+    // Cloudflare Turnstile
+    const finalToken = turnstileToken;
+    
+    if (!finalToken) {
+      setSubmitError("Por favor, aguarde a verificação de segurança (Captcha) carregar.");
+      setIsSubmitting(false);
+      return;
+    }
 
     let utms = null;
     try {
