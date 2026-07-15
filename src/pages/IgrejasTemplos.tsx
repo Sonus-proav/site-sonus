@@ -575,6 +575,8 @@ export function IgrejasTemplos() {
                       <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} 
                         id="email" 
                         type="email" 
+                        onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} 
+                        onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")} 
                         required 
                         placeholder="seu@email.com"
                         value={formData.email}
