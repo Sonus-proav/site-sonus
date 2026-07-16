@@ -1,3 +1,4 @@
+import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import React, { useState, useEffect, useRef, Suspense } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -109,7 +110,7 @@ export function IgrejasTemplos() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_igrejas', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
+        trackLeadConversion('form_igrejas', 500, 'BRL')
         
         setIsSuccess(true)
         setFormData({
@@ -136,7 +137,7 @@ export function IgrejasTemplos() {
 
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({ event: 'click_whatsapp_igrejas', source: 'hero_button' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
+    trackWhatsAppClick('whatsapp_hero', 'igrejastemplos')
     const text = `Olá! Gostaria de falar com um especialista sobre o som da minha Igreja.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
@@ -547,7 +548,7 @@ export function IgrejasTemplos() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
-                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} 
+                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'igrejas') }} 
                           id="name" 
                           required 
                           placeholder="Seu nome"
@@ -559,7 +560,7 @@ export function IgrejasTemplos() {
                       
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium text-zinc-300">Telefone / WhatsApp</label>
-                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} 
+                        <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'igrejas') }} 
                           id="phone" 
                           required 
                           placeholder="(00) 00000-0000"
@@ -572,7 +573,7 @@ export function IgrejasTemplos() {
 
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-zinc-300">E-mail</label>
-                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} 
+                      <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'igrejas') }} 
                         id="email" 
                         type="email" 
                         onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} 
@@ -587,7 +588,7 @@ export function IgrejasTemplos() {
 
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium text-zinc-300">Descrição do Problema Atual</label>
-                      <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'igrejas' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} 
+                      <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'igrejas') }} 
                         id="message" 
                         required 
                         placeholder="Conte sobre sua igreja (Ex: Matriz com 500 lugares) e o problema atual..."

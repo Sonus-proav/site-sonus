@@ -1,3 +1,4 @@
+import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
@@ -69,7 +70,7 @@ export function MeetingRoomsLanding() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_salas', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
+        trackLeadConversion('form_salas', 500, 'BRL')
         
         window.location.href = '/obrigado';
       } else {
@@ -140,7 +141,7 @@ export function MeetingRoomsLanding() {
 
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({ event: 'click_whatsapp_corporativo', source: 'hero_button' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp' });
+    trackWhatsAppClick('whatsapp_hero', 'meetingroomslanding')
     const text = `Olá! Gostaria de falar com o especialista em Salas de Reunião Corporativas.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
@@ -217,7 +218,7 @@ export function MeetingRoomsLanding() {
                   <Button onClick={() => {
                     (window as any).dataLayer = (window as any).dataLayer || [];
                     (window as any).dataLayer.push({ event: 'intent_to_convert_corporativo', source: 'hero' });
-                    if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Intent_Corporativo');
+                    trackPageIntent('Intent_Corporativo')
                     document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
                   }} size="lg" className="w-full h-14 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all hover:scale-105">
                     Projetar Minha Sala
@@ -573,20 +574,20 @@ export function MeetingRoomsLanding() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">Nome</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'corporativo') }} required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu nome" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-zinc-300">WhatsApp/Telefone</label>
-                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                    <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'corporativo') }} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">E-mail Profissional</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required type="email" onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'corporativo') }} required type="email" onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@empresa.com.br" className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 h-14 text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-300">Quantas salas você precisa otimizar?</label>
-                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'corporativo' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
+                  <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'corporativo') }} required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Descreva sua necessidade..." className="bg-white/5 border-white/10 focus-visible:ring-emerald-500 min-h-[140px] p-4 resize-none text-white placeholder:text-zinc-500 rounded-xl" />
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">

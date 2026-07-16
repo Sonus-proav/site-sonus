@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react"
+import { trackWhatsAppClick } from "@/lib/metaPixel"
 
 export function WhatsAppButton({ 
   phone = "5546920013151", 
@@ -17,9 +18,7 @@ export function WhatsAppButton({
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3 rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.5)] hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8"
       aria-label="Contate direto por WhatsApp"
       onClick={() => {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'falar_whatsapp_global', source: 'whatsapp_global' });
-        if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp_Flutuante' });
+        trackWhatsAppClick('whatsapp_flutuante', 'global');
       }}
     >
       <div className="relative">

@@ -1,3 +1,4 @@
+import { trackWhatsAppClick } from "@/lib/metaPixel";
 import { Link } from 'react-router-dom'
 import { CheckCircle2, MessageSquare, ArrowLeft } from 'lucide-react'
 import { FadeIn } from '../components/ui/FadeIn'
@@ -59,7 +60,7 @@ export function ThankYou() {
                 onClick={() => {
                   (window as any).dataLayer = (window as any).dataLayer || [];
                   (window as any).dataLayer.push({ event: 'whatsapp_thank_you_page', source: 'thank_you_page' });
-                  if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp_Urgente_ThankYou' });
+                  trackWhatsAppClick('whatsapp_urgente', 'thank_you')
                 }}
               >
                 Falar no WhatsApp

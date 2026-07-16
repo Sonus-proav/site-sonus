@@ -1,3 +1,4 @@
+import { trackContactCopy } from "@/lib/metaPixel";
 import { AudioLines, Mail, MapPin, Phone } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -79,7 +80,7 @@ export function Footer() {
                   <span 
                     onCopy={() => {
                       (window as any).dataLayer = (window as any).dataLayer || [];
-                      (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'phone' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'FindLocation');
+                      trackContactCopy('phone')
                     }}
                     className="selection:bg-primary/30"
                   >
@@ -92,7 +93,7 @@ export function Footer() {
                 <span 
                   onCopy={() => {
                     (window as any).dataLayer = (window as any).dataLayer || [];
-                    (window as any).dataLayer.push({ event: 'copy_contact_info', contact_type: 'email' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'FindLocation');
+                    trackContactCopy('email')
                   }}
                   className="selection:bg-primary/30"
                 >

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { trackNavCTA } from "@/lib/metaPixel"
 
 
 export function Navbar() {
@@ -90,11 +91,7 @@ export function Navbar() {
           <Link
               to="/#contato"
               onClick={(e) => {
-                (window as any).dataLayer = (window as any).dataLayer || [];
-                (window as any).dataLayer.push({ 
-                  event: 'click_orcamento_menu',
-                  source_path: window.location.pathname
-                });
+                trackNavCTA('Menu_Desktop');
                 const currentPath = window.location.pathname;
                 if (currentPath === "/") {
                   e.preventDefault();
@@ -157,11 +154,7 @@ export function Navbar() {
             <Link
               to="/#contato"
               onClick={(e) => {
-                (window as any).dataLayer = (window as any).dataLayer || [];
-                (window as any).dataLayer.push({ 
-                  event: 'click_orcamento_menu',
-                  source_path: window.location.pathname
-                });
+                trackNavCTA('Menu_Mobile');
                 setIsMobileMenuOpen(false);
                 const currentPath = window.location.pathname;
                 if (currentPath === "/") {

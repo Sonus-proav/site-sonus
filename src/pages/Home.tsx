@@ -1,3 +1,4 @@
+import { trackFormStart, trackLeadConversion, trackViewContent } from "@/lib/metaPixel";
 import { useState, useEffect } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
@@ -77,7 +78,7 @@ export function Home() {
 
       if (response.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'generate_lead', lead_type: 'form_home', value: 500, currency: 'BRL' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
+        trackLeadConversion('form_home', 500, 'BRL')
 
         localStorage.removeItem('sonus_utms'); navigate("/obrigado")
       } else {
@@ -255,7 +256,7 @@ export function Home() {
               <Link onClick={() => {
                 (window as any).dataLayer = (window as any).dataLayer || [];
                 (window as any).dataLayer.push({ event: 'click_nav_auditorios', source: 'home_bento_grid' });
-                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'Auditorios' });
+                trackViewContent('Auditorios')
               }} to="/auditorios-e-teatros" className="col-span-2 row-span-1 rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-2xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
                 <img src="/auditorio-sonus.webp" alt="Auditório Moderno" className="w-full h-full object-cover object-[center_65%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
@@ -274,7 +275,7 @@ export function Home() {
               <Link onClick={() => {
                 (window as any).dataLayer = (window as any).dataLayer || [];
                 (window as any).dataLayer.push({ event: 'click_nav_qsys', source: 'home_bento_grid' });
-                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'QSYS' });
+                trackViewContent('QSYS')
               }} to="/qsys" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 bg-gradient-to-br from-blue-950/50 to-slate-900/80 border border-blue-500/20 relative overflow-hidden flex flex-col justify-between group shadow-xl hover:border-blue-400/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 cursor-pointer">
                 {/* VU Meter Interativo (Áudio) */}
                 <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
@@ -308,7 +309,7 @@ export function Home() {
               <Link onClick={() => {
                 (window as any).dataLayer = (window as any).dataLayer || [];
                 (window as any).dataLayer.push({ event: 'click_nav_corporativo', source: 'home_bento_grid' });
-                if(typeof (window as any).fbq === 'function') (window as any).fbq('track', 'ViewContent', { content_category: 'Salas Corporativas' });
+                trackViewContent('Salas Corporativas')
               }} to="/projetos/29" className="col-span-1 row-span-1 rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden relative group border border-white/5 shadow-xl block cursor-pointer [transform:translateZ(0)] isolate [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
                 <img src="/salas-corporativas.webp" alt="Sala de Reunião" className="w-full h-full object-cover object-[center_40%] opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="eager" fetchPriority="high" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent pointer-events-none" />
@@ -451,20 +452,20 @@ export function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Nome Completo</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'home') }} required id="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Seu Nome" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Telefone / WhatsApp</label>
-                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                  <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'home') }} required id="phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} placeholder="(11) 90000-0000" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">E-mail Profissional</label>
-                <Input onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="email" type="email" onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
+                <Input onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'home') }} required id="email" type="email" onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity("Digite um endereço de e-mail válido")} onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="seu@email.com.br" className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary h-12 text-black dark:text-white transition-colors duration-300" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-zinc-800 dark:text-zinc-300 transition-colors duration-300">Descrição do Projeto</label>
-                <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'form_interact', field: e.target.id, page: 'home' }); if(typeof (window as any).fbq === 'function') (window as any).fbq('trackCustom', 'Form_Start'); } }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
+                <Textarea onBlur={(e) => { if(e.target.value.trim() !== '') trackFormStart(e.target.id || e.target.name, 'home') }} required id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} placeholder="Conte-nos sobre seu projeto..." className="bg-white/50 dark:bg-black/50 border-black/10 dark:border-white/10 focus-visible:ring-primary min-h-[150px] resize-none text-black dark:text-white transition-colors duration-300" />
               </div>
 
               <div className="flex justify-center pt-2 min-h-[65px]">
