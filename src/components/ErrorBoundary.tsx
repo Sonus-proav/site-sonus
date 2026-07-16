@@ -35,7 +35,7 @@ export class ErrorBoundary extends Component<Props, State> {
       const hasReloaded = sessionStorage.getItem('chunk-error-reloaded');
       if (!hasReloaded) {
         sessionStorage.setItem('chunk-error-reloaded', 'true');
-        window.location.reload();
+        window.location.href = window.location.pathname + '?t=' + Date.now();
         return;
       }
     }
@@ -68,7 +68,10 @@ export class ErrorBoundary extends Component<Props, State> {
 
             <button
               className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
-              onClick={() => window.location.reload()}
+              onClick={() => {
+                sessionStorage.removeItem('chunk-error-reloaded');
+                window.location.href = window.location.pathname + '?t=' + Date.now();
+              }}
             >
               Recarregar a Página
             </button>
