@@ -1,5 +1,5 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -14,12 +14,12 @@ import {
   Play, BrainCircuit, Wifi, Battery, Globe, Zap, Network, SlidersHorizontal, MonitorPlay, Lock
 } from "lucide-react"
 import { SEO } from "../components/SEO"
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
+const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
 import { Navbar } from "@/components/layout/Navbar"
-import { LPFooter } from "@/components/layout/LPFooter"
-import { TestimonialSection } from "@/components/ui/TestimonialSection"
-import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
-import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
+const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
+const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
+const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
+const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 import { motion, useScroll, useTransform, useInView, animate } from "framer-motion"
 
 import certLevel1 from "@/assets/cert-level1.webp"
@@ -113,7 +113,7 @@ export function QSysLanding() {
   }
 
   const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
+  const { scrollYProgress: scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
 
@@ -609,10 +609,12 @@ export function QSysLanding() {
         </div>
       </section>
 
-      <TestimonialSection />
-      <LPFooter />
-      <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />
-      <StickyCtaBar />
+      <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+        <TestimonialSection />
+        <LPFooter />
+        <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />
+        <StickyCtaBar />
+      </Suspense>
     </div>
   )
 }

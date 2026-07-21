@@ -1,13 +1,13 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, lazy, Suspense } from "react"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
-import { LPFooter } from "@/components/layout/LPFooter"
-import { TestimonialSection } from "@/components/ui/TestimonialSection"
-import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
-import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
+const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
+const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
+const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
+const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
+const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -638,10 +638,12 @@ export function AuditoriosTeatros() {
         </div>
       </section>
 
-      <TestimonialSection />
-      <LPFooter />
-      <WhatsAppButton message="Olá, gostaria de saber mais sobre projetos para auditórios." />
-      <StickyCtaBar />
+      <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <TestimonialSection />
+        <LPFooter />
+        <WhatsAppButton message="Olá, gostaria de saber mais sobre projetos para auditórios." />
+        <StickyCtaBar />
+      </Suspense>
     </div>
   )
 }
