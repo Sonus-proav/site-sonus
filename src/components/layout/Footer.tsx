@@ -105,9 +105,14 @@ export function Footer() {
         </div>
 
         <div className="border-t border-black/5 dark:border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-500 text-xs">
-            © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados. CNPJ: 02.484.642/0001-39
-          </p>
+          <div className="flex flex-col gap-2">
+            <p className="text-zinc-500 text-xs">
+              © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados. CNPJ: 02.484.642/0001-39
+            </p>
+            <p className="text-zinc-500/80 text-xs font-light">
+              Empresa que projeta e instala salas de reunião corporativas, auditórios e igrejas. Sede em Francisco Beltrão. Atendimento especializado em todo o Sul do Brasil (Paraná, Santa Catarina e Rio Grande do Sul).
+            </p>
+          </div>
         </div>
       </div>
     </footer>

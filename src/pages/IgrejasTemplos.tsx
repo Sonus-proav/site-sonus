@@ -242,10 +242,7 @@ export function IgrejasTemplos() {
             </Reveal>
             
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
-                O fim das microfonias, do som embolado e da complexidade.
-                Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong> para que seus voluntários operem sem medo.
-              </p>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">O fim das microfonias, do som embolado e da complexidade. Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong>. Empresa que projeta e instala soluções para igrejas no Paraná, Santa Catarina e Rio Grande do Sul.</p>
             </FadeIn>
 
             <FadeIn delay={0.5}>

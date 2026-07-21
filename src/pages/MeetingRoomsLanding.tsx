@@ -154,8 +154,8 @@ export function MeetingRoomsLanding() {
       "@type": "LocalBusiness",
       "name": "Sonus Pro AV"
     },
-    "areaServed": "BR",
-    "description": "Sistemas de videoconferência de alta performance, automação e sonorização corporativa (Shure, Q-SYS, Zoom, Teams)."
+    "areaServed": [ { "@type": "State", "name": "Paraná" }, { "@type": "State", "name": "Santa Catarina" }, { "@type": "State", "name": "Rio Grande do Sul" } ],
+    "description": "Empresa que projeta e instala salas de reunião corporativas, videoconferência de alta performance e sonorização (Shure, Q-SYS, Zoom, Teams)."
   };
 
   return (
@@ -164,8 +164,8 @@ export function MeetingRoomsLanding() {
         <link rel="preload" href="/soundwave-bg.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO schema={salasSchema} 
-        title="Automação de Salas de Reunião | Sonus Pro AV" 
-        description="Captação de áudio invisível, acústica e automação para salas de diretoria. Microsoft Teams e Zoom Rooms." 
+        title="Empresa que projeta e instala salas de reunião corporativas no PR, SC e RS | Sonus" 
+        description="Projetamos e instalamos salas de reunião corporativas, videoconferência e automação no Paraná, Santa Catarina e Rio Grande do Sul." 
         image="/salas-corporativas.webp"
         url="https://sonusproaudio.com.br/salas-reuniao"
       />
