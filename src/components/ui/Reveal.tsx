@@ -10,7 +10,7 @@ export function Reveal({ children, delay = 0, className }: { children: React.Rea
         }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "100px" }}
         transition={{ duration: 1, delay: delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}

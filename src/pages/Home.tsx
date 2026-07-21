@@ -1,5 +1,5 @@
 import { trackFormStart, trackLeadConversion, trackViewContent } from "@/lib/metaPixel";
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -11,9 +11,10 @@ import { ChevronRight, Play, CheckCircle2, AlertCircle, Cpu } from "lucide-react
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "../components/SEO"
-import { SocialProofBar } from "@/components/ui/SocialProofBar"
-import { TestimonialSection } from "@/components/ui/TestimonialSection"
-import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
+
+const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(module => ({ default: module.SocialProofBar })))
+const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(module => ({ default: module.TestimonialSection })))
+const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(module => ({ default: module.StickyCtaBar })))
 
 export function Home() {
   const location = useLocation()
@@ -337,21 +338,25 @@ export function Home() {
               <img 
                 src="/clientes/cresol.webp" 
                 alt="Cresol" 
+                loading="lazy"
                 className="h-16 md:h-24 lg:h-32 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.webp" 
                 alt="UNOESC" 
+                loading="lazy"
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unipar.webp" 
                 alt="UNIPAR" 
+                loading="lazy"
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.webp" 
                 alt="Unisep" 
+                loading="lazy"
                 className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
@@ -360,8 +365,11 @@ export function Home() {
         </div>
       </section>
 
-      {/* Social Proof Stats */}
-      <SocialProofBar />
+      {/* Lazy Loaded Sections */}
+      <Suspense fallback={<div className="h-40 w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <SocialProofBar />
+        <TestimonialSection />
+      </Suspense>
 
       {/* About Section */}
       <section id="sobre" className="py-12 md:py-24 md:py-32 relative">
@@ -414,9 +422,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <TestimonialSection />
 
       {/* Contact Section */}
       <section id="contato" className="py-12 md:py-24 md:py-32 relative border-t border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300">
@@ -495,7 +500,9 @@ export function Home() {
         </div>
       </section>
       
-      <StickyCtaBar />
+      <Suspense fallback={null}>
+        <StickyCtaBar />
+      </Suspense>
     </div>
   )
 }
