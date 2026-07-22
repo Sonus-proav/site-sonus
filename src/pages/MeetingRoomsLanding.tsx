@@ -617,7 +617,7 @@ export function MeetingRoomsLanding() {
           },
           {
             question: "É possível fazer videoconferência sem aquele monte de cabos na mesa?",
-            answer: "Sim! Montamos salas de alto padrão onde toda a tecnologia fica escondida no teto e nos bastidores. Você controla as câmeras, as luzes e inicia a sua reunião no Microsoft Teams ou Zoom com apenas um toque em um painel discreto e elegante na mesa. Zero cabos enrolados."
+            answer: "Sim! Montamos salas de alto padrão onde toda a tecnologia fica escondida no teto e nos bastidores. Você controla as câmeras, as luzes e inicia a sua reunião no Microsoft Teams, Zoom ou Google Meet com apenas um toque em um painel discreto e elegante na mesa. Zero cabos enrolados."
           },
           {
             question: "Qual o melhor equipamento de áudio e vídeo para sala de diretoria?",
