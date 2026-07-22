@@ -20,6 +20,7 @@ const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ 
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
 const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
 const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
+const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
 import { motion, useScroll, useTransform, useInView, animate } from "framer-motion"
 
 import certLevel1 from "@/assets/cert-level1.webp"
@@ -610,6 +611,20 @@ export function QSysLanding() {
       </section>
 
       <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+        <AeoFaq faqs={[
+          {
+            question: "O que é o sistema Q-SYS para empresas e corporações?",
+            answer: "O Q-SYS é uma plataforma tecnológica de ponta que unifica todo o áudio, vídeo e controle (automação) da sua empresa na própria rede de computadores que vocês já têm. Ele substitui dezenas de equipamentos antigos e propensos a falhas por um único software inteligente e centralizado."
+          },
+          {
+            question: "Por que grandes empresas estão trocando seus sistemas de som e vídeo pelo Q-SYS?",
+            answer: "Pela segurança, escalabilidade e ausência de problemas. Com o Q-SYS, a equipe de TI da empresa pode monitorar o funcionamento das telas e microfones de todas as salas pela internet. Se houver uma falha, o sistema avisa antes mesmo da reunião do diretor começar."
+          },
+          {
+            question: "A Sonus faz a instalação e configuração do Q-SYS?",
+            answer: "Sim, nossa equipe possui certificações oficiais de Engenharia e Vendas Q-SYS. Desde o dimensionamento da rede, compra dos processadores, cabeamento estruturado e criação da interface (painéis touch screen), entregamos o ecossistema Q-SYS operando com excelência e garantia."
+          }
+        ]} />
         <TestimonialSection />
         <LPFooter />
         <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />

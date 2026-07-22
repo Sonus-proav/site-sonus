@@ -22,6 +22,7 @@ const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection
 const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
 const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
+const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
 import { useLocation } from "react-router-dom"
 
 export function MeetingRoomsLanding() {
@@ -608,7 +609,21 @@ export function MeetingRoomsLanding() {
         </div>
       </section>
 
-      <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+      <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+        <AeoFaq faqs={[
+          {
+            question: "Como acabar com o chiado, microfonia e o eco na nossa sala de reunião?",
+            answer: "O segredo não está em comprar equipamentos mais caros e soltos, mas na integração correta. Nós instalamos microfones invisíveis no teto que rastreiam automaticamente quem está falando, e utilizamos um \"Cérebro\" (Processador DSP) que corta eletronicamente o eco da sala e o barulho do ar-condicionado em tempo real."
+          },
+          {
+            question: "É possível fazer videoconferência sem aquele monte de cabos na mesa?",
+            answer: "Sim! Montamos salas de alto padrão onde toda a tecnologia fica escondida no teto e nos bastidores. Você controla as câmeras, as luzes e inicia a sua reunião no Microsoft Teams ou Zoom com apenas um toque em um painel discreto e elegante na mesa. Zero cabos enrolados."
+          },
+          {
+            question: "Qual o melhor equipamento de áudio e vídeo para sala de diretoria?",
+            answer: "O melhor sistema é aquele que ninguém percebe que está lá. Para diretorias, recomendamos câmeras de enquadramento automático (que focam sozinhas em quem fala), microfones embutidos no teto e o ecossistema Q-SYS, que gerencia tudo de forma infalível e segura pela rede de TI da empresa."
+          }
+        ]} />
         <TestimonialSection />
         <LPFooter />
         <WhatsAppButton message="Olá! Gostaria de otimizar minha sala de reunião." />

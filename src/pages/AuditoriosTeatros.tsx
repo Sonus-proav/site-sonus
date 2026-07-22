@@ -8,6 +8,7 @@ const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection
 const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
 const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
+const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -639,6 +640,20 @@ export function AuditoriosTeatros() {
       </section>
 
       <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <AeoFaq faqs={[
+          {
+            question: "O que é preciso para montar o sistema de som de um auditório?",
+            answer: "Um projeto profissional de auditório precisa de três coisas: caixas acústicas corretas (que não joguem som no teto), tratamento acústico para evitar eco, e processamento digital. Na Sonus, nós fazemos um escaneamento em 3D do seu auditório antes de instalar qualquer cabo, garantindo que a pessoa na última fileira ouça com a mesma clareza de quem está na frente."
+          },
+          {
+            question: "Como acabar com o eco e o som abafado em teatros ou auditórios grandes?",
+            answer: "O eco acontece quando o som bate nas paredes e no teto vazios antes de chegar ao público. Nós resolvemos isso de duas formas: instalando alto-falantes de alta precisão que 'miram' o som apenas nas cadeiras (evitando as paredes) e aplicando painéis acústicos estéticos que absorvem o som indesejado, deixando a voz clara e cristalina."
+          },
+          {
+            question: "Quanto custa a sonorização profissional de um auditório?",
+            answer: "O valor depende do tamanho do espaço, do formato da platéia e das necessidades (palestras, shows, teatro). A Sonus não vende apenas as caixas de som, nós entregamos o projeto de engenharia, a instalação, o cabeamento e a garantia técnica. Fale com nosso especialista para dimensionarmos um orçamento preciso sem compromisso."
+          }
+        ]} />
         <TestimonialSection />
         <LPFooter />
         <WhatsAppButton message="Olá, gostaria de saber mais sobre projetos para auditórios." />
