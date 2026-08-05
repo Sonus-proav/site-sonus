@@ -29,6 +29,9 @@ getProjects().then(projects => {
   }
 }).catch(() => {});
 
+// Cache bust 2026-08-05
+console.log("App loaded v1.0.1");
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HelmetProvider>
