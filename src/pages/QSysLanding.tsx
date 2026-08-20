@@ -684,7 +684,7 @@ export function QSysLanding() {
               </button>
               
               <iframe 
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&cc_load_policy=1&cc_lang_pref=pt&hl=pt`}
                 className="w-full h-full border-0 bg-black"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
