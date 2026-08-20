@@ -29,8 +29,8 @@ getProjects().then(projects => {
   }
 }).catch(() => {});
 
-// Cache bust 2026-08-20 v6
-console.log("App loaded v1.0.6");
+// Cache bust 2026-08-20 v7
+console.log("App loaded v1.0.7");
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

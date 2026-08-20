@@ -495,6 +495,13 @@ export function QSysLanding() {
                   name: "Continental HQ", 
                   icon: <Sliders className="w-5 h-5" />, 
                   desc: "Padronização global de salas de reunião e espaços colaborativos para milhares de colaboradores com monitoramento em nuvem." 
+                },
+                { 
+                  videoId: "GBOfFgjX6yE", 
+                  img: "https://img.youtube.com/vi/GBOfFgjX6yE/maxresdefault.jpg", 
+                  name: "Orange", 
+                  icon: <Network className="w-5 h-5" />, 
+                  desc: "Infraestrutura escalável de áudio e automação para os escritórios corporativos globais da gigante de telecomunicações." 
                 }
               ].map((c, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
