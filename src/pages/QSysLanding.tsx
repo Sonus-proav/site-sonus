@@ -475,9 +475,27 @@ export function QSysLanding() {
 
             <div className="lg:col-span-2 space-y-8">
               {[
-                { videoId: "TBD_1", img: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop", name: "Camp Randall Stadium", icon: <Globe className="w-5 h-5" />, desc: "Áudio 100% em rede distribuído sem latência para mais de 80.000 pessoas." },
-                { videoId: "TBD_2", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop", name: "Vienna Univ. of Economics", icon: <Zap className="w-5 h-5" />, desc: "Modernização ágil de dezenas de auditórios gigantes para ensino híbrido." },
-                { videoId: "TBD_3", img: "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1000&auto=format&fit=crop", name: "FC Twente Stadium", icon: <Sliders className="w-5 h-5" />, desc: "Controle de milhares de canais de áudio operados por staffs não-técnicos através de telas simples." }
+                { 
+                  videoId: "sESaSu4Q1RA", 
+                  img: "https://img.youtube.com/vi/sESaSu4Q1RA/maxresdefault.jpg", 
+                  name: "Interbank Perú", 
+                  icon: <Globe className="w-5 h-5" />, 
+                  desc: "Torre corporativa com 20 andares totalmente integrada com Q-SYS. Controle centralizado de áudio, vídeo e automação." 
+                },
+                { 
+                  videoId: "A_H6LBB91dM", 
+                  img: "https://img.youtube.com/vi/A_H6LBB91dM/maxresdefault.jpg", 
+                  name: "Microsoft Experience Center", 
+                  icon: <Zap className="w-5 h-5" />, 
+                  desc: "O padrão ouro de infraestrutura de TI corporativa. Ambientes colaborativos de alto impacto integrados nativamente com Microsoft Teams." 
+                },
+                { 
+                  videoId: "VU-QvTvnje0", 
+                  img: "https://img.youtube.com/vi/VU-QvTvnje0/maxresdefault.jpg", 
+                  name: "Continental HQ", 
+                  icon: <Sliders className="w-5 h-5" />, 
+                  desc: "Padronização global de salas de reunião e espaços colaborativos para milhares de colaboradores com monitoramento em nuvem." 
+                }
               ].map((c, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <div className="group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-xl hover:bg-white/[0.05] transition-all duration-300">
