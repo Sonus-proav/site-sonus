@@ -10,23 +10,37 @@ export function SpotlightCard({
   className?: string
 }) {
   const divRef = useRef<HTMLDivElement>(null)
+  const rectRef = useRef<DOMRect | null>(null)
+  const rafRef = useRef<number | null>(null)
   
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const opacity = useMotionValue(0)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return
-    const rect = divRef.current.getBoundingClientRect()
-    mouseX.set(e.clientX - rect.left)
-    mouseY.set(e.clientY - rect.top)
+    if (!rectRef.current) return
+    
+    // Throttle com requestAnimationFrame
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    
+    rafRef.current = requestAnimationFrame(() => {
+      mouseX.set(e.clientX - rectRef.current!.left)
+      mouseY.set(e.clientY - rectRef.current!.top)
+    })
+  }
+
+  const handleMouseEnter = () => {
+    if (divRef.current) {
+      rectRef.current = divRef.current.getBoundingClientRect()
+    }
+    opacity.set(1)
   }
 
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => opacity.set(1)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => opacity.set(0)}
       className={cn(
         "relative overflow-hidden rounded-3xl border border-white/5 bg-[#0A0F1C]/80 p-8 shadow-2xl transition-all duration-300 hover:border-white/10 group",

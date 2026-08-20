@@ -24,8 +24,7 @@ export function WhatsAppButton({
       <div className="relative">
         <MessageCircle className="h-6 w-6" />
         <span className="absolute -top-1 -right-1 flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-white shadow-lg"></span>
         </span>
       </div>
       <span className="font-semibold hidden sm:inline-block whitespace-nowrap">
