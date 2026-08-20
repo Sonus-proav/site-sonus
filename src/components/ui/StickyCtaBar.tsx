@@ -8,6 +8,62 @@ interface StickyCtaBarProps {
   phoneNumber?: string
 }
 
+// SVG Filter for Liquid Glass distortion
+function LiquidGlassFilter() {
+  return (
+    <svg style={{ display: "none", position: "absolute" }}>
+      <filter
+        id="sticky-glass-distortion"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.001 0.005"
+          numOctaves="1"
+          seed="17"
+          result="turbulence"
+        />
+        <feComponentTransfer in="turbulence" result="mapped">
+          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lightingColor="white"
+          result="specLight"
+        >
+          <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite
+          in="specLight"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="1"
+          k4="0"
+          result="litImage"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="softMap"
+          scale="200"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
+  )
+}
+
 export function StickyCtaBar({
   buttonText = "Falar com Especialista",
   messageText = "Olá, gostaria de tirar dúvidas e solicitar um orçamento.",
@@ -78,16 +134,49 @@ export function StickyCtaBar({
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="fixed bottom-0 left-0 right-0 z-40 md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:right-auto md:w-auto px-4 pb-6 md:pb-0 pointer-events-none"
         >
-          <div className="mx-auto max-w-sm md:max-w-md bg-zinc-900/90 backdrop-blur-xl border border-white/10 p-3 md:p-2 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row items-center gap-3 md:gap-4 pointer-events-auto ring-1 ring-white/5">
-            
-            <div className="flex items-center gap-2 pl-2">
+          <LiquidGlassFilter />
+
+          {/* Liquid Glass Container */}
+          <div 
+            className="relative mx-auto max-w-sm md:max-w-md p-3 md:p-2 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center gap-3 md:gap-4 pointer-events-auto overflow-hidden cursor-default transition-all duration-700"
+            style={{
+              boxShadow: "0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            {/* Glass Layer 1: Distortion */}
+            <div
+              className="absolute inset-0 z-0 overflow-hidden rounded-2xl md:rounded-full"
+              style={{
+                backdropFilter: "blur(16px)",
+                filter: "url(#sticky-glass-distortion)",
+                isolation: "isolate",
+              }}
+            />
+            {/* Glass Layer 2: White tint */}
+            <div
+              className="absolute inset-0 z-[1] rounded-2xl md:rounded-full"
+              style={{ background: "rgba(255, 255, 255, 0.12)" }}
+            />
+            {/* Glass Layer 3: Inner highlight/shadow */}
+            <div
+              className="absolute inset-0 z-[2] rounded-2xl md:rounded-full overflow-hidden"
+              style={{
+                boxShadow:
+                  "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.15)",
+              }}
+            />
+            {/* Subtle border glow */}
+            <div className="absolute inset-0 z-[3] rounded-2xl md:rounded-full border border-white/20" />
+
+            {/* Content (above glass layers) */}
+            <div className="relative z-10 flex items-center gap-2 pl-2">
               <span className="relative flex h-3 w-3">
                 {isOnline && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
                 <span className={`relative inline-flex rounded-full h-3 w-3 ${isOnline ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
               </span>
               <div className="flex flex-col">
                 <span className="text-white text-xs font-semibold">{isOnline ? 'Especialista Online' : 'Especialista Offline'}</span>
-                <span className="text-zinc-400 text-[10px] flex items-center gap-1">
+                <span className="text-white/60 text-[10px] flex items-center gap-1">
                   <Clock className="w-3 h-3" /> {isOnline ? 'Resposta rápida' : 'Deixe uma mensagem'}
                 </span>
               </div>
@@ -95,7 +184,7 @@ export function StickyCtaBar({
 
             <button
               onClick={handleWhatsApp}
-              className={`w-full md:w-auto relative group overflow-hidden rounded-xl md:rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ${
+              className={`relative z-10 w-full md:w-auto group overflow-hidden rounded-xl md:rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ${
                 isOnline 
                   ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 hover:shadow-emerald-500/25' 
                   : 'bg-gradient-to-r from-red-600 to-red-500 hover:shadow-red-500/25'
