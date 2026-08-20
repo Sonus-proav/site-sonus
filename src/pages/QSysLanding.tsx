@@ -672,17 +672,18 @@ export function QSysLanding() {
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-zinc-950/95"
             onClick={() => setActiveVideo(null)}
           >
+            {/* Botão de Fechar Solto na Tela (canto superior direito) */}
+            <button 
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-6 right-6 z-[110] w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-red-500 transition-colors backdrop-blur-md"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
             <div
               className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.15)]"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-red-500 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
               <iframe 
                 src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&cc_load_policy=1&cc_lang_pref=pt&hl=pt`}
                 className="w-full h-full border-0 bg-black"
