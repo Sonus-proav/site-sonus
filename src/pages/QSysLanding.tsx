@@ -11,7 +11,7 @@ import { Magnetic } from "@/components/ui/Magnetic"
 import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { 
   Cpu, Settings, ChevronRight, Video, Mic, Sliders, CheckCircle2, 
-  Play, BrainCircuit, Wifi, Battery, Globe, Zap, Network, SlidersHorizontal, MonitorPlay, Lock
+  Play, BrainCircuit, Wifi, Battery, Globe, Zap, Network, SlidersHorizontal, MonitorPlay, Lock, PlayCircle, X
 } from "lucide-react"
 import { SEO } from "../components/SEO"
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
@@ -21,7 +21,7 @@ const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection
 const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
 const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
-import { motion, useScroll, useTransform, useInView, animate } from "framer-motion"
+import { motion, useScroll, useTransform, useInView, animate, AnimatePresence } from "framer-motion"
 
 import certLevel1 from "@/assets/cert-level1.webp"
 import certVision from "@/assets/cert-vision.webp"
@@ -59,6 +59,7 @@ export function QSysLanding() {
   }, [location.pathname, location.hash])
 
   const [activeFauxScene, setActiveFauxScene] = useState<"presentation" | "video">("presentation")
+  const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [activeDashboardTab, setActiveDashboardTab] = useState("Cenários")
 
   // Form State
@@ -474,16 +475,27 @@ export function QSysLanding() {
 
             <div className="lg:col-span-2 space-y-8">
               {[
-                { img: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop", name: "Camp Randall Stadium", icon: <Globe className="w-5 h-5" />, desc: "Áudio 100% em rede distribuído sem latência para mais de 80.000 pessoas." },
-                { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop", name: "Vienna Univ. of Economics", icon: <Zap className="w-5 h-5" />, desc: "Modernização ágil de dezenas de auditórios gigantes para ensino híbrido." },
-                { img: "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1000&auto=format&fit=crop", name: "FC Twente Stadium", icon: <Sliders className="w-5 h-5" />, desc: "Controle de milhares de canais de áudio operados por staffs não-técnicos através de telas simples." }
+                { videoId: "TBD_1", img: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop", name: "Camp Randall Stadium", icon: <Globe className="w-5 h-5" />, desc: "Áudio 100% em rede distribuído sem latência para mais de 80.000 pessoas." },
+                { videoId: "TBD_2", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop", name: "Vienna Univ. of Economics", icon: <Zap className="w-5 h-5" />, desc: "Modernização ágil de dezenas de auditórios gigantes para ensino híbrido." },
+                { videoId: "TBD_3", img: "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=1000&auto=format&fit=crop", name: "FC Twente Stadium", icon: <Sliders className="w-5 h-5" />, desc: "Controle de milhares de canais de áudio operados por staffs não-técnicos através de telas simples." }
               ].map((c, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <div className="group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-xl hover:bg-white/[0.05] transition-all duration-300">
-                    <div className="w-full md:w-2/5 aspect-[16/10] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden relative shrink-0">
+                    <div 
+                      className="w-full md:w-2/5 aspect-[16/10] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden relative shrink-0 cursor-pointer"
+                      onClick={() => setActiveVideo(c.videoId)}
+                    >
                       <img src={c.img} alt={c.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:hidden" />
-                      <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-blue-500/80 text-white flex items-center justify-center backdrop-blur-md md:hidden">
+                      
+                      {/* Efeito Hover com Botão Play */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-sm z-10">
+                        <div className="w-16 h-16 rounded-full bg-blue-500/90 text-white flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)] transform group-hover:scale-110 transition-transform duration-300">
+                          <PlayCircle className="w-8 h-8" />
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-blue-500/80 text-white flex items-center justify-center backdrop-blur-md md:hidden z-20">
                         {c.icon}
                       </div>
                     </div>
@@ -630,6 +642,49 @@ export function QSysLanding() {
         <WhatsAppButton message="Olá! Gostaria de dimensionar um projeto Q-SYS." />
         <StickyCtaBar />
       </Suspense>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl"
+            onClick={() => setActiveVideo(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-5xl aspect-video bg-zinc-950 rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.3)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setActiveVideo(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-red-500 transition-colors backdrop-blur-md"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {activeVideo.startsWith('TBD') ? (
+                <div className="w-full h-full flex flex-col items-center justify-center text-zinc-400">
+                  <PlayCircle className="w-16 h-16 text-blue-500/50 mb-4" />
+                  <p className="text-xl font-light">Aguardando link do YouTube...</p>
+                </div>
+              ) : (
+                <iframe 
+                  src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
