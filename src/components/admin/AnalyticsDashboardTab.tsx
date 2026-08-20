@@ -21,7 +21,7 @@ export function AnalyticsDashboardTab() {
     if (path === "/") return "Home";
     if (path.startsWith("/projetos/")) {
       const id = path.split("/")[2];
-      const project = projects.find(p => p.id === id);
+      const project = projects.find(p => p.id === Number(id));
       return project ? `Projeto: ${project.title}` : path;
     }
     return path;
