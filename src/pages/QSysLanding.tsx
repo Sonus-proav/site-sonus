@@ -668,38 +668,28 @@ export function QSysLanding() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-zinc-950/95"
             onClick={() => setActiveVideo(null)}
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-5xl aspect-video bg-zinc-950 rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.3)]"
+            <div
+              className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.15)]"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-red-500 transition-colors backdrop-blur-md"
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-red-500 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
               
-              {activeVideo.startsWith('TBD') ? (
-                <div className="w-full h-full flex flex-col items-center justify-center text-zinc-400">
-                  <PlayCircle className="w-16 h-16 text-blue-500/50 mb-4" />
-                  <p className="text-xl font-light">Aguardando link do YouTube...</p>
-                </div>
-              ) : (
-                <iframe 
-                  src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
-            </motion.div>
+              <iframe 
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                className="w-full h-full border-0 bg-black"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
