@@ -1,18 +1,31 @@
 import { useEffect, useState, useMemo } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { getAnalyticsData, type PageView } from "@/lib/analytics";
+import { getProjects, type Project } from "@/lib/storage";
 import { Users, Clock, MapPin, MousePointerClick } from "lucide-react";
 
 export function AnalyticsDashboardTab() {
   const [data, setData] = useState<PageView[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAnalyticsData().then(views => {
+    Promise.all([getAnalyticsData(), getProjects()]).then(([views, projs]) => {
       setData(views);
+      setProjects(projs);
       setLoading(false);
     });
   }, []);
+
+  const formatPageName = (path: string) => {
+    if (path === "/") return "Home";
+    if (path.startsWith("/projetos/")) {
+      const id = path.split("/")[2];
+      const project = projects.find(p => p.id === id);
+      return project ? `Projeto: ${project.title}` : path;
+    }
+    return path;
+  };
 
   const stats = useMemo(() => {
     if (!data.length) return null;
@@ -141,7 +154,7 @@ export function AnalyticsDashboardTab() {
             <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
               {stats.topPages.length > 0 ? stats.topPages.map((page, idx) => (
                 <div key={idx} className="flex justify-between items-center bg-black/30 p-3 rounded-lg border border-white/5">
-                  <span className="font-medium font-mono text-sm">{page[0] === "/" ? "Home" : page[0]}</span>
+                  <span className="font-medium font-mono text-sm">{formatPageName(page[0])}</span>
                   <span className="bg-primary/20 text-primary border border-primary/30 text-xs py-1 px-3 rounded-full font-bold">{page[1]} visitas</span>
                 </div>
               )) : (
