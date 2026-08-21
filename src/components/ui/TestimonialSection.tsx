@@ -122,8 +122,9 @@ export function TestimonialSection({
       
       {/* Dynamic Background for Liquid Glass to refract */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen opacity-60 animate-pulse-slow" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen opacity-50 animate-pulse-slow" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen opacity-60 animate-float-slow" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen opacity-50 animate-float-slow-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[90px] mix-blend-screen opacity-40 animate-float-slow" style={{ animationDelay: '5s' }} />
         {/* Ambient glow that follows the active accent */}
         <div 
           className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] opacity-40 transition-all duration-1000 blur-[80px]"
