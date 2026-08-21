@@ -54,10 +54,7 @@ const CoverageHeatmap = React.lazy(() => import('@/components/CoverageHeatmap'))
 
 
 export function IgrejasTemplos() {
-  const location = useLocation()
-  useEffect(() => {
-    if (!location.hash) window.scrollTo(0, 0)
-  }, [location.pathname, location.hash])
+  // Scroll to top on mount is already handled globally by ScrollReset
 
   // Form State
   const [formData, setFormData] = useState({
