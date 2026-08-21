@@ -1,13 +1,13 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
-import React, { useState, useEffect, useRef, Suspense, lazy } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
-const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
-const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
-const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
-const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
-const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
-const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
+import { LPFooter } from "@/components/layout/LPFooter"
+import { TestimonialSection } from "@/components/ui/TestimonialSection"
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
+import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
+import { AeoFaq } from "@/components/ui/AeoFaq"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -15,7 +15,7 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { LazyMount } from "@/components/ui/LazyMount"
+
 import { Turnstile } from '@marsidev/react-turnstile'
 import { Link } from "react-router-dom"
 import { getProjects, type Project } from "@/lib/publicStorage"
@@ -50,7 +50,7 @@ function SoundWaves() {
   )
 }
 
-const CoverageHeatmap = React.lazy(() => import('@/components/CoverageHeatmap'))
+import { CoverageHeatmap } from "@/components/CoverageHeatmap"
 
 
 export function IgrejasTemplos() {
@@ -407,11 +407,7 @@ export function IgrejasTemplos() {
               </FadeIn>
               
               <FadeIn delay={0.3} className="relative">
-                <LazyMount minHeight="400px">
-                  <Suspense fallback={<div className="w-full aspect-[5/4] bg-zinc-900/50 animate-pulse rounded-2xl border border-white/5" />}>
-                    <CoverageHeatmap />
-                  </Suspense>
-                </LazyMount>
+                <CoverageHeatmap />
               </FadeIn>
             </div>
           </div>
@@ -420,7 +416,6 @@ export function IgrejasTemplos() {
         {/* ══════════════════════════════════════════════ */}
         {/* PORTFOLIO — Horizontal Full-Bleed Carousel    */}
         {/* ══════════════════════════════════════════════ */}
-        <LazyMount minHeight="600px" margin="600px">
         <section className="py-20 md:py-32 relative">
           <div className="max-w-7xl mx-auto px-4 mb-12">
             <FadeIn>
@@ -628,42 +623,27 @@ export function IgrejasTemplos() {
             </FadeIn>
           </div>
         </section>
-        </LazyMount>
 
       </main>
 
-      
-      <LazyMount minHeight="400px" margin="400px">
-        <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
-          <AeoFaq faqs={[
-            {
-              question: "Por que o som da minha igreja dá tanto eco e ninguém entende o pastor?",
-              answer: "Igrejas costumam ter pisos lisos, paredes altas e muito vidro, o que faz o som 'bater e voltar' várias vezes, embolando as palavras. A Sonus resolve isso instalando caixas de som modernas e altamente direcionais, e alinhando o som no computador para que a voz chegue perfeitamente clara aos fiéis, sem eco."
-            },
-            {
-              question: "Qual o melhor sistema de som para uma igreja grande?",
-              answer: "Não existe uma 'caixa mágica', mas sim o projeto certo. Para igrejas grandes, costumamos usar sistemas 'Line Array' suspensos, que distribuem o áudio uniformemente da primeira à última fileira. Nós da Sonus desenhamos o projeto em 3D antes de qualquer compra, para garantir que não haverá pontos cegos no templo."
-            },
-            {
-              question: "Como diminuir o barulho dos instrumentos e bateria no altar da igreja?",
-              answer: "A melhor solução é retirar as caixas de retorno do chão (que poluem o som para a plateia) e implementar retornos de fone de ouvido (In-Ear) para os músicos, combinados com um isolamento em acrílico (aquário) para a bateria. Isso 'limpa' o som geral da igreja, dando clareza para a palavra e para o louvor."
-            }
-          ]} />
-        </Suspense>
-      </LazyMount>
-
-      <LazyMount minHeight="600px" margin="400px">
-        <Suspense fallback={<div className="min-h-[600px] bg-[#131b31]" />}>
-          <TestimonialSection />
-        </Suspense>
-      </LazyMount>
-
-      <Suspense fallback={<div className="h-64 bg-black" />}>
-        
-        <LPFooter />
-        <WhatsAppButton />
-        <StickyCtaBar />
-      </Suspense>
+      <AeoFaq faqs={[
+        {
+          question: "Por que o som da minha igreja dá tanto eco e ninguém entende o pastor?",
+          answer: "Igrejas costumam ter pisos lisos, paredes altas e muito vidro, o que faz o som 'bater e voltar' várias vezes, embolando as palavras. A Sonus resolve isso instalando caixas de som modernas e altamente direcionais, e alinhando o som no computador para que a voz chegue perfeitamente clara aos fiéis, sem eco."
+        },
+        {
+          question: "Qual o melhor sistema de som para uma igreja grande?",
+          answer: "Não existe uma 'caixa mágica', mas sim o projeto certo. Para igrejas grandes, costumamos usar sistemas 'Line Array' suspensos, que distribuem o áudio uniformemente da primeira à última fileira. Nós da Sonus desenhamos o projeto em 3D antes de qualquer compra, para garantir que não haverá pontos cegos no templo."
+        },
+        {
+          question: "Como diminuir o barulho dos instrumentos e bateria no altar da igreja?",
+          answer: "A melhor solução é retirar as caixas de retorno do chão (que poluem o som para a plateia) e implementar retornos de fone de ouvido (In-Ear) para os músicos, combinados com um isolamento em acrílico (aquário) para a bateria. Isso 'limpa' o som geral da igreja, dando clareza para a palavra e para o louvor."
+        }
+      ]} />
+      <TestimonialSection />
+      <LPFooter />
+      <WhatsAppButton />
+      <StickyCtaBar />
     </div>
   )
 }

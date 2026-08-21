@@ -35,8 +35,9 @@ export class ErrorBoundary extends Component<Props, State> {
       const hasReloaded = sessionStorage.getItem('chunk-error-reloaded');
       if (!hasReloaded) {
         sessionStorage.setItem('chunk-error-reloaded', 'true');
-        window.location.href = window.location.pathname + '?t=' + Date.now();
-        return;
+        // DISABLE AUTO RELOAD TO SEE IF THIS IS CAUSING THE BUG
+        // window.location.href = window.location.pathname + '?t=' + Date.now();
+        // return;
       }
     }
 
