@@ -65,7 +65,7 @@ export function TestimonialSection({
     <section className="py-24 md:py-32 relative bg-[#131b31] overflow-hidden">
       
       {/* Background Shapes matching the Sticky CTA Button aesthetic */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" style={{ contain: 'strict' }}>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
           className="absolute top-[10%] left-[10%] w-16 h-16 bg-[#3b82f6] opacity-30 animate-float-slow rounded-lg rotate-12" 
         />
