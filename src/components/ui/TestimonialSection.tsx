@@ -147,11 +147,11 @@ export function TestimonialSection({
                 {/* 
                   === GLASS LAYERS COPIED FROM STICKY CTA BUTTON === 
                 */}
-                {/* Glass Layer 1: Blur */}
+                {/* Glass Layer 1: Simulated Blur (Replaces expensive backdrop-filter) */}
                 <div
                   className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
                   style={{
-                    backdropFilter: "blur(16px)",
+                    background: "rgba(19, 27, 49, 0.85)", // Deep blue tint to simulate frosted glass
                   }}
                 />
                 
@@ -221,11 +221,11 @@ export function TestimonialSection({
                   onClick={() => setActive(realIndex)}
                   className="group cursor-pointer relative rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
                 >
-                  {/* Glass Layer 1: Blur */}
+                  {/* Glass Layer 1: Simulated Blur */}
                   <div
                     className="absolute inset-0 z-0 pointer-events-none rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      backdropFilter: "blur(12px)",
+                      background: "rgba(19, 27, 49, 0.75)", // Deep blue tint to simulate frosted glass
                     }}
                   />
                   
