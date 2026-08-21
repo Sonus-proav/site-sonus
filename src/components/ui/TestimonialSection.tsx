@@ -29,7 +29,7 @@ const defaultTestimonials: Testimonial[] = [
     role: "Pastor Presidente",
     company: "Comunidade Cristã",
     initials: "LC",
-    text "Sempre sofríamos com aquele som embolado na igreja, onde a pessoa que estava lá no fundo não entendia metade da pregação e as caixas viviam dando microfonia. O projeto da Sonus mudou a história do nosso ministério. O som ficou tão limpo e potente que até a equipe de voluntários trabalha com mais alegria, porque o sistema é super fácil de mexer."
+    text: "Sempre sofríamos com aquele som embolado na igreja, onde a pessoa que estava lá no fundo não entendia metade da pregação e as caixas viviam dando microfonia. O projeto da Sonus mudou a história do nosso ministério. O som ficou tão limpo e potente que até a equipe de voluntários trabalha com mais alegria, porque o sistema é super fácil de mexer."
   },
   {
     name: "Dra. Helena Vanz",
