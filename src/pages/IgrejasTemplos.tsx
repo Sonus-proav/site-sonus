@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { LazyMount } from "@/components/ui/LazyMount"
 import { Turnstile } from '@marsidev/react-turnstile'
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { getProjects, type Project } from "@/lib/publicStorage"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { 
