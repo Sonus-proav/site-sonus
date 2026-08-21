@@ -60,8 +60,38 @@ function LiquidGlassFilter() {
       >
         <feTurbulence
           type="fractalNoise"
-          baseFrequency="0.002 0.006"
+          baseFrequency="0.001 0.005"
           numOctaves="1"
+          seed="17"
+          result="turbulence"
+        />
+        <feComponentTransfer in="turbulence" result="mapped">
+          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lightingColor="white"
+          result="specLight"
+        >
+          <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite
+          in="specLight"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="1"
+          k4="0"
+          result="litImage"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
           in2="softMap"
           scale="150"
           xChannelSelector="R"
@@ -157,17 +187,25 @@ export function TestimonialSection({
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700 overflow-hidden`}
                 style={{ 
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
                   boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)"
                 }}
               >
-                {/* Liquid Glass Layer */}
+                {/* Glass Layer 1: Distortion */}
                 <div
-                  className="absolute inset-0 z-0 pointer-events-none"
+                  className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
                   style={{
-                    backdropFilter: "blur(20px)",
+                    backdropFilter: "blur(16px)",
                     filter: "url(#testimonial-glass-distortion)",
                     isolation: "isolate",
+                  }}
+                />
+                
+                {/* Glass Layer 2: White tint / specular */}
+                <div
+                  className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                    mixBlendMode: "overlay",
                   }}
                 />
 
@@ -224,17 +262,25 @@ export function TestimonialSection({
                   onClick={() => setActive(realIndex)}
                   className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 flex-1 flex flex-col justify-between overflow-hidden"
                   style={{
-                    background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
                     boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
                   }}
                 >
-                  {/* Liquid Glass Layer */}
+                  {/* Glass Layer 1: Distortion */}
                   <div
-                    className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
                     style={{
                       backdropFilter: "blur(12px)",
                       filter: "url(#testimonial-glass-distortion)",
                       isolation: "isolate",
+                    }}
+                  />
+                  
+                  {/* Glass Layer 2: White tint */}
+                  <div
+                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
+                      mixBlendMode: "overlay",
                     }}
                   />
 
