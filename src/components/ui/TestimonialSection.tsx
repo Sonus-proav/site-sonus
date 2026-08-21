@@ -46,61 +46,7 @@ const accentColors = [
   { gradient: "from-violet-500 to-purple-400", border: "border-violet-500/30", glow: "rgba(139,92,246,0.15)", text: "text-violet-400" },
 ]
 
-// SVG Filter for Liquid Glass distortion
-function LiquidGlassFilter() {
-  return (
-    <svg style={{ display: "none", position: "absolute" }}>
-      <filter
-        id="testimonial-glass-distortion"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-        filterUnits="objectBoundingBox"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.001 0.005"
-          numOctaves="1"
-          seed="17"
-          result="turbulence"
-        />
-        <feComponentTransfer in="turbulence" result="mapped">
-          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-        </feComponentTransfer>
-        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-        <feSpecularLighting
-          in="softMap"
-          surfaceScale="5"
-          specularConstant="1"
-          specularExponent="100"
-          lightingColor="white"
-          result="specLight"
-        >
-          <fePointLight x="-200" y="-200" z="300" />
-        </feSpecularLighting>
-        <feComposite
-          in="specLight"
-          operator="arithmetic"
-          k1="0"
-          k2="1"
-          k3="1"
-          k4="0"
-          result="litImage"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="softMap"
-          scale="150"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-    </svg>
-  )
-}
+// SVG Filter removed for performance (pure CSS Glassmorphism instead)
 
 export function TestimonialSection({ 
   title = "O que dizem nossos clientes", 
@@ -118,7 +64,6 @@ export function TestimonialSection({
 
   return (
     <section className="py-24 md:py-32 relative bg-[#030303] overflow-hidden">
-      <LiquidGlassFilter />
       
       {/* Dynamic Background for Liquid Glass to refract */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -186,27 +131,16 @@ export function TestimonialSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700 overflow-hidden`}
+                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700 overflow-hidden bg-white/[0.02] backdrop-blur-[24px]`}
                 style={{ 
                   boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)"
                 }}
               >
-                {/* Glass Layer 1: Distortion */}
-                <div
-                  className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
-                  style={{
-                    backdropFilter: "blur(16px)",
-                    filter: "url(#testimonial-glass-distortion)",
-                    isolation: "isolate",
-                  }}
-                />
-                
-                {/* Glass Layer 2: White tint / specular */}
+                {/* CSS Glass Layer: White tint */}
                 <div
                   className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
                   style={{
                     background: "linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
-                    mixBlendMode: "overlay",
                   }}
                 />
 
@@ -261,27 +195,16 @@ export function TestimonialSection({
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   onClick={() => setActive(realIndex)}
-                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 flex-1 flex flex-col justify-between overflow-hidden"
+                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 flex-1 flex flex-col justify-between overflow-hidden bg-white/[0.01] backdrop-blur-[16px]"
                   style={{
                     boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
                   }}
                 >
-                  {/* Glass Layer 1: Distortion */}
+                  {/* CSS Glass Layer: White tint */}
                   <div
-                    className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                    style={{
-                      backdropFilter: "blur(12px)",
-                      filter: "url(#testimonial-glass-distortion)",
-                      isolation: "isolate",
-                    }}
-                  />
-                  
-                  {/* Glass Layer 2: White tint */}
-                  <div
-                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl"
+                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
                       background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
-                      mixBlendMode: "overlay",
                     }}
                   />
 
