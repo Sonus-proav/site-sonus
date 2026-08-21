@@ -125,18 +125,18 @@ export function StickyCtaBar({
   }
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="fixed bottom-0 left-0 right-0 z-40 md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:right-auto md:w-auto px-4 pb-6 md:pb-0 pointer-events-none"
-        >
-          <LiquidGlassFilter />
-
-          {/* Liquid Glass Container */}
+    <>
+      <LiquidGlassFilter />
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="fixed bottom-0 left-0 right-0 z-40 md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:right-auto md:w-auto px-4 pb-6 md:pb-0 pointer-events-none"
+          >
+            {/* Liquid Glass Container */}
           <div 
             className="relative mx-auto max-w-sm md:max-w-md p-3 md:p-2 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center gap-3 md:gap-4 pointer-events-auto overflow-hidden cursor-default transition-all duration-700"
             style={{
@@ -198,5 +198,6 @@ export function StickyCtaBar({
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   )
 }
