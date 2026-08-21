@@ -40,13 +40,12 @@ const defaultTestimonials: Testimonial[] = [
   }
 ]
 
+// Updated to match the requested "Pegada de cores" (Blue/Cyan/White)
 const accentColors = [
-  { gradient: "from-blue-500 to-cyan-400", border: "border-blue-500/30", glow: "rgba(59,130,246,0.15)", text: "text-blue-400" },
-  { gradient: "from-emerald-500 to-teal-400", border: "border-emerald-500/30", glow: "rgba(16,185,129,0.15)", text: "text-emerald-400" },
-  { gradient: "from-violet-500 to-purple-400", border: "border-violet-500/30", glow: "rgba(139,92,246,0.15)", text: "text-violet-400" },
+  { gradient: "from-[#3b82f6] to-[#06b6d4]", border: "border-[#3b82f6]/30", glow: "rgba(59,130,246,0.2)", text: "text-[#60a5fa]" },
+  { gradient: "from-[#0ea5e9] to-[#0284c7]", border: "border-[#0ea5e9]/30", glow: "rgba(14,165,233,0.2)", text: "text-[#38bdf8]" },
+  { gradient: "from-[#06b6d4] to-[#0891b2]", border: "border-[#06b6d4]/30", glow: "rgba(6,182,212,0.2)", text: "text-[#22d3ee]" },
 ]
-
-// SVG Filter removed for performance (pure CSS Glassmorphism instead)
 
 export function TestimonialSection({ 
   title = "O que dizem nossos clientes", 
@@ -63,27 +62,29 @@ export function TestimonialSection({
   const sideTestimonials = testimonials.filter((_, i) => i !== active)
 
   return (
-    <section className="py-24 md:py-32 relative bg-[#030303] overflow-hidden">
+    <section className="py-24 md:py-32 relative bg-[#131b31] overflow-hidden">
       
-      {/* Dynamic Background for Liquid Glass to refract */}
+      {/* Background Shapes matching the Sticky CTA Button aesthetic */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" style={{ contain: 'strict' }}>
         <div 
-          className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] opacity-40 animate-float-slow" 
-          style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)' }} 
+          className="absolute top-[10%] left-[10%] w-16 h-16 bg-[#3b82f6] opacity-30 animate-float-slow rounded-lg rotate-12" 
         />
         <div 
-          className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] opacity-30 animate-float-slow-reverse" 
-          style={{ background: 'radial-gradient(circle, rgba(147,51,234,0.15) 0%, transparent 70%)' }} 
+          className="absolute bottom-[20%] right-[15%] w-24 h-24 bg-[#06b6d4] opacity-20 animate-float-slow-reverse rounded-full" 
         />
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-30 animate-float-slow" 
-          style={{ background: 'radial-gradient(circle, rgba(8,145,178,0.15) 0%, transparent 70%)', animationDelay: '5s' }} 
+          className="absolute top-[40%] right-[25%] w-12 h-12 bg-[#0ea5e9] opacity-30 animate-float-slow rounded-md -rotate-12" 
+          style={{ animationDelay: '3s' }} 
+        />
+        <div 
+          className="absolute bottom-[10%] left-[20%] w-20 h-20 bg-[#3b82f6] opacity-20 animate-float-slow-reverse rounded-lg rotate-45" 
+          style={{ animationDelay: '5s' }} 
         />
         
-        {/* Ambient glow that follows the active accent */}
+        {/* Soft radial glow matching the button's background */}
         <div 
-          className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] opacity-40 transition-colors duration-1000"
-          style={{ background: `radial-gradient(ellipse at center, ${accent.glow} 0%, transparent 70%)` }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-40 transition-colors duration-1000"
+          style={{ background: `radial-gradient(circle, ${accent.glow} 0%, transparent 60%)` }}
         />
       </div>
       
@@ -97,13 +98,13 @@ export function TestimonialSection({
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
           >
             <div>
-              <span className={`font-mono text-xs uppercase tracking-[0.3em] ${accent.text} transition-colors duration-700`}>
+              <span className={`font-mono text-xs uppercase tracking-[0.3em] ${accent.text} transition-colors duration-700 drop-shadow-md`}>
                 Depoimentos
               </span>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mt-3 leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mt-3 leading-[1.1] drop-shadow-lg">
                 {title}
               </h2>
-              <p className="text-zinc-400 text-lg font-light mt-4 max-w-xl">
+              <p className="text-blue-100/60 text-lg font-light mt-4 max-w-xl">
                 {subtitle}
               </p>
             </div>
@@ -112,17 +113,17 @@ export function TestimonialSection({
             <div className="flex items-center gap-3">
               <button 
                 onClick={prev}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all duration-300"
+                className="w-12 h-12 rounded-full border border-blue-400/20 flex items-center justify-center text-blue-100/50 hover:text-white hover:border-blue-400/50 transition-all duration-300 bg-blue-500/5"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button 
                 onClick={next}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all duration-300"
+                className="w-12 h-12 rounded-full border border-blue-400/20 flex items-center justify-center text-blue-100/50 hover:text-white hover:border-blue-400/50 transition-all duration-300 bg-blue-500/5"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <span className="text-zinc-500 font-mono text-sm ml-2">
+              <span className="text-blue-200/50 font-mono text-sm ml-2">
                 {String(active + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
               </span>
             </div>
@@ -141,38 +142,54 @@ export function TestimonialSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700 overflow-hidden bg-white/[0.02] backdrop-blur-[24px]`}
-                style={{ 
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)"
-                }}
+                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between overflow-hidden transition-colors duration-700 group`}
               >
-                {/* CSS Glass Layer: White tint */}
+                {/* 
+                  === GLASS LAYERS COPIED FROM STICKY CTA BUTTON === 
+                */}
+                {/* Glass Layer 1: Blur */}
                 <div
                   className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
                   style={{
-                    background: "linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                    backdropFilter: "blur(16px)",
                   }}
                 />
+                
+                {/* Glass Layer 2: White tint */}
+                <div
+                  className="absolute inset-0 z-0 pointer-events-none rounded-[2rem]"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
+
+                {/* Glass Layer 3: Inner highlight/shadow */}
+                <div
+                  className="absolute inset-0 z-0 pointer-events-none rounded-[2rem] overflow-hidden"
+                  style={{
+                    boxShadow: "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.2), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.1)",
+                  }}
+                />
+                
+                {/* Subtle border glow */}
+                <div className="absolute inset-0 z-0 pointer-events-none rounded-[2rem] border border-white/20" />
+
 
                 <div className="relative z-10 flex flex-col h-full justify-between">
-                  {/* Giant quote mark */}
-                  <div className="absolute -top-4 -left-4 md:top-0 md:left-0 pointer-events-none">
-                    <svg width="100" height="80" viewBox="0 0 80 60" fill="none" className="opacity-10">
-                      <path d="M0 40L16 0H32L20 40H32V60H0V40ZM48 40L64 0H80L68 40H80V60H48V40Z" 
-                        className={accent.text} fill="currentColor" />
-                    </svg>
-                  </div>
-
                   {/* Text */}
-                  <div className="mt-12 md:mt-16">
-                    <p className="text-white/90 text-xl md:text-2xl lg:text-[1.65rem] leading-relaxed font-light tracking-wide relative z-10 drop-shadow-md">
+                  <div className="mt-8 md:mt-10 relative">
+                    {/* Giant quote mark */}
+                    <div className="absolute -top-12 -left-6 opacity-[0.03] pointer-events-none">
+                      <svg width="120" height="100" viewBox="0 0 80 60" fill="currentColor" className={accent.text}>
+                        <path d="M0 40L16 0H32L20 40H32V60H0V40ZM48 40L64 0H80L68 40H80V60H48V40Z" />
+                      </svg>
+                    </div>
+                    <p className="text-white/95 text-xl md:text-2xl lg:text-[1.65rem] leading-relaxed font-light tracking-wide relative z-10 drop-shadow-md">
                       "{activeTestimonial.text}"
                     </p>
                   </div>
 
                   {/* Author */}
-                  <div className="flex items-center gap-4 mt-10 pt-8 border-t border-white/10 relative z-10">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.gradient} flex items-center justify-center text-white font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-700`}>
+                  <div className="flex items-center gap-4 mt-12 pt-8 border-t border-white/10 relative z-10">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.gradient} flex items-center justify-center text-white font-bold text-lg shadow-[0_4px_15px_rgba(0,0,0,0.2)] transition-all duration-700`}>
                       {activeTestimonial.initials}
                     </div>
                     <div className="flex-1">
@@ -180,13 +197,10 @@ export function TestimonialSection({
                         <h4 className="text-white font-bold text-lg drop-shadow-sm">{activeTestimonial.name}</h4>
                         <CheckCircle2 className={`w-4 h-4 ${accent.text} transition-colors duration-700 drop-shadow-sm`} />
                       </div>
-                      <p className="text-zinc-400 text-sm">{activeTestimonial.role} • {activeTestimonial.company}</p>
+                      <p className="text-blue-100/70 text-sm">{activeTestimonial.role} • {activeTestimonial.company}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Bottom accent line */}
-                <div className={`absolute bottom-0 left-8 right-8 h-[2px] bg-gradient-to-r ${accent.gradient} opacity-40 z-10`} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -205,24 +219,35 @@ export function TestimonialSection({
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   onClick={() => setActive(realIndex)}
-                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 flex-1 flex flex-col justify-between overflow-hidden bg-white/[0.01] backdrop-blur-[16px]"
-                  style={{
-                    boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
-                  }}
+                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
                 >
-                  {/* CSS Glass Layer: White tint */}
+                  {/* Glass Layer 1: Blur */}
                   <div
-                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
+                      backdropFilter: "blur(12px)",
                     }}
                   />
+                  
+                  {/* Glass Layer 2: White tint */}
+                  <div
+                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: "rgba(255, 255, 255, 0.05)" }}
+                  />
+
+                  {/* Glass Layer 3: Inner highlight/shadow */}
+                  <div
+                    className="absolute inset-0 z-0 pointer-events-none rounded-2xl overflow-hidden opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      boxShadow: "inset 1px 1px 1px 0 rgba(255, 255, 255, 0.15), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.05)",
+                    }}
+                  />
+                  
+                  {/* Subtle border glow */}
+                  <div className="absolute inset-0 z-0 pointer-events-none rounded-2xl border border-white/10 group-hover:border-white/30 transition-colors duration-500" />
 
                   <div className="relative z-10 flex flex-col h-full justify-between">
-                    {/* Top accent line */}
-                    <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${sideAccent.gradient} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
-                    
-                    <p className="text-zinc-400 text-sm leading-relaxed font-light group-hover:text-white/90 transition-colors duration-500 line-clamp-5">
+                    <p className="text-blue-100/60 text-sm leading-relaxed font-light group-hover:text-white/95 transition-colors duration-500 line-clamp-5">
                       "{t.text}"
                     </p>
                     
@@ -232,7 +257,7 @@ export function TestimonialSection({
                       </div>
                       <div>
                         <h4 className="text-white/60 group-hover:text-white font-semibold text-sm transition-colors duration-500">{t.name}</h4>
-                        <p className="text-zinc-600 group-hover:text-zinc-400 text-xs transition-colors duration-500">{t.role}</p>
+                        <p className="text-blue-200/40 group-hover:text-blue-200/70 text-xs transition-colors duration-500">{t.role}</p>
                       </div>
                     </div>
                   </div>
@@ -250,8 +275,8 @@ export function TestimonialSection({
               onClick={() => setActive(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
                 i === active 
-                  ? `w-8 bg-gradient-to-r ${accent.gradient} shadow-[0_0_10px_rgba(255,255,255,0.3)]` 
-                  : "w-1.5 bg-white/10 hover:bg-white/30"
+                  ? `w-8 bg-[#3b82f6] shadow-[0_0_12px_rgba(59,130,246,0.5)]` 
+                  : "w-1.5 bg-blue-100/10 hover:bg-blue-100/30"
               }`}
             />
           ))}
