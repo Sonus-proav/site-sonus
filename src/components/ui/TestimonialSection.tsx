@@ -142,7 +142,7 @@ export function TestimonialSection({
           >
             <div>
               <span className={`font-mono text-xs uppercase tracking-[0.3em] ${accent.text} transition-colors duration-700`}>
-                Depoimentos Verificados
+                Depoimentos
               </span>
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mt-3 leading-[1.1]">
                 {title}
