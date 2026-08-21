@@ -29,7 +29,7 @@ const defaultTestimonials: Testimonial[] = [
     role: "Pastor Presidente",
     company: "Comunidade Cristã",
     initials: "LC",
-    text: "Sempre sofríamos com aquele som embolado na igreja, onde a pessoa que estava lá no fundo não entendia metade da pregação e as caixas viviam dando microfonia. O projeto da Sonus mudou a história do nosso ministério. O som ficou tão limpo e potente que até a equipe de voluntários trabalha com mais alegria, porque o sistema é super fácil de mexer."
+    text "Sempre sofríamos com aquele som embolado na igreja, onde a pessoa que estava lá no fundo não entendia metade da pregação e as caixas viviam dando microfonia. O projeto da Sonus mudou a história do nosso ministério. O som ficou tão limpo e potente que até a equipe de voluntários trabalha com mais alegria, porque o sistema é super fácil de mexer."
   },
   {
     name: "Dra. Helena Vanz",
@@ -46,6 +46,32 @@ const accentColors = [
   { gradient: "from-violet-500 to-purple-400", border: "border-violet-500/30", glow: "rgba(139,92,246,0.15)", text: "text-violet-400" },
 ]
 
+// SVG Filter for Liquid Glass distortion
+function LiquidGlassFilter() {
+  return (
+    <svg style={{ display: "none", position: "absolute" }}>
+      <filter
+        id="testimonial-glass-distortion"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.002 0.006"
+          numOctaves="1"
+          in2="softMap"
+          scale="150"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
+  )
+}
+
 export function TestimonialSection({ 
   title = "O que dizem nossos clientes", 
   subtitle = "Histórias reais de transformação acústica e tecnológica",
@@ -61,12 +87,19 @@ export function TestimonialSection({
   const sideTestimonials = testimonials.filter((_, i) => i !== active)
 
   return (
-    <section className="py-24 md:py-32 relative bg-[#050505] overflow-hidden">
-      {/* Ambient glow that follows the active accent */}
-      <div 
-        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none opacity-40 transition-all duration-1000"
-        style={{ background: `radial-gradient(ellipse at center, ${accent.glow} 0%, transparent 70%)` }}
-      />
+    <section className="py-24 md:py-32 relative bg-[#030303] overflow-hidden">
+      <LiquidGlassFilter />
+      
+      {/* Dynamic Background for Liquid Glass to refract */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen opacity-60 animate-pulse-slow" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen opacity-50 animate-pulse-slow" style={{ animationDelay: '2s' }} />
+        {/* Ambient glow that follows the active accent */}
+        <div 
+          className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] opacity-40 transition-all duration-1000 blur-[80px]"
+          style={{ background: `radial-gradient(ellipse at center, ${accent.glow} 0%, transparent 70%)` }}
+        />
+      </div>
       
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         {/* Header */}
@@ -84,7 +117,7 @@ export function TestimonialSection({
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mt-3 leading-[1.1]">
                 {title}
               </h2>
-              <p className="text-zinc-500 text-lg font-light mt-4 max-w-xl">
+              <p className="text-zinc-400 text-lg font-light mt-4 max-w-xl">
                 {subtitle}
               </p>
             </div>
@@ -103,7 +136,7 @@ export function TestimonialSection({
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <span className="text-zinc-600 font-mono text-sm ml-2">
+              <span className="text-zinc-500 font-mono text-sm ml-2">
                 {String(active + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
               </span>
             </div>
@@ -122,42 +155,55 @@ export function TestimonialSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700`}
+                className={`relative rounded-[2rem] p-8 md:p-12 min-h-[400px] flex flex-col justify-between border ${accent.border} transition-colors duration-700 overflow-hidden`}
                 style={{ 
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)"
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)"
                 }}
               >
-                {/* Giant quote mark */}
-                <div className="absolute top-6 left-8 md:top-8 md:left-12">
-                  <svg width="80" height="60" viewBox="0 0 80 60" fill="none" className="opacity-10">
-                    <path d="M0 40L16 0H32L20 40H32V60H0V40ZM48 40L64 0H80L68 40H80V60H48V40Z" 
-                      className={accent.text} fill="currentColor" />
-                  </svg>
-                </div>
+                {/* Liquid Glass Layer */}
+                <div
+                  className="absolute inset-0 z-0 pointer-events-none"
+                  style={{
+                    backdropFilter: "blur(20px)",
+                    filter: "url(#testimonial-glass-distortion)",
+                    isolation: "isolate",
+                  }}
+                />
 
-                {/* Text */}
-                <div className="mt-16 md:mt-20">
-                  <p className="text-white/90 text-xl md:text-2xl lg:text-[1.65rem] leading-relaxed font-light tracking-wide">
-                    "{activeTestimonial.text}"
-                  </p>
-                </div>
-
-                {/* Author */}
-                <div className="flex items-center gap-4 mt-10 pt-8 border-t border-white/5">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg transition-all duration-700`}>
-                    {activeTestimonial.initials}
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  {/* Giant quote mark */}
+                  <div className="absolute -top-4 -left-4 md:top-0 md:left-0 pointer-events-none">
+                    <svg width="100" height="80" viewBox="0 0 80 60" fill="none" className="opacity-10">
+                      <path d="M0 40L16 0H32L20 40H32V60H0V40ZM48 40L64 0H80L68 40H80V60H48V40Z" 
+                        className={accent.text} fill="currentColor" />
+                    </svg>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-white font-bold text-lg">{activeTestimonial.name}</h4>
-                      <CheckCircle2 className={`w-4 h-4 ${accent.text} transition-colors duration-700`} />
+
+                  {/* Text */}
+                  <div className="mt-12 md:mt-16">
+                    <p className="text-white/90 text-xl md:text-2xl lg:text-[1.65rem] leading-relaxed font-light tracking-wide relative z-10 drop-shadow-md">
+                      "{activeTestimonial.text}"
+                    </p>
+                  </div>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4 mt-10 pt-8 border-t border-white/10 relative z-10">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.gradient} flex items-center justify-center text-white font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-700`}>
+                      {activeTestimonial.initials}
                     </div>
-                    <p className="text-zinc-500 text-sm">{activeTestimonial.role} • {activeTestimonial.company}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-white font-bold text-lg drop-shadow-sm">{activeTestimonial.name}</h4>
+                        <CheckCircle2 className={`w-4 h-4 ${accent.text} transition-colors duration-700 drop-shadow-sm`} />
+                      </div>
+                      <p className="text-zinc-400 text-sm">{activeTestimonial.role} • {activeTestimonial.company}</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Bottom accent line */}
-                <div className={`absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r ${accent.gradient} opacity-30`} />
+                <div className={`absolute bottom-0 left-8 right-8 h-[2px] bg-gradient-to-r ${accent.gradient} opacity-40 z-10`} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -176,25 +222,38 @@ export function TestimonialSection({
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   onClick={() => setActive(realIndex)}
-                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/15 transition-all duration-500 flex-1 flex flex-col justify-between"
+                  className="group cursor-pointer relative rounded-2xl p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 flex-1 flex flex-col justify-between overflow-hidden"
                   style={{
-                    background: "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%)"
+                    background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
                   }}
                 >
-                  {/* Top accent line */}
-                  <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${sideAccent.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
-                  
-                  <p className="text-zinc-400 text-sm leading-relaxed font-light group-hover:text-zinc-300 transition-colors duration-300 line-clamp-5">
-                    "{t.text}"
-                  </p>
-                  
-                  <div className="flex items-center gap-3 mt-6 pt-5 border-t border-white/5">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${sideAccent.gradient} opacity-60 group-hover:opacity-100 flex items-center justify-center text-white font-bold text-xs shadow-md transition-all duration-500`}>
-                      {t.initials}
-                    </div>
-                    <div>
-                      <h4 className="text-white/80 group-hover:text-white font-semibold text-sm transition-colors duration-300">{t.name}</h4>
-                      <p className="text-zinc-600 text-xs">{t.role}</p>
+                  {/* Liquid Glass Layer */}
+                  <div
+                    className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      backdropFilter: "blur(12px)",
+                      filter: "url(#testimonial-glass-distortion)",
+                      isolation: "isolate",
+                    }}
+                  />
+
+                  <div className="relative z-10 flex flex-col h-full justify-between">
+                    {/* Top accent line */}
+                    <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${sideAccent.gradient} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+                    
+                    <p className="text-zinc-400 text-sm leading-relaxed font-light group-hover:text-white/90 transition-colors duration-500 line-clamp-5">
+                      "{t.text}"
+                    </p>
+                    
+                    <div className="flex items-center gap-3 mt-6 pt-5 border-t border-white/5 group-hover:border-white/15 transition-colors duration-500">
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${sideAccent.gradient} opacity-40 group-hover:opacity-100 flex items-center justify-center text-white font-bold text-xs shadow-md transition-all duration-500`}>
+                        {t.initials}
+                      </div>
+                      <div>
+                        <h4 className="text-white/60 group-hover:text-white font-semibold text-sm transition-colors duration-500">{t.name}</h4>
+                        <p className="text-zinc-600 group-hover:text-zinc-400 text-xs transition-colors duration-500">{t.role}</p>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -211,8 +270,8 @@ export function TestimonialSection({
               onClick={() => setActive(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
                 i === active 
-                  ? `w-8 bg-gradient-to-r ${accent.gradient}` 
-                  : "w-1.5 bg-zinc-700 hover:bg-zinc-500"
+                  ? `w-8 bg-gradient-to-r ${accent.gradient} shadow-[0_0_10px_rgba(255,255,255,0.3)]` 
+                  : "w-1.5 bg-white/10 hover:bg-white/30"
               }`}
             />
           ))}
