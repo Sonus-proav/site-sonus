@@ -1,6 +1,6 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import React, { useState, useEffect, useRef } from "react"
-import { logLead } from "@/lib/analytics"
+import { logLead, getUserGeo } from "@/lib/analytics"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
@@ -153,6 +153,20 @@ export function IgrejasTemplos() {
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     trackWhatsAppClick('whatsapp_hero', 'igrejastemplos')
+    
+    getUserGeo().then(geo => {
+      logLead({
+        type: 'whatsapp',
+        source: window.location.pathname,
+        city: geo.city,
+        region: geo.region,
+        country: geo.country,
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        whatsappOrigin: 'lp_igrejas'
+      });
+    });
+
     const text = `Olá! Gostaria de falar com um especialista sobre o som da minha Igreja.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }

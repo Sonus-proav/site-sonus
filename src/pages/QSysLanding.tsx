@@ -1,5 +1,6 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
 import { useState, useEffect, useRef, lazy, Suspense } from "react"
+import { logLead, getUserGeo } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -110,6 +111,20 @@ export function QSysLanding() {
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     trackWhatsAppClick('whatsapp_hero', 'qsyslanding')
+
+    getUserGeo().then(geo => {
+      logLead({
+        type: 'whatsapp',
+        source: window.location.pathname,
+        city: geo.city,
+        region: geo.region,
+        country: geo.country,
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        whatsappOrigin: 'lp_qsys'
+      });
+    });
+
     const text = `Olá! Gostaria de falar com o especialista Q-SYS sobre o meu projeto.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }

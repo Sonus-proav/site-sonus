@@ -1,6 +1,6 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import { useState, useEffect, useRef } from "react"
-import { logLead } from "@/lib/analytics"
+import { logLead, getUserGeo } from "@/lib/analytics"
 import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -161,6 +161,20 @@ export function MeetingRoomsLanding() {
   const handleWhatsApp = () => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     trackWhatsAppClick('whatsapp_hero', 'meetingroomslanding')
+
+    getUserGeo().then(geo => {
+      logLead({
+        type: 'whatsapp',
+        source: window.location.pathname,
+        city: geo.city,
+        region: geo.region,
+        country: geo.country,
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        whatsappOrigin: 'lp_salas_reuniao'
+      });
+    });
+
     const text = `Olá! Gostaria de falar com o especialista em Salas de Reunião Corporativas.`
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }

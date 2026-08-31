@@ -1,6 +1,6 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
 import { useState, useRef, useEffect, lazy, Suspense } from "react"
-import { logLead } from "@/lib/analytics"
+import { logLead, getUserGeo } from "@/lib/analytics"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -330,6 +330,20 @@ export function AuditoriosTeatros() {
                   onClick={() => {
                     (window as any).dataLayer = (window as any).dataLayer || [];
                     trackWhatsAppClick('whatsapp_hero', 'auditoriosteatros')
+                    
+                    getUserGeo().then(geo => {
+                      logLead({
+                        type: 'whatsapp',
+                        source: window.location.pathname,
+                        city: geo.city,
+                        region: geo.region,
+                        country: geo.country,
+                        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+                        timestamp: Date.now(),
+                        whatsappOrigin: 'lp_auditorios'
+                      });
+                    });
+
                     const text = `Olá! Gostaria de falar com um especialista sobre o som do meu Auditório / Teatro.`
                     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
                   }}
