@@ -1,5 +1,6 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
 import { useState, useRef, useEffect, lazy, Suspense } from "react"
+import { logLead } from "@/lib/analytics"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -198,8 +199,24 @@ export function AuditoriosTeatros() {
       })
 
       if (response.ok) {
+        const resData = await response.json().catch(() => ({}));
         (window as any).dataLayer = (window as any).dataLayer || [];
         trackLeadConversion('form_auditorios', 500, 'BRL')
+
+        // Grava lead no Firebase com geolocalização do Cloudflare
+        logLead({
+          type: 'form',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'Landing Page Auditórios e Teatros',
+          city: resData.geo?.city || 'Desconhecida',
+          region: resData.geo?.region || 'Desconhecida',
+          country: resData.geo?.country || 'BR',
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+          timestamp: Date.now(),
+          utms
+        });
         
         setIsSubmitting(false)
         localStorage.removeItem('sonus_utms'); navigate("/obrigado")

@@ -7,9 +7,10 @@ import { type Project, getProjects, deleteProject, addProject, updateProject, sa
 import { optimizeImageUrl } from "@/lib/publicStorage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
 import { AnalyticsDashboardTab } from "@/components/admin/AnalyticsDashboardTab"
+import { LeadsDashboardTab } from "@/components/admin/LeadsDashboardTab"
 
 export function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<"projects" | "analytics">("projects")
+  const [activeTab, setActiveTab] = useState<"projects" | "analytics" | "leads">("projects")
   const [projects, setProjects] = useState<Project[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingProject, setEditingProject] = useState<Project | null>(null)
@@ -142,11 +143,21 @@ export function AdminDashboard() {
             >
               Métricas de Tráfego
             </button>
+            <button 
+              onClick={() => setActiveTab("leads")}
+              className={`font-semibold text-lg flex items-center gap-2 transition-colors ${activeTab === "leads" ? "text-amber-400" : "text-zinc-500 hover:text-white"}`}
+            >
+              Leads
+            </button>
           </div>
         </FadeIn>
 
         {activeTab === "analytics" && (
           <AnalyticsDashboardTab />
+        )}
+
+        {activeTab === "leads" && (
+          <LeadsDashboardTab />
         )}
 
         {/* Projects Grid/Table */}

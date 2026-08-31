@@ -1,5 +1,6 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import React, { useState, useEffect, useRef } from "react"
+import { logLead } from "@/lib/analytics"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
@@ -107,8 +108,24 @@ export function IgrejasTemplos() {
       })
 
       if (response.ok) {
+        const resData = await response.json().catch(() => ({}));
         (window as any).dataLayer = (window as any).dataLayer || [];
         trackLeadConversion('form_igrejas', 500, 'BRL')
+
+        // Grava lead no Firebase com geolocalização do Cloudflare
+        logLead({
+          type: 'form',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'Landing Page Igrejas e Templos',
+          city: resData.geo?.city || 'Desconhecida',
+          region: resData.geo?.region || 'Desconhecida',
+          country: resData.geo?.country || 'BR',
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+          timestamp: Date.now(),
+          utms
+        });
         
         setIsSuccess(true)
         setFormData({

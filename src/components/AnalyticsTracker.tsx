@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { logPageView, updateTimeSpent } from "@/lib/analytics";
+import { logPageView, updateTimeSpent, setGeoCache } from "@/lib/analytics";
 import { useEngagedSession } from "@/hooks/useEngagedSession";
 
 // Variável global fora do componente para manter o cache de localização
@@ -24,12 +24,18 @@ export function AnalyticsTracker() {
   const fetchUserLocation = async () => {
     if (cachedLocation) return cachedLocation;
     try {
-      const response = await fetch("https://ipapi.co/json/");
+      const response = await fetch("/api/geo");
       const data = await response.json();
       cachedLocation = {
         city: data.city || "Desconhecida",
         region: data.region || "Desconhecida"
       };
+      // Sincroniza com o cache global de geo (usado pelo logLead de WhatsApp)
+      setGeoCache({
+        city: cachedLocation.city,
+        region: cachedLocation.region,
+        country: data.country || "Desconhecido"
+      });
       return cachedLocation;
     } catch (error) {
       console.warn("Analytics: Falha ao obter localização", error);

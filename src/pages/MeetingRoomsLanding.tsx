@@ -1,5 +1,6 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import { useState, useEffect, useRef } from "react"
+import { logLead } from "@/lib/analytics"
 import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -71,8 +72,24 @@ export function MeetingRoomsLanding() {
       })
 
       if (response.ok) {
+        const resData = await response.json().catch(() => ({}));
         (window as any).dataLayer = (window as any).dataLayer || [];
         trackLeadConversion('form_salas', 500, 'BRL')
+
+        // Grava lead no Firebase com geolocalização do Cloudflare
+        logLead({
+          type: 'form',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'Landing Page Salas de Reunião',
+          city: resData.geo?.city || 'Desconhecida',
+          region: resData.geo?.region || 'Desconhecida',
+          country: resData.geo?.country || 'BR',
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+          timestamp: Date.now(),
+          utms
+        });
         
         window.location.href = '/obrigado';
       } else {

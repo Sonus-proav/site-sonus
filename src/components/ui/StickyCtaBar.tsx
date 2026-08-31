@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, Clock, ArrowRight } from "lucide-react"
+import { logLead, getUserGeo } from "@/lib/analytics"
 
 interface StickyCtaBarProps {
   buttonText?: string
@@ -121,6 +122,21 @@ export function StickyCtaBar({
     });
 
     const encodedMessage = encodeURIComponent(messageText)
+
+    // Grava lead de WhatsApp no Firebase
+    getUserGeo().then(geo => {
+      logLead({
+        type: 'whatsapp',
+        source: window.location.pathname,
+        city: geo.city,
+        region: geo.region,
+        country: geo.country,
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        whatsappOrigin: 'sticky_cta'
+      });
+    });
+
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank')
   }
 

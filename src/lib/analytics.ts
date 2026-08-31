@@ -73,3 +73,101 @@ export async function getAnalyticsData(): Promise<PageView[]> {
     return [];
   }
 }
+
+// ─────────────────────────────────────────────────
+// LEADS TRACKING
+// ─────────────────────────────────────────────────
+
+export interface Lead {
+  id?: string;
+  type: 'form' | 'whatsapp';
+  name?: string;
+  phone?: string;
+  email?: string;
+  source: string;
+  city: string;
+  region: string;
+  country: string;
+  device: 'Mobile' | 'Desktop';
+  timestamp: number;
+  utms?: { source?: string; campaign?: string; medium?: string } | null;
+  whatsappOrigin?: string;
+}
+
+const LEADS_COLLECTION = "leads";
+
+/**
+ * Grava um lead (formulário ou WhatsApp) no Firebase Firestore.
+ * Dispara de forma assíncrona para não travar a UI.
+ */
+export async function logLead(data: Omit<Lead, "id">): Promise<string | null> {
+  try {
+    const docRef = await addDoc(collection(db, LEADS_COLLECTION), data);
+    return docRef.id;
+  } catch (error) {
+    console.error("Erro ao registrar lead:", error);
+    return null;
+  }
+}
+
+/**
+ * Busca todos os leads dos últimos 30 dias para o admin dashboard.
+ */
+export async function getLeadsData(): Promise<Lead[]> {
+  try {
+    const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+
+    const q = query(
+      collection(db, LEADS_COLLECTION),
+      where("timestamp", ">=", thirtyDaysAgo),
+      orderBy("timestamp", "desc")
+    );
+
+    const querySnapshot = await getDocs(q);
+    const leads: Lead[] = [];
+
+    querySnapshot.forEach((d) => {
+      leads.push({ id: d.id, ...d.data() } as Lead);
+    });
+
+    return leads;
+  } catch (error) {
+    console.error("Erro ao buscar dados de leads:", error);
+    return [];
+  }
+}
+
+// ─────────────────────────────────────────────────
+// GEOLOCALIZAÇÃO (cache compartilhado)
+// ─────────────────────────────────────────────────
+
+let cachedGeo: { city: string; region: string; country: string } | null = null;
+
+/**
+ * Retorna a geolocalização do usuário, usando cache em memória.
+ * Primeiro tenta o endpoint Cloudflare /api/geo (sem rate limit).
+ * Se falhar, retorna "Desconhecida".
+ */
+export async function getUserGeo(): Promise<{ city: string; region: string; country: string }> {
+  if (cachedGeo) return cachedGeo;
+  try {
+    const response = await fetch("/api/geo");
+    const data = await response.json();
+    cachedGeo = {
+      city: data.city || "Desconhecida",
+      region: data.region || "Desconhecida",
+      country: data.country || "Desconhecido",
+    };
+    return cachedGeo;
+  } catch (error) {
+    console.warn("Geo: Falha ao obter localização", error);
+    return { city: "Desconhecida", region: "Desconhecida", country: "Desconhecido" };
+  }
+}
+
+/**
+ * Atualiza o cache de geolocalização (usado pelo AnalyticsTracker).
+ */
+export function setGeoCache(geo: { city: string; region: string; country: string }) {
+  cachedGeo = geo;
+}

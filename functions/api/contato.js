@@ -136,7 +136,15 @@ export async function onRequestPost({ request, env }) {
       throw new Error(`Resend Error: ${JSON.stringify(errorData)}`);
     }
 
-    return new Response(JSON.stringify({ message: "E-mail enviado com sucesso" }), {
+    // Extrair geolocalização do Cloudflare para o frontend gravar o lead
+    const cf = request.cf || {};
+    const geo = {
+      city: cf.city || "Desconhecida",
+      region: cf.region || "Desconhecida",
+      country: cf.country || "BR",
+    };
+
+    return new Response(JSON.stringify({ message: "E-mail enviado com sucesso", geo }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
     });

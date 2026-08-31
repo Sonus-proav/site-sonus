@@ -1,4 +1,5 @@
 import { trackFormStart, trackLeadConversion, trackViewContent } from "@/lib/metaPixel";
+import { logLead } from "@/lib/analytics";
 import { useState, useEffect, lazy, Suspense } from "react"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
@@ -78,8 +79,24 @@ export function Home() {
       })
 
       if (response.ok) {
+        const resData = await response.json().catch(() => ({}));
         (window as any).dataLayer = (window as any).dataLayer || [];
         trackLeadConversion('form_home', 500, 'BRL')
+
+        // Grava lead no Firebase com geolocalização do Cloudflare
+        logLead({
+          type: 'form',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'Página Inicial (Home)',
+          city: resData.geo?.city || 'Desconhecida',
+          region: resData.geo?.region || 'Desconhecida',
+          country: resData.geo?.country || 'BR',
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+          timestamp: Date.now(),
+          utms
+        });
 
         localStorage.removeItem('sonus_utms'); navigate("/obrigado")
       } else {
