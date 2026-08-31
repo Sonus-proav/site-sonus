@@ -196,8 +196,15 @@ export function LeadsDashboardTab() {
                           ? (lead.region && lead.region !== 'Desconhecida' ? `${lead.city} - ${lead.region}` : lead.city)
                           : '-'}
                       </td>
-                      <td className="p-3 text-sm text-zinc-400 hidden lg:table-cell border-y border-white/5 truncate max-w-[150px]" title={lead.source}>
-                        {lead.source || '-'}
+                      <td className="p-3 text-sm text-zinc-400 hidden lg:table-cell border-y border-white/5 truncate max-w-[200px]" title={lead.source}>
+                        {lead.type === 'whatsapp' ? (
+                          <span>
+                            {lead.source || '-'} 
+                            {lead.whatsappOrigin && <span className="block text-xs text-emerald-500/70">{lead.whatsappOrigin}</span>}
+                          </span>
+                        ) : (
+                          lead.source || '-'
+                        )}
                       </td>
                       <td className="p-3 text-sm text-zinc-400 hidden lg:table-cell rounded-r-lg border-y border-r border-white/5">
                         {lead.utms?.source || '-'}
