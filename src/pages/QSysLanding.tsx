@@ -92,8 +92,24 @@ export function QSysLanding() {
       })
 
       if (response.ok) {
+        const resData = await response.json().catch(() => ({}));
         (window as any).dataLayer = (window as any).dataLayer || [];
         trackLeadConversion('form_qsys')
+
+        // Grava lead no Firebase com geolocalização do Cloudflare
+        logLead({
+          type: 'form',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'Landing Page Q-SYS',
+          city: resData.geo?.city || 'Desconhecida',
+          region: resData.geo?.region || 'Desconhecida',
+          country: resData.geo?.country || 'BR',
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+          timestamp: Date.now(),
+          utms
+        });
 
         setIsSuccess(true)
         setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
