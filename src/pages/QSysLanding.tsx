@@ -24,7 +24,7 @@ const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").t
 const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
 import { motion, useScroll, useTransform, useInView, animate, AnimatePresence } from "framer-motion"
 
-import certLevel1 from "@/assets/cert-level1.webp"
+import certLevel2 from "@/assets/cert-level2.png"
 import certVision from "@/assets/cert-vision.webp"
 import certSales from "@/assets/cert-sales.webp"
 import { useLocation } from "react-router-dom"
@@ -407,7 +407,7 @@ export function QSysLanding() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center md:text-left">Equipe Oficialmente Certificada Q-SYS</p>
             <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 opacity-90">
-              <img src={certLevel1} alt="Q-SYS Level 1 Certified" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={certLevel2} alt="Q-SYS Level 2 Certified" className="h-10 md:h-12 w-auto object-contain" />
               <img src={certVision} alt="Q-SYS Visionsuite Certified" className="h-10 md:h-12 w-auto object-contain" />
               <img src={certSales} alt="Q-SYS Sales Professional" className="h-10 md:h-12 w-auto object-contain" />
             </div>
