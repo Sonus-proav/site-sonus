@@ -7,6 +7,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    if (document.documentElement.classList.contains('reduced-perf')) {
+      return; // Use native scroll on weak hardware
+    }
+
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual'
     }
@@ -32,7 +36,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     rafId = requestAnimationFrame(raf)
 
+    const handleVisibility = () => {
+      if (document.hidden) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
       lenis.destroy()
       cancelAnimationFrame(rafId)
     }

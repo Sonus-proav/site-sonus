@@ -37,12 +37,26 @@ import {
 
 // --- Sound Wave Animation Component ---
 function SoundWaves() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
-      {[...Array(6)].map((_, i) => (
+    <div ref={ref} className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
+      {[0, 1, 2].map(i => (
         <div
           key={i}
-          className="absolute rounded-full border border-amber-500/40 w-10 h-10 animate-gpu-soundwave"
+          className={`absolute rounded-full border border-amber-500/40 w-10 h-10 ${isVisible ? 'animate-gpu-soundwave' : ''}`}
           style={{ animationDelay: `${i * 0.7}s` }}
         />
       ))}
