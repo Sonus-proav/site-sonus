@@ -25,8 +25,7 @@ export function useReducedPerformance() {
     const lowMemory = (navigator as any).deviceMemory ? (navigator as any).deviceMemory < 4 : false;
 
     // 4. Navegador sem aceleração de backdrop-blur eficiente (não-Chromium)
-    const isChromium = !!(window as any).chrome;
-    const isNonChromium = !isChromium;
+    // Antigamente verificava isso, mas agora dependemos do teste de GPU.
 
     // 5. Benchmark rápido: mede o tempo de um repaint com blur
     let slowGPU = false;
