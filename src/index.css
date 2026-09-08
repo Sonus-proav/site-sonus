@@ -352,11 +352,6 @@
   display: none !important;
 }
 
-/* Substituir fundo translúcido da Navbar */
-.reduced-perf nav {
-  background-color: rgba(0, 0, 0, 0.95) !important;
-}
-
 /* Desativar transições de hover pesadas */
 .reduced-perf [class*="hover\\:scale"] {
   transform: none !important;

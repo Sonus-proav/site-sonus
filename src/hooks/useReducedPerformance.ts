@@ -46,16 +46,14 @@ export function useReducedPerformance() {
       // Ignora se falhar
     }
 
-    // Decisão final: se qualquer 2 critérios forem true, marca como hardware fraco
-    const signals = [prefersReducedMotion, weakCPU, lowMemory, isNonChromium && weakCPU, slowGPU];
-    const positiveSignals = signals.filter(Boolean).length;
-
-    if (positiveSignals >= 1 && (weakCPU || slowGPU || prefersReducedMotion || (isNonChromium && lowMemory))) {
-      html.classList.add("reduced-perf");
-    }
-
-    // Também respeita prefers-reduced-motion sozinho
-    if (prefersReducedMotion) {
+    // Decisão final:
+    // Só ativa o modo leve se:
+    // 1. O usuário pediu menos animação explicitamente no SO
+    // 2. A GPU falhou grosseiramente no teste de tempo (>100ms em vez de 50ms)
+    // 3. A máquina tem menos de 4GB de RAM (certeza absoluta que é fraca)
+    // 4. Se a CPU for muito fraca (< 4 cores)
+    
+    if (prefersReducedMotion || (slowGPU && weakCPU) || lowMemory || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)) {
       html.classList.add("reduced-perf");
     }
   }, []);
