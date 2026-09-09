@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 100" fill="none">
+  <!-- Parallelogram -->
+  <path d="M45 85 L65 20 L80 20 L60 85 Z" fill="currentColor" />
+  
+  <!-- Text GRUPO -->
+  <text x="90" y="45" font-family="Arial, sans-serif" font-weight="300" font-size="28" letter-spacing="2" fill="currentColor">GRUPO</text>
+  
+  <!-- Text MSA -->
+  <text x="90" y="85" font-family="Arial, sans-serif" font-weight="900" font-size="46" letter-spacing="1" fill="currentColor">MSA</text>
+</svg>
