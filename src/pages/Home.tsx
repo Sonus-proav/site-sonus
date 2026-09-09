@@ -351,42 +351,42 @@ export function Home() {
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-12 px-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10 lg:gap-6 items-center justify-items-center px-2 md:px-4 w-full">
               <img 
                 src="/clientes/cresol.webp" 
                 alt="Cresol" 
                 loading="lazy"
-                className="w-32 md:w-40 lg:w-48 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="w-32 md:w-40 lg:w-48 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.webp" 
                 alt="UNOESC" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-14 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unipar.webp" 
                 alt="UNIPAR" 
                 loading="lazy"
-                className="h-12 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-12 md:h-14 lg:h-16 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.webp" 
                 alt="Unisep" 
                 loading="lazy"
-                className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-14 lg:h-16 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/cesul.png" 
                 alt="CESUL" 
                 loading="lazy"
-                className="w-24 md:w-32 lg:w-40 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="w-24 md:w-32 lg:w-40 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/grupo-msa.svg" 
                 alt="Grupo MSA" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-14 max-w-full object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
           </div>
