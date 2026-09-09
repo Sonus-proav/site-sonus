@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { logPageView, updateTimeSpent, setGeoCache } from "@/lib/analytics";
+import { logPageView, updateTimeSpent, setGeoCache, getUserGeo } from "@/lib/analytics";
 import { useEngagedSession } from "@/hooks/useEngagedSession";
 import { useReducedPerformance } from "@/hooks/useReducedPerformance";
 
@@ -23,28 +23,7 @@ export function AnalyticsTracker() {
     return "Desktop";
   };
 
-  const fetchUserLocation = async () => {
-    if (cachedLocation) return cachedLocation;
-    try {
-      const response = await fetch("/api/geo");
-      const data = await response.json();
-      cachedLocation = {
-        city: data.city || "Desconhecida",
-        region: data.region || "Desconhecida"
-      };
-      // Sincroniza com o cache global de geo (usado pelo logLead de WhatsApp)
-      setGeoCache({
-        city: cachedLocation.city,
-        region: cachedLocation.region,
-        country: data.country || "Desconhecido"
-      });
-      return cachedLocation;
-    } catch (error) {
-      console.warn("Analytics: Falha ao obter localização", error);
-      return { city: "Desconhecida", region: "Desconhecida" };
-    }
-  };
-
+// Removemos fetchUserLocation duplicado. Usaremos getUserGeo direto do analytics.ts
   useEffect(() => {
     // 1. Guardião de UTMs (Salva na memória se a URL tiver parâmetros de campanha)
     const params = new URLSearchParams(window.location.search);
@@ -77,7 +56,7 @@ export function AnalyticsTracker() {
       // Ignora rotas de admin
       if (currentPath.startsWith("/admin")) return;
 
-      const loc = await fetchUserLocation();
+      const loc = await getUserGeo();
       const docId = await logPageView({
         path: currentPath,
         city: loc.city,

@@ -151,7 +151,8 @@ let cachedGeo: { city: string; region: string; country: string } | null = null;
 export async function getUserGeo(): Promise<{ city: string; region: string; country: string }> {
   if (cachedGeo) return cachedGeo;
   try {
-    const response = await fetch("/api/geo");
+    // Tenta a API gratuita geojs.io que não possui rate limits agressivos
+    const response = await fetch("https://get.geojs.io/v1/ip/geo.json");
     const data = await response.json();
     cachedGeo = {
       city: data.city || "Desconhecida",
@@ -161,7 +162,9 @@ export async function getUserGeo(): Promise<{ city: string; region: string; coun
     return cachedGeo;
   } catch (error) {
     console.warn("Geo: Falha ao obter localização", error);
-    return { city: "Desconhecida", region: "Desconhecida", country: "Desconhecido" };
+    // IMPORTANTE: Cachear o erro para não fazer a requisição novamente nos próximos cliques
+    cachedGeo = { city: "Desconhecida", region: "Desconhecida", country: "Desconhecido" };
+    return cachedGeo;
   }
 }
 
