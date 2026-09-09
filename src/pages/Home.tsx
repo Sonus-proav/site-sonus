@@ -356,7 +356,7 @@ export function Home() {
                 src="/clientes/cresol.webp" 
                 alt="Cresol" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 scale-125 hover:scale-150 cursor-pointer" 
+                className="w-32 md:w-40 lg:w-48 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.webp" 
@@ -368,7 +368,7 @@ export function Home() {
                 src="/clientes/unipar.webp" 
                 alt="UNIPAR" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-12 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.webp" 
@@ -380,13 +380,13 @@ export function Home() {
                 src="/clientes/cesul.png" 
                 alt="CESUL" 
                 loading="lazy"
-                className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="w-24 md:w-32 lg:w-40 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/grupo-msa.svg" 
                 alt="Grupo MSA" 
                 loading="lazy"
-                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
           </div>
