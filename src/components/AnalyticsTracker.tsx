@@ -1,12 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { logPageView, updateTimeSpent, setGeoCache, getUserGeo } from "@/lib/analytics";
+import { logPageView, updateTimeSpent, getUserGeo } from "@/lib/analytics";
 import { useEngagedSession } from "@/hooks/useEngagedSession";
 import { useReducedPerformance } from "@/hooks/useReducedPerformance";
-
-// Variável global fora do componente para manter o cache de localização
-// e evitar bater na API toda hora que o usuário trocar de página (SPA)
-let cachedLocation: { city: string, region: string } | null = null;
 
 export function AnalyticsTracker() {
   useReducedPerformance();
