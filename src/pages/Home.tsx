@@ -396,16 +396,17 @@ export function Home() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-wrap justify-center items-center gap-12 sm:gap-16 md:gap-24">
             {[
-              { src: "/marcas/bose.svg", alt: "Bose", w: "w-24 md:w-28" },
-              { src: "/qsys-logo.png", alt: "Q-SYS", w: "w-24 md:w-32" }, // Usando o logo PNG oficial já existente
-              { src: "/marcas/shure.svg", alt: "Shure", w: "w-24 md:w-32" },
-              { src: "/marcas/sennheiser.svg", alt: "Sennheiser", w: "w-32 md:w-44" },
+              { src: "/marcas/bose.svg", alt: "Bose", w: "w-24 md:w-28", extraClass: "" },
+              { src: "/marcas/qsc.png", alt: "QSC", w: "w-20 md:w-24", extraClass: "brightness-0 invert" }, // Força o logo azul a ficar branco
+              { src: "/qsys-logo.png", alt: "Q-SYS", w: "w-24 md:w-32", extraClass: "" },
+              { src: "/marcas/shure.svg", alt: "Shure", w: "w-24 md:w-32", extraClass: "" },
+              { src: "/marcas/sennheiser.svg", alt: "Sennheiser", w: "w-32 md:w-44", extraClass: "" },
             ].map((brand) => (
               <img
                 key={brand.alt}
                 src={brand.src}
                 alt={brand.alt}
-                className={`${brand.w} h-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 select-none grayscale hover:grayscale-0 contrast-200 brightness-200`}
+                className={`${brand.w} h-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 select-none ${brand.extraClass}`}
                 draggable={false}
               />
             ))}
