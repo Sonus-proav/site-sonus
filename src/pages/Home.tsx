@@ -351,42 +351,43 @@ export function Home() {
             <p className="text-center text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-[0.2em] mb-8">
               Empresas que confiam na Sonus
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-24 px-4">
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-12 px-4">
               <img 
                 src="/clientes/cresol.webp" 
                 alt="Cresol" 
                 loading="lazy"
-                className="h-16 md:h-24 lg:h-32 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.webp" 
                 alt="UNOESC" 
                 loading="lazy"
-                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unipar.webp" 
                 alt="UNIPAR" 
                 loading="lazy"
-                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/unisep.webp" 
                 alt="Unisep" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/cesul.png" 
                 alt="CESUL" 
                 loading="lazy"
-                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-16 md:h-20 lg:h-24 object-contain transition-transform duration-500 hover:scale-110 cursor-pointer mix-blend-screen" 
+                style={{ filter: "grayscale(1) contrast(5)" }}
               />
               <img 
                 src="/clientes/grupo-msa.svg" 
                 alt="Grupo MSA" 
                 loading="lazy"
-                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-12 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
           </div>
