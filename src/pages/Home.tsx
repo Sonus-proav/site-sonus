@@ -356,7 +356,7 @@ export function Home() {
                 src="/clientes/cresol.webp" 
                 alt="Cresol" 
                 loading="lazy"
-                className="h-20 md:h-28 lg:h-36 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 scale-125 hover:scale-150 cursor-pointer" 
               />
               <img 
                 src="/clientes/unoesc.webp" 
@@ -380,7 +380,7 @@ export function Home() {
                 src="/clientes/cesul.png" 
                 alt="CESUL" 
                 loading="lazy"
-                className="h-12 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/grupo-msa.svg" 
