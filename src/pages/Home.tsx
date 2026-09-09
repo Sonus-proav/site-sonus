@@ -382,6 +382,48 @@ export function Home() {
         </div>
       </section>
 
+      {/* Brands / Tecnologias de Referência */}
+      <section className="relative py-16 md:py-20 border-t border-white/5 overflow-hidden">
+        <div className="container px-4 md:px-6 mb-10">
+          <FadeIn>
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-zinc-500 font-bold text-center">
+              Tecnologias de Referência Mundial
+            </p>
+          </FadeIn>
+        </div>
+
+        {/* Marquee infinito */}
+        <div className="relative">
+          {/* Fade nas bordas */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+
+          {/* Track de logos (duplicado para efeito contínuo) */}
+          <div className="flex animate-marquee">
+            {[...Array(2)].map((_, setIndex) => (
+              <div key={setIndex} className="flex items-center gap-16 md:gap-24 shrink-0 px-8 md:px-12">
+                {[
+                  { src: "/marcas/bose.svg", alt: "Bose", w: "w-24 md:w-28" },
+                  { src: "/marcas/renkus-heinz.svg", alt: "Renkus-Heinz", w: "w-36 md:w-44" },
+                  { src: "/marcas/qsc.svg", alt: "QSC", w: "w-20 md:w-24" },
+                  { src: "/marcas/qsys.svg", alt: "Q-SYS", w: "w-24 md:w-28" },
+                  { src: "/marcas/shure.svg", alt: "Shure", w: "w-24 md:w-28" },
+                  { src: "/marcas/sennheiser.svg", alt: "Sennheiser", w: "w-32 md:w-40" },
+                ].map((brand) => (
+                  <img
+                    key={`${setIndex}-${brand.alt}`}
+                    src={brand.src}
+                    alt={brand.alt}
+                    className={`${brand.w} h-auto object-contain opacity-40 hover:opacity-80 transition-opacity duration-500 select-none`}
+                    draggable={false}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Lazy Loaded Sections */}
       <Suspense fallback={<div className="h-40 w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
         <SocialProofBar />
