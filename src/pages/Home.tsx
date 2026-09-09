@@ -397,8 +397,6 @@ export function Home() {
           <div className="flex flex-wrap justify-center items-center gap-12 sm:gap-16 md:gap-24">
             {[
               { src: "/marcas/bose.svg", alt: "Bose", w: "w-24 md:w-28" },
-              { src: "/marcas/renkus-heinz.svg", alt: "Renkus-Heinz", w: "w-32 md:w-40" },
-              { src: "/marcas/qsc.svg", alt: "QSC", w: "w-20 md:w-24" },
               { src: "/qsys-logo.png", alt: "Q-SYS", w: "w-24 md:w-32" }, // Usando o logo PNG oficial já existente
               { src: "/marcas/shure.svg", alt: "Shure", w: "w-24 md:w-32" },
               { src: "/marcas/sennheiser.svg", alt: "Sennheiser", w: "w-32 md:w-44" },
