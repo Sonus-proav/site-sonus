@@ -403,8 +403,9 @@ export function Home() {
           <div className="flex flex-wrap justify-center items-center gap-12 sm:gap-16 md:gap-24">
             {[
               { src: "/marcas/bose.svg", alt: "Bose", w: "w-24 md:w-28", extraClass: "" },
-              { src: "/marcas/qsc.png", alt: "QSC", w: "w-20 md:w-24", extraClass: "brightness-0 invert" }, // Força o logo azul a ficar branco
-              { src: "/qsys-logo.png", alt: "Q-SYS", w: "w-24 md:w-32", extraClass: "brightness-0 invert" }, // Força o logo escuro a ficar branco
+              { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", w: "w-32 md:w-44", extraClass: "brightness-0 invert mix-blend-screen" }, // mix-blend-screen remove fundo preto caso a imagem original tivesse fundo branco invertido
+              { src: "/marcas/qsc.png", alt: "QSC", w: "w-20 md:w-24", extraClass: "brightness-0 invert" },
+              { src: "/qsys-logo.png", alt: "Q-SYS", w: "w-24 md:w-32", extraClass: "brightness-0 invert" },
               { src: "/marcas/shure.svg", alt: "Shure", w: "w-24 md:w-32", extraClass: "" },
               { src: "/marcas/sennheiser.svg", alt: "Sennheiser", w: "w-32 md:w-44", extraClass: "" },
             ].map((brand) => (
