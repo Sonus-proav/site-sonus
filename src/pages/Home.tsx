@@ -380,13 +380,13 @@ export function Home() {
                 src="/clientes/cesul.png" 
                 alt="CESUL" 
                 loading="lazy"
-                className="h-12 md:h-14 lg:h-16 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-10 md:h-12 lg:h-14 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
               <img 
                 src="/clientes/grupo-msa.svg" 
                 alt="Grupo MSA" 
                 loading="lazy"
-                className="h-14 md:h-16 lg:h-20 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
+                className="h-8 md:h-10 lg:h-12 object-contain brightness-0 invert transition-transform duration-500 hover:scale-110 cursor-pointer" 
               />
             </div>
           </div>
