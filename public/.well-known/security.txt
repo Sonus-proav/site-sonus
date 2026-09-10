@@ -1,0 +1,18 @@
+# Sonus Pro Audio - Security Policy
+# This file follows the RFC 9116 standard (https://securitytxt.org/)
+
+# Primary point of contact for security issues
+Contact: mailto:contato@sonusproaudio.com.br
+Contact: https://sonusproaudio.com.br/contato
+
+# Preferred languages for communication
+Preferred-Languages: pt-BR, en
+
+# Link to this file (Canonical URI)
+Canonical: https://sonusproaudio.com.br/.well-known/security.txt
+
+# Expiration date for this policy (valid for ~2 years)
+Expires: 2028-12-31T23:59:59.000Z
+
+# Please report any security vulnerabilities directly to our contact channels.
+# We appreciate responsible disclosure and the work of security researchers.
