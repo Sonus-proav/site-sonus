@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
-import { Mic, Video, LayoutDashboard, CheckCircle2, Cctv, Cpu, Radio, Youtube, Users, ShieldCheck, Clock } from "lucide-react"
+import { Mic, Video, LayoutDashboard, CheckCircle2, Cctv, Cpu, Radio, MonitorPlay, Users, ShieldCheck, Clock } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
@@ -347,7 +347,7 @@ export function PlenariosLanding() {
             <div className="glass-card p-8 rounded-3xl border-white/10 hover:border-white/20 transition-all duration-500 relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/5 rounded-full blur-[50px]"></div>
               <div className="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center mb-6 relative z-10 border border-red-600/20">
-                <Youtube className="w-6 h-6 text-red-500" />
+                <MonitorPlay className="w-6 h-6 text-red-500" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-white relative z-10">Streaming Oficial</h3>
               <p className="text-sm text-zinc-400 relative z-10 mb-6">
