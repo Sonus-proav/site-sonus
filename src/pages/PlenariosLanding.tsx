@@ -89,23 +89,33 @@ function PlenaryBlueprint() {
     { 
       title: "Cérebro Q-SYS", 
       icon: <Cpu className="w-5 h-5" />, 
-      desc: "O processador central (Core) gerencia áudio, roteia vídeo e automação. Uma matriz digital sobre rede IP, eliminando racks analógicos gigantescos e processamentos isolados.",
+      desc: "Um único Q-SYS Core gerencia todo o áudio, os cortes de vídeo e a automação do plenário através da rede local (IP/Dante), eliminando a necessidade de racks analógicos e DSPs isolados.",
       visual: (
-        <div className="w-full h-full bg-[#030303] flex items-center justify-center relative overflow-hidden group">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0,transparent_60%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]" />
+        <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden group">
+          {/* Grid background */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]" />
           
+          {/* Animated data rings */}
+          <div className="absolute w-[80%] aspect-square max-w-[400px] rounded-full border border-blue-500/20 border-dashed animate-[spin_40s_linear_infinite]" />
+          <div className="absolute w-[60%] aspect-square max-w-[300px] rounded-full border border-blue-400/10 animate-[spin_20s_linear_infinite_reverse]" />
+          
+          {/* Core */}
           <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }}
-            className="relative z-10 w-48 h-48 rounded-2xl border border-blue-500/30 bg-blue-950/20 backdrop-blur-md flex flex-col items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.2)]"
+            animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.2)", "0 0 60px rgba(59,130,246,0.6)", "0 0 20px rgba(59,130,246,0.2)"] }} 
+            transition={{ duration: 3, repeat: Infinity }} 
+            className="w-32 h-32 md:w-40 md:h-40 bg-zinc-950 border border-blue-500/50 rounded-2xl flex flex-col items-center justify-center relative z-10 backdrop-blur-xl"
           >
-            <Cpu className="w-16 h-16 text-blue-400 mb-4 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
-            <span className="text-blue-300 font-mono text-xs font-bold tracking-wider">Q-SYS CORE</span>
-            <div className="mt-4 flex gap-2">
-               <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-               <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse delay-75" />
-               <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse delay-150" />
-            </div>
+             <Cpu className="text-blue-400 w-10 h-10 md:w-12 md:h-12 mb-2 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+             <span className="text-[10px] md:text-xs font-mono text-blue-300 font-bold tracking-wider">CORE 110f</span>
+             
+             {/* Status indicators */}
+             <div className="absolute top-2 right-2 flex gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse delay-75" />
+             </div>
+             <div className="absolute -bottom-6 text-[8px] md:text-[10px] text-blue-400 font-mono whitespace-nowrap opacity-70">
+                [AEC PROCESSING: ACTIVE]
+             </div>
           </motion.div>
         </div>
       )
@@ -113,24 +123,39 @@ function PlenaryBlueprint() {
     { 
       title: "Captação Shure MXC", 
       icon: <Mic className="w-5 h-5" />, 
-      desc: "Microfones de discussão padrão ONU. Cada unidade possui alto-falante integrado, anel de LED de status, botão físico de requisição de fala e imunidade contra interferência celular 5G.",
+      desc: "A linha MXC da Shure entrega imunidade absoluta a smartphones (5G). Os anéis de LED indicam visualmente quem tem a palavra, enquanto o sistema gerencia a fila de fala automaticamente.",
       visual: (
-        <div className="w-full h-full bg-[#030303] flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.1)_0,transparent_60%)]" />
-          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="flex gap-4 sm:gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className={`w-2 h-20 bg-gradient-to-t ${i === 2 ? 'from-zinc-800 to-red-500' : 'from-zinc-800 to-zinc-600'} rounded-t-full relative`}>
-                  {i === 2 && <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full blur-[4px] animate-pulse" />}
-                </div>
-                <div className="w-16 sm:w-24 h-8 bg-zinc-900 border border-white/10 rounded-t-xl mt-1 flex justify-center pt-2">
-                  <div className={`w-3 h-3 rounded-full ${i === 2 ? 'bg-red-500 shadow-[0_0_10px_#ef4444]' : 'bg-zinc-700'}`} />
-                </div>
-              </div>
-            ))}
-          </motion.div>
-          <div className="mt-8 text-zinc-500 font-mono text-xs uppercase tracking-widest text-center">
-            {">"} Mic 02 Ativo <br/> Fila FIFO: Mic 01, Mic 03
+          
+          {/* Curved Desk Arrangement */}
+          <div className="relative w-64 md:w-96 h-32 md:h-48 border-t-2 border-dashed border-zinc-800 rounded-t-full mt-24 flex justify-center">
+             
+             {/* Inactive Mics */}
+             <div className="absolute top-4 left-4 w-6 h-6 md:w-8 md:h-8 bg-zinc-900 border border-white/10 rounded-full flex items-center justify-center">
+               <Mic className="w-3 h-3 text-zinc-600" />
+             </div>
+             <div className="absolute top-4 right-4 w-6 h-6 md:w-8 md:h-8 bg-zinc-900 border border-white/10 rounded-full flex items-center justify-center">
+               <Mic className="w-3 h-3 text-zinc-600" />
+             </div>
+             
+             {/* Active Mic */}
+             <div className="absolute -top-4 left-1/3">
+               <motion.div animate={{ scale: [1, 2.5], opacity: [0.5, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute inset-0 bg-red-500 rounded-full" />
+               <motion.div animate={{ scale: [1, 1.8], opacity: [0.8, 0] }} transition={{ duration: 1.5, delay: 0.5, repeat: Infinity }} className="absolute inset-0 bg-red-500 rounded-full" />
+               
+               <div className="w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border border-red-500 rounded-full flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                 <Mic className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
+               </div>
+             </div>
+          </div>
+          
+          {/* Terminal output */}
+          <div className="absolute top-4 left-4 font-mono text-[8px] md:text-[10px] text-green-400">
+             {">"} DETECTANDO VOZ...<br/>
+             {">"} CANAL_02: <span className="text-red-400">ON_AIR</span><br/>
+             {">"} FILA_FIFO: 01, 03<br/>
+             {">"} RF_INTERFERENCE: <span className="text-zinc-500">NONE</span>
           </div>
         </div>
       )
@@ -138,52 +163,90 @@ function PlenaryBlueprint() {
     { 
       title: "Câmeras Auto-Track", 
       icon: <Cctv className="w-5 h-5" />, 
-      desc: "Automação robótica de vídeo. Assim que o microfone Shure é ativado, o processador Q-SYS direciona automaticamente a câmera PTZ para o orador em milissegundos. Adeus cortes manuais.",
+      desc: "O corte de câmera deixa de ser manual. Ao apertar o botão do microfone, o Q-SYS direciona a câmera PTZ exata para o rosto do vereador em milissegundos. Enquadramento sempre perfeito.",
       visual: (
-        <div className="w-full h-full bg-[#030303] flex items-center justify-center relative overflow-hidden">
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1)_0,transparent_60%)]" />
-           <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative flex items-center justify-center">
-              <Cctv className="w-20 h-20 text-purple-400 relative z-10" />
-              {/* Cone of vision */}
-              <motion.div 
-                animate={{ rotate: [-15, 15, -15] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-gradient-to-b from-purple-500/20 to-transparent origin-top -translate-x-1/2"
-                style={{ clipPath: 'polygon(50% 0, 0 100%, 100% 100%)' }}
-              />
-           </motion.div>
+        <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden">
+           {/* Camera targeting system */}
+           <div className="absolute inset-4 md:inset-8 border border-zinc-800 rounded-xl overflow-hidden bg-black">
+             {/* Video feed simulation */}
+             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-30 mix-blend-overlay" />
+             <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-20 pointer-events-none" />
+             
+             {/* Crosshair / Targeting */}
+             <motion.div 
+               initial={{ x: -100, y: -50, scale: 2 }}
+               animate={{ x: 0, y: 0, scale: 1 }}
+               transition={{ duration: 1, delay: 0.5, type: "spring" }}
+               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48 border-2 border-purple-500/30"
+             >
+               {/* Crosshair corners */}
+               <div className="absolute -top-1 -left-1 w-4 h-4 border-t-4 border-l-4 border-purple-400" />
+               <div className="absolute -top-1 -right-1 w-4 h-4 border-t-4 border-r-4 border-purple-400" />
+               <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-4 border-l-4 border-purple-400" />
+               <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-4 border-r-4 border-purple-400" />
+               
+               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono text-purple-400 whitespace-nowrap bg-purple-900/30 px-2 py-1 rounded">
+                 TARGET LOCKED (MIC_02)
+               </div>
+               
+               <motion.div 
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-purple-400/50 flex items-center justify-center"
+               >
+                 <div className="w-1 h-1 bg-purple-400 rounded-full" />
+               </motion.div>
+             </motion.div>
+           </div>
         </div>
       )
     },
     { 
       title: "Transparência & Atas", 
       icon: <FileText className="w-5 h-5" />, 
-      desc: "Integração do hardware de votação ao software legislativo. O sistema registra cada voto nominal, tempo de fala e gera as atas da sessão em PDF automaticamente para o portal da transparência.",
+      desc: "Hardware e software unidos. Cada voto nominal é registrado, computado no telão e uma Ata em PDF assinada digitalmente é gerada imediatamente para o Portal da Transparência.",
       visual: (
-        <div className="w-full h-full bg-[#030303] flex items-center justify-center relative overflow-hidden p-8">
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0,transparent_60%)]" />
-           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
-              <div className="bg-zinc-950 p-3 flex items-center gap-2 border-b border-zinc-800">
-                <Lock className="w-4 h-4 text-green-500" />
-                <span className="text-[10px] text-green-400 font-mono">REGISTRO_CRIPOTOGRAFADO.PDF</span>
+        <div className="w-full h-full bg-[#020202] flex flex-col md:flex-row gap-4 p-4 md:p-8">
+           {/* Live chart */}
+           <div className="w-full md:w-1/3 flex flex-col gap-4">
+             <div className="h-24 md:h-full bg-zinc-900/50 border border-zinc-800 rounded-lg flex items-end p-4 gap-2 relative overflow-hidden">
+                <div className="absolute top-2 left-2 font-mono text-[8px] text-zinc-500">QUÓRUM</div>
+                <motion.div initial={{ height: 0 }} animate={{ height: '80%' }} transition={{ duration: 1 }} className="w-1/3 bg-green-500 rounded-t-sm shadow-[0_0_10px_rgba(34,197,94,0.3)] relative">
+                  <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-green-400">14</span>
+                </motion.div>
+                <motion.div initial={{ height: 0 }} animate={{ height: '10%' }} transition={{ duration: 1 }} className="w-1/3 bg-zinc-500 rounded-t-sm relative">
+                  <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-zinc-400">00</span>
+                </motion.div>
+                <motion.div initial={{ height: 0 }} animate={{ height: '30%' }} transition={{ duration: 1 }} className="w-1/3 bg-red-500 rounded-t-sm shadow-[0_0_10px_rgba(239,68,68,0.3)] relative">
+                  <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-red-400">03</span>
+                </motion.div>
+             </div>
+           </div>
+           
+           {/* Log feed */}
+           <div className="w-full md:w-2/3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 font-mono text-[8px] md:text-[10px] overflow-hidden relative">
+              <div className="absolute top-0 left-0 right-0 bg-zinc-950 p-2 border-b border-zinc-800 flex gap-2 items-center z-10">
+                <Lock className="w-3 h-3 text-green-500" />
+                <span className="text-zinc-400">LOG_DE_SESSÃO_CRIPTOGRAFADO</span>
               </div>
-              <div className="p-4 space-y-3">
-                {[
-                  { n: "Ver. João (SIM)", t: "14:02:05" },
-                  { n: "Ver. Maria (SIM)", t: "14:02:07" },
-                  { n: "Ver. Carlos (NÃO)", t: "14:02:11" },
-                ].map((row, i) => (
-                  <div key={i} className="flex justify-between items-center text-xs font-mono border-b border-white/5 pb-2">
-                    <span className="text-zinc-300">{row.n}</span>
-                    <span className="text-zinc-500">{row.t}</span>
-                  </div>
-                ))}
-                <div className="mt-4 flex items-center justify-center gap-2 text-green-500 bg-green-500/10 py-2 rounded">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span className="text-xs font-bold">ATA ASSINADA DIGITALMENTE</span>
-                </div>
+              
+              <div className="mt-8 flex flex-col gap-3 relative h-full">
+                <motion.div 
+                   animate={{ y: [0, -50] }} 
+                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }} 
+                   className="flex flex-col gap-3"
+                >
+                   <div className="text-green-400">[14:02:05] VOTO: SIM (Ver. João) - HASH: x8f9a...</div>
+                   <div className="text-green-400">[14:02:07] VOTO: SIM (Ver. Maria) - HASH: c2b31...</div>
+                   <div className="text-red-400">[14:02:11] VOTO: NÃO (Ver. Carlos) - HASH: a9d4e...</div>
+                   <div className="text-green-400">[14:02:15] VOTO: SIM (Ver. Ana) - HASH: b5f2c...</div>
+                   <div className="text-green-400">[14:02:18] VOTO: SIM (Ver. Pedro) - HASH: e1c8d...</div>
+                </motion.div>
+                
+                {/* Overlay gradient for fade effect */}
+                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-zinc-900/50 to-transparent pointer-events-none" />
               </div>
-           </motion.div>
+           </div>
         </div>
       )
     }
