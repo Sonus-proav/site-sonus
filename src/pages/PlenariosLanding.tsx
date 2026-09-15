@@ -30,6 +30,7 @@ function VotingLedWall3D() {
     const interval = setInterval(() => {
       if (s < 14) { setSim(prev => prev + 1); s++; }
       if (s > 4 && n < 3) { setNao(prev => prev + 1); n++; }
+      if (s >= 14 && n >= 3) clearInterval(interval);
     }, 200)
     return () => clearInterval(interval)
   }, [])
@@ -41,7 +42,7 @@ function VotingLedWall3D() {
         animate={{ rotateY: [-10, -5, -10], rotateX: [10, 8, 10], y: [-5, 5, -5], opacity: 1 }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#050505] rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16"
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
       >
         {/* LED Matrix Grid Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-10" />
@@ -103,6 +104,7 @@ function PlenaryBlueprint() {
             animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.2)", "0 0 60px rgba(59,130,246,0.6)", "0 0 20px rgba(59,130,246,0.2)"] }} 
             transition={{ duration: 3, repeat: Infinity }} 
             className="w-32 h-32 md:w-40 md:h-40 bg-zinc-950 border border-blue-500/50 rounded-2xl flex flex-col items-center justify-center relative z-10 backdrop-blur-xl"
+            style={{ willChange: 'box-shadow' }}
           >
              <Cpu className="text-blue-400 w-10 h-10 md:w-12 md:h-12 mb-2 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
              <span className="text-[10px] md:text-xs font-mono text-blue-300 font-bold tracking-wider">CORE 110f</span>
@@ -168,7 +170,7 @@ function PlenaryBlueprint() {
            {/* Camera targeting system */}
            <div className="absolute inset-4 md:inset-8 border border-zinc-800 rounded-xl overflow-hidden bg-black">
              {/* Video feed simulation */}
-             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-30 mix-blend-overlay" />
+             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none" />
              <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-20 pointer-events-none" />
              
              {/* Crosshair / Targeting */}
