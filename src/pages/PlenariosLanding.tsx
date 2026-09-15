@@ -40,21 +40,18 @@ function VotingLedWall3D() {
         initial={{ opacity: 0, rotateY: -10, rotateX: 10, rotateZ: 2 }}
         animate={{ rotateY: [-10, -5, -10], rotateX: [10, 8, 10], y: [-5, 5, -5], opacity: 1 }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#030303]/95 md:backdrop-blur-md rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16"
-        style={{ 
-          transformStyle: 'preserve-3d',
-          boxShadow: '-10px 20px 50px -10px rgba(0,0,0,1), -5px 0 30px rgba(59,130,246,0.1)'
-        }}
+        className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#050505] rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16"
+        style={{ transformStyle: 'preserve-3d' }}
       >
         {/* LED Matrix Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-20" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay z-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 pointer-events-none z-10" />
         
-        {/* Glow Effects (Optimized for Mobile) */}
-        <div className="absolute top-0 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-green-500/15 rounded-full blur-[60px] md:blur-[120px] pointer-events-none z-0" />
-        <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-red-500/15 rounded-full blur-[60px] md:blur-[120px] pointer-events-none z-0" />
+        {/* Glow Effects (Optimized - Pure Radial Gradients without Blur) */}
+        <div className="absolute top-0 left-1/4 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(34,197,94,0.1)_0,transparent_60%)] pointer-events-none z-0" />
+        <div className="absolute bottom-0 right-1/4 w-full h-full bg-[radial-gradient(ellipse_at_bottom,rgba(239,68,68,0.1)_0,transparent_60%)] pointer-events-none z-0" />
 
-        <div className="relative z-10 text-center mb-6 md:mb-16 border-b border-white/10 pb-4 md:pb-10">
+        <div className="relative z-20 text-center mb-6 md:mb-16 border-b border-white/10 pb-4 md:pb-10">
           <h3 className="text-xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] md:drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]">LEI_042/26</h3>
           <p className="text-zinc-500 font-mono mt-2 md:mt-6 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-sm">Votação Nominal Aberta</p>
         </div>
