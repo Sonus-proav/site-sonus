@@ -28,58 +28,53 @@ function VotingLedWall3D() {
   useEffect(() => {
     let s = 0; let n = 0;
     const interval = setInterval(() => {
-      if (s < 14) {
-        setSim(prev => prev + 1);
-        s++;
-      }
-      if (s > 4 && n < 3) {
-        setNao(prev => prev + 1);
-        n++;
-      }
+      if (s < 14) { setSim(prev => prev + 1); s++; }
+      if (s > 4 && n < 3) { setNao(prev => prev + 1); n++; }
     }, 200)
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <div className="w-full relative flex justify-center perspective-[1200px] mt-12 md:mt-20">
+    <div className="w-full relative flex justify-center perspective-[2000px]">
       <motion.div 
-        animate={{ rotateX: [12, 8, 12], y: [-5, 5, -5] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="w-full max-w-5xl py-12 md:py-20 bg-[#020202] rounded-3xl border border-white/5 relative overflow-hidden flex flex-col justify-center px-4 md:px-12"
+        initial={{ opacity: 0, rotateY: -20, rotateX: 10, rotateZ: 2 }}
+        animate={{ rotateY: [-20, -15, -20], rotateX: [10, 8, 10], y: [-10, 10, -10], opacity: 1 }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="w-[110%] max-w-[1200px] py-16 md:py-24 bg-[#030303]/90 backdrop-blur-2xl rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-6 md:px-16"
         style={{ 
           transformStyle: 'preserve-3d',
-          boxShadow: '0 50px 100px -20px rgba(0,0,0,1), 0 0 80px rgba(59,130,246,0.1)'
+          boxShadow: '-30px 40px 100px -20px rgba(0,0,0,1), -10px 0 60px rgba(59,130,246,0.1)'
         }}
       >
         {/* LED Matrix Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.7)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.7)_2px,transparent_2px)] bg-[size:4px_4px] pointer-events-none z-20" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:4px_4px] pointer-events-none z-20" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay z-30 pointer-events-none" />
         
         {/* Glow Effects */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[100px] pointer-events-none z-0" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-[100px] pointer-events-none z-0" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/15 rounded-full blur-[120px] pointer-events-none z-0" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-[120px] pointer-events-none z-0" />
 
-        <div className="relative z-10 text-center mb-6 md:mb-10 border-b border-white/10 pb-4 md:pb-8">
-          <h3 className="text-xl md:text-5xl font-mono text-amber-500 font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">PROJETO DE LEI 042/2026</h3>
-          <p className="text-zinc-500 font-mono mt-2 md:mt-4 uppercase tracking-widest text-[10px] md:text-sm">Votação Nominal Aberta</p>
+        <div className="relative z-10 text-center mb-10 md:mb-16 border-b border-white/10 pb-6 md:pb-10">
+          <h3 className="text-2xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.3em] uppercase drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]">LEI_042/26</h3>
+          <p className="text-zinc-500 font-mono mt-3 md:mt-6 uppercase tracking-[0.4em] text-[10px] md:text-sm">Votação Nominal Aberta</p>
         </div>
 
-        <div className="relative z-10 grid grid-cols-3 gap-2 md:gap-12 w-full max-w-4xl mx-auto">
+        <div className="relative z-10 grid grid-cols-3 gap-4 md:gap-16 w-full max-w-5xl mx-auto">
           <div className="flex flex-col items-center">
-            <span className="text-green-500 font-mono text-sm md:text-3xl mb-1 md:mb-3 tracking-widest">SIM</span>
-            <span className="text-6xl md:text-[9rem] font-black text-green-400 font-mono drop-shadow-[0_0_25px_rgba(74,222,128,0.6)] leading-none">
+            <span className="text-green-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">SIM</span>
+            <span className="text-[5rem] md:text-[11rem] font-black text-green-400 font-mono drop-shadow-[0_0_30px_rgba(74,222,128,0.5)] leading-none">
               {sim.toString().padStart(2, '0')}
             </span>
           </div>
-          <div className="flex flex-col items-center opacity-40">
-            <span className="text-zinc-400 font-mono text-sm md:text-3xl mb-1 md:mb-3 tracking-widest">ABS</span>
-            <span className="text-6xl md:text-[9rem] font-black text-zinc-500 font-mono leading-none">
+          <div className="flex flex-col items-center opacity-30">
+            <span className="text-zinc-400 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">ABS</span>
+            <span className="text-[5rem] md:text-[11rem] font-black text-zinc-500 font-mono leading-none">
               00
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-red-500 font-mono text-sm md:text-3xl mb-1 md:mb-3 tracking-widest">NÃO</span>
-            <span className="text-6xl md:text-[9rem] font-black text-red-500 font-mono drop-shadow-[0_0_25px_rgba(239,68,68,0.6)] leading-none">
+            <span className="text-red-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">NÃO</span>
+            <span className="text-[5rem] md:text-[11rem] font-black text-red-500 font-mono drop-shadow-[0_0_30px_rgba(239,68,68,0.5)] leading-none">
               {nao.toString().padStart(2, '0')}
             </span>
           </div>
@@ -383,43 +378,55 @@ export function PlenariosLanding() {
       {/* ══════════════════════════════════════════════ */}
       {/* IMMERSIVE HERO — 3D Display                   */}
       {/* ══════════════════════════════════════════════ */}
-      <section className="relative pt-32 md:pt-40 pb-32 md:pb-48 min-h-screen flex flex-col justify-center border-b border-white/5">
+      <section className="relative min-h-screen flex items-center border-b border-white/5 overflow-hidden bg-[#020202]">
         {/* Futuristic Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_80%)]" />
         
-        <div className="max-w-[1400px] mx-auto w-full px-4 lg:px-12 relative z-10 text-center">
-          <FadeIn>
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-zinc-300 uppercase">Projetos Executivos para o Setor Público</span>
-            </div>
-          </FadeIn>
+        <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center pt-24 lg:pt-0">
           
-          <Reveal>
-            <h1 className="text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter leading-[0.95] text-white">
-              O Plenário<br/>do <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-400 via-cyan-300 to-emerald-400">Futuro.</span>
-            </h1>
-          </Reveal>
+          {/* LEFT COLUMN - TYPOGRAPHY & CTAS */}
+          <div className="w-full lg:w-1/2 relative z-20 flex flex-col items-start pt-10 pb-20 lg:py-0">
+            <FadeIn>
+              <div className="flex items-center gap-3 mb-8 border-l-2 border-blue-500 pl-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                <span className="text-[10px] font-mono tracking-[0.3em] text-zinc-400 uppercase">Projetos Executivos de Engenharia</span>
+              </div>
+            </FadeIn>
+            
+            <Reveal>
+              <h1 className="text-[4rem] sm:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter leading-[0.85] uppercase text-white">
+                Plenário
+                <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-500 to-zinc-700" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.9)' }}>
+                  Do Futuro
+                </span>
+              </h1>
+            </Reveal>
+            
+            <FadeIn delay={0.2} className="max-w-lg mt-10">
+              <p className="text-lg lg:text-xl text-zinc-400 font-light leading-relaxed border-l border-white/10 pl-6">
+                A arquitetura do som perfeito aliada ao corte de câmeras autônomo. 
+                <strong className="text-white font-medium"> Votação eletrônica nominal</strong> integrada e imune a fraudes para o setor público.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.3} className="flex flex-col sm:flex-row gap-4 mt-12 w-full sm:w-auto">
+              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} className="h-16 px-8 bg-blue-600 hover:bg-blue-500 text-white rounded-none text-sm font-bold tracking-widest uppercase transition-all shadow-[8px_8px_0px_rgba(255,255,255,0.1)] hover:shadow-[4px_4px_0px_rgba(255,255,255,0.1)] hover:translate-y-1 hover:translate-x-1 border border-blue-500">
+                Termo de Referência
+              </Button>
+              <Button onClick={() => handleWhatsApp('whatsapp_hero')} variant="outline" className="h-16 px-8 bg-transparent border-white/20 text-white hover:bg-white/5 rounded-none text-sm font-bold tracking-widest uppercase transition-all shadow-none">
+                Falar com Especialista
+              </Button>
+            </FadeIn>
+          </div>
+
+          {/* RIGHT COLUMN - 3D LED WALL */}
+          <div className="w-full lg:absolute lg:right-[-5%] lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] z-10 mt-10 lg:mt-0 pointer-events-none">
+            <FadeIn delay={0.4}>
+              <VotingLedWall3D />
+            </FadeIn>
+          </div>
           
-          <FadeIn delay={0.2} className="max-w-2xl mx-auto mt-6 md:mt-8">
-            <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
-              Áudio de inteligibilidade impecável. Câmeras que cortam automaticamente para a voz. Votação eletrônica nominal imune a falhas.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 md:mt-12">
-            <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto h-14 px-8 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-lg font-bold shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all">
-              Solicitar Projeto Executivo
-            </Button>
-            <Button onClick={() => handleWhatsApp('whatsapp_hero')} variant="outline" className="w-full sm:w-auto h-14 px-8 border-white/10 hover:bg-white/5 rounded-full text-lg font-medium transition-all">
-              Falar com Especialista
-            </Button>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <VotingLedWall3D />
-          </FadeIn>
-
         </div>
       </section>
 
