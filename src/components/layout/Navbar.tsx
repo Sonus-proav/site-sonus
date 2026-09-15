@@ -34,6 +34,7 @@ export function Navbar() {
     { name: "Sobre Nós", path: "/#sobre" },
     { name: "Portfólio", path: "/projetos" },
     { name: "Auditórios", path: "/auditorios-e-teatros" },
+    { name: "Plenários", path: "/plenarios-e-camaras" },
     { name: "Igrejas", path: "/igrejas-e-templos" },
     { name: "Salas de Reunião", path: "/salas-reuniao" },
     { name: "Q-SYS", path: "/qsys" },
