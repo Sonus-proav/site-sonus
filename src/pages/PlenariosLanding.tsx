@@ -13,7 +13,7 @@ import { trackWhatsAppClick } from "@/lib/metaPixel"
 export function PlenariosLanding() {
   const location = useLocation();
 
-  const handleWhatsApp = async (origin: string) => {
+  const handleWhatsApp = async (origin: 'whatsapp_flutuante' | 'whatsapp_hero' | 'whatsapp_urgente' | 'whatsapp_footer') => {
     trackWhatsAppClick(origin, 'plenarios');
     const geo = await getUserGeo();
     logLead({
@@ -72,7 +72,7 @@ export function PlenariosLanding() {
                 <Button 
                   size="lg" 
                   className="shimmer-btn bg-white text-black hover:bg-zinc-200 text-base h-14 px-8 rounded-full"
-                  onClick={() => handleWhatsApp('hero_plenarios')}
+                  onClick={() => handleWhatsApp('whatsapp_hero')}
                 >
                   Agendar Consultoria
                 </Button>
@@ -268,7 +268,7 @@ export function PlenariosLanding() {
               <Button 
                 size="lg" 
                 className="shimmer-btn bg-white text-black hover:bg-zinc-200 text-lg h-14 px-8 rounded-full font-semibold"
-                onClick={() => handleWhatsApp('cta_footer_plenarios')}
+                onClick={() => handleWhatsApp('whatsapp_footer')}
               >
                 Falar com um Especialista
               </Button>
