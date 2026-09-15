@@ -45,7 +45,7 @@ function VotingLedWall3D() {
       <motion.div 
         animate={{ rotateX: [12, 8, 12], y: [-5, 5, -5] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="w-full max-w-5xl aspect-[21/9] md:aspect-[32/10] bg-[#020202] rounded-3xl border border-white/5 relative overflow-hidden flex flex-col justify-center p-4 md:p-12"
+        className="w-full max-w-5xl py-12 md:py-20 bg-[#020202] rounded-3xl border border-white/5 relative overflow-hidden flex flex-col justify-center px-4 md:px-12"
         style={{ 
           transformStyle: 'preserve-3d',
           boxShadow: '0 50px 100px -20px rgba(0,0,0,1), 0 0 80px rgba(59,130,246,0.1)'
