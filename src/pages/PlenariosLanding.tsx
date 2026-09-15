@@ -37,44 +37,44 @@ function VotingLedWall3D() {
   return (
     <div className="w-full relative flex justify-center perspective-[2000px]">
       <motion.div 
-        initial={{ opacity: 0, rotateY: -20, rotateX: 10, rotateZ: 2 }}
-        animate={{ rotateY: [-20, -15, -20], rotateX: [10, 8, 10], y: [-10, 10, -10], opacity: 1 }}
+        initial={{ opacity: 0, rotateY: -10, rotateX: 10, rotateZ: 2 }}
+        animate={{ rotateY: [-10, -5, -10], rotateX: [10, 8, 10], y: [-5, 5, -5], opacity: 1 }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="w-[110%] max-w-[1200px] py-16 md:py-24 bg-[#030303]/90 backdrop-blur-2xl rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-6 md:px-16"
+        className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#030303]/95 md:backdrop-blur-md rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16"
         style={{ 
           transformStyle: 'preserve-3d',
-          boxShadow: '-30px 40px 100px -20px rgba(0,0,0,1), -10px 0 60px rgba(59,130,246,0.1)'
+          boxShadow: '-10px 20px 50px -10px rgba(0,0,0,1), -5px 0 30px rgba(59,130,246,0.1)'
         }}
       >
         {/* LED Matrix Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:4px_4px] pointer-events-none z-20" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay z-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-20" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay z-30 pointer-events-none" />
         
-        {/* Glow Effects */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/15 rounded-full blur-[120px] pointer-events-none z-0" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-[120px] pointer-events-none z-0" />
+        {/* Glow Effects (Optimized for Mobile) */}
+        <div className="absolute top-0 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-green-500/15 rounded-full blur-[60px] md:blur-[120px] pointer-events-none z-0" />
+        <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-red-500/15 rounded-full blur-[60px] md:blur-[120px] pointer-events-none z-0" />
 
-        <div className="relative z-10 text-center mb-10 md:mb-16 border-b border-white/10 pb-6 md:pb-10">
-          <h3 className="text-2xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.3em] uppercase drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]">LEI_042/26</h3>
-          <p className="text-zinc-500 font-mono mt-3 md:mt-6 uppercase tracking-[0.4em] text-[10px] md:text-sm">Votação Nominal Aberta</p>
+        <div className="relative z-10 text-center mb-6 md:mb-16 border-b border-white/10 pb-4 md:pb-10">
+          <h3 className="text-xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] md:drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]">LEI_042/26</h3>
+          <p className="text-zinc-500 font-mono mt-2 md:mt-6 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-sm">Votação Nominal Aberta</p>
         </div>
 
-        <div className="relative z-10 grid grid-cols-3 gap-4 md:gap-16 w-full max-w-5xl mx-auto">
+        <div className="relative z-10 grid grid-cols-3 gap-2 md:gap-16 w-full max-w-5xl mx-auto">
           <div className="flex flex-col items-center">
-            <span className="text-green-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">SIM</span>
-            <span className="text-[5rem] md:text-[11rem] font-black text-green-400 font-mono drop-shadow-[0_0_30px_rgba(74,222,128,0.5)] leading-none">
+            <span className="text-green-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">SIM</span>
+            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-green-400 font-mono drop-shadow-[0_0_15px_rgba(74,222,128,0.5)] md:drop-shadow-[0_0_30px_rgba(74,222,128,0.5)] leading-none">
               {sim.toString().padStart(2, '0')}
             </span>
           </div>
           <div className="flex flex-col items-center opacity-30">
-            <span className="text-zinc-400 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">ABS</span>
-            <span className="text-[5rem] md:text-[11rem] font-black text-zinc-500 font-mono leading-none">
+            <span className="text-zinc-400 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">ABS</span>
+            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-zinc-500 font-mono leading-none">
               00
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-red-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.2em] font-bold">NÃO</span>
-            <span className="text-[5rem] md:text-[11rem] font-black text-red-500 font-mono drop-shadow-[0_0_30px_rgba(239,68,68,0.5)] leading-none">
+            <span className="text-red-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">NÃO</span>
+            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-red-500 font-mono drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] md:drop-shadow-[0_0_30px_rgba(239,68,68,0.5)] leading-none">
               {nao.toString().padStart(2, '0')}
             </span>
           </div>
@@ -238,11 +238,11 @@ function PlenaryBlueprint() {
                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }} 
                    className="flex flex-col gap-3"
                 >
-                   <div className="text-green-400">[14:02:05] VOTO: SIM (Ver. João) - HASH: x8f9a...</div>
-                   <div className="text-green-400">[14:02:07] VOTO: SIM (Ver. Maria) - HASH: c2b31...</div>
-                   <div className="text-red-400">[14:02:11] VOTO: NÃO (Ver. Carlos) - HASH: a9d4e...</div>
-                   <div className="text-green-400">[14:02:15] VOTO: SIM (Ver. Ana) - HASH: b5f2c...</div>
-                   <div className="text-green-400">[14:02:18] VOTO: SIM (Ver. Pedro) - HASH: e1c8d...</div>
+                   <div className="text-green-400 truncate">[14:02:05] VOTO: SIM (Ver. João) - HASH: x8f9a...</div>
+                   <div className="text-green-400 truncate">[14:02:07] VOTO: SIM (Ver. Maria) - HASH: c2b31...</div>
+                   <div className="text-red-400 truncate">[14:02:11] VOTO: NÃO (Ver. Carlos) - HASH: a9d4e...</div>
+                   <div className="text-green-400 truncate">[14:02:15] VOTO: SIM (Ver. Ana) - HASH: b5f2c...</div>
+                   <div className="text-green-400 truncate">[14:02:18] VOTO: SIM (Ver. Pedro) - HASH: e1c8d...</div>
                 </motion.div>
                 
                 {/* Overlay gradient for fade effect */}
@@ -394,10 +394,10 @@ export function PlenariosLanding() {
             </FadeIn>
             
             <Reveal>
-              <h1 className="text-[4rem] sm:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter leading-[0.85] uppercase text-white">
+              <h1 className="text-[14vw] sm:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter leading-[0.85] uppercase text-white">
                 Plenário
                 <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-500 to-zinc-700" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.9)' }}>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-500 to-zinc-700" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.9)', WebkitTextStrokeWidth: 'max(1px, 0.1vw)' }}>
                   Do Futuro
                 </span>
               </h1>
