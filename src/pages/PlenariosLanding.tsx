@@ -5,6 +5,8 @@ import { Navbar } from "@/components/layout/Navbar"
 import { useLocation } from "react-router-dom"
 import { motion, AnimatePresence, useScroll } from "framer-motion"
 import { Mic, CheckCircle2, Cctv, Cpu, X, Loader2, FileText, Lock } from "lucide-react"
+import { trackWhatsAppClick } from "@/lib/metaPixel"
+import { logLead, getUserGeo } from "@/lib/analytics"
 
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -26,9 +28,14 @@ function VotingLedWall3D() {
   useEffect(() => {
     let s = 0; let n = 0;
     const interval = setInterval(() => {
-      if (s < 14) setSim(prev => prev + 1);
-      if (s > 8 && n < 3) setNao(prev => prev + 1);
-      s++;
+      if (s < 14) {
+        setSim(prev => prev + 1);
+        s++;
+      }
+      if (s > 4 && n < 3) {
+        setNao(prev => prev + 1);
+        n++;
+      }
     }, 200)
     return () => clearInterval(interval)
   }, [])
@@ -314,6 +321,22 @@ export function PlenariosLanding() {
   const timelineRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress: timelineProgress } = useScroll({ target: timelineRef, offset: ["start center", "end center"] })
 
+  const handleWhatsApp = async (origin: 'whatsapp_flutuante' | 'whatsapp_hero' | 'whatsapp_urgente' | 'whatsapp_footer') => {
+    trackWhatsAppClick(origin, 'plenarios');
+    const geo = await getUserGeo();
+    logLead({
+      type: 'whatsapp',
+      source: location.pathname,
+      city: geo.city,
+      region: geo.region,
+      country: geo.country,
+      device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+      timestamp: Date.now(),
+      whatsappOrigin: origin
+    });
+    window.open("https://wa.me/5546920013151?text=Ol%C3%A1%21+Gostaria+de+falar+sobre+um+projeto+executivo+para+Plen%C3%A1rio%2FC%C3%A2mara.", "_blank");
+  }
+
   // Form State for Gov Project Request
   const [formData, setFormData] = useState({ name: "", role: "", email: "", phone: "", message: "", honeypot: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -360,7 +383,7 @@ export function PlenariosLanding() {
       {/* ══════════════════════════════════════════════ */}
       {/* IMMERSIVE HERO — 3D Display                   */}
       {/* ══════════════════════════════════════════════ */}
-      <section className="relative pt-32 md:pt-40 pb-20 overflow-hidden min-h-[95vh] flex flex-col justify-center border-b border-white/5">
+      <section className="relative pt-32 md:pt-40 pb-32 md:pb-48 min-h-screen flex flex-col justify-center border-b border-white/5">
         {/* Futuristic Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
         
@@ -382,6 +405,15 @@ export function PlenariosLanding() {
             <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
               Áudio de inteligibilidade impecável. Câmeras que cortam automaticamente para a voz. Votação eletrônica nominal imune a falhas.
             </p>
+          </FadeIn>
+
+          <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 md:mt-12">
+            <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto h-14 px-8 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-lg font-bold shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all">
+              Solicitar Projeto Executivo
+            </Button>
+            <Button onClick={() => handleWhatsApp('whatsapp_hero')} variant="outline" className="w-full sm:w-auto h-14 px-8 border-white/10 hover:bg-white/5 rounded-full text-lg font-medium transition-all">
+              Falar com Especialista
+            </Button>
           </FadeIn>
 
           <FadeIn delay={0.4}>
