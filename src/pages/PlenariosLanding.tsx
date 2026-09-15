@@ -346,9 +346,9 @@ export function PlenariosLanding() {
       <div className="border-t border-white/5 bg-black/50 py-6 relative z-10">
         <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50">
           <img src="/shure-logo.png" alt="Shure" className="h-6 object-contain brightness-0 invert" loading="lazy" />
-          <img src="/marcas/qsys.webp" alt="Q-SYS" className="h-5 md:h-6 object-contain brightness-0 invert" loading="lazy" />
-          <img src="/marcas/qsc.webp" alt="QSC" className="h-6 md:h-7 object-contain brightness-0 invert" loading="lazy" />
-          <img src="/marcas/sennheiser.webp" alt="Sennheiser" className="h-5 md:h-6 object-contain brightness-0 invert" loading="lazy" />
+          <img src="/qsys-logo.png" alt="Q-SYS" className="h-5 md:h-6 object-contain brightness-0 invert" loading="lazy" />
+          <img src="/marcas/qsc.png" alt="QSC" className="h-6 md:h-7 object-contain brightness-0 invert" loading="lazy" />
+          <img src="/marcas/sennheiser.svg" alt="Sennheiser" className="h-5 md:h-6 object-contain brightness-0 invert" loading="lazy" />
         </div>
       </div>
 
