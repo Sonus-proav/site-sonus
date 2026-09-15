@@ -42,21 +42,20 @@ function VotingLedWall3D() {
         animate={{ rotateY: [-10, -5, -10], rotateX: [10, 8, 10], y: [-5, 5, -5], opacity: 1 }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#050505] rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16 shadow-[0_0_50px_rgba(0,0,0,0.8)]"
-        style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Glow Effects (Optimized) */}
         <div className="absolute top-0 left-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top,rgba(34,197,94,0.12)_0,transparent_70%)] pointer-events-none z-0" />
         <div className="absolute bottom-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_bottom,rgba(239,68,68,0.12)_0,transparent_70%)] pointer-events-none z-0" />
 
         <div className="relative z-10 text-center mb-6 md:mb-16 border-b border-white/10 pb-4 md:pb-10">
-          <h3 className="text-xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] md:drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]">LEI_042/26</h3>
+          <h3 className="text-xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase" style={{ textShadow: '0 0 15px rgba(245,158,11,0.5)' }}>LEI_042/26</h3>
           <p className="text-zinc-500 font-mono mt-2 md:mt-6 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-sm">Votação Nominal Aberta</p>
         </div>
 
         <div className="relative z-10 grid grid-cols-3 gap-2 md:gap-16 w-full max-w-5xl mx-auto">
           <div className="flex flex-col items-center">
             <span className="text-green-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">SIM</span>
-            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-green-400 font-mono drop-shadow-[0_0_15px_rgba(74,222,128,0.5)] md:drop-shadow-[0_0_30px_rgba(74,222,128,0.5)] leading-none">
+            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-green-400 font-mono leading-none" style={{ textShadow: '0 0 20px rgba(74,222,128,0.6)' }}>
               {sim.toString().padStart(2, '0')}
             </span>
           </div>
@@ -68,7 +67,7 @@ function VotingLedWall3D() {
           </div>
           <div className="flex flex-col items-center">
             <span className="text-red-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">NÃO</span>
-            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-red-500 font-mono drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] md:drop-shadow-[0_0_30px_rgba(239,68,68,0.5)] leading-none">
+            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-red-500 font-mono leading-none" style={{ textShadow: '0 0 20px rgba(239,68,68,0.6)' }}>
               {nao.toString().padStart(2, '0')}
             </span>
           </div>
@@ -76,7 +75,7 @@ function VotingLedWall3D() {
 
         {/* LED Matrix Grid Overlay (Must be top layer to create screen illusion) */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.85)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.85)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-40" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none z-50 mix-blend-screen" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none z-50" />
       </motion.div>
     </div>
   )
@@ -100,12 +99,9 @@ function PlenaryBlueprint() {
           <div className="absolute w-[60%] aspect-square max-w-[300px] rounded-full border border-blue-400/10 animate-[spin_20s_linear_infinite_reverse]" />
           
           {/* Core */}
-          <motion.div 
-            animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.2)", "0 0 60px rgba(59,130,246,0.6)", "0 0 20px rgba(59,130,246,0.2)"] }} 
-            transition={{ duration: 3, repeat: Infinity }} 
-            className="w-32 h-32 md:w-40 md:h-40 bg-zinc-950 border border-blue-500/50 rounded-2xl flex flex-col items-center justify-center relative z-10 backdrop-blur-xl"
-          >
-             <Cpu className="text-blue-400 w-10 h-10 md:w-12 md:h-12 mb-2 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+          <div className="w-32 h-32 md:w-40 md:h-40 bg-zinc-950 border border-blue-500/50 rounded-2xl flex flex-col items-center justify-center relative z-10 backdrop-blur-xl shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+             <motion.div animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity }} className="absolute inset-0 bg-blue-500/30 blur-2xl rounded-2xl -z-10" />
+             <Cpu className="text-blue-400 w-10 h-10 md:w-12 md:h-12 mb-2" style={{ filter: 'drop-shadow(0 0 10px rgba(59,130,246,0.8))' }} />
              <span className="text-[10px] md:text-xs font-mono text-blue-300 font-bold tracking-wider">CORE 110f</span>
              
              {/* Status indicators */}
@@ -116,7 +112,7 @@ function PlenaryBlueprint() {
              <div className="absolute -bottom-6 text-[8px] md:text-[10px] text-blue-400 font-mono whitespace-nowrap opacity-70">
                 [AEC PROCESSING: ACTIVE]
              </div>
-          </motion.div>
+          </div>
         </div>
       )
     },
