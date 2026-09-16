@@ -348,14 +348,16 @@ export function PlenariosLanding() {
       </Helmet>
       <SEO 
         title="Plenários e Câmaras Municipais | Sonus Pro Audio"
-        description="Sistemas de áudio, automação de câmeras e votação eletrônica para Plenários. Solicite um Termo de Referência."
+        description="Sistemas de áudio, automação de câmeras e votação eletrônica nominal para Plenários Legislativos. Solicite apoio na elaboração do Termo de Referência."
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Automação de Plenários e Câmaras Municipais",
           provider: { "@type": "Organization", name: "Sonus Pro Audio" },
-          description: "Integração completa de áudio, câmeras PTZ e votação para câmaras de vereadores.",
-          areaServed: { "@type": "Country", name: "Brasil" }
+          description: "Integração completa de áudio digital IP (Dante), automação de câmeras PTZ (Auto-Track) e sistemas de votação eletrônica nominal para Câmaras de Vereadores e Assembleias Legislativas.",
+          areaServed: { "@type": "Country", name: "Brasil" },
+          category: "Governo / Audiovisual",
+          serviceType: "Instalação AV Turn-key e Elaboração de TR"
         }} 
       />
       
@@ -665,16 +667,24 @@ export function PlenariosLanding() {
         />
         <AeoFaq faqs={[
           {
-            question: "Como o sistema ajuda na Transparência Pública?",
-            answer: "O sistema integrado da Sonus gera atas digitais assinadas automaticamente, com o registro de cada voto e tempo de fala. Além disso, a transmissão para a TV Câmara e YouTube sai com qualidade broadcast (GC, cortes automáticos e áudio perfeito), garantindo que a população compreenda claramente cada sessão legislativa."
+            question: "Como o sistema da Sonus ajuda na Transparência Pública?",
+            answer: "Nosso sistema integrado gera atas digitais assinadas automaticamente, com o registro criptografado de cada voto nominal e tempo de fala. Além disso, a transmissão para a TV Câmara e YouTube sai com qualidade broadcast (cortes automáticos via Auto-Track e áudio perfeito), garantindo total clareza para a população."
           },
           {
             question: "Vocês auxiliam na elaboração do Termo de Referência (TR)?",
-            answer: "Sim. Nossos engenheiros de áudio e vídeo realizam o levantamento técnico arquitetônico da Câmara e entregam um projeto executivo detalhado. Esse documento possui as especificações técnicas exatas para garantir que o edital da licitação seja montado de forma segura, evitando a compra de equipamentos amadores."
+            answer: "Sim. Nossos engenheiros de áudio e vídeo realizam o levantamento arquitetônico e entregam um projeto executivo detalhado. Este documento fornece as especificações técnicas rigorosas necessárias para garantir que o edital de licitação atraia apenas soluções profissionais, evitando equipamentos amadores."
           },
           {
-            question: "É possível instalar o sistema sem interromper as sessões da Câmara?",
-            answer: "Sim. Temos experiência em trabalhar no formato 'turn-key' durante os finais de semana ou no período de recesso parlamentar. A migração da tecnologia antiga para a nova é feita com planejamento cirúrgico para que nenhuma pauta seja atrasada por conta da obra técnica."
+            question: "Quais tecnologias padrão da indústria a Sonus utiliza em plenários?",
+            answer: "Trabalhamos com o padrão ouro global: plataforma Q-SYS como cérebro de processamento, microfones Shure linha MXC (imunes a interferências 5G), distribuição de áudio digital via rede IP (Dante) e câmeras PTZ robóticas com enquadramento automático (Auto-Tracking) milissegundos após o acionamento do microfone."
+          },
+          {
+            question: "Como funciona o suporte técnico e SLA para Câmaras Municipais?",
+            answer: "Operamos com monitoramento remoto 24/7 da saúde dos equipamentos (via Q-SYS Reflect). Isso nos permite identificar e resolver falhas preventivamente. Para órgãos públicos, estabelecemos um SLA (Acordo de Nível de Serviço) rigoroso para garantir que nenhuma sessão ordinária seja suspensa por problemas técnicos."
+          },
+          {
+            question: "É possível instalar o novo sistema sem interromper as sessões da Câmara?",
+            answer: "Sim, a logística de instalação 'turn-key' é planejada de forma cirúrgica. Executamos a migração tecnológica durante finais de semana, feriados ou no período de recesso parlamentar, garantindo que o cronograma legislativo permaneça intacto."
           }
         ]} />
         <TestimonialSection />
