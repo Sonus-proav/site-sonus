@@ -38,9 +38,9 @@ function VotingLedWall3D() {
   return (
     <div className="w-full relative flex justify-center perspective-[2000px]">
       <motion.div 
-        initial={{ opacity: 0, rotateY: -10, rotateX: 10, rotateZ: 2 }}
-        animate={{ rotateY: [-10, -5, -10], rotateX: [10, 8, 10], y: [-5, 5, -5], opacity: 1 }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0, rotateY: 0, rotateX: 0, rotateZ: 0, y: 30 }}
+        animate={{ opacity: 1, rotateY: -10, rotateX: 10, rotateZ: 2, y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
         className="w-full md:w-[110%] max-w-[1200px] py-10 md:py-24 bg-[#050505] rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col justify-center px-4 md:px-16 shadow-[0_0_50px_rgba(0,0,0,0.8)]"
       >
         {/* Glow Effects (Optimized) */}
@@ -100,7 +100,7 @@ function PlenaryBlueprint() {
           
           {/* Core */}
           <div className="w-32 h-32 md:w-40 md:h-40 bg-zinc-950 border border-blue-500/50 rounded-2xl flex flex-col items-center justify-center relative z-10 backdrop-blur-xl shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-             <motion.div animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity }} className="absolute inset-0 bg-blue-500/30 blur-2xl rounded-2xl -z-10" />
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.4)_0,transparent_70%)] animate-pulse rounded-2xl -z-10" />
              <Cpu className="text-blue-400 w-10 h-10 md:w-12 md:h-12 mb-2" style={{ filter: 'drop-shadow(0 0 10px rgba(59,130,246,0.8))' }} />
              <span className="text-[10px] md:text-xs font-mono text-blue-300 font-bold tracking-wider">CORE 110f</span>
              
@@ -441,7 +441,7 @@ export function PlenariosLanding() {
       {/* ══════════════════════════════════════════════ */}
       <section className="py-24 md:py-32 bg-zinc-50 text-black relative overflow-hidden">
         {/* Subtle noise texture on white */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.15] mix-blend-multiply pointer-events-none" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
           <Reveal>
