@@ -137,8 +137,8 @@ function PlenaryBlueprint() {
              
              {/* Active Mic */}
              <div className="absolute -top-4 left-1/3">
-               <motion.div animate={{ scale: [1, 2.5], opacity: [0.5, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute inset-0 bg-red-500 rounded-full" />
-               <motion.div animate={{ scale: [1, 1.8], opacity: [0.8, 0] }} transition={{ duration: 1.5, delay: 0.5, repeat: Infinity }} className="absolute inset-0 bg-red-500 rounded-full" />
+               <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75" />
+               <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-50" style={{ animationDelay: '0.5s' }} />
                
                <div className="w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border border-red-500 rounded-full flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
                  <Mic className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
@@ -185,13 +185,9 @@ function PlenaryBlueprint() {
                  TARGET LOCKED (MIC_02)
                </div>
                
-               <motion.div 
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-purple-400/50 flex items-center justify-center"
-               >
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-purple-400/50 flex items-center justify-center animate-pulse">
                  <div className="w-1 h-1 bg-purple-400 rounded-full" />
-               </motion.div>
+               </div>
              </motion.div>
            </div>
         </div>
@@ -227,17 +223,13 @@ function PlenaryBlueprint() {
               </div>
               
               <div className="mt-8 flex flex-col gap-3 relative h-full">
-                <motion.div 
-                   animate={{ y: [0, -50] }} 
-                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }} 
-                   className="flex flex-col gap-3"
-                >
+                 <div className="flex flex-col gap-3">
                    <div className="text-green-400 truncate">[14:02:05] VOTO: SIM (Ver. João) - HASH: x8f9a...</div>
                    <div className="text-green-400 truncate">[14:02:07] VOTO: SIM (Ver. Maria) - HASH: c2b31...</div>
                    <div className="text-red-400 truncate">[14:02:11] VOTO: NÃO (Ver. Carlos) - HASH: a9d4e...</div>
                    <div className="text-green-400 truncate">[14:02:15] VOTO: SIM (Ver. Ana) - HASH: b5f2c...</div>
                    <div className="text-green-400 truncate">[14:02:18] VOTO: SIM (Ver. Pedro) - HASH: e1c8d...</div>
-                </motion.div>
+                 </div>
                 
                 {/* Overlay gradient for fade effect */}
                 <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-zinc-900/50 to-transparent pointer-events-none" />
@@ -532,9 +524,9 @@ export function PlenariosLanding() {
             </FadeIn>
 
             {/* Padrão Sonus */}
-            <FadeIn delay={0.2}>
+             <FadeIn delay={0.2}>
               <div className="relative p-[1px] rounded-3xl overflow-hidden group h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 opacity-30 group-hover:opacity-100 animate-[spin_4s_linear_infinite] transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-cyan-500 to-emerald-500 opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative bg-[#02050a] p-8 md:p-12 rounded-[23px] h-full shadow-[0_0_50px_rgba(59,130,246,0.1)]">
                   <div className="flex items-center gap-4 mb-10 border-b border-blue-900/30 pb-6">
                     <div className="p-3 bg-blue-950 rounded-xl text-blue-400"><CheckCircle2 className="w-6 h-6" /></div>
