@@ -48,33 +48,33 @@ function VotingLedWall3D() {
         <div className="absolute bottom-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_bottom,rgba(239,68,68,0.12)_0,transparent_70%)] pointer-events-none z-0" />
 
         <div className="relative z-10 text-center mb-6 md:mb-16 border-b border-white/10 pb-4 md:pb-10">
-          <h3 className="text-xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase" style={{ textShadow: '0 0 15px rgba(245,158,11,0.5)' }}>LEI_042/26</h3>
-          <p className="text-zinc-500 font-mono mt-2 md:mt-6 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-sm">Votação Nominal Aberta</p>
+          <h3 className="text-3xl md:text-6xl font-mono text-amber-500 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase" style={{ textShadow: '0 0 20px rgba(245,158,11,0.8)' }}>LEI_042/26</h3>
+          <p className="text-zinc-500 font-mono mt-2 md:mt-6 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[10px] md:text-sm">Votação Nominal Aberta</p>
         </div>
 
         <div className="relative z-10 grid grid-cols-3 gap-2 md:gap-16 w-full max-w-5xl mx-auto">
           <div className="flex flex-col items-center">
-            <span className="text-green-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">SIM</span>
-            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-green-400 font-mono leading-none" style={{ textShadow: '0 0 20px rgba(74,222,128,0.6)' }}>
+            <span className="text-green-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">SIM</span>
+            <span className="text-7xl sm:text-[6rem] md:text-[11rem] font-black text-green-400 font-mono leading-none" style={{ textShadow: '0 0 30px rgba(74,222,128,0.8)' }}>
               {sim.toString().padStart(2, '0')}
             </span>
           </div>
           <div className="flex flex-col items-center opacity-30">
-            <span className="text-zinc-400 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">ABS</span>
-            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-zinc-500 font-mono leading-none">
+            <span className="text-zinc-400 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">ABS</span>
+            <span className="text-7xl sm:text-[6rem] md:text-[11rem] font-black text-zinc-500 font-mono leading-none">
               00
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-red-500 font-mono text-[10px] md:text-3xl mb-1 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">NÃO</span>
-            <span className="text-5xl sm:text-[6rem] md:text-[11rem] font-black text-red-500 font-mono leading-none" style={{ textShadow: '0 0 20px rgba(239,68,68,0.6)' }}>
+            <span className="text-red-500 font-mono text-xs md:text-3xl mb-2 md:mb-6 tracking-[0.1em] md:tracking-[0.2em] font-bold">NÃO</span>
+            <span className="text-7xl sm:text-[6rem] md:text-[11rem] font-black text-red-500 font-mono leading-none" style={{ textShadow: '0 0 30px rgba(239,68,68,0.8)' }}>
               {nao.toString().padStart(2, '0')}
             </span>
           </div>
         </div>
 
-        {/* LED Matrix Grid Overlay (Must be top layer to create screen illusion) */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.85)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.85)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-40" />
+        {/* LED Matrix Grid Overlay (Restored to top layer, but with much lower opacity to let light through) */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.5)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-40" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none z-50" />
       </motion.div>
     </div>
