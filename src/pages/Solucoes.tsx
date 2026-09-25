@@ -3,7 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense, useRef } from "react";
 import { SEO } from "@/components/SEO";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight } from "lucide-react";
+import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,13 @@ interface DimensionItem {
   link: string;
   icon: LucideIcon;
   themeColor: string;
-  image: string;
+  sysId: string;
 }
 
 // ---------------------------------------------
-// PREMIUM EDITORIAL STACKING CARD
+// TECHNICAL STACKING CARD (No Images)
 // ---------------------------------------------
-function EditorialStackingCard({ dim, index, progress, range, targetScale }: {
+function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
   dim: DimensionItem;
   index: number;
   progress: MotionValue<number>;
@@ -33,11 +33,8 @@ function EditorialStackingCard({ dim, index, progress, range, targetScale }: {
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-
   // Scale the card down as it gets covered by the next one
   const scale = useTransform(progress, range, [1, targetScale]);
-  
-  // Smooth opacity fade out for the content as it gets covered
   const opacity = useTransform(progress, range, [1, 0.4]);
 
   return (
@@ -46,10 +43,9 @@ function EditorialStackingCard({ dim, index, progress, range, targetScale }: {
         style={{ scale, opacity, top: `calc(5vh + ${index * 20}px)` }} 
         className="relative w-full max-w-6xl h-[85vh] md:h-[75vh] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col-reverse md:flex-row shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] origin-top border border-white/10 bg-[#050508] will-change-transform"
       >
-        {/* LEFT PANEL: Content (Highly Readable, Executive) */}
-        <div className="w-full md:w-[55%] h-[50%] md:h-full p-8 md:p-16 flex flex-col justify-center relative z-10">
+        {/* LEFT PANEL: Executive Content */}
+        <div className="w-full md:w-[55%] h-[55%] md:h-full p-8 md:p-16 flex flex-col justify-center relative z-10">
           
-          {/* Subtle Accent Glow */}
           <div 
             className="absolute top-0 left-0 w-full h-1"
             style={{ background: `linear-gradient(90deg, ${dim.themeColor}, transparent)` }}
@@ -91,21 +87,64 @@ function EditorialStackingCard({ dim, index, progress, range, targetScale }: {
           </div>
         </div>
 
-        {/* RIGHT PANEL: High-Res Image (No messy blend modes, pure visual) */}
-        <div className="w-full md:w-[45%] h-[50%] md:h-full relative overflow-hidden bg-black">
-          {/* Smooth CSS Zoom on the image, perfectly performant */}
-          <div className="absolute inset-0 transition-transform duration-[10s] ease-out hover:scale-110">
-            <img 
-              src={dim.image} 
-              alt={dim.title}
-              className="absolute inset-0 w-full h-full object-cover opacity-90"
-            />
-          </div>
+        {/* RIGHT PANEL: Engineering Blueprint (No Images) */}
+        <div className="w-full md:w-[45%] h-[45%] md:h-full relative overflow-hidden bg-[#030305] border-b md:border-b-0 md:border-l border-white/5">
+          {/* Technical Grid Pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
           
-          {/* Gradient to blend the image seamlessly into the left panel on Desktop */}
-          <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050508] to-transparent z-10" />
-          {/* Gradient to blend the image seamlessly into the bottom panel on Mobile */}
-          <div className="md:hidden absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050508] to-transparent z-10" />
+          {/* Dynamic Lighting Orb */}
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.25, 0.1]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-96 md:h-96 blur-[100px] rounded-full pointer-events-none"
+            style={{ backgroundColor: dim.themeColor }}
+          />
+
+          {/* Massive Abstract Icon */}
+          <motion.div 
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center opacity-10 pointer-events-none"
+          >
+            <dim.icon className="w-64 h-64 md:w-96 md:h-96 text-white drop-shadow-[0_0_50px_rgba(255,255,255,0.5)]" strokeWidth={0.5} />
+          </motion.div>
+
+          {/* Holographic Circular Scanners */}
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-[500px] md:h-[500px] border border-white/[0.03] rounded-full border-dashed"
+          />
+          <motion.div 
+            animate={{ rotate: -360 }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-[350px] md:h-[350px] border border-white/[0.05] rounded-full border-dashed"
+          />
+
+          {/* Top Right Specs */}
+          <div className="absolute top-6 right-6 text-right">
+            <Settings className="w-4 h-4 text-zinc-700 ml-auto mb-2 animate-spin-slow" />
+            <div className="text-[10px] md:text-xs font-mono tracking-[0.2em] text-zinc-600 uppercase">
+              ENG_SPEC // {dim.sysId}
+              <br/>
+              LAYER_ID: 00{index + 1}
+            </div>
+          </div>
+
+          {/* Bottom Left Interface Elements */}
+          <div className="absolute bottom-6 left-6 flex items-end gap-3">
+            <div className="flex flex-col gap-1">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: i === index ? dim.themeColor : 'rgba(255,255,255,0.1)' }} />
+              ))}
+            </div>
+            <div className="text-[10px] md:text-xs font-mono tracking-widest text-zinc-500 uppercase">
+              STATUS: <span style={{ color: dim.themeColor }}>ONLINE</span>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -131,8 +170,8 @@ export function Solucoes() {
       ctaText: "Acessar Plenários",
       link: "/plenarios-e-camaras",
       icon: Vote,
-      themeColor: "#06b6d4", 
-      image: "/concordia.webp" 
+      themeColor: "#06b6d4",
+      sysId: "PLN_SYS_X"
     },
     {
       title: "Salas Corporativas",
@@ -141,8 +180,8 @@ export function Solucoes() {
       ctaText: "Explorar Corporativo",
       link: "/salas-reuniao",
       icon: Users,
-      themeColor: "#3b82f6", 
-      image: "/salas-corporativas.webp"
+      themeColor: "#3b82f6",
+      sysId: "CORP_HUB_V2"
     },
     {
       title: "Auditórios e Teatros",
@@ -151,8 +190,8 @@ export function Solucoes() {
       ctaText: "Conhecer Auditórios",
       link: "/auditorios-e-teatros",
       icon: Mic2,
-      themeColor: "#10b981", 
-      image: "/auditorio-sonus.webp"
+      themeColor: "#10b981",
+      sysId: "AUD_LINE_ARRAY"
     },
     {
       title: "Igrejas e Templos",
@@ -161,8 +200,8 @@ export function Solucoes() {
       ctaText: "Ver Projetos",
       link: "/igrejas-e-templos",
       icon: HeartHandshake,
-      themeColor: "#f59e0b", 
-      image: "/interior-matriz-xanxere.webp"
+      themeColor: "#f59e0b",
+      sysId: "WSP_MIX_CORE"
     },
     {
       title: "Plataforma Q-SYS",
@@ -171,8 +210,8 @@ export function Solucoes() {
       ctaText: "Descobrir o Q-SYS",
       link: "/qsys",
       icon: Cpu,
-      themeColor: "#8b5cf6", 
-      image: "/qsys-tech-bg.webp"
+      themeColor: "#8b5cf6",
+      sysId: "QSYS_NEURAL"
     }
   ];
 
@@ -219,7 +258,7 @@ export function Solucoes() {
         {dimensions.map((dim, index) => {
           const targetScale = 1 - ((dimensions.length - index) * 0.03);
           return (
-            <EditorialStackingCard 
+            <TechnicalStackingCard 
               key={index} 
               index={index} 
               dim={dim} 
