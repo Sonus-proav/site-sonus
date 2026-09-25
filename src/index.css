@@ -357,3 +357,16 @@
   transform: none !important;
   transition: none !important;
 }
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+@keyframes float-subtle-hover {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0deg); }
+}
+@keyframes blink-colon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

@@ -564,7 +564,8 @@ export function PlenariosLanding() {
                       </div>
                     </div>
                     {/* Save button */}
-                    <div className="bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] md:text-xs font-bold py-2.5 rounded-xl text-center transition-colors cursor-default">
+                    <div className="bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] md:text-xs font-bold py-2.5 rounded-xl text-center transition-colors cursor-default relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer-sweep_3s_infinite]"></div>
                       ☁ Salvar Sessões na Nuvem
                     </div>
                   </div>
@@ -601,11 +602,11 @@ export function PlenariosLanding() {
                 {/* Top Bar */}
                 <div className="bg-[#0a1025] px-4 md:px-8 py-3 flex items-center justify-between border-b border-white/5">
                   <div className="flex items-center gap-3">
-                    <div className="w-1 h-6 bg-green-500 rounded-full" />
+                    <div className="w-1.5 h-6 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
                     <span className="text-[10px] md:text-sm text-white font-black tracking-wider uppercase">Câmara Municipal</span>
                     <span className="text-[9px] md:text-xs text-zinc-500 font-medium hidden sm:inline">Presidente: CARLOS - PRV</span>
                   </div>
-                  <span className="text-[10px] md:text-sm text-zinc-400 font-mono tabular-nums">19:22:20</span>
+                  <span className="text-[10px] md:text-sm text-zinc-400 font-mono tabular-nums">19:22<span className="animate-[blink-colon_1s_infinite]">:</span>20</span>
                 </div>
                 
                 {/* Session Info Bar */}
@@ -618,14 +619,15 @@ export function PlenariosLanding() {
                 <div className="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   {/* Left: Speaker + Timer */}
                   <div className="bg-[#0a0f20] border border-white/5 rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-[9px] md:text-xs text-zinc-500 font-bold uppercase tracking-[0.2em]">Tribuna (Orador)</span>
+                    <span className="text-[9px] md:text-xs text-zinc-500 font-bold uppercase tracking-[0.2em]"><span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block mr-1.5 animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]"></span>Tribuna (Orador)</span>
                     <h4 className="text-xl md:text-4xl text-white font-black mt-2 tracking-tight">JOTA - PQD</h4>
-                    <div className="text-4xl md:text-7xl font-black text-amber-500 font-mono mt-3 tabular-nums" style={{ textShadow: '0 0 20px rgba(245,158,11,0.4)' }}>00:20</div>
+                    <div className="text-4xl md:text-7xl font-black text-amber-500 font-mono mt-3 tabular-nums" style={{ textShadow: '0 0 20px rgba(245,158,11,0.4)' }}>00<span className="animate-[blink-colon_1s_infinite]">:</span>20</div>
                   </div>
                   
                   {/* Right: Voting Panel */}
                   <div className="space-y-3 md:space-y-4">
-                    <div className="bg-blue-600 text-white text-center py-2.5 md:py-3 rounded-xl font-black text-sm md:text-lg tracking-wider uppercase">
+                    <div className="bg-blue-600 text-white text-center py-2.5 md:py-3 rounded-xl font-black text-sm md:text-lg tracking-wider uppercase relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer-sweep_2.5s_infinite]"></div>
                       Votação Aberta
                     </div>
                     <div className="grid grid-cols-3 gap-2 md:gap-3">
@@ -757,9 +759,10 @@ export function PlenariosLanding() {
                     </div>
                     
                     {/* Hash verification block */}
-                    <div className="mt-4 bg-green-500/5 border border-green-500/15 rounded-xl p-3 flex items-center gap-3">
+                    <div className="mt-4 bg-green-500/5 border border-green-500/15 rounded-xl p-3 flex items-center gap-3 relative overflow-hidden group/hash">
+                      <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-b from-transparent via-green-500/10 to-transparent -translate-y-full animate-[slide-up-fade_3s_infinite]" />
                       <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
-                        <Lock className="w-4 h-4 text-green-400" />
+                        <Lock className="w-4 h-4 text-green-400 group-hover/hash:animate-pulse" />
                       </div>
                       <div>
                         <span className="text-[10px] md:text-xs text-green-400 font-bold block">Documento Autenticado</span>
@@ -792,7 +795,7 @@ export function PlenariosLanding() {
                 
                 {/* Rendered Mockup: Registration Panel - 2 cols */}
                 <div className="lg:col-span-2 relative group">
-                  <div className="bg-[#0b1120] rounded-2xl overflow-hidden border border-white/10 shadow-xl transform rotate-2 group-hover:rotate-0 transition-all duration-700">
+                  <div className="bg-[#0b1120] rounded-2xl overflow-hidden border border-white/10 shadow-xl transition-all duration-700" style={{ animation: "float-subtle 4s ease-in-out infinite" }} onMouseEnter={(e) => e.currentTarget.style.animation = "float-subtle-hover 4s ease-in-out infinite"} onMouseLeave={(e) => e.currentTarget.style.animation = "float-subtle 4s ease-in-out infinite"}>
                     {/* App Header */}
                     <div className="bg-[#0f172a] px-3 md:px-4 py-2 flex items-center gap-2 border-b border-white/5">
                       <div className="w-4 h-4 rounded bg-blue-500/20 flex items-center justify-center"><span className="text-[7px] text-blue-400">🏛</span></div>
@@ -813,7 +816,8 @@ export function PlenariosLanding() {
                           <span className="text-[9px] md:text-[10px] text-zinc-500">{v.party}</span>
                         </div>
                       ))}
-                      <div className="bg-emerald-600 hover:bg-emerald-500 transition-colors text-white text-[9px] md:text-[10px] font-bold py-2 rounded-lg text-center mt-2 cursor-pointer flex justify-center items-center gap-1.5">
+                      <div className="bg-emerald-600 hover:bg-emerald-500 transition-colors text-white text-[9px] md:text-[10px] font-bold py-2 rounded-lg text-center mt-2 cursor-pointer flex justify-center items-center gap-1.5 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer-sweep_3s_infinite]"></div>
                         <span className="text-xs">☁</span> Salvar Alterações na Nuvem
                       </div>
                     </div>
