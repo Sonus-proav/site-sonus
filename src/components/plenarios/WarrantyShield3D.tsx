@@ -11,11 +11,11 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
   const mouseY = useMotionValue(0);
 
   // Smooth spring physics for all effects
-  const springConfig = { stiffness: 90, damping: 20, mass: 0.8 };
+  const springConfig = { stiffness: 30, damping: 25, mass: 1.2 };
 
   // 1. Tilt
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [28, -28]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-28, 28]), springConfig);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [20, -20]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), springConfig);
 
   // 2. Parallax Layers (Immune to the opacity flattening bug)
   // Front-most elements move furthest opposite to mouse
@@ -57,7 +57,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
       // Delay so it doesn't fight entrance animation
       timeoutId = setTimeout(() => {
         // Swing wide (-0.45 to 0.45) to create a dramatic rotation up to 25 degrees!
-        controlsX = animate(mouseX, [0, 0.45, 0, -0.45, 0], { duration: 9, repeat: Infinity, ease: "easeInOut" });
+        controlsX = animate(mouseX, [0, 0.45, 0, -0.45, 0], { duration: 16, repeat: Infinity, ease: "easeInOut" });
         controlsY = animate(mouseY, [0, 0.35, 0, -0.25, 0], { duration: 7.5, repeat: Infinity, ease: "easeInOut" });
       }, 1800);
     }
