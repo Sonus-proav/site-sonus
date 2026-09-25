@@ -86,6 +86,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                 rotateX,
                 rotateY,
                 transformStyle: 'preserve-3d',
+                willChange: 'transform',
               }}
               initial={{ opacity: 0, y: 80, scale: 0.8 }}
               animate={hasAnimated ? { opacity: 1, y: 0, scale: 1 } : {}}
@@ -94,7 +95,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
             >
               {/* "?"? DEPTH SHADOW "?"? */}
               <motion.div
-                className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-full h-12 rounded-[100%] blur-3xl pointer-events-none"
+                className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-full h-12 rounded-[100%] pointer-events-none"
                 initial={{ z: -100 }}
                 style={{
                   x: shadowX,
@@ -108,11 +109,11 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
 
               {/* "?"? LAYER -1: BACK PLATE (Deep Z) "?"? */}
               <div 
-                className="absolute inset-0 rounded-3xl border border-emerald-500/20 bg-[#010805]/80 backdrop-blur-sm"
+                className="absolute inset-0 rounded-3xl border border-emerald-500/20 bg-[#030b08]"
                 style={{ transform: 'translateZ(-40px) scale(0.95)' }}
               />
               <div 
-                className="absolute inset-0 rounded-3xl border border-emerald-500/30 bg-[#030f0a]/50 backdrop-blur-md"
+                className="absolute inset-0 rounded-3xl border border-emerald-500/30 bg-[#030f0a]/90"
                 style={{ transform: 'translateZ(-20px) scale(0.98)' }}
               />
 
@@ -128,6 +129,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                     background: 'linear-gradient(105deg, transparent 35%, rgba(16,185,129,0.1) 42%, rgba(56,189,248,0.1) 48%, rgba(16,185,129,0.05) 52%, transparent 58%)',
                     backgroundSize: '300% 100%',
                     animation: 'warranty-shimmer 3s ease-in-out infinite',
+                    willChange: 'background-position',
                   }}
                 />
 
@@ -151,17 +153,12 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                     />
                   ))}
                   {isInView && (
-                    <circle r="3" fill="rgba(16,185,129,1)" filter="url(#glow)">
+                    <circle r="3" fill="rgba(16,185,129,1)" style={{ filter: "drop-shadow(0 0 4px rgba(16,185,129,1))", willChange: "transform" }}>
                       <animateMotion dur="5s" repeatCount="indefinite"
                         path="M 150 40 C 250 40 280 180 250 280 C 220 350 80 350 50 280 C 20 180 50 40 150 40" />
                     </circle>
                   )}
-                  <defs>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="4" result="blur" />
-                      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                  </defs>
+                  
                 </svg>
               </div>
 
@@ -173,8 +170,8 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                 {/* Rings */}
                 {isInView && (
                   <>
-                    <div className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full border border-emerald-500/20" style={{ animation: 'warranty-ring 3s ease-in-out infinite' }} />
-                    <div className="absolute w-52 h-52 md:w-60 md:h-60 rounded-full border border-emerald-500/10" style={{ animation: 'warranty-ring 3s ease-in-out infinite 0.7s' }} />
+                    <div className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full border border-emerald-500/20" style={{ animation: 'warranty-ring 3s ease-in-out infinite', willChange: 'transform, opacity' }} />
+                    <div className="absolute w-52 h-52 md:w-60 md:h-60 rounded-full border border-emerald-500/10" style={{ animation: 'warranty-ring 3s ease-in-out infinite 0.7s', willChange: 'transform, opacity' }} />
                   </>
                 )}
 
@@ -204,13 +201,14 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                       <div className="absolute left-0 right-0 h-10" style={{
                         background: 'linear-gradient(to bottom, transparent, rgba(16,185,129,0.3) 40%, rgba(16,185,129,0.9) 50%, rgba(16,185,129,0.3) 60%, transparent)',
                         animation: 'warranty-scan 2.5s ease-in-out infinite',
+                        willChange: 'transform',
                       }} />
                     </div>
                   )}
                 </motion.div>
 
                 {/* Text Content */}
-                <motion.div className="mt-8 text-center bg-black/40 px-6 py-2 rounded-2xl border border-white/5 backdrop-blur-md"
+                <motion.div className="mt-8 text-center bg-black/70 px-6 py-2 rounded-2xl border border-white/5"
                   
                   initial={{ opacity: 0, y: 20, z: 30 }}
                   animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
@@ -241,31 +239,31 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
               {/* "?"? LAYER 2: FLOATING ICONS (Max Z) "?"? */}
               {/* Wifi icon */}
               <motion.div
-                className="absolute -right-8 -top-8 w-16 h-16 md:w-20 md:h-20 bg-emerald-950/80 backdrop-blur-md rounded-2xl border-2 border-emerald-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                className="absolute -right-8 -top-8 w-16 h-16 md:w-20 md:h-20 bg-[#021f14] rounded-2xl border-2 border-emerald-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
                 
                 initial={{ opacity: 0, scale: 0, y: 20, z: 80 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1, y: 0 } : {}}
                 transition={{ delay: 1.2, type: 'spring', stiffness: 150 }}
               >
                 <Wifi className="w-8 h-8 text-emerald-400" />
-                {isInView && <div className="absolute w-2.5 h-2.5 bg-emerald-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,1)]" style={{ animation: 'warranty-orbit 3s linear infinite' }} />}
+                {isInView && <div className="absolute w-2.5 h-2.5 bg-emerald-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,1)]" style={{ animation: 'warranty-orbit 3s linear infinite', willChange: 'transform' }} />}
               </motion.div>
 
               {/* Wrench icon */}
               <motion.div
-                className="absolute -left-8 top-1/3 w-14 h-14 md:w-16 md:h-16 bg-blue-950/80 backdrop-blur-md rounded-2xl border-2 border-blue-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                className="absolute -left-8 top-1/3 w-14 h-14 md:w-16 md:h-16 bg-[#031526] rounded-2xl border-2 border-blue-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
                 
                 initial={{ opacity: 0, scale: 0, x: -20, z: 100 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1, x: 0 } : {}}
                 transition={{ delay: 1.5, type: 'spring', stiffness: 150 }}
               >
                 <Wrench className="w-6 h-6 text-blue-400" />
-                {isInView && <div className="absolute w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_12px_rgba(59,130,246,1)]" style={{ animation: 'warranty-orbit 4s linear infinite reverse' }} />}
+                {isInView && <div className="absolute w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_12px_rgba(59,130,246,1)]" style={{ animation: 'warranty-orbit 4s linear infinite reverse', willChange: 'transform' }} />}
               </motion.div>
 
               {/* Clock icon */}
               <motion.div
-                className="absolute right-4 -bottom-6 w-12 h-12 md:w-14 md:h-14 bg-cyan-950/80 backdrop-blur-md rounded-xl border-2 border-cyan-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                className="absolute right-4 -bottom-6 w-12 h-12 md:w-14 md:h-14 bg-[#031c26] rounded-xl border-2 border-cyan-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
                 
                 initial={{ opacity: 0, scale: 0, z: 60 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1 } : {}}
