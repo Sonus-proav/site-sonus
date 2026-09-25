@@ -12,11 +12,11 @@ import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { LiveSessionSimulator } from "@/components/plenarios/LiveSessionSimulator";
+import { WarrantyShield3D } from "@/components/plenarios/WarrantyShield3D";
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
 const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })))
-const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
 const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })))
 
@@ -959,11 +959,7 @@ return (
       {/* FOOTER BLOCK (Lazy)                            */}
       {/* ══════════════════════════════════════════════ */}
       <Suspense fallback={<div className="min-h-[200px] w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
-        <WarrantyBanner 
-          variant="qsys"
-          title="3 Anos de Garantia e SLA"
-          description="Investir dinheiro público exige segurança técnica absoluta. Oferecemos 3 anos de garantia sobre a instalação e suporte remoto contínuo via Q-SYS Reflect Enterprise Manager."
-        />
+        <WarrantyShield3D />
         <AeoFaq faqs={[
           {
             question: "Como o sistema da Sonus ajuda na Transparência Pública?",
