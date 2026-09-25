@@ -18,6 +18,7 @@ const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").t
 const PlenariosLanding = React.lazy(() => import("./pages/PlenariosLanding").then(module => ({ default: module.PlenariosLanding })))
 const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(module => ({ default: module.IgrejasTemplos })))
 const LinksPage = React.lazy(() => import("./pages/LinksPage").then(module => ({ default: module.LinksPage })))
+const Solucoes = React.lazy(() => import("./pages/Solucoes").then(module => ({ default: module.Solucoes })))
 
 import { HelmetProvider } from "react-helmet-async"
 import { useNavigate } from "react-router-dom"
@@ -61,6 +62,7 @@ function App() {
             <Route path="auditorios-e-teatros" element={<AuditoriosTeatros />} />
             <Route path="plenarios-e-camaras" element={<PlenariosLanding />} />
             <Route path="igrejas-e-templos" element={<IgrejasTemplos />} />
+            <Route path="solucoes" element={<Solucoes />} />
             <Route path="obrigado" element={<ThankYou />} />
             
             <Route path="/admin-login" element={<AdminLogin />} />

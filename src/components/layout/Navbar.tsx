@@ -31,6 +31,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Início", path: "/" },
+    { name: "Especialidades", path: "/solucoes" },
     { name: "Sobre Nós", path: "/#sobre" },
     { name: "Portfólio", path: "/projetos" },
     { name: "Auditórios", path: "/auditorios-e-teatros" },
