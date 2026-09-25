@@ -1,27 +1,24 @@
-import { useRef, useEffect, useState, memo, useCallback } from 'react';
+import { useRef, useEffect, useState, memo } from 'react';
 import { motion, useMotionValue, useTransform, useSpring, animate } from 'framer-motion';
 import { ShieldCheck, Wifi, Clock, Wrench } from 'lucide-react';
 
 export const WarrantyShield3D = memo(function WarrantyShield3D() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shieldRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   
-  // Motion values for mouse tracking (-0.5 to 0.5)
+  // Motion values for automatic idle animation (-0.5 to 0.5)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rafRef = useRef<number>(0);
 
-  // Heavy-duty spring for dramatic tilt feel
-  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
+  // Smooth spring physics for all 3D effects
+  const springConfig = { stiffness: 100, damping: 20, mass: 0.5 };
 
   // Tilt ?" up to 30 degrees for deep 3D
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [30, -30]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-30, 30]), springConfig);
 
-  // Specular highlight ?" moves opposite to mouse = realistic light reflection
+  // Specular highlight ?" realistic light reflection
   const specularX = useTransform(mouseX, [-0.5, 0.5], ['100%', '0%']);
   const specularY = useTransform(mouseY, [-0.5, 0.5], ['0%', '100%']);
 
@@ -38,44 +35,18 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
     return () => observer.disconnect();
   }, [hasAnimated]);
 
-  // IDLE ANIMATION
+  // AUTOMATIC IDLE ANIMATION (No mouse tracking)
   useEffect(() => {
-    let controlsX: any;
-    let controlsY: any;
-    
-    if (!isHovering && isInView) {
-      const startIdle = () => {
-        // Gently tilt around automatically
-        controlsX = animate(mouseX, [0, 0.15, 0, -0.15, 0], { duration: 7, repeat: Infinity, ease: "easeInOut" });
-        controlsY = animate(mouseY, [0, 0.1, 0, -0.1, 0], { duration: 5, repeat: Infinity, ease: "easeInOut" });
-      };
-      
-      const timeout = setTimeout(startIdle, 500); // wait for spring to settle before starting idle loop
+    if (isInView) {
+      // Gently tilt around automatically in a seamless loop
+      const controlsX = animate(mouseX, [0, 0.25, 0, -0.25, 0], { duration: 10, repeat: Infinity, ease: "easeInOut" });
+      const controlsY = animate(mouseY, [0, 0.15, 0, -0.15, 0], { duration: 7, repeat: Infinity, ease: "easeInOut" });
       return () => {
-        clearTimeout(timeout);
-        if (controlsX) controlsX.stop();
-        if (controlsY) controlsY.stop();
+        controlsX.stop();
+        controlsY.stop();
       };
     }
-  }, [isHovering, isInView, mouseX, mouseY]);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!shieldRef.current) return;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      const rect = shieldRef.current!.getBoundingClientRect();
-      mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
-      mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-    });
-  }, [mouseX, mouseY]);
-
-  const handleMouseEnter = useCallback(() => setIsHovering(true), []);
-  const handleMouseLeave = useCallback(() => {
-    setIsHovering(false);
-    // gently spring back to center
-    mouseX.set(0);
-    mouseY.set(0);
-  }, [mouseX, mouseY]);
+  }, [isInView, mouseX, mouseY]);
 
   const features = [
     { icon: Wifi, label: 'Monitoramento Remoto 24/7', desc: 'Via Q-SYS Reflect' },
@@ -90,6 +61,9 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
     "M 300 250 L 220 250 L 220 300 L 150 300",
   ];
 
+  // SVG Data URI for masking the scan line perfectly to the shield icon's interior
+  const shieldMaskUri = `url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E")`;
+
   return (
     <section
       ref={containerRef}
@@ -98,12 +72,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
       {/* Ambient background */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={isHovering ? {
-          background: 'radial-gradient(ellipse at 35% 50%, rgba(16,185,129,0.15) 0%, transparent 60%)'
-        } : {
-          background: 'radial-gradient(ellipse at 30% 50%, rgba(16,185,129,0.08) 0%, transparent 55%)'
-        }}
-        transition={{ duration: 0.8 }}
+        style={{ background: 'radial-gradient(ellipse at 35% 50%, rgba(16,185,129,0.12) 0%, transparent 60%)' }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(59,130,246,0.06)_0%,transparent_50%)] pointer-events-none" />
 
@@ -113,10 +82,6 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
           {/* "?"? LEFT: TRUE 3D SHIELD "?"? */}
           <div className="flex justify-center items-center" style={{ perspective: '1000px', perspectiveOrigin: 'center center' }}>
             <motion.div
-              ref={shieldRef}
-              onMouseMove={handleMouseMove}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               style={{
                 rotateX,
                 rotateY,
@@ -130,11 +95,12 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
               {/* "?"? DEPTH SHADOW "?"? */}
               <motion.div
                 className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-full h-12 rounded-[100%] blur-3xl pointer-events-none"
+                initial={{ z: -100 }}
                 style={{
                   x: shadowX,
                   y: shadowY,
                   background: 'radial-gradient(ellipse, rgba(16,185,129,0.5) 0%, transparent 70%)',
-                  z: -100, // pushing shadow far back
+                  
                 }}
                 animate={isInView ? { opacity: [0.4, 0.7, 0.4] } : {}}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
@@ -214,19 +180,29 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
 
                 {/* Shield Icon */}
                 <motion.div
-                  className="relative"
-                  style={{ z: 20 }} // Pops out even more from layer 1
-                  initial={{ scale: 0, rotateY: -180 }}
+                  className="relative flex items-center justify-center"
+                  
+                  initial={{ scale: 0, rotateY: -180, z: 20 }}
                   animate={hasAnimated ? { scale: 1, rotateY: 0 } : {}}
                   transition={{ duration: 1.2, delay: 0.3, type: 'spring', stiffness: 100 }}
                 >
                   <ShieldCheck className="w-24 h-24 md:w-32 md:h-32 text-emerald-400 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] filter drop-shadow-lg" strokeWidth={1} />
                   
-                  {/* Holographic Scan Line */}
+                  {/* Holographic Scan Line - MASKED STRICTLY TO THE SHIELD */}
                   {isInView && (
-                    <div className="absolute inset-0 overflow-hidden rounded-full">
+                    <div 
+                      className="absolute inset-0 overflow-hidden" 
+                      style={{ 
+                        WebkitMaskImage: shieldMaskUri,
+                        WebkitMaskSize: '100% 100%',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskImage: shieldMaskUri,
+                        maskSize: '100% 100%',
+                        maskRepeat: 'no-repeat'
+                      }}
+                    >
                       <div className="absolute left-0 right-0 h-10" style={{
-                        background: 'linear-gradient(to bottom, transparent, rgba(16,185,129,0.3) 40%, rgba(16,185,129,0.8) 50%, rgba(16,185,129,0.3) 60%, transparent)',
+                        background: 'linear-gradient(to bottom, transparent, rgba(16,185,129,0.3) 40%, rgba(16,185,129,0.9) 50%, rgba(16,185,129,0.3) 60%, transparent)',
                         animation: 'warranty-scan 2.5s ease-in-out infinite',
                       }} />
                     </div>
@@ -235,8 +211,8 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
 
                 {/* Text Content */}
                 <motion.div className="mt-8 text-center bg-black/40 px-6 py-2 rounded-2xl border border-white/5 backdrop-blur-md"
-                  style={{ z: 30 }} // Text floats above shield
-                  initial={{ opacity: 0, y: 20 }}
+                  
+                  initial={{ opacity: 0, y: 20, z: 30 }}
                   animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.9, duration: 0.8 }}
                 >
@@ -266,8 +242,8 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
               {/* Wifi icon */}
               <motion.div
                 className="absolute -right-8 -top-8 w-16 h-16 md:w-20 md:h-20 bg-emerald-950/80 backdrop-blur-md rounded-2xl border-2 border-emerald-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-                style={{ z: 80 }}
-                initial={{ opacity: 0, scale: 0, y: 20 }}
+                
+                initial={{ opacity: 0, scale: 0, y: 20, z: 80 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1, y: 0 } : {}}
                 transition={{ delay: 1.2, type: 'spring', stiffness: 150 }}
               >
@@ -278,8 +254,8 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
               {/* Wrench icon */}
               <motion.div
                 className="absolute -left-8 top-1/3 w-14 h-14 md:w-16 md:h-16 bg-blue-950/80 backdrop-blur-md rounded-2xl border-2 border-blue-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-                style={{ z: 100 }}
-                initial={{ opacity: 0, scale: 0, x: -20 }}
+                
+                initial={{ opacity: 0, scale: 0, x: -20, z: 100 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1, x: 0 } : {}}
                 transition={{ delay: 1.5, type: 'spring', stiffness: 150 }}
               >
@@ -290,8 +266,8 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
               {/* Clock icon */}
               <motion.div
                 className="absolute right-4 -bottom-6 w-12 h-12 md:w-14 md:h-14 bg-cyan-950/80 backdrop-blur-md rounded-xl border-2 border-cyan-500/40 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-                style={{ z: 60 }}
-                initial={{ opacity: 0, scale: 0 }}
+                
+                initial={{ opacity: 0, scale: 0, z: 60 }}
                 animate={hasAnimated ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 1.8, type: 'spring', stiffness: 150 }}
               >
