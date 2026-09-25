@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense, useRef } from "react";
 import { SEO } from "@/components/SEO";
-import { motion, useScroll, useTransform, MotionValue, useMotionValue, useSpring } from "framer-motion";
-import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, Settings } from "lucide-react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -17,14 +17,12 @@ interface DimensionItem {
   ctaText: string;
   link: string;
   icon: LucideIcon;
-  themeColor: string;
-  sysId: string;
 }
 
 // ---------------------------------------------
-// TECHNICAL STACKING CARD (No Images)
+// ACOUSTIC MINIMALISM STACKING CARD
 // ---------------------------------------------
-function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
+function MinimalistStackingCard({ dim, index, progress, range, targetScale }: {
   dim: DimensionItem;
   index: number;
   progress: MotionValue<number>;
@@ -32,116 +30,67 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
   targetScale: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
   const scale = useTransform(progress, range, [1, targetScale]);
-  const overlayOpacity = useTransform(progress, range, [0, 0.8]);
+  const overlayOpacity = useTransform(progress, range, [0, 0.7]);
 
   return (
     <div ref={containerRef} className="h-screen flex items-center justify-center sticky top-0 px-4 md:px-0">
       <motion.div 
-        style={{ scale, top: `calc(5vh + ${index * 20}px)` }} 
-        className="relative w-full max-w-6xl h-[85vh] md:h-[75vh] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col-reverse md:flex-row shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] origin-top border border-white/10 bg-[#050508] will-change-transform"
+        style={{ scale, top: `calc(10vh + ${index * 15}px)` }} 
+        className="relative w-full max-w-[1200px] h-[80vh] md:h-[70vh] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex flex-col-reverse md:flex-row shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] origin-top bg-[#121214] border border-white/5 will-change-transform"
       >
         <motion.div 
           style={{ opacity: overlayOpacity }}
           className="absolute inset-0 bg-black pointer-events-none z-50"
         />
 
-        {/* LEFT PANEL: Executive Content */}
-        <div className="w-full md:w-[55%] h-[55%] md:h-full p-8 md:p-16 flex flex-col justify-center relative z-10">
-          
-          <div 
-            className="absolute top-0 left-0 w-full h-1"
-            style={{ background: `linear-gradient(90deg, ${dim.themeColor}, transparent)` }}
-          />
-          <div 
-            className="absolute -left-32 -bottom-32 w-64 h-64 blur-[120px] rounded-full opacity-20 pointer-events-none"
-            style={{ backgroundColor: dim.themeColor }}
-          />
-
+        {/* LEFT PANEL: Clean Editorial Content */}
+        <div className="w-full md:w-1/2 h-[55%] md:h-full p-8 md:p-16 flex flex-col justify-center relative z-10 bg-[#0d0d0f]">
           <div className="relative">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-6 md:mb-8 backdrop-blur-md">
-              <dim.icon className="w-4 h-4" style={{ color: dim.themeColor }} />
-              <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-white">{dim.title}</span>
-            </div>
+            <span className="text-xs md:text-sm font-semibold tracking-widest uppercase text-zinc-500 mb-6 block">
+              {String(index + 1).padStart(2, '0')} // {dim.title}
+            </span>
 
-            <h2 className="text-3xl md:text-5xl lg:text-[4rem] font-black text-white tracking-tighter leading-[1.05] mb-4 md:mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6">
               {dim.headline}
             </h2>
             
-            <p className="text-base md:text-xl text-zinc-400 font-light leading-relaxed mb-8 md:mb-10 max-w-lg">
+            <p className="text-base md:text-lg text-zinc-400 font-normal leading-relaxed mb-10 max-w-md">
               {dim.description}
             </p>
 
-            <Link to={dim.link} className="inline-block group">
-              <div 
-                className="relative overflow-hidden h-14 md:h-16 px-6 md:px-8 rounded-full border border-white/20 bg-black/50 hover:bg-white transition-all duration-500 flex items-center gap-4 group-hover:border-transparent"
-              >
-                <span className="relative z-10 text-white group-hover:text-black font-black tracking-widest uppercase text-xs md:text-sm transition-colors duration-500">
-                  {dim.ctaText}
-                </span>
-                <div 
-                  className="relative z-10 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:translate-x-2"
-                  style={{ backgroundColor: dim.themeColor }}
-                >
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-black" />
-                </div>
+            <Link to={dim.link} className="inline-flex items-center gap-4 group">
+              <span className="text-sm font-semibold tracking-wider uppercase text-white group-hover:text-zinc-300 transition-colors">
+                {dim.ctaText}
+              </span>
+              <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all duration-300">
+                <ArrowRight className="w-4 h-4 text-white group-hover:text-black transition-colors" />
               </div>
             </Link>
           </div>
         </div>
 
-        {/* RIGHT PANEL: Engineering Blueprint (No Images) */}
-        <div className="w-full md:w-[45%] h-[45%] md:h-full relative overflow-hidden bg-[#030305] border-b md:border-b-0 md:border-l border-white/5">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
-          
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.25, 0.1]
+        {/* RIGHT PANEL: Acoustic Grille Texture & Minimalist Icon */}
+        <div className="w-full md:w-1/2 h-[45%] md:h-full relative overflow-hidden bg-[#18181b] border-b md:border-b-0 md:border-l border-white/5">
+          {/* Acoustic Perforated Mesh Pattern */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+              backgroundSize: '16px 16px',
             }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-96 md:h-96 blur-[100px] rounded-full pointer-events-none"
-            style={{ backgroundColor: dim.themeColor }}
           />
+          
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent via-[#18181b]/50 to-[#18181b]" />
 
-          <motion.div 
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center opacity-10 pointer-events-none"
-          >
-            <dim.icon className="w-64 h-64 md:w-96 md:h-96 text-white drop-shadow-[0_0_50px_rgba(255,255,255,0.5)]" strokeWidth={0.5} />
-          </motion.div>
-
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-[500px] md:h-[500px] border border-white/[0.03] rounded-full border-dashed"
-          />
-          <motion.div 
-            animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-[350px] md:h-[350px] border border-white/[0.05] rounded-full border-dashed"
-          />
-
-          <div className="absolute top-6 right-6 text-right">
-            <Settings className="w-4 h-4 text-zinc-700 ml-auto mb-2 animate-spin-slow" />
-            <div className="text-[10px] md:text-xs font-mono tracking-[0.2em] text-zinc-600 uppercase">
-              ENG_SPEC // {dim.sysId}
-              <br/>
-              LAYER_ID: 00{index + 1}
-            </div>
+          {/* Clean, Massive Icon representing the hardware/concept */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03]">
+            <dim.icon className="w-64 h-64 md:w-[400px] md:h-[400px] text-white" strokeWidth={0.5} />
           </div>
-
-          <div className="absolute bottom-6 left-6 flex items-end gap-3">
-            <div className="flex flex-col gap-1">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: i === index ? dim.themeColor : 'rgba(255,255,255,0.1)' }} />
-              ))}
-            </div>
-            <div className="text-[10px] md:text-xs font-mono tracking-widest text-zinc-500 uppercase">
-              STATUS: <span style={{ color: dim.themeColor }}>ONLINE</span>
-            </div>
+          
+          {/* Front Icon */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <dim.icon className="w-16 h-16 md:w-24 md:h-24 text-zinc-300 drop-shadow-2xl" strokeWidth={1} />
           </div>
         </div>
       </motion.div>
@@ -154,205 +103,107 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
 // ---------------------------------------------
 export function Solucoes() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Mouse Parallax for Hero
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-  const springX = useSpring(mouseX, { damping: 30, stiffness: 100 });
-  const springY = useSpring(mouseY, { damping: 30, stiffness: 100 });
-  const heroRotateX = useTransform(springY, [0, 1], [10, -10]);
-  const heroRotateY = useTransform(springX, [0, 1], [-10, 10]);
-  const heroTranslateZ = useTransform(springY, [0, 1], [0, 30]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set((e.clientX - rect.left) / rect.width);
-    mouseY.set((e.clientY - rect.top) / rect.height);
-  };
-
   const dimensions: DimensionItem[] = [
     {
       title: "Plenários e Câmaras",
-      headline: "A Soberania do Som e da Imagem.",
-      description: "Projetos executivos de alta precisão para o legislativo. Votação eletrônica nominal, atas digitais automáticas e rastreamento de câmeras robóticas PTZ.",
+      headline: "Transparência e Controle no Legislativo.",
+      description: "Votação eletrônica, microfonação individual e transmissão automatizada. O ambiente perfeito para a tomada de decisões públicas sem interrupções técnicas.",
       ctaText: "Acessar Plenários",
       link: "/plenarios-e-camaras",
       icon: Vote,
-      themeColor: "#06b6d4",
-      sysId: "PLN_SYS_X"
     },
     {
       title: "Salas Corporativas",
-      headline: "Videoconferência de Alto Padrão.",
-      description: "Padronização tecnológica definitiva para diretorias. Áudio e vídeo perfeitamente integrados, eliminando atritos tecnológicos em reuniões globais.",
+      headline: "Videoconferência Sem Fricção.",
+      description: "Salas de reunião onde a tecnologia desaparece. Áudio claro e vídeo fluido para diretorias que exigem conexão imediata e simplificada com o mundo.",
       ctaText: "Explorar Corporativo",
       link: "/salas-reuniao",
       icon: Users,
-      themeColor: "#3b82f6",
-      sysId: "CORP_HUB_V2"
     },
     {
       title: "Auditórios e Teatros",
-      headline: "Engenharia Acústica em Grande Escala.",
-      description: "Sonorização de alta inteligibilidade projetada para a geometria do espaço. Cobertura uniforme que garante clareza do palco ao último assento.",
+      headline: "Cobertura Sonora Cirúrgica.",
+      description: "Da acústica do ambiente à instalação de Line Arrays. Projetamos auditórios onde a voz do palestrante alcança a última fileira com a mesma clareza da primeira.",
       ctaText: "Conhecer Auditórios",
       link: "/auditorios-e-teatros",
       icon: Mic2,
-      themeColor: "#10b981",
-      sysId: "AUD_LINE_ARRAY"
     },
     {
       title: "Igrejas e Templos",
-      headline: "A Mensagem Entregue com Clareza.",
-      description: "Sistemas que respeitam a arquitetura sagrada e proporcionam impacto sonoro incomparável. Operação desenhada para conforto de técnicos e voluntários.",
+      headline: "A Palavra no Centro de Tudo.",
+      description: "Sistemas sonoros que respeitam a estética do templo e resolvem o desafio da reverberação. Inteligibilidade máxima para que a mensagem seja sempre ouvida.",
       ctaText: "Ver Projetos",
       link: "/igrejas-e-templos",
       icon: HeartHandshake,
-      themeColor: "#f59e0b",
-      sysId: "WSP_MIX_CORE"
     },
     {
       title: "Plataforma Q-SYS",
-      headline: "O Cérebro da Integração Audiovisual.",
-      description: "Uma infraestrutura baseada puramente em software que centraliza áudio, vídeo e automação com estabilidade extrema, eliminando falhas de hardware.",
+      headline: "Controle Centralizado.",
+      description: "Uma central de comando única. Elimine racks confusos e cabos soltos com uma plataforma de software que orquestra todo o áudio e vídeo do seu prédio.",
       ctaText: "Descobrir o Q-SYS",
       link: "/qsys",
       icon: Cpu,
-      themeColor: "#8b5cf6",
-      sysId: "QSYS_NEURAL"
     }
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-cyan-500/30 font-sans">
+    <div className="flex flex-col min-h-screen bg-[#09090b] text-white selection:bg-zinc-800 font-sans">
       <Helmet>
-        <title>Ecossistema de Soluções | Sonus Pro AV</title>
+        <title>Especialidades | Sonus Pro AV</title>
       </Helmet>
       <SEO 
-        title="Ecossistema de Soluções | Sonus Pro AV" 
-        description="Conheça nossas verticais de engenharia audiovisual: Plenários, Salas Corporativas, Auditórios, Igrejas e Integração Q-SYS." 
+        title="Especialidades | Sonus Pro AV" 
+        description="Engenharia audiovisual: Plenários, Salas Corporativas, Auditórios, Igrejas e Integração Q-SYS." 
         url="https://sonusproaudio.com.br/solucoes"
       />
 
       <Navbar />
 
-      {/* BREATHTAKING HERO SECTION */}
-      <section 
-        onMouseMove={handleMouseMove}
-        className="relative h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20"
-        style={{ perspective: "2000px" }}
-      >
-        {/* Animated 3D Floor Grid */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {/* SOBER, IMPOSING HERO */}
+      <section className="relative h-[60vh] md:h-[70vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.div 
-            style={{ rotateX: 75, scale: 3, y: "40%", z: -100 }}
-            className="absolute inset-0 origin-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
           >
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_60%,transparent_100%)] animate-[grid-move_20s_linear_infinite]" />
-          </motion.div>
-        </div>
-
-        {/* Ambient Glowing Core */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] pointer-events-none z-0">
-          <motion.div 
-            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0"
-          >
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 blur-[120px] rounded-full mix-blend-screen" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen" />
-            <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full mix-blend-screen" />
-          </motion.div>
-        </div>
-
-        {/* Concentric Sonar Pulses */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-          <motion.div 
-            animate={{ scale: [1, 4], opacity: [0.5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
-            className="w-64 h-64 border border-cyan-500/30 rounded-full"
-          />
-          <motion.div 
-            animate={{ scale: [1, 4], opacity: [0.5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
-            className="absolute top-0 left-0 w-64 h-64 border border-blue-500/30 rounded-full"
-          />
-        </div>
-
-        {/* Dynamic 3D Content */}
-        <motion.div 
-          style={{ rotateX: heroRotateX, rotateY: heroRotateY, z: heroTranslateZ }}
-          className="relative z-10 max-w-5xl mx-auto transform-gpu"
-        >
-          {/* Engineering Badge */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-cyan-500/30 bg-black/50 backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(6,182,212,0.2)]"
-          >
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-xs md:text-sm font-mono tracking-[0.2em] uppercase text-cyan-100">Engenharia de Missão Crítica</span>
-            <div className="hidden md:flex gap-1 ml-2">
-              <span className="w-1 h-3 bg-cyan-500/50" />
-              <span className="w-1 h-3 bg-cyan-500/50" />
-              <span className="w-1 h-3 bg-cyan-500/50 animate-pulse" />
-            </div>
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-zinc-500">
+              Engenharia Audiovisual
+            </span>
           </motion.div>
           
           <motion.h1 
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95] mb-8"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 text-zinc-100"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-zinc-500 drop-shadow-2xl">
-              A fundação de
-            </span>
-            <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-[0_0_40px_rgba(6,182,212,0.4)]">
-              ambientes críticos.
-            </span>
+            Arquitetura Audiovisual.
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="text-lg md:text-2xl text-zinc-300 font-light leading-relaxed max-w-3xl mx-auto drop-shadow-lg"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-zinc-400 font-normal leading-relaxed max-w-2xl mx-auto"
           >
-            Não vendemos equipamentos avulsos. Desenvolvemos ecossistemas complexos de áudio, vídeo e automação.
+            Projetamos, integramos e instalamos a tecnologia que dá vida aos espaços institucionais mais importantes do Sul do Brasil.
           </motion.p>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 pointer-events-none"
-        >
-          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan-500/80">Iniciar Diagnóstico</span>
-          <div className="w-[1px] h-16 bg-gradient-to-b from-cyan-500/50 to-transparent animate-pulse" />
-        </motion.div>
-
-        <style dangerouslySetInnerHTML={{__html: `
-          @keyframes grid-move {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 4rem; }
-          }
-        `}} />
+        </div>
       </section>
 
       {/* Stacking Cards Section */}
-      <main ref={containerRef} className="relative w-full bg-[#020205] pb-[10vh]">
+      <main ref={containerRef} className="relative w-full bg-[#09090b] pb-[15vh]">
         {dimensions.map((dim, index) => {
-          const targetScale = 1 - ((dimensions.length - index) * 0.03);
+          const targetScale = 1 - ((dimensions.length - index) * 0.02);
           return (
-            <TechnicalStackingCard 
+            <MinimalistStackingCard 
               key={index} 
               index={index} 
               dim={dim} 
@@ -363,8 +214,6 @@ export function Solucoes() {
           );
         })}
       </main>
-
-      <section className="h-[10vh] bg-[#020205]" />
 
       <Suspense fallback={null}>
         <WhatsAppButton message="Olá! Gostaria de falar sobre os projetos e soluções da Sonus." />
