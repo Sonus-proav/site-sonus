@@ -1,4 +1,5 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
+import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
 import { useState, useRef, useEffect, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { Helmet } from "react-helmet-async"
@@ -457,7 +458,9 @@ export function AuditoriosTeatros() {
             </div>
           </div>
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_middle" pageName="auditorios" className="my-16 md:my-24" />
+    </section>
 
       {/* ══════════════════════════════════════════════ */}
       {/* SOLUTION — Interactive iPad Mockup             */}
@@ -585,7 +588,9 @@ export function AuditoriosTeatros() {
             </Link>
           </FadeIn>
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_bottom" pageName="auditorios" className="my-16 md:my-24" />
+    </section>
 
       {/* Warranty Banner */}
       <WarrantyBanner 

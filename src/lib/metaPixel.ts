@@ -47,7 +47,7 @@ export function trackLeadConversion(leadType: string, value: number = 500, curre
 /**
  * Disparado em cliques de botões de WhatsApp, diferenciando origem (flutuante vs botão da página).
  */
-export function trackWhatsAppClick(sourceId: 'whatsapp_flutuante' | 'whatsapp_hero' | 'whatsapp_urgente' | 'whatsapp_footer', pageName: string) {
+export function trackWhatsAppClick(sourceId: string, pageName: string) {
   pushDataLayer({ event: 'click_whatsapp', source: sourceId, page: pageName });
   safeFbq('track', 'Contact', { content_name: sourceId, content_category: pageName });
 }

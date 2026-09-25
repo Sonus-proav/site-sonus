@@ -1,4 +1,5 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion, trackCustomizeProduct } from "@/lib/metaPixel";
+import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
 import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
@@ -397,7 +398,9 @@ export function QSysLanding() {
             <span className="text-zinc-500 font-mono text-xs">Exemplo de interface touch padronizável. Toque nos cenários acima ↑</span>
           </div>
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_middle" pageName="qsys" className="my-16 md:my-24" />
+    </section>
 
       {/* ══════════════════════════════════════════════ */}
       {/* CERTIFICATIONS BAR                            */}
@@ -486,7 +489,9 @@ export function QSysLanding() {
             </div>
           </div>
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_bottom" pageName="qsys" className="my-16 md:my-24" />
+    </section>
 
       {/* ══════════════════════════════════════════════ */}
       {/* SUCCESS CASES — Differentiated Layout          */}

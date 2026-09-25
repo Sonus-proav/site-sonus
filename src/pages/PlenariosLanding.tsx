@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { LiveSessionSimulator } from "@/components/plenarios/LiveSessionSimulator";
+import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
 import { WarrantyShield3D } from "@/components/plenarios/WarrantyShield3D";
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
@@ -559,7 +560,9 @@ return (
             ))}
           </div>
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_middle" pageName="plenarios" className="my-16 md:my-24" />
+    </section>
 
       {/* ══════════════════════════════════════════════ */}
       {/* INTERACTIVE BLUEPRINT                        */}
@@ -833,7 +836,9 @@ return (
           </FadeIn>
 
         </div>
-      </section>
+      
+      <InlineWhatsAppCta origin="section_bottom" pageName="plenarios" className="my-16 md:my-24" />
+    </section>
 
       {/* ══════════════════════════════════════════════ */}
       {/* DIRECT COMPARISON X-RAY                      */}
