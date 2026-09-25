@@ -539,7 +539,7 @@ export function PlenariosLanding() {
                     <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl p-3 md:p-4">
                       <span className="text-[9px] md:text-[10px] text-blue-400 font-bold flex items-center gap-1.5">⚙ Configurações Gerais</span>
                       <div className="mt-2 flex items-center gap-2">
-                        <div className="flex-1 bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-[10px] md:text-xs text-white font-medium">CARLOS - PL</div>
+                        <div className="flex-1 bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-[10px] md:text-xs text-white font-medium">CARLOS - PRV</div>
                         <div className="bg-blue-600 text-white text-[9px] md:text-[10px] font-bold px-3 py-2 rounded-lg">Salvar</div>
                       </div>
                     </div>
@@ -603,7 +603,7 @@ export function PlenariosLanding() {
                   <div className="flex items-center gap-3">
                     <div className="w-1 h-6 bg-green-500 rounded-full" />
                     <span className="text-[10px] md:text-sm text-white font-black tracking-wider uppercase">Câmara Municipal</span>
-                    <span className="text-[9px] md:text-xs text-zinc-500 font-medium hidden sm:inline">Presidente: CARLOS - PL</span>
+                    <span className="text-[9px] md:text-xs text-zinc-500 font-medium hidden sm:inline">Presidente: CARLOS - PRV</span>
                   </div>
                   <span className="text-[10px] md:text-sm text-zinc-400 font-mono tabular-nums">19:22:20</span>
                 </div>
@@ -650,9 +650,9 @@ export function PlenariosLanding() {
                   <span className="text-[8px] md:text-[10px] text-zinc-600 font-mono uppercase tracking-[0.3em] mb-2 block text-center">Votos em Tempo Real</span>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {[
-                      { seat: 1, name: "JONAS", party: "PT", vote: "SIM", color: "green" },
-                      { seat: 2, name: "MARCOS", party: "PL", vote: "SIM", color: "green" },
-                      { seat: 3, name: "PAULO", party: "PT", vote: "SIM", color: "green" },
+                      { seat: 1, name: "JONAS", party: "PMU", vote: "SIM", color: "green" },
+                      { seat: 2, name: "MARCOS", party: "PFC", vote: "SIM", color: "green" },
+                      { seat: 3, name: "PAULO", party: "PMU", vote: "SIM", color: "green" },
                       { seat: 4, name: "JOTA", party: "PQD", vote: "NÃO", color: "red" },
                     ].map(v => (
                       <div key={v.seat} className={`bg-[#0a0f20] border rounded-lg p-2 md:p-2.5 ${v.color === 'green' ? 'border-green-500/30' : 'border-red-500/30'}`}>
@@ -802,9 +802,9 @@ export function PlenariosLanding() {
                     <div className="p-3 md:p-4 space-y-2">
                       {/* Table rows */}
                       {[
-                        { seat: 1, name: "JONAS", party: "PT" },
-                        { seat: 2, name: "MARCOS", party: "PL" },
-                        { seat: 3, name: "PAULO", party: "PT" },
+                        { seat: 1, name: "JONAS", party: "PMU" },
+                        { seat: 2, name: "MARCOS", party: "PFC" },
+                        { seat: 3, name: "PAULO", party: "PMU" },
                         { seat: 4, name: "JOTA", party: "PQD" },
                       ].map(v => (
                         <div key={v.seat} className="flex items-center gap-2 bg-black/20 rounded-lg px-2.5 py-2 hover:bg-white/5 transition-colors">
