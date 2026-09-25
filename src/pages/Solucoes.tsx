@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense, useRef } from "react";
 import { SEO } from "@/components/SEO";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue, useMotionValue, useSpring } from "framer-motion";
 import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -33,10 +33,7 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Scale the card down as it gets covered by the next one
   const scale = useTransform(progress, range, [1, targetScale]);
-  
-  // Darken the card as it gets covered instead of making it transparent
   const overlayOpacity = useTransform(progress, range, [0, 0.8]);
 
   return (
@@ -45,7 +42,6 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
         style={{ scale, top: `calc(5vh + ${index * 20}px)` }} 
         className="relative w-full max-w-6xl h-[85vh] md:h-[75vh] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col-reverse md:flex-row shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] origin-top border border-white/10 bg-[#050508] will-change-transform"
       >
-        {/* Darkening overlay when covered */}
         <motion.div 
           style={{ opacity: overlayOpacity }}
           className="absolute inset-0 bg-black pointer-events-none z-50"
@@ -97,10 +93,8 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
 
         {/* RIGHT PANEL: Engineering Blueprint (No Images) */}
         <div className="w-full md:w-[45%] h-[45%] md:h-full relative overflow-hidden bg-[#030305] border-b md:border-b-0 md:border-l border-white/5">
-          {/* Technical Grid Pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
           
-          {/* Dynamic Lighting Orb */}
           <motion.div 
             animate={{ 
               scale: [1, 1.2, 1],
@@ -111,7 +105,6 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
             style={{ backgroundColor: dim.themeColor }}
           />
 
-          {/* Massive Abstract Icon */}
           <motion.div 
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
@@ -120,7 +113,6 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
             <dim.icon className="w-64 h-64 md:w-96 md:h-96 text-white drop-shadow-[0_0_50px_rgba(255,255,255,0.5)]" strokeWidth={0.5} />
           </motion.div>
 
-          {/* Holographic Circular Scanners */}
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -132,7 +124,6 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-[350px] md:h-[350px] border border-white/[0.05] rounded-full border-dashed"
           />
 
-          {/* Top Right Specs */}
           <div className="absolute top-6 right-6 text-right">
             <Settings className="w-4 h-4 text-zinc-700 ml-auto mb-2 animate-spin-slow" />
             <div className="text-[10px] md:text-xs font-mono tracking-[0.2em] text-zinc-600 uppercase">
@@ -142,7 +133,6 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
             </div>
           </div>
 
-          {/* Bottom Left Interface Elements */}
           <div className="absolute bottom-6 left-6 flex items-end gap-3">
             <div className="flex flex-col gap-1">
               {[...Array(5)].map((_, i) => (
@@ -169,6 +159,21 @@ export function Solucoes() {
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  // Mouse Parallax for Hero
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { damping: 30, stiffness: 100 });
+  const springY = useSpring(mouseY, { damping: 30, stiffness: 100 });
+  const heroRotateX = useTransform(springY, [0, 1], [10, -10]);
+  const heroRotateY = useTransform(springX, [0, 1], [-10, 10]);
+  const heroTranslateZ = useTransform(springY, [0, 1], [0, 30]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
 
   const dimensions: DimensionItem[] = [
     {
@@ -224,7 +229,7 @@ export function Solucoes() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-blue-500/30 font-sans">
+    <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-cyan-500/30 font-sans">
       <Helmet>
         <title>Ecossistema de Soluções | Sonus Pro AV</title>
       </Helmet>
@@ -236,29 +241,110 @@ export function Solucoes() {
 
       <Navbar />
 
-      {/* Hero Intro */}
-      <section className="relative h-[60vh] md:h-[80vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-64 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
-        
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[1.05] mb-6 text-white"
+      {/* BREATHTAKING HERO SECTION */}
+      <section 
+        onMouseMove={handleMouseMove}
+        className="relative h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20"
+        style={{ perspective: "2000px" }}
+      >
+        {/* Animated 3D Floor Grid */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            style={{ rotateX: 75, scale: 3, y: "40%", z: -100 }}
+            className="absolute inset-0 origin-center"
           >
-            A fundação de <br/> ambientes críticos.
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_60%,transparent_100%)] animate-[grid-move_20s_linear_infinite]" />
+          </motion.div>
+        </div>
+
+        {/* Ambient Glowing Core */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] pointer-events-none z-0">
+          <motion.div 
+            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+          >
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 blur-[120px] rounded-full mix-blend-screen" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen" />
+            <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full mix-blend-screen" />
+          </motion.div>
+        </div>
+
+        {/* Concentric Sonar Pulses */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
+          <motion.div 
+            animate={{ scale: [1, 4], opacity: [0.5, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+            className="w-64 h-64 border border-cyan-500/30 rounded-full"
+          />
+          <motion.div 
+            animate={{ scale: [1, 4], opacity: [0.5, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
+            className="absolute top-0 left-0 w-64 h-64 border border-blue-500/30 rounded-full"
+          />
+        </div>
+
+        {/* Dynamic 3D Content */}
+        <motion.div 
+          style={{ rotateX: heroRotateX, rotateY: heroRotateY, z: heroTranslateZ }}
+          className="relative z-10 max-w-5xl mx-auto transform-gpu"
+        >
+          {/* Engineering Badge */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-cyan-500/30 bg-black/50 backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+          >
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-xs md:text-sm font-mono tracking-[0.2em] uppercase text-cyan-100">Engenharia de Missão Crítica</span>
+            <div className="hidden md:flex gap-1 ml-2">
+              <span className="w-1 h-3 bg-cyan-500/50" />
+              <span className="w-1 h-3 bg-cyan-500/50" />
+              <span className="w-1 h-3 bg-cyan-500/50 animate-pulse" />
+            </div>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95] mb-8"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-zinc-500 drop-shadow-2xl">
+              A fundação de
+            </span>
+            <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-[0_0_40px_rgba(6,182,212,0.4)]">
+              ambientes críticos.
+            </span>
           </motion.h1>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="text-lg md:text-2xl text-zinc-300 font-light leading-relaxed max-w-3xl mx-auto drop-shadow-lg"
           >
-            Apresentamos as 5 verticais do ecossistema Sonus. Engenharia audiovisual executada milimetricamente para o seu setor.
+            Não vendemos equipamentos avulsos. Desenvolvemos ecossistemas complexos de áudio, vídeo e automação.
           </motion.p>
-        </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 pointer-events-none"
+        >
+          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan-500/80">Iniciar Diagnóstico</span>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-cyan-500/50 to-transparent animate-pulse" />
+        </motion.div>
+
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes grid-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4rem; }
+          }
+        `}} />
       </section>
 
       {/* Stacking Cards Section */}
