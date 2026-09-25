@@ -89,7 +89,7 @@ function HorizontalScrollGallery() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
   
   // Tie the icon rotation directly to the scroll progress so it only renders when scrolling
-  const iconRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  
 
   return (
     <section ref={targetRef} className="relative h-[500vh] bg-[#020205]">
@@ -135,17 +135,18 @@ function HorizontalScrollGallery() {
                   </Link>
                 </div>
 
-                {/* Abstract Visual Side (Optimized for 60fps) */}
+                {/* Abstract Visual Side (Alive and Animated, but Hardware Accelerated) */}
                 <div className="w-full md:w-[45%] h-[45%] md:h-full relative overflow-hidden flex items-center justify-center border-t md:border-t-0 md:border-l border-white/5">
-                  {/* Static Glowing Aura (No heavy JS loops) */}
+                  {/* Glowing Aura */}
                   <div 
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] opacity-20 pointer-events-none"
                     style={{ background: `radial-gradient(circle, ${dim.themeColor} 0%, transparent 60%)` }}
                   />
                   
-                  {/* Floating Icon tied to scroll (Hardware accelerated) */}
+                  {/* Majestic Floating Icon */}
                   <motion.div 
-                    style={{ rotate: iconRotate }}
+                    animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                     className="relative z-10 will-change-transform transform-gpu"
                   >
                     <dim.icon 
@@ -155,9 +156,17 @@ function HorizontalScrollGallery() {
                     />
                   </motion.div>
 
-                  {/* Static Glass Accents */}
-                  <div className="absolute top-1/4 right-1/4 w-32 h-32 border border-white/10 rounded-2xl bg-white/5 transform rotate-45" />
-                  <div className="absolute bottom-1/4 left-1/4 w-48 h-48 border border-white/5 rounded-full bg-white/5" />
+                  {/* Animated Geometric Glass Shards (Hardware accelerated, no blur filter) */}
+                  <motion.div 
+                    animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/4 right-1/4 w-32 h-32 border border-white/10 rounded-2xl bg-white/5 will-change-transform transform-gpu"
+                  />
+                  <motion.div 
+                    animate={{ rotate: -360, scale: [1, 1.2, 1] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-1/4 left-1/4 w-48 h-48 border border-white/5 rounded-full bg-white/5 will-change-transform transform-gpu"
+                  />
                 </div>
               </div>
             </div>
