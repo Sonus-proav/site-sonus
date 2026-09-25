@@ -37,15 +37,23 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
 
   // AUTOMATIC IDLE ANIMATION (No mouse tracking)
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    let controlsX: any;
+    let controlsY: any;
+
     if (isInView) {
-      // Gently tilt around automatically in a seamless loop
-      const controlsX = animate(mouseX, [0, 0.25, 0, -0.25, 0], { duration: 10, repeat: Infinity, ease: "easeInOut" });
-      const controlsY = animate(mouseY, [0, 0.15, 0, -0.15, 0], { duration: 7, repeat: Infinity, ease: "easeInOut" });
-      return () => {
-        controlsX.stop();
-        controlsY.stop();
-      };
+      // Atrasamos o início do movimento 3D em 2 segundos para não "sufocar" a CPU
+      // enquanto a animação de entrada (scale/y/opacity) e os ícones estão surgindo.
+      timeoutId = setTimeout(() => {
+        controlsX = animate(mouseX, [0, 0.25, 0, -0.25, 0], { duration: 10, repeat: Infinity, ease: "easeInOut" });
+        controlsY = animate(mouseY, [0, 0.15, 0, -0.15, 0], { duration: 7, repeat: Infinity, ease: "easeInOut" });
+      }, 1800);
     }
+    return () => {
+      clearTimeout(timeoutId);
+      if (controlsX) controlsX.stop();
+      if (controlsY) controlsY.stop();
+    };
   }, [isInView, mouseX, mouseY]);
 
   const features = [
@@ -86,11 +94,11 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                 rotateX,
                 rotateY,
                 transformStyle: 'preserve-3d',
-                willChange: 'transform',
+                willChange: 'transform, opacity',
               }}
               initial={{ opacity: 0, y: 80, scale: 0.8 }}
               animate={hasAnimated ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className="relative w-64 h-72 md:w-80 md:h-[22rem] cursor-default"
             >
               {/* "?"? DEPTH SHADOW "?"? */}
@@ -149,7 +157,7 @@ export const WarrantyShield3D = memo(function WarrantyShield3D() {
                     <motion.path key={i} d={d} stroke="rgba(16,185,129,0.25)" fill="none" strokeWidth="1.5"
                       initial={{ pathLength: 0 }}
                       animate={hasAnimated ? { pathLength: 1 } : {}}
-                      transition={{ duration: 2, delay: 0.8 + i * 0.25, ease: 'easeInOut' }}
+                      transition={{ duration: 1.5, delay: 1.2 + i * 0.2, ease: 'easeInOut' }}
                     />
                   ))}
                   {isInView && (
