@@ -35,14 +35,22 @@ function TechnicalStackingCard({ dim, index, progress, range, targetScale }: {
   
   // Scale the card down as it gets covered by the next one
   const scale = useTransform(progress, range, [1, targetScale]);
-  const opacity = useTransform(progress, range, [1, 0.4]);
+  
+  // Darken the card as it gets covered instead of making it transparent
+  const overlayOpacity = useTransform(progress, range, [0, 0.8]);
 
   return (
     <div ref={containerRef} className="h-screen flex items-center justify-center sticky top-0 px-4 md:px-0">
       <motion.div 
-        style={{ scale, opacity, top: `calc(5vh + ${index * 20}px)` }} 
+        style={{ scale, top: `calc(5vh + ${index * 20}px)` }} 
         className="relative w-full max-w-6xl h-[85vh] md:h-[75vh] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col-reverse md:flex-row shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] origin-top border border-white/10 bg-[#050508] will-change-transform"
       >
+        {/* Darkening overlay when covered */}
+        <motion.div 
+          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-black pointer-events-none z-50"
+        />
+
         {/* LEFT PANEL: Executive Content */}
         <div className="w-full md:w-[55%] h-[55%] md:h-full p-8 md:p-16 flex flex-col justify-center relative z-10">
           
