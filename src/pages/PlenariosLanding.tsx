@@ -11,6 +11,7 @@ import { logLead, getUserGeo } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
+import { LiveSessionSimulator } from "@/components/plenarios/LiveSessionSimulator";
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
@@ -588,105 +589,21 @@ export function PlenariosLanding() {
             </div>
           </FadeIn>
 
-          {/* ── ACT 2: Session in Progress (Full Width Broadcast Panel) ── */}
-          <FadeIn className="mb-20 md:mb-28">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg tracking-wider">② DURANTE A SESSÃO</span>
+          {/* ── ACT 2: Session in Progress (Interactive Simulator) ── */}
+          <FadeIn className="mb-20 md:mb-32">
+            <div className="flex flex-col items-center justify-center text-center mb-12">
+              <span className="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-full tracking-wider mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> ② DURANTE A SESSÃO
+              </span>
+              <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Controle de Missão Legislativa</h3>
+              <p className="text-xl text-zinc-400 max-w-2xl font-light">
+                Esqueça telões estáticos. O sistema processa os votos <strong className="text-white">ao vivo</strong>, 
+                atualiza gráficos dinâmicos e cronometra o orador sem interferência humana.
+              </p>
             </div>
             
-            <div className="relative group">
-              <div className="absolute -inset-6 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1)_0%,transparent_60%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              
-              {/* Broadcast Panel Mockup */}
-              <div className="relative bg-[#080c18] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] group-hover:shadow-[0_0_60px_rgba(59,130,246,0.15)] transition-all duration-700">
-                {/* Top Bar */}
-                <div className="bg-[#0a1025] px-4 md:px-8 py-3 flex items-center justify-between border-b border-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-6 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-                    <span className="text-[10px] md:text-sm text-white font-black tracking-wider uppercase">Câmara Municipal</span>
-                    <span className="text-[9px] md:text-xs text-zinc-500 font-medium hidden sm:inline">Presidente: CARLOS - PRV</span>
-                  </div>
-                  <span className="text-[10px] md:text-sm text-zinc-400 font-mono tabular-nums">19:22<span className="animate-[blink-colon_1s_infinite]">:</span>20</span>
-                </div>
-                
-                {/* Session Info Bar */}
-                <div className="mx-4 md:mx-8 mt-4 bg-blue-600/15 border border-blue-500/20 rounded-xl px-4 py-2.5">
-                  <span className="text-[9px] md:text-[11px] text-blue-300 font-medium">10ª Sessão Ordinária</span>
-                  <h4 className="text-sm md:text-xl text-white font-black tracking-tight">PAUTA 1 EXEMPLO</h4>
-                </div>
-
-                {/* Main Content */}
-                <div className="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  {/* Left: Speaker + Timer */}
-                  <div className="bg-[#0a0f20] border border-white/5 rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-[9px] md:text-xs text-zinc-500 font-bold uppercase tracking-[0.2em]"><span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block mr-1.5 animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]"></span>Tribuna (Orador)</span>
-                    <h4 className="text-xl md:text-4xl text-white font-black mt-2 tracking-tight">JOTA - PQD</h4>
-                    <div className="text-4xl md:text-7xl font-black text-amber-500 font-mono mt-3 tabular-nums" style={{ textShadow: '0 0 20px rgba(245,158,11,0.4)' }}>00<span className="animate-[blink-colon_1s_infinite]">:</span>20</div>
-                  </div>
-                  
-                  {/* Right: Voting Panel */}
-                  <div className="space-y-3 md:space-y-4">
-                    <div className="bg-blue-600 text-white text-center py-2.5 md:py-3 rounded-xl font-black text-sm md:text-lg tracking-wider uppercase relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer-sweep_2.5s_infinite]"></div>
-                      Votação Aberta
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 md:gap-3">
-                      <div className="bg-[#0a0f20] border border-green-500/20 rounded-xl p-3 md:p-4 text-center">
-                        <span className="text-[10px] md:text-xs text-green-400 font-bold tracking-wider">SIM</span>
-                        <div className="text-3xl md:text-5xl font-black text-green-400 mt-1 tabular-nums" style={{ textShadow: '0 0 15px rgba(74,222,128,0.4)' }}>3</div>
-                      </div>
-                      <div className="bg-[#0a0f20] border border-red-500/20 rounded-xl p-3 md:p-4 text-center">
-                        <span className="text-[10px] md:text-xs text-red-400 font-bold tracking-wider">NÃO</span>
-                        <div className="text-3xl md:text-5xl font-black text-red-500 mt-1 tabular-nums" style={{ textShadow: '0 0 15px rgba(239,68,68,0.4)' }}>1</div>
-                      </div>
-                      <div className="bg-[#0a0f20] border border-white/5 rounded-xl p-3 md:p-4 text-center">
-                        <span className="text-[10px] md:text-xs text-zinc-500 font-bold tracking-wider">ABS</span>
-                        <div className="text-3xl md:text-5xl font-black text-zinc-600 mt-1 tabular-nums">0</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom: Live Votes */}
-                <div className="px-4 md:px-8 pb-4 md:pb-6">
-                  <span className="text-[8px] md:text-[10px] text-zinc-600 font-mono uppercase tracking-[0.3em] mb-2 block text-center">Votos em Tempo Real</span>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {[
-                      { seat: 1, name: "JONAS", party: "PMU", vote: "SIM", color: "green" },
-                      { seat: 2, name: "MARCOS", party: "PFC", vote: "SIM", color: "green" },
-                      { seat: 3, name: "PAULO", party: "PMU", vote: "SIM", color: "green" },
-                      { seat: 4, name: "JOTA", party: "PQD", vote: "NÃO", color: "red" },
-                    ].map(v => (
-                      <div key={v.seat} className={`bg-[#0a0f20] border rounded-lg p-2 md:p-2.5 ${v.color === 'green' ? 'border-green-500/30' : 'border-red-500/30'}`}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[8px] md:text-[9px] text-zinc-600 font-mono">Assento {v.seat}</span>
-                        </div>
-                        <span className="text-[10px] md:text-xs text-white font-bold block">{v.name}</span>
-                        <span className="text-[8px] md:text-[9px] text-zinc-500">{v.party}</span>
-                        <div className={`mt-1 text-[9px] md:text-[10px] font-bold ${v.color === 'green' ? 'text-green-400' : 'text-red-400'}`}>
-                          {v.color === 'green' ? '✓' : '✗'} {v.vote}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Footer */}
-                <div className="bg-[#060a15] px-4 md:px-8 py-2 flex justify-end border-t border-white/5">
-                  <span className="text-[8px] md:text-[10px] text-zinc-600 font-mono tracking-wider uppercase">Tecnologia <strong className="text-zinc-400">Sonus Pro Audio & Video</strong></span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Text below */}
-            <div className="grid md:grid-cols-2 gap-8 mt-10">
-              <p className="text-xl md:text-2xl text-zinc-200 leading-relaxed font-light">
-                O orador fala, o cronômetro conta, a câmera enquadra, e a população assiste — tudo em tempo real no telão e na transmissão da TV Câmara.
-              </p>
-              <p className="text-lg text-zinc-400 leading-relaxed font-light">
-                Cada voto nominal é registrado instantaneamente com o nome, partido e assento do parlamentar. 
-                <strong className="text-white font-medium"> Sem margem para contestação.</strong>
-              </p>
+            <div className="relative group perspective-1000">
+              <LiveSessionSimulator />
             </div>
           </FadeIn>
 
