@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, Clock } from 'lucide-react';
+import { CheckCircle2, XCircle, Clock, MinusCircle } from 'lucide-react';
 
 export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
   const [phase, setPhase] = useState<'idle' | 'voting' | 'finished'>('idle');
@@ -40,9 +40,11 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
     // Timeline of votes - we only run them if we haven't received them yet
     const sequence = [
       { seat: 1, targetTime: 18, vote: 'SIM' },
-      { seat: 4, targetTime: 15, vote: 'NÃO' },
-      { seat: 3, targetTime: 11, vote: 'SIM' },
+      { seat: 5, targetTime: 16, vote: 'SIM' },
+      { seat: 6, targetTime: 13, vote: 'NÃO' },
+      { seat: 3, targetTime: 10, vote: 'ABS' },
       { seat: 2, targetTime: 7, vote: 'SIM' },
+      { seat: 4, targetTime: 3, vote: 'SIM' },
     ];
 
     sequence.forEach(s => {
@@ -56,16 +58,19 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
 
   const simCount = Object.values(votes).filter(v => v === 'SIM').length;
   const naoCount = Object.values(votes).filter(v => v === 'NÃO').length;
+  const absCount = Object.values(votes).filter(v => v === 'ABS').length;
 
   const parliamentarians = [
     { seat: 1, name: "JONAS", party: "PMU" },
-    { seat: 2, name: "MARCOS", party: "PFC" },
-    { seat: 3, name: "PAULO", party: "PMU" },
-    { seat: 4, name: "JOTA", party: "PQD" },
+    { seat: 2, name: "MARIA", party: "PRV" },
+    { seat: 3, name: "MARCOS", party: "PFC" },
+    { seat: 4, name: "PAULO", party: "PMU" },
+    { seat: 5, name: "ANA", party: "PFC" },
+    { seat: 6, name: "JOTA", party: "PQD" },
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden bg-[#030712] border border-white/10 shadow-[0_0_80px_rgba(59,130,246,0.15)] group font-sans" style={{ willChange: 'transform, opacity' }}>
+    <div ref={containerRef} className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden bg-[#030712] border border-white/10 shadow-[0_0_80px_rgba(59,130,246,0.15)] group font-sans" style={{ willChange: 'transform, opacity' }}>
       
       {/* Cinematic Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] opacity-30" />
@@ -97,7 +102,7 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
         </div>
       </div>
 
-      <div className="relative z-10 p-6 md:p-10 grid md:grid-cols-[1fr_300px] gap-8">
+      <div className="relative z-10 p-6 md:p-10 grid lg:grid-cols-[1fr_300px] gap-8">
         
         {/* ── LEFT: MAIN DASHBOARD ── */}
         <div className="space-y-8">
@@ -112,7 +117,7 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
 
           <div className="space-y-3">
             <span className="text-zinc-600 text-xs font-bold uppercase tracking-[0.2em] mb-4 block">Log de Votos em Tempo Real</span>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {parliamentarians.map((p) => {
                 const myVote = votes[p.seat];
                 return (
@@ -123,37 +128,42 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
                     animate={{ 
                       opacity: myVote ? 1 : 0.5, 
                       scale: myVote ? 1 : 0.98,
-                      borderColor: myVote === 'SIM' ? 'rgba(34,197,94,0.4)' : myVote === 'NÃO' ? 'rgba(239,68,68,0.4)' : 'rgba(255,255,255,0.05)'
+                      borderColor: myVote === 'SIM' ? 'rgba(34,197,94,0.4)' : myVote === 'NÃO' ? 'rgba(239,68,68,0.4)' : myVote === 'ABS' ? 'rgba(161,161,170,0.4)' : 'rgba(255,255,255,0.05)'
                     }}
                     style={{ willChange: 'transform, opacity' }}
-                    className="bg-black/50 border rounded-xl p-4 flex items-center justify-between"
+                    className="bg-black/50 border rounded-xl p-3 md:p-4 flex flex-col justify-between min-h-[90px]"
                   >
                     <div>
-                      <span className="text-xs text-zinc-500 font-mono block mb-1">Assento {p.seat}</span>
-                      <span className="text-sm font-bold text-white">{p.name}</span>
-                      <span className="text-xs text-zinc-600 ml-2">{p.party}</span>
-                    </div>
-                    
-                    <div className="w-10 text-right">
-                      <AnimatePresence mode="popLayout">
-                        {!myVote ? (
-                          <motion.div key="waiting" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0, scale:0.5}} className="flex justify-end">
-                            {isInView ? (
-                              <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }} className="w-4 h-4 border-2 border-zinc-700 border-t-zinc-400 rounded-full" />
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] text-zinc-500 font-mono block">Assento {p.seat}</span>
+                        <div className="w-4 h-4 flex-shrink-0">
+                          <AnimatePresence mode="popLayout">
+                            {!myVote ? (
+                              <motion.div key="waiting" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0, scale:0.5}}>
+                                {isInView ? (
+                                  <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }} className="w-4 h-4 border-[1.5px] border-zinc-700 border-t-zinc-400 rounded-full" />
+                                ) : (
+                                  <div className="w-4 h-4 border-[1.5px] border-zinc-700 border-t-zinc-400 rounded-full" />
+                                )}
+                              </motion.div>
+                            ) : myVote === 'SIM' ? (
+                              <motion.div key="sim" initial={{scale:0}} animate={{scale:1}} className="text-green-400">
+                                <CheckCircle2 className="w-4 h-4" />
+                              </motion.div>
+                            ) : myVote === 'NÃO' ? (
+                              <motion.div key="nao" initial={{scale:0}} animate={{scale:1}} className="text-red-400">
+                                <XCircle className="w-4 h-4" />
+                              </motion.div>
                             ) : (
-                              <div className="w-4 h-4 border-2 border-zinc-700 border-t-zinc-400 rounded-full" />
+                              <motion.div key="abs" initial={{scale:0}} animate={{scale:1}} className="text-zinc-400">
+                                <MinusCircle className="w-4 h-4" />
+                              </motion.div>
                             )}
-                          </motion.div>
-                        ) : myVote === 'SIM' ? (
-                          <motion.div key="sim" initial={{opacity:0, x:-10}} animate={{opacity:1, x:0}} className="text-green-400 font-bold flex items-center gap-1 justify-end">
-                            SIM <CheckCircle2 className="w-4 h-4" />
-                          </motion.div>
-                        ) : (
-                          <motion.div key="nao" initial={{opacity:0, x:-10}} animate={{opacity:1, x:0}} className="text-red-400 font-bold flex items-center gap-1 justify-end">
-                            NÃO <XCircle className="w-4 h-4" />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                      <span className="text-sm font-bold text-white block">{p.name}</span>
+                      <span className="text-[10px] text-zinc-600 block">{p.party}</span>
                     </div>
                   </motion.div>
                 );
@@ -165,12 +175,12 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
         {/* ── RIGHT: VOTING CONSOLE ── */}
         <div className="flex flex-col gap-6">
           
-          <div className="bg-[#0a0f20] border border-white/5 rounded-3xl p-8 flex flex-col items-center justify-center relative overflow-hidden group/timer">
+          <div className="bg-[#0a0f20] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden group/timer">
             <motion.div 
               className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/timer:opacity-100 transition-opacity" 
             />
             <span className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2 z-10">Tempo Restante</span>
-            <div className="text-6xl font-black font-mono tracking-tighter text-white z-10 flex items-center justify-center w-full">
+            <div className="text-5xl md:text-6xl font-black font-mono tracking-tighter text-white z-10 flex items-center justify-center w-full">
               00
               {isInView ? (
                 <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 1 }}>:</motion.span>
@@ -198,15 +208,23 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
                 <motion.span key={simCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{simCount}</motion.span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" animate={{ width: `${(simCount / 4) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+                <motion.div className="h-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" animate={{ width: `${(simCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
               </div>
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-between pt-1">
                 <span className="text-red-400 font-bold tracking-wider text-sm">NÃO</span>
                 <motion.span key={naoCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{naoCount}</motion.span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" animate={{ width: `${(naoCount / 4) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+                <motion.div className="h-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" animate={{ width: `${(naoCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                <span className="text-zinc-400 font-bold tracking-wider text-sm">ABS</span>
+                <motion.span key={absCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{absCount}</motion.span>
+              </div>
+              <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                <motion.div className="h-full bg-zinc-500 shadow-[0_0_10px_rgba(161,161,170,0.5)]" animate={{ width: `${(absCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
               </div>
             </div>
           </div>
