@@ -93,7 +93,7 @@ export function Home() {
       </Helmet>
       <SEO 
         title="Sonus Pro AV | Integração Audiovisual de Alto Padrão" 
-        description="A tecnologia desaparece. A conexão importa. Engenharia audiovisual de precisão para Salas Corporativas, Plenários e Auditórios." 
+        description="A tecnologia desaparece. A conexão importa. Projetos audiovisuais de precisão para Salas Corporativas, Plenários e Auditórios." 
         url="https://sonusproaudio.com.br"
       />
 
@@ -121,7 +121,7 @@ export function Home() {
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
               >
-                Engenharia <br className="hidden md:block" />
+                Integração <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Invisível.</span>
               </motion.h1>
 
@@ -133,17 +133,21 @@ export function Home() {
               </motion.p>
 
               <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row gap-4 mt-10 w-full sm:w-auto"
-              >
-                <Link to="/solucoes" className="group relative inline-flex items-center justify-center gap-4 bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1">
-                  Explorar Ecossistema
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <a href="https://wa.me/5546920013151" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white hover:bg-white/10 font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:-translate-y-1">
-                  Falar com Engenharia
-                </a>
-              </motion.div>
+                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col sm:flex-row flex-wrap items-center gap-4 mt-10 w-full"
+                >
+                  <Link to="/projetos" className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs lg:text-sm shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1">
+                    Nossos Projetos
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <a href="https://wa.me/5546920013151" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white hover:bg-white/10 font-bold uppercase tracking-widest text-xs lg:text-sm transition-all duration-300 hover:-translate-y-1">
+                    Falar com Especialistas
+                  </a>
+                  <Link to="/solucoes" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-zinc-300 hover:text-white hover:border-white/30 font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:bg-white/5">
+                    Nossas Soluções
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </Link>
+                </motion.div>
             </div>
 
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
@@ -186,7 +190,7 @@ export function Home() {
         <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4">Pronto para blindar seu espaço?</h2>
-            <p className="text-lg text-zinc-400 font-light">Fale com nossa engenharia e agende uma consultoria técnica.</p>
+            <p className="text-lg text-zinc-400 font-light">Fale com nossos especialistas e agende uma consultoria técnica.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

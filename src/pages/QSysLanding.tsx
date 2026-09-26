@@ -695,7 +695,7 @@ export function QSysLanding() {
           },
           {
             question: "A Sonus faz a instalação e configuração do Q-SYS?",
-            answer: "Sim, nossa equipe possui certificações oficiais de Engenharia e Vendas Q-SYS. Desde o dimensionamento da rede, compra dos processadores, cabeamento estruturado e criação da interface (painéis touch screen), entregamos o ecossistema Q-SYS operando com excelência e garantia."
+            answer: "Sim, nossa equipe possui certificações oficiais Técnicas e Comerciais Q-SYS. Desde o dimensionamento da rede, compra dos processadores, cabeamento estruturado e criação da interface (painéis touch screen), entregamos o ecossistema Q-SYS operando com excelência e garantia."
           }
         ]} />
         <TestimonialSection />

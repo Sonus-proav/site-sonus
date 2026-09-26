@@ -467,7 +467,7 @@ return (
             <FadeIn>
               <div className="flex items-center gap-3 mb-8 border-l-2 border-blue-500 pl-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-[10px] font-mono tracking-[0.3em] text-zinc-400 uppercase">Projetos Executivos de Engenharia</span>
+                <span className="text-[10px] font-mono tracking-[0.3em] text-zinc-400 uppercase">Projetos Executivos de Audiovisual</span>
               </div>
             </FadeIn>
             
@@ -570,7 +570,7 @@ return (
       <section className="py-24 md:py-32 bg-[#020202] text-white relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <Reveal>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-4">Engenharia de Ponta.</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-4">Tecnologia de Ponta.</h2>
           </Reveal>
           <p className="text-lg md:text-xl text-zinc-400 mb-16 max-w-2xl font-light">
             Não vendemos caixas de som avulsas. Projetamos um ecossistema inteligente, integrado e livre de falhas para o setor público.
@@ -927,7 +927,7 @@ return (
 
             <div className="space-y-16">
               {[
-                { step: "01", title: "Levantamento & TR", desc: "Nossos engenheiros mapeiam o plenário e ajudam o setor de compras na formulação do Termo de Referência técnico correto." },
+                { step: "01", title: "Levantamento & TR", desc: "Nossos especialistas mapeiam o plenário e ajudam o setor de compras na formulação do Termo de Referência técnico correto." },
                 { step: "02", title: "Projeto Executivo", desc: "Desenho da arquitetura de rede, plantas de cabeamento estruturado e design das interfaces touchscreen." },
                 { step: "03", title: "Instalação Cirúrgica", desc: "A execução ocorre durante o recesso parlamentar ou janelas livres, garantindo zero impacto na agenda legislativa." },
                 { step: "04", title: "Sessão Inaugural e SLA", desc: "Acompanhamos as primeiras sessões presencialmente e ativamos o monitoramento remoto 24/7 (Q-SYS Reflect)." }
@@ -972,7 +972,7 @@ return (
           },
           {
             question: "Vocês auxiliam na elaboração do Termo de Referência (TR)?",
-            answer: "Sim. Nossos engenheiros de áudio e vídeo realizam o levantamento arquitetônico e entregam um projeto executivo detalhado. Este documento fornece as especificações técnicas rigorosas necessárias para garantir que o edital de licitação atraia apenas soluções profissionais, evitando equipamentos amadores."
+            answer: "Sim. Nossos consultores de áudio e vídeo realizam o levantamento arquitetônico e entregam um projeto executivo detalhado. Este documento fornece as especificações técnicas rigorosas necessárias para garantir que o edital de licitação atraia apenas soluções profissionais, evitando equipamentos amadores."
           },
           {
             question: "Quais tecnologias padrão da indústria a Sonus utiliza em plenários?",

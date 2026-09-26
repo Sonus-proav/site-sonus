@@ -687,7 +687,7 @@ export function AuditoriosTeatros() {
           },
           {
             question: "Quanto custa a sonorização profissional de um auditório?",
-            answer: "O valor depende do tamanho do espaço, do formato da platéia e das necessidades (palestras, shows, teatro). A Sonus não vende apenas as caixas de som, nós entregamos o projeto de engenharia, a instalação, o cabeamento e a garantia técnica. Fale com nosso especialista para dimensionarmos um orçamento preciso sem compromisso."
+            answer: "O valor depende do tamanho do espaço, do formato da platéia e das necessidades (palestras, shows, teatro). A Sonus não vende apenas as caixas de som, nós entregamos o projeto executivo, a instalação, o cabeamento e a garantia técnica. Fale com nosso especialista para dimensionarmos um orçamento preciso sem compromisso."
           }
         ]} />
         <TestimonialSection />

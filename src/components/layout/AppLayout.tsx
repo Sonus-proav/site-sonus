@@ -46,7 +46,7 @@ export function AppLayout() {
           "addressCountry": "BR"
         },
         "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
-        "knowsAbout": ["Audiovisual", "Engenharia Acústica", "Automação Corporativa", "Videoconferência"],
+        "knowsAbout": ["Audiovisual", "Projetos Acústicos", "Automação Corporativa", "Videoconferência"],
         "telephone": "+5546920013151",
         "priceRange": "$$$$"
       }

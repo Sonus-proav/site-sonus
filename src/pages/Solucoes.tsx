@@ -44,7 +44,7 @@ const dimensions: DimensionItem[] = [
   },
   {
     title: "Auditórios e Teatros",
-    headline: "Engenharia Acústica em Grande Escala.",
+    headline: "Acústica Profissional em Grande Escala.",
     description: "Sonorização de alta inteligibilidade projetada para a geometria do espaço. Cobertura uniforme que garante clareza do palco ao último assento.",
     ctaText: "Conhecer Auditórios",
     link: "/auditorios-e-teatros",
@@ -200,7 +200,7 @@ export function Solucoes() {
       </Helmet>
       <SEO 
         title="Ecossistema de Soluções | Sonus Pro AV" 
-        description="Conheça nossas verticais de engenharia audiovisual: Plenários, Salas Corporativas, Auditórios, Igrejas e Integração Q-SYS." 
+        description="Conheça nossas verticais de tecnologia audiovisual: Plenários, Salas Corporativas, Auditórios, Igrejas e Integração Q-SYS." 
         url="https://sonusproaudio.com.br/solucoes"
       />
 
@@ -254,7 +254,7 @@ export function Solucoes() {
             transition={{ duration: 1, delay: 0.4 }}
             className="text-lg md:text-3xl text-white/80 font-light leading-relaxed max-w-3xl mx-auto drop-shadow-lg"
           >
-            Apresentamos o ecossistema Sonus. Engenharia audiovisual vibrante, impecável e desenhada para não falhar.
+            Apresentamos o ecossistema Sonus. Integração audiovisual vibrante, impecável e desenhada para não falhar.
           </motion.p>
         </div>
 

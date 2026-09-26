@@ -16,7 +16,7 @@ export function AboutExperience() {
       icon: <Shield className="w-5 h-5 text-blue-400" />
     },
     {
-      title: "Engenharia Própria",
+      title: "Equipe Especializada",
       desc: "Instalação sem Terceirizados",
       icon: <Cpu className="w-5 h-5 text-emerald-400" />
     }

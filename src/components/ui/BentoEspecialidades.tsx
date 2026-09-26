@@ -8,7 +8,7 @@ const SPECIALTIES = [
     id: "auditorios",
     title: "Auditórios e Teatros",
     subtitle: "Acústica para espetáculos",
-    description: "Engenharia acústica projetada para a geometria exata do espetáculo. Sem ecos, sem zonas mortas. Fidelidade absoluta em cada poltrona.",
+    description: "Arquitetura acústica projetada para a geometria exata do espetáculo. Sem ecos, sem zonas mortas. Fidelidade absoluta em cada poltrona.",
     image: "/auditorio-sonus.webp",
     link: "/auditorios-e-teatros",
     color: "from-emerald-500/20 to-emerald-900/40",
@@ -83,7 +83,7 @@ export function BentoEspecialidades() {
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-[1.1]">
-                Engenharia <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Aplicada.</span>
+                Tecnologia <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Aplicada.</span>
               </h2>
             </Reveal>
           </div>
@@ -185,7 +185,7 @@ export function BentoEspecialidades() {
                           transition={{ duration: 0.4, delay: 0.4 }}
                         >
                           <Link to={item.link} className={`inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-colors w-fit`}>
-                            Explorar Engenharia
+                            Explorar Tecnologia
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                           </Link>
                         </motion.div>
