@@ -1,184 +1,194 @@
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { SpotlightCard } from "./SpotlightCard"
 import { Reveal } from "./Reveal"
 
+const SPECIALTIES = [
+  {
+    id: "auditorios",
+    title: "Auditórios e Teatros",
+    subtitle: "Acústica para espetáculos",
+    description: "Engenharia acústica projetada para a geometria exata do espetáculo. Sem ecos, sem zonas mortas. Fidelidade absoluta em cada poltrona.",
+    image: "/auditorio-sonus.webp",
+    link: "/auditorios-e-teatros",
+    color: "from-emerald-500/20 to-emerald-900/40",
+    accent: "text-emerald-400",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+  },
+  {
+    id: "qsys",
+    title: "Plataforma Q-SYS",
+    subtitle: "O Cérebro da Operação",
+    description: "Áudio, vídeo e controle unificados na rede. Esqueça racks lotados de equipamentos isolados. Tudo processado via software.",
+    image: "/qsys-tech-bg.webp", // Fundo genérico tech, ou uma imagem escura
+    logo: "/qsys-logo.png",
+    link: "/qsys",
+    color: "from-blue-500/20 to-indigo-900/40",
+    accent: "text-blue-400",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+  },
+  {
+    id: "salas",
+    title: "Salas Corporativas",
+    subtitle: "Videoconferência Nativa",
+    description: "Automação invisível. Reuniões híbridas que começam com um toque, sem cabos pela mesa e sem falhas de conexão.",
+    image: "/sobre-sonus.webp",
+    link: "/salas-reuniao",
+    color: "from-cyan-500/20 to-teal-900/40",
+    accent: "text-cyan-400",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+  },
+  {
+    id: "plenarios",
+    title: "Plenários e Câmaras",
+    subtitle: "Votação Digital",
+    description: "Captação irretocável para o legislativo. Microfones parlamentares integrados com câmera tracking automático e votação blindada.",
+    image: "/auditorio-sonus.webp", // Reaproveitado, idealmente teria um específico
+    link: "/plenarios-e-camaras",
+    color: "from-amber-500/20 to-orange-900/40",
+    accent: "text-amber-400",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 12 2 2 4-4"/><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"/><path d="M22 19H2"/></svg>
+  },
+  {
+    id: "igrejas",
+    title: "Igrejas e Templos",
+    subtitle: "Palavra Clara",
+    description: "Acústica controlada para atingir todos os fiéis com clareza. Da voz falada ao louvor com banda completa, sem microfonia.",
+    image: "/sobre-sonus.webp", // Reaproveitado
+    link: "/igrejas-e-templos",
+    color: "from-purple-500/20 to-fuchsia-900/40",
+    accent: "text-purple-400",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+  }
+]
+
 export function BentoEspecialidades() {
+  const [active, setActive] = useState<string>("auditorios")
+
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.05)_0%,transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.05)_0%,transparent_50%)]" />
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.03)_0%,transparent_50%)] pointer-events-none" />
 
-      <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
-        <div className="mb-20">
-          <Reveal>
-            <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6">
-              Engenharia <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Aplicada.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-xl text-zinc-400 font-light max-w-2xl leading-relaxed">
-              Nenhuma sala é igual à outra. Nossa arquitetura se adapta à geometria exata do seu desafio, com precisão matemática.
+      <div className="container mx-auto px-4 lg:px-8 max-w-[1600px] relative z-10">
+        
+        {/* Header Bespoke */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl">
+            <Reveal>
+              <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-white">Ecossistema de Soluções</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-[1.1]">
+                Engenharia <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Aplicada.</span>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2}>
+            <p className="text-lg text-zinc-400 font-light max-w-md leading-relaxed border-l border-white/10 pl-6">
+              A arquitetura do seu espaço dita a regra. Nós construímos o cérebro invisível que dá vida a ele.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(350px,auto)]">
-          
-          {/* CARD 1: AUDITÓRIOS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-7"
-          >
-            <Link to="/auditorios-e-teatros" className="block h-full">
-              <SpotlightCard className="h-full rounded-[2.5rem] overflow-hidden bg-zinc-900 group !p-0">
-                <img src="/auditorio-sonus.webp" alt="Auditórios" className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100 grayscale group-hover:grayscale-0 mix-blend-luminosity group-hover:mix-blend-normal z-0" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-70 z-0" />
-                
-                <div className="relative z-10 p-10 md:p-12 h-full flex flex-col justify-end">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 backdrop-blur-xl border border-emerald-500/30 flex items-center justify-center mb-6 text-emerald-400 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Auditórios e Teatros</h3>
-                  <p className="text-lg text-zinc-300 font-light max-w-md group-hover:text-white transition-colors duration-300">Engenharia acústica projetada para a geometria do espetáculo.</p>
-                </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
-
-          {/* CARD 2: Q-SYS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-5"
-          >
-            <Link to="/qsys" className="block h-full">
-              <SpotlightCard className="h-full rounded-[2.5rem] overflow-hidden bg-[#0a1120] group !p-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.2)_0%,transparent_70%)] group-hover:bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.4)_0%,transparent_80%)] transition-colors duration-700 z-0" />
-                <div className="absolute top-0 right-0 w-full h-full bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] z-0" />
-                
-                <div className="absolute top-20 right-10 flex gap-4 opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0">
-                  <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity }} className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_#60a5fa]" />
-                  <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, delay: 1, repeat: Infinity }} className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_#60a5fa]" />
-                  <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, delay: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_#60a5fa]" />
-                </div>
-                
-                <div className="relative z-10 p-10 md:p-12 h-full flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <div className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-                      O Cérebro da Operação
-                    </div>
-                    <img src="/marcas/qsc.png" alt="QSC" className="h-6 brightness-0 invert opacity-40 group-hover:opacity-100 group-hover:scale-110 origin-right transition-all duration-500" />
-                  </div>
-                  
-                  <div className="group-hover:translate-x-2 transition-transform duration-500">
-                    <h3 className="text-4xl sm:text-5xl font-black tracking-tighter text-white mb-3">Plataforma <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 drop-shadow-lg">Q-SYS</span></h3>
-                    <p className="text-zinc-400 font-light text-lg group-hover:text-zinc-300 transition-colors">Áudio, vídeo e controle unificados na rede.</p>
-                  </div>
-                </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
-
-          {/* CARD 3: SALAS CORPORATIVAS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.0, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4"
-          >
-            <Link to="/salas-reuniao" className="block h-full">
-              <SpotlightCard className="h-full rounded-[2.5rem] overflow-hidden bg-zinc-900 group !p-0">
-                <img src="/sobre-sonus.webp" alt="Salas Corporativas" className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0 mix-blend-luminosity z-0" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/20 via-[#050505]/80 to-[#050505] z-0" />
-                
-                <div className="relative z-10 p-10 h-full flex flex-col justify-between">
-                  <div className="self-end w-32 h-16 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.5)] flex items-center justify-center gap-3 group-hover:-translate-y-4 group-hover:rotate-2 transition-all duration-700">
-                    <motion.div animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-8 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]" />
-                    <div className="w-8 h-1.5 rounded-full bg-white/20" />
-                  </div>
-
-                  <div className="mt-auto group-hover:translate-x-2 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold text-white mb-2">Salas Corporativas</h3>
-                    <p className="text-zinc-400 font-light text-sm group-hover:text-zinc-300">Videoconferência nativa e automação invisível.</p>
-                  </div>
-                </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
-
-          {/* CARD 4: PLENÁRIOS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4"
-          >
-            <Link to="/plenarios-e-camaras" className="block h-full">
-              <SpotlightCard className="h-full rounded-[2.5rem] overflow-hidden bg-[#0c0a05] group !p-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.1)_0%,transparent_70%)] group-hover:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.25)_0%,transparent_80%)] transition-colors duration-700 z-0" />
-                
-                <div className="relative z-10 p-10 h-full flex flex-col justify-between">
-                  <div className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-amber-500/10 to-orange-600/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-[-5deg] transition-all duration-500 shadow-[0_0_40px_rgba(245,158,11,0.15)] text-amber-500 overflow-hidden relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative z-10"><path d="m9 12 2 2 4-4"/><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"/><path d="M22 19H2"/></svg>
-                    <motion.div 
-                      initial={{ top: "-100%" }}
-                      whileHover={{ top: "100%" }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                      className="absolute left-0 w-full h-[200%] bg-gradient-to-b from-transparent via-amber-500/20 to-transparent rotate-45 pointer-events-none"
+        {/* ACCORDION HORIZONTAL INTERATIVO */}
+        <div className="flex flex-col lg:flex-row gap-4 h-[800px] lg:h-[600px] w-full">
+          {SPECIALTIES.map((item) => {
+            const isActive = active === item.id;
+            
+            return (
+              <motion.div
+                key={item.id}
+                onHoverStart={() => setActive(item.id)}
+                onClick={() => setActive(item.id)}
+                layout
+                initial={false}
+                animate={{
+                  flex: isActive ? (typeof window !== 'undefined' && window.innerWidth > 1024 ? 5 : 4) : 1,
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'} transition-colors duration-500 flex flex-col`}
+              >
+                {/* Background Image & Gradient */}
+                <div className="absolute inset-0 z-0">
+                  {item.image && (
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className={`w-full h-full object-cover transition-all duration-1000 ${isActive ? 'opacity-50 scale-100 grayscale-0 mix-blend-normal' : 'opacity-20 scale-110 grayscale mix-blend-luminosity'}`}
                     />
-                  </div>
-
-                  <div className="mt-auto group-hover:translate-x-2 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold text-white mb-2">Plenários e Câmaras</h3>
-                    <p className="text-zinc-400 font-light text-sm group-hover:text-zinc-300">Votação digital e captação irretocável para o legislativo.</p>
-                  </div>
+                  )}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-90' : 'opacity-100'}`} />
+                  {isActive && <div className={`absolute inset-0 bg-gradient-to-br ${item.color} mix-blend-overlay`} />}
                 </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
 
-          {/* CARD 5: IGREJAS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4"
-          >
-            <Link to="/igrejas-e-templos" className="block h-full">
-              <SpotlightCard className="h-full rounded-[2.5rem] overflow-hidden bg-[#0a050c] group !p-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.1)_0%,transparent_70%)] group-hover:bg-[radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.25)_0%,transparent_80%)] transition-colors duration-700 z-0" />
-                
-                <div className="relative z-10 p-10 h-full flex flex-col justify-between">
-                  <div className="flex items-center gap-2 h-16 opacity-60 group-hover:opacity-100 transition-opacity">
-                    {[1, 2, 3, 2, 4, 1, 3].map((bar, i) => (
-                      <motion.div 
-                        key={i} 
-                        className="w-2 bg-purple-400 rounded-full shadow-[0_0_10px_#a855f7]" 
-                        animate={{ height: ["20%", `${bar * 25}%`, "20%"] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1, ease: "easeInOut" }}
-                      />
-                    ))}
+                {/* Content Overlay */}
+                <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-end">
+                  
+                  {/* Ícone fixo visível mesmo colapsado */}
+                  <div className={`w-12 h-12 rounded-xl backdrop-blur-md border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
+                    {item.logo && isActive ? (
+                      <img src={item.logo} alt="Logo" className="h-4 brightness-0 invert" />
+                    ) : (
+                      item.icon
+                    )}
                   </div>
 
-                  <div className="mt-auto group-hover:translate-x-2 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold text-white mb-2">Igrejas e Templos</h3>
-                    <p className="text-zinc-400 font-light text-sm group-hover:text-zinc-300">Acústica controlada para atingir todos os fiéis com clareza.</p>
+                  {/* Título Rotacionado quando colapsado (Desktop) */}
+                  <div className={`hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap origin-bottom-left -rotate-90 transition-all duration-500 ${isActive ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100 delay-300'}`}>
+                    <h3 className="text-xl font-bold tracking-wider text-zinc-500 uppercase">{item.title}</h3>
                   </div>
+
+                  {/* Título normal quando colapsado (Mobile) */}
+                  <div className={`block lg:hidden transition-all duration-300 ${isActive ? 'opacity-0 h-0 hidden' : 'opacity-100 h-auto block'}`}>
+                    <h3 className="text-lg font-bold tracking-tight text-zinc-400">{item.title}</h3>
+                  </div>
+
+                  {/* Conteúdo Expandido */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
+                        className="flex flex-col"
+                      >
+                        <h4 className={`${item.accent} text-xs font-bold uppercase tracking-[0.2em] mb-2`}>{item.subtitle}</h4>
+                        <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight">{item.title}</h3>
+                        
+                        <motion.p 
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className="text-zinc-300 font-light text-base md:text-lg max-w-xl leading-relaxed mb-8"
+                        >
+                          {item.description}
+                        </motion.p>
+
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, delay: 0.4 }}
+                        >
+                          <Link to={item.link} className={`inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-colors w-fit`}>
+                            Explorar Engenharia
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                          </Link>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                 </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
-
+              </motion.div>
+            )
+          })}
         </div>
+
       </div>
     </section>
   )
