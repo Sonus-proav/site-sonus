@@ -54,7 +54,7 @@ export function SpotlightCard({
           background: useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
         }}
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 h-full w-full flex flex-col">{children}</div>
     </div>
   )
 }
