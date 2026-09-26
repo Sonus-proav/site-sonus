@@ -19,7 +19,8 @@ import { Turnstile } from '@marsidev/react-turnstile'
 
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
 const ClientMarquee = lazy(() => import("@/components/ui/ClientMarquee").then(m => ({ default: m.ClientMarquee })))
-const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
+const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })));
+const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })));
 
 export function Home() {
   const location = useLocation()
@@ -158,9 +159,7 @@ export function Home() {
         </div>
       </section>
 
-      <Suspense fallback={null}>
-        <ClientMarquee />
-      </Suspense>
+      
 
             {/* APPLE-STYLE BESPOKE BENTO GRID */}
       <BentoEspecialidades />
@@ -230,8 +229,14 @@ export function Home() {
         </div>
       </section>
 
+      
+      
+
       <Suspense fallback={null}>
-        
+        <ClientMarquee />
+        <TestimonialSection />
+        <SocialProofBar />
+        <StickyCtaBar />
       </Suspense>
     </div>
   )
