@@ -1,8 +1,8 @@
 import { motion } from "framer-motion"
 
 const clientLogos = [
-  { src: "/clientes/cesul.png", alt: "Cesul", className: "h-12 md:h-14" },
-  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-6 md:h-8" },
+  { src: "/clientes/cesul.png", alt: "Cesul", className: "h-10 md:h-12" }, // normalizando altura
+  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-10 md:h-12" }, // aumentando Cresol
   { src: "/clientes/grupo-msa.svg", alt: "Grupo MSA", className: "h-10 md:h-12" },
   { src: "/clientes/unipar.webp", alt: "Unipar", className: "h-10 md:h-12" },
   { src: "/clientes/unisep.webp", alt: "Unisep", className: "h-10 md:h-12" },
@@ -10,12 +10,12 @@ const clientLogos = [
 ]
 
 const brandLogos = [
-  { src: "/marcas/shure.svg", alt: "Shure", className: "h-6 md:h-8" },
-  { src: "/marcas/qsys.svg", alt: "Q-SYS", className: "h-8 md:h-10" },
+  { src: "/shure-logo.png", alt: "Shure", className: "h-8 md:h-10" }, 
+  { src: "/qsys-logo.png", alt: "Q-SYS", className: "h-10 md:h-12" }, // Usando o PNG real
   { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8" },
-  { src: "/marcas/bose.svg", alt: "Bose", className: "h-6 md:h-8" },
-  { src: "/marcas/renkus-heinz.svg", alt: "Renkus-Heinz", className: "h-6 md:h-8" },
-  { src: "/marcas/qsc.svg", alt: "QSC", className: "h-8 md:h-10" },
+  { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10" }, // Bose estava muito pequeno
+  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10" }, // Usando o PNG real
+  { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10" }, // Usando o PNG real
   { src: "/zoom-logo.png", alt: "Zoom", className: "h-8 md:h-10" },
   { src: "/google-meet-logo.png", alt: "Google Meet", className: "h-8 md:h-10" },
 ]
