@@ -304,33 +304,37 @@ export function Solucoes() {
               <div className="absolute inset-0 bg-gradient-to-bl from-purple-900/20 via-[#050505] to-[#050505] z-0" />
 
               {/* HOLOGRAM INSTALLATION: Q-SYS - Network & Automação */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center">
-                {/* Network SVG Connections */}
-                <svg className="absolute inset-0 w-full h-full" strokeWidth="1">
-                   <motion.path d="M50% 50% L20% 20% M50% 50% L80% 20% M50% 50% L85% 80%" stroke="rgba(139,92,246,0.3)" />
-                   {/* Moving data packets */}
-                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "20%"], cy: ["50%", "20%"] }} transition={{ duration: 2, repeat: Infinity }} />
-                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "80%"], cy: ["50%", "20%"] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
-                   
-                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "85%"], cy: ["50%", "80%"] }} transition={{ duration: 2, repeat: Infinity, delay: 1.5 }} />
-                </svg>
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-start justify-end pt-12 pr-12">
+                
+                {/* Floating Q-SYS Container (Pushed to Top Right) */}
+                <div className="relative w-64 h-64">
+                  {/* Network SVG Connections */}
+                  <svg className="absolute inset-0 w-full h-full overflow-visible" strokeWidth="1">
+                     <motion.path d="M50% 50% L10% 20% M50% 50% L90% 10% M50% 50% L90% 80%" stroke="rgba(139,92,246,0.3)" />
+                     {/* Moving data packets */}
+                     <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "10%"], cy: ["50%", "20%"] }} transition={{ duration: 2, repeat: Infinity }} />
+                     <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "90%"], cy: ["50%", "10%"] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
+                     <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "90%"], cy: ["50%", "80%"] }} transition={{ duration: 2, repeat: Infinity, delay: 1.5 }} />
+                  </svg>
 
-                {/* Main Q-SYS Core (Rack Server / Processor) */}
-                <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-40 h-16 bg-purple-950 border border-purple-400 rounded-lg shadow-[0_0_40px_rgba(139,92,246,0.5)] flex flex-col justify-around px-2 py-1 [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateY(-15deg)]">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
-                    <div className="w-3 h-3 bg-purple-400 rounded-full" />
-                    <div className="w-3 h-3 bg-purple-400 rounded-full" />
-                  </div>
-                  <div className="w-full h-1 bg-purple-800 rounded">
-                    <motion.div animate={{ width: ["0%", "100%", "0%"] }} transition={{ duration: 2, repeat: Infinity }} className="h-full bg-purple-300 rounded shadow-[0_0_10px_#c4b5fd]" />
-                  </div>
-                </motion.div>
+                  {/* Main Q-SYS Core (Rack Server / Processor) */}
+                  <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-40 h-16 bg-purple-950 border border-purple-400 rounded-lg shadow-[0_0_40px_rgba(139,92,246,0.5)] flex flex-col justify-around px-2 py-1 [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateY(-15deg)]">
+                    <div className="flex gap-2">
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
+                      <div className="w-3 h-3 bg-purple-400 rounded-full" />
+                      <div className="w-3 h-3 bg-purple-400 rounded-full" />
+                    </div>
+                    <div className="w-full h-1 bg-purple-800 rounded">
+                      <motion.div animate={{ width: ["0%", "100%", "0%"] }} transition={{ duration: 2, repeat: Infinity }} className="h-full bg-purple-300 rounded shadow-[0_0_10px_#c4b5fd]" />
+                    </div>
+                  </motion.div>
 
-                {/* Sub nodes */}
-                <div className="absolute top-[10%] left-[10%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Mic2 className="w-4 h-4 text-purple-300" /></div>
-                <div className="absolute top-[10%] right-[10%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Users className="w-4 h-4 text-purple-300" /></div>
-                <div className="absolute bottom-[20%] right-[15%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Vote className="w-4 h-4 text-purple-300" /></div>
+                  {/* Sub nodes */}
+                  <div className="absolute top-[20%] left-[10%] -translate-x-1/2 -translate-y-1/2 w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Mic2 className="w-4 h-4 text-purple-300" /></div>
+                  <div className="absolute top-[10%] left-[90%] -translate-x-1/2 -translate-y-1/2 w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Users className="w-4 h-4 text-purple-300" /></div>
+                  <div className="absolute top-[80%] left-[90%] -translate-x-1/2 -translate-y-1/2 w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Vote className="w-4 h-4 text-purple-300" /></div>
+                </div>
+
               </div>
 
               <div className="relative z-10 p-8 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto">
