@@ -2,7 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation, useNavigate, Link } from "react-router-dom"
 import { motion,  } from "framer-motion"
-import { ArrowRight, CheckCircle2, Mic, Video, MonitorPlay, Vote } from "lucide-react"
+import { ArrowRight, CheckCircle2,  } from "lucide-react"
 
 import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead } from "@/lib/analytics"
@@ -17,59 +17,6 @@ import { Turnstile } from '@marsidev/react-turnstile'
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
-
-const verticals = [
-  {
-    id: "01",
-    title: "Plenários e Câmaras",
-    desc: "A soberania do som em ambientes de votação legislativa.",
-    link: "/plenarios-e-camaras",
-    icon: Vote,
-    color: "from-amber-500 to-orange-600",
-    shadow: "shadow-orange-500/20",
-    image: "/auditorio-sonus.webp", // Fallback image
-    colSpan: "md:col-span-8",
-    rowSpan: "md:row-span-1"
-  },
-  {
-    id: "02",
-    title: "Salas Corporativas",
-    desc: "A tecnologia desaparece. A conexão impera na sua sala de diretoria.",
-    link: "/salas-reuniao",
-    icon: Video,
-    color: "from-blue-400 to-cyan-500",
-    shadow: "shadow-cyan-500/20",
-    image: "/sobre-sonus.webp",
-    colSpan: "md:col-span-4",
-    rowSpan: "md:row-span-2"
-  },
-  {
-    id: "03",
-    title: "Auditórios e Teatros",
-    desc: "Engenharia acústica projetada para a geometria do espetáculo.",
-    link: "/auditorios-e-teatros",
-    icon: Mic,
-    color: "from-emerald-400 to-teal-500",
-    shadow: "shadow-emerald-500/20",
-    image: "/auditorio-sonus.webp",
-    colSpan: "md:col-span-4",
-    rowSpan: "md:row-span-1"
-  },
-  {
-    id: "04",
-    title: "Igrejas e Templos",
-    desc: "A mensagem entregue com clareza absoluta e inteligibilidade.",
-    link: "/igrejas-e-templos",
-    icon: MonitorPlay,
-    color: "from-purple-400 to-indigo-500",
-    shadow: "shadow-purple-500/20",
-    image: "/sobre-sonus.webp",
-    colSpan: "md:col-span-4",
-    rowSpan: "md:row-span-1"
-  }
-]
-
-
 
 export function Home() {
   const location = useLocation()
@@ -218,52 +165,99 @@ export function Home() {
         </div>
       </section>
 
-      {/* VIBRANT BENTO GRID (ECOSYSTEM) */}
-      <section className="py-32 px-4 md:px-8 bg-[#050505] relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
-              Domínios de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Atuação.</span>
+            {/* APPLE-STYLE BESPOKE BENTO GRID */}
+      <section className="py-32 px-4 md:px-8 xl:px-16 bg-[#050505] relative">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white">
+              Engenharia <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Aplicada.</span>
             </h2>
-            <p className="text-zinc-400 mt-4 text-lg max-w-2xl mx-auto md:mx-0">
-              Ambientes distintos exigem arquiteturas distintas. Conheça as quatro geometrias onde o som e o vídeo devem reinar com perfeição.
+            <p className="text-zinc-400 mt-4 text-xl max-w-2xl font-light">
+              Nenhuma sala é igual à outra. Nossa arquitetura se adapta à geometria exata do seu desafio.
             </p>
           </div>
 
-          {/* O VERDADEIRO BENTO GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-8 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
-            {verticals.map((v) => {
-              const Icon = v.icon;
-              return (
-                <Link 
-                  key={v.id} 
-                  to={v.link}
-                  className={`${v.colSpan} ${v.rowSpan} group relative rounded-3xl overflow-hidden border border-white/10 bg-zinc-900 ${v.shadow} shadow-2xl transition-all duration-500 hover:scale-[1.02]`}
-                >
-                  {/* Background Image with Vibrant Overlay */}
-                  <div className="absolute inset-0">
-                    <img src={v.image} alt={v.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700 grayscale group-hover:grayscale-0 mix-blend-overlay" />
-                    <div className={`absolute inset-0 opacity-80 group-hover:opacity-60 transition-opacity duration-500 bg-gradient-to-br ${v.color} mix-blend-multiply`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="relative z-10 h-full p-8 flex flex-col justify-between">
-                    <div className="flex justify-between items-start">
-                      <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <span className="text-xs font-bold font-mono text-white/50 bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">{v.id}</span>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">{v.title}</h3>
-                      <p className="text-sm text-zinc-300 font-medium leading-relaxed opacity-90">{v.desc}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[auto]">
+            
+            {/* CARD 1: AUDITÓRIOS (Col-7, Row-1) */}
+            <Link to="/auditorios-e-teatros" className="md:col-span-7 h-[400px] group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-zinc-900 shadow-2xl flex flex-col justify-end">
+              <img src="/auditorio-sonus.webp" alt="Auditórios" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0 mix-blend-luminosity group-hover:mix-blend-normal" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
+              
+              <div className="relative z-10 p-10 md:p-12">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400 group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-2">Auditórios e Teatros</h3>
+                <p className="text-lg text-zinc-300 font-light max-w-md">Engenharia acústica projetada para a geometria do espetáculo.</p>
+              </div>
+            </Link>
+
+            {/* CARD 2: Q-SYS (Col-5, Row-1) */}
+            <Link to="/qsys" className="md:col-span-5 h-[400px] group relative rounded-[2.5rem] overflow-hidden border border-blue-500/20 bg-[#0B1528] shadow-[0_0_40px_rgba(37,99,235,0.1)] flex flex-col justify-between p-10 md:p-12">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.3)_0%,transparent_60%)]" />
+              <div className="absolute top-0 right-0 w-full h-full bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]" />
+              
+              <div className="relative z-10 flex justify-between items-start">
+                <div className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
+                  O Cérebro da Operação
+                </div>
+                <img src="/logo-qsc.svg" alt="QSC" className="h-6 opacity-50 group-hover:opacity-100 transition-opacity" />
+              </div>
+              
+              <div className="relative z-10">
+                <h3 className="text-4xl font-black tracking-tighter text-white mb-2">Plataforma <span className="text-blue-400">Q-SYS</span></h3>
+                <p className="text-zinc-400 font-light text-lg">Áudio, vídeo e controle unificados na rede.</p>
+              </div>
+            </Link>
+
+            {/* CARD 3: SALAS CORPORATIVAS (Col-4, Row-2) */}
+            <Link to="/salas-reuniao" className="md:col-span-4 h-[350px] group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-zinc-900 shadow-xl p-10 flex flex-col justify-between">
+              <img src="/sobre-sonus.webp" alt="Salas Corporativas" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity grayscale group-hover:grayscale-0 mix-blend-luminosity group-hover:mix-blend-normal" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
+              
+              {/* Glass UI Element mimicking touch panel */}
+              <div className="relative z-10 self-end w-24 h-12 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl flex items-center justify-center gap-3 group-hover:-translate-y-2 transition-transform duration-500">
+                <div className="w-6 h-1 rounded-full bg-cyan-400/50" />
+                <div className="w-6 h-1 rounded-full bg-white/20" />
+              </div>
+
+              <div className="relative z-10 mt-auto">
+                <h3 className="text-2xl font-bold text-white mb-2">Salas Corporativas</h3>
+                <p className="text-zinc-400 font-light text-sm">Videoconferência nativa e automação invisível.</p>
+              </div>
+            </Link>
+
+            {/* CARD 4: PLENÁRIOS (Col-4, Row-2) */}
+            <Link to="/plenarios-e-camaras" className="md:col-span-4 h-[350px] group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-gradient-to-b from-zinc-900 to-black shadow-xl p-10 flex flex-col justify-between">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.05)_0%,transparent_80%)] group-hover:bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.15)_0%,transparent_80%)] transition-colors duration-700" />
+              
+              <div className="relative z-10 w-16 h-16 rounded-3xl bg-gradient-to-br from-amber-500/10 to-orange-600/10 border border-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_30px_rgba(245,158,11,0.1)] text-amber-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 12 2 2 4-4"/><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"/><path d="M22 19H2"/></svg>
+              </div>
+
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-2">Plenários e Câmaras</h3>
+                <p className="text-zinc-400 font-light text-sm">Votação digital e captação irretocável para o legislativo.</p>
+              </div>
+            </Link>
+
+            {/* CARD 5: IGREJAS (Col-4, Row-2) */}
+            <Link to="/igrejas-e-templos" className="md:col-span-4 h-[350px] group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-xl p-10 flex flex-col justify-between">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.1)_0%,transparent_70%)] group-hover:bg-[radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.2)_0%,transparent_70%)] transition-colors duration-700" />
+              
+              <div className="relative z-10 flex items-center gap-1.5 h-12 opacity-50 group-hover:opacity-100 transition-opacity">
+                {[10, 25, 40, 20, 35, 15].map((h, i) => (
+                  <div key={i} className="w-1.5 bg-purple-400 rounded-full" style={{ height: `${h}px` }} />
+                ))}
+              </div>
+
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-2">Igrejas e Templos</h3>
+                <p className="text-zinc-400 font-light text-sm">Acústica controlada para atingir todos os fiéis.</p>
+              </div>
+            </Link>
+
           </div>
         </div>
       </section>
