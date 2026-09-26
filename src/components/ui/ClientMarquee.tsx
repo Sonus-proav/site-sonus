@@ -15,7 +15,7 @@ const brandLogos = [
   { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8 brightness-0 invert" },
   { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10 brightness-0 invert" }, 
   // Renkus-Heinz tem fundo sólido branco. Usamos apenas invert para o fundo virar preto (mesclando com o site) e a letra ficar branca.
-  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 invert grayscale contrast-200 brightness-75 mix-blend-screen" }, 
+  { src: "/marcas/renkus-heinz-fixed.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 brightness-0 invert" }, 
   { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10 brightness-0 invert" }, 
   { src: "/zoom-logo.png", alt: "Zoom", className: "h-8 md:h-10 brightness-0 invert" },
   { src: "/google-meet-logo.png", alt: "Google Meet", className: "h-8 md:h-10 brightness-0 invert" },
