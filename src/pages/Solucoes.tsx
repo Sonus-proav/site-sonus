@@ -27,7 +27,7 @@ const dimensions: DimensionItem[] = [
     headline: "A Soberania do Som e da Imagem.",
     description: "Projetos executivos de alta precisão. Votação eletrônica, atas digitais automáticas e rastreamento de câmeras robóticas PTZ.",
     ctaText: "Acessar Plenários",
-    link: "/plenarios-e-camaras",
+    link: "/plenarios",
     icon: Vote,
     themeColor: "#06b6d4",
     bgGradient: "from-cyan-900/20 via-cyan-950/10 to-transparent"
@@ -87,15 +87,15 @@ function HorizontalScrollGallery() {
   return (
     <section ref={targetRef} className="relative h-[500vh] bg-[#020205]">
       
-      {/* Global Background Particles/Glows reacting to scroll */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
-      </div>
+      {/* Single Sticky Container for everything */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center">
+        
+        {/* Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)] pointer-events-none" />
 
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <motion.div 
           style={{ x }} 
-          className="flex w-[500vw] will-change-transform transform-gpu"
+          className="relative z-10 flex w-[500vw] will-change-transform transform-gpu h-full"
         >
           {dimensions.map((dim, index) => (
             <div key={index} className="w-[100vw] h-full flex items-center justify-center p-4 md:p-8 relative">
@@ -215,7 +215,7 @@ function HorizontalScrollGallery() {
       </div>
 
       {/* Progress Bar */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 h-1 bg-white/10 rounded-full overflow-hidden z-20">
         <motion.div 
           className="h-full bg-white rounded-full origin-left will-change-transform transform-gpu"
           style={{ scaleX: scrollYProgress }}
@@ -225,35 +225,37 @@ function HorizontalScrollGallery() {
   );
 }
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Integração Audiovisual Corporativa",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Sonus Pro Audio e Video"
+  },
+  "areaServed": "Brasil",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Soluções de Tecnologia Audiovisual",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plenários e Câmaras" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Salas Corporativas de Videoconferência" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Auditórios e Teatros" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Igrejas e Templos" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design e Programação Q-SYS" } }
+    ]
+  }
+};
+
 export function Solucoes() {
   const heroRef = useRef<HTMLElement>(null);
   const isHeroInView = useInView(heroRef, { once: false, amount: 0.1 });
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-white/30 font-sans">
+    <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-white/30 font-sans overflow-x-hidden">
       <Helmet>
         <title>Ecossistema de Soluções | Sonus Pro AV</title>
-        <script type="application/ld+json">{JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Integração Audiovisual Corporativa",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro Audio e Video"
-    },
-    "areaServed": "Brasil",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Soluções de Tecnologia Audiovisual",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plenários e Câmaras" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Salas Corporativas de Videoconferência" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Auditórios e Teatros" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Igrejas e Templos" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design e Programação Q-SYS" } }
-      ]
-    }
-  })}</script>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <SEO 
         title="Ecossistema de Soluções | Sonus Pro AV" 
