@@ -1,9 +1,10 @@
-import { BentoEspecialidades } from "@/components/ui/BentoEspecialidades";
+import { BentoEspecialidades } from "@/components/ui/BentoEspecialidades"
+import { AboutExperience } from "@/components/ui/AboutExperience";
 import { useState, useEffect, lazy, Suspense } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation, useNavigate, Link } from "react-router-dom"
 import { motion,  } from "framer-motion"
-import { ArrowRight, CheckCircle2,  } from "lucide-react"
+import { ArrowRight,  } from "lucide-react"
 
 import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead } from "@/lib/analytics"
@@ -171,51 +172,7 @@ export function Home() {
       </section>
 
       {/* ABOUT (NOSSA HISTÓRIA) */}
-      <section className="relative py-32 bg-[#050505]">
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-square w-full rounded-[2rem] overflow-hidden border border-white/10 group">
-              <img src="/sobre-sonus.webp" alt="Projetos Sonus" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/50 to-transparent mix-blend-multiply" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-              
-              <div className="absolute bottom-10 left-10 p-6 bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-center gap-6">
-                <div>
-                  <span className="block text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-1">+28</span>
-                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">Anos de Mercado</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
-                A Garantia da Experiência
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-[1.1]">
-                Nós construímos a base para que você opere no topo.
-              </h2>
-              <p className="text-lg text-zinc-400 font-light leading-relaxed">
-                Nenhuma empresa se mantém líder em integração audiovisual de alta complexidade por quase três décadas por acaso. A Sonus nasceu da necessidade de acabar com o amadorismo técnico no Sul do Brasil.
-              </p>
-              
-              <ul className="space-y-4 pt-4">
-                {[
-                  "Projetos Customizados (Acústica e Eletrônica)",
-                  "Garantia Estendida e SLA Blindado",
-                  "Equipe Própria de Engenharia"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-zinc-200">
-                    <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                    </div>
-                    <span className="font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutExperience />
 
       {/* TESTIMONIALS */}
       <Suspense fallback={null}>
