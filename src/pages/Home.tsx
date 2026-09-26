@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Turnstile } from '@marsidev/react-turnstile'
 
-const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
+
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
 const ClientMarquee = lazy(() => import("@/components/ui/ClientMarquee").then(m => ({ default: m.ClientMarquee })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
@@ -227,7 +227,7 @@ export function Home() {
       </section>
 
       <Suspense fallback={null}>
-        <LPFooter />
+        
       </Suspense>
     </div>
   )
