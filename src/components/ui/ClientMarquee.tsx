@@ -1,23 +1,24 @@
 import { motion } from "framer-motion"
 
 const clientLogos = [
-  { src: "/clientes/cesul.png", alt: "Cesul", className: "h-10 md:h-12" }, // normalizando altura
-  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-10 md:h-12" }, // aumentando Cresol
-  { src: "/clientes/grupo-msa.svg", alt: "Grupo MSA", className: "h-10 md:h-12" },
-  { src: "/clientes/unipar.webp", alt: "Unipar", className: "h-10 md:h-12" },
-  { src: "/clientes/unisep.webp", alt: "Unisep", className: "h-10 md:h-12" },
-  { src: "/clientes/unoesc.webp", alt: "Unoesc", className: "h-10 md:h-12" },
+  { src: "/clientes/cesul.png", alt: "Cesul", className: "h-8 md:h-10 brightness-0 invert" }, 
+  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-16 md:h-24 scale-[1.5] md:scale-[2] origin-center brightness-0 invert mx-4" }, 
+  { src: "/clientes/grupo-msa.svg", alt: "Grupo MSA", className: "h-8 md:h-10 brightness-0 invert" },
+  { src: "/clientes/unipar.webp", alt: "Unipar", className: "h-8 md:h-10 brightness-0 invert" },
+  { src: "/clientes/unisep.webp", alt: "Unisep", className: "h-8 md:h-10 brightness-0 invert" },
+  { src: "/clientes/unoesc.webp", alt: "Unoesc", className: "h-8 md:h-10 brightness-0 invert" },
 ]
 
 const brandLogos = [
-  { src: "/shure-logo.png", alt: "Shure", className: "h-8 md:h-10" }, 
-  { src: "/qsys-logo.png", alt: "Q-SYS", className: "h-10 md:h-12" }, // Usando o PNG real
-  { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8" },
-  { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10" }, // Bose estava muito pequeno
-  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10" }, // Usando o PNG real
-  { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10" }, // Usando o PNG real
-  { src: "/zoom-logo.png", alt: "Zoom", className: "h-8 md:h-10" },
-  { src: "/google-meet-logo.png", alt: "Google Meet", className: "h-8 md:h-10" },
+  { src: "/shure-logo.png", alt: "Shure", className: "h-8 md:h-10 brightness-0 invert" }, 
+  { src: "/qsys-logo.png", alt: "Q-SYS", className: "h-10 md:h-12 brightness-0 invert" }, 
+  { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8 brightness-0 invert" },
+  { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10 brightness-0 invert" }, 
+  // Renkus-Heinz tem fundo sólido branco. Usamos apenas invert para o fundo virar preto (mesclando com o site) e a letra ficar branca.
+  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 invert grayscale mix-blend-screen" }, 
+  { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10 brightness-0 invert" }, 
+  { src: "/zoom-logo.png", alt: "Zoom", className: "h-8 md:h-10 brightness-0 invert" },
+  { src: "/google-meet-logo.png", alt: "Google Meet", className: "h-8 md:h-10 brightness-0 invert" },
 ]
 
 export function ClientMarquee() {
@@ -46,7 +47,7 @@ export function ClientMarquee() {
                 key={i} 
                 src={logo.src} 
                 alt={logo.alt} 
-                className={logo.className + " object-contain brightness-0 invert opacity-40 hover:opacity-100 transition-opacity duration-300 w-auto"}
+                className={logo.className + " object-contain opacity-50 hover:opacity-100 transition-all duration-300 w-auto"}
               />
             ))}
           </motion.div>
@@ -72,7 +73,7 @@ export function ClientMarquee() {
                 key={i} 
                 src={logo.src} 
                 alt={logo.alt} 
-                className={logo.className + " object-contain brightness-0 invert opacity-30 hover:opacity-100 transition-opacity duration-300 w-auto"}
+                className={logo.className + " object-contain opacity-40 hover:opacity-100 transition-all duration-300 w-auto"}
               />
             ))}
           </motion.div>
