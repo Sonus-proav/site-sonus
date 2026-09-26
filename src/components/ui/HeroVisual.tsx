@@ -48,9 +48,9 @@ export function HeroVisual() {
       onMouseMove={handleMouseMove}
     >
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[60px] md:blur-[120px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-violet-500/10 blur-[50px] md:blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[50px] md:blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[60px] md:blur-[60px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-violet-500/10 blur-[50px] md:blur-[60px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 " />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[50px] md:blur-[60px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 " />
 
       {/* Isometric 3D Container tracking mouse */}
       <motion.div
@@ -77,7 +77,7 @@ export function HeroVisual() {
               LAYER 1: AV OVER IP (BASE PLATE)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black/90 backdrop-blur-sm md:backdrop-blur-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ translateZ: isHovered ? -150 : -60 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -104,7 +104,7 @@ export function HeroVisual() {
               LAYER 2: ACOUSTIC CORE (MIDDLE-BOTTOM)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-black/80 md:bg-black/60 backdrop-blur-sm md:backdrop-blur-xl overflow-hidden"
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ translateZ: isHovered ? -50 : -20 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -119,7 +119,7 @@ export function HeroVisual() {
                   transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "linear" }}
                 />
               ))}
-              <div className="relative z-10 w-14 h-14 rounded-full border border-emerald-500 bg-emerald-500/20 flex items-center justify-center backdrop-blur-none md:backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+              <div className="relative z-10 w-14 h-14 rounded-full border border-emerald-500 bg-emerald-500/20 flex items-center justify-center  shadow-[0_0_20px_rgba(16,185,129,0.4)]">
                 <Mic className="w-6 h-6 text-emerald-400" />
               </div>
             </div>
@@ -139,7 +139,7 @@ export function HeroVisual() {
               LAYER 3: VIDEO MATRIX (MIDDLE-TOP)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-violet-500/30 bg-black/80 md:bg-black/60 backdrop-blur-sm md:backdrop-blur-xl overflow-hidden"
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-violet-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ translateZ: isHovered ? 50 : 20 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -162,7 +162,7 @@ export function HeroVisual() {
                 <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-violet-400" />
                 
                 {/* Center Icon */}
-                <div className="relative z-10 w-12 h-12 rounded-full border border-violet-500/50 bg-violet-500/20 flex items-center justify-center backdrop-blur-none md:backdrop-blur-sm shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                <div className="relative z-10 w-12 h-12 rounded-full border border-violet-500/50 bg-violet-500/20 flex items-center justify-center  shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                   <Video className="w-5 h-5 text-violet-400" />
                 </div>
               </motion.div>
@@ -176,7 +176,7 @@ export function HeroVisual() {
               LAYER 4: CONTROL INTERFACE (TOP PLATE)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#020202]/40 backdrop-blur-lg md:backdrop-blur-2xl overflow-hidden"
+            className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#030303]/95 overflow-hidden"
             style={{ 
               transformStyle: "preserve-3d",
               boxShadow: isHovered 
@@ -196,7 +196,7 @@ export function HeroVisual() {
 
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <motion.div 
-                className="w-36 h-36 rounded-full border-[3px] border-cyan-500/20 bg-black/60 backdrop-blur-sm md:backdrop-blur-xl flex items-center justify-center relative shadow-[inset_0_0_30px_rgba(6,182,212,0.1)]"
+                className="w-36 h-36 rounded-full border-[3px] border-cyan-500/20 bg-[#050505] flex items-center justify-center relative shadow-[inset_0_0_30px_rgba(6,182,212,0.1)]"
                 animate={{ rotate: isHovered ? 145 : 0 }}
                 transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
               >

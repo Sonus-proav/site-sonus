@@ -186,7 +186,7 @@ export function Home() {
       <section className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_50%)] pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
+        <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900 border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4">Pronto para blindar seu espaço?</h2>
             <p className="text-lg text-zinc-400 font-light">Fale com nossos especialistas e agende uma consultoria técnica.</p>
