@@ -90,32 +90,32 @@ export function Solucoes() {
                 {/* Floor Grid */}
                 <div className="absolute bottom-0 w-[200%] h-[100%] bg-[linear-gradient(rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:30px_30px] [transform:rotateX(70deg)_translateY(50px)] [mask-image:linear-gradient(to_top,black,transparent)]" />
                 
-                {/* 3D PTZ Camera Abstraction */}
+                {/* 3D PTZ Camera Abstraction - FIXED WEBKIT RENDERING */}
                 <motion.div animate={{ rotateY: [-20, 20, -20] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="relative w-40 h-40 [transform-style:preserve-3d]">
                   {/* Camera Base */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-cyan-950 border border-cyan-500/50 rounded-full [transform:rotateX(70deg)] shadow-[0_0_20px_#22d3ee]" />
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-10 bg-cyan-900 border border-cyan-400/50 rounded-b-xl" />
+                  <div className="absolute bottom-0 left-8 w-24 h-6 bg-cyan-950 border border-cyan-500/50 rounded-full [transform:rotateX(70deg)] shadow-[0_0_20px_#22d3ee]" />
+                  <div className="absolute bottom-2 left-10 w-20 h-10 bg-cyan-900 border border-cyan-400/50 rounded-b-xl" />
                   
                   {/* Camera Bracket (U-Shape) */}
-                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-28 h-20 border-b-[8px] border-l-[8px] border-r-[8px] border-cyan-500/60 rounded-b-2xl" />
+                  <div className="absolute bottom-8 left-6 w-28 h-20 border-b-[8px] border-l-[8px] border-r-[8px] border-cyan-500/80 rounded-b-2xl" />
                   
                   {/* Camera Head (Sphere/Cylinder) */}
-                  <motion.div animate={{ rotateX: [-10, 15, -10] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-12 left-1/2 -translate-x-1/2 w-20 h-20 bg-cyan-950 border border-cyan-400 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.4)] flex items-center justify-center overflow-hidden [transform-style:preserve-3d]">
+                  <motion.div animate={{ rotateX: [-10, 15, -10] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-12 left-10 w-20 h-20 bg-cyan-950 border border-cyan-400 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.4)] flex items-center justify-center overflow-hidden [transform-style:preserve-3d]">
                     {/* Lens */}
-                    <div className="w-12 h-12 bg-black border-2 border-cyan-300 rounded-full flex items-center justify-center">
-                      <div className="w-6 h-6 bg-cyan-500/30 border border-cyan-200 rounded-full shadow-[inset_0_0_10px_#22d3ee]" />
+                    <div className="w-12 h-12 bg-black border-2 border-cyan-300 rounded-full flex items-center justify-center shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                      <div className="w-6 h-6 bg-cyan-500/40 border border-cyan-200 rounded-full shadow-[0_0_10px_#22d3ee]" />
                     </div>
                     {/* REC Light */}
-                    <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1, repeat: Infinity }} className="absolute top-3 right-4 w-2 h-2 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]" />
+                    <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1, repeat: Infinity }} className="absolute top-3 right-4 w-2 h-2 bg-red-500 rounded-full shadow-[0_0_10px_#ef4444]" />
                   </motion.div>
                 </motion.div>
 
                 {/* Floating Video Frames */}
-                <motion.div animate={{ y: [-15, 15, -15] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute right-4 top-24 scale-75 w-32 h-20 border border-cyan-400/40 bg-cyan-900/20 backdrop-blur-md rounded-lg p-2 flex items-center justify-center [transform:rotateY(-20deg)]">
-                   <div className="w-full h-full border border-cyan-300/30 rounded flex items-center justify-center gap-1">
-                     <div className="w-1/3 h-2/3 bg-cyan-500/20" />
-                     <div className="w-1/3 h-1/2 bg-cyan-500/20" />
-                     <div className="w-1/3 h-3/4 bg-cyan-500/20" />
+                <motion.div animate={{ y: [-15, 15, -15] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute right-4 top-16 w-28 h-16 border border-cyan-400/80 bg-cyan-900/40 backdrop-blur-md rounded-lg p-1.5 flex items-center justify-center [transform:rotateY(-20deg)] shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                   <div className="w-full h-full border border-cyan-300/50 rounded flex items-center justify-center gap-1">
+                     <div className="w-1/3 h-2/3 bg-cyan-400/40 rounded-sm" />
+                     <div className="w-1/3 h-1/2 bg-cyan-400/40 rounded-sm" />
+                     <div className="w-1/3 h-3/4 bg-cyan-400/40 rounded-sm" />
                    </div>
                 </motion.div>
               </div>
