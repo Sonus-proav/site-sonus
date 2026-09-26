@@ -113,9 +113,7 @@ export function BentoEspecialidades() {
                 onClick={() => setActive(item.id)}
                 layout
                 initial={false}
-                animate={{
-                  flex: isActive ? (typeof window !== 'undefined' && window.innerWidth > 1024 ? 5 : 4) : 1,
-                }}
+                style={{ flex: isActive ? (typeof window !== 'undefined' && window.innerWidth > 1024 ? 5 : 4) : 1 }}
                 transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
                 className={`relative overflow-hidden rounded-[2rem] cursor-pointer group ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'} transition-colors duration-500 flex flex-col`}
               >
