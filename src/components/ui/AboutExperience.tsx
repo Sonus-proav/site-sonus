@@ -57,7 +57,7 @@ export function AboutExperience() {
                 
                 {/* Selo 28 Anos Flutuante */}
                 <div className="absolute bottom-8 left-8 lg:bottom-12 lg:left-12">
-                  <div className="p-8 rounded-[2rem] bg-white/5 backdrop-blur-2xl border border-white/10 relative overflow-hidden group/badge">
+                  <div className="p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm md:backdrop-blur-md md:backdrop-blur-2xl border border-white/10 relative overflow-hidden group/badge">
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 translate-y-full group-hover/badge:translate-y-0 transition-transform duration-500" />
                     <div className="relative z-10 flex flex-col">
                       <span className="text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 mb-1">+28</span>

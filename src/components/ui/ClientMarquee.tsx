@@ -29,15 +29,15 @@ export function ClientMarquee() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
       
       {/* 2. Orbes de Luz Atmosférica (Glows) */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[60px] md:blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[60px] md:blur-[120px] pointer-events-none" />
 
 
       {/* --- SESSÃO CLIENTES --- */}
       <div className="w-full relative z-10 flex flex-col items-center">
         
         {/* Badge Premium */}
-        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8 backdrop-blur-md">
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8 backdrop-blur-sm md:backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-400">Confiança Corporativa</span>
         </div>
@@ -47,7 +47,7 @@ export function ClientMarquee() {
         </h3>
         
         {/* Pista Glassmorfismo Inclinada */}
-        <div className="w-[110vw] -ml-[5vw] relative py-10 bg-white/[0.015] backdrop-blur-md border-y border-white/5 shadow-[inset_0_0_40px_rgba(255,255,255,0.02)] rotate-[-1.5deg] overflow-hidden flex items-center">
+        <div className="w-[110vw] -ml-[5vw] relative py-10 bg-white/[0.015] backdrop-blur-sm md:backdrop-blur-md border-y border-white/5 shadow-[inset_0_0_40px_rgba(255,255,255,0.02)] rotate-[-1.5deg] overflow-hidden flex items-center">
           
           {/* Sombras laterais para o fade */}
           <div className="absolute left-0 top-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none" />
@@ -78,7 +78,7 @@ export function ClientMarquee() {
       <div className="w-full relative z-10 flex flex-col items-center mt-8">
         
         {/* Badge Premium */}
-        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8 backdrop-blur-md">
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8 backdrop-blur-sm md:backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]" />
           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-400">Ecossistema Certificado</span>
         </div>
@@ -88,7 +88,7 @@ export function ClientMarquee() {
         </h3>
 
         {/* Pista Glassmorfismo Inclinada Reversa */}
-        <div className="w-[110vw] -ml-[5vw] relative py-10 bg-white/[0.015] backdrop-blur-md border-y border-white/5 shadow-[inset_0_0_40px_rgba(255,255,255,0.02)] rotate-[1.5deg] overflow-hidden flex items-center">
+        <div className="w-[110vw] -ml-[5vw] relative py-10 bg-white/[0.015] backdrop-blur-sm md:backdrop-blur-md border-y border-white/5 shadow-[inset_0_0_40px_rgba(255,255,255,0.02)] rotate-[1.5deg] overflow-hidden flex items-center">
           
           <div className="absolute left-0 top-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 w-32 md:w-64 h-full bg-gradient-to-l from-[#020202] to-transparent z-10 pointer-events-none" />

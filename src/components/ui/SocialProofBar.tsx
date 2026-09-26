@@ -93,7 +93,7 @@ export function SocialProofBar({ stats = defaultStats }: SocialProofBarProps) {
       />
 
       {/* Top Status Dropdown */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-2 bg-black/80 border-x border-b border-white/10 rounded-b-2xl backdrop-blur-md">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-2 bg-black/80 border-x border-b border-white/10 rounded-b-2xl backdrop-blur-sm md:backdrop-blur-md">
         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]" />
         <span className="text-[10px] font-mono text-zinc-400 tracking-[0.3em] uppercase">Global Telemetry Hub</span>
       </div>
@@ -112,7 +112,7 @@ export function SocialProofBar({ stats = defaultStats }: SocialProofBarProps) {
               {/* Glowing Icon Orb */}
               <div className="relative w-28 h-28 mb-8 flex items-center justify-center">
                 <OrbitingRings />
-                <div className="absolute inset-2 bg-gradient-to-b from-white/5 to-transparent rounded-full backdrop-blur-md border border-white/10" />
+                <div className="absolute inset-2 bg-gradient-to-b from-white/5 to-transparent rounded-full backdrop-blur-sm md:backdrop-blur-md border border-white/10" />
                 <div className="relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
                   {i === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>}
                   {i === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}

@@ -57,8 +57,8 @@ export function HeroVisual() {
       onMouseMove={handleMouseMove}
     >
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[60px] md:blur-[120px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[50px] md:blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
 
       {/* Isometric 3D Container tracking mouse */}
       <motion.div
@@ -77,7 +77,7 @@ export function HeroVisual() {
         {/* Continuous slow spin for the whole stack */}
         <motion.div
           className="absolute inset-0"
-          style={{ transformStyle: "preserve-3d" }}
+          style={{ transformStyle: "preserve-3d", willChange: "transform" }}
           animate={{ rotateZ: 360 }}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
         >
@@ -85,7 +85,7 @@ export function HeroVisual() {
               LAYER 1: AV OVER IP (BASE PLATE)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black/90 backdrop-blur-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black/90 backdrop-blur-sm md:backdrop-blur-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ translateZ: isHovered ? -140 : -80 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -112,7 +112,7 @@ export function HeroVisual() {
               LAYER 2: ACOUSTIC CORE (MIDDLE PLATE)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-black/60 backdrop-blur-xl overflow-hidden"
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-black/60 backdrop-blur-md md:backdrop-blur-xl overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ translateZ: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -147,7 +147,7 @@ export function HeroVisual() {
               LAYER 3: CONTROL INTERFACE (TOP PLATE)
               ======================================= */}
           <motion.div 
-            className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#020202]/40 backdrop-blur-2xl overflow-hidden"
+            className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#020202]/40 backdrop-blur-lg md:backdrop-blur-2xl overflow-hidden"
             style={{ 
               transformStyle: "preserve-3d",
               boxShadow: isHovered 
