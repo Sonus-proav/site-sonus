@@ -86,7 +86,7 @@ export function Solucoes() {
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 z-0" />
 
               {/* HOLOGRAM INSTALLATION: Plenários - Câmera PTZ e Áudio */}
-              <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
+              <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
                 {/* Floor Grid */}
                 <div className="absolute bottom-0 w-[200%] h-[100%] bg-[linear-gradient(rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:30px_30px] [transform:rotateX(70deg)_translateY(50px)] [mask-image:linear-gradient(to_top,black,transparent)]" />
                 
@@ -111,7 +111,7 @@ export function Solucoes() {
                 </motion.div>
 
                 {/* Floating Video Frames */}
-                <motion.div animate={{ y: [-15, 15, -15] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute right-10 top-20 w-32 h-20 border border-cyan-400/40 bg-cyan-900/20 backdrop-blur-md rounded-lg p-2 flex items-center justify-center [transform:rotateY(-20deg)]">
+                <motion.div animate={{ y: [-15, 15, -15] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute right-4 top-24 scale-75 w-32 h-20 border border-cyan-400/40 bg-cyan-900/20 backdrop-blur-md rounded-lg p-2 flex items-center justify-center [transform:rotateY(-20deg)]">
                    <div className="w-full h-full border border-cyan-300/30 rounded flex items-center justify-center gap-1">
                      <div className="w-1/3 h-2/3 bg-cyan-500/20" />
                      <div className="w-1/3 h-1/2 bg-cyan-500/20" />
@@ -150,9 +150,9 @@ export function Solucoes() {
               <div className="absolute inset-0 bg-gradient-to-bl from-blue-900/20 via-[#050505] to-[#050505] z-0" />
 
               {/* HOLOGRAM INSTALLATION: Corporativo - Videoconferência (Telas 3D) */}
-              <div className="absolute right-[-5%] top-0 w-full h-full overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1200px]">
+              <div className="absolute right-[-10%] top-0 w-[60%] h-full overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1200px]">
                 {/* 3 Floating Screens */}
-                <motion.div animate={{ y: [-10, 10, -10] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
+                <motion.div animate={{ y: [-10, 10, -10] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d] scale-75 md:scale-90">
                   
                   {/* Left Screen */}
                   <div className="absolute left-[10%] w-48 h-32 border border-blue-400/50 bg-blue-950/40 backdrop-blur-md rounded-xl [transform:rotateY(30deg)_translateZ(-50px)] shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-end justify-center pb-2">
@@ -178,7 +178,7 @@ export function Solucoes() {
               </div>
 
               
-              <div className="relative z-10 p-10 md:p-12 h-full flex flex-col justify-between w-full pointer-events-none [&>*]:pointer-events-auto">
+              <div className="relative z-10 p-10 md:p-12 h-full flex flex-col justify-between w-full lg:w-[60%] pointer-events-none [&>*]:pointer-events-auto">
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500">
                   <Users className="w-7 h-7" />
                 </div>
@@ -200,11 +200,11 @@ export function Solucoes() {
             </SpotlightCard>
 
             {/* 3. AUDITORIOS - SPANS 4 COLS */}
-            <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
+            <SpotlightCard className="col-span-1 lg:col-span-4 h-[380px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-[#050505] to-[#050505] z-0" />
 
               {/* HOLOGRAM INSTALLATION: Auditórios - Line Array e Propagação */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-end pr-12 [perspective:800px]">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-end pr-12 [perspective:800px]">
                 {/* Line Array Speaker Stack */}
                 <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative flex flex-col items-center gap-1 z-10">
                   {[...Array(5)].map((_, i) => (
@@ -244,7 +244,7 @@ export function Solucoes() {
                   <Link 
                     to="/auditorios-e-teatros" 
                     onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Auditórios e Teatros' }); }}
-                    className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-bold uppercase tracking-widest text-xs transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
                   >
                     Conhecer <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -253,11 +253,11 @@ export function Solucoes() {
             </SpotlightCard>
 
             {/* 4. IGREJAS - SPANS 4 COLS */}
-            <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
+            <SpotlightCard className="col-span-1 lg:col-span-4 h-[380px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-[#050505] to-[#050505] z-0" />
 
               {/* HOLOGRAM INSTALLATION: Igrejas - Microfone de Púlpito e Claridade Acústica */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
                 {/* Architectural Arch Window */}
                 <div className="absolute top-4 w-64 h-80 border-t-2 border-l-2 border-r-2 border-amber-500/20 rounded-t-full opacity-50" />
                 
@@ -291,7 +291,7 @@ export function Solucoes() {
                   <Link 
                     to="/igrejas-e-templos" 
                     onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Igrejas e Templos' }); }}
-                    className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-bold uppercase tracking-widest text-xs transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 text-amber-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
                   >
                     Ver Projetos <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -300,11 +300,11 @@ export function Solucoes() {
             </SpotlightCard>
 
             {/* 5. Q-SYS - SPANS 4 COLS */}
-            <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
+            <SpotlightCard className="col-span-1 lg:col-span-4 h-[380px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-bl from-purple-900/20 via-[#050505] to-[#050505] z-0" />
 
               {/* HOLOGRAM INSTALLATION: Q-SYS - Network & Automação */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center">
                 {/* Network SVG Connections */}
                 <svg className="absolute inset-0 w-full h-full" strokeWidth="1">
                    <motion.path d="M50% 50% L20% 20% M50% 50% L80% 20% M50% 50% L20% 80% M50% 50% L80% 80%" stroke="rgba(139,92,246,0.3)" />
@@ -345,7 +345,7 @@ export function Solucoes() {
                   <Link 
                     to="/qsys" 
                     onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Plataforma Q-SYS' }); }}
-                    className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-bold uppercase tracking-widest text-xs transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 text-purple-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
                   >
                     Descobrir <ArrowRight className="w-4 h-4" />
                   </Link>
