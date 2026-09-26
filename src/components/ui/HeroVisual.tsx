@@ -1,5 +1,5 @@
 import { motion, useSpring, useTransform } from "framer-motion"
-import { Cpu, Mic, Settings2, Wifi, ShieldCheck } from "lucide-react"
+import { Cpu, Mic, Settings2, Wifi, ShieldCheck, Video } from "lucide-react"
 import { useState, useRef } from "react"
 
 export function HeroVisual() {
@@ -11,13 +11,8 @@ export function HeroVisual() {
   const mouseY = useSpring(0, { stiffness: 50, damping: 15, mass: 1 })
 
   // Map mouse positions to 3D rotations
-  // Base X is 60. We tilt between 45 and 75 based on Y.
   const rotateX = useTransform(mouseY, [-1, 1], [75, 45])
-  
-  // Base Y is 0. We tilt between -20 and 20 based on X.
   const rotateY = useTransform(mouseX, [-1, 1], [-20, 20])
-  
-  // Base Z is -45. We twist slightly based on X for extra dynamism.
   const rotateZ = useTransform(mouseX, [-1, 1], [-35, -55])
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -37,13 +32,9 @@ export function HeroVisual() {
     mouseY.set(Math.max(-1, Math.min(1, normalizedY)))
   }
 
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
-
+  const handleMouseEnter = () => setIsHovered(true)
   const handleMouseLeave = () => {
     setIsHovered(false)
-    // Smoothly return to center
     mouseX.set(0)
     mouseY.set(0)
   }
@@ -58,6 +49,7 @@ export function HeroVisual() {
     >
       {/* Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[60px] md:blur-[120px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-violet-500/10 blur-[50px] md:blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[50px] md:blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
 
       {/* Isometric 3D Container tracking mouse */}
@@ -87,7 +79,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black/90 backdrop-blur-sm md:backdrop-blur-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered ? -140 : -80 }}
+            animate={{ translateZ: isHovered ? -150 : -60 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-[size:30px_30px] bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)]" />
@@ -109,12 +101,12 @@ export function HeroVisual() {
           </motion.div>
 
           {/* =======================================
-              LAYER 2: ACOUSTIC CORE (MIDDLE PLATE)
+              LAYER 2: ACOUSTIC CORE (MIDDLE-BOTTOM)
               ======================================= */}
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-black/60 backdrop-blur-md md:backdrop-blur-xl overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: 0 }}
+            animate={{ translateZ: isHovered ? -50 : -20 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
@@ -144,7 +136,44 @@ export function HeroVisual() {
           </motion.div>
 
           {/* =======================================
-              LAYER 3: CONTROL INTERFACE (TOP PLATE)
+              LAYER 3: VIDEO MATRIX (MIDDLE-TOP)
+              ======================================= */}
+          <motion.div 
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-violet-500/30 bg-black/60 backdrop-blur-md md:backdrop-blur-xl overflow-hidden"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ translateZ: isHovered ? 50 : 20 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-transparent" />
+            
+            <div className="absolute inset-0 flex items-center justify-center">
+              {/* 16:9 Framing Box */}
+              <div className="absolute w-[200px] h-[120px] border-2 border-dashed border-violet-500/20 rounded-xl" />
+              
+              {/* AI Tracking Box */}
+              <motion.div
+                className="absolute w-24 h-24 flex items-center justify-center"
+                animate={{ x: [-30, 30, -20, 20, -30], y: [-15, 25, -25, 10, -15] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-violet-400" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-violet-400" />
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-violet-400" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-violet-400" />
+                
+                {/* Center Icon */}
+                <div className="relative z-10 w-12 h-12 rounded-full border border-violet-500/50 bg-violet-500/20 flex items-center justify-center backdrop-blur-sm shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                  <Video className="w-5 h-5 text-violet-400" />
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Scanlines Overlay */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:100%_4px]" />
+          </motion.div>
+
+          {/* =======================================
+              LAYER 4: CONTROL INTERFACE (TOP PLATE)
               ======================================= */}
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#020202]/40 backdrop-blur-lg md:backdrop-blur-2xl overflow-hidden"
@@ -154,7 +183,7 @@ export function HeroVisual() {
                 ? "0 80px 120px -30px rgba(6,182,212,0.4), inset 0 0 20px rgba(6,182,212,0.2)" 
                 : "0 40px 80px -20px rgba(6,182,212,0.2), inset 0 0 10px rgba(6,182,212,0.1)"
             }}
-            animate={{ translateZ: isHovered ? 140 : 80 }}
+            animate={{ translateZ: isHovered ? 150 : 60 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute top-6 left-6 right-6 flex justify-between items-center pb-4 border-b border-white/10">
@@ -199,8 +228,9 @@ export function HeroVisual() {
       </motion.div>
 
       {/* Floating Labels connecting to the layers (Z-indexed to float outside) */}
-      <div className="absolute top-1/2 right-[5%] -translate-y-1/2 flex flex-col gap-12 pointer-events-none hidden lg:flex">
-        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? -60 : -40 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+      <div className="absolute top-1/2 right-[2%] -translate-y-1/2 flex flex-col gap-8 pointer-events-none hidden lg:flex">
+        
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? -90 : -30 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
           <div className="w-8 h-[1px] bg-cyan-500/50" />
           <div>
             <p className="text-cyan-400 text-[10px] font-bold tracking-[0.2em] uppercase">Control Layer</p>
@@ -208,7 +238,15 @@ export function HeroVisual() {
           </div>
         </motion.div>
 
-        <motion.div className="flex items-center gap-4" animate={{ y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? -30 : -10 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+          <div className="w-10 h-[1px] bg-violet-500/50" />
+          <div>
+            <p className="text-violet-400 text-[10px] font-bold tracking-[0.2em] uppercase">Video Layer</p>
+            <p className="text-white/40 text-xs font-mono">Camera Tracking</p>
+          </div>
+        </motion.div>
+
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? 30 : 10 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
           <div className="w-12 h-[1px] bg-emerald-500/50" />
           <div>
             <p className="text-emerald-400 text-[10px] font-bold tracking-[0.2em] uppercase">Acoustic Layer</p>
@@ -216,13 +254,14 @@ export function HeroVisual() {
           </div>
         </motion.div>
 
-        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? 60 : 40 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? 90 : 30 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
           <div className="w-16 h-[1px] bg-blue-500/50" />
           <div>
             <p className="text-blue-400 text-[10px] font-bold tracking-[0.2em] uppercase">Network Layer</p>
             <p className="text-white/40 text-xs font-mono">AV over IP Matrix</p>
           </div>
         </motion.div>
+
       </div>
 
     </div>
