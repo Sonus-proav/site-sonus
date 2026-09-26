@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Activity, ShieldCheck, MapPin } from "lucide-react"
 
 interface Stat {
   value: number
@@ -34,7 +33,7 @@ function AnimatedCounter({ value, suffix = "", prefix = "" }: { value: number, s
       const step = (timestamp: number) => {
         if (!startTime) startTime = timestamp
         const progress = Math.min((timestamp - startTime) / duration, 1)
-        const easeProgress = 1 - Math.pow(1 - progress, 4) // easeOutQuart
+        const easeProgress = 1 - Math.pow(1 - progress, 4) 
         
         if (Number.isInteger(value)) {
            setCount(Math.floor(easeProgress * (end - start) + start))
@@ -51,77 +50,48 @@ function AnimatedCounter({ value, suffix = "", prefix = "" }: { value: number, s
   }, [isInView, value])
 
   return (
-    <span ref={ref} className="text-5xl md:text-6xl font-black text-white tabular-nums tracking-tighter">
-      {prefix}{count}{suffix}
+    <span ref={ref} className="text-6xl lg:text-7xl xl:text-8xl font-black text-white tabular-nums tracking-tighter drop-shadow-2xl flex items-baseline">
+      {prefix && <span className="text-4xl lg:text-5xl text-cyan-500 mr-1">{prefix}</span>}
+      {count}
+      {suffix && <span className="text-4xl lg:text-5xl text-blue-500 ml-1">{suffix}</span>}
     </span>
   )
 }
 
-// 1. Rede Neural / Pontos do Mapa
-function NetworkGrid() {
+function CircuitTraces() {
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-30 flex items-center justify-center">
-      <div className="grid grid-cols-8 gap-2 w-[120%] h-[120%] -rotate-12">
-        {[...Array(64)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-1.5 h-1.5 rounded-full bg-cyan-500"
-            animate={{
-              opacity: [0.1, Math.random() * 0.8 + 0.2, 0.1],
-              scale: [1, Math.random() * 1.5 + 1, 1],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// 2. Anel de Precisão
-function PrecisionDial() {
-  return (
-    <div className="absolute right-[-20%] bottom-[-20%] w-64 h-64 opacity-20 pointer-events-none">
-      <motion.div 
-        className="w-full h-full rounded-full border-[1px] border-dashed border-blue-500"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div 
-        className="absolute inset-4 rounded-full border border-blue-400/50"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-      >
-        <div className="absolute top-0 left-1/2 w-2 h-2 bg-blue-400 rounded-full -translate-x-1/2 -translate-y-1/2" />
-      </motion.div>
-    </div>
-  )
-}
-
-// 3. Anel de Progresso
-function SatisfactionRing({ inView }: { inView: boolean }) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none scale-150">
-      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" className="text-white/10" strokeWidth="2" />
-        <motion.circle 
-          cx="50" cy="50" r="45" 
+    <div className="absolute inset-0 pointer-events-none opacity-20">
+      <svg width="100%" height="100%" preserveAspectRatio="none">
+        <motion.path 
+          d="M 0,50 L 200,50 L 250,150 L 500,150 L 550,50 L 1000,50 L 1050,150 L 2000,150" 
           fill="none" 
-          stroke="url(#emerald-grad)" 
-          strokeWidth="4"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: inView ? 0.997 : 0 }}
-          transition={{ duration: 2.5, ease: "easeOut", delay: 0.5 }}
+          stroke="url(#cyan-grad)" 
+          strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 3, ease: "easeInOut" }}
+        />
+        <motion.path 
+          d="M 0,200 L 150,200 L 200,100 L 600,100 L 650,200 L 1200,200 L 1250,100 L 2000,100" 
+          fill="none" 
+          stroke="url(#blue-grad)" 
+          strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 3.5, ease: "easeInOut", delay: 0.2 }}
         />
         <defs>
-          <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#10b981" />
-            <stop offset="100%" stopColor="#3b82f6" />
+          <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="50%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+          <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="50%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="transparent" />
           </linearGradient>
         </defs>
       </svg>
@@ -132,57 +102,69 @@ function SatisfactionRing({ inView }: { inView: boolean }) {
 export function SocialProofBar({ stats = defaultStats }: SocialProofBarProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" })
-  const isDefault = stats === defaultStats
 
   return (
     <section ref={ref} className="py-8 md:py-0 w-full relative z-20 -mt-16 mb-16 px-4">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {stats.map((stat, i) => {
-            const isFirst = i === 0;
-            const isSecond = i === 1;
-            const isThird = i === 2;
+        
+        {/* Painel Unificado Central */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full rounded-[3rem] p-[1px] overflow-hidden group"
+        >
+          {/* Borda Animada */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-700" />
+          <motion.div 
+            animate={{ left: ['-100%', '200%'] }} 
+            transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+            className="absolute top-0 bottom-0 w-[200px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent skew-x-[-45deg] opacity-20"
+          />
 
-            return (
+          <div className="relative w-full h-full bg-[#050505]/90 backdrop-blur-3xl rounded-[3rem] overflow-hidden flex flex-col md:flex-row items-center justify-evenly py-16 md:py-20 px-8 gap-12 md:gap-4 shadow-2xl">
+            
+            {/* Background Técnico */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+            <CircuitTraces />
+            
+            {/* Sombras radiais atrás dos números */}
+            <div className="absolute left-1/6 top-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-[80px]" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px]" />
+            <div className="absolute right-1/6 top-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px]" />
+
+            {stats.map((stat, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative h-[220px] rounded-3xl overflow-hidden bg-zinc-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col justify-end p-8"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ delay: i * 0.2, duration: 0.8, ease: "easeOut" }}
+                className="relative z-10 flex flex-col items-center text-center w-full md:w-1/3"
               >
-                {/* Efeitos Visuais Avançados (só aparecem nas métricas default da home) */}
-                {isDefault && isFirst && <NetworkGrid />}
-                {isDefault && isSecond && <PrecisionDial />}
-                {isDefault && isThird && <SatisfactionRing inView={isInView} />}
-                
-                {/* Hover Glow Background */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Top Icon Area */}
-                <div className="absolute top-8 left-8 w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center backdrop-blur-md">
-                  {isFirst && <MapPin className="w-4 h-4 text-cyan-400" />}
-                  {isSecond && <Activity className="w-4 h-4 text-blue-400" />}
-                  {isThird && <ShieldCheck className="w-4 h-4 text-emerald-400" />}
-                  {!isFirst && !isSecond && !isThird && <div className="w-2 h-2 rounded-full bg-white/50" />}
+                {/* Ícone Minimalista Topo */}
+                <div className="mb-6 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
+                  {i === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>}
+                  {i === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                  {i === 2 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>}
                 </div>
 
-                {/* Data Content */}
-                <div className="relative z-10 mt-auto">
-                  <div className="mb-1">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-[1px] bg-gradient-to-r from-white/50 to-transparent" />
-                    <p className="text-zinc-400 font-bold tracking-widest uppercase text-xs md:text-sm">
-                      {stat.label}
-                    </p>
-                  </div>
+                {/* Número Grande Animado */}
+                <div className="mb-4">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                </div>
+
+                {/* Label Estilo Painel de Aeronave */}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <p className="text-zinc-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
+                    {stat.label}
+                  </p>
                 </div>
               </motion.div>
-            )
-          })}
-        </div>
+            ))}
+            
+          </div>
+        </motion.div>
       </div>
     </section>
   )
