@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 
 const clientLogos = [
   { src: "/clientes/cesul.png", alt: "Cesul", className: "h-8 md:h-10 brightness-0 invert" }, 
-  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-16 md:h-24 scale-[1.5] md:scale-[2] origin-center brightness-0 invert mx-4" }, 
+  { src: "/clientes/cresol.webp", alt: "Cresol", className: "h-12 md:h-16 scale-[1.2] md:scale-[1.5] origin-center brightness-0 invert mx-4" }, 
   { src: "/clientes/grupo-msa.svg", alt: "Grupo MSA", className: "h-8 md:h-10 brightness-0 invert" },
   { src: "/clientes/unipar.webp", alt: "Unipar", className: "h-8 md:h-10 brightness-0 invert" },
   { src: "/clientes/unisep.webp", alt: "Unisep", className: "h-8 md:h-10 brightness-0 invert" },
@@ -15,7 +15,7 @@ const brandLogos = [
   { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8 brightness-0 invert" },
   { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10 brightness-0 invert" }, 
   // Renkus-Heinz tem fundo sólido branco. Usamos apenas invert para o fundo virar preto (mesclando com o site) e a letra ficar branca.
-  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 invert grayscale mix-blend-screen" }, 
+  { src: "/marcas/renkus-heinz.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 invert grayscale contrast-200 brightness-75 mix-blend-screen" }, 
   { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10 brightness-0 invert" }, 
   { src: "/zoom-logo.png", alt: "Zoom", className: "h-8 md:h-10 brightness-0 invert" },
   { src: "/google-meet-logo.png", alt: "Google Meet", className: "h-8 md:h-10 brightness-0 invert" },
