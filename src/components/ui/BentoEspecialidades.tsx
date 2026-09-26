@@ -43,7 +43,7 @@ const SPECIALTIES = [
     title: "Plenários e Câmaras",
     subtitle: "Votação Digital",
     description: "Captação irretocável para o legislativo. Microfones parlamentares integrados com câmera tracking automático e votação blindada.",
-    image: "/auditorio-sonus.webp", // Reaproveitado, idealmente teria um específico
+    image: "/plenarios/painel-sessoes.png", // Reaproveitado, idealmente teria um específico
     link: "/plenarios-e-camaras",
     color: "from-amber-500/20 to-orange-900/40",
     accent: "text-amber-400",
@@ -54,7 +54,7 @@ const SPECIALTIES = [
     title: "Igrejas e Templos",
     subtitle: "Palavra Clara",
     description: "Acústica controlada para atingir todos os fiéis com clareza. Da voz falada ao louvor com banda completa, sem microfonia.",
-    image: "/sobre-sonus.webp", // Reaproveitado
+    image: "/interior-matriz-xanxere.webp", // Reaproveitado
     link: "/igrejas-e-templos",
     color: "from-purple-500/20 to-fuchsia-900/40",
     accent: "text-purple-400",
