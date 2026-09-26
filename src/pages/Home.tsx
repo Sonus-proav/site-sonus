@@ -16,6 +16,7 @@ import { Turnstile } from '@marsidev/react-turnstile'
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
+const ClientMarquee = lazy(() => import("@/components/ui/ClientMarquee").then(m => ({ default: m.ClientMarquee })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
 
 export function Home() {
@@ -151,19 +152,9 @@ export function Home() {
         </div>
       </section>
 
-      {/* MARCAS E CLIENTES (SOCIAL PROOF) */}
-      <section className="py-16 border-b border-white/10 bg-zinc-950/50 backdrop-blur-xl relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-zinc-500">Certificações de Alta Performance</h3>
-            <div className="flex flex-wrap justify-center items-center gap-12 opacity-70">
-              <img src="/logo-shure.svg" alt="Shure" className="h-6 object-contain" />
-              <img src="/logo-qsc.svg" alt="QSC" className="h-8 object-contain" />
-              <img src="/logo-sennheiser.svg" alt="Sennheiser" className="h-6 object-contain" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <ClientMarquee />
+      </Suspense>
 
             {/* APPLE-STYLE BESPOKE BENTO GRID */}
       <section className="py-32 px-4 md:px-8 xl:px-16 bg-[#050505] relative">
