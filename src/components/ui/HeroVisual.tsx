@@ -7,7 +7,7 @@ export function HeroVisual() {
 
   return (
     <div 
-      className="relative w-full h-[600px] flex items-center justify-center cursor-crosshair group perspective-[2000px]"
+      className="relative w-full h-[600px] flex items-center justify-center group perspective-[2000px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
