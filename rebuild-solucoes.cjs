@@ -1,4 +1,6 @@
-import { Helmet } from "react-helmet-async";
+const fs = require('fs');
+
+const content = `import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense, useRef } from "react";
 import { SEO } from "@/components/SEO";
@@ -100,12 +102,12 @@ function HorizontalScrollGallery() {
           {dimensions.map((dim, index) => (
             <div key={index} className="w-[100vw] h-full flex items-center justify-center p-4 md:p-8 relative">
               
-              <div className={`relative w-full max-w-[1300px] h-[85vh] md:h-[75vh] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden flex flex-col md:flex-row shadow-[0_30px_80px_-20px_rgba(0,0,0,1)] border border-white/5 bg-[#030303] group`}>
+              <div className={\`relative w-full max-w-[1300px] h-[85vh] md:h-[75vh] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden flex flex-col md:flex-row shadow-[0_30px_80px_-20px_rgba(0,0,0,1)] border border-white/5 bg-[#030303] group\`}>
                 
                 {/* Dynamic Inner Glow */}
                 <div 
                   className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none transition-opacity duration-1000 group-hover:opacity-60"
-                  style={{ background: `radial-gradient(circle at 100% 50%, ${dim.themeColor}15 0%, transparent 50%)` }}
+                  style={{ background: \`radial-gradient(circle at 100% 50%, \${dim.themeColor}15 0%, transparent 50%)\` }}
                 />
 
                 {/* Content Side */}
@@ -123,7 +125,7 @@ function HorizontalScrollGallery() {
                     {dim.description}
                   </p>
 
-                  <Link to={dim.link} onClick={() => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: "navigate_solucoes_slider", dimension: dim.title }); }} className="w-fit">
+                  <Link to={dim.link} className="w-fit">
                     <div className="relative group/btn flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full pl-6 pr-2 py-2 transition-all duration-300">
                       <span className="text-white font-bold tracking-widest uppercase text-xs transition-colors duration-300">
                         {dim.ctaText}
@@ -147,7 +149,7 @@ function HorizontalScrollGallery() {
                   {/* Vertical Light Beam */}
                   <div 
                     className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[300px] h-[120%] opacity-20 mix-blend-screen pointer-events-none blur-[40px]"
-                    style={{ background: `linear-gradient(to bottom, ${dim.themeColor} 0%, transparent 100%)` }} 
+                    style={{ background: \`linear-gradient(to bottom, \${dim.themeColor} 0%, transparent 100%)\` }} 
                   />
 
                   {/* Holographic Installation */}
@@ -175,21 +177,21 @@ function HorizontalScrollGallery() {
 
                       {/* Glass Prism */}
                       <div className="absolute inset-1/4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-md flex items-center justify-center overflow-hidden"
-                           style={{ boxShadow: `0 0 50px ${dim.themeColor}30, inset 0 0 30px ${dim.themeColor}30` }}>
+                           style={{ boxShadow: \`0 0 50px \${dim.themeColor}30, inset 0 0 30px \${dim.themeColor}30\` }}>
                         
                         {/* Scanning Laser inside Prism */}
                         <motion.div 
                           animate={{ y: ["-100%", "200%"] }}
                           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                           className="absolute left-0 right-0 h-[2px] opacity-70 z-20"
-                          style={{ background: `linear-gradient(90deg, transparent, ${dim.themeColor}, transparent)`, boxShadow: `0 0 20px ${dim.themeColor}` }}
+                          style={{ background: \`linear-gradient(90deg, transparent, \${dim.themeColor}, transparent)\`, boxShadow: \`0 0 20px \${dim.themeColor}\` }}
                         />
 
                         {/* Icon */}
                         <div className="relative z-10 transition-transform duration-500 group-hover:scale-110">
                           <dim.icon 
                             className="w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl" 
-                            style={{ color: dim.themeColor, filter: `drop-shadow(0 0 20px ${dim.themeColor}80)` }} 
+                            style={{ color: dim.themeColor, filter: \`drop-shadow(0 0 20px \${dim.themeColor}80)\` }} 
                             strokeWidth={1}
                           />
                         </div>
@@ -233,27 +235,6 @@ export function Solucoes() {
     <div className="flex flex-col min-h-screen bg-[#020205] text-white selection:bg-white/30 font-sans">
       <Helmet>
         <title>Ecossistema de Soluções | Sonus Pro AV</title>
-        <script type="application/ld+json">{JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Integração Audiovisual Corporativa",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro Audio e Video"
-    },
-    "areaServed": "Brasil",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Soluções de Tecnologia Audiovisual",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plenários e Câmaras" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Salas Corporativas de Videoconferência" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Auditórios e Teatros" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Igrejas e Templos" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design e Programação Q-SYS" } }
-      ]
-    }
-  })}</script>
       </Helmet>
       <SEO 
         title="Ecossistema de Soluções | Sonus Pro AV" 
@@ -327,3 +308,7 @@ export function Solucoes() {
     </div>
   );
 }
+`;
+
+fs.writeFileSync('src/pages/Solucoes.tsx', content);
+console.log("Solucoes.tsx has been rebuilt completely!");
