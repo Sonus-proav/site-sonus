@@ -13,7 +13,7 @@ const brandLogos = [
   { src: "/shure-logo.png", alt: "Shure", className: "h-8 md:h-10 brightness-0 invert" }, 
   { src: "/qsys-logo.png", alt: "Q-SYS", className: "h-10 md:h-12 brightness-0 invert" }, 
   { src: "/marcas/sennheiser.svg", alt: "Sennheiser", className: "h-6 md:h-8 brightness-0 invert" },
-  { src: "/marcas/bose.svg", alt: "Bose", className: "h-8 md:h-10 brightness-0 invert" }, 
+  { src: "/marcas/bose.svg", alt: "Bose", className: "h-12 md:h-16 scale-[1.5] origin-center brightness-0 invert mx-4" }, 
   // Renkus-Heinz tem fundo sólido branco. Usamos apenas invert para o fundo virar preto (mesclando com o site) e a letra ficar branca.
   { src: "/marcas/renkus-heinz-fixed.png", alt: "Renkus-Heinz", className: "h-8 md:h-10 brightness-0 invert" }, 
   { src: "/marcas/qsc.png", alt: "QSC", className: "h-8 md:h-10 brightness-0 invert" }, 
