@@ -10,7 +10,7 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })));
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
-const StickyCtaBar = lazy(() => import("@/components/ui/StickyCtaBar").then(m => ({ default: m.StickyCtaBar })));
+
 
 const schema = {
   "@context": "https://schema.org",
@@ -362,7 +362,7 @@ export function Solucoes() {
       </main>
 
       <Suspense fallback={null}>
-        <StickyCtaBar buttonText="Solicitar Orçamento" messageText="Olá, gostaria de conversar sobre os projetos e soluções da Sonus." />
+        
         <WhatsAppButton message="Olá! Gostaria de falar sobre os projetos e soluções da Sonus." />
         <LPFooter />
       </Suspense>
