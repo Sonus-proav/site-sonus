@@ -8,6 +8,7 @@ import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead } from "@/lib/analytics"
 import { SEO } from "../components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
+import { HeroVisual } from "@/components/ui/HeroVisual"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -68,55 +69,7 @@ const verticals = [
   }
 ]
 
-// Elemento Animado com Significado: Pulso Acústico e Roteamento IP
-function AcousticPulse() {
-  return (
-    <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
-      {/* Círculos concêntricos pulsantes (ondas sonoras) */}
-      {[1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute inset-0 rounded-full border border-cyan-500/30"
-          initial={{ scale: 0.1, opacity: 1 }}
-          animate={{ scale: 1, opacity: 0 }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: i * 1,
-            ease: "easeOut",
-          }}
-        />
-      ))}
-      {/* Núcleo de Processamento (DSP) */}
-      <div className="relative z-10 w-32 h-32 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_40px_rgba(6,182,212,0.4)] flex items-center justify-center">
-        <div className="absolute inset-px bg-[#050505] rounded-[23px] flex items-center justify-center overflow-hidden">
-          {/* Malha de grade interna para parecer um chip Q-SYS */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:8px_8px]" />
-          <div className="w-12 h-12 rounded-full bg-cyan-500/20 blur-md animate-pulse" />
-        </div>
-      </div>
-      
-      {/* Pontos flutuantes simulando endpoints de rede (Dante/AV over IP) */}
-      {[0, 72, 144, 216, 288].map((deg, i) => (
-        <motion.div
-          key={`node-${i}`}
-          className="absolute w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
-          animate={{
-            rotate: [deg, deg + 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{ originX: "50%", originY: "50%", padding: "140px 0 0 0" }} // orbit radius
-        >
-          <div className="w-4 h-4 rounded-full bg-cyan-300" style={{ transform: `rotate(-${deg}deg)` }} />
-        </motion.div>
-      ))}
-    </div>
-  )
-}
+
 
 export function Home() {
   const location = useLocation()
@@ -244,7 +197,7 @@ export function Home() {
             </div>
 
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-               <AcousticPulse />
+               <HeroVisual />
             </div>
 
           </div>
