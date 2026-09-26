@@ -32,7 +32,7 @@ const SPECIALTIES = [
     title: "Salas Corporativas",
     subtitle: "Videoconferência Nativa",
     description: "Automação invisível. Reuniões híbridas que começam com um toque, sem cabos pela mesa e sem falhas de conexão.",
-    image: "/sobre-sonus.webp",
+    image: "/salas-corporativas.webp",
     link: "/salas-reuniao",
     color: "from-cyan-500/20 to-teal-900/40",
     accent: "text-cyan-400",
