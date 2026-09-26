@@ -1,8 +1,8 @@
-import { useState, useEffect, lazy, Suspense,  } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation, useNavigate, Link } from "react-router-dom"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowRight, ArrowUpRight, CheckCircle2,  } from "lucide-react"
+import { motion,  } from "framer-motion"
+import { ArrowRight, CheckCircle2, Mic, Video, MonitorPlay, Vote } from "lucide-react"
 
 import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead } from "@/lib/analytics"
@@ -21,72 +21,99 @@ const verticals = [
   {
     id: "01",
     title: "Plenários e Câmaras",
-    desc: "A soberania do som em ambientes de votação.",
+    desc: "A soberania do som em ambientes de votação legislativa.",
     link: "/plenarios-e-camaras",
-    bg: "from-zinc-900 to-black"
+    icon: Vote,
+    color: "from-amber-500 to-orange-600",
+    shadow: "shadow-orange-500/20",
+    image: "/auditorio-sonus.webp", // Fallback image
+    colSpan: "md:col-span-8",
+    rowSpan: "md:row-span-1"
   },
   {
     id: "02",
     title: "Salas Corporativas",
-    desc: "A tecnologia desaparece. A conexão impera.",
+    desc: "A tecnologia desaparece. A conexão impera na sua sala de diretoria.",
     link: "/salas-reuniao",
-    bg: "from-zinc-900 to-[#0A0A0A]"
+    icon: Video,
+    color: "from-blue-400 to-cyan-500",
+    shadow: "shadow-cyan-500/20",
+    image: "/sobre-sonus.webp",
+    colSpan: "md:col-span-4",
+    rowSpan: "md:row-span-2"
   },
   {
     id: "03",
     title: "Auditórios e Teatros",
-    desc: "Engenharia acústica projetada para a geometria.",
+    desc: "Engenharia acústica projetada para a geometria do espetáculo.",
     link: "/auditorios-e-teatros",
-    bg: "from-zinc-800 to-black"
+    icon: Mic,
+    color: "from-emerald-400 to-teal-500",
+    shadow: "shadow-emerald-500/20",
+    image: "/auditorio-sonus.webp",
+    colSpan: "md:col-span-4",
+    rowSpan: "md:row-span-1"
   },
   {
     id: "04",
     title: "Igrejas e Templos",
-    desc: "A mensagem entregue com clareza absoluta.",
+    desc: "A mensagem entregue com clareza absoluta e inteligibilidade.",
     link: "/igrejas-e-templos",
-    bg: "from-[#111] to-black"
+    icon: MonitorPlay,
+    color: "from-purple-400 to-indigo-500",
+    shadow: "shadow-purple-500/20",
+    image: "/sobre-sonus.webp",
+    colSpan: "md:col-span-4",
+    rowSpan: "md:row-span-1"
   }
 ]
 
-// Animated 3D Isometric Element for the Hero
-function AcousticCube3D() {
+// Elemento Animado com Significado: Pulso Acústico e Roteamento IP
+function AcousticPulse() {
   return (
-    <div className="relative w-64 h-64 md:w-96 md:h-96" style={{ perspective: "1000px" }}>
-      <motion.div 
-        animate={{ 
-          rotateY: [0, 360],
-          rotateX: [20, 30, 20],
-          y: [-10, 10, -10]
-        }}
-        transition={{ 
-          rotateY: { duration: 20, repeat: Infinity, ease: "linear" },
-          rotateX: { duration: 10, repeat: Infinity, ease: "easeInOut" },
-          y: { duration: 8, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="w-full h-full relative"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Core structure */}
-        <div className="absolute inset-20 border border-white/20 bg-zinc-950/80 backdrop-blur-md rounded-2xl" style={{ transform: "translateZ(50px)" }} />
-        <div className="absolute inset-20 border border-white/10 bg-black/50 rounded-2xl" style={{ transform: "translateZ(-50px)" }} />
-        
-        {/* Acoustic panels (floating squares) */}
-        {[...Array(4)].map((_, i) => (
-          <div 
-            key={i} 
-            className="absolute w-12 h-12 bg-white/5 border border-white/20 backdrop-blur-sm rounded-lg"
-            style={{ 
-              top: `${20 + (i % 2) * 40}%`, 
-              left: `${20 + Math.floor(i / 2) * 40}%`,
-              transform: `translateZ(${70 + i * 10}px)` 
-            }} 
-          />
-        ))}
-        
-        {/* Connection lines */}
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" style={{ transform: "translateZ(0) rotateZ(45deg)" }} />
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" style={{ transform: "translateZ(0) rotateZ(-45deg)" }} />
-      </motion.div>
+    <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
+      {/* Círculos concêntricos pulsantes (ondas sonoras) */}
+      {[1, 2, 3].map((i) => (
+        <motion.div
+          key={i}
+          className="absolute inset-0 rounded-full border border-cyan-500/30"
+          initial={{ scale: 0.1, opacity: 1 }}
+          animate={{ scale: 1, opacity: 0 }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: i * 1,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+      {/* Núcleo de Processamento (DSP) */}
+      <div className="relative z-10 w-32 h-32 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_40px_rgba(6,182,212,0.4)] flex items-center justify-center">
+        <div className="absolute inset-px bg-[#050505] rounded-[23px] flex items-center justify-center overflow-hidden">
+          {/* Malha de grade interna para parecer um chip Q-SYS */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:8px_8px]" />
+          <div className="w-12 h-12 rounded-full bg-cyan-500/20 blur-md animate-pulse" />
+        </div>
+      </div>
+      
+      {/* Pontos flutuantes simulando endpoints de rede (Dante/AV over IP) */}
+      {[0, 72, 144, 216, 288].map((deg, i) => (
+        <motion.div
+          key={`node-${i}`}
+          className="absolute w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
+          animate={{
+            rotate: [deg, deg + 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          style={{ originX: "50%", originY: "50%", padding: "140px 0 0 0" }} // orbit radius
+        >
+          <div className="w-4 h-4 rounded-full bg-cyan-300" style={{ transform: `rotate(-${deg}deg)` }} />
+        </motion.div>
+      ))}
     </div>
   )
 }
@@ -94,8 +121,6 @@ function AcousticCube3D() {
 export function Home() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   
   useEffect(() => {
     if (!location.hash) window.scrollTo(0, 0)
@@ -159,7 +184,7 @@ export function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-white selection:text-black">
+    <div className="flex flex-col min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-cyan-500/30 selection:text-white">
       <Helmet>
         <title>Sonus Pro AV | A Fundação de Ambientes Críticos</title>
       </Helmet>
@@ -171,64 +196,55 @@ export function Home() {
 
       <Navbar />
 
-      {/* CINEMATIC PRO HERO */}
+      {/* VIBRANT HIGH-TECH HERO */}
       <section className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-[#050505]">
-        {/* Parallax Background */}
-        <motion.div style={{ y }} className="absolute inset-0 z-0">
-          <img src="/auditorio-sonus.webp" alt="Projetos Sonus" className="w-full h-full object-cover opacity-20 grayscale mix-blend-luminosity" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/50 to-transparent" />
-        </motion.div>
+        {/* Vibrant Gradient Orbs (Controlled, not overpowering) */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15)_0%,transparent_60%)] pointer-events-none z-0 translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_60%)] pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
 
-        {/* Cinematic Particles / Grid */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-screen"
-          style={{ backgroundImage: 'linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)', backgroundSize: '120px 120px' }}
-        />
-
-        <div className="container px-4 md:px-8 xl:px-16 relative z-10 mx-auto w-full">
+        <div className="container px-4 md:px-8 xl:px-16 relative z-10 mx-auto w-full max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 flex flex-col items-start">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8"
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(6,182,212,0.1)]"
               >
-                <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-300">28 Anos de Excelência</span>
+                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Inteligência Audiovisual Aplicada</span>
               </motion.div>
 
               <motion.h1 
-                initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.9] text-white uppercase drop-shadow-2xl"
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
               >
-                Inteligência <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600">Audiovisual.</span>
+                Engenharia <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Invisível.</span>
               </motion.h1>
 
               <motion.p 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}
-                className="mt-8 text-lg md:text-2xl text-zinc-400 font-light max-w-xl leading-relaxed"
+                className="mt-6 text-lg md:text-xl text-zinc-300 font-light max-w-xl leading-relaxed"
               >
-                A infraestrutura invisível e impecável para quem não aceita falhas. Projetos de excelência para Auditórios, Plenários e Salas Corporativas.
+                Projetos acústicos e eletrônicos de alta performance para <span className="font-semibold text-white">Salas Corporativas, Plenários e Auditórios</span>. Quando a conexão é crítica, a tecnologia deve desaparecer.
               </motion.p>
 
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row gap-4 mt-12 w-full sm:w-auto"
+                className="flex flex-col sm:flex-row gap-4 mt-10 w-full sm:w-auto"
               >
-                <Link to="/solucoes" className="group relative inline-flex items-center justify-center gap-4 bg-white text-black px-8 py-4 overflow-hidden">
-                  <span className="relative z-10 text-sm font-bold uppercase tracking-widest">Ver Soluções</span>
-                  <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  <div className="absolute inset-0 bg-zinc-200 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+                <Link to="/solucoes" className="group relative inline-flex items-center justify-center gap-4 bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1">
+                  Explorar Ecossistema
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="https://wa.me/5546920013151" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 bg-transparent text-white hover:bg-white/5 transition-colors duration-300">
-                  <span className="text-sm font-bold uppercase tracking-widest">Falar com Especialista</span>
+                <a href="https://wa.me/5546920013151" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white hover:bg-white/10 font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:-translate-y-1">
+                  Falar com Engenharia
                 </a>
               </motion.div>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center lg:justify-end opacity-90 mix-blend-screen hidden md:flex">
-               <AcousticCube3D />
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+               <AcousticPulse />
             </div>
 
           </div>
@@ -236,90 +252,121 @@ export function Home() {
       </section>
 
       {/* MARCAS E CLIENTES (SOCIAL PROOF) */}
-      <section className="py-20 border-b border-white/10 bg-[#050505] relative z-10">
-        <div className="container mx-auto px-4 text-center mb-16">
-          <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-500 mb-8">Ecosistema Certificado</h3>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <img src="/logo-shure.svg" alt="Shure" className="h-6 object-contain" />
-            <img src="/logo-qsc.svg" alt="QSC" className="h-8 object-contain" />
-            <img src="/logo-sennheiser.svg" alt="Sennheiser" className="h-6 object-contain" />
+      <section className="py-16 border-b border-white/10 bg-zinc-950/50 backdrop-blur-xl relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-zinc-500">Certificações de Alta Performance</h3>
+            <div className="flex flex-wrap justify-center items-center gap-12 opacity-70">
+              <img src="/logo-shure.svg" alt="Shure" className="h-6 object-contain" />
+              <img src="/logo-qsc.svg" alt="QSC" className="h-8 object-contain" />
+              <img src="/logo-sennheiser.svg" alt="Sennheiser" className="h-6 object-contain" />
+            </div>
           </div>
         </div>
-        <Suspense fallback={null}>
-          <SocialProofBar />
-        </Suspense>
       </section>
 
-      {/* BENTHIC GRID (ECOSYSTEM) */}
-      <section className="py-32 px-4 md:px-8 xl:px-16 bg-[#050505]">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white">Domínios de Atuação.</h2>
-            <p className="text-zinc-400 mt-4 text-lg max-w-2xl">Ambientes distintos exigem engenharias distintas. Nossa expertise cobre as quatro principais geometrias de operação crítica.</p>
+      {/* VIBRANT BENTO GRID (ECOSYSTEM) */}
+      <section className="py-32 px-4 md:px-8 bg-[#050505] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 text-center md:text-left">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
+              Domínios de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Atuação.</span>
+            </h2>
+            <p className="text-zinc-400 mt-4 text-lg max-w-2xl mx-auto md:mx-0">
+              Ambientes distintos exigem arquiteturas distintas. Conheça as quatro geometrias onde o som e o vídeo devem reinar com perfeição.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {verticals.map((v) => (
-              <Link 
-                key={v.id} 
-                to={v.link}
-                className={`group relative h-[350px] md:h-[450px] rounded-3xl p-8 md:p-12 flex flex-col justify-between overflow-hidden border border-white/10 bg-gradient-to-b ${v.bg}`}
-              >
-                {/* Hover Glow */}
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700" />
-                
-                <div className="relative z-10 flex justify-between items-start">
-                  <span className="text-sm font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">{v.id}</span>
-                  <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/50 backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-500">
-                    <ArrowUpRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          {/* O VERDADEIRO BENTO GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-8 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
+            {verticals.map((v) => {
+              const Icon = v.icon;
+              return (
+                <Link 
+                  key={v.id} 
+                  to={v.link}
+                  className={`${v.colSpan} ${v.rowSpan} group relative rounded-3xl overflow-hidden border border-white/10 bg-zinc-900 ${v.shadow} shadow-2xl transition-all duration-500 hover:scale-[1.02]`}
+                >
+                  {/* Background Image with Vibrant Overlay */}
+                  <div className="absolute inset-0">
+                    <img src={v.image} alt={v.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700 grayscale group-hover:grayscale-0 mix-blend-overlay" />
+                    <div className={`absolute inset-0 opacity-80 group-hover:opacity-60 transition-opacity duration-500 bg-gradient-to-br ${v.color} mix-blend-multiply`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
                   </div>
-                </div>
-                
-                <div className="relative z-10">
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-500 transition-all duration-500">{v.title}</h3>
-                  <p className="text-base text-zinc-400 font-light leading-relaxed max-w-md opacity-80 group-hover:opacity-100 transition-opacity duration-500">{v.desc}</p>
-                </div>
-              </Link>
-            ))}
+                  
+                  {/* Content */}
+                  <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                      <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <span className="text-xs font-bold font-mono text-white/50 bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">{v.id}</span>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">{v.title}</h3>
+                      <p className="text-sm text-zinc-300 font-medium leading-relaxed opacity-90">{v.desc}</p>
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* NOSSA HISTÓRIA (BRUTALIST ABOUT) */}
-      <section className="relative py-32 bg-[#050505] border-t border-white/10">
-        <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="relative h-[600px] w-full rounded-3xl overflow-hidden border border-white/10">
-              <img src="/sobre-sonus.webp" alt="Projetos Sonus" className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale mix-blend-luminosity scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
-              <div className="absolute bottom-10 left-10 p-8 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
-                <span className="block text-6xl font-black tracking-tighter text-white mb-2">+28</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">Anos de Engenharia</span>
+      {/* METRICS / SOCIAL PROOF */}
+      <section className="py-20 bg-zinc-950 border-y border-white/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
+        <div className="relative z-10">
+          <Suspense fallback={null}>
+            <SocialProofBar />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* ABOUT (NOSSA HISTÓRIA) */}
+      <section className="relative py-32 bg-[#050505]">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative aspect-square w-full rounded-[2rem] overflow-hidden border border-white/10 group">
+              <img src="/sobre-sonus.webp" alt="Projetos Sonus" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/50 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
+              
+              <div className="absolute bottom-10 left-10 p-6 bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-center gap-6">
+                <div>
+                  <span className="block text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-1">+28</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">Anos de Mercado</span>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-10">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-[1.1]">
-                História forjada<br />
-                <span className="text-zinc-600">em performance.</span>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
+                A Garantia da Experiência
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-[1.1]">
+                Nós construímos a base para que você opere no topo.
               </h2>
-              <p className="text-xl text-zinc-400 font-light leading-relaxed">
+              <p className="text-lg text-zinc-400 font-light leading-relaxed">
                 Nenhuma empresa se mantém líder em integração audiovisual de alta complexidade por quase três décadas por acaso. A Sonus nasceu da necessidade de acabar com o amadorismo técnico no Sul do Brasil.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+              <ul className="space-y-4 pt-4">
                 {[
                   "Projetos Customizados (Acústica e Eletrônica)",
                   "Garantia Estendida e SLA Blindado",
-                  "Equipe Própria de Engenharia",
-                  "Certificações Globais de Integração"
+                  "Equipe Própria de Engenharia"
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <CheckCircle2 className="w-6 h-6 text-white shrink-0" />
-                    <span className="font-medium text-zinc-300 text-sm leading-snug">{item}</span>
-                  </div>
+                  <li key={i} className="flex items-center gap-4 text-zinc-200">
+                    <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    </div>
+                    <span className="font-medium">{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -330,54 +377,50 @@ export function Home() {
         <TestimonialSection />
       </Suspense>
 
-      {/* MINIMALIST CONTACT FORM */}
-      <section className="py-32 px-4 bg-zinc-950 border-t border-white/10 relative overflow-hidden">
-        {/* Subtle background glow for the form section to separate it from the footer */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none" />
+      {/* CONTACT FORM */}
+      <section className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_50%)] pointer-events-none" />
 
-        <div className="max-w-2xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-6">Pronto para blindar seu espaço?</h2>
-            <p className="text-xl text-zinc-400 font-light">Fale com nossa equipe de engenharia e agende uma consultoria técnica definitiva.</p>
+        <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4">Pronto para blindar seu espaço?</h2>
+            <p className="text-lg text-zinc-400 font-light">Fale com nossa engenharia e agende uma consultoria técnica.</p>
           </div>
 
-          <div className="bg-[#050505] border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Honeypot field - hidden from users */}
-              <input type="text" name="honeypot" className="hidden" tabIndex={-1} autoComplete="off" value={formData.honeypot} onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })} />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <input type="text" name="honeypot" className="hidden" tabIndex={-1} autoComplete="off" value={formData.honeypot} onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })} />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-3">
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Nome Completo</label>
-                  <Input required placeholder="Ex: João Silva" className="bg-transparent border-0 border-b border-white/10 h-12 text-white focus-visible:ring-0 focus-visible:border-white rounded-none px-0" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                </div>
-                <div className="space-y-3">
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Telefone / WhatsApp</label>
-                  <Input required type="tel" placeholder="(00) 00000-0000" className="bg-transparent border-0 border-b border-white/10 h-12 text-white focus-visible:ring-0 focus-visible:border-white rounded-none px-0" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-zinc-400">Nome Completo</label>
+                <Input required placeholder="Ex: João Silva" className="bg-black/50 border-white/10 h-14 text-white focus-visible:ring-1 focus-visible:ring-cyan-500 rounded-xl" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
               </div>
-              
-              <div className="space-y-3">
-                <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">E-mail Profissional</label>
-                <Input required type="email" placeholder="joao@empresa.com.br" className="bg-transparent border-0 border-b border-white/10 h-12 text-white focus-visible:ring-0 focus-visible:border-white rounded-none px-0" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-zinc-400">Telefone / WhatsApp</label>
+                <Input required type="tel" placeholder="(00) 00000-0000" className="bg-black/50 border-white/10 h-14 text-white focus-visible:ring-1 focus-visible:ring-cyan-500 rounded-xl" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
               </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-zinc-400">E-mail Profissional</label>
+              <Input required type="email" placeholder="joao@empresa.com.br" className="bg-black/50 border-white/10 h-14 text-white focus-visible:ring-1 focus-visible:ring-cyan-500 rounded-xl" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+            </div>
 
-              <div className="space-y-3">
-                <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Detalhes do Projeto</label>
-                <Textarea required placeholder="Descreva brevemente o que você precisa..." className="bg-transparent border-0 border-b border-white/10 min-h-[120px] text-white focus-visible:ring-0 focus-visible:border-white rounded-none px-0 resize-none" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
-              </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-zinc-400">Detalhes do Projeto</label>
+              <Textarea required placeholder="Descreva brevemente o que você precisa..." className="bg-black/50 border-white/10 min-h-[120px] text-white focus-visible:ring-1 focus-visible:ring-cyan-500 rounded-xl resize-none" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+            </div>
 
-              <div className="pt-4">
-                <Turnstile siteKey="0x4AAAAAAAi9yYc7R3V1N1YF" onSuccess={setTurnstileToken} options={{ theme: 'dark' }} />
-              </div>
+            <div className="pt-2">
+              <Turnstile siteKey="0x4AAAAAAAi9yYc7R3V1N1YF" onSuccess={setTurnstileToken} options={{ theme: 'dark' }} />
+            </div>
 
-              {submitError && <div className="text-red-400 text-sm font-medium p-4 bg-red-400/10 border border-red-400/20 rounded-xl">{submitError}</div>}
+            {submitError && <div className="text-red-400 text-sm font-medium p-4 bg-red-400/10 border border-red-400/20 rounded-xl">{submitError}</div>}
 
-              <Button type="submit" disabled={isSubmitting} className="w-full h-16 bg-white text-black hover:bg-zinc-200 rounded-xl font-bold uppercase tracking-widest text-sm transition-colors duration-300">
-                {isSubmitting ? "Criptografando e Enviando..." : "Solicitar Consultoria Técnica"}
-              </Button>
-            </form>
-          </div>
+            <Button type="submit" disabled={isSubmitting} className="w-full h-16 bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 rounded-xl font-bold uppercase tracking-widest text-sm transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+              {isSubmitting ? "Enviando..." : "Solicitar Consultoria Técnica"}
+            </Button>
+          </form>
         </div>
       </section>
 
