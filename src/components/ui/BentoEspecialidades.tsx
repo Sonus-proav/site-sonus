@@ -21,11 +21,11 @@ const SPECIALTIES = [
     subtitle: "O Cérebro da Operação",
     description: "Áudio, vídeo e controle unificados na rede. Esqueça racks lotados de equipamentos isolados. Tudo processado via software.",
     image: "/qsys-tech-bg.webp", // Fundo genérico tech, ou uma imagem escura
-    logo: "/qsys-logo.png",
+    
     link: "/qsys",
     color: "from-blue-500/20 to-indigo-900/40",
     accent: "text-blue-400",
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
   },
   {
     id: "salas",
@@ -58,7 +58,7 @@ const SPECIALTIES = [
     link: "/igrejas-e-templos",
     color: "from-purple-500/20 to-fuchsia-900/40",
     accent: "text-purple-400",
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
   }
 ]
 
@@ -109,7 +109,7 @@ export function BentoEspecialidades() {
                 animate={{
                   flex: isActive ? (typeof window !== 'undefined' && window.innerWidth > 1024 ? 5 : 4) : 1,
                 }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
                 className={`relative overflow-hidden rounded-[2rem] cursor-pointer group ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'} transition-colors duration-500 flex flex-col`}
               >
                 {/* Background Image & Gradient */}
@@ -118,11 +118,11 @@ export function BentoEspecialidades() {
                     <img 
                       src={item.image} 
                       alt={item.title} 
-                      className={`w-full h-full object-cover transition-all duration-1000 ${isActive ? 'opacity-50 scale-100 grayscale-0 mix-blend-normal' : 'opacity-20 scale-110 grayscale mix-blend-luminosity'}`}
+                      className={`w-full h-full object-cover transition-all duration-1000 ${isActive ? 'opacity-50 scale-100 grayscale-0' : 'opacity-20 scale-110 grayscale'}`}
                     />
                   )}
                   <div className={`absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-90' : 'opacity-100'}`} />
-                  {isActive && <div className={`absolute inset-0 bg-gradient-to-br ${item.color} mix-blend-overlay`} />}
+                  {isActive && <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-30`} />}
                 </div>
 
                 {/* Content Overlay */}
@@ -130,11 +130,7 @@ export function BentoEspecialidades() {
                   
                   {/* Ícone fixo visível mesmo colapsado */}
                   <div className={`w-12 h-12 rounded-xl backdrop-blur-md border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
-                    {item.logo && isActive ? (
-                      <img src={item.logo} alt="Logo" className="h-4 brightness-0 invert" />
-                    ) : (
-                      item.icon
-                    )}
+                    {item.icon}
                   </div>
 
                   {/* Título Rotacionado quando colapsado (Desktop) */}
