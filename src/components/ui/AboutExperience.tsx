@@ -49,7 +49,7 @@ export function AboutExperience() {
                 <img 
                   src="/teatro-unisep.webp" 
                   alt="Integração Audiovisual Sonus" 
-                  className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2000ms] ease-out"
+                  className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform [transition-duration:2s] ease-out"
                 />
                 
                 {/* Overlay de Gradiente */}

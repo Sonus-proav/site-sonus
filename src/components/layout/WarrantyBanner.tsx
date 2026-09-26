@@ -39,7 +39,7 @@ export function WarrantyBanner({ title, description, variant = 'default' }: Warr
   const renderCorporate = () => (
     <section className="bg-[#050505] py-16 md:py-24 border-y border-white/[0.08] relative overflow-hidden group">
       {/* Moving scanner line effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.05] to-transparent -translate-y-full group-hover:translate-y-full duration-[3000ms] ease-in-out transition-transform" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.05] to-transparent -translate-y-full group-hover:translate-y-full [transition-duration:3s] ease-in-out transition-transform" />
       {/* Subtle metallic radial background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
       
@@ -93,8 +93,8 @@ export function WarrantyBanner({ title, description, variant = 'default' }: Warr
   const renderAuditorium = () => (
     <section className="bg-[#020000] py-16 md:py-24 border-y border-red-900/30 relative overflow-hidden group">
       {/* Cinematic Spotlights */}
-      <div className="absolute top-0 left-0 w-[500px] h-[800px] bg-[conic-gradient(from_140deg_at_0%_0%,rgba(220,38,38,0.1)_0deg,transparent_30deg)] pointer-events-none transform origin-top-left group-hover:rotate-6 transition-transform duration-[5000ms] ease-in-out mix-blend-screen" />
-      <div className="absolute top-0 right-0 w-[500px] h-[800px] bg-[conic-gradient(from_220deg_at_100%_0%,transparent_330deg,rgba(153,27,27,0.1)_360deg)] pointer-events-none transform origin-top-right group-hover:-rotate-6 transition-transform duration-[5000ms] ease-in-out mix-blend-screen" />
+      <div className="absolute top-0 left-0 w-[500px] h-[800px] bg-[conic-gradient(from_140deg_at_0%_0%,rgba(220,38,38,0.1)_0deg,transparent_30deg)] pointer-events-none transform origin-top-left group-hover:rotate-6 transition-transform [transition-duration:5s] ease-in-out mix-blend-screen" />
+      <div className="absolute top-0 right-0 w-[500px] h-[800px] bg-[conic-gradient(from_220deg_at_100%_0%,transparent_330deg,rgba(153,27,27,0.1)_360deg)] pointer-events-none transform origin-top-right group-hover:-rotate-6 transition-transform [transition-duration:5s] ease-in-out mix-blend-screen" />
       
       {/* Fog/Noise overlay texture */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
