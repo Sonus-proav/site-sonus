@@ -36,7 +36,7 @@ export function HeroVisual() {
   // Acoustic Card
   const AcousticCard = (
     <div className="w-full h-full rounded-[2rem] border border-white/10 bg-black/60 backdrop-blur-2xl shadow-2xl p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none rounded-[2rem]" />
       <div className="relative z-10 w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
         <Mic className="w-5 h-5 text-emerald-400" />
       </div>
@@ -63,7 +63,7 @@ export function HeroVisual() {
   // Network Card
   const NetworkCard = (
     <div className="w-full h-full rounded-[2rem] border border-white/10 bg-[#050505]/80 backdrop-blur-2xl shadow-2xl p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-bl from-blue-500/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-bl from-blue-500/10 to-transparent pointer-events-none rounded-[2rem]" />
       <div className="relative z-10 flex justify-between items-start">
         <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
           <Cpu className="w-5 h-5 text-blue-400" />
@@ -92,7 +92,7 @@ export function HeroVisual() {
   // Control Card
   const ControlCard = (
     <div className="w-full h-full rounded-[2rem] border border-white/20 bg-black/70 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(34,211,238,0.3)] p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none rounded-[2rem]" />
       
       
       <div className="relative z-10 flex items-center gap-3 mb-4">
