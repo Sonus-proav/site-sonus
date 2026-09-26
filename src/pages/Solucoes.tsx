@@ -85,31 +85,38 @@ export function Solucoes() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-[#050505] to-[#050505] z-0" />
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 z-0" />
 
-              {/* HOLOGRAM INSTALLATION: Plenários (Right Side) */}
+              {/* HOLOGRAM INSTALLATION: Plenários - Câmera PTZ e Áudio */}
               <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
-                {/* Grid Floor */}
+                {/* Floor Grid */}
                 <div className="absolute bottom-0 w-[200%] h-[100%] bg-[linear-gradient(rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:30px_30px] [transform:rotateX(70deg)_translateY(50px)] [mask-image:linear-gradient(to_top,black,transparent)]" />
                 
-                <motion.div
-                  animate={{ rotateY: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="relative w-48 h-48 [transform-style:preserve-3d]"
-                >
-                  {/* Outer glowing cylinder */}
-                  <div className="absolute inset-0 border border-cyan-500/30 rounded-full [transform:rotateX(60deg)] shadow-[0_0_30px_rgba(6,182,212,0.2)]" />
-                  <div className="absolute inset-4 border border-cyan-400/50 rounded-full [transform:rotateX(60deg)_translateZ(40px)] shadow-[0_0_20px_rgba(6,182,212,0.4)]" />
-                  <div className="absolute inset-8 border-2 border-dashed border-cyan-300/80 rounded-full [transform:rotateX(60deg)_translateZ(80px)] shadow-[0_0_40px_rgba(6,182,212,0.6)] animate-[spin_10s_linear_infinite]" />
+                {/* 3D PTZ Camera Abstraction */}
+                <motion.div animate={{ rotateY: [-20, 20, -20] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="relative w-40 h-40 [transform-style:preserve-3d]">
+                  {/* Camera Base */}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-cyan-950 border border-cyan-500/50 rounded-full [transform:rotateX(70deg)] shadow-[0_0_20px_#22d3ee]" />
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-10 bg-cyan-900 border border-cyan-400/50 rounded-b-xl" />
                   
-                  {/* Scanning beam */}
-                  <motion.div 
-                    animate={{ y: [-50, 50, -50] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute left-1/2 top-1/2 w-32 h-[2px] bg-cyan-400 -translate-x-1/2 -translate-y-1/2 blur-[1px] shadow-[0_0_15px_#22d3ee]"
-                  />
+                  {/* Camera Bracket (U-Shape) */}
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-28 h-20 border-b-[8px] border-l-[8px] border-r-[8px] border-cyan-500/60 rounded-b-2xl" />
                   
-                  {/* Floating Data Cubes */}
-                  <motion.div animate={{ y: [-10, 10, -10], rotate: 360 }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-4 h-4 border border-cyan-400 bg-cyan-500/20 backdrop-blur-sm [transform:translateZ(20px)]" />
-                  <motion.div animate={{ y: [10, -10, 10], rotate: -360 }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }} className="absolute bottom-0 right-0 w-6 h-6 border border-cyan-400 bg-cyan-500/20 backdrop-blur-sm [transform:translateZ(60px)]" />
+                  {/* Camera Head (Sphere/Cylinder) */}
+                  <motion.div animate={{ rotateX: [-10, 15, -10] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-12 left-1/2 -translate-x-1/2 w-20 h-20 bg-cyan-950 border border-cyan-400 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.4)] flex items-center justify-center overflow-hidden [transform-style:preserve-3d]">
+                    {/* Lens */}
+                    <div className="w-12 h-12 bg-black border-2 border-cyan-300 rounded-full flex items-center justify-center">
+                      <div className="w-6 h-6 bg-cyan-500/30 border border-cyan-200 rounded-full shadow-[inset_0_0_10px_#22d3ee]" />
+                    </div>
+                    {/* REC Light */}
+                    <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1, repeat: Infinity }} className="absolute top-3 right-4 w-2 h-2 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]" />
+                  </motion.div>
+                </motion.div>
+
+                {/* Floating Video Frames */}
+                <motion.div animate={{ y: [-15, 15, -15] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute right-10 top-20 w-32 h-20 border border-cyan-400/40 bg-cyan-900/20 backdrop-blur-md rounded-lg p-2 flex items-center justify-center [transform:rotateY(-20deg)]">
+                   <div className="w-full h-full border border-cyan-300/30 rounded flex items-center justify-center gap-1">
+                     <div className="w-1/3 h-2/3 bg-cyan-500/20" />
+                     <div className="w-1/3 h-1/2 bg-cyan-500/20" />
+                     <div className="w-1/3 h-3/4 bg-cyan-500/20" />
+                   </div>
                 </motion.div>
               </div>
 
@@ -142,30 +149,32 @@ export function Solucoes() {
             <SpotlightCard className="col-span-1 lg:col-span-5 h-[500px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-bl from-blue-900/20 via-[#050505] to-[#050505] z-0" />
 
-              {/* HOLOGRAM INSTALLATION: Corporativo */}
-              <div className="absolute right-[-10%] top-[-10%] w-[120%] h-[120%] overflow-hidden pointer-events-none opacity-30 group-hover:opacity-80 transition-opacity duration-700 z-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ rotateZ: 360 }}
-                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                  className="relative w-80 h-80"
-                >
-                  {/* Constellation Nodes */}
-                  <svg viewBox="0 0 100 100" className="w-full h-full stroke-blue-500/30 fill-blue-400/50" strokeWidth="0.5">
-                    <motion.path 
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 5, repeat: Infinity, repeatType: "mirror" }}
-                      d="M20,50 L50,20 L80,50 L50,80 Z M50,20 L50,80 M20,50 L80,50" 
-                    />
-                    <circle cx="20" cy="50" r="2" />
-                    <circle cx="50" cy="20" r="3" />
-                    <circle cx="80" cy="50" r="2" />
-                    <circle cx="50" cy="80" r="3" />
-                    <circle cx="50" cy="50" r="4" className="fill-blue-400" />
-                  </svg>
+              {/* HOLOGRAM INSTALLATION: Corporativo - Videoconferência (Telas 3D) */}
+              <div className="absolute right-[-5%] top-0 w-full h-full overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1200px]">
+                {/* 3 Floating Screens */}
+                <motion.div animate={{ y: [-10, 10, -10] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
+                  
+                  {/* Left Screen */}
+                  <div className="absolute left-[10%] w-48 h-32 border border-blue-400/50 bg-blue-950/40 backdrop-blur-md rounded-xl [transform:rotateY(30deg)_translateZ(-50px)] shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-end justify-center pb-2">
+                    <div className="w-12 h-16 bg-blue-400/20 rounded-t-full border-t border-blue-300/50" />
+                  </div>
+                  
+                  {/* Center Main Screen */}
+                  <div className="absolute w-64 h-40 border border-blue-300 bg-blue-900/40 backdrop-blur-xl rounded-2xl [transform:translateZ(50px)] shadow-[0_0_50px_rgba(59,130,246,0.5)] flex flex-col items-center justify-center gap-2">
+                    <div className="w-20 h-20 bg-blue-400/30 rounded-full border border-blue-200/50 flex items-center justify-center">
+                       <Users className="w-10 h-10 text-blue-200" />
+                    </div>
+                    <div className="w-24 h-2 bg-blue-400/40 rounded-full" />
+                  </div>
+
+                  {/* Right Screen */}
+                  <div className="absolute right-[10%] w-48 h-32 border border-blue-400/50 bg-blue-950/40 backdrop-blur-md rounded-xl [transform:rotateY(-30deg)_translateZ(-50px)] shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-end justify-center pb-2">
+                    <div className="w-12 h-16 bg-blue-400/20 rounded-t-full border-t border-blue-300/50" />
+                  </div>
+
+                  {/* Orbiting Data Rings */}
+                  <motion.div animate={{ rotateX: 70, rotateZ: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-blue-500/30 rounded-full [transform-style:preserve-3d]" />
                 </motion.div>
-                {/* Orbiting ring */}
-                <motion.div animate={{ rotateX: 70, rotateZ: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute w-64 h-64 border-[3px] border-dotted border-blue-400/40 rounded-full" />
               </div>
 
               
@@ -194,15 +203,30 @@ export function Solucoes() {
             <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-[#050505] to-[#050505] z-0" />
 
-              {/* HOLOGRAM INSTALLATION: Auditórios */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-end justify-center pb-8">
-                <div className="flex items-end gap-1 w-full px-8 h-32">
-                  {[...Array(12)].map((_, i) => (
+              {/* HOLOGRAM INSTALLATION: Auditórios - Line Array e Propagação */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-end pr-12 [perspective:800px]">
+                {/* Line Array Speaker Stack */}
+                <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative flex flex-col items-center gap-1 z-10">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-16 h-8 bg-emerald-950 border border-emerald-400 rounded shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center justify-center" style={{ transform: `rotateX(${i * -5}deg) translateZ(${i * 5}px)` }}>
+                      <div className="w-10 h-4 bg-black border border-emerald-500/50 rounded-full flex items-center justify-around px-1">
+                         <div className="w-2 h-2 bg-emerald-400/80 rounded-full" />
+                         <div className="w-2 h-2 bg-emerald-400/80 rounded-full" />
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Emitting Sound Waves */}
+                <div className="absolute right-28 top-1/2 -translate-y-1/2 w-[400px] h-[400px] flex items-center justify-start overflow-hidden">
+                  {[...Array(3)].map((_, i) => (
                     <motion.div
                       key={i}
-                      animate={{ height: ["20%", "100%", "20%"] }}
-                      transition={{ duration: 1 + Math.random(), repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
-                      className="flex-1 bg-gradient-to-t from-emerald-500/0 via-emerald-400/40 to-emerald-300 rounded-t-sm"
+                      initial={{ scale: 0.1, opacity: 0.8, x: 0 }}
+                      animate={{ scale: 2, opacity: 0, x: -100 }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: i * 1 }}
+                      className="absolute right-0 w-32 h-[300px] border-l-4 border-emerald-400/50 rounded-[100%]"
+                      style={{ filter: 'drop-shadow(0 0 10px #10b981)' }}
                     />
                   ))}
                 </div>
@@ -232,14 +256,27 @@ export function Solucoes() {
             <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-[#050505] to-[#050505] z-0" />
 
-              {/* HOLOGRAM INSTALLATION: Igrejas */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-80 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:800px]">
-                {/* Sacred Geometry / Armillary Sphere */}
-                <motion.div animate={{ rotateX: 360, rotateY: 180 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute w-48 h-48 border border-amber-500/40 rounded-full [transform-style:preserve-3d]" />
-                <motion.div animate={{ rotateY: 360, rotateZ: 180 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute w-40 h-40 border-2 border-amber-400/30 rounded-full [transform-style:preserve-3d]" />
-                <motion.div animate={{ rotateZ: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute w-32 h-32 border-4 border-dashed border-amber-300/20 rounded-full [transform-style:preserve-3d]" />
-                {/* Core light */}
-                <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute w-8 h-8 bg-amber-400/40 rounded-full blur-[10px] shadow-[0_0_40px_#f59e0b]" />
+              {/* HOLOGRAM INSTALLATION: Igrejas - Microfone de Púlpito e Claridade Acústica */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center [perspective:1000px]">
+                {/* Architectural Arch Window */}
+                <div className="absolute top-4 w-64 h-80 border-t-2 border-l-2 border-r-2 border-amber-500/20 rounded-t-full opacity-50" />
+                
+                {/* Minimalist Gooseneck Mic */}
+                <div className="absolute bottom-0 w-2 h-40 bg-gradient-to-t from-amber-600 to-amber-300 rounded-t-full shadow-[0_0_20px_#f59e0b] flex flex-col items-center">
+                  <div className="w-4 h-6 bg-amber-200 border-2 border-amber-100 rounded-full -mt-4 shadow-[0_0_30px_#fcd34d]" />
+                </div>
+
+                {/* Clear Expanding Sound Halo */}
+                {[...Array(4)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ scale: 0.5, opacity: 0.8 }}
+                    animate={{ scale: 3, opacity: 0 }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: i * 1 }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-amber-300/40 rounded-full"
+                    style={{ filter: 'drop-shadow(0 0 10px #f59e0b)' }}
+                  />
+                ))}
               </div>
 
               <div className="relative z-10 p-8 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto">
@@ -266,17 +303,34 @@ export function Solucoes() {
             <SpotlightCard className="col-span-1 lg:col-span-4 h-[450px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-bl from-purple-900/20 via-[#050505] to-[#050505] z-0" />
 
-              {/* HOLOGRAM INSTALLATION: Q-SYS */}
+              {/* HOLOGRAM INSTALLATION: Q-SYS - Network & Automação */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-center">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {/* Central Node */}
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute w-24 h-24 border border-purple-500/50 bg-purple-900/20 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-[0_0_30px_#8b5cf6]">
-                    <div className="w-12 h-12 border border-purple-400/80 rounded" />
-                  </motion.div>
-                  {/* Data streams */}
-                  <motion.div animate={{ scale: [1, 1.5], opacity: [1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }} className="absolute w-24 h-24 border-2 border-purple-400/50 rounded-lg" />
-                  <motion.div animate={{ scale: [1, 2], opacity: [1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }} className="absolute w-24 h-24 border border-purple-400/30 rounded-lg" />
-                </div>
+                {/* Network SVG Connections */}
+                <svg className="absolute inset-0 w-full h-full" strokeWidth="1">
+                   <motion.path d="M50% 50% L20% 20% M50% 50% L80% 20% M50% 50% L20% 80% M50% 50% L80% 80%" stroke="rgba(139,92,246,0.3)" />
+                   {/* Moving data packets */}
+                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "20%"], cy: ["50%", "20%"] }} transition={{ duration: 2, repeat: Infinity }} />
+                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "80%"], cy: ["50%", "20%"] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
+                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "20%"], cy: ["50%", "80%"] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }} />
+                   <motion.circle r="3" fill="#c4b5fd" animate={{ cx: ["50%", "80%"], cy: ["50%", "80%"] }} transition={{ duration: 2, repeat: Infinity, delay: 1.5 }} />
+                </svg>
+
+                {/* Main Q-SYS Core (Rack Server / Processor) */}
+                <motion.div animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-40 h-16 bg-purple-950 border border-purple-400 rounded-lg shadow-[0_0_40px_rgba(139,92,246,0.5)] flex flex-col justify-around px-2 py-1 [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateY(-15deg)]">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
+                    <div className="w-3 h-3 bg-purple-400 rounded-full" />
+                    <div className="w-3 h-3 bg-purple-400 rounded-full" />
+                  </div>
+                  <div className="w-full h-1 bg-purple-800 rounded">
+                    <motion.div animate={{ width: ["0%", "100%", "0%"] }} transition={{ duration: 2, repeat: Infinity }} className="h-full bg-purple-300 rounded shadow-[0_0_10px_#c4b5fd]" />
+                  </div>
+                </motion.div>
+
+                {/* Sub nodes */}
+                <div className="absolute top-[10%] left-[10%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Mic2 className="w-4 h-4 text-purple-300" /></div>
+                <div className="absolute top-[10%] right-[10%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Users className="w-4 h-4 text-purple-300" /></div>
+                <div className="absolute bottom-[10%] left-[10%] w-12 h-8 border border-purple-500/50 bg-purple-900/30 rounded flex items-center justify-center"><Vote className="w-4 h-4 text-purple-300" /></div>
               </div>
 
               <div className="relative z-10 p-8 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto">
