@@ -1,188 +1,200 @@
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Mic, Cpu, Settings2, ShieldCheck, Wifi } from "lucide-react"
-
-const CAROUSEL_POSITIONS = [
-  // 0: FRONT
-  { 
-    y: 60, x: 0, z: 100, 
-    rotateY: 0, rotateX: 0, 
-    scale: 1, opacity: 1, zIndex: 30 
-  },
-  // 1: BACK RIGHT
-  { 
-    y: 0, x: 120, z: -50, 
-    rotateY: -15, rotateX: -5, 
-    scale: 0.9, opacity: 0.5, zIndex: 20 
-  },
-  // 2: BACK LEFT
-  { 
-    y: -40, x: -120, z: -100, 
-    rotateY: 15, rotateX: 10, 
-    scale: 0.8, opacity: 0.3, zIndex: 10 
-  }
-];
+import { Cpu, Mic, Settings2, Wifi, ShieldCheck } from "lucide-react"
+import { useState } from "react"
 
 export function HeroVisual() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % 3);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Acoustic Card
-  const AcousticCard = (
-    <div className="w-full h-full rounded-[2rem] border border-white/10 bg-black/60 backdrop-blur-2xl shadow-2xl p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none rounded-[2rem]" />
-      <div className="relative z-10 w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-        <Mic className="w-5 h-5 text-emerald-400" />
-      </div>
-      
-      {/* Soundwave Simulation */}
-      <div className="relative z-10 flex items-end gap-1.5 h-20 opacity-50">
-        {[40, 70, 30, 90, 50, 100, 60, 40].map((h, i) => (
-          <motion.div 
-            key={i} 
-            className="w-full bg-emerald-400/50 rounded-t-sm"
-            animate={{ height: [`${h}%`, `${h * 0.4}%`, `${h}%`] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
-          />
-        ))}
-      </div>
-      
-      <div className="relative z-10">
-        <p className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Acoustic Core</p>
-        <h4 className="text-white font-bold text-lg mt-1">Alta Fidelidade</h4>
-      </div>
-    </div>
-  );
-
-  // Network Card
-  const NetworkCard = (
-    <div className="w-full h-full rounded-[2rem] border border-white/10 bg-[#050505]/80 backdrop-blur-2xl shadow-2xl p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-bl from-blue-500/10 to-transparent pointer-events-none rounded-[2rem]" />
-      <div className="relative z-10 flex justify-between items-start">
-        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-          <Cpu className="w-5 h-5 text-blue-400" />
-        </div>
-        <Wifi className="w-4 h-4 text-blue-500/50" />
-      </div>
-      
-      {/* IP Network Simulation */}
-      <div className="relative z-10 h-24 w-full flex items-center justify-center">
-        <div className="absolute w-full h-[1px] bg-blue-500/20 rotate-45" />
-        <div className="absolute w-full h-[1px] bg-blue-500/20 -rotate-45" />
-        <motion.div className="w-10 h-10 rounded-full border border-blue-400/30 bg-blue-500/10 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.2)]"
-          animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-3 h-3 rounded-full bg-blue-400" />
-        </motion.div>
-      </div>
-      
-      <div className="relative z-10">
-        <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest">AV over IP</p>
-        <h4 className="text-white font-bold text-lg mt-1">Matriz Q-SYS</h4>
-      </div>
-    </div>
-  );
-
-  // Control Card
-  const ControlCard = (
-    <div className="w-full h-full rounded-[2rem] border border-white/20 bg-black/70 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(34,211,238,0.3)] p-6 overflow-hidden flex flex-col justify-between">
-      <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none rounded-[2rem]" />
-      
-      
-      <div className="relative z-10 flex items-center gap-3 mb-4">
-        <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] animate-pulse" />
-        <span className="text-xs font-mono text-white/50 uppercase tracking-widest">Sistema Ativo</span>
-      </div>
-      
-      {/* UI Mockup */}
-      <div className="relative z-10 flex-1 bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-3 justify-center mb-4">
-        <div className="flex justify-between items-center pb-2 border-b border-white/5">
-          <span className="text-xs text-white/70">Master Volume</span>
-          <span className="text-xs text-cyan-400 font-mono">85%</span>
-        </div>
-        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-          <motion.div 
-            className="h-full bg-cyan-400 rounded-full" 
-            animate={{ width: ["85%", "88%", "85%"] }} 
-            transition={{ duration: 2, repeat: Infinity }} 
-          />
-        </div>
-        
-        <div className="grid grid-cols-2 gap-2 mt-2">
-          <div className="h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-            <ShieldCheck className="w-4 h-4 text-white/50" />
-          </div>
-          <div className="h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
-            <Settings2 className="w-4 h-4 text-cyan-400" />
-          </div>
-        </div>
-      </div>
-      
-      <div className="relative z-10">
-        <h4 className="text-white font-bold text-lg">Controle Absoluto</h4>
-        <p className="text-xs text-zinc-400 mt-1">Toda a complexidade reduzida a um toque.</p>
-      </div>
-    </div>
-  );
-
-  const cards = [ControlCard, NetworkCard, AcousticCard];
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center cursor-default" style={{ perspective: "2000px" }}>
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/20 blur-[120px] rounded-full pointer-events-none" />
+    <div 
+      className="relative w-full h-[600px] flex items-center justify-center cursor-crosshair group perspective-[2000px]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-30 mix-blend-screen" />
 
-      {/* 3D Container rotating slightly based on overall visual flair */}
-      <motion.div 
-        className="relative w-full h-full flex items-center justify-center"
+      {/* Isometric 3D Container */}
+      <motion.div
+        className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px]"
         style={{ transformStyle: "preserve-3d" }}
-        
         animate={{ 
-          rotateY: [-3, 3, -3],
-          rotateX: [2, -2, 2]
+          rotateX: 60,
+          rotateZ: -45,
+          rotateY: isHovered ? 5 : 0,
+          scale: isHovered ? 1.05 : 1
         }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        {cards.map((CardContent, i) => {
-          // Calculate the target position index for this card based on the current interval index
-          const positionIndex = (i + index) % 3;
-          const pos = CAROUSEL_POSITIONS[positionIndex];
+        {/* Continuous slow spin for the whole stack */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ transformStyle: "preserve-3d" }}
+          animate={{ rotateZ: 360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+        >
+          {/* =======================================
+              LAYER 1: AV OVER IP (BASE PLATE)
+              ======================================= */}
+          <motion.div 
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black/90 backdrop-blur-md overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ translateZ: isHovered ? -140 : -80 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Grid */}
+            <div className="absolute inset-0 bg-[size:30px_30px] bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)]" />
+            
+            {/* Center Core */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl border border-blue-500/50 bg-blue-500/10 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+              <Cpu className="w-10 h-10 text-blue-400" />
+            </div>
 
-          return (
-            <motion.div
-              key={i}
-              className="absolute w-[280px] h-[340px]"
-              initial={false}
-              animate={{
-                x: pos.x,
-                y: pos.y,
-                z: pos.z,
-                rotateY: pos.rotateY,
-                rotateX: pos.rotateX,
-                scale: pos.scale,
-                opacity: pos.opacity,
-                zIndex: pos.zIndex,
-              }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1], // Custom spring-like easing
-              }}
-            >
-              {CardContent}
-            </motion.div>
-          );
-        })}
+            {/* Scanning Lasers */}
+            <motion.div 
+              className="absolute top-[50%] left-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-full"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.div 
+              className="absolute left-[50%] top-0 w-[2px] bg-gradient-to-b from-transparent via-blue-400 to-transparent h-full"
+              animate={{ y: ["-100%", "100%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1.5 }}
+            />
+
+            {/* Corner Nodes */}
+            <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
+            <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-blue-500/50" />
+          </motion.div>
+
+          {/* =======================================
+              LAYER 2: ACOUSTIC CORE (MIDDLE PLATE)
+              ======================================= */}
+          <motion.div 
+            className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-black/60 backdrop-blur-xl overflow-hidden"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ translateZ: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
+            
+            {/* Concentric Pulses */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {[1, 2, 3].map((i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-24 h-24 rounded-full border-2 border-emerald-500/30"
+                  animate={{ scale: [1, 3], opacity: [0.8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "linear" }}
+                />
+              ))}
+              <div className="relative z-10 w-14 h-14 rounded-full border border-emerald-500 bg-emerald-500/20 flex items-center justify-center backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                <Mic className="w-6 h-6 text-emerald-400" />
+              </div>
+            </div>
+
+            {/* Spectrogram Bars on the sides */}
+            <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between h-20 gap-2 opacity-70">
+              {Array.from({length: 16}).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-full bg-emerald-400/60 rounded-t-sm"
+                  animate={{ height: [`${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* =======================================
+              LAYER 3: CONTROL INTERFACE (TOP PLATE)
+              ======================================= */}
+          <motion.div 
+            className="absolute inset-0 rounded-[2.5rem] border border-cyan-400/40 bg-[#020202]/40 backdrop-blur-2xl overflow-hidden"
+            style={{ 
+              transformStyle: "preserve-3d",
+              boxShadow: isHovered 
+                ? "0 80px 120px -30px rgba(6,182,212,0.4), inset 0 0 20px rgba(6,182,212,0.2)" 
+                : "0 40px 80px -20px rgba(6,182,212,0.2), inset 0 0 10px rgba(6,182,212,0.1)"
+            }}
+            animate={{ translateZ: isHovered ? 140 : 80 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Top Bar */}
+            <div className="absolute top-6 left-6 right-6 flex justify-between items-center pb-4 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#22d3ee]" />
+                <span className="text-xs font-mono text-cyan-400 tracking-[0.2em]">SONUS_OS</span>
+              </div>
+              <Wifi className="w-5 h-5 text-cyan-400/50" />
+            </div>
+
+            {/* Central Volume Dial */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <motion.div 
+                className="w-36 h-36 rounded-full border-[3px] border-cyan-500/20 bg-black/60 backdrop-blur-xl flex items-center justify-center relative shadow-[inset_0_0_30px_rgba(6,182,212,0.1)]"
+                animate={{ rotate: isHovered ? 145 : 0 }}
+                transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* Glowing Dial Indicator */}
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2 h-6 bg-cyan-400 rounded-full shadow-[0_0_15px_#22d3ee]" />
+                
+                {/* Dial Value */}
+                <motion.div 
+                  className="text-center"
+                  animate={{ rotate: isHovered ? -145 : 0 }} // Counter-rotate text so it stays upright
+                  transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="text-3xl font-light text-white">85</span>
+                  <span className="text-sm text-cyan-400 ml-1">%</span>
+                  <p className="text-[10px] text-zinc-400 font-mono mt-1 tracking-widest">VOLUME</p>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Bottom Controls */}
+            <div className="absolute bottom-6 left-6 right-6 grid grid-cols-2 gap-4">
+              <div className="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
+                <ShieldCheck className="w-5 h-5 text-white/50" />
+                <span className="text-[11px] font-mono text-white/50 tracking-wider">SYSTEM</span>
+              </div>
+              <div className="h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:bg-cyan-500/30 transition-colors cursor-pointer">
+                <Settings2 className="w-5 h-5 text-cyan-400" />
+                <span className="text-[11px] font-mono text-cyan-400 tracking-wider">MATRIX</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </motion.div>
+
+      {/* Floating Labels connecting to the layers (Z-indexed to float outside) */}
+      <div className="absolute top-1/2 right-[5%] -translate-y-1/2 flex flex-col gap-12 pointer-events-none hidden lg:flex">
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? -60 : -40 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+          <div className="w-8 h-[1px] bg-cyan-500/50" />
+          <div>
+            <p className="text-cyan-400 text-[10px] font-bold tracking-[0.2em] uppercase">Control Layer</p>
+            <p className="text-white/40 text-xs font-mono">User Interface</p>
+          </div>
+        </motion.div>
+
+        <motion.div className="flex items-center gap-4" animate={{ y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+          <div className="w-12 h-[1px] bg-emerald-500/50" />
+          <div>
+            <p className="text-emerald-400 text-[10px] font-bold tracking-[0.2em] uppercase">Acoustic Layer</p>
+            <p className="text-white/40 text-xs font-mono">DSP Processing</p>
+          </div>
+        </motion.div>
+
+        <motion.div className="flex items-center gap-4" animate={{ y: isHovered ? 60 : 40 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
+          <div className="w-16 h-[1px] bg-blue-500/50" />
+          <div>
+            <p className="text-blue-400 text-[10px] font-bold tracking-[0.2em] uppercase">Network Layer</p>
+            <p className="text-white/40 text-xs font-mono">AV over IP Matrix</p>
+          </div>
+        </motion.div>
+      </div>
+
     </div>
   )
 }
