@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Reveal } from "./Reveal"
 
@@ -73,14 +72,6 @@ const SPECIALTIES = [
 
 export function BentoEspecialidades() {
   const [active, setActive] = useState("igrejas");
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  useEffect(() => {
-    const checkSize = () => setIsDesktop(window.innerWidth > 1024);
-    checkSize();
-    window.addEventListener('resize', checkSize);
-    return () => window.removeEventListener('resize', checkSize);
-  }, []);
 
   return (
     <section className="py-24 bg-[#020202] border-t border-white/5 relative overflow-hidden">
@@ -120,63 +111,55 @@ export function BentoEspecialidades() {
           </Reveal>
         </div>
 
-        {/* ACCORDION HORIZONTAL INTERATIVO (FLIP GPU ACCELERATED + PRE-MOUNTED) */}
+        {/* ACCORDION HORIZONTAL INTERATIVO - ULTRA OTIMIZADO (CSS-ONLY) */}
         <div className="flex flex-col lg:flex-row gap-4 h-[800px] lg:h-[600px] w-full">
           {SPECIALTIES.map((item) => {
             const isActive = active === item.id;
             
+            // Usamos uma classe CSS estática para o hover e flex.
+            // Para garantir 60FPS absoluto, evitamos animações pesadas nas imagens (sem scale, sem grayscale).
             return (
-              <motion.div
+              <div
                 key={item.id}
-                onHoverStart={() => setActive(item.id)}
+                onMouseEnter={() => setActive(item.id)}
                 onClick={() => setActive(item.id)}
-                layout
-                initial={false}
-                style={{ flex: isActive ? (isDesktop ? 5 : 4) : 1 }}
-                transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
-                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'} flex flex-col`}
+                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group flex flex-col will-change-[flex] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'lg:flex-[5] flex-[4] bg-zinc-900' : 'flex-1 bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'}`}
               >
-                {/* Background Image & Gradient */}
-                <div className="absolute inset-0 z-0">
+                {/* Background Image & Gradient (SIMPLIFIED FOR PERFORMANCE) */}
+                <div className="absolute inset-0 z-0 bg-[#050505]">
                   {item.image && (
-                    <motion.img 
-                      layout="position"
+                    <img 
                       src={item.image} 
                       alt={item.title} 
-                      className={`w-full h-full object-cover transition-all duration-[800ms] ease-out ${isActive ? 'opacity-50 scale-100 grayscale-0' : 'opacity-20 scale-110 grayscale'}`}
+                      className={`w-full h-full object-cover transition-opacity duration-500 ${isActive ? 'opacity-50' : 'opacity-10'}`}
+                      loading="lazy"
                     />
                   )}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-90' : 'opacity-100'}`} />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} transition-opacity duration-700 ${isActive ? 'opacity-30' : 'opacity-0'}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent opacity-90" />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} transition-opacity duration-500 ${isActive ? 'opacity-40' : 'opacity-0'}`} />
                 </div>
 
                 {/* Content Overlay */}
-                <motion.div layout="position" className={`relative z-10 p-4 lg:p-8 h-full flex transition-all duration-[600ms] ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
+                <div className={`relative z-10 p-4 lg:p-8 h-full flex transition-all duration-500 ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
                   
-                  {/* Ícone fixo visível mesmo colapsado */}
+                  {/* Ícone fixo */}
                   <div className={`w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 z-20 shrink-0 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
                     {item.icon}
                   </div>
 
-                  {/* Título Rotacionado e Indicador (Desktop) */}
-                  <div className={`hidden lg:flex absolute inset-0 flex-col items-center justify-center transition-all duration-500 ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'}`}>
+                  {/* Título Rotacionado (Desktop) */}
+                  <div className={`hidden lg:flex absolute inset-0 flex-col items-center justify-center transition-opacity duration-300 ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-200'}`}>
                     <h3 className="text-2xl font-black tracking-widest text-zinc-300 uppercase whitespace-nowrap -rotate-90 mb-32 drop-shadow-xl">{item.title}</h3>
-                    <div className="absolute bottom-8 text-cyan-500 animate-bounce">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 7-7 7 7"/><path d="m5 19 7-7 7 7"/></svg>
-                    </div>
                   </div>
 
-                  {/* Título e Indicador quando colapsado (Mobile) */}
-                  <div className={`flex lg:hidden items-center justify-between w-full transition-all duration-300 ml-4 ${isActive ? 'opacity-0 pointer-events-none hidden' : 'opacity-100'}`}>
+                  {/* Título (Mobile) */}
+                  <div className={`flex lg:hidden items-center justify-between w-full transition-opacity duration-300 ml-4 ${isActive ? 'opacity-0 pointer-events-none hidden' : 'opacity-100'}`}>
                     <h3 className="text-lg font-bold tracking-tight text-zinc-300">{item.title}</h3>
-                    <div className="text-cyan-500 animate-pulse shrink-0">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </div>
                   </div>
 
-                  {/* Conteúdo Expandido - ALWAYS MOUNTED & FIXED WIDTH */}
-                  {/* min-w-[500px] ensures text never wraps/reflows during animation */}
-                  <div className={`flex flex-col w-[80vw] lg:w-[500px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-8 pointer-events-none absolute bottom-8'}`}>
+                  {/* Conteúdo Expandido - DOM Constante e Largura Fixa */}
+                  {/* will-change-opacity previne reflows */}
+                  <div className={`flex flex-col w-[80vw] lg:w-[450px] transition-all duration-500 will-change-[opacity,transform] ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-4 pointer-events-none absolute bottom-8'}`}>
                     <h4 className={`${item.accent} text-xs font-bold uppercase tracking-[0.2em] mb-2`}>{item.subtitle}</h4>
                     <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight whitespace-normal">{item.title}</h3>
                     
@@ -192,8 +175,8 @@ export function BentoEspecialidades() {
                     </div>
                   </div>
 
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             )
           })}
         </div>
