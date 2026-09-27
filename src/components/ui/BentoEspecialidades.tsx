@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Reveal } from "./Reveal"
 
@@ -11,7 +12,7 @@ const SPECIALTIES = [
     link: "/auditorios",
     color: "from-blue-500/20 to-transparent",
     accent: "text-blue-500",
-    image: "/auditorio-som.jpg",
+    image: "/auditorio-sonus.webp",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
     )
@@ -24,7 +25,7 @@ const SPECIALTIES = [
     link: "/qsys",
     color: "from-cyan-500/20 to-transparent",
     accent: "text-cyan-500",
-    image: "/qsys-system.jpg",
+    image: "/qsys-tech-bg.webp",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
     )
@@ -37,7 +38,7 @@ const SPECIALTIES = [
     link: "/salas-de-reuniao",
     color: "from-indigo-500/20 to-transparent",
     accent: "text-indigo-500",
-    image: "/sala-corporativa.jpg",
+    image: "/salas-corporativas.webp",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
     )
@@ -63,7 +64,7 @@ const SPECIALTIES = [
     link: "/igrejas",
     color: "from-violet-500/20 to-transparent",
     accent: "text-violet-500",
-    image: "/igreja-som.jpg",
+    image: "/interior-matriz-xanxere.webp",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     )
@@ -72,6 +73,14 @@ const SPECIALTIES = [
 
 export function BentoEspecialidades() {
   const [active, setActive] = useState("igrejas");
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const checkSize = () => setIsDesktop(window.innerWidth > 1024);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
 
   return (
     <section className="py-24 bg-[#020202] border-t border-white/5 relative overflow-hidden">
@@ -111,23 +120,27 @@ export function BentoEspecialidades() {
           </Reveal>
         </div>
 
-        {/* ACCORDION HORIZONTAL INTERATIVO (PURE CSS) */}
+        {/* ACCORDION HORIZONTAL INTERATIVO (FLIP GPU ACCELERATED + PRE-MOUNTED) */}
         <div className="flex flex-col lg:flex-row gap-4 h-[800px] lg:h-[600px] w-full">
           {SPECIALTIES.map((item) => {
             const isActive = active === item.id;
             
             return (
-              <div
+              <motion.div
                 key={item.id}
-                onMouseEnter={() => setActive(item.id)}
+                onHoverStart={() => setActive(item.id)}
                 onClick={() => setActive(item.id)}
-                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'}`}
-                style={{ flex: isActive ? '5 1 0%' : '1 1 0%' }}
+                layout
+                initial={false}
+                style={{ flex: isActive ? (isDesktop ? 5 : 4) : 1 }}
+                transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
+                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group ${isActive ? 'bg-zinc-900' : 'bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'} flex flex-col`}
               >
                 {/* Background Image & Gradient */}
                 <div className="absolute inset-0 z-0">
                   {item.image && (
-                    <img 
+                    <motion.img 
+                      layout="position"
                       src={item.image} 
                       alt={item.title} 
                       className={`w-full h-full object-cover transition-all duration-[800ms] ease-out ${isActive ? 'opacity-50 scale-100 grayscale-0' : 'opacity-20 scale-110 grayscale'}`}
@@ -138,7 +151,7 @@ export function BentoEspecialidades() {
                 </div>
 
                 {/* Content Overlay */}
-                <div className={`relative z-10 p-4 lg:p-8 h-full flex transition-all duration-[600ms] ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
+                <motion.div layout="position" className={`relative z-10 p-4 lg:p-8 h-full flex transition-all duration-[600ms] ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
                   
                   {/* Ícone fixo visível mesmo colapsado */}
                   <div className={`w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 z-20 shrink-0 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
@@ -161,8 +174,9 @@ export function BentoEspecialidades() {
                     </div>
                   </div>
 
-                  {/* Conteúdo Expandido - ALWAYS MOUNTED mas escondido via CSS para performance extrema */}
-                  <div className={`flex flex-col w-full max-w-xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-8 pointer-events-none absolute bottom-8'}`}>
+                  {/* Conteúdo Expandido - ALWAYS MOUNTED & FIXED WIDTH */}
+                  {/* min-w-[500px] ensures text never wraps/reflows during animation */}
+                  <div className={`flex flex-col w-[80vw] lg:w-[500px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-8 pointer-events-none absolute bottom-8'}`}>
                     <h4 className={`${item.accent} text-xs font-bold uppercase tracking-[0.2em] mb-2`}>{item.subtitle}</h4>
                     <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight whitespace-normal">{item.title}</h3>
                     
@@ -178,8 +192,8 @@ export function BentoEspecialidades() {
                     </div>
                   </div>
 
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             )
           })}
         </div>
