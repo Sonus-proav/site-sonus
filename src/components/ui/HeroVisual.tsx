@@ -159,6 +159,7 @@ export function HeroVisual() {
             />
             <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
             <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-blue-500/50" />
+            <div ref={anchors.network} className="absolute right-3 bottom-3 w-1 h-1" />
                       </motion.div>
 
           {/* =======================================
