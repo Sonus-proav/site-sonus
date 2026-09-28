@@ -235,7 +235,7 @@ export function HeroVisual() {
             <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,1)] animate-pulse" />
             <div className="w-16 h-[1px] bg-gradient-to-r from-cyan-400 to-transparent opacity-60" />
           </div>
-          <div className="bg-[#050505]/95 backdrop-blur-sm border border-cyan-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
+          <div className="bg-[#050505]  border border-cyan-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
             <p className="text-cyan-400 text-[11px] font-bold tracking-[0.25em] uppercase mb-1">Control Layer</p>
             <p className="text-white font-medium text-xs font-mono">User Interface</p>
           </div>
@@ -246,7 +246,7 @@ export function HeroVisual() {
             <div className="w-2 h-2 rounded-full bg-violet-400 shadow-[0_0_10px_rgba(139,92,246,1)] animate-pulse" />
             <div className="w-24 h-[1px] bg-gradient-to-r from-violet-400 to-transparent opacity-60" />
           </div>
-          <div className="bg-[#050505]/95 backdrop-blur-sm border border-violet-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
+          <div className="bg-[#050505]  border border-violet-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
             <p className="text-violet-400 text-[11px] font-bold tracking-[0.25em] uppercase mb-1">Video Layer</p>
             <p className="text-white font-medium text-xs font-mono">Camera Tracking</p>
           </div>
@@ -257,7 +257,7 @@ export function HeroVisual() {
             <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,1)] animate-pulse" />
             <div className="w-32 h-[1px] bg-gradient-to-r from-emerald-400 to-transparent opacity-60" />
           </div>
-          <div className="bg-[#050505]/95 backdrop-blur-sm border border-emerald-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
+          <div className="bg-[#050505]  border border-emerald-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
             <p className="text-emerald-400 text-[11px] font-bold tracking-[0.25em] uppercase mb-1">Acoustic Layer</p>
             <p className="text-white font-medium text-xs font-mono">DSP Processing</p>
           </div>
@@ -268,7 +268,7 @@ export function HeroVisual() {
             <div className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,1)] animate-pulse" />
             <div className="w-40 h-[1px] bg-gradient-to-r from-blue-400 to-transparent opacity-60" />
           </div>
-          <div className="bg-[#050505]/95 backdrop-blur-sm border border-blue-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
+          <div className="bg-[#050505]  border border-blue-500/30 py-3 px-5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-6 relative z-10">
             <p className="text-blue-400 text-[11px] font-bold tracking-[0.25em] uppercase mb-1">Network Layer</p>
             <p className="text-white font-medium text-xs font-mono">AV over IP Matrix</p>
           </div>
