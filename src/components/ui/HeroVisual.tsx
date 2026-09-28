@@ -159,8 +159,7 @@ export function HeroVisual() {
             />
             <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
             <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-blue-500/50" />
-            <div ref={anchors.network} className="absolute right-3 bottom-3 w-1 h-1" />
-          </motion.div>
+                      </motion.div>
 
           {/* =======================================
               LAYER 2: ACOUSTIC CORE (MIDDLE-BOTTOM)
@@ -283,8 +282,7 @@ export function HeroVisual() {
               <div className="h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:bg-cyan-500/30 transition-colors cursor-pointer">
                 <Settings2 className="w-5 h-5 text-cyan-400" />
                 <span className="text-[11px] font-mono text-cyan-400 tracking-wider">MATRIX</span>
-              <div ref={anchors.control} className="absolute right-3 bottom-3 w-1 h-1" />
-              </div>
+                            </div>
             </div>
           </motion.div>
 
