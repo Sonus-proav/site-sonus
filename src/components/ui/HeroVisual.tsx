@@ -26,7 +26,7 @@ export function HeroVisual() {
 
   const getProjection = (rx: number, ry: number, rz: number, h: number, zBase: number, zHover: number) => {
     const z = zBase + (zHover - zBase) * h;
-    const x0 = 85, y0 = 85; 
+    const x0 = 125, y0 = 125; 
     const radX = rx * Math.PI / 180;
     const radY = ry * Math.PI / 180;
     const radZ = rz * Math.PI / 180;
