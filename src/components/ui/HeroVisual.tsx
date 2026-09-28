@@ -17,19 +17,20 @@ export function HeroVisual() {
 
 
 
-  const renderLabel = (title: string, subtitle: string, dotColor: string, lineGradient: string, textCol: string, widthClass: string, zHover: number, zIdle: number) => (
+  const renderLabel = (title: string, subtitle: string, dotColor: string, lineGradient: string, textCol: string, widthClass: string, yHover: number, yIdle: number) => (
     <motion.div 
-      className="absolute bottom-0 right-0 pointer-events-none hidden lg:flex" 
-      animate={{ translateZ: isHovered ? zHover : zIdle }}
+      className="absolute pointer-events-none hidden lg:block" 
+      style={{ left: 254 }} 
+      animate={{ y: isHovered ? yHover : yIdle }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div style={{ transform: "rotateZ(45deg) rotateX(-60deg)", transformOrigin: 'left center' }} className="flex items-center">
+      <div className="flex items-center -translate-y-1/2">
          <div className="flex items-center relative z-0">
-           <div className={`w-1.5 h-1.5 rounded-full ${dotColor} animate-pulse`} style={{ boxShadow: "0 0 10px currentColor" }} />
-           <div className={`h-[1px] bg-gradient-to-r ${lineGradient} to-transparent opacity-60 ${widthClass}`} />
+           <div className={"w-1.5 h-1.5 rounded-full " + dotColor + " animate-pulse"} style={{ boxShadow: "0 0 10px currentColor" }} />
+           <div className={"h-[1px] bg-gradient-to-r " + lineGradient + " to-transparent opacity-60 " + widthClass} />
          </div>
          <div className="bg-[#050505] border border-white/10 py-2.5 px-4 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-4 relative z-10 whitespace-nowrap">
-           <p className={`${textCol} text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5`}>{title}</p>
+           <p className={textCol + " text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5"}>{title}</p>
            <p className="text-white font-medium text-[11px] font-mono">{subtitle}</p>
          </div>
       </div>
@@ -246,14 +247,23 @@ export function HeroVisual() {
             </div>
           </motion.div>
 
-          {renderLabel('Network Layer', 'AV over IP Matrix', 'bg-blue-400', 'from-blue-400', 'text-blue-400', 'w-32', -150, -60)}
-          {renderLabel('Acoustic Layer', 'DSP Processing', 'bg-emerald-400', 'from-emerald-400', 'text-emerald-400', 'w-24', -50, -20)}
-          {renderLabel('Video Layer', 'Camera Tracking', 'bg-violet-400', 'from-violet-400', 'text-violet-400', 'w-16', 50, 20)}
-          {renderLabel('Control Layer', 'User Interface', 'bg-cyan-400', 'from-cyan-400', 'text-cyan-400', 'w-8', 150, 60)}
         </motion.div>
       </motion.div>
 
+      {/* 2D HUD OVERLAY - mathematically locked to the 3D projection but rendered flat */}
+      <motion.div 
+         className="absolute inset-0 pointer-events-none hidden lg:block"
+         animate={{ scale: isHovered ? 1.05 : 1 }}
+         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      >
+         <div className="absolute top-1/2 left-1/2">
+            {renderLabel('Control Layer', 'User Interface', 'bg-cyan-400', 'from-cyan-400', 'text-cyan-400', 'w-10', -130, -52)}
+            {renderLabel('Video Layer', 'Camera Tracking', 'bg-violet-400', 'from-violet-400', 'text-violet-400', 'w-16', -43, -17)}
+            {renderLabel('Acoustic Layer', 'DSP Processing', 'bg-emerald-400', 'from-emerald-400', 'text-emerald-400', 'w-24', 43, 17)}
+            {renderLabel('Network Layer', 'AV over IP Matrix', 'bg-blue-400', 'from-blue-400', 'text-blue-400', 'w-32', 130, 52)}
+         </div>
+      </motion.div>
 
-          </div>
+    </div>
   )
 }
