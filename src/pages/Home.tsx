@@ -114,22 +114,22 @@ export function Home() {
                 className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(6,182,212,0.1)]"
               >
                 <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Inteligência Audiovisual Aplicada</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Integração Audiovisual Premium</span>
               </motion.div>
 
               <motion.h1 
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
               >
-                Integração <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Invisível.</span>
+                O Poder da <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Precisão Absoluta.</span>
               </motion.h1>
 
               <motion.p 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}
                 className="mt-6 text-lg md:text-xl text-zinc-300 font-light max-w-xl leading-relaxed"
               >
-                Projetos acústicos e eletrônicos de alta performance para <span className="font-semibold text-white">Salas Corporativas, Plenários e Auditórios</span>. Quando a conexão é crítica, a tecnologia deve desaparecer.
+                Elevamos a infraestrutura do seu ambiente ao máximo nível de excelência tecnológica. Inteligência audiovisual avançada e acústica impecável, orquestradas para <span className="font-semibold text-white">instituições que não fazem concessões</span> e exigem controle total do seu espaço.
               </motion.p>
 
               <motion.div 
