@@ -159,7 +159,7 @@ export function HeroVisual() {
             />
             <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
             <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-blue-500/50" />
-            <div ref={anchors.network} className="absolute right-3 bottom-3 w-1 h-1" />
+            
                       </motion.div>
 
           {/* =======================================
@@ -195,6 +195,7 @@ export function HeroVisual() {
                 />
               ))}
             </div>
+            <div ref={anchors.acoustic} className="absolute right-3 bottom-3 w-1 h-1" />
           </motion.div>
 
           {/* =======================================
@@ -232,6 +233,7 @@ export function HeroVisual() {
             
             {/* Scanlines Overlay */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:100%_4px]" />
+            <div ref={anchors.video} className="absolute right-3 bottom-3 w-1 h-1" />
           </motion.div>
 
           {/* =======================================
@@ -285,6 +287,7 @@ export function HeroVisual() {
                 <span className="text-[11px] font-mono text-cyan-400 tracking-wider">MATRIX</span>
                             </div>
             </div>
+            <div ref={anchors.control} className="absolute right-3 bottom-3 w-1 h-1" />
           </motion.div>
 
         </motion.div>
