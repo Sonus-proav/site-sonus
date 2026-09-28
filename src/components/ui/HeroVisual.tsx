@@ -14,30 +14,35 @@ export function HeroVisual() {
   const rotateX = useTransform(mouseY, [-1, 1], [75, 45])
   const rotateY = useTransform(mouseX, [-1, 1], [-20, 20])
   const rotateZ = useTransform(mouseX, [-1, 1], [-35, -55])
+  const invRotateX = useTransform(rotateX, x => -x);
+  const invRotateY = useTransform(rotateY, y => -y);
+  const invRotateZ = useTransform(rotateZ, z => -z);
 
 
-  const invRotateX = useTransform(rotateX, x => -x)
-  const invRotateY = useTransform(rotateY, y => -y)
-  const invRotateZ = useTransform(rotateZ, z => -z)
 
-  const renderLabel = (title: string, subtitle: string, dotColor: string, lineGradient: string, textCol: string, widthClass: string) => (
-    <div className="absolute top-1/2 -right-8 -translate-y-1/2 translate-x-full flex items-center pointer-events-none hidden lg:flex" style={{ transformOrigin: 'left center' }}>
+  const renderLabel = (title: string, subtitle: string, dotColor: string, lineGradient: string, textCol: string, widthClass: string, zHover: number, zIdle: number) => (
+    <motion.div 
+      className="absolute top-1/2 right-0 pointer-events-none" 
+      style={{ transformStyle: "preserve-3d" }}
+      animate={{ translateZ: isHovered ? zHover : zIdle }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+    >
       <motion.div style={{ rotateZ: invRotateZ, transformOrigin: 'left center' }}>
         <motion.div style={{ rotateY: invRotateY, transformOrigin: 'left center' }}>
           <motion.div style={{ rotateX: invRotateX, transformOrigin: 'left center' }} className="flex items-center">
              <div className="flex items-center relative z-0">
-               <div className={`w-1.5 h-1.5 rounded-full ${dotColor} animate-pulse`} style={{ boxShadow: "0 0 10px currentColor" }} />
-               <div className={`h-[1px] bg-gradient-to-r ${lineGradient} to-transparent opacity-60 ${widthClass}`} />
+               <div className={"w-1.5 h-1.5 rounded-full " + dotColor + " animate-pulse"} style={{ boxShadow: "0 0 10px currentColor" }} />
+               <div className={"h-[1px] bg-gradient-to-r " + lineGradient + " to-transparent opacity-60 " + widthClass} />
              </div>
              <div className="bg-[#050505] border border-white/10 py-2.5 px-4 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] -ml-4 relative z-10 whitespace-nowrap">
-               <p className={`${textCol} text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5`}>{title}</p>
+               <p className={textCol + " text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5"}>{title}</p>
                <p className="text-white font-medium text-[11px] font-mono">{subtitle}</p>
              </div>
           </motion.div>
         </motion.div>
       </motion.div>
-    </div>
-  )
+    </motion.div>
+  );
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return
@@ -124,7 +129,6 @@ export function HeroVisual() {
             <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-blue-500/50" />
           </motion.div>
 
-          {renderLabel('Network Layer', 'AV over IP Matrix', 'bg-blue-400', 'from-blue-400', 'text-blue-400', 'w-40')}
           {/* =======================================
               LAYER 2: ACOUSTIC CORE (MIDDLE-BOTTOM)
               ======================================= */}
@@ -160,7 +164,6 @@ export function HeroVisual() {
             </div>
           </motion.div>
 
-          {renderLabel('Acoustic Layer', 'DSP Processing', 'bg-emerald-400', 'from-emerald-400', 'text-emerald-400', 'w-32')}
           {/* =======================================
               LAYER 3: VIDEO MATRIX (MIDDLE-TOP)
               ======================================= */}
@@ -198,7 +201,6 @@ export function HeroVisual() {
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:100%_4px]" />
           </motion.div>
 
-          {renderLabel('Video Layer', 'Camera Tracking', 'bg-violet-400', 'from-violet-400', 'text-violet-400', 'w-24')}
           {/* =======================================
               LAYER 4: CONTROL INTERFACE (TOP PLATE)
               ======================================= */}
@@ -250,13 +252,16 @@ export function HeroVisual() {
                 <span className="text-[11px] font-mono text-cyan-400 tracking-wider">MATRIX</span>
               </div>
             </div>
-            {renderLabel('Control Layer', 'User Interface', 'bg-cyan-400', 'from-cyan-400', 'text-cyan-400', 'w-16')}
-
           </motion.div>
+
+          {renderLabel('Network Layer', 'AV over IP Matrix', 'bg-blue-400', 'from-blue-400', 'text-blue-400', 'w-32', -150, -60)}
+          {renderLabel('Acoustic Layer', 'DSP Processing', 'bg-emerald-400', 'from-emerald-400', 'text-emerald-400', 'w-24', -50, -20)}
+          {renderLabel('Video Layer', 'Camera Tracking', 'bg-violet-400', 'from-violet-400', 'text-violet-400', 'w-16', 50, 20)}
+          {renderLabel('Control Layer', 'User Interface', 'bg-cyan-400', 'from-cyan-400', 'text-cyan-400', 'w-8', 150, 60)}
         </motion.div>
       </motion.div>
 
-      
-    </div>
+
+          </div>
   )
 }
