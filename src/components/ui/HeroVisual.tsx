@@ -151,7 +151,7 @@ export function HeroVisual() {
         <motion.div
           className="absolute inset-0"
           style={{ transformStyle: "preserve-3d", willChange: "transform" }}
-          animate={{ rotateZ: 360 }}
+          animate={isDesktop ? { rotateZ: 360 } : {}}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
         >
           {/* =======================================
@@ -169,12 +169,12 @@ export function HeroVisual() {
             </div>
             <motion.div 
               className="absolute top-[50%] left-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-full"
-              animate={{ x: ["-100%", "100%"] }}
+              animate={isDesktop ? { x: ["-100%", "100%"] } : {}}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             />
             <motion.div 
               className="absolute left-[50%] top-0 w-[2px] bg-gradient-to-b from-transparent via-blue-400 to-transparent h-full"
-              animate={{ y: ["-100%", "100%"] }}
+              animate={isDesktop ? { y: ["-100%", "100%"] } : {}}
               transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1.5 }}
             />
             <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
@@ -196,7 +196,7 @@ export function HeroVisual() {
                 <motion.div
                   key={i}
                   className="absolute w-24 h-24 rounded-full border-2 border-emerald-500/30"
-                  animate={{ scale: [1, 3], opacity: [0.8, 0] }}
+                  animate={isDesktop ? { scale: [1, 3], opacity: [0.8, 0] } : {}}
                   transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "linear" }}
                 />
               ))}
@@ -209,7 +209,7 @@ export function HeroVisual() {
                 <motion.div
                   key={i}
                   className="w-full bg-emerald-400/60 rounded-t-sm"
-                  animate={{ height: [`${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`] }}
+                  animate={isDesktop ? { height: [`${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`] } : { height: "50%" }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
                 />
               ))}

@@ -18,6 +18,7 @@ export function SpotlightCard({
   const opacity = useMotionValue(0)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
     if (!rectRef.current) return
     
     // Throttle com requestAnimationFrame

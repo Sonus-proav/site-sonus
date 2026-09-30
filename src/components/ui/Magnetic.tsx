@@ -14,6 +14,7 @@ export function Magnetic({ children, className }: { children: React.ReactNode, c
   const springY = useSpring(y, springConfig)
 
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
     if (!rectRef.current) return
     const { clientX, clientY } = e
     
