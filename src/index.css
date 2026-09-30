@@ -394,3 +394,30 @@
     0% { transform: rotate(0deg) translateX(24px) rotate(0deg); }
     100% { transform: rotate(360deg) translateX(24px) rotate(-360deg); }
   }
+
+/* =======================================
+   Mobile Performance Tweaks
+   ======================================= */
+/* Oculta os orbs gigantes que destroem a GPU do mobile */
+.mobile-device [class*="blur-\[120px\]"],
+.mobile-device [class*="blur-\[100px\]"],
+.mobile-device [class*="blur-\[80px\]"] {
+  display: none !important;
+}
+
+/* Desabilita text-shadow pesados e brilhos de mouse em SpotlightCards no mobile */
+.mobile-device .spotlight-glow {
+  display: none !important;
+}
+
+/* Simplifica a renderização 3D - remove transformações de hover muito complexas */
+.mobile-device [class*="hover\:scale"] {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Desativa as ondas sonoras animadas por GPU no mobile */
+.mobile-device .animate-gpu-soundwave {
+  animation: none !important;
+  opacity: 0.1 !important;
+}

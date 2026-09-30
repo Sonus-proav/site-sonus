@@ -14,6 +14,8 @@ import { useEffect } from "react";
 export function useReducedPerformance() {
   useEffect(() => {
     const html = document.documentElement;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) { html.classList.add('mobile-device'); }
 
     // 1. O usuário pediu explicitamente menos animações
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

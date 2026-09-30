@@ -29,7 +29,9 @@ export function HeroVisual() {
   // The continuous spin completes 360deg in 120s (120000ms)
   const continuousRotateZ = useTransform(time, (t) => (t / 120000) * 360);
 
+  const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : true;
   const getProjection = (rx: number, ry: number, rz: number, crz: number, h: number, zBase: number, zHover: number) => {
+    if (!isDesktop) return { x: 0, y: 0 };
     const z = zBase + (zHover - zBase) * h;
     
     // Pixel-perfect visual edge for 360x360 box with 40px rounded corners

@@ -110,7 +110,7 @@ export function TestimonialSection({
           </div>
         </div>
 
-        <div className="relative min-h-[300px] md:min-h-[250px] w-full">
+        <div className="relative grid w-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={active}
@@ -119,9 +119,9 @@ export function TestimonialSection({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0"
+              className="col-start-1 row-start-1 w-full"
             >
-              <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 relative overflow-hidden group">
+              <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 relative overflow-hidden group h-full">
                 <Quote className="absolute -top-6 -left-6 w-32 h-32 text-white/[0.03] rotate-12" />
                 
                 <div className="flex-1 relative z-10">
@@ -148,7 +148,7 @@ export function TestimonialSection({
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-center mt-12 gap-3">
+        <div className="flex justify-center mt-12 gap-3 relative z-20">
           {testimonials.map((_, i) => (
             <button
               key={i}
