@@ -45,7 +45,7 @@ const StageBoxVisual = memo(function StageBoxVisual() {
     <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8 bg-gradient-to-br from-[#0a0a0a] to-black rounded-3xl relative overflow-hidden group border border-white/5">
        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0,transparent_70%)] pointer-events-none" />
        
-       <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col p-6 z-10 overflow-hidden transform perspective-[1000px] rotateX(20deg) rotateY(-15deg) rotateZ(5deg) group-hover:rotateX(15deg) group-hover:rotateY(-10deg) group-hover:rotateZ(0deg) transition-all duration-700">
+       <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col p-6 z-10 overflow-hidden transition-all duration-700 group-hover:scale-105 group-hover:shadow-[0_40px_80px_-10px_rgba(0,0,0,1)]">
          {/* Brushed Metal Texture */}
          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
          
@@ -116,10 +116,11 @@ const CertificadoART = memo(function CertificadoART() {
     <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8 bg-gradient-to-br from-zinc-100 to-zinc-300 rounded-3xl relative overflow-hidden group">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0,transparent_100%)] pointer-events-none" />
       <motion.div 
-        initial={{ rotateY: -15, rotateX: 10, scale: 0.9 }}
-        whileInView={{ rotateY: 5, rotateX: 0, scale: 1 }}
-        transition={{ duration: 1, type: "spring" }}
-        className="bg-white rounded-xl w-full max-w-[280px] p-6 md:p-8 shadow-[0_30px_60px_rgba(0,0,0,0.15)] relative border border-zinc-200"
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="bg-white rounded-xl w-full max-w-[280px] p-6 md:p-8 shadow-[0_30px_60px_rgba(0,0,0,0.15)] relative border border-zinc-200 transition-transform duration-500 group-hover:scale-105"
       >
          <div className="border-b-4 border-zinc-200 pb-3 mb-5 flex justify-between items-end">
             <span className="font-black text-black tracking-tighter text-2xl">LAUDO TÉCNICO</span>
@@ -133,8 +134,8 @@ const CertificadoART = memo(function CertificadoART() {
          </div>
          
          <motion.div 
-            initial={{ scale: 0, rotate: -45 }}
-            whileInView={{ scale: 1, rotate: 12 }}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring", bounce: 0.6 }}
             className="w-20 h-20 rounded-full border-[5px] border-green-500 flex flex-col items-center justify-center absolute -bottom-6 -right-6 bg-white shadow-[0_10px_30px_rgba(34,197,94,0.3)] z-10"
          >

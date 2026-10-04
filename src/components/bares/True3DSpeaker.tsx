@@ -358,7 +358,7 @@ function Scene({ interactive }: { interactive: boolean }) {
   )
 }
 
-export default function True3DSpeaker() {
+export default function True3DSpeaker({ tier, onReady }: { tier?: string, onReady?: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref)
   // Em telas touch o 3D não captura o gesto: o scroll da página nunca trava.
@@ -370,7 +370,8 @@ export default function True3DSpeaker() {
   return (
     <div ref={ref} className="relative w-full h-full min-h-[420px]">
       <Canvas
-        dpr={[1, 1.75]}
+        onCreated={() => { setTimeout(() => onReady && onReady(), 100); }}
+        dpr={tier === "medium" ? 1 : [1, 1.75]}
         frameloop={inView ? "always" : "never"}
         camera={{ position: [0, 0.4, 11], fov: 35 }}
         gl={{ antialias: true, powerPreference: "high-performance" }}

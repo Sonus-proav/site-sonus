@@ -100,13 +100,13 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
     <div ref={containerRef} className="w-full flex flex-col items-center justify-center relative p-2 md:p-6 h-full">
       
       {/* 3D Architectural Blueprint Wrapper */}
-      <div className="relative aspect-[4/5] w-full max-w-[340px] mx-auto mb-8 perspective-[1000px]">
+      <div className="relative aspect-[4/5] w-full max-w-[340px] mx-auto mb-8 ">
          <motion.div 
            className="w-full h-full relative"
-           initial={{ rotateX: 45, rotateZ: -15, scale: 0.9 }}
-           whileInView={{ rotateX: 35, rotateZ: -10, scale: 1 }}
+           initial={{ scale: 0.9, y: 20, opacity: 0 }}
+           whileInView={{ scale: 1, y: 0, opacity: 1 }}
            transition={{ duration: 1.5, ease: "easeOut" }}
-           style={{ transformStyle: "preserve-3d" }}
+           
          >
             {/* The Floor Plan Base */}
             <div className="absolute inset-0 bg-zinc-950/80 border-2 border-white/20 rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,1)] overflow-hidden backdrop-blur-sm">
@@ -160,7 +160,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
                  <div 
                    key={zone.id}
                    className="absolute flex items-center justify-center -translate-x-1/2 -translate-y-1/2 cursor-pointer z-50"
-                   style={{ left: zone.x, top: zone.y, transformStyle: "preserve-3d" }}
+                   style={{ left: zone.x, top: zone.y }}
                    onMouseEnter={() => handleMouseEnter(zone.id)}
                    onMouseLeave={handleMouseLeave}
                  >
@@ -172,7 +172,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
                            animate={{ opacity: 1, scale: 1 }}
                            exit={{ opacity: 0, scale: 0.5 }}
                            className={`absolute w-12 h-12 rounded-full border-2 border-white/50 ${zone.bgMap} blur-md`} 
-                           style={{ transform: "translateZ(10px)" }}
+                           
                          />
                        )}
                     </AnimatePresence>
@@ -180,7 +180,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
                     {/* The Marker Label that stands UP in 3D */}
                     <motion.div 
                       className={`relative flex flex-col items-center justify-center transition-all duration-300`}
-                      style={{ transform: "rotateX(-35deg) rotateZ(10deg) translateZ(30px)" }} // Counter-rotate so text faces camera
+                      
                       animate={{ y: isActive ? -10 : 0, scale: isActive ? 1.1 : 0.9 }}
                     >
                        <div className={`px-2 py-1 rounded bg-black/80 border border-white/20 backdrop-blur-xl shadow-xl flex items-center gap-1.5 ${isActive ? 'ring-2 ring-white/50 ' + zone.glow : 'opacity-70'}`}>

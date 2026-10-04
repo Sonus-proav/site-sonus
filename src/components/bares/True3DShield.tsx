@@ -136,7 +136,7 @@ function Scene({ interactive }: { interactive: boolean }) {
   )
 }
 
-export default function True3DShield() {
+export default function True3DShield({ tier, onReady }: { tier?: string, onReady?: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref)
   const coarse = useMemo(
@@ -147,7 +147,8 @@ export default function True3DShield() {
   return (
     <div ref={ref} className="w-full h-full min-h-[260px]">
       <Canvas
-        dpr={[1, 1.75]}
+        onCreated={() => { setTimeout(() => onReady && onReady(), 100); }}
+        dpr={tier === "medium" ? 1 : [1, 1.75]}
         frameloop={inView ? "always" : "never"}
         camera={{ position: [0, 0, 8.5], fov: 35 }}
         gl={{ antialias: true, powerPreference: "high-performance" }}
