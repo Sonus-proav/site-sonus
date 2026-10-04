@@ -93,7 +93,7 @@ export async function onRequestPost({ request, env }) {
           <li style="margin-bottom: 10px;"><strong>Nome:</strong> ${safeName}</li>
           <li style="margin-bottom: 10px;"><strong>E-mail:</strong> ${safeEmail}</li>
           <li style="margin-bottom: 10px;"><strong>Telefone/WhatsApp:</strong> ${safePhone}</li>
-          ${safeChurchName ? `<li style="margin-bottom: 10px;"><strong>Igreja/Templo:</strong> ${safeChurchName}</li>` : ""}
+          ${safeChurchName ? `<li style="margin-bottom: 10px;"><strong>Estabelecimento/Igreja:</strong> ${safeChurchName}</li>` : ""}
           ${safeRole ? `<li style="margin-bottom: 10px;"><strong>Cargo:</strong> ${safeRole}</li>` : ""}
           ${safeCapacity ? `<li style="margin-bottom: 10px;"><strong>Capacidade Aprox.:</strong> ${safeCapacity}</li>` : ""}
         </ul>
@@ -125,7 +125,7 @@ export async function onRequestPost({ request, env }) {
       body: JSON.stringify({
         from: `Site Sonus <${RESEND_FROM}>`,
         to: "sonusproaudio@gmail.com",
-        reply_to: safeEmail,
+        ...(safeEmail ? { reply_to: safeEmail } : {}),
         subject: `Novo Contato do Site: ${safeName} - Projeto Audiovisual`,
         html: htmlContent
       })

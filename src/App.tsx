@@ -17,6 +17,7 @@ const ThankYou = React.lazy(() => import("./pages/ThankYou").then(module => ({ d
 const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").then(module => ({ default: module.AuditoriosTeatros })))
 const PlenariosLanding = React.lazy(() => import("./pages/PlenariosLanding").then(module => ({ default: module.PlenariosLanding })))
 const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(module => ({ default: module.IgrejasTemplos })))
+const BaresCasasNoturnas = React.lazy(() => import("./pages/BaresCasasNoturnas").then(module => ({ default: module.BaresCasasNoturnas })))
 const LinksPage = React.lazy(() => import("./pages/LinksPage").then(module => ({ default: module.LinksPage })))
 const Solucoes = React.lazy(() => import("./pages/Solucoes").then(module => ({ default: module.Solucoes })))
 
@@ -62,6 +63,7 @@ function App() {
             <Route path="auditorios-e-teatros" element={<AuditoriosTeatros />} />
             <Route path="plenarios-e-camaras" element={<PlenariosLanding />} />
             <Route path="igrejas-e-templos" element={<IgrejasTemplos />} />
+            <Route path="bares-e-casas-noturnas" element={<BaresCasasNoturnas />} />
             <Route path="solucoes" element={<Solucoes />} />
             <Route path="obrigado" element={<ThankYou />} />
             
