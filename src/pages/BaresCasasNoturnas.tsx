@@ -356,8 +356,9 @@ export function BaresCasasNoturnas() {
   return (
     <div className="flex flex-col min-h-screen bg-[#020202] text-white selection:bg-blue-500/30">
       <SEO
-        title="Sonorização para Bares e Casas Noturnas com Laudo Acústico (ART) | Sonus Pro AV"
-        description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar."
+        title="Sonorização para Bares e Casas Noturnas no Paraná | Sonus Pro AV"
+        description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar no Paraná, SC e RS."
+        keywords="sonorização de bares paraná, laudo acústico casa noturna, projeto de áudio boates santa catarina, dsp para bares, acústica de igrejas sudoeste paraná, sonorização profissional maringá cascavel"
         image="/og-image.jpg"
         url="https://sonusproaudio.com.br/bares-e-casas-noturnas"
         schema={schema}
@@ -427,10 +428,16 @@ export function BaresCasasNoturnas() {
           </motion.div>
         </section>
 
-        {/* ═══════════════ 2. LOGO MARQUEE ═══════════════ */}
-        <section className="relative z-10 w-full py-8 bg-[#020202] border-b border-white/5 overflow-hidden flex items-center">
-          <div className="absolute left-0 top-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 w-32 md:w-64 h-full bg-gradient-to-l from-[#020202] to-transparent z-10 pointer-events-none" />
+        {/* ═══════════════ 2. LOGO MARQUEE (GEO SEO) ═══════════════ */}
+        <section className="relative z-10 w-full pt-16 pb-12 bg-[#020202] border-b border-white/5 overflow-hidden flex flex-col items-center">
+          <Reveal>
+            <h2 className="text-zinc-500 font-medium tracking-widest uppercase text-xs md:text-sm mb-10 text-center px-4">
+              Tecnologia de Nível Internacional no <span className="text-white font-bold">Sudoeste do Paraná</span>
+            </h2>
+          </Reveal>
+          
+          <div className="absolute left-0 bottom-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 bottom-0 w-32 md:w-64 h-full bg-gradient-to-l from-[#020202] to-transparent z-10 pointer-events-none" />
           <motion.div
             className="flex gap-24 md:gap-40 items-center pr-24 md:pr-40 w-max"
             animate={{ x: ["0%", "-50%"] }}
@@ -507,7 +514,7 @@ export function BaresCasasNoturnas() {
             </Reveal>
             <FadeIn delay={0.2}>
               <p className="text-xl md:text-2xl text-zinc-400 mt-8 max-w-3xl mx-auto font-light leading-relaxed">
-                Nós blindamos o seu bar contra falhas humanas usando arquitetura de sistemas e hardware de nível global.
+                Nós blindamos o seu bar contra falhas humanas. Atendemos casas noturnas e igrejas em todo o <strong>Paraná, Santa Catarina e Rio Grande do Sul</strong>.
               </p>
             </FadeIn>
           </div>
