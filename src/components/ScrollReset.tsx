@@ -27,6 +27,31 @@ export function ScrollReset() {
       }, 50)
 
       return () => clearTimeout(timeout)
+    } else {
+      // Se tiver hash, procura o elemento e scrolla até ele
+      const targetId = hash.replace('#', '')
+      const tryScroll = () => {
+        const element = document.getElementById(targetId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+          return true
+        }
+        return false
+      }
+      
+      // Tenta imediatamente
+      if (!tryScroll()) {
+        // Se não achou (ex: a página Home ainda está em Suspense carregando via rede)
+        // Tentamos várias vezes por até 1.5s
+        let attempts = 0
+        const interval = setInterval(() => {
+          attempts++
+          if (tryScroll() || attempts > 15) {
+            clearInterval(interval)
+          }
+        }, 100)
+        return () => clearInterval(interval)
+      }
     }
   }, [pathname, hash])
   

@@ -168,7 +168,7 @@ export function Home() {
       <BentoEspecialidades />
 
       {/* METRICS / SOCIAL PROOF */}
-      <section className="py-20 bg-zinc-950 border-y border-white/10 relative overflow-hidden">
+      <section id="sobre" className="py-20 bg-zinc-950 border-y border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
         <div className="relative z-10">
           <Suspense fallback={null}>
@@ -186,7 +186,7 @@ export function Home() {
       </Suspense>
 
       {/* CONTACT FORM */}
-      <section className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
+      <section id="contato" className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_50%)] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900 border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
