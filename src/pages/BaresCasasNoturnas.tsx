@@ -401,10 +401,10 @@ export function BaresCasasNoturnas() {
                     alt={logo.alt}
                     loading="lazy"
                     decoding="async"
-                    className={`${logo.className} w-auto object-contain brightness-0 invert opacity-30 hover:opacity-100 transition-opacity duration-300`}
+                    className={`${logo.className} w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300`}
                   />
                 ) : (
-                  <span className="text-2xl md:text-3xl font-black tracking-widest text-white/10 select-none hover:text-white/50 transition-colors duration-300">
+                  <span className="text-2xl md:text-3xl font-black tracking-widest text-white/40 select-none hover:text-white transition-colors duration-300">
                     {logo.label}
                   </span>
                 )}
