@@ -12,8 +12,11 @@ const routes = [
   '/',
   '/projetos',
   '/auditorios-e-teatros',
+  '/plenarios-e-camaras',
   '/igrejas-e-templos',
   '/salas-reuniao',
+  '/bares-e-casas-noturnas',
+  '/solucoes',
   '/qsys',
   '/links',
 ];
@@ -45,6 +48,14 @@ async function prerender() {
   const server = app.listen(PORT, async () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
     
+    // Backup original index.html as 404.html before it gets overwritten by '/' route
+    const originalIndex = path.join(distPath, 'index.html');
+    const fallback404 = path.join(distPath, '404.html');
+    if (fs.existsSync(originalIndex)) {
+      fs.copyFileSync(originalIndex, fallback404);
+      console.log('✅ Salvo fallback 404.html');
+    }
+
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -54,7 +65,6 @@ async function prerender() {
       console.log(`Prerenderizando a rota: ${route}...`);
       const page = await browser.newPage();
       
-      // Bloqueia requisições desnecessárias (como fontes e estilos externos pesados ou trackers) para ser mais rápido
       await page.setRequestInterception(true);
       page.on('request', (req) => {
         const url = req.url();
@@ -65,17 +75,10 @@ async function prerender() {
         }
       });
 
-      // Acessa a página e espera a rede ficar inativa (indicando que as chamadas do Firebase ou imagens carregaram)
       await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
-      
-      // Espera extra garantida para animações de Skeleton desaparecerem (se houver)
       await new Promise(r => setTimeout(r, 1000));
-
       const html = await page.content();
       
-      // Salva o HTML
-      // Se for a rota "/", salvar no index.html
-      // Se for "/projetos", salvar na pasta /projetos/index.html
       const isHome = route === '/';
       let routePath = path.join(distPath, route);
       
@@ -85,7 +88,6 @@ async function prerender() {
 
       const filePath = isHome ? path.join(distPath, 'index.html') : path.join(routePath, 'index.html');
       
-      // Remove scripts extras do puppeteer caso injete, mas page.content() geralmente é o HTML real
       fs.writeFileSync(filePath, html);
       console.log(`✅ Salvo: ${filePath}`);
       
