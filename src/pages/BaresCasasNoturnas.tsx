@@ -160,7 +160,7 @@ export function BaresCasasNoturnas() {
       })
     })
 
-    const text = "Olá! Gostaria de falar agora com um engenheiro de áudio sobre o som e o laudo acústico do meu estabelecimento."
+    const text = "Olá! Gostaria de falar agora com um especialista em áudio sobre o som e o laudo acústico do meu estabelecimento."
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
 
@@ -303,7 +303,7 @@ export function BaresCasasNoturnas() {
                     size="lg"
                     className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-6 text-base md:text-lg font-medium shadow-[0_0_60px_-10px_rgba(59,130,246,0.6)] transition-all hover:shadow-[0_0_80px_-10px_rgba(59,130,246,0.8)] h-auto"
                   >
-                    Falar com um Engenheiro de Áudio Agora
+                    Falar com um Especialista de Áudio Agora
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Magnetic>
@@ -355,7 +355,7 @@ export function BaresCasasNoturnas() {
                 A Solução Sonus Pro Audio
               </span>
               <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.05]">
-                Engenharia de Áudio de Ponta a Ponta para o seu Negócio.
+                Soluções de Áudio de Ponta a Ponta para o seu Negócio.
               </h2>
             </FadeIn>
 

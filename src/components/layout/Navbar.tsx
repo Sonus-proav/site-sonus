@@ -38,6 +38,7 @@ export function Navbar() {
     { name: "Plenários", path: "/plenarios-e-camaras" },
     { name: "Igrejas", path: "/igrejas-e-templos" },
     { name: "Salas de Reunião", path: "/salas-reuniao" },
+    { name: "Bares e Eventos", path: "/bares-e-casas-noturnas" },
     { name: "Q-SYS", path: "/qsys" },
     { name: "Contato", path: "/#contato" },
   ]

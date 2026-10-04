@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense } from "react";
 import { SEO } from "@/components/SEO";
-import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight } from "lucide-react";
+import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, ShieldCheck, Speaker } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/ui/Reveal";
 import { motion } from "framer-motion";
@@ -352,6 +352,37 @@ export function Solucoes() {
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 text-purple-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
                   >
                     Descobrir <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </SpotlightCard>
+
+            {/* 6. BARES E CASAS NOTURNAS - SPANS 12 COLS */}
+            <SpotlightCard className="col-span-1 lg:col-span-12 h-[380px] md:h-[300px] group !p-0">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505] to-blue-900/10 z-0" />
+              
+              <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0 flex items-center justify-end px-12 md:px-24">
+                <div className="relative w-64 h-64 flex items-center justify-center">
+                   <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }} transition={{ duration: 3, repeat: Infinity }} className="absolute inset-0 bg-blue-500/10 rounded-full blur-3xl" />
+                   <ShieldCheck className="w-48 h-48 text-blue-500/10" />
+                </div>
+              </div>
+
+              <div className="relative z-10 p-8 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto max-w-3xl">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500">
+                  <Speaker className="w-7 h-7" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-black tracking-tighter text-white mb-3">Bares & Casas Noturnas</h2>
+                  <p className="text-zinc-400 text-sm md:text-base font-light leading-relaxed mb-6 max-w-xl">
+                    Som Impecável na Pista. Zero Multas na Porta. Infraestrutura "Plug & Play", controle ativo de volume (DSP) e Laudo Acústico (ART) para blindagem do alvará.
+                  </p>
+                  <Link 
+                    to="/bares-e-casas-noturnas" 
+                    onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Bares e Casas Noturnas' }); }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 text-blue-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
+                  >
+                    Ver Solução <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
