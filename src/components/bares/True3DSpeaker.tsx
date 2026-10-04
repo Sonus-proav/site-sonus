@@ -373,7 +373,7 @@ export default function True3DSpeaker({ tier, onReady }: { tier?: string, onRead
         onCreated={() => { setTimeout(() => onReady && onReady(), 100); }}
         dpr={tier === "medium" ? 1 : [1, 1.75]}
         frameloop={inView ? "always" : "never"}
-        camera={{ position: [0, 0.4, 11], fov: 35 }}
+        camera={{ position: [0, 0.4, 11], fov: coarse ? 55 : 35 }}
         gl={{ antialias: true, powerPreference: "high-performance" }}
         style={{ touchAction: "pan-y" }}
       >

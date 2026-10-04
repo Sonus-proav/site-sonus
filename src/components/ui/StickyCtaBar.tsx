@@ -97,14 +97,14 @@ export function StickyCtaBar({
           >
             {/* Liquid Glass Container */}
           <div 
-            className="relative mx-auto max-w-sm md:max-w-md p-3 md:p-2 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center gap-3 md:gap-4 pointer-events-auto overflow-hidden cursor-default transition-all duration-700"
+            className="relative mx-auto max-w-sm md:max-w-md p-2 rounded-[1.25rem] md:rounded-full flex flex-row items-center justify-between gap-2 pointer-events-auto overflow-hidden cursor-default transition-all duration-700"
             style={{
               boxShadow: "0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1)",
             }}
           >
             {/* Glass Layer 1: Distortion */}
             <div
-              className="absolute inset-0 z-0 overflow-hidden rounded-2xl md:rounded-full"
+              className="absolute inset-0 z-0 overflow-hidden rounded-[1.25rem] md:rounded-full"
               style={{
                 backdropFilter: "blur(16px)",
                 background: "linear-gradient(135deg, rgba(9,9,11,0.85) 0%, rgba(9,9,11,0.92) 100%)",
@@ -114,36 +114,36 @@ export function StickyCtaBar({
             />
             {/* Glass Layer 2: White tint */}
             <div
-              className="absolute inset-0 z-[1] rounded-2xl md:rounded-full"
+              className="absolute inset-0 z-[1] rounded-[1.25rem] md:rounded-full"
               style={{ background: "rgba(255, 255, 255, 0.12)" }}
             />
             {/* Glass Layer 3: Inner highlight/shadow */}
             <div
-              className="absolute inset-0 z-[2] rounded-2xl md:rounded-full overflow-hidden"
+              className="absolute inset-0 z-[2] rounded-[1.25rem] md:rounded-full overflow-hidden"
               style={{
                 boxShadow:
                   "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.15)",
               }}
             />
             {/* Subtle border glow */}
-            <div className="absolute inset-0 z-[3] rounded-2xl md:rounded-full border border-white/20" />
+            <div className="absolute inset-0 z-[3] rounded-[1.25rem] md:rounded-full border border-white/20" />
 
             {/* Content (above glass layers) */}
             <div className="relative z-10 flex items-center gap-2 pl-2">
-              <span className="relative flex h-3 w-3">
-                <span className={`relative inline-flex rounded-full h-3 w-3 ${isOnline ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}></span>
+              <span className="relative flex h-2 w-2 md:h-3 md:w-3">
+                <span className={`relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 ${isOnline ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}></span>
               </span>
               <div className="flex flex-col">
-                <span className="text-white text-xs font-semibold">{isOnline ? 'Especialista Online' : 'Especialista Offline'}</span>
-                <span className="text-white/60 text-[10px] flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {isOnline ? 'Resposta rápida' : 'Deixe uma mensagem'}
+                <span className="text-white text-[11px] md:text-xs font-semibold whitespace-nowrap">{isOnline ? 'Online' : 'Offline'}</span>
+                <span className="text-white/60 text-[9px] md:text-[10px] flex items-center gap-1 whitespace-nowrap">
+                  <Clock className="w-2.5 h-2.5 md:w-3 md:h-3" /> {isOnline ? '1 min' : 'Mensagem'}
                 </span>
               </div>
             </div>
 
             <button
               onClick={handleWhatsApp}
-              className={`relative z-10 w-full md:w-auto group overflow-hidden rounded-xl md:rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ${
+              className={`relative z-10 w-auto group overflow-hidden rounded-xl md:rounded-full px-4 md:px-6 py-2.5 md:py-2.5 text-xs md:text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-1 md:gap-2 ${
                 isOnline 
                   ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 hover:shadow-emerald-500/25' 
                   : 'bg-gradient-to-r from-red-600 to-red-500 hover:shadow-red-500/25'

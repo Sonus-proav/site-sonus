@@ -42,7 +42,7 @@ const AudioLimiter3D = memo(function AudioLimiter3D() {
 // ─── 4. PATCH PANEL COMPONENT (Premium 3D) ────────────────────────────────────────────────
 const StageBoxVisual = memo(function StageBoxVisual() {
   return (
-    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8 bg-gradient-to-br from-[#0a0a0a] to-black rounded-3xl relative overflow-hidden group border border-white/5">
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-[#0a0a0a] to-black rounded-3xl relative overflow-hidden group border border-white/5">
        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0,transparent_70%)] pointer-events-none" />
        
        <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col p-6 z-10 overflow-hidden transition-all duration-700 group-hover:scale-105 group-hover:shadow-[0_40px_80px_-10px_rgba(0,0,0,1)]">
@@ -113,7 +113,7 @@ const StageBoxVisual = memo(function StageBoxVisual() {
 // ─── ART COMPONENT ────────────────────────────────────────────────────────
 const CertificadoART = memo(function CertificadoART() {
   return (
-    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8 bg-gradient-to-br from-zinc-100 to-zinc-300 rounded-3xl relative overflow-hidden group">
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-zinc-100 to-zinc-300 rounded-3xl relative overflow-hidden group">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0,transparent_100%)] pointer-events-none" />
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
@@ -478,7 +478,7 @@ export function BaresCasasNoturnas() {
                    <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
-                      <div className="p-8 pb-0 relative z-10">
+                      <div className="p-5 md:p-8 pb-0 relative z-10">
                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 mb-4 backdrop-blur-sm">
                             <Lock className="w-3 h-3 text-blue-400" />
                             <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Fase 01</span>
@@ -503,7 +503,7 @@ export function BaresCasasNoturnas() {
                    <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
-                      <div className="p-8 relative z-10 flex flex-col items-center text-center">
+                      <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 mb-4 backdrop-blur-sm">
                             <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Fase 02</span>
                          </div>
@@ -524,7 +524,7 @@ export function BaresCasasNoturnas() {
                    <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
-                      <div className="p-8 relative z-10 flex flex-col items-center text-center">
+                      <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 mb-4 backdrop-blur-sm">
                             <ShieldCheck className="w-3 h-3 text-green-400" />
                             <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Fase 03</span>
@@ -553,7 +553,7 @@ export function BaresCasasNoturnas() {
           <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <FadeIn>
               <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6 block">Fale com um Especialista</span>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] mb-8 uppercase text-white drop-shadow-xl">
+              <h2 className="text-[2.5rem] sm:text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] mb-8 uppercase text-white drop-shadow-xl break-words sm:break-normal hyphens-auto">
                 Profissionalize <br/>a Operação.
               </h2>
               <p className="text-zinc-400 text-xl font-light leading-relaxed mb-10 max-w-lg">

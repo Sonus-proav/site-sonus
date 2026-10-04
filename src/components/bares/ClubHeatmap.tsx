@@ -100,7 +100,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
     <div ref={containerRef} className="w-full flex flex-col items-center justify-center relative p-2 md:p-6 h-full">
       
       {/* 3D Architectural Blueprint Wrapper */}
-      <div className="relative aspect-[4/5] w-full max-w-[340px] mx-auto mb-8 ">
+      <div className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[340px] mx-auto mb-8 ">
          <motion.div 
            className="w-full h-full relative"
            initial={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -200,7 +200,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
 
       {/* Modern Floating Info Card */}
       <motion.div 
-        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl flex items-start gap-4 max-w-[340px] mx-auto w-full shadow-2xl relative overflow-hidden"
+        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl flex items-start gap-4 max-w-[280px] sm:max-w-[340px] mx-auto w-full shadow-2xl relative overflow-hidden"
         key={activeData.id}
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}

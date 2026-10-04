@@ -150,7 +150,7 @@ export default function True3DShield({ tier, onReady }: { tier?: string, onReady
         onCreated={() => { setTimeout(() => onReady && onReady(), 100); }}
         dpr={tier === "medium" ? 1 : [1, 1.75]}
         frameloop={inView ? "always" : "never"}
-        camera={{ position: [0, 0, 8.5], fov: 35 }}
+        camera={{ position: [0, 0, 8.5], fov: coarse ? 55 : 35 }}
         gl={{ antialias: true, powerPreference: "high-performance" }}
         style={{ touchAction: "pan-y" }}
       >
