@@ -41,29 +41,30 @@ export const NightclubWarranty = memo(function NightclubWarranty() {
          <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full mb-6">
                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-               <span className="text-[10px] md:text-xs font-mono text-red-400 tracking-widest uppercase font-bold">Garantia de Blindagem Sonus</span>
+               <span className="text-[10px] md:text-xs font-mono text-red-400 tracking-widest uppercase font-bold">Garantia Sonus Exclusiva</span>
             </div>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase leading-tight mb-4 text-white">
-               Paz de Espírito <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Inviolável.</span>
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">3 Anos de Garantia</span><br/>
+               na Infraestrutura.
             </h2>
             
             <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl">
-               Não entregamos apenas equipamentos. Entregamos a certeza de que o seu alvará está protegido e os seus alto-falantes estão seguros. Se um DJ ultrapassar o limite, o nosso <strong>DSP intervém matematicamente em milissegundos</strong>. 
+               Nós assumimos o risco da sua operação. Todo o projeto de sonorização entregue pela Sonus conta com <strong>3 anos de garantia absoluta</strong> sobre qualquer problema de execução ou instalação. Se der problema na engenharia, a responsabilidade é nossa.
             </p>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-8">
                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20"><VolumeX className="w-4 h-4 text-blue-400" /></div>
-                  <span className="text-sm font-medium text-zinc-300">Zero Vazamento de Som</span>
+                  <span className="text-sm font-medium text-zinc-300">Sem Fios Expostos</span>
                </div>
                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20"><Zap className="w-4 h-4 text-indigo-400" /></div>
-                  <span className="text-sm font-medium text-zinc-300">Proteção contra Queima</span>
+                  <span className="text-sm font-medium text-zinc-300">Sem Ruídos de Terra</span>
                </div>
                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/20"><ShieldAlert className="w-4 h-4 text-green-400" /></div>
-                  <span className="text-sm font-medium text-zinc-300">Laudo Válido (ART)</span>
+                  <span className="text-sm font-medium text-zinc-300">Infraestrutura Blindada</span>
                </div>
             </div>
          </div>
