@@ -16,89 +16,23 @@ import { Turnstile } from "@marsidev/react-turnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
 import { NightclubWarranty } from "@/components/bares/NightclubWarranty"
+import True3DSpeaker from "@/components/bares/True3DSpeaker"
 import {
   ArrowRight,
   AlertTriangle,
   CheckCircle2,
   ShieldCheck,
-  Activity,
   Zap,
   Lock,
   Volume2,
   Settings2
 } from "lucide-react"
 
-// ─── 1. HERO 3D COMPONENT (DSP LIMITER) ──────────────────────────────────
+// ─── 1. HERO 3D COMPONENT (TRUE 3D SPEAKER) ──────────────────────────────────
 const AudioLimiter3D = memo(function AudioLimiter3D() {
   return (
-    <div className="w-full relative flex justify-center perspective-[2000px]">
-      <motion.div 
-        initial={{ opacity: 0, rotateY: 25, rotateX: 10, y: 50, scale: 0.95 }}
-        animate={{ opacity: 1, rotateY: -15, rotateX: 15, rotateZ: 2, y: 0, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="w-full max-w-[800px] aspect-[16/10] bg-[#020202]/80 backdrop-blur-3xl rounded-3xl border border-white/10 relative overflow-hidden flex flex-col p-6 lg:p-8 shadow-[0_0_100px_rgba(59,130,246,0.15)] group"
-      >
-        {/* Cinematic Lighting inside the box */}
-        <div className="absolute top-0 right-0 w-3/4 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.3)_0,transparent_60%)] pointer-events-none z-0 mix-blend-screen" />
-        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_bottom_left,rgba(168,85,247,0.2)_0,transparent_70%)] pointer-events-none z-0 mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none z-0" />
-
-        {/* UI Header / Mac OS Style */}
-        <div className="relative z-10 flex justify-between items-center border-b border-white/10 pb-4 mb-6">
-          <div className="flex items-center gap-4">
-             <div className="flex gap-2">
-               <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
-               <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.8)]" />
-               <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
-             </div>
-             <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/5 backdrop-blur-md">
-                <Activity className="w-3 h-3 text-blue-400" />
-                <span className="text-[10px] md:text-xs text-zinc-300 font-mono tracking-widest font-bold">SONUS_DSP_CORE</span>
-             </div>
-          </div>
-          <div className="flex items-center gap-2 bg-green-500/10 px-4 py-1.5 rounded-full border border-green-500/30 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]" />
-            <span className="text-[10px] font-mono text-green-400 uppercase tracking-widest font-bold">105dB Limit Active</span>
-          </div>
-        </div>
-
-        {/* Channels Grid - Hyper Realistic */}
-        <div className="relative z-10 grid grid-cols-4 gap-4 flex-1">
-           {[...Array(4)].map((_, colIndex) => {
-              const isMaster = colIndex === 3;
-              return (
-                 <div key={colIndex} className={`flex flex-col items-center justify-end bg-black/40 rounded-2xl border ${isMaster ? 'border-blue-500/50 bg-blue-950/20 shadow-[0_0_30px_rgba(59,130,246,0.1)]' : 'border-white/5'} p-3 pb-6 relative overflow-hidden backdrop-blur-md`}>
-                    
-                    {/* The Limit Line */}
-                    <div className="absolute top-[20%] left-0 right-0 border-b-2 border-red-500/80 border-dashed z-20 flex justify-end shadow-[0_0_15px_rgba(239,68,68,0.5)]">
-                       <span className="text-[8px] text-red-500 bg-[#020202] px-1 -mt-2 mr-1 font-mono font-black tracking-widest border border-red-500/50 rounded-sm">MAX</span>
-                    </div>
-
-                    {/* VUmeter Bars (LED Matrix Style) */}
-                    <div className="w-full flex justify-center gap-2 h-32 items-end px-2 z-10 mb-4">
-                       {[0,1].map(ch => (
-                         <div key={ch} className="flex-1 max-w-[12px] flex flex-col justify-end gap-[2px]">
-                            {[...Array(24)].map((_, i) => (
-                               <motion.div 
-                                 key={i}
-                                 className={`w-full h-[3px] rounded-full ${i < 4 ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,1)]' : i < 8 ? 'bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,1)]' : isMaster ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,1)]' : 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,1)]'}`}
-                                 animate={{ opacity: isMaster ? (i > 5 ? 1 : 0.15) : [0.15, 1, 0.15] }}
-                                 transition={{ duration: Math.random() * 0.3 + 0.1, repeat: Infinity }}
-                               />
-                            ))}
-                         </div>
-                       ))}
-                    </div>
-
-                    <span className={`text-[10px] font-mono font-black tracking-widest ${isMaster ? 'text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]' : 'text-zinc-500'}`}>
-                       {isMaster ? 'MASTER_OUT' : `CH_0${colIndex + 1}`}
-                    </span>
-                 </div>
-              )
-           })}
-        </div>
-      </motion.div>
+    <div className="w-full relative flex justify-center h-[500px] md:h-[600px] z-20">
+      <True3DSpeaker />
     </div>
   )
 })

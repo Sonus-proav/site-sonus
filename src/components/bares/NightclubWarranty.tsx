@@ -1,6 +1,7 @@
 import { memo } from "react"
-import { motion } from "framer-motion"
-import { ShieldAlert, Zap, VolumeX, ShieldCheck } from "lucide-react"
+import { ShieldAlert, Zap, VolumeX } from "lucide-react"
+
+import True3DShield from "./True3DShield"
 
 export const NightclubWarranty = memo(function NightclubWarranty() {
   return (
@@ -18,23 +19,9 @@ export const NightclubWarranty = memo(function NightclubWarranty() {
 
       <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-8 md:gap-12 bg-black/60 backdrop-blur-xl border border-white/5 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
          
-         {/* Badges 3D */}
-         <div className="flex-shrink-0 relative w-48 h-48 flex items-center justify-center perspective-[1000px]">
-            <motion.div 
-               initial={{ rotateY: -20, rotateX: 10 }}
-               whileInView={{ rotateY: 15, rotateX: 0 }}
-               transition={{ duration: 2, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-               className="w-full h-full relative flex items-center justify-center transform-style-3d"
-            >
-               {/* Outer glowing ring */}
-               <div className="absolute inset-0 rounded-full border border-blue-500/30 shadow-[inset_0_0_30px_rgba(59,130,246,0.2),0_0_30px_rgba(59,130,246,0.2)] animate-[spin_10s_linear_infinite]" />
-               <div className="absolute inset-2 rounded-full border border-dashed border-red-500/30 animate-[spin_15s_linear_infinite_reverse]" />
-               
-               {/* Center Hexagon Shield */}
-               <div className="w-24 h-28 bg-gradient-to-br from-zinc-900 to-black border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,1)] flex items-center justify-center relative z-10" style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}>
-                  <ShieldCheck className="w-12 h-12 text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
-               </div>
-            </motion.div>
+         {/* True WebGL 3D Badge */}
+         <div className="flex-shrink-0 relative w-64 h-64 md:w-80 md:h-80 -ml-4">
+            <True3DShield />
          </div>
 
          {/* Texto da Garantia */}
