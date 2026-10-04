@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
+import { NightclubWarranty } from "@/components/bares/NightclubWarranty"
 import {
   ArrowRight,
   AlertTriangle,
@@ -232,6 +233,18 @@ const faqs = [
   {
     question: "O limite do processador vai deixar a festa sem graça ou o som 'baixo'?",
     answer: "Muito pelo contrário. Um som distorcido e 'rachando' irrita o público e vaza longe para o vizinho. O DSP entrega um áudio cristalino e com muito 'peso' nos graves na pista (onde deve estar), mas corta os picos desnecessários que geram a queima de equipamentos e as multas. O público tem uma experiência de festival e você tem paz de espírito."
+  },
+  {
+    question: "O DJ sempre queima meus alto-falantes. Como o sistema previne isso?",
+    answer: "Nós implementamos limitadores de pico e RMS direto no cérebro do sistema (DSP). Mesmo que o DJ coloque a mesa de som no 'vermelho' e tente forçar, o DSP atua como um escudo invisível, comprimindo o sinal musicalmente antes que ele chegue aos amplificadores. O som continua incrível, mas suas caixas nunca mais vão queimar."
+  },
+  {
+    question: "A adequação acústica vai estragar a decoração e o design do meu bar?",
+    answer: "De forma alguma. Nosso foco é a 'Engenharia Invisível'. Trabalhamos junto com o seu arquiteto para posicionar as caixas e painéis acústicos de forma que eles se integrem à identidade visual da casa. Você não verá fios soltos ou equipamentos improvisados pendurados."
+  },
+  {
+    question: "O bar precisa ficar fechado por muitos dias para a instalação?",
+    answer: "Não. Sabemos que bar fechado é prejuízo. Nossa engenharia é pré-montada e testada no laboratório da Sonus. A instalação física das Stage Boxes e dos processadores é feita de forma extremamente ágil, geralmente nos dias da semana em que a casa não abre, sem impactar o seu faturamento de final de semana."
   },
 ]
 
@@ -595,8 +608,11 @@ export function BaresCasasNoturnas() {
           </div>
         </section>
 
+        {/* ═══════════════ GARANTIA VIP ═══════════════ */}
+        <NightclubWarranty />
+
         {/* ═══════════════ 5. FORMULÁRIO (CONVERSÃO) ═══════════════ */}
-        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-t border-white/5 overflow-hidden">
+        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-white/5 overflow-hidden">
           <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <FadeIn>
               <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6 block">Fale com um Especialista</span>
