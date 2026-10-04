@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, memo } from "react"
 import { motion, useInView } from "framer-motion"
+import { Music, Users, Beer, Cigarette, VolumeX } from "lucide-react"
 
-export function ClubHeatmap() {
+export const ClubHeatmap = memo(function ClubHeatmap() {
   const [activeZone, setActiveZone] = useState<number | null>(0)
   const [autoPlay, setAutoPlay] = useState(true)
   const autoPlayRef = useRef(true)
@@ -11,11 +12,51 @@ export function ClubHeatmap() {
   const isInView = useInView(containerRef, { amount: 0.2 })
   
   const zones = [
-    { id: 0, label: "Pista Principal", x: "25%", y: "15%", w: "50%", h: "40%", coverage: 105, desc: "Alta pressão sonora. Graves no peito. 105dB cravados." },
-    { id: 1, label: "Camarotes", x: "5%", y: "15%", w: "18%", h: "40%", coverage: 95, desc: "Som imersivo mas permite conversa." },
-    { id: 2, label: "Lounge / Bar", x: "77%", y: "15%", w: "18%", h: "40%", coverage: 90, desc: "Áudio claro para fundo musical e interação no bar." },
-    { id: 3, label: "Corredores", x: "20%", y: "60%", w: "60%", h: "15%", coverage: 85, desc: "Transição suave de volume. Sem picos." },
-    { id: 4, label: "Rua (Externa)", x: "25%", y: "80%", w: "50%", h: "12%", coverage: 55, desc: "Isolamento total. Zero vazamento para vizinhos. (55dB)" },
+    { 
+      id: 0, 
+      label: "Palco & Pista", 
+      icon: Music,
+      coverage: 105, 
+      desc: "Onde a mágica acontece. Graves no peito, som de festival, pressão cravada no limite seguro do DSP.",
+      color: "bg-blue-600",
+      ringSize: "w-[30%] h-[30%]"
+    },
+    { 
+      id: 1, 
+      label: "Área VIP / Mesas", 
+      icon: Users,
+      coverage: 95, 
+      desc: "Som imersivo com alta fidelidade, mas que permite conversação sem precisar gritar.",
+      color: "bg-indigo-500",
+      ringSize: "w-[50%] h-[50%]"
+    },
+    { 
+      id: 2, 
+      label: "Bar / Caixas", 
+      icon: Beer,
+      coverage: 88, 
+      desc: "Volume reduzido para garantir que os garçons e caixas escutem os pedidos perfeitamente.",
+      color: "bg-purple-500",
+      ringSize: "w-[70%] h-[70%]"
+    },
+    { 
+      id: 3, 
+      label: "Fumódromo", 
+      icon: Cigarette,
+      coverage: 75, 
+      desc: "Transição suave de volume para a área externa. Conforto acústico para descanso.",
+      color: "bg-zinc-500",
+      ringSize: "w-[85%] h-[85%]"
+    },
+    { 
+      id: 4, 
+      label: "Calçada & Vizinhos", 
+      icon: VolumeX,
+      coverage: 55, 
+      desc: "Isolamento acústico absoluto. O DSP garante que o som não vase, blindando seu alvará contra a lei do silêncio.",
+      color: "bg-teal-500",
+      ringSize: "w-[100%] h-[100%]"
+    },
   ]
 
   useEffect(() => {
@@ -25,101 +66,97 @@ export function ClubHeatmap() {
     let idx = 0
     const interval = setInterval(() => {
       if (!autoPlayRef.current) return
-      setActiveZone(zones[idx].id)
       idx = (idx + 1) % zones.length
-    }, 3000)
+      setActiveZone(zones[idx].id)
+    }, 3500)
     
     return () => clearInterval(interval)
-  }, [autoPlay, isInView])
+  }, [autoPlay, isInView, zones.length])
 
   const handleMouseEnter = (id: number) => {
     setAutoPlay(false)
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current)
     setActiveZone(id)
   }
+  
   const handleMouseLeave = () => {
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current)
     autoPlayTimerRef.current = setTimeout(() => setAutoPlay(true), 2000)
   }
 
-  const activeData = zones.find(z => z.id === activeZone)
+  const activeData = zones.find(z => z.id === activeZone) || zones[0]
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-lg mx-auto flex flex-col gap-4">
-      {/* Main heatmap */}
-      <div className="relative aspect-[5/4] w-full">
-        <div className="absolute inset-0 rounded-2xl border border-blue-500/20 bg-[#050505] overflow-hidden shadow-[0_0_60px_-15px_rgba(59,130,246,0.15)]">
-          
-          {/* Coverage zones */}
-          {zones.map((zone) => {
-            const isActive = activeZone === zone.id
-            const isExternal = zone.id === 4 // Red/Green depending on perspective, let's use Green/Cyan to denote safety
-            const colorTheme = isExternal ? "20,184,166" : "59,130,246" // Teal for street, Blue for club
+    <div ref={containerRef} className="w-full flex flex-col justify-center relative p-2 md:p-6 h-full">
+      
+      {/* Top-down concentric club layout */}
+      <div className="relative aspect-square w-full max-w-[320px] mx-auto mb-6 flex items-center justify-center">
+         <div className="absolute inset-0 rounded-full border border-white/5 bg-[#030303] shadow-2xl flex items-center justify-center overflow-hidden">
             
-            return (
-              <motion.div
-                key={zone.id}
-                className="absolute cursor-pointer rounded-lg border overflow-hidden z-10"
-                style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
-                animate={{
-                  backgroundColor: isActive 
-                    ? `rgba(${colorTheme},0.2)` 
-                    : `rgba(${colorTheme},0.04)`,
-                  borderColor: isActive 
-                    ? `rgba(${colorTheme},0.5)` 
-                    : `rgba(${colorTheme},0.1)`,
-                }}
-                transition={{ duration: 0.4 }}
-                onMouseEnter={() => handleMouseEnter(zone.id)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {/* Glow */}
-                <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(${colorTheme},0.3),transparent_70%)] transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-                
-                {/* Label */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                  <span className={`font-black transition-all duration-300 ${isActive ? 'text-white text-base drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]' : `text-[rgba(${colorTheme},0.4)] text-xs`}`}>
-                    {zone.coverage}dB
-                  </span>
-                  <span className={`uppercase tracking-wider font-semibold transition-all text-center px-1 duration-300 ${isActive ? `text-[rgba(${colorTheme},0.8)] text-[10px]` : `text-[rgba(${colorTheme},0.3)] text-[8px]`}`}>
-                    {zone.label}
-                  </span>
-                </div>
-              </motion.div>
-            )
-          })}
+            {/* Render concentric zones from largest (street) to smallest (stage) so they stack correctly */}
+            {[...zones].reverse().map((zone) => {
+               const isActive = activeZone === zone.id
+               const opacityClass = isActive ? "opacity-100" : "opacity-30 hover:opacity-70"
+               const borderClass = isActive ? "border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.2)] z-10" : "border-white/10"
+               
+               return (
+                 <motion.div
+                   key={zone.id}
+                   onMouseEnter={() => handleMouseEnter(zone.id)}
+                   onMouseLeave={handleMouseLeave}
+                   className={`absolute rounded-full border-2 ${borderClass} flex items-start justify-center cursor-pointer transition-all duration-500 ${zone.ringSize}`}
+                   animate={{ 
+                      scale: isActive ? 1.02 : 1,
+                   }}
+                 >
+                    {/* Colored background for the zone */}
+                    <div className={`absolute inset-0 rounded-full ${zone.color} transition-opacity duration-500 ${isActive ? 'opacity-20' : 'opacity-0'}`} />
+                    
+                    {/* Ring Label (Only show if active or it's the center) */}
+                    <div className={`mt-2 md:mt-4 transition-opacity duration-300 flex flex-col items-center ${opacityClass}`}>
+                       <span className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase bg-black/60 px-2 py-0.5 rounded backdrop-blur-md border border-white/10">
+                         {zone.coverage}dB
+                       </span>
+                    </div>
+                 </motion.div>
+               )
+            })}
+            
+            {/* Center Stage Icon */}
+            <div className="absolute flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full shadow-[0_0_20px_#3b82f6] z-20 pointer-events-none">
+               <Music className="w-4 h-4 text-white" />
+            </div>
 
-          {/* Legend bottom */}
-          <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[8px] text-zinc-600 z-20 pointer-events-none">
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-sm bg-blue-500/30 border border-blue-500/30" />
-              Pressão Sonora (dB)
-            </span>
-            <span className="text-blue-500/40">Zonificação inteligente</span>
-          </div>
-        </div>
+            {/* Sweep radar effect */}
+            <motion.div 
+               className="absolute top-1/2 left-1/2 w-[50%] h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent origin-left z-0 pointer-events-none"
+               animate={{ rotate: 360 }}
+               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            />
+         </div>
       </div>
 
-      {/* Active zone info panel */}
+      {/* Info Card */}
       <motion.div 
-        className="rounded-xl border border-blue-500/20 bg-zinc-950/80 px-5 py-3 flex items-center gap-4 min-h-[56px] shadow-[0_4px_20px_-5px_rgba(0,0,0,0.5)]"
-        animate={{ borderColor: activeData ? "rgba(59,130,246,0.4)" : "rgba(59,130,246,0.1)" }}
+        className="mt-auto p-4 rounded-xl border border-white/10 bg-zinc-950/80 backdrop-blur-md flex items-start gap-4 max-w-sm mx-auto w-full shadow-2xl"
+        key={activeData.id}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        {activeData ? (
-          <>
-            <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 shrink-0">
-              <span className="text-blue-400 font-black text-sm">{activeData.coverage}dB</span>
-            </div>
-            <div className="min-w-0">
-              <p className="text-white font-bold text-sm truncate">{activeData.label}</p>
-              <p className="text-zinc-400 text-xs mt-0.5">{activeData.desc}</p>
-            </div>
-          </>
-        ) : (
-          <p className="text-zinc-600 text-xs italic w-full text-center">Selecione uma zona no mapa acima</p>
-        )}
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-inner ${activeData.color}`}>
+          <activeData.icon className="w-6 h-6 text-white drop-shadow-md" />
+        </div>
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+             <h4 className="text-white font-bold text-sm">{activeData.label}</h4>
+             <span className="text-[10px] font-mono bg-white/10 px-1.5 py-0.5 rounded text-white/80">{activeData.coverage}dB</span>
+          </div>
+          <p className="text-zinc-400 text-xs leading-relaxed">{activeData.desc}</p>
+        </div>
       </motion.div>
     </div>
   )
-}
+})
+
 export default ClubHeatmap

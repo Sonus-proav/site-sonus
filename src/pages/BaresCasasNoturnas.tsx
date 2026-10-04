@@ -373,7 +373,7 @@ export function BaresCasasNoturnas() {
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-16 overflow-hidden px-4">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1d] to-[#050505] z-0" />
           
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
+          <div className="max-w-7xl mx-auto w-full grid xl:grid-cols-2 gap-12 xl:gap-8 items-center relative z-10">
              
              {/* Left Column: Typography */}
              <div className="flex flex-col items-start text-left max-w-2xl">
@@ -387,7 +387,7 @@ export function BaresCasasNoturnas() {
                 </FadeIn>
                 
                 <Reveal>
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8 drop-shadow-2xl">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-8 drop-shadow-2xl">
                     <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400">Pista</span><br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600" style={{ filter: 'drop-shadow(0 0 30px rgba(59,130,246,0.6))' }}>Perfeita.</span><br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-b from-zinc-400 to-zinc-700">Zero Multas.</span>
@@ -470,7 +470,7 @@ export function BaresCasasNoturnas() {
                 { num: "03", title: "Gambiarras no Palco", desc: "Fiação exposta, ruídos de ground loop, técnico perdendo horas pra ligar 2 cabos. Uma imagem de amadorismo absoluto." }
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 0.15}>
-                  <div className={`relative pt-10 border-t-[8px] border-black group overflow-hidden bg-white p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-700 h-full rounded-b-2xl ${i === 1 ? 'lg:translate-y-12' : ''}`}>
+                  <div className={`relative pt-10 border-t-[8px] border-black group overflow-hidden bg-white p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-700 h-full rounded-b-2xl`}>
                     <span className="absolute -bottom-10 -right-6 text-[160px] font-black text-black/[0.02] leading-none pointer-events-none group-hover:scale-110 group-hover:text-black/[0.05] transition-all duration-700 select-none">
                       {item.num}
                     </span>
@@ -603,14 +603,14 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 5. FORMULÁRIO (CONVERSÃO) ═══════════════ */}
-        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-t border-white/5">
-          <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-            <FadeIn className="lg:col-span-2 lg:sticky lg:top-32">
+        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-t border-white/5 overflow-hidden">
+          <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+            <FadeIn className="lg:sticky lg:top-32">
               <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6 block">Fale com um Especialista</span>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] mb-8 uppercase text-white drop-shadow-xl">
+              <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] mb-8 uppercase text-white drop-shadow-xl">
                 Profissionalize <br/>a Operação.
               </h2>
-              <p className="text-zinc-400 text-xl font-light leading-relaxed mb-10">
+              <p className="text-zinc-400 text-xl font-light leading-relaxed mb-10 max-w-lg">
                 Preencha os dados abaixo para agendarmos uma visita técnica e avaliarmos a acústica do seu ambiente de entretenimento.
               </p>
               <div className="flex items-center gap-4 text-base text-zinc-300 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm shadow-xl">
@@ -619,7 +619,7 @@ export function BaresCasasNoturnas() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="lg:col-span-3">
+            <FadeIn delay={0.2} className="w-full">
               <div className="rounded-[2.5rem] p-[1px] bg-gradient-to-br from-cyan-400/60 via-blue-500/40 to-indigo-500/60 shadow-[0_0_80px_-15px_rgba(59,130,246,0.3)]">
                 <div className="rounded-[calc(2.5rem-1px)] bg-[#050505] p-8 md:p-12">
                   {isSuccess ? (
