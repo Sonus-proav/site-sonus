@@ -53,11 +53,11 @@ export function Lazy3D({ Component, poster, eager = false }: Props) {
 
   return (
     <div ref={wrapRef} className="relative w-full h-full">
-      <div aria-hidden={ready} className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}>
+      <div aria-hidden={ready} className={`absolute inset-0 transition-opacity duration-700 z-10 ${ready ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         {poster}
       </div>
       {mount && (
-        <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
+        <div className={`absolute inset-0 transition-opacity duration-700 z-0 ${ready ? "opacity-100" : "opacity-0"}`}>
           <Suspense fallback={null}>
             <Component tier={tier} onReady={() => setReady(true)} />
           </Suspense>

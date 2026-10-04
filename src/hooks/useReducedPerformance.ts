@@ -20,13 +20,7 @@ export function useReducedPerformance() {
     // 1. O usuário pediu explicitamente menos animações
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // 2. CPU fraca (4 cores ou menos = workstation antiga, Celeron, Pentium, i3 antigo)
-    const weakCPU = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false;
-
-    // 3. Pouca RAM (< 4GB — comum em máquinas corporativas)
-    const lowMemory = (navigator as any).deviceMemory ? (navigator as any).deviceMemory < 4 : false;
-
-    // 4. Navegador sem aceleração de backdrop-blur eficiente (não-Chromium)
+    // 2. Navegador sem aceleração de backdrop-blur eficiente (não-Chromium)
     // Antigamente verificava isso, mas agora dependemos do teste de GPU.
 
     // 5. Benchmark rápido: mede o tempo de um repaint com blur
@@ -47,14 +41,11 @@ export function useReducedPerformance() {
       // Ignora se falhar
     }
 
-    // Decisão final:
     // Só ativa o modo leve se:
     // 1. O usuário pediu menos animação explicitamente no SO
     // 2. A GPU falhou grosseiramente no teste de tempo (>100ms em vez de 50ms)
-    // 3. A máquina tem menos de 4GB de RAM (certeza absoluta que é fraca)
-    // 4. Se a CPU for muito fraca (< 4 cores)
     
-    if (prefersReducedMotion || (slowGPU && weakCPU) || lowMemory || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)) {
+    if (prefersReducedMotion || (slowGPU && isMobile)) {
       html.classList.add("reduced-perf");
     }
   }, []);
