@@ -1,5 +1,5 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel"
-import React, { useState, memo, useEffect } from "react"
+import React, { useState, memo } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -14,14 +14,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { motion } from "framer-motion"
+import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
 import {
   ArrowRight,
   AlertTriangle,
   CheckCircle2,
   ShieldCheck,
   Activity,
-  Maximize2,
-  FileText
+  Check
 } from "lucide-react"
 
 // ─── 1. HERO 3D COMPONENT (DSP LIMITER) ──────────────────────────────────
@@ -29,26 +29,32 @@ const AudioLimiter3D = memo(function AudioLimiter3D() {
   return (
     <div className="w-full relative flex justify-center perspective-[2000px] mt-12 lg:mt-0">
       <motion.div 
-        initial={{ opacity: 0, rotateY: 20, rotateX: 20, rotateZ: -5, y: 50 }}
-        animate={{ opacity: 1, rotateY: -10, rotateX: 15, rotateZ: 2, y: 0 }}
+        initial={{ opacity: 0, rotateY: 30, rotateX: 15, rotateZ: -5, y: 50, scale: 0.9 }}
+        animate={{ opacity: 1, rotateY: -15, rotateX: 10, rotateZ: 2, y: 0, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="w-full max-w-[700px] aspect-[16/10] bg-[#030303] rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden flex flex-col p-6 shadow-[0_0_80px_rgba(59,130,246,0.3)]"
+        className="w-full max-w-[700px] aspect-[16/10] bg-[#030303]/90 backdrop-blur-3xl rounded-2xl md:rounded-[2rem] border-2 border-white/5 relative overflow-hidden flex flex-col p-6 shadow-[0_40px_100px_-20px_rgba(59,130,246,0.4)]"
       >
         {/* Glow Effects */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.2)_0,transparent_70%)] pointer-events-none z-0" />
-        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_bottom_left,rgba(239,68,68,0.15)_0,transparent_70%)] pointer-events-none z-0" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.25)_0,transparent_70%)] pointer-events-none z-0" />
+        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_bottom_left,rgba(239,68,68,0.2)_0,transparent_70%)] pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none z-0 opacity-20" />
 
-        {/* UI Header */}
+        {/* UI Header / Mac OS Style */}
         <div className="relative z-10 flex justify-between items-center border-b border-white/10 pb-4 mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
-               <Activity className="w-3 h-3 text-blue-400" />
-            </div>
-            <span className="text-[10px] md:text-xs text-zinc-300 font-mono tracking-widest font-bold">SONUS_DSP_CORE</span>
+          <div className="flex items-center gap-4">
+             <div className="flex gap-1.5">
+               <div className="w-3 h-3 rounded-full bg-red-500/80 border border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
+               <div className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+               <div className="w-3 h-3 rounded-full bg-green-500/80 border border-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+             </div>
+             <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/5">
+                <Activity className="w-3 h-3 text-blue-400" />
+                <span className="text-[10px] md:text-xs text-zinc-300 font-mono tracking-widest font-bold">DSP_LIMITER_V2</span>
+             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]" />
-            <span className="text-[10px] font-mono text-green-400 uppercase tracking-widest">System Armed</span>
+            <span className="text-[10px] font-mono text-green-400 uppercase tracking-widest font-bold">105dB Locked</span>
           </div>
         </div>
 
@@ -57,201 +63,157 @@ const AudioLimiter3D = memo(function AudioLimiter3D() {
            {[...Array(4)].map((_, colIndex) => {
               const isMaster = colIndex === 3;
               return (
-                 <div key={colIndex} className={`flex flex-col items-center justify-end bg-zinc-950/50 rounded-xl border ${isMaster ? 'border-blue-500/30 bg-blue-950/20' : 'border-white/5'} p-2 pb-4 relative overflow-hidden`}>
+                 <div key={colIndex} className={`flex flex-col items-center justify-end bg-zinc-950/80 rounded-xl border ${isMaster ? 'border-blue-500/40 bg-blue-950/30' : 'border-white/10 shadow-inner'} p-2 pb-4 relative overflow-hidden backdrop-blur-md`}>
                     
                     {/* The Limit Line */}
-                    <div className="absolute top-[20%] left-0 right-0 border-b border-red-500/50 border-dashed z-20 flex justify-end">
-                       <span className="text-[8px] text-red-500 bg-[#030303] px-1 -mt-1.5 mr-1 font-mono font-bold">MAX</span>
+                    <div className="absolute top-[20%] left-0 right-0 border-b border-red-500/80 border-dashed z-20 flex justify-end shadow-[0_0_10px_rgba(239,68,68,0.3)]">
+                       <span className="text-[8px] text-red-500 bg-[#030303] px-1 -mt-1.5 mr-1 font-mono font-bold border border-red-500/30 rounded-sm shadow-[0_0_10px_rgba(239,68,68,0.5)]">MAX</span>
                     </div>
 
                     {/* Fader Track */}
-                    <div className="w-2 bg-zinc-900 rounded-full h-[60%] relative flex justify-center mb-4">
+                    <div className="w-2 bg-black rounded-full h-[60%] relative flex justify-center mb-4 shadow-inner border border-white/5">
                        <div className="absolute w-[1px] h-full bg-zinc-800" />
                        <motion.div 
-                          className={`w-4 h-6 rounded ${isMaster ? 'bg-blue-500 shadow-[0_0_10px_#3b82f6]' : 'bg-zinc-700'} absolute border-b-2 border-black`}
+                          className={`w-5 h-8 rounded-sm ${isMaster ? 'bg-gradient-to-b from-blue-400 to-blue-600 shadow-[0_0_15px_#3b82f6]' : 'bg-gradient-to-b from-zinc-500 to-zinc-700 shadow-lg'} absolute border-b-4 border-black`}
                           animate={{ bottom: isMaster ? '60%' : [`${30 + Math.random()*20}%`, `${70 + Math.random()*10}%`] }}
                           transition={isMaster ? {} : { duration: 2 + Math.random(), repeat: Infinity, repeatType: "mirror" }}
                           style={isMaster ? { bottom: '70%' } : {}}
                        />
                     </div>
 
-                    {/* VUmeter Bars */}
-                    <div className="w-full flex justify-center gap-1 h-20 items-end px-2 z-10 mb-2">
-                       <div className="flex-1 max-w-[12px] bg-zinc-900 rounded-t-sm flex flex-col justify-end overflow-hidden">
-                          <motion.div 
-                             className={`w-full ${isMaster ? 'bg-blue-400' : 'bg-green-400'}`}
-                             animate={{ height: [`${40 + Math.random()*20}%`, `${90 + Math.random()*20}%`, `${30 + Math.random()*20}%`] }}
-                             transition={{ duration: 0.5 + Math.random(), repeat: Infinity, repeatType: "mirror" }}
-                             style={{ maxHeight: '80%' }} // Clipped at 80% (Limit line)
-                          />
+                    {/* VUmeter Bars (LED Matrix Style) */}
+                    <div className="w-full flex justify-center gap-1.5 h-24 items-end px-2 z-10 mb-3">
+                       <div className="flex-1 max-w-[12px] flex flex-col justify-end gap-[1px]">
+                          {[...Array(20)].map((_, i) => (
+                             <motion.div 
+                               key={i}
+                               className={`w-full h-full rounded-[1px] ${i < 4 ? 'bg-red-500' : i < 8 ? 'bg-yellow-500' : isMaster ? 'bg-blue-500' : 'bg-green-500'}`}
+                               animate={{ opacity: isMaster ? (i > 4 ? 1 : 0.2) : [0.2, 1, 0.2] }}
+                               transition={{ duration: Math.random() * 0.5 + 0.2, repeat: Infinity }}
+                             />
+                          ))}
                        </div>
-                       <div className="flex-1 max-w-[12px] bg-zinc-900 rounded-t-sm flex flex-col justify-end overflow-hidden">
-                          <motion.div 
-                             className={`w-full ${isMaster ? 'bg-blue-400' : 'bg-green-400'}`}
-                             animate={{ height: [`${50 + Math.random()*20}%`, `${85 + Math.random()*30}%`, `${40 + Math.random()*20}%`] }}
-                             transition={{ duration: 0.6 + Math.random(), repeat: Infinity, repeatType: "mirror" }}
-                             style={{ maxHeight: '80%' }}
-                          />
+                       <div className="flex-1 max-w-[12px] flex flex-col justify-end gap-[1px]">
+                          {[...Array(20)].map((_, i) => (
+                             <motion.div 
+                               key={i}
+                               className={`w-full h-full rounded-[1px] ${i < 4 ? 'bg-red-500' : i < 8 ? 'bg-yellow-500' : isMaster ? 'bg-blue-500' : 'bg-green-500'}`}
+                               animate={{ opacity: isMaster ? (i > 4 ? 1 : 0.2) : [0.2, 1, 0.2] }}
+                               transition={{ duration: Math.random() * 0.5 + 0.3, repeat: Infinity }}
+                             />
+                          ))}
                        </div>
                     </div>
 
-                    <span className={`text-[9px] font-mono font-bold ${isMaster ? 'text-blue-400' : 'text-zinc-500'}`}>
+                    <span className={`text-[9px] font-mono font-bold ${isMaster ? 'text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]' : 'text-zinc-500'}`}>
                        {isMaster ? 'MASTER_L/R' : `CH_0${colIndex + 1}`}
                     </span>
 
                     {/* Peak Compression Indicator */}
                     <motion.div 
-                       className="absolute top-2 w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center"
-                       animate={{ opacity: [0, 1, 0, 0] }}
-                       transition={{ duration: 2, repeat: Infinity, delay: colIndex * 0.5 }}
+                       className="absolute top-2 w-4 h-4 rounded-full bg-red-500/20 border border-red-500 flex items-center justify-center shadow-[0_0_10px_rgba(239,68,68,0)]"
+                       animate={{ 
+                          opacity: [0, 1, 0, 0],
+                          boxShadow: ["0 0 0px rgba(239,68,68,0)", "0 0 15px rgba(239,68,68,0.8)", "0 0 0px rgba(239,68,68,0)"]
+                       }}
+                       transition={{ duration: 1.5, repeat: Infinity, delay: colIndex * 0.5 }}
                     >
-                       <div className="w-1 h-1 bg-red-500 rounded-full" />
+                       <div className="w-2 h-2 bg-red-500 rounded-full" />
                     </motion.div>
                  </div>
               )
            })}
         </div>
 
-        {/* LED Matrix Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.5)_2px,transparent_2px)] bg-[size:3px_3px] md:bg-[size:4px_4px] pointer-events-none z-40 opacity-30" />
       </motion.div>
     </div>
   )
 })
 
-// ─── 2. HEATMAP COMPONENT ────────────────────────────────────────────────
-const ClubHeatmap = memo(function ClubHeatmap() {
-  const [activeZone, setActiveZone] = useState<number | null>(0)
-  
-  const zones = [
-    { id: 0, label: "Pista Principal", x: "25%", y: "15%", w: "50%", h: "40%", coverage: 105, desc: "Alta pressão sonora. Graves no peito. 105dB cravados." },
-    { id: 1, label: "Camarotes", x: "5%", y: "15%", w: "18%", h: "40%", coverage: 95, desc: "Som imersivo mas permite conversa." },
-    { id: 2, label: "Lounge / Bar", x: "77%", y: "15%", w: "18%", h: "40%", coverage: 90, desc: "Áudio claro para fundo musical e interação no bar." },
-    { id: 3, label: "Corredores", x: "20%", y: "60%", w: "60%", h: "15%", coverage: 85, desc: "Transição suave de volume. Sem picos." },
-    { id: 4, label: "Rua (Externa)", x: "25%", y: "80%", w: "50%", h: "12%", coverage: 55, desc: "Isolamento acústico. Zero vazamento para vizinhos." },
-  ]
-
-  useEffect(() => {
-    let idx = 0
-    const interval = setInterval(() => {
-      idx = (idx + 1) % zones.length
-      setActiveZone(zones[idx].id)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const activeData = zones.find(z => z.id === activeZone)
-
-  return (
-    <div className="w-full h-full flex flex-col justify-center relative p-6">
-      <div className="relative aspect-[4/3] w-full max-w-sm mx-auto">
-        <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#050505] overflow-hidden shadow-2xl">
-          {zones.map((zone) => {
-            const isActive = activeZone === zone.id
-            const isExternal = zone.id === 4 
-            const colorTheme = isExternal ? "20,184,166" : "59,130,246" 
-            
-            return (
-              <motion.div
-                key={zone.id}
-                className="absolute cursor-pointer rounded-lg border overflow-hidden z-10 flex flex-col items-center justify-center"
-                style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}
-                animate={{
-                  backgroundColor: isActive ? `rgba(${colorTheme},0.2)` : `rgba(${colorTheme},0.04)`,
-                  borderColor: isActive ? `rgba(${colorTheme},0.5)` : `rgba(${colorTheme},0.1)`,
-                }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(${colorTheme},0.3),transparent_70%)] transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-                <span className={`relative z-10 font-black transition-all duration-300 ${isActive ? 'text-white text-lg md:text-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]' : `text-[rgba(${colorTheme},0.4)] text-xs`}`}>
-                  {zone.coverage}dB
-                </span>
-                <span className={`relative z-10 uppercase tracking-wider font-semibold transition-all text-center px-1 duration-300 ${isActive ? `text-[rgba(${colorTheme},0.8)] text-[9px]` : `text-[rgba(${colorTheme},0.3)] text-[7px]`}`}>
-                  {zone.label}
-                </span>
-              </motion.div>
-            )
-          })}
+// ─── 3. APP WINDOW MOCKUP WRAPPER ──────────────────────────────────────────
+const AppWindow = ({ children, title = "Módulo Sonus", className = "" }: { children: React.ReactNode, title?: string, className?: string }) => (
+  <div className={`w-full bg-zinc-950/80 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col ${className}`}>
+     <div className="h-10 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between">
+        <div className="flex gap-1.5">
+           <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-      </div>
-      <div className="mt-6 p-4 rounded-xl border border-white/5 bg-zinc-950 flex items-center gap-4 max-w-sm mx-auto w-full">
-        <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 shrink-0">
-          <Maximize2 className="w-5 h-5 text-blue-400" />
-        </div>
-        <div>
-          <p className="text-white font-bold text-sm">{activeData?.label}</p>
-          <p className="text-zinc-400 text-xs mt-1">{activeData?.desc}</p>
-        </div>
-      </div>
-    </div>
-  )
-})
+        <span className="text-[10px] md:text-xs font-mono text-zinc-400 tracking-widest">{title}</span>
+        <div className="w-10"></div>
+     </div>
+     <div className="flex-1 relative w-full h-full flex items-center justify-center">
+        {children}
+     </div>
+  </div>
+)
 
-
-// ─── 3. PATCH PANEL COMPONENT ────────────────────────────────────────────────
+// ─── 4. PATCH PANEL COMPONENT (Premium 3D) ────────────────────────────────────────────────
 const StageBoxVisual = memo(function StageBoxVisual() {
   return (
-    <div className="w-full h-full bg-[#050505] flex items-center justify-center p-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1)_0,transparent_60%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px]" />
-      
-      {/* Wall Box */}
-      <div className="relative w-64 md:w-80 bg-[#111] border-4 border-zinc-800 rounded-2xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1)] flex flex-col p-6 z-10 overflow-hidden transform perspective-[1000px] rotateX(5deg)">
-        {/* Screws */}
-        <div className="absolute top-3 left-3 w-3 h-3 rounded-full bg-zinc-700 shadow-inner flex items-center justify-center"><div className="w-2 h-px bg-zinc-900 rotate-45" /></div>
-        <div className="absolute top-3 right-3 w-3 h-3 rounded-full bg-zinc-700 shadow-inner flex items-center justify-center"><div className="w-2 h-px bg-zinc-900 -rotate-45" /></div>
-        <div className="absolute bottom-3 left-3 w-3 h-3 rounded-full bg-zinc-700 shadow-inner flex items-center justify-center"><div className="w-2 h-px bg-zinc-900 rotate-12" /></div>
-        <div className="absolute bottom-3 right-3 w-3 h-3 rounded-full bg-zinc-700 shadow-inner flex items-center justify-center"><div className="w-2 h-px bg-zinc-900 -rotate-12" /></div>
+    <AppWindow title="PATCH_PANEL_MONITOR.exe" className="h-full min-h-[400px]">
+       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15)_0,transparent_60%)] pointer-events-none" />
+       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+       
+       <div className="relative w-72 md:w-80 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-lg shadow-[0_30px_60px_-10px_rgba(0,0,0,1)] flex flex-col p-6 z-10 overflow-hidden transform perspective-[1000px] rotateX(15deg) rotateY(-10deg) group">
+         {/* Brushed Metal Texture */}
+         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+         <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+         
+         {/* Screws */}
+         <div className="absolute top-3 left-3 w-4 h-4 rounded-full bg-zinc-400 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] flex items-center justify-center"><div className="w-3 h-px bg-zinc-800 rotate-45" /></div>
+         <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-zinc-400 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] flex items-center justify-center"><div className="w-3 h-px bg-zinc-800 -rotate-45" /></div>
+         <div className="absolute bottom-3 left-3 w-4 h-4 rounded-full bg-zinc-400 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] flex items-center justify-center"><div className="w-3 h-px bg-zinc-800 rotate-12" /></div>
+         <div className="absolute bottom-3 right-3 w-4 h-4 rounded-full bg-zinc-400 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] flex items-center justify-center"><div className="w-3 h-px bg-zinc-800 -rotate-12" /></div>
 
-        <div className="text-center mb-6 mt-2">
-           <span className="text-[10px] text-zinc-500 font-mono tracking-[0.3em] uppercase block mb-1">Entrada Sistema</span>
-           <div className="h-px w-1/2 bg-zinc-800 mx-auto" />
-        </div>
-        
-        <div className="flex-1 flex items-center justify-around gap-6">
-           {/* XLR Port Left */}
-           <div className="flex flex-col items-center gap-2">
-              <div className="w-16 h-16 rounded-full border-[6px] border-zinc-800 bg-black flex items-center justify-center relative shadow-[inset_0_0_15px_#000]">
-                 <div className="w-8 h-8 rounded-full border border-zinc-800 flex justify-center pt-1 relative">
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute top-1 left-1.5" />
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute top-1 right-1.5" />
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute bottom-1 left-1/2 -translate-x-1/2" />
-                 </div>
-              </div>
-              <span className="text-[10px] text-zinc-500 font-mono bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">L / CH 1</span>
-           </div>
-           
-           {/* XLR Port Right (Plugged) */}
-           <div className="flex flex-col items-center gap-2">
-              <div className="w-16 h-16 rounded-full border-[6px] border-zinc-800 bg-black flex items-center justify-center relative shadow-[inset_0_0_15px_#000]">
-                 {/* Plugged Cable */}
-                 <motion.div 
-                   initial={{ y: -50, opacity: 0 }}
-                   animate={{ y: 0, opacity: 1 }}
-                   transition={{ duration: 0.8, delay: 0.5, type: "spring", bounce: 0.5 }}
-                   className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-28 bg-zinc-800 rounded-t-xl border border-zinc-600 shadow-2xl flex flex-col items-center"
-                 >
-                    <div className="w-6 h-10 bg-zinc-300 rounded-t-md -mt-6 border-x border-zinc-400" />
-                    <div className="w-full h-full bg-gradient-to-b from-zinc-700 to-black px-2 flex justify-center py-2 relative">
-                       <div className="w-full h-full bg-[#111] rounded-sm" />
-                       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[5px] text-zinc-600 font-mono rotate-90 whitespace-nowrap opacity-50 tracking-widest">SANTO ANGELO</div>
-                    </div>
-                    {/* Cable Drop */}
-                    <div className="w-4 h-32 bg-[#1a1a1a] absolute top-full shadow-inner" />
-                 </motion.div>
-                 
-                 {/* Behind the plug */}
-                 <div className="w-8 h-8 rounded-full border border-zinc-800 flex justify-center pt-1 relative">
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute top-1 left-1.5" />
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute top-1 right-1.5" />
-                    <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full absolute bottom-1 left-1/2 -translate-x-1/2" />
-                 </div>
-              </div>
-              <span className="text-[10px] text-zinc-500 font-mono bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">R / CH 2</span>
-           </div>
-        </div>
-      </div>
-    </div>
+         <div className="text-center mb-8 mt-2 relative z-10">
+            <span className="text-[12px] text-zinc-400 font-mono tracking-[0.4em] uppercase block mb-1">Entrada DSP L/R</span>
+            <div className="h-px w-2/3 bg-gradient-to-r from-transparent via-zinc-600 to-transparent mx-auto" />
+         </div>
+         
+         <div className="flex-1 flex items-center justify-around gap-6 relative z-10 pb-4">
+            {/* XLR Port Left */}
+            <div className="flex flex-col items-center gap-3">
+               <div className="w-20 h-20 rounded-full border-[8px] border-zinc-800 bg-black flex items-center justify-center relative shadow-[inset_0_0_20px_#000,0_4px_10px_rgba(0,0,0,0.5)]">
+                  <div className="w-10 h-10 rounded-full border border-zinc-800 flex justify-center pt-1.5 relative bg-[#0a0a0a]">
+                     <div className="w-2 h-2 bg-zinc-500 rounded-full absolute top-1.5 left-2 shadow-inner" />
+                     <div className="w-2 h-2 bg-zinc-500 rounded-full absolute top-1.5 right-2 shadow-inner" />
+                     <div className="w-2 h-2 bg-zinc-500 rounded-full absolute bottom-1.5 left-1/2 -translate-x-1/2 shadow-inner" />
+                  </div>
+               </div>
+               <span className="text-[10px] text-zinc-400 font-mono bg-zinc-950 px-3 py-1 rounded border border-zinc-800 shadow-inner">CH 1 (L)</span>
+            </div>
+            
+            {/* XLR Port Right (Plugged) */}
+            <div className="flex flex-col items-center gap-3">
+               <div className="w-20 h-20 rounded-full border-[8px] border-zinc-800 bg-black flex items-center justify-center relative shadow-[inset_0_0_20px_#000,0_4px_10px_rgba(0,0,0,0.5)] group-hover:shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] transition-all duration-700">
+                  {/* Plugged Cable */}
+                  <motion.div 
+                    initial={{ y: -60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5, type: "spring", bounce: 0.4 }}
+                    className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-32 bg-zinc-800 rounded-t-xl border border-zinc-600 shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex flex-col items-center"
+                  >
+                     <div className="w-8 h-12 bg-gradient-to-b from-zinc-300 to-zinc-400 rounded-t-md -mt-8 border-x border-zinc-400 shadow-inner" />
+                     <div className="w-full h-full bg-gradient-to-b from-zinc-700 to-[#050505] px-2 flex justify-center py-2 relative border-x border-zinc-600">
+                        <div className="w-full h-full bg-[#111] rounded-sm shadow-inner" />
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[6px] text-zinc-500 font-mono rotate-90 whitespace-nowrap opacity-50 tracking-widest">SANTO ANGELO</div>
+                     </div>
+                     {/* Cable Drop */}
+                     <div className="w-5 h-40 bg-[#1a1a1a] absolute top-full shadow-[inset_0_0_10px_rgba(0,0,0,0.8)] border-l border-zinc-800 rounded-b-full" />
+                  </motion.div>
+                  
+                  {/* Green LED Indicator behind plug */}
+                  <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0.8] }} transition={{ delay: 1.2, duration: 0.5 }}
+                    className="absolute -top-3 right-0 w-2 h-2 rounded-full bg-green-500 shadow-[0_0_15px_#22c55e] z-30"
+                  />
+               </div>
+               <span className="text-[10px] text-blue-400 font-mono bg-blue-950/30 px-3 py-1 rounded border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)]">CH 2 (R) - SYNC</span>
+            </div>
+         </div>
+       </div>
+    </AppWindow>
   )
 })
 
@@ -416,10 +378,10 @@ export function BaresCasasNoturnas() {
              {/* Left Column: Typography */}
              <div className="flex flex-col items-start text-left max-w-2xl">
                 <FadeIn>
-                  <div className="inline-flex items-center gap-2 mb-8">
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_#3b82f6]" />
-                    <span className="text-xs md:text-sm font-mono text-zinc-400 tracking-[0.2em] uppercase">
-                      Sonorização para Entretenimento
+                  <div className="inline-flex items-center gap-2 mb-8 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20 backdrop-blur-md">
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse shadow-[0_0_10px_#3b82f6]" />
+                    <span className="text-xs md:text-sm font-mono text-blue-300 tracking-[0.2em] uppercase font-bold">
+                      A REVOLUÇÃO NA PISTA
                     </span>
                   </div>
                 </FadeIn>
@@ -427,27 +389,29 @@ export function BaresCasasNoturnas() {
                 <Reveal>
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8 drop-shadow-2xl">
                     <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400">Pista</span><br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600" style={{ filter: 'drop-shadow(0 0 30px rgba(59,130,246,0.5))' }}>Perfeita.</span><br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-zinc-500 to-zinc-700">Zero Multas.</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600" style={{ filter: 'drop-shadow(0 0 30px rgba(59,130,246,0.6))' }}>Perfeita.</span><br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-zinc-400 to-zinc-700">Zero Multas.</span>
                   </h1>
                 </Reveal>
 
                 <FadeIn delay={0.2}>
-                  <p className="text-lg md:text-xl text-zinc-400 font-light leading-relaxed mb-10 max-w-xl">
+                  <p className="text-lg md:text-xl text-zinc-300 font-light leading-relaxed mb-10 max-w-xl">
                     A infraestrutura <strong className="text-white">"Plug & Play"</strong> que blinda o seu alvará. 
-                    Controle digital absoluto de volume (DSP) e Laudo Acústico garantido, enquanto a pista vibra.
+                    Controle digital absoluto de volume (DSP) e Laudo Acústico garantido, enquanto a pista vibra com pressão sonora máxima.
                   </p>
                 </FadeIn>
 
                 <FadeIn delay={0.4}>
-                   <Button
-                     onClick={handleWhatsApp}
-                     size="lg"
-                     className="bg-white hover:bg-zinc-200 text-black rounded-full px-8 py-7 text-base md:text-lg font-bold shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_0_60px_rgba(255,255,255,0.4)]"
-                   >
-                     Falar com um Especialista Agora
-                     <ArrowRight className="ml-2 w-5 h-5" />
-                   </Button>
+                   <Magnetic>
+                     <Button
+                       onClick={handleWhatsApp}
+                       size="lg"
+                       className="bg-white hover:bg-zinc-200 text-black rounded-full px-8 py-7 text-base md:text-lg font-bold shadow-[0_0_50px_rgba(255,255,255,0.3)] transition-all hover:shadow-[0_0_70px_rgba(255,255,255,0.5)]"
+                     >
+                       Falar com um Especialista Agora
+                       <ArrowRight className="ml-2 w-5 h-5" />
+                     </Button>
+                   </Magnetic>
                 </FadeIn>
              </div>
 
@@ -459,13 +423,13 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 2. LOGO MARQUEE ═══════════════ */}
-        <section className="relative z-10 w-full py-8 bg-[#050505] border-y border-white/5 overflow-hidden flex items-center">
+        <section className="relative z-10 w-full py-10 bg-[#050505] border-y border-white/5 overflow-hidden flex items-center shadow-2xl">
           <div className="absolute left-0 top-0 w-24 md:w-64 h-full bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 w-24 md:w-64 h-full bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
           <motion.div
             className="flex gap-20 md:gap-32 items-center pr-20 md:pr-32 w-max"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
           >
             {[...marqueeLogos, ...marqueeLogos, ...marqueeLogos, ...marqueeLogos].map((logo, i) => (
               <div key={i} className="shrink-0 flex items-center justify-center">
@@ -487,31 +451,31 @@ export function BaresCasasNoturnas() {
           </motion.div>
         </section>
 
-        {/* ═══════════════ 3. DOR (Light Theme / Editorial) ═══════════════ */}
-        <section className="py-24 md:py-40 px-4 relative bg-[#ffffff] text-black overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none" />
+        {/* ═══════════════ 3. DOR (Light Theme / Editorial Overlap) ═══════════════ */}
+        <section className="py-24 md:py-40 px-4 relative bg-[#fafafa] text-black overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.02)_0%,transparent_70%)] pointer-events-none" />
           
           <div className="max-w-7xl mx-auto">
             <Reveal>
-              <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter uppercase mb-16 md:mb-24 leading-[0.9]">
-                O Custo da <br/>
+              <h2 className="text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tighter uppercase mb-20 md:mb-28 leading-[0.85]">
+                O Prejuízo da <br/>
                 <span className="text-red-600">Gambiarra.</span>
               </h2>
             </Reveal>
 
-            <div className="grid md:grid-cols-3 gap-6 md:gap-10">
+            <div className="grid lg:grid-cols-3 gap-8 md:gap-12 relative">
               {[
-                { num: "01", title: "Multas e Interdição", desc: "A Lei do Silêncio não perdoa. Vazamento de som gera denúncias diárias de vizinhos, batida policial e cassação sumária do alvará." },
-                { num: "02", title: "Caixas Queimadas", desc: "DJs e bandas amadoras operando a mesa no limite. Sem um processador (DSP) para segurar os picos, seu patrimônio vira fumaça no meio da noite." },
-                { num: "03", title: "Confusão no Palco", desc: "Fiação exposta, cabos com mau contato e gambiarras. O técnico da banda perde horas pra passar o som, e a casa passa uma imagem de amadorismo absoluto." }
+                { num: "01", title: "Multas e Polícia", desc: "Vazamento de som gera denúncias imediatas de vizinhos. Batida policial, interdição do alvará e dor de cabeça." },
+                { num: "02", title: "Caixas Queimadas", desc: "DJs operando no limite da distorção, clipando o sinal da mesa direto para a caixa. Sem DSP, seu patrimônio vira fumaça." },
+                { num: "03", title: "Gambiarras no Palco", desc: "Fiação exposta, ruídos de ground loop, técnico perdendo horas pra ligar 2 cabos. Uma imagem de amadorismo absoluto." }
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 0.15}>
-                  <div className="relative pt-8 border-t-[6px] border-black group overflow-hidden bg-white p-8 md:p-10 shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 h-full">
-                    <span className="absolute -bottom-8 -right-4 text-[140px] font-black text-black/[0.03] leading-none pointer-events-none group-hover:scale-110 group-hover:text-black/[0.06] transition-all duration-700 select-none">
+                  <div className={`relative pt-10 border-t-[8px] border-black group overflow-hidden bg-white p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-700 h-full rounded-b-2xl ${i === 1 ? 'lg:translate-y-12' : ''}`}>
+                    <span className="absolute -bottom-10 -right-6 text-[160px] font-black text-black/[0.02] leading-none pointer-events-none group-hover:scale-110 group-hover:text-black/[0.05] transition-all duration-700 select-none">
                       {item.num}
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-black mb-4 relative z-10 tracking-tight leading-tight">{item.title}</h3>
-                    <p className="text-zinc-600 text-base leading-relaxed relative z-10">{item.desc}</p>
+                    <h3 className="text-3xl md:text-4xl font-black mb-6 relative z-10 tracking-tight leading-tight">{item.title}</h3>
+                    <p className="text-zinc-600 text-lg leading-relaxed relative z-10 font-light">{item.desc}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -519,101 +483,119 @@ export function BaresCasasNoturnas() {
           </div>
         </section>
 
-        {/* ═══════════════ 4. STICKY SCROLL (A SOLUÇÃO) ═══════════════ */}
+        {/* ═══════════════ 4. STICKY SCROLL (A SOLUÇÃO PREMIUM) ═══════════════ */}
         <section className="py-24 md:py-40 relative bg-[#050505]">
-          <div className="max-w-7xl mx-auto px-4 mb-20 md:mb-32">
+          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08)_0%,transparent_70%)] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto px-4 mb-24 md:mb-40">
             <Reveal>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] uppercase text-white">
+              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] uppercase text-white drop-shadow-2xl">
                 Engenharia Invisível.<br/>
-                <span className="text-blue-500">Resultados Absurdos.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Resultados Absurdos.</span>
               </h2>
             </Reveal>
             <FadeIn delay={0.2}>
-              <p className="text-lg md:text-xl text-zinc-400 mt-8 max-w-2xl font-light leading-relaxed">
-                Nós blindamos o seu bar contra falhas humanas. Desenvolvemos infraestruturas onde o artista foca na música e o dono tem a certeza de que a operação está 100% protegida.
+              <p className="text-xl md:text-2xl text-zinc-400 mt-10 max-w-3xl font-light leading-relaxed">
+                Nós blindamos o seu bar contra falhas humanas. Desenvolvemos infraestruturas tecnológicas de ponta onde o artista foca apenas na música e você tem a certeza de que a operação está 100% protegida e legalizada.
               </p>
             </FadeIn>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 space-y-32 md:space-y-48">
-             {/* Act 1: Zoneamento */}
-             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="max-w-7xl mx-auto px-4 space-y-40 md:space-y-64 relative z-10">
+             
+             {/* Act 1: Zoneamento (Heatmap MacOS App) */}
+             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <FadeIn className="order-2 lg:order-1 h-full min-h-[400px]">
-                   <ClubHeatmap />
+                   <AppWindow title="MAPA_ACUSTICO.exe">
+                      <ClubHeatmap />
+                   </AppWindow>
                 </FadeIn>
                 <div className="order-1 lg:order-2">
-                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Fase 1</span>
+                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 mb-8 backdrop-blur-sm">
+                      <span className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em]">Fase 01</span>
                    </div>
-                   <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Zoneamento Inteligente.</h3>
-                   <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                     Acústica não é volume, é distribuição. Desenhamos a dispersão sonora para cravar 105dB de pressão na pista (graves potentes onde importam) e declinar agressivamente o volume nas áreas de lounge e externa.
+                   <h3 className="text-4xl md:text-6xl font-black tracking-tight mb-8 leading-tight">Zoneamento Inteligente.</h3>
+                   <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-8 font-light">
+                     Acústica não é volume, é precisão de cobertura. Desenhamos a dispersão sonora matematicamente para cravar <strong>105dB de pressão na pista</strong> (graves potentes no peito) e declinar agressivamente o volume nas áreas de lounge e rua.
                    </p>
-                   <ul className="space-y-3 text-zinc-300">
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Imersão total na pista.</li>
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Conversação nítida no bar.</li>
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Isolamento projetado para não incomodar a rua.</li>
+                   <ul className="space-y-4 text-zinc-300">
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0"/> <span className="text-lg">Imersão de festival na pista.</span></li>
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0"/> <span className="text-lg">Conversação nítida no bar.</span></li>
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0"/> <span className="text-lg">Isolamento rigoroso para a rua.</span></li>
                    </ul>
                 </div>
              </div>
 
-             {/* Act 2: Plug & Play */}
-             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+             {/* Act 2: Plug & Play (Stage Box 3D) */}
+             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div className="order-1 lg:order-1">
-                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Fase 2</span>
+                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 mb-8 backdrop-blur-sm">
+                      <span className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em]">Fase 02</span>
                    </div>
-                   <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Palco "Plug & Play".</h3>
-                   <p className="text-zinc-400 text-lg leading-relaxed mb-6">
+                   <h3 className="text-4xl md:text-6xl font-black tracking-tight mb-8 leading-tight">Palco "Plug & Play".</h3>
+                   <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-8 font-light">
                      Erradicamos a fiação solta. Instalamos caixas de conexão de parede (Stage Boxes) padrão broadcast. O técnico da banda só precisa plugar dois cabos XLR na parede e o som está pronto. Sem quebrar a cabeça, sem atrasar o show.
                    </p>
-                   <ul className="space-y-3 text-zinc-300">
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Conectores Santo Angelo industriais.</li>
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Sinal limpo, balanceado e sem ruídos (ground loop).</li>
+                   <ul className="space-y-4 text-zinc-300">
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0"/> <span className="text-lg">Conectores premium Santo Angelo.</span></li>
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0"/> <span className="text-lg">Sinal blindado contra ruídos elétricos.</span></li>
                    </ul>
                 </div>
                 <FadeIn className="order-2 lg:order-2 h-full min-h-[400px]">
-                   <div className="w-full h-full rounded-[2rem] border border-white/10 bg-[#111] overflow-hidden shadow-2xl relative">
-                      <StageBoxVisual />
-                   </div>
+                   <StageBoxVisual />
                 </FadeIn>
              </div>
 
-             {/* Act 3: Laudo e Proteção */}
-             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+             {/* Act 3: Laudo e Proteção (ART 3D) */}
+             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <FadeIn className="order-2 lg:order-1 h-full min-h-[400px]">
-                   <div className="w-full h-full flex flex-col justify-center items-center p-8 bg-[#050505] rounded-[2rem] border border-white/10 shadow-2xl relative overflow-hidden">
+                   <AppWindow title="LAUDO_ACUSTICO.pdf" className="bg-zinc-100/90 border-zinc-300 shadow-[0_20px_60px_rgba(255,255,255,0.1)]">
                       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.1)_0,transparent_70%)] pointer-events-none" />
-                      <FileText className="w-32 h-32 text-zinc-800 absolute -right-10 -bottom-10" />
-                      
-                      <div className="bg-zinc-100 rounded-xl w-64 p-6 shadow-2xl relative rotate-3 hover:rotate-0 transition-transform duration-500">
-                         <div className="border-b-2 border-zinc-300 pb-2 mb-4 flex justify-between items-end">
-                            <span className="font-bold text-black tracking-tighter text-xl">LAUDO TÉCNICO</span>
-                            <span className="text-[10px] font-mono text-zinc-500">Aprovado</span>
-                         </div>
-                         <div className="space-y-2 mb-6">
-                            <div className="w-full h-2 bg-zinc-300 rounded" />
-                            <div className="w-5/6 h-2 bg-zinc-300 rounded" />
-                            <div className="w-4/6 h-2 bg-zinc-300 rounded" />
-                         </div>
-                         <div className="w-16 h-16 rounded-full border-4 border-green-500 flex items-center justify-center absolute -bottom-6 -right-6 bg-white shadow-xl rotate-12">
-                            <span className="text-[10px] font-black text-green-500 leading-tight text-center">ART<br/>VÁLIDA</span>
-                         </div>
+                      <div className="w-full h-full flex items-center justify-center p-12">
+                         <motion.div 
+                           initial={{ rotateY: -10, rotateX: 10, scale: 0.9 }}
+                           whileInView={{ rotateY: 5, rotateX: -5, scale: 1 }}
+                           transition={{ duration: 1 }}
+                           className="bg-white rounded-xl w-72 md:w-80 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative"
+                         >
+                            <div className="border-b-4 border-zinc-200 pb-4 mb-6 flex justify-between items-end">
+                               <span className="font-black text-black tracking-tighter text-3xl">LAUDO TÉCNICO</span>
+                               <span className="text-xs font-mono text-zinc-400 font-bold">APROVADO</span>
+                            </div>
+                            <div className="space-y-4 mb-10">
+                               <div className="w-full h-3 bg-zinc-200 rounded" />
+                               <div className="w-5/6 h-3 bg-zinc-200 rounded" />
+                               <div className="w-4/6 h-3 bg-zinc-200 rounded" />
+                            </div>
+                            <div className="flex gap-2">
+                               <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center"><Check className="text-green-600 w-4 h-4"/></div>
+                               <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center"><Check className="text-green-600 w-4 h-4"/></div>
+                            </div>
+                            
+                            <motion.div 
+                               initial={{ scale: 0, rotate: -45 }}
+                               whileInView={{ scale: 1, rotate: 12 }}
+                               transition={{ delay: 0.5, type: "spring", bounce: 0.5 }}
+                               className="w-24 h-24 rounded-full border-[6px] border-green-500 flex flex-col items-center justify-center absolute -bottom-8 -right-8 bg-white shadow-2xl z-10"
+                            >
+                               <ShieldCheck className="text-green-500 w-6 h-6 mb-1"/>
+                               <span className="text-[10px] font-black text-green-500 leading-none text-center">ART<br/>VÁLIDA</span>
+                            </motion.div>
+                         </motion.div>
                       </div>
-                   </div>
+                   </AppWindow>
                 </FadeIn>
                 <div className="order-1 lg:order-2">
-                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
-                      <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Fase 3</span>
+                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/30 mb-8 backdrop-blur-sm">
+                      <span className="text-xs font-bold text-green-400 uppercase tracking-[0.2em]">Fase 03</span>
                    </div>
-                   <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Atestado de Paz (ART).</h3>
-                   <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                     Após a instalação e o travamento digital do volume via DSP, nossa equipe vai a campo com sonômetros Classe 1 e realiza aferições de acordo com a NBR 10151. O resultado? Um Laudo Acústico com ART, garantindo sua renovação de alvará.
+                   <h3 className="text-4xl md:text-6xl font-black tracking-tight mb-8 leading-tight">Atestado de Paz (ART).</h3>
+                   <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-8 font-light">
+                     Após a instalação e o travamento digital do volume via DSP, nossa equipe vai a campo com sonômetros Classe 1 e realiza aferições de acordo com a NBR 10151. O resultado? Um Laudo Acústico com ART, blindando definitivamente o seu alvará.
                    </p>
-                   <ul className="space-y-3 text-zinc-300">
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0"/> Calibragem com analisadores precisos.</li>
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0"/> Laudo Técnico para prefeitura e MP.</li>
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-green-500 shrink-0"/> Blindagem jurídica para operar sem medo.</li>
+                   <ul className="space-y-4 text-zinc-300">
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-green-500 shrink-0"/> <span className="text-lg">Calibragem com analisadores precisos.</span></li>
+                      <li className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm"><CheckCircle2 className="w-6 h-6 text-green-500 shrink-0"/> <span className="text-lg">Laudo Técnico para prefeitura e MP.</span></li>
                    </ul>
                 </div>
              </div>
@@ -621,45 +603,45 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 5. FORMULÁRIO (CONVERSÃO) ═══════════════ */}
-        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#030303] border-t border-white/5">
+        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-t border-white/5">
           <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-            <FadeIn className="lg:col-span-2 lg:sticky lg:top-28">
-              <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-4 block">Fale com um Especialista</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-6 uppercase">
+            <FadeIn className="lg:col-span-2 lg:sticky lg:top-32">
+              <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6 block">Fale com um Especialista</span>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] mb-8 uppercase text-white drop-shadow-xl">
                 Profissionalize <br/>a Operação.
               </h2>
-              <p className="text-zinc-400 text-lg font-light leading-relaxed mb-8">
+              <p className="text-zinc-400 text-xl font-light leading-relaxed mb-10">
                 Preencha os dados abaixo para agendarmos uma visita técnica e avaliarmos a acústica do seu ambiente de entretenimento.
               </p>
-              <div className="flex items-center gap-3 text-sm text-zinc-500 bg-zinc-900/50 p-4 rounded-xl border border-white/5">
-                <ShieldCheck className="w-6 h-6 text-blue-400 shrink-0" />
-                Seus dados são confidenciais.
+              <div className="flex items-center gap-4 text-base text-zinc-300 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm shadow-xl">
+                <ShieldCheck className="w-8 h-8 text-blue-400 shrink-0" />
+                Seus dados são 100% confidenciais.
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2} className="lg:col-span-3">
-              <div className="rounded-[2rem] p-[1px] bg-gradient-to-br from-cyan-400/60 via-blue-500/40 to-indigo-500/60 shadow-[0_0_60px_-15px_rgba(59,130,246,0.3)]">
-                <div className="rounded-[calc(2rem-1px)] bg-zinc-950 p-6 md:p-10">
+              <div className="rounded-[2.5rem] p-[1px] bg-gradient-to-br from-cyan-400/60 via-blue-500/40 to-indigo-500/60 shadow-[0_0_80px_-15px_rgba(59,130,246,0.3)]">
+                <div className="rounded-[calc(2.5rem-1px)] bg-[#050505] p-8 md:p-12">
                   {isSuccess ? (
-                    <div className="text-center py-12">
+                    <div className="text-center py-16">
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+                        className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(34,197,94,0.4)]"
                       >
-                        <CheckCircle2 className="w-10 h-10 text-green-500" />
+                        <CheckCircle2 className="w-12 h-12 text-green-500" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">Solicitação Enviada com Sucesso!</h3>
-                      <p className="text-zinc-400 mb-8 max-w-md mx-auto">
+                      <h3 className="text-3xl font-bold mb-4 text-white">Solicitação Enviada com Sucesso!</h3>
+                      <p className="text-zinc-400 text-lg mb-10 max-w-md mx-auto font-light">
                         Recebemos seus dados. Entraremos em contato em breve para agendar a visita técnica.
                       </p>
-                      <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full border-white/10 hover:bg-white/5">
+                      <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full border-white/10 hover:bg-white/5 text-lg py-6 px-8">
                         Enviar nova solicitação
                       </Button>
                     </div>
                   ) : (
                     <form
-                      className="space-y-6"
+                      className="space-y-8"
                       onSubmit={handleSubmit}
                       onInvalid={() => {
                         ;(window as any).dataLayer = (window as any).dataLayer || []
@@ -676,8 +658,8 @@ export function BaresCasasNoturnas() {
                         />
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-zinc-300">Nome Completo</label>
+                      <div className="space-y-3">
+                        <label htmlFor="name" className="text-sm font-bold text-zinc-300 uppercase tracking-widest">Nome Completo</label>
                         <Input
                           id="name"
                           required
@@ -689,8 +671,8 @@ export function BaresCasasNoturnas() {
                         />
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="establishment" className="text-sm font-medium text-zinc-300">Nome do Estabelecimento</label>
+                      <div className="space-y-3">
+                        <label htmlFor="establishment" className="text-sm font-bold text-zinc-300 uppercase tracking-widest">Nome do Estabelecimento</label>
                         <Input
                           id="establishment"
                           required
@@ -702,8 +684,8 @@ export function BaresCasasNoturnas() {
                         />
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium text-zinc-300">WhatsApp</label>
+                      <div className="space-y-3">
+                        <label htmlFor="phone" className="text-sm font-bold text-zinc-300 uppercase tracking-widest">WhatsApp</label>
                         <Input
                           id="phone"
                           type="tel"
@@ -716,8 +698,8 @@ export function BaresCasasNoturnas() {
                         />
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="objective" className="text-sm font-medium text-zinc-300">Qual seu objetivo principal?</label>
+                      <div className="space-y-3">
+                        <label htmlFor="objective" className="text-sm font-bold text-zinc-300 uppercase tracking-widest">Qual seu objetivo principal?</label>
                         <select
                           id="objective"
                           required
@@ -756,7 +738,7 @@ export function BaresCasasNoturnas() {
                         <Button
                           disabled={isSubmitting}
                           type="submit"
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white h-14 rounded-xl text-lg font-medium shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all hover:shadow-[0_0_50px_-5px_rgba(59,130,246,0.7)]"
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white h-16 rounded-xl text-xl font-bold shadow-[0_0_40px_-5px_rgba(59,130,246,0.6)] transition-all hover:shadow-[0_0_60px_-5px_rgba(59,130,246,0.8)]"
                         >
                           {isSubmitting ? "Enviando Solicitação..." : "Solicitar Diagnóstico Técnico"}
                         </Button>
