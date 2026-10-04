@@ -234,7 +234,7 @@ const StageBoxVisual = memo(function StageBoxVisual() {
                     <div className="w-6 h-10 bg-zinc-300 rounded-t-md -mt-6 border-x border-zinc-400" />
                     <div className="w-full h-full bg-gradient-to-b from-zinc-700 to-black px-2 flex justify-center py-2 relative">
                        <div className="w-full h-full bg-[#111] rounded-sm" />
-                       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[8px] text-zinc-600 font-mono rotate-90 whitespace-nowrap opacity-50">NEUTRIK</div>
+                       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[5px] text-zinc-600 font-mono rotate-90 whitespace-nowrap opacity-50 tracking-widest">SANTO ANGELO</div>
                     </div>
                     {/* Cable Drop */}
                     <div className="w-4 h-32 bg-[#1a1a1a] absolute top-full shadow-inner" />
@@ -284,7 +284,7 @@ const marqueeLogos = [
   { type: "img" as const, src: "/qsys-logo.png", alt: "Q-SYS", className: "h-10 md:h-12" },
   { type: "text" as const, label: "Dante" },
   { type: "img" as const, src: "/shure-logo.png", alt: "Shure", className: "h-8 md:h-10" },
-  { type: "text" as const, label: "NEUTRIK" },
+  { type: "text" as const, label: "SANTO ANGELO" },
 ]
 
 
@@ -568,7 +568,7 @@ export function BaresCasasNoturnas() {
                      Erradicamos a fiação solta. Instalamos caixas de conexão de parede (Stage Boxes) padrão broadcast. O técnico da banda só precisa plugar dois cabos XLR na parede e o som está pronto. Sem quebrar a cabeça, sem atrasar o show.
                    </p>
                    <ul className="space-y-3 text-zinc-300">
-                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Conectores Neutrik industriais.</li>
+                      <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Conectores Santo Angelo industriais.</li>
                       <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0"/> Sinal limpo, balanceado e sem ruídos (ground loop).</li>
                    </ul>
                 </div>
