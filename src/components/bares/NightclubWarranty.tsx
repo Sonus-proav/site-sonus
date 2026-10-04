@@ -1,7 +1,7 @@
-import { memo } from "react"
+import { memo, lazy, Suspense } from "react"
 import { ShieldAlert, Zap, VolumeX } from "lucide-react"
 
-import True3DShield from "./True3DShield"
+const True3DShield = lazy(() => import("./True3DShield"))
 
 export const NightclubWarranty = memo(function NightclubWarranty() {
   return (
@@ -21,7 +21,9 @@ export const NightclubWarranty = memo(function NightclubWarranty() {
          
          {/* True WebGL 3D Badge */}
          <div className="flex-shrink-0 relative w-64 h-64 md:w-80 md:h-80 -ml-4">
-            <True3DShield />
+            <Suspense fallback={null}>
+               <True3DShield />
+            </Suspense>
          </div>
 
          {/* Texto da Garantia */}

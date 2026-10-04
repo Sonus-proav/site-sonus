@@ -1,5 +1,5 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel"
-import React, { useState, memo, useRef } from "react"
+import React, { useState, memo, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -16,7 +16,7 @@ import { Turnstile } from "@marsidev/react-turnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
 import { NightclubWarranty } from "@/components/bares/NightclubWarranty"
-import True3DSpeaker from "@/components/bares/True3DSpeaker"
+const True3DSpeaker = lazy(() => import("@/components/bares/True3DSpeaker"))
 import {
   ArrowRight,
   AlertTriangle,
@@ -32,7 +32,9 @@ import {
 const AudioLimiter3D = memo(function AudioLimiter3D() {
   return (
     <div className="w-full relative flex justify-center h-[500px] md:h-[600px] z-20">
-      <True3DSpeaker />
+      <Suspense fallback={<div className="w-full h-full flex items-center justify-center"><div className="w-10 h-10 rounded-full border-2 border-blue-500/40 border-t-transparent animate-spin" /></div>}>
+        <True3DSpeaker />
+      </Suspense>
     </div>
   )
 })
