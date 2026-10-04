@@ -446,3 +446,92 @@
 .mobile-device * {
   will-change: auto !important;
 }
+
+/* =======================================================================
+   EXTREME MOBILE / LOW PERFORMANCE OVERRIDES
+   Disables heavy GPU tasks (mix-blend-mode, blur-150px, backdrop-blur, 3D)
+   on devices tagged with .mobile-device or .reduced-perf
+======================================================================= */
+
+.mobile-device .glass-card,
+.mobile-device .glass-card-strong {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: rgba(9, 9, 11, 0.98) !important;
+}
+
+.mobile-device [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-device [class*="blur-\[150px\]"],
+.reduced-perf [class*="blur-\[150px\]"] {
+  display: none !important;
+}
+
+.mobile-device [class*="mix-blend-screen"],
+.mobile-device [class*="mix-blend-overlay"] {
+  mix-blend-mode: normal !important;
+  opacity: 0.1 !important; /* fallback to just faint opacity */
+}
+
+.mobile-device [class*="perspective"] {
+  perspective: none !important;
+}
+
+/* Remove 3D transform preserve on mobile to prevent clipping bugs */
+.mobile-device [style*="preserve-3d"] {
+  transform-style: flat !important;
+}
+
+/* Pause extreme animations on mobile */
+.mobile-device .animate-pulse,
+.mobile-device .animate-gpu-soundwave {
+  animation: none !important;
+}
+
+
+/* =======================================================================
+   EXTREME MOBILE / LOW PERFORMANCE OVERRIDES
+   Disables heavy GPU tasks (mix-blend-mode, blur-150px, backdrop-blur, 3D)
+   on devices tagged with .mobile-device or .reduced-perf
+======================================================================= */
+
+.mobile-device .glass-card,
+.mobile-device .glass-card-strong {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: rgba(9, 9, 11, 0.98) !important;
+}
+
+.mobile-device [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-device [class*="blur-\[150px\]"],
+.reduced-perf [class*="blur-\[150px\]"] {
+  display: none !important;
+}
+
+.mobile-device [class*="mix-blend-screen"],
+.mobile-device [class*="mix-blend-overlay"] {
+  mix-blend-mode: normal !important;
+  opacity: 0.1 !important; /* fallback to just faint opacity */
+}
+
+.mobile-device [class*="perspective"] {
+  perspective: none !important;
+}
+
+/* Remove 3D transform preserve on mobile to prevent clipping bugs */
+.mobile-device [style*="preserve-3d"] {
+  transform-style: flat !important;
+}
+
+/* Pause extreme animations on mobile */
+.mobile-device .animate-pulse,
+.mobile-device .animate-gpu-soundwave {
+  animation: none !important;
+}
