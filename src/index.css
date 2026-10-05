@@ -535,3 +535,6 @@
 .mobile-device .animate-gpu-soundwave {
   animation: none !important;
 }
+
+/* Esconde o botao do whatsapp flutuante quando a StickyCtaBar estiver visivel */
+body.has-sticky-cta .global-whatsapp-btn { opacity: 0; pointer-events: none; }

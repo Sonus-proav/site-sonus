@@ -16,16 +16,6 @@ interface Props {
 }
 
 /** Executa quando a página terminou de carregar E o navegador está ocioso (não compete com LCP/interação). */
-function whenIdle(cb: () => void, timeout: number) {
-  const run = () => {
-    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }
-    if (w.requestIdleCallback) w.requestIdleCallback(cb, { timeout })
-    else setTimeout(cb, 200)
-  }
-  if (document.readyState === "complete") run()
-  else window.addEventListener("load", run, { once: true })
-}
-
 /**
  * Mostra o pôster imediatamente e só carrega o WebGL (chunk de ~1MB) se:
  *  1) o aparelho aguenta (tier != "low"),
@@ -43,11 +33,14 @@ export function Lazy3D({ Component, poster, eager = false }: Props) {
   useEffect(() => {
     if (tier === "low" || !near || mount) return
     let cancelled = false
-    whenIdle(() => {
+    const delay = eager ? 50 : 400
+    const timer = setTimeout(() => {
       if (!cancelled) setMount(true)
-    }, eager ? 1500 : 400)
+    }, delay)
+    
     return () => {
       cancelled = true
+      clearTimeout(timer)
     }
   }, [tier, near, mount, eager])
 

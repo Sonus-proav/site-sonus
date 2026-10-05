@@ -48,9 +48,7 @@ export function getPerfTier(): PerfTier {
   
   // Apenas bloqueia WebGL se for mobile E muito fraco, ou sem suporte total a hardware.
   // Desktops parrudos sempre devem pegar high ou medium.
-  if (!hasHardwareWebGL()) {
-    tier = "low"
-  } else if (isMobile && (memory < 3 || cores <= 4 || saveData)) {
+  if (!hasHardwareWebGL() || saveData) {
     tier = "low"
   } else if (isMobile || reducedMotion || forcedLite || memory < 4 || cores <= 4) {
     tier = "medium"

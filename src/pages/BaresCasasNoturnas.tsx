@@ -450,7 +450,7 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 4. BENTO GRID (A SOLUÇÃO PREMIUM) ═══════════════ */}
-        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5">
+        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-hidden">
           {/* Ambient Lighting for Bento Grid */}
           <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
           <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />

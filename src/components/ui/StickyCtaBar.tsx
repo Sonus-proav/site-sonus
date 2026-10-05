@@ -43,6 +43,12 @@ export function StickyCtaBar({
 
   // Show after scrolling 300px
   useEffect(() => {
+    if (isVisible) document.body.classList.add("has-sticky-cta");
+    else document.body.classList.remove("has-sticky-cta");
+    return () => document.body.classList.remove("has-sticky-cta");
+  }, [isVisible]);
+
+  useEffect(() => {
     const handleScroll = () => {
       // Don't show if they are near the bottom of the page (to not overlap footer)
       const isNearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 500
