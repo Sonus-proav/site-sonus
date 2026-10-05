@@ -471,7 +471,7 @@ export function BaresCasasNoturnas() {
 
           <div className="w-full max-w-7xl mx-auto px-4">
              {/* THE BENTO GRID */}
-             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto md:auto-rows-[400px] gap-6">
+             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-6">
                 
                 {/* BENTO 1: Zoneamento (Large - Span 2 cols, 2 rows on Desktop) */}
                 <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 h-auto md:h-full">

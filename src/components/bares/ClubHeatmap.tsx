@@ -200,7 +200,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
 
       {/* Modern Floating Info Card */}
       <motion.div 
-        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90  flex items-start gap-4 max-w-[280px] sm:max-w-[340px] mx-auto w-full shadow-2xl relative overflow-hidden"
+        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90 flex flex-col sm:flex-row items-center sm:items-start gap-4 max-w-[280px] sm:max-w-[340px] mx-auto w-full shadow-2xl relative"
         key={activeData.id}
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
