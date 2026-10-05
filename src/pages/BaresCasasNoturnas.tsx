@@ -489,12 +489,11 @@ export function BaresCasasNoturnas() {
                          </p>
                       </div>
                       
-                      <div className="flex-1 w-full relative min-h-[300px]">
-                         {/* The Heatmap Mockup */}
-                         <div className="absolute inset-0 scale-90 origin-top">
-                           <ClubHeatmap />
-                         </div>
-                      </div>
+                      <div className="w-full relative px-0 pb-4 flex-1">
+                           <div className="w-full h-full scale-95 origin-top">
+                             <ClubHeatmap />
+                           </div>
+                        </div>
                    </div>
                 </FadeIn>
 
