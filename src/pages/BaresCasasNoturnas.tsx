@@ -474,8 +474,8 @@ export function BaresCasasNoturnas() {
              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto md:auto-rows-[400px] gap-6">
                 
                 {/* BENTO 1: Zoneamento (Large - Span 2 cols, 2 rows on Desktop) */}
-                <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 h-full">
-                   <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
+                <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       <div className="p-5 md:p-8 pb-0 relative z-10">
@@ -499,8 +499,8 @@ export function BaresCasasNoturnas() {
                 </FadeIn>
 
                 {/* BENTO 2: Plug & Play (Vertical - Span 1 col, 2 rows) */}
-                <FadeIn delay={0.2} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-full">
-                   <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
+                <FadeIn delay={0.2} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
@@ -520,8 +520,8 @@ export function BaresCasasNoturnas() {
                 </FadeIn>
 
                 {/* BENTO 3: ART (Vertical - Span 1 col, 2 rows) */}
-                <FadeIn delay={0.3} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-full">
-                   <div className="w-full h-full bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
+                <FadeIn delay={0.3} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
