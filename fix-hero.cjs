@@ -1,12 +1,14 @@
 const fs = require('fs');
-let s = fs.readFileSync('src/components/ui/HeroVisual.tsx', 'utf8');
+let content = fs.readFileSync('src/pages/BaresCasasNoturnas.tsx', 'utf8');
 
-const target = 'const getProjection = (rx: number, ry: number, rz: number, crz: number, h: number, zBase: number, zHover: number) => {';
-const replacement = `const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : true;
-  const getProjection = (rx: number, ry: number, rz: number, crz: number, h: number, zBase: number, zHover: number) => {
-    if (!isDesktop) return { x: 0, y: 0 };`;
+content = content.replace(
+  '<section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 overflow-x-hidden px-4 border-b border-white/5">',
+  '<section ref={heroRef} className="relative w-full pt-32 pb-16 md:pt-40 md:pb-24 lg:min-h-screen lg:flex lg:flex-col lg:items-center lg:justify-center overflow-x-hidden px-4 border-b border-white/5">'
+);
 
-s = s.replace(target, replacement);
+content = content.replace(
+  '<div className="w-full relative flex justify-center h-[500px] md:h-[600px] z-20">',
+  '<div className="w-full relative flex justify-center h-[420px] sm:h-[500px] md:h-[600px] z-20 mt-8 lg:mt-0">'
+);
 
-fs.writeFileSync('src/components/ui/HeroVisual.tsx', s);
-console.log('HeroVisual optimized!');
+fs.writeFileSync('src/pages/BaresCasasNoturnas.tsx', content, 'utf8');

@@ -33,7 +33,7 @@ import {
 // ─── 1. HERO 3D COMPONENT (TRUE 3D SPEAKER) ──────────────────────────────────
 const AudioLimiter3D = memo(function AudioLimiter3D() {
   return (
-    <div className="w-full relative flex justify-center h-[500px] md:h-[600px] z-20">
+    <div className="w-full relative flex justify-center h-[420px] sm:h-[500px] md:h-[600px] z-20 mt-8 lg:mt-0">
       <Lazy3D Component={True3DSpeaker} poster={<SpeakerPoster />} eager={true} />
     </div>
   )
@@ -319,7 +319,7 @@ export function BaresCasasNoturnas() {
       <main className="flex-1 relative z-10">
         
         {/* ═══════════════ 1. HERO (ATMOSPHERIC & MASSIVE) ═══════════════ */}
-        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 overflow-hidden px-4 border-b border-white/5">
+        <section ref={heroRef} className="relative w-full pt-32 pb-16 md:pt-40 md:pb-24 lg:min-h-screen lg:flex lg:flex-col lg:items-center lg:justify-center overflow-x-hidden px-4 border-b border-white/5">
           {/* Atmospheric Lights */}
           <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
           <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
@@ -450,7 +450,7 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 4. BENTO GRID (A SOLUÇÃO PREMIUM) ═══════════════ */}
-        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-hidden">
+        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-x-hidden">
           {/* Ambient Lighting for Bento Grid */}
           <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
           <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
@@ -469,7 +469,7 @@ export function BaresCasasNoturnas() {
             </FadeIn>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="w-full max-w-7xl mx-auto px-4">
              {/* THE BENTO GRID */}
              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[400px] gap-6">
                 

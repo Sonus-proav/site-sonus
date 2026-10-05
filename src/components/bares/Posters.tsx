@@ -7,7 +7,7 @@
 export function SpeakerPoster() {
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <svg viewBox="0 0 300 390" className="h-full max-h-[560px] w-auto" role="img" aria-label="Caixa de som profissional Sonus com woofer e corneta">
+      <svg viewBox="0 0 300 390" className="w-[85vw] max-w-[280px] h-auto object-contain" role="img" aria-label="Caixa de som profissional Sonus com woofer e corneta">
         <defs>
           <linearGradient id="sp-cab" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#2c313b" />
