@@ -33,7 +33,7 @@ export function Lazy3D({ Component, poster, eager = false }: Props) {
   useEffect(() => {
     if (tier === "low" || !near || mount) return
     let cancelled = false
-    const delay = eager ? 50 : 400
+    const delay = eager ? 800 : 400
     const timer = setTimeout(() => {
       if (!cancelled) setMount(true)
     }, delay)

@@ -109,7 +109,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
            
          >
             {/* The Floor Plan Base */}
-            <div className="absolute inset-0 bg-zinc-950/80 border-2 border-white/20 rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,1)] overflow-hidden backdrop-blur-sm">
+            <div className="absolute inset-0 bg-zinc-950/80 border-2 border-white/20 rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ">
                
                {/* 
                  The Thermal Heatmap Gradient Overlay!
@@ -132,7 +132,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
                
                {/* Room Walls & Structures Drawn with CSS */}
                {/* Stage */}
-               <div className="absolute top-[5%] left-[20%] w-[60%] h-[15%] border-2 border-white/30 bg-black/40 rounded-t-lg backdrop-blur-md flex items-center justify-center">
+               <div className="absolute top-[5%] left-[20%] w-[60%] h-[15%] border-2 border-white/30 bg-black/40 rounded-t-lg  flex items-center justify-center">
                   <span className="text-[10px] text-white/50 font-mono tracking-widest">STAGE</span>
                </div>
                
@@ -183,7 +183,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
                       
                       animate={{ y: isActive ? -10 : 0, scale: isActive ? 1.1 : 0.9 }}
                     >
-                       <div className={`px-2 py-1 rounded bg-black/80 border border-white/20 backdrop-blur-xl shadow-xl flex items-center gap-1.5 ${isActive ? 'ring-2 ring-white/50 ' + zone.glow : 'opacity-70'}`}>
+                       <div className={`px-2 py-1 rounded bg-black/80 border border-white/20  shadow-xl flex items-center gap-1.5 ${isActive ? 'ring-2 ring-white/50 ' + zone.glow : 'opacity-70'}`}>
                           <zone.icon className={`w-3 h-3 ${zone.color}`} />
                           <span className="text-[10px] font-bold text-white">{zone.coverage}dB</span>
                        </div>
@@ -200,7 +200,7 @@ export const ClubHeatmap = memo(function ClubHeatmap() {
 
       {/* Modern Floating Info Card */}
       <motion.div 
-        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl flex items-start gap-4 max-w-[280px] sm:max-w-[340px] mx-auto w-full shadow-2xl relative overflow-hidden"
+        className="mt-6 p-4 rounded-xl border border-white/10 bg-zinc-950/90  flex items-start gap-4 max-w-[280px] sm:max-w-[340px] mx-auto w-full shadow-2xl relative overflow-hidden"
         key={activeData.id}
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}

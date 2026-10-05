@@ -353,7 +353,7 @@ function Scene({ interactive }: { interactive: boolean }) {
         <circleGeometry args={[3.6, 64]} />
         <meshBasicMaterial color="#2563eb" transparent opacity={0.12} blending={THREE.AdditiveBlending} depthWrite={false} />
       </mesh>
-      <ContactShadows position={[0, -2.6, 0]} opacity={0.65} scale={14} blur={2.6} far={4} resolution={256} />
+      <ContactShadows frames={1} position={[0, -2.6, 0]} opacity={0.65} scale={14} blur={2.6} far={4} resolution={256} />
     </>
   )
 }

@@ -47,7 +47,7 @@ const StageBoxVisual = memo(function StageBoxVisual() {
        
        <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col p-6 z-10 overflow-hidden transition-all duration-700 group-hover:scale-105 group-hover:shadow-[0_40px_80px_-10px_rgba(0,0,0,1)]">
          {/* Brushed Metal Texture */}
-         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20  pointer-events-none" />
          
          {/* Screws */}
          {[
@@ -321,8 +321,8 @@ export function BaresCasasNoturnas() {
         {/* ═══════════════ 1. HERO (ATMOSPHERIC & MASSIVE) ═══════════════ */}
         <section ref={heroRef} className="relative w-full pt-32 pb-16 md:pt-40 md:pb-24 lg:min-h-screen lg:flex lg:flex-col lg:items-center lg:justify-center overflow-x-hidden px-4 border-b border-white/5">
           {/* Atmospheric Lights */}
-          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
-          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[40px] md:blur-[120px] pointer-events-none " />
+          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[40px] md:blur-[120px] pointer-events-none " />
           <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
           
           <motion.div 
@@ -416,7 +416,7 @@ export function BaresCasasNoturnas() {
         {/* ═══════════════ 3. DOR (Brutalist Dark Red Theme) ═══════════════ */}
         <section className="py-24 md:py-40 px-4 relative bg-[#020202] text-white overflow-hidden">
           {/* Subtle red glow indicating danger */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-600/5 rounded-full blur-[150px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-600/5 rounded-full blur-[40px] md:blur-[150px] pointer-events-none" />
           
           <div className="max-w-7xl mx-auto">
             <Reveal>
@@ -452,8 +452,8 @@ export function BaresCasasNoturnas() {
         {/* ═══════════════ 4. BENTO GRID (A SOLUÇÃO PREMIUM) ═══════════════ */}
         <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-x-hidden">
           {/* Ambient Lighting for Bento Grid */}
-          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
+          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[40px] md:blur-[150px] pointer-events-none" />
+          <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[40px] md:blur-[150px] pointer-events-none" />
           
           <div className="max-w-7xl mx-auto px-4 mb-16 md:mb-24 text-center">
             <Reveal>
@@ -471,7 +471,7 @@ export function BaresCasasNoturnas() {
 
           <div className="w-full max-w-7xl mx-auto px-4">
              {/* THE BENTO GRID */}
-             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[400px] gap-6">
+             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto md:auto-rows-[400px] gap-6">
                 
                 {/* BENTO 1: Zoneamento (Large - Span 2 cols, 2 rows on Desktop) */}
                 <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 h-full">
