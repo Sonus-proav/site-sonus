@@ -26,8 +26,9 @@ export function DeployButton() {
     setSuccess(false)
 
     try {
-      const response = await fetch(webhookUrl, { method: "POST" })
-      if (!response.ok) throw new Error("Falha no disparo")
+      // Usando mode: 'no-cors' porque a API da Cloudflare não envia cabeçalhos CORS para o navegador.
+      // Isso envia a requisição POST com sucesso, mas o navegador bloqueia a leitura da resposta (opaca).
+      await fetch(webhookUrl, { method: "POST", mode: "no-cors" })
       
       setSuccess(true)
       setTimeout(() => setSuccess(false), 3000)
