@@ -106,7 +106,17 @@ export function Home() {
     "@type": "PostalAddress",
     "addressCountry": "BR",
     "addressRegion": "PR"
-  },
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Brazil"
+      },
+      {
+        "@type": "Continent",
+        "name": "Latin America"
+      }
+    ],
   "sameAs": [
     "https://www.instagram.com/sonusproaudio",
     "https://br.linkedin.com/company/sonus-pro-av"
