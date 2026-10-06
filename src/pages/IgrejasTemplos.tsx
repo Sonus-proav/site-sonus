@@ -226,7 +226,7 @@ export function IgrejasTemplos() {
       "@type": "LocalBusiness",
       "name": "Sonus Pro Audio e Video"
     },
-    "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+    "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Equipamentos de Autoridade",
@@ -285,7 +285,7 @@ export function IgrejasTemplos() {
             </Reveal>
             
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">O fim das microfonias, do som embolado e da complexidade. Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong>. Empresa que projeta e instala soluções para igrejas no Paraná, Santa Catarina e Rio Grande do Sul.</p>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">O fim das microfonias, do som embolado e da complexidade. Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong>. Empresa que projeta e instala soluções para igrejas em todo o Brasil.</p>
             </FadeIn>
 
             <FadeIn delay={0.5}>

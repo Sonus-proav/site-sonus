@@ -45,7 +45,7 @@ export function AppLayout() {
           "addressRegion": "PR",
           "addressCountry": "BR"
         },
-        "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+        "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
         "knowsAbout": ["Audiovisual", "Projetos Acústicos", "Automação Corporativa", "Videoconferência"],
         "telephone": "+5546920013151",
         "priceRange": "$$$$"

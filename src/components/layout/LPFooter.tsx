@@ -21,9 +21,9 @@ export function LPFooter() {
         {/* SEO Coverage Text */}
         <div className="max-w-4xl text-center mb-10">
           <p className="text-zinc-600/70 text-xs leading-relaxed">
-            <strong>Atendimento especializado em todo o Sul do Brasil:</strong> Projetos, venda e instalação de sonorização, acústica e salas de videoconferência para empresas, auditórios e igrejas. 
+            <strong>Atendimento especializado em todo o Brasil e LATAM:</strong> Projetos, venda e instalação de sonorização, acústica e salas de videoconferência para empresas, auditórios e igrejas. 
             <br className="hidden sm:block" />
-            Cobertura ativa no <strong>Paraná</strong> (Curitiba, Maringá, Londrina, Cascavel, Ponta Grossa, Foz do Iguaçu, Pato Branco, Francisco Beltrão), <strong>Santa Catarina</strong> (Florianópolis, Joinville, Blumenau, Balneário Camboriú, Chapecó) e <strong>Rio Grande do Sul</strong> (Porto Alegre, Caxias do Sul, Passo Fundo).
+            Nosso modelo de Inteligência Audiovisual permite que você contrate o <strong>Projeto e Consultoria</strong> independente de onde estiver (Brasil e LATAM). Após a entrega técnica, a <strong>execução e instalação</strong> podem ser contratadas conosco ou com parceiros locais indicados.
           </p>
         </div>
 

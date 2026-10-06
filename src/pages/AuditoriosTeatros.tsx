@@ -245,7 +245,7 @@ export function AuditoriosTeatros() {
       "@type": "LocalBusiness",
       "name": "Sonus Pro Audio e Video"
     },
-    "areaServed": ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+    "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Equipamentos de Autoridade",

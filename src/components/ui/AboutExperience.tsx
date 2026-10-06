@@ -93,7 +93,7 @@ export function AboutExperience() {
 
               <Reveal delay={0.2}>
                 <p className="text-xl text-zinc-400 font-light leading-relaxed border-l-[3px] border-cyan-500/30 pl-8">
-                  Nenhuma empresa se mantém líder em integração audiovisual de alta complexidade por quase três décadas por acaso. A Sonus nasceu da necessidade absoluta de <strong className="text-white font-medium">erradicar o amadorismo técnico</strong> no Sul do Brasil.
+                  Nenhuma empresa se mantém líder em integração audiovisual de alta complexidade por quase três décadas por acaso. A Sonus nasceu da necessidade absoluta de <strong className="text-white font-medium">erradicar o amadorismo técnico</strong> do mercado audiovisual.
                 </p>
               </Reveal>
             </div>

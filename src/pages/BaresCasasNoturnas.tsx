@@ -299,7 +299,7 @@ export function BaresCasasNoturnas() {
     "@type": "Service",
     serviceType: "Sonorização Profissional e Laudo Acústico para Bares e Casas Noturnas",
     provider: { "@type": "LocalBusiness", name: "Sonus Pro Audio e Video" },
-    areaServed: ["Paraná", "Santa Catarina", "Rio Grande do Sul", "Brasil"],
+    areaServed: [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
   }
   const inputClass = "bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
 
@@ -308,7 +308,7 @@ export function BaresCasasNoturnas() {
       <SEO
         title="Sonorização para Bares e Casas Noturnas no Paraná | Sonus Pro AV"
         description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar no Paraná, SC e RS."
-        keywords="sonorização de bares paraná, laudo acústico casa noturna, projeto de áudio boates santa catarina, dsp para bares, acústica de igrejas sudoeste paraná, sonorização profissional maringá cascavel"
+        keywords="sonorização de bares, laudo acústico casa noturna, projeto de áudio boates, dsp para bares, projeto de acústica nacional, sonorização profissional"
         image="/og-image.jpg"
         url="https://sonusproaudio.com.br/bares-e-casas-noturnas"
         schema={schema}
@@ -464,7 +464,7 @@ export function BaresCasasNoturnas() {
             </Reveal>
             <FadeIn delay={0.2}>
               <p className="text-xl md:text-2xl text-zinc-400 mt-8 max-w-3xl mx-auto font-light leading-relaxed">
-                Nós blindamos o seu bar contra falhas humanas. Atendemos casas noturnas e igrejas em todo o <strong>Paraná, Santa Catarina e Rio Grande do Sul</strong>.
+                Nós blindamos o seu bar contra falhas humanas. Atendemos casas noturnas e igrejas em todo o <strong>Brasil e América Latina</strong>.
               </p>
             </FadeIn>
           </div>
