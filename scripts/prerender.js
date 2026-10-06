@@ -21,35 +21,12 @@ const baseRoutes = [
   '/links',
 ];
 
-// Lê os projetos do JSON e adiciona à lista de rotas
-let projectRoutes = [];
-try {
-  const projectsData = fs.readFileSync(path.join(__dirname, '../data/projects.json'), 'utf-8');
-  const projects = JSON.parse(projectsData);
-  projectRoutes = projects.map(p => `/projetos/${p.id}`);
-  console.log(`[Sitemap] Foram encontrados ${projectRoutes.length} projetos dinâmicos.`);
-} catch (e) {
-  console.error('[Erro] Falha ao ler data/projects.json', e);
-}
-
-const routes = [...baseRoutes, ...projectRoutes];
-
 const PORT = 3000;
 const app = express();
 
 // Serve a pasta dist finalizada pelo Vite
 const distPath = path.join(__dirname, '../dist');
 app.use(express.static(distPath));
-
-// Endpoint mock para os projetos carregarem durante o prerender
-app.get('/api/projects', (req, res) => {
-  const dataPath = path.join(__dirname, '../data/projects.json');
-  if (fs.existsSync(dataPath)) {
-    res.sendFile(dataPath);
-  } else {
-    res.json([]);
-  }
-});
 
 // Fallback para SPA - qualquer rota joga para o index.html original
 app.use((req, res) => {
@@ -86,13 +63,41 @@ function generateSitemap(allRoutes) {
   }
   sitemapXml += `\n</urlset>`;
   
-  // Salva no dist para deploy e no public para backup no repositório
+  // Salva no dist para deploy e no public para backup
   fs.writeFileSync(path.join(distPath, 'sitemap.xml'), sitemapXml);
   fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), sitemapXml);
   console.log('[Sitemap] sitemap.xml gerado com sucesso!');
 }
 
 async function prerender() {
+  console.log('Iniciando build de rotas dinâmicas a partir do Firebase...');
+  
+  // Busca os projetos diretamente da base de dados oficial (Firebase REST API)
+  let projectRoutes = [];
+  try {
+    const res = await fetch("https://firestore.googleapis.com/v1/projects/sonus-site-ae590/databases/(default)/documents/projects");
+    if (res.ok) {
+      const json = await res.json();
+      if (json.documents && json.documents.length > 0) {
+        // Ignora projetos ocultos
+        const visibleProjects = json.documents.filter(doc => {
+          return !(doc.fields.isHidden?.booleanValue === true);
+        });
+        projectRoutes = visibleProjects.map(doc => {
+          const id = parseInt(doc.fields.id?.integerValue || doc.fields.id?.stringValue || "0");
+          return `/projetos/${id}`;
+        });
+        console.log(`[Banco de Dados] Encontrados ${projectRoutes.length} projetos visíveis.`);
+      }
+    } else {
+      console.error('[Erro Firebase] Resposta não OK:', res.status);
+    }
+  } catch (e) {
+    console.error('[Erro Firebase] Falha ao buscar projetos na API:', e);
+  }
+
+  const routes = [...baseRoutes, ...projectRoutes];
+
   console.log('Iniciando servidor estático local para prerenderização...');
   const server = app.listen(PORT, async () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
@@ -146,7 +151,6 @@ async function prerender() {
     await browser.close();
     server.close();
     
-    // Gera o Sitemap com todas as rotas processadas
     generateSitemap(routes);
     
     console.log('🎉 Prerenderização concluída com sucesso!');
