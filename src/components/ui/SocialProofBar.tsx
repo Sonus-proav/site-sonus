@@ -165,7 +165,7 @@ export function SocialProofBar({ stats = defaultStats }: SocialProofBarProps) {
               Atendimento em todo o Brasil e América Latina.
             </h4>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed font-light">
-              Nosso modelo é focado na <strong>Inteligência Audiovisual</strong>. Nós vendemos a consultoria e o projeto acústico independente primeiro. Após a aprovação, caso o cliente deseje, <strong>fornecemos todos os equipamentos e executamos a instalação e calibração fina</strong> do sistema em qualquer lugar do território nacional e América Latina (como nosso projeto recente no Mato Grosso).
+              Nosso modelo é focado na <strong>Inteligência Audiovisual</strong>. Nós vendemos a consultoria e o projeto acústico independente primeiro. Após a aprovação, caso o cliente deseje, <strong>fornecemos todos os equipamentos e executamos a instalação e calibração fina</strong> do sistema em qualquer lugar do território nacional e América Latina.
             </p>
           </div>
         </motion.div>
