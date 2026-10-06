@@ -382,7 +382,7 @@ export function BaresCasasNoturnas() {
         <section className="relative z-10 w-full pt-16 pb-12 bg-[#020202] border-b border-white/5 overflow-hidden flex flex-col items-center">
           <Reveal>
             <h2 className="text-zinc-500 font-medium tracking-widest uppercase text-xs md:text-sm mb-10 text-center px-4">
-              Tecnologia de Nível Internacional no <span className="text-white font-bold">Sudoeste do Paraná</span>
+              Tecnologia de Nível Internacional
             </h2>
           </Reveal>
           
