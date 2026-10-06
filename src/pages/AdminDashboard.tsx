@@ -8,6 +8,7 @@ import { optimizeImageUrl } from "@/lib/publicStorage"
 import { ProjectModal } from "@/components/admin/ProjectModal"
 import { AnalyticsDashboardTab } from "@/components/admin/AnalyticsDashboardTab"
 import { LeadsDashboardTab } from "@/components/admin/LeadsDashboardTab"
+import { DeployButton } from "@/components/admin/DeployButton"
 
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"projects" | "analytics" | "leads">("projects")
@@ -118,7 +119,8 @@ export function AdminDashboard() {
           <div className="flex items-center gap-4">
             <Link to="/" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">
               <Home className="w-4 h-4" /> Ver Site
-            </Link>
+              </Link>
+              <DeployButton />
             <button 
               onClick={handleAddNew}
               className="bg-primary hover:bg-primary/90 text-white font-semibold py-2.5 px-6 rounded-full flex items-center gap-2 transition-colors shadow-[0_0_15px_rgba(41,128,185,0.3)]"
