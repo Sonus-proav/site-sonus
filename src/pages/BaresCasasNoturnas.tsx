@@ -306,8 +306,8 @@ export function BaresCasasNoturnas() {
   return (
     <div className="flex flex-col min-h-screen bg-[#020202] text-white selection:bg-blue-500/30">
       <SEO
-        title="Sonorização para Bares e Casas Noturnas no Paraná | Sonus Pro AV"
-        description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar no Paraná, SC e RS."
+        title="Sonorização para Bares e Casas Noturnas | Sonus Pro AV"
+        description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar em todo o Brasil."
         keywords="sonorização de bares, laudo acústico casa noturna, projeto de áudio boates, dsp para bares, projeto de acústica nacional, sonorização profissional"
         image="/og-image.jpg"
         url="https://sonusproaudio.com.br/bares-e-casas-noturnas"

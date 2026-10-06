@@ -197,7 +197,7 @@ export function MeetingRoomsLanding() {
         <link rel="preload" href="/soundwave-bg.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO schema={salasSchema} 
-        title="Empresa que projeta e instala salas de reunião corporativas no PR, SC e RS | Sonus" 
+        title="Empresa que projeta e instala salas de reunião corporativas | Sonus" 
         description="Projetamos e instalamos salas de reunião corporativas, videoconferência e automação para empresas em todo o Brasil." 
         image="/salas-corporativas.webp"
         url="https://sonusproaudio.com.br/salas-reuniao"

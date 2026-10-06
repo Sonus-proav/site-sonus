@@ -111,7 +111,7 @@ export function Footer() {
               © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados. CNPJ: 02.484.642/0001-39
             </p>
             <p className="text-zinc-500/80 text-xs font-light">
-              Empresa que projeta e instala salas de reunião corporativas, auditórios e igrejas. Sede em Francisco Beltrão. Projetos e consultoria acústica para todo o Brasil e América Latina. Venda de equipamentos e execução de instalação opcionais (nacional).
+              Empresa que projeta e instala salas de reunião corporativas, auditórios e igrejas. Sede em Francisco Beltrão. Projetos e consultoria acústica para todo o Brasil e América Latina. Fornecemos os equipamentos e executamos a instalação presencial onde o seu projeto precisar.
             </p>
           </div>
         </div>
