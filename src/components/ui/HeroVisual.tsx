@@ -160,7 +160,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered ? -150 : -60 }}
+            animate={{ translateZ: isHovered || !isDesktop ? -120 : -60 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-[size:30px_30px] bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)]" />
@@ -187,7 +187,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered ? -50 : -20 }}
+            animate={{ translateZ: isHovered || !isDesktop ? -40 : -20 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
@@ -222,7 +222,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-violet-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered ? 50 : 20 }}
+            animate={{ translateZ: isHovered || !isDesktop ? 40 : 20 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-transparent" />
@@ -264,7 +264,7 @@ export function HeroVisual() {
                 ? "0 80px 120px -30px rgba(6,182,212,0.4), inset 0 0 20px rgba(6,182,212,0.2)" 
                 : "0 40px 80px -20px rgba(6,182,212,0.2), inset 0 0 10px rgba(6,182,212,0.1)"
             }}
-            animate={{ translateZ: isHovered ? 150 : 60 }}
+            animate={{ translateZ: isHovered || !isDesktop ? 120 : 60 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute top-6 left-6 right-6 flex justify-between items-center pb-4 border-b border-white/10">
