@@ -128,9 +128,11 @@ export function Home() {
 
       {/* VIBRANT HIGH-TECH HERO */}
       <section className="relative z-10 min-h-screen flex items-center pt-28 pb-20 bg-[#050505]">
-        {/* Vibrant Gradient Orbs (Controlled, not overpowering) */}
+        {/* Background Orbs Wrapper (Prevents horizontal scroll without clipping the 3D element) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15)_0%,transparent_60%)] pointer-events-none z-0 translate-x-1/3 -translate-y-1/3" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_60%)] pointer-events-none z-0 -translate-x-1/3 translate-y-1/3" />
+        </div>
 
         <div className="container px-4 md:px-8 xl:px-16 relative z-10 mx-auto w-full max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
