@@ -29,9 +29,9 @@ export function HeroVisual() {
   // The continuous spin completes 360deg in 120s (120000ms)
   const continuousRotateZ = useTransform(time, (t) => (t / 120000) * 360);
 
-  const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : true;
+  
   const getProjection = (rx: number, ry: number, rz: number, crz: number, h: number, zBase: number, zHover: number) => {
-    if (!isDesktop) return { x: 0, y: 0 };
+    
     const z = zBase + (zHover - zBase) * h;
     
     // Pixel-perfect visual edge for 360x360 box with 40px rounded corners
@@ -151,7 +151,7 @@ export function HeroVisual() {
         <motion.div
           className="absolute inset-0"
           style={{ transformStyle: "preserve-3d", willChange: "transform" }}
-          animate={isDesktop ? { rotateZ: 360 } : {}}
+          animate={{ rotateZ: 360 }}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
         >
           {/* =======================================
@@ -160,7 +160,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-blue-500/30 bg-black overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered || !isDesktop ? -120 : -60 }}
+            animate={{ translateZ: isHovered ? -150 : -90 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-[size:30px_30px] bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)]" />
@@ -169,12 +169,12 @@ export function HeroVisual() {
             </div>
             <motion.div 
               className="absolute top-[50%] left-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-full"
-              animate={isDesktop ? { x: ["-100%", "100%"] } : {}}
+              animate={{ x: ["-100%", "100%"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             />
             <motion.div 
               className="absolute left-[50%] top-0 w-[2px] bg-gradient-to-b from-transparent via-blue-400 to-transparent h-full"
-              animate={isDesktop ? { y: ["-100%", "100%"] } : {}}
+              animate={{ y: ["-100%", "100%"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1.5 }}
             />
             <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-blue-500/50" />
@@ -187,7 +187,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-emerald-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered || !isDesktop ? -40 : -20 }}
+            animate={{ translateZ: isHovered ? -50 : -30 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
@@ -196,7 +196,7 @@ export function HeroVisual() {
                 <motion.div
                   key={i}
                   className="absolute w-24 h-24 rounded-full border-2 border-emerald-500/30"
-                  animate={isDesktop ? { scale: [1, 3], opacity: [0.8, 0] } : {}}
+                  animate={{ scale: [1, 3], opacity: [0.8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "linear" }}
                 />
               ))}
@@ -209,7 +209,7 @@ export function HeroVisual() {
                 <motion.div
                   key={i}
                   className="w-full bg-emerald-400/60 rounded-t-sm"
-                  animate={isDesktop ? { height: [`${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`] } : { height: "50%" }}
+                  animate={{ height: [`${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`, `${20 + Math.random() * 80}%`] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
                 />
               ))}
@@ -222,7 +222,7 @@ export function HeroVisual() {
           <motion.div 
             className="absolute inset-0 rounded-[2.5rem] border-[1.5px] border-violet-500/30 bg-[#050505] md:bg-[#070707] overflow-hidden"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ translateZ: isHovered || !isDesktop ? 40 : 20 }}
+            animate={{ translateZ: isHovered ? 50 : 30 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-transparent" />
@@ -264,7 +264,7 @@ export function HeroVisual() {
                 ? "0 80px 120px -30px rgba(6,182,212,0.4), inset 0 0 20px rgba(6,182,212,0.2)" 
                 : "0 40px 80px -20px rgba(6,182,212,0.2), inset 0 0 10px rgba(6,182,212,0.1)"
             }}
-            animate={{ translateZ: isHovered || !isDesktop ? 120 : 60 }}
+            animate={{ translateZ: isHovered ? 150 : 90 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="absolute top-6 left-6 right-6 flex justify-between items-center pb-4 border-b border-white/10">
