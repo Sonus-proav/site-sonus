@@ -18,24 +18,24 @@ interface TestimonialSectionProps {
 
 const defaultTestimonials: Testimonial[] = [
   {
-    name: "Felipe Rodrigues",
-    role: "Gerente de Infraestrutura",
+    name: "Felipe",
+    role: "Gerente de TI",
     company: "Multinacional Corporativa",
-    initials: "FR",
+    initials: "F",
     text: "A gente perdia pelo menos uns 15 minutos de cada reunião só tentando fazer o áudio funcionar nas salas antigas. O que a Sonus fez aqui foi absurdo: eles padronizaram tudo. Hoje a diretoria entra, aperta um único botão na tela e a videoconferência simplesmente liga. Zeramos os chamados no TI por conta de microfone mudo."
   },
   {
-    name: "Pr. Leandro Costa",
+    name: "Pr. Leandro",
     role: "Pastor Presidente",
     company: "Comunidade Cristã",
-    initials: "LC",
+    initials: "PL",
     text: "Sempre sofremos com o som reverberando na Igreja e a palavra não era entendida no fundo do templo. A Sonus não apenas trocou as caixas; eles desenharam um projeto acústico e de PA do zero. Hoje a palavra é clara como cristal, do primeiro ao último banco."
   },
   {
-    name: "Ana Sílvia Lins",
+    name: "Ana",
     role: "Diretora Acadêmica",
     company: "Universidade Privada",
-    initials: "AS",
+    initials: "A",
     text: "O Teatro do campus precisava de um sistema à altura dos grandes espetáculos e ao mesmo tempo simples o suficiente para eventos diários. A equipe da Sonus entregou um sistema robusto de áudio, painel de LED e iluminação que superou nossas expectativas. A execução da obra foi impecável."
   }
 ]
