@@ -476,14 +476,9 @@
   opacity: 0.1 !important; /* fallback to just faint opacity */
 }
 
-.mobile-device [class*="perspective"] {
-  perspective: none !important;
-}
 
-/* Remove 3D transform preserve on mobile to prevent clipping bugs */
-.mobile-device [style*="preserve-3d"] {
-  transform-style: flat !important;
-}
+
+
 
 /* Pause extreme animations on mobile */
 .mobile-device .animate-pulse,
@@ -521,14 +516,9 @@
   opacity: 0.1 !important; /* fallback to just faint opacity */
 }
 
-.mobile-device [class*="perspective"] {
-  perspective: none !important;
-}
 
-/* Remove 3D transform preserve on mobile to prevent clipping bugs */
-.mobile-device [style*="preserve-3d"] {
-  transform-style: flat !important;
-}
+
+
 
 /* Pause extreme animations on mobile */
 .mobile-device .animate-pulse,
