@@ -132,7 +132,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">Plenários e Câmaras</h2>
                   <p className="text-zinc-400 text-lg font-light leading-relaxed mb-8 max-w-lg">
-                    A Soberania do Som e da Imagem. Projetos de alta precisão. Votação eletrônica, atas digitais automáticas e rastreamento robótico PTZ.
+                    Tecnologia para o legislativo. Câmeras que focam automaticamente em quem está falando e painel seguro para votação eletrônica.
                   </p>
                   <Link 
                     to="/plenarios-e-camaras" 
@@ -186,7 +186,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-white mb-4">Salas Corporativas</h2>
                   <p className="text-zinc-400 text-base font-light leading-relaxed mb-8">
-                    Videoconferência de Alto Padrão. Padronização tecnológica para diretorias, eliminando atritos tecnológicos em reuniões globais.
+                    Videoconferência de alto padrão. Microfones invisíveis no teto, conexão fácil para notebooks e compatibilidade total com Teams e Zoom.
                   </p>
                   <Link 
                     to="/salas-reuniao" 
@@ -239,7 +239,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-3xl font-black tracking-tighter text-white mb-3">Auditórios & Teatros</h2>
                   <p className="text-zinc-400 text-sm font-light leading-relaxed mb-6">
-                    Acústica em Grande Escala. Sonorização de alta inteligibilidade projetada para a geometria do espaço.
+                    Sonorização de grande porte. Som limpo em todas as fileiras e controle centralizado no tablet para adaptar a sala a qualquer evento.
                   </p>
                   <Link 
                     to="/auditorios-e-teatros" 
@@ -286,7 +286,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-3xl font-black tracking-tighter text-white mb-3">Igrejas & Templos</h2>
                   <p className="text-zinc-400 text-sm font-light leading-relaxed mb-6">
-                    A Mensagem Entregue com Clareza. Sistemas que respeitam a arquitetura sagrada e proporcionam impacto sonoro.
+                    Controle de pressão sonora e inteligibilidade. Processamento digital para garantir a clareza da palavra sem microfonias.
                   </p>
                   <Link 
                     to="/igrejas-e-templos" 
@@ -344,7 +344,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-3xl font-black tracking-tighter text-white mb-3">Plataforma Q-SYS</h2>
                   <p className="text-zinc-400 text-sm font-light leading-relaxed mb-6">
-                    O Cérebro da Integração AV. Infraestrutura baseada em software que centraliza áudio, vídeo e controle.
+                    O cérebro do sistema. Um único processador inteligente que substitui dezenas de equipamentos antigos, gerenciando tudo através da rede.
                   </p>
                   <Link 
                     to="/qsys" 
@@ -375,7 +375,7 @@ export function Solucoes() {
                 <div>
                   <h2 className="text-3xl font-black tracking-tighter text-white mb-3">Bares & Casas Noturnas</h2>
                   <p className="text-zinc-400 text-sm md:text-base font-light leading-relaxed mb-6 max-w-xl">
-                    Som Impecável na Pista. Zero Multas na Porta. Infraestrutura "Plug & Play", controle ativo de volume (DSP) e Laudo Acústico (ART) para blindagem do alvará.
+                    Zoneamento IP e controle de dispersão. Pressão sonora máxima na pista com adequação rigorosa às normas de emissão.
                   </p>
                   <Link 
                     to="/bares-e-casas-noturnas" 

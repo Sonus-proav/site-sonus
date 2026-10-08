@@ -197,8 +197,8 @@ export function MeetingRoomsLanding() {
         <link rel="preload" href="/soundwave-bg.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO schema={salasSchema} 
-        title="Empresa que projeta e instala salas de reunião corporativas | Sonus" 
-        description="Projetamos e instalamos salas de reunião corporativas, videoconferência e automação para empresas em todo o Brasil." 
+        title="Videoconferência e Automação para Diretorias | Sonus Pro AV" 
+        description="Padronize suas salas de reunião corporativas. Integração nativa de áudio, vídeo e controle projetada para iniciar reuniões no horário previsto." 
         image="/salas-corporativas.webp"
         url="https://sonusproaudio.com.br/salas-reuniao"
       />
@@ -230,18 +230,17 @@ export function MeetingRoomsLanding() {
             </FadeIn>
 
             <Reveal>
-              <h1 className="text-5xl sm:text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-tighter leading-[1] md:leading-[0.9]">
-                Fim do <br />
+              <h1 className="text-5xl sm:text-[3rem] md:text-[4rem] lg:text-[4.5rem] font-black tracking-tighter leading-[1] md:leading-[0.9]">
+                Videoconferência e Automação <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-                  Improviso.
+                  para Diretorias.
                 </span>
               </h1>
             </Reveal>
 
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
-                Chega de perder os primeiros 15 minutos de reunião tentando fazer o áudio funcionar. 
-                Sua sala integrada com captação invisível Shure, processamento Q-SYS e vídeo nativo para Teams e Zoom.
+                Padronize suas salas de reunião corporativas. Integração nativa de áudio, vídeo e controle projetada para iniciar reuniões no horário previsto, reduzindo a zero a dependência de suporte técnico em tempo real.
               </p>
             </FadeIn>
 
@@ -499,9 +498,9 @@ export function MeetingRoomsLanding() {
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 text-blue-400">
                   <ShieldCheck className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">SLA Corporativo & Zero Downtime</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Arquitetura BYOD e Integração Nativa</h3>
                 <p className="text-zinc-400 leading-relaxed text-lg">
-                  Manutenção preventiva, monitoramento remoto de ativos via nuvem e atuação fora do horário comercial para não interromper a rotina da sua diretoria. Seu sistema nunca fica inoperante.
+                  Compatibilidade direta com Microsoft Teams, Zoom e Google Meet. O usuário conecta seu próprio dispositivo e o sistema assume imediatamente as câmeras e microfones da sala.
                 </p>
               </SpotlightCard>
             </FadeIn>
@@ -511,9 +510,9 @@ export function MeetingRoomsLanding() {
                 <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 text-purple-400">
                   <Settings className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Painéis Personalizados</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Captação de Áudio Array</h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Telas de um toque desenhadas com a logo e cores da sua empresa. Sem curva de aprendizado para a equipe.
+                  Implementação de microfones de teto com rastreamento de voz e cancelamento de eco (AEC). Elimina cabeamento na mesa e garante que todos os participantes sejam ouvidos com clareza.
                 </p>
               </SpotlightCard>
             </FadeIn>
@@ -525,9 +524,9 @@ export function MeetingRoomsLanding() {
                     <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
                       <Mic className="w-7 h-7" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Estudo Acústico 3D Gratuito</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">Controle Centralizado na Mesa</h3>
                     <p className="text-zinc-400 leading-relaxed text-lg">
-                      Antes de qualquer cabo ser passado, nossa equipe desenha sua sala em software 3D para prever reverberações e definir a angulação exata dos microfones de teto.
+                      Telas touch screen (UCI) customizadas. Um único painel gerencia a chamada de vídeo, o volume do sistema, as cortinas e a iluminação.
                     </p>
                   </div>
                   <div className="w-full md:w-1/2 bg-black rounded-2xl p-4 border border-white/5 relative overflow-hidden h-64 md:h-72">

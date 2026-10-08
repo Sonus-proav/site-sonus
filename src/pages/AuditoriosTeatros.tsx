@@ -274,8 +274,8 @@ export function AuditoriosTeatros() {
         <link rel="preload" href="/auditorio-sonus.webp" as="image" fetchPriority="high" />
       </Helmet>
       <SEO 
-        title="Sonorização para Auditórios e Teatros | Sonus Pro AV" 
-        description="Soluções audiovisuais de alta performance para grandes eventos. Integração Q-SYS e Shure com foco em inteligibilidade e falha zero." 
+        title="Engenharia Audiovisual para Auditórios | Sonus Pro AV" 
+        description="Infraestrutura de sonorização, roteamento de vídeo e automação projetada para eventos de grande porte, garantindo cobertura acústica uniforme." 
         image="/auditorio-sonus.webp"
         url="https://sonusproaudio.com.br/auditorios-e-teatros"
         keywords="sonorização para auditórios, projeto de áudio para teatro, automação audiovisual, sistema de som profissional, microfones shure para auditório, Q-SYS integração, sonorização teatro, som ambiente auditório"
@@ -309,7 +309,7 @@ export function AuditoriosTeatros() {
 
             <FadeIn delay={0.3}>
               <p className="text-lg md:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed mx-auto md:mx-0">
-                Sistemas audiovisuais completos para auditórios e teatros. Cobertura sonora uniforme e controle absoluto nas mãos do seu operador.
+                Infraestrutura de sonorização, roteamento de vídeo e automação projetada para eventos de grande porte, garantindo cobertura acústica uniforme e flexibilidade de uso do espaço.
               </p>
             </FadeIn>
 
@@ -403,10 +403,10 @@ export function AuditoriosTeatros() {
                   </span>
                   
                   <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-red-100 transition-colors">
-                    Fadiga Auditiva
+                    Alinhamento Acústico Digital
                   </h3>
                   <p className="text-zinc-400 text-base leading-relaxed">
-                    Ecos, cortes e ruídos que destroem a mensagem do palestrante após longas horas. O público abandona a apresentação antes do fim por puro cansaço mental.
+                    Posicionamento estratégico e equalização via processadores DSP para garantir que o nível de pressão sonora e a nitidez da voz sejam idênticos em todas as poltronas.
                   </p>
                 </SpotlightCard>
               </FadeIn>
@@ -425,10 +425,10 @@ export function AuditoriosTeatros() {
                   </span>
                   
                   <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-orange-100 transition-colors">
-                    Dependência Técnica
+                    Automação de Salas Divisíveis (Room Combining)
                   </h3>
                   <p className="text-zinc-400 text-base leading-relaxed">
-                    Sistemas desintegrados que exigem um profissional de TI sempre presente para "apertar botões", conectar cabos e resolver quedas no meio da apresentação.
+                    Sensores de estado alteram automaticamente a configuração de áudio, vídeo e iluminação quando as paredes retráteis do auditório são abertas ou fechadas.
                   </p>
                 </SpotlightCard>
               </FadeIn>
@@ -447,10 +447,10 @@ export function AuditoriosTeatros() {
                   </span>
                   
                   <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-purple-100 transition-colors">
-                    Poluição Visual
+                    Gestão Simplificada de Eventos
                   </h3>
                   <p className="text-zinc-400 text-base leading-relaxed">
-                    Caixas de som gigantescas e pilhas de cabos expostos que arruínam completamente o design de interiores arquitetônico em que milhões foram investidos.
+                    Controle centralizado de microfones sem fio, matrizes de vídeo e iluminação DMX através de painéis táteis programados para operadores não técnicos.
                   </p>
                 </SpotlightCard>
               </FadeIn>

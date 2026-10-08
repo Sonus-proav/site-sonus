@@ -90,9 +90,9 @@ const PlenaryBlueprint = memo(function PlenaryBlueprint() {
   const [active, setActive] = useState(0);
   const items = [
     { 
-      title: "Cérebro Q-SYS", 
+      title: "Rastreamento Automático de Câmeras (PTZ)", 
       icon: <Cpu className="w-5 h-5" />, 
-      desc: "Um único Q-SYS Core gerencia todo o áudio, os cortes de vídeo e a automação do plenário através da rede local (IP/Dante), eliminando a necessidade de racks analógicos e DSPs isolados.",
+      desc: "O sistema identifica a ativação do microfone do parlamentar e direciona o foco do vídeo instantaneamente, eliminando a necessidade de um operador de corte manual.",
       visual: (
         <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden group">
           {/* Grid background */}
@@ -121,9 +121,9 @@ const PlenaryBlueprint = memo(function PlenaryBlueprint() {
       )
     },
     { 
-      title: "Captação Shure MXC", 
+      title: "Gerenciamento da Sessão", 
       icon: <Mic className="w-5 h-5" />, 
-      desc: "A linha MXC da Shure entrega imunidade absoluta a smartphones (5G). Os anéis de LED indicam visualmente quem tem a palavra, enquanto o sistema gerencia a fila de fala automaticamente.",
+      desc: "A presidência controla os tempos de fala e as prioridades dos microfones da tribuna e bancadas, garantindo a ordem e a inteligibilidade do áudio no plenário.",
       visual: (
         <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.1)_0,transparent_60%)]" />
@@ -163,7 +163,7 @@ const PlenaryBlueprint = memo(function PlenaryBlueprint() {
     { 
       title: "Câmeras Auto-Track", 
       icon: <Cctv className="w-5 h-5" />, 
-      desc: "O corte de câmera deixa de ser manual. Ao apertar o botão do microfone, o Q-SYS direciona a câmera PTZ exata para o rosto do vereador em milissegundos. Enquadramento sempre perfeito.",
+      desc: "Painel digital de votação e geração automática de atas nominais em PDF. Documentos protegidos com assinatura criptográfica (SHA-256), prontos para publicação no Portal da Transparência.",
       visual: (
         <div className="w-full h-full bg-[#020202] flex items-center justify-center relative overflow-hidden">
            {/* Camera targeting system */}
@@ -433,12 +433,12 @@ export function PlenariosLanding() {
 return (
     <div className="dark min-h-screen bg-[#020202] text-white selection:bg-blue-500/30 font-sans">
       <Helmet>
-        <title>Plenários e Câmaras Municipais | Sonus Pro Audio</title>
-        <meta name="description" content="Sistemas de áudio, automação de câmeras e votação eletrônica para Plenários. Solicite um Termo de Referência ou Projeto Executivo." />
+        <title>Integração Audiovisual para o Legislativo | Sonus Pro AV</title>
+        <meta name="description" content="Sistemas dedicados à organização do rito legislativo. Automação de corte de câmeras, gerenciamento de uso da palavra e painel de votação eletrônica nominal." />
       </Helmet>
       <SEO 
-        title="Plenários e Câmaras Municipais | Sonus Pro Audio"
-        description="Sistemas de áudio, automação de câmeras e votação eletrônica nominal para Plenários Legislativos. Solicite apoio na elaboração do Termo de Referência."
+        title="Integração Audiovisual para o Legislativo | Sonus Pro AV"
+        description="Sistemas dedicados à organização do rito legislativo. Automação de corte de câmeras, gerenciamento de uso da palavra e painel de votação eletrônica nominal."
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",

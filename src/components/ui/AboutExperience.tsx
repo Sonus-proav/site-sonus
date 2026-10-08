@@ -31,7 +31,7 @@ export function AboutExperience() {
           transition={{ duration: 20, repeat: Infinity, ease: "linear", repeatType: "reverse" }}
           className="text-[25vw] font-black leading-none tracking-tighter text-white/[0.02] whitespace-nowrap"
         >
-          28 ANOS 28 ANOS
+          28 ANOS DE ENGENHARIA APLICADA
         </motion.div>
       </div>
 
@@ -60,8 +60,8 @@ export function AboutExperience() {
                   <div className="p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm md:backdrop-blur-md md:backdrop-blur-2xl border border-white/10 relative overflow-hidden group/badge">
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 translate-y-full group-hover/badge:translate-y-0 transition-transform duration-500" />
                     <div className="relative z-10 flex flex-col">
-                      <span className="text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 mb-1">+28</span>
-                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-400">Anos de Mercado</span>
+                      <span className="text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 mb-1">+200</span>
+                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-400">Projetos Entregues</span>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ export function AboutExperience() {
                 {/* Status UI Overlay (Topo Direito) */}
                 <div className="absolute top-8 right-8 px-4 py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] font-mono tracking-widest text-zinc-300 uppercase">Status: Leader</span>
+                  <span className="text-[10px] font-mono tracking-widest text-zinc-300 uppercase">Uptime: 99.7%</span>
                 </div>
               </div>
             </Magnetic>
@@ -81,19 +81,19 @@ export function AboutExperience() {
               <Reveal>
                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8">
                   <Shield className="w-4 h-4 text-blue-400" />
-                  <span className="text-blue-400 text-xs font-bold uppercase tracking-[0.2em]">A Garantia da Experiência</span>
+                  <span className="text-blue-400 text-xs font-bold uppercase tracking-[0.2em]">Engenharia Aplicada</span>
                 </div>
               </Reveal>
 
               <Reveal delay={0.1}>
                 <h2 className="text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white leading-[1.05] mb-8">
-                  Nós construímos a base para você operar <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">no topo.</span>
+                  Arquitetura Inteligente. <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Operação Simples.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.2}>
                 <p className="text-xl text-zinc-400 font-light leading-relaxed border-l-[3px] border-cyan-500/30 pl-8">
-                  Nenhuma empresa se mantém líder em integração audiovisual de alta complexidade por quase três décadas por acaso. A Sonus nasceu da necessidade absoluta de <strong className="text-white font-medium">erradicar o amadorismo técnico</strong> do mercado audiovisual.
+                  Acreditamos que a tecnologia deve facilitar o trabalho, não gerar chamados de suporte. Centralizamos o controle de áudio, vídeo e iluminação em interfaces simples (Touch Screens). O usuário aperta um botão, a sala se prepara sozinha e a reunião começa na hora.
                 </p>
               </Reveal>
             </div>

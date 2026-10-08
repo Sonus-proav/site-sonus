@@ -89,11 +89,11 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-cyan-500/30 selection:text-white">
       <Helmet>
-        <title>Sonus Pro AV | A Fundação de Ambientes Críticos</title>
+        <title>Sonus Pro AV | Integração de Áudio e Vídeo para Ambientes Profissionais</title>
       </Helmet>
       <SEO 
-        title="Sonus Pro AV | Integração Audiovisual de Alto Padrão" 
-        description="A tecnologia desaparece. A conexão importa. Projetos audiovisuais de precisão para Salas Corporativas, Plenários e Auditórios." 
+        title="Sonus Pro AV | Integração de Áudio e Vídeo para Ambientes Profissionais" 
+        description="Projetamos e instalamos sistemas de som, videoconferência e automação. Transformamos auditórios, salas de reunião e plenários em espaços fáceis de usar e totalmente integrados à rede da empresa." 
         url="https://sonusproaudio.com.br"
         schema={{
   "@context": "https://schema.org",
@@ -150,15 +150,15 @@ export function Home() {
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
               >
-                O Poder da <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Precisão Absoluta.</span>
+                Integração de <br className="hidden lg:block" /> Áudio e Vídeo <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">para Ambientes Profissionais.</span>
               </motion.h1>
 
               <motion.p 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}
                 className="mt-6 text-lg md:text-xl text-zinc-300 font-light max-w-xl leading-relaxed"
               >
-                Elevamos a infraestrutura do seu ambiente ao máximo nível de excelência tecnológica. Inteligência audiovisual avançada e acústica impecável, orquestradas para <span className="font-semibold text-white">instituições que não fazem concessões</span> e exigem controle total do seu espaço.
+                Projetamos e instalamos sistemas de som, videoconferência e automação. Transformamos auditórios, salas de reunião e plenários em espaços fáceis de usar, com tecnologia discreta e totalmente integrada à rede da sua empresa.
               </motion.p>
 
               <motion.div 
@@ -170,8 +170,8 @@ export function Home() {
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <a href="https://wa.me/5546920013151" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white hover:bg-white/10 font-bold uppercase tracking-widest text-xs lg:text-sm transition-all duration-300 hover:-translate-y-1">
-                    Falar com Especialistas
-                  </a>
+                      Falar com Engenharia
+                    </a>
                   <Link to="/solucoes" onClick={() => { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: "navigate_solucoes_hero" }); }} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-zinc-300 hover:text-white hover:border-white/30 font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:bg-white/5">
                     Nossas Soluções
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>

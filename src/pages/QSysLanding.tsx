@@ -169,8 +169,8 @@ export function QSysLanding() {
       <Helmet>
       </Helmet>
       <SEO schema={qsysSchema} 
-        title="Integração e Instalação Q-SYS | Automação AV | Sonus Pro AV" 
-        description="Integração audiovisual com o ecossistema Q-SYS. Controle de áudio, vídeo e automação corporativa centralizada, sem limite de escalabilidade." 
+        title="Plataforma Q-SYS: Integração AV em Rede | Sonus Pro AV" 
+        description="Processamento centralizado de Áudio, Vídeo e Controle (AV&C) baseado em software. Substitua múltiplos equipamentos analógicos por uma infraestrutura IP." 
         image="/qsys-tech-bg.webp"
         url="https://sonusproaudio.com.br/qsys"
       />
@@ -197,11 +197,12 @@ export function QSysLanding() {
           </FadeIn>
 
           <Reveal>
-            <h1 className="text-5xl sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] font-black tracking-tighter leading-[1] md:leading-[0.85] text-white">
-              O CÉREBRO<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">
-                INTELIGENTE.
-              </span>
+            <h1 className="text-4xl sm:text-[4rem] md:text-[5.5rem] lg:text-[6rem] font-black tracking-tighter leading-[1] md:leading-[0.85] text-white">
+              <span className="text-white">Plataforma Q-SYS:</span>
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">
+                    Integração AV <br className="md:hidden" /> em Rede.
+                  </span>
             </h1>
           </Reveal>
 
@@ -222,7 +223,7 @@ export function QSysLanding() {
 
           <FadeIn delay={0.4}>
             <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
-              O ecossistema Q-SYS unifica tudo em uma única plataforma baseada em software. Esqueça matrizes arcaicas e descubra a escalabilidade infinita.
+              Processamento centralizado de Áudio, Vídeo e Controle (AV&C) baseado em software. Substitua múltiplos equipamentos analógicos por uma infraestrutura IP única e escalável.
             </p>
           </FadeIn>
 
@@ -364,8 +365,8 @@ export function QSysLanding() {
                       <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
                         <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
                           <Mic className="w-16 h-16 mx-auto mb-6 text-blue-500 opacity-60 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                          <h3 className="text-2xl font-bold text-white mb-3">Controle DSP Avançado</h3>
-                          <p className="text-sm text-zinc-400">O roteamento de áudio é nativo e automatizado. Nenhuma matriz analógica externa é necessária.</p>
+                          <h3 className="text-2xl font-bold text-white mb-3">Topologia Baseada em TI</h3>
+                          <p className="text-sm text-zinc-400">Roteamento de áudio, vídeo e comandos de controle trafegam através de switches de rede padrão, eliminando cabeamento analógico dedicado e reduzindo pontos de falha no rack.</p>
                         </div>
                       </div>
                     )}
@@ -374,8 +375,8 @@ export function QSysLanding() {
                       <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
                         <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
                           <Video className="w-16 h-16 mx-auto mb-6 text-purple-500 opacity-60 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
-                          <h3 className="text-2xl font-bold text-white mb-3">Comutação Automática</h3>
-                          <p className="text-sm text-zinc-400">As câmeras PTZ rastreiam quem está falando via processamento de rede sem intervenção manual.</p>
+                          <h3 className="text-2xl font-bold text-white mb-3">Processamento e Automação (Scripting)</h3>
+                          <p className="text-sm text-zinc-400">Motor de controle aberto que permite desenvolvimento de lógicas customizadas e integração nativa com equipamentos de terceiros (projetores, ar-condicionado, iluminação).</p>
                         </div>
                       </div>
                     )}
@@ -384,8 +385,8 @@ export function QSysLanding() {
                       <div className="flex-1 flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
                         <div className="text-center p-8 bg-zinc-950/50 rounded-[2rem] border border-white/5 backdrop-blur-sm max-w-sm w-full mx-auto shadow-2xl">
                           <Settings className="w-16 h-16 mx-auto mb-6 text-emerald-500 opacity-60 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
-                          <h3 className="text-2xl font-bold text-white mb-3">Saúde do Ecossistema</h3>
-                          <p className="text-sm text-zinc-400">Todos os endpoints e periféricos AV estão on-line, em sync e reportando status saudável (Verde).</p>
+                          <h3 className="text-2xl font-bold text-white mb-3">Interfaces de Controle (UCI)</h3>
+                          <p className="text-sm text-zinc-400">Criação de painéis touch screen de operação totalmente configuráveis, permitindo que a TI padronize a experiência do usuário final em dezenas de salas diferentes de forma centralizada.</p>
                         </div>
                       </div>
                     )}

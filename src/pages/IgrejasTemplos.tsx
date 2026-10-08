@@ -252,8 +252,8 @@ export function IgrejasTemplos() {
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-amber-500/30">
       <SEO 
-        title="Sonorização para Igrejas e Templos | Sonus Pro AV" 
-        description="A mensagem de fé precisa ser ouvida com clareza. Soluções audiovisuais premium para igrejas, com foco em inteligibilidade e operação simplificada para voluntários." 
+        title="Engenharia de Áudio para Igrejas e Templos | Sonus Pro AV" 
+        description="Sistemas de sonorização focados na inteligibilidade da palavra falada e musical. Controle a pressão sonora e bloqueie microfonias." 
         image="/interior-matriz-xanxere.webp"
         url="https://sonusproaudio.com.br/igrejas-e-templos"
         keywords="sonorização para igrejas, som para templo religioso, projeto acústico igreja matriz, resolver eco na igreja, sistema de som para louvor, automação Q-SYS igreja, sonorização templo, projeto de som igreja"
@@ -276,16 +276,16 @@ export function IgrejasTemplos() {
           >
             <Reveal>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] md:leading-[0.9]">
-                <span className="text-white">ONDE CADA</span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                  PALAVRA IMPORTA
-                </span>
+                <span className="text-white">Engenharia de Áudio</span>
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
+                    para Igrejas e Templos
+                  </span>
               </h1>
             </Reveal>
             
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">O fim das microfonias, do som embolado e da complexidade. Entregamos excelência acústica com <strong className="text-white font-medium">controle simplificado</strong>. Empresa que projeta e instala soluções para igrejas em todo o Brasil.</p>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">Sistemas de sonorização focados na inteligibilidade da palavra falada e musical. Controle a pressão sonora e bloqueie microfonias sem exigir conhecimento técnico avançado da sua equipe de voluntários.</p>
             </FadeIn>
 
             <FadeIn delay={0.5}>
@@ -432,9 +432,9 @@ export function IgrejasTemplos() {
                 
                 <div className="space-y-8">
                   {[
-                    { icon: <Settings2 className="w-5 h-5" />, title: "Soluções na Medida Certa", desc: "De sistemas simples para voluntários até Q-SYS — a mesma tecnologia que sonoriza o Santuário Nacional de Aparecida." },
-                    { icon: <Church className="w-5 h-5" />, title: "Arquitetura Respeitada", desc: "Caixas de som e projetos acústicos que não poluem o visual do altar nem escondem seus vitrais." },
-                    { icon: <Video className="w-5 h-5" />, title: "Transmissão ao Vivo", desc: "Câmeras PTZ robóticas e áudio integrado para transmissões de cultos e missas com qualidade de TV." },
+                    { icon: <Settings2 className="w-5 h-5" />, title: "Inteligibilidade da Palavra", desc: "Projeto de cobertura sonora direcionado especificamente para a congregação, reduzindo reflexões acústicas no teto e nas paredes laterais que causam o som "embolado"." },
+                    { icon: <Church className="w-5 h-5" />, title: "Processamento Anti-Microfonia", desc: "Matrizes de áudio digital gerenciam as frequências do ambiente em tempo real, cortando riscos de microfonia e garantindo estabilidade durante todo o culto." },
+                    { icon: <Video className="w-5 h-5" />, title: "Operação por Cenários (Touch)", desc: "Substituímos mesas de som complexas por interfaces simplificadas. A equipe voluntária seleciona cenários pré-configurados para a pregação, louvor ou banda com um único toque." },
                   ].map((item, i) => (
                     <FadeIn key={i} delay={i * 0.1}>
                       <div className="flex gap-4 group">

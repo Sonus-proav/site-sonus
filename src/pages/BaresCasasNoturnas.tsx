@@ -306,8 +306,8 @@ export function BaresCasasNoturnas() {
   return (
     <div className="flex flex-col min-h-screen bg-[#020202] text-white selection:bg-blue-500/30">
       <SEO
-        title="Sonorização para Bares e Casas Noturnas | Sonus Pro AV"
-        description="Som impecável na pista, zero multas na porta. Sonorização profissional, palco Plug & Play, controle ativo por DSP e laudo acústico com ART para blindar o alvará do seu bar em todo o Brasil."
+        title="Sonorização Profissional para Bares e Clubes | Sonus Pro AV"
+        description="Infraestrutura de áudio de alta pressão sonora para a pista, com controle eletrônico rigoroso de limites de emissão."
         keywords="sonorização de bares, laudo acústico casa noturna, projeto de áudio boates, dsp para bares, projeto de acústica nacional, sonorização profissional"
         image="/og-image.jpg"
         url="https://sonusproaudio.com.br/bares-e-casas-noturnas"
@@ -345,15 +345,14 @@ export function BaresCasasNoturnas() {
                 
                 <Reveal>
                   <h1 className="text-[3.5rem] md:text-7xl lg:text-[5.5rem] font-black tracking-tighter uppercase leading-[0.85] mb-8">
-                    <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">Pista Perfeita.</span><br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400" style={{ filter: 'drop-shadow(0 0 40px rgba(59,130,246,0.5))' }}>Zero Multas.</span>
-                  </h1>
+                      <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">Sonorização Profissional</span><br/>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400" style={{ filter: 'drop-shadow(0 0 40px rgba(59,130,246,0.5))' }}>para Bares e Clubes.</span>
+                    </h1>
                 </Reveal>
 
                 <FadeIn delay={0.2}>
                   <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed mb-10 max-w-xl">
-                    A infraestrutura <strong className="text-white font-medium">"Plug & Play"</strong> que blinda o seu alvará. 
-                    Controle digital absoluto de volume (DSP) e Laudo Acústico garantido, enquanto a pista vibra com pressão sonora máxima.
+                    Infraestrutura de áudio de alta pressão sonora para a pista, com controle eletrônico rigoroso de limites de emissão para garantir a adequação às normativas municipais.
                   </p>
                 </FadeIn>
 
@@ -483,7 +482,7 @@ export function BaresCasasNoturnas() {
                             <Lock className="w-3 h-3 text-blue-400" />
                             <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Fase 01</span>
                          </div>
-                         <h3 className="text-3xl font-black tracking-tight mb-3 text-white">Zoneamento Inteligente.</h3>
+                         <h3 className="text-3xl font-black tracking-tight mb-3 text-white">Limitação Digital de Volume (Zero Multas)</h3>
                          <p className="text-zinc-400 text-base font-light mb-6 max-w-sm">
                            Dispersão sonora matemática. <strong>105dB cravados na pista</strong>, e silêncio absoluto na rua para proteger seu alvará.
                          </p>
@@ -506,9 +505,9 @@ export function BaresCasasNoturnas() {
                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 mb-4 backdrop-blur-sm">
                             <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Fase 02</span>
                          </div>
-                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Palco "Plug & Play".</h3>
+                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Zoneamento Independente</h3>
                          <p className="text-zinc-400 text-sm font-light">
-                           Conectores de parede industriais Santo Angelo. O técnico liga dois cabos e o show começa. Fim do amadorismo.
+                           Controle volumes diferentes no mesmo ambiente. Mantenha a música alta na pista e um nível propício à conversação nas áreas de mesas, camarotes e varandas.
                          </p>
                       </div>
                       
@@ -528,9 +527,9 @@ export function BaresCasasNoturnas() {
                             <ShieldCheck className="w-3 h-3 text-green-400" />
                             <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Fase 03</span>
                          </div>
-                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Atestado de Paz (ART).</h3>
+                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Infraestrutura de Palco Plug & Play</h3>
                          <p className="text-zinc-400 text-sm font-light">
-                           Calibragem final com analisadores Classe 1 e entrega do Laudo Técnico para prefeitura e MP.
+                           Instalação de painéis industriais fixos para conexão de bandas e DJs. Elimina cabos soltos pelo chão, curtos-circuitos e queimas de equipamento por falha de instalação.
                          </p>
                       </div>
                       
