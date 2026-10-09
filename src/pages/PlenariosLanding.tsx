@@ -439,6 +439,8 @@ return (
       <SEO 
         title="Integração Audiovisual para o Legislativo | Sonus Pro AV"
         description="Sistemas dedicados à organização do rito legislativo. Automação de corte de câmeras, gerenciamento de uso da palavra e painel de votação eletrônica nominal."
+        image="/plenario-legislativo.jpg"
+        url="https://sonusproaudio.com.br/plenarios-e-camaras"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
