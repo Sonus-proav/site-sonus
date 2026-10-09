@@ -432,7 +432,7 @@ export function IgrejasTemplos() {
                 
                 <div className="space-y-8">
                   {[
-                    { icon: <Settings2 className="w-5 h-5" />, title: "Inteligibilidade da Palavra", desc: "Projeto de cobertura sonora direcionado especificamente para a congregação, reduzindo reflexões acústicas no teto e nas paredes laterais que causam o som "embolado"." },
+                    { icon: <Settings2 className="w-5 h-5" />, title: "Inteligibilidade da Palavra", desc: "Projeto de cobertura sonora direcionado especificamente para a congregação, reduzindo reflexões acústicas no teto e nas paredes laterais que causam o som 'embolado'." },
                     { icon: <Church className="w-5 h-5" />, title: "Processamento Anti-Microfonia", desc: "Matrizes de áudio digital gerenciam as frequências do ambiente em tempo real, cortando riscos de microfonia e garantindo estabilidade durante todo o culto." },
                     { icon: <Video className="w-5 h-5" />, title: "Operação por Cenários (Touch)", desc: "Substituímos mesas de som complexas por interfaces simplificadas. A equipe voluntária seleciona cenários pré-configurados para a pregação, louvor ou banda com um único toque." },
                   ].map((item, i) => (
