@@ -60,7 +60,7 @@ export function AppLayout() {
           {JSON.stringify(globalSchema)}
         </script>
       </Helmet>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen overflow-x-hidden w-full max-w-[100vw]">
         <Navbar />
         <main className="flex-1">
           <Outlet />

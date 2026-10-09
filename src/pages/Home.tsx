@@ -148,7 +148,7 @@ export function Home() {
 
               <motion.h1 
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] break-words hyphens-auto font-black tracking-tighter leading-[1] text-white drop-shadow-2xl"
               >
                 Integração de <br className="hidden lg:block" /> Áudio e Vídeo <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">para Ambientes Profissionais.</span>
