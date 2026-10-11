@@ -96,6 +96,7 @@ export function ProjectDetails() {
         <SEO 
           title="Projeto não encontrado | Sonus" 
           description="O projeto que você está procurando não existe." 
+          noindex={true}
         />
         <h1 className="text-3xl text-black dark:text-white font-bold mb-4 transition-colors duration-300">Projeto não encontrado</h1>
         <Link to="/projetos" className="text-primary hover:underline flex items-center gap-2">
