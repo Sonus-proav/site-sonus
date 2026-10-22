@@ -4,15 +4,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { getProjects, getCachedProjects, optimizeImageUrl, type Project } from "@/lib/publicStorage"
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { SEO } from "../components/SEO"
 
+const PortfolioCalibrator3D = lazy(() => import("@/components/projetos/PortfolioCalibrator3D").then(m => ({ default: m.PortfolioCalibrator3D })))
+
 export function Projects() {
   const [projectsData, setProjectsData] = useState<Project[]>(getCachedProjects() || [])
   const [isLoading, setIsLoading] = useState(!getCachedProjects())
+  const [activeCategory, setActiveCategory] = useState("todos")
 
   useEffect(() => {
     getProjects().then(data => {
@@ -25,16 +28,19 @@ export function Projects() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen pt-20 overflow-x-hidden">
       <SEO 
         title="Portfólio de Projetos Audiovisuais | Sonus Pro AV" 
         description="Conheça nossos cases de sucesso em sonorização e automação corporativa para empresas, auditórios e igrejas." 
         image="/pato-branco.webp"
         url="https://sonusproaudio.com.br/projetos"
       />
-      <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-10 md:py-20">
-        <FadeIn className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
+      <div className="relative flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-20">
+        <Suspense fallback={null}>
+          <PortfolioCalibrator3D activeCategory={activeCategory} />
+        </Suspense>
+        <FadeIn className="relative z-10 text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6 transition-colors duration-300">
             Nosso Portfólio Profissional
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light transition-colors duration-300">
@@ -44,6 +50,7 @@ export function Projects() {
 
         <FadeIn delay={0.2}>
           <Tabs defaultValue="todos" className="w-full flex flex-col items-center" onValueChange={(value) => {
+            setActiveCategory(String(value));
             (window as any).dataLayer = (window as any).dataLayer || [];
             trackViewContent(String(value))
           }}>

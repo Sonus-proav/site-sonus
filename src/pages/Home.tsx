@@ -20,6 +20,7 @@ import { Turnstile } from '@marsidev/react-turnstile'
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
 const ClientMarquee = lazy(() => import("@/components/ui/ClientMarquee").then(m => ({ default: m.ClientMarquee })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })));
+const ContactVault3D = lazy(() => import("@/components/home/ContactVault3D").then(m => ({ default: m.ContactVault3D })));
 
 export function Home() {
   const location = useLocation()
@@ -33,6 +34,7 @@ export function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [turnstileToken, setTurnstileToken] = useState("")
+  const [isFormFocused, setIsFormFocused] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -219,14 +221,17 @@ export function Home() {
       {/* CONTACT FORM */}
       <section id="contato" className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_50%)] pointer-events-none" />
+        <Suspense fallback={null}>
+          <ContactVault3D isFocused={isFormFocused} />
+        </Suspense>
 
-        <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900 border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
+        <div className="max-w-4xl mx-auto relative z-10 bg-zinc-900/90 backdrop-blur-md border border-white/10 rounded-[3rem] p-8 md:p-16 shadow-2xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4">Pronto para blindar seu espaço?</h2>
             <p className="text-lg text-zinc-400 font-light">Fale com nossos especialistas e agende uma consultoria técnica.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} onFocusCapture={() => setIsFormFocused(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsFormFocused(false); }} className="space-y-6">
             <input type="text" name="honeypot" className="hidden" tabIndex={-1} autoComplete="off" value={formData.honeypot} onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

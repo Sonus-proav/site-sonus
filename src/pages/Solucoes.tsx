@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { motion } from "framer-motion";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
+const SolucoesHero3D = lazy(() => import("@/components/solucoes/SolucoesHero3D").then(m => ({ default: m.SolucoesHero3D })));
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })));
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
 
@@ -58,23 +59,28 @@ export function Solucoes() {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
           
           {/* Hero Section */}
-          <div className="flex flex-col items-center text-center mb-24">
-            <Reveal>
-              <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md mb-8 shadow-xl">
-                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#22d3ee]" />
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-300">Nossas Dimensões</span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-black tracking-tighter leading-[1] mb-8 text-white drop-shadow-2xl">
-                A fundação de <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">ambientes críticos.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
-                Apresentamos o ecossistema Sonus. Integração audiovisual vibrante, impecável e desenhada para não falhar. Explore as tecnologias que constroem o amanhã.
-              </p>
-            </Reveal>
+          <div className="relative flex flex-col items-center text-center mb-24">
+            <Suspense fallback={null}>
+              <SolucoesHero3D />
+            </Suspense>
+            <div className="relative z-10 flex flex-col items-center">
+              <Reveal>
+                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md mb-8 shadow-xl">
+                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#22d3ee]" />
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-300">Nossas Dimensões</span>
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-black tracking-tighter leading-[1] mb-8 text-white drop-shadow-2xl">
+                  A fundação de <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">ambientes críticos.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
+                  Apresentamos o ecossistema Sonus. Integração audiovisual vibrante, impecável e desenhada para não falhar. Explore as tecnologias que constroem o amanhã.
+                </p>
+              </Reveal>
+            </div>
           </div>
 
           {/* BENTO GRID OF SOLUTIONS */}
