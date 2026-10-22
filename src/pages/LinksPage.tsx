@@ -229,7 +229,7 @@ export function LinksPage() {
               <div className="min-w-0 pr-2">
                 <div className="flex items-center gap-1.5 mb-0.5">
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400">
-                    Portfólio Oficial • +500 Obras
+                    Portfólio Oficial • Obras Entregues
                   </span>
                 </div>
                 <h2 className="text-white font-extrabold text-sm sm:text-base leading-tight">
