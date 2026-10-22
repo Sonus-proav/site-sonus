@@ -1,12 +1,12 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
-import { WarrantyBanner } from "@/components/layout/WarrantyBanner"
+const WarrantyBanner = lazy(() => import("@/components/layout/WarrantyBanner").then(m => ({ default: m.WarrantyBanner })))
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton"
 import { AeoFaq } from "@/components/ui/AeoFaq"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -531,11 +531,13 @@ export function IgrejasTemplos() {
         </section>
 
         {/* Warranty Banner */}
-        <WarrantyBanner 
-          variant="church"
-          title="3 Anos de Garantia para o Seu Ministério"
-          description="Sabemos da importância de cada investimento feito pela igreja. Por isso, entregamos 3 anos de garantia total sobre qualquer defeito de instalação. Infraestrutura segura para que a mensagem seja sempre transmitida com clareza."
-        />
+        <Suspense fallback={<div className="min-h-[260px] bg-[#030201]" />}>
+          <WarrantyBanner 
+            variant="church"
+            title="3 Anos de Garantia para o Seu Ministério"
+            description="Sabemos da importância de cada investimento feito pela igreja. Por isso, entregamos 3 anos de garantia total sobre qualquer defeito de instalação. Infraestrutura segura para que a mensagem seja sempre transmitida com clareza."
+          />
+        </Suspense>
 
         {/* ══════════════════════════════════════════════ */}
         {/* CONTACT FORM — Unique Church Identity         */}

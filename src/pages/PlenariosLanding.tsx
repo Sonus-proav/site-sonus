@@ -13,7 +13,7 @@ import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { LiveSessionSimulator } from "@/components/plenarios/LiveSessionSimulator";
 import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
-import { WarrantyShield3D } from "@/components/plenarios/WarrantyShield3D";
+const WarrantyShield3D = lazy(() => import("@/components/plenarios/WarrantyShield3D").then(m => ({ default: m.WarrantyShield3D })));
 
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
