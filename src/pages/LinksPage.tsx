@@ -1,18 +1,57 @@
 import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
-import { MessageCircle, Building2, Globe, Video, Vote, Mic, Cpu, ChevronRight } from "lucide-react"
+import { MessageCircle, Building2, Globe, Video, Vote, Mic, Cpu, Music, ChevronRight, ArrowUpRight } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/metaPixel"
 import { logLead, getUserGeo } from "@/lib/analytics"
 
+const ENVIRONMENT_SOLUTIONS = [
+  {
+    title: "Salas de Reunião",
+    subtitle: "Videoconferência e Diretoria",
+    to: "/salas-reuniao",
+    image: "/salas-corporativas.webp",
+    icon: Video,
+    accent: "text-cyan-400 border-cyan-500/30 bg-cyan-950/80",
+    hoverBorder: "hover:border-cyan-500/50",
+    event: "click_links_salas"
+  },
+  {
+    title: "Auditórios e Teatros",
+    subtitle: "Som, Vídeo e Automação",
+    to: "/auditorios-e-teatros",
+    image: "/auditorio-sonus.webp",
+    icon: Building2,
+    accent: "text-blue-400 border-blue-500/30 bg-blue-950/80",
+    hoverBorder: "hover:border-blue-500/50",
+    event: "click_links_auditorios"
+  },
+  {
+    title: "Plenários e Câmaras",
+    subtitle: "Votação e Corte de Câmera",
+    to: "/plenarios-e-camaras",
+    image: "/pato-branco.webp",
+    icon: Vote,
+    accent: "text-indigo-400 border-indigo-500/30 bg-indigo-950/80",
+    hoverBorder: "hover:border-indigo-500/50",
+    event: "click_links_plenarios"
+  },
+  {
+    title: "Igrejas e Templos",
+    subtitle: "Acústica e Nitidez da Voz",
+    to: "/igrejas-e-templos",
+    image: "/interior-matriz-xanxere.webp",
+    icon: Mic,
+    accent: "text-amber-400 border-amber-500/30 bg-amber-950/80",
+    hoverBorder: "hover:border-amber-500/50",
+    event: "click_links_igrejas"
+  }
+];
+
 export function LinksPage() {
   const WHATSAPP_NUMBER = "5546920013151";
-  const WHATSAPP_MESSAGE = "Olá! Vim pelo Instagram da Sonus e gostaria de falar com a engenharia sobre um projeto.";
+  const WHATSAPP_MESSAGE = "Olá! Vim pelo Instagram da Sonus e gostaria de falar com um especialista sobre um projeto.";
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-
-  const noiseStyle = {
-    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-  };
 
   const handleWhatsAppClick = () => {
     getUserGeo().then(geo => {
@@ -49,258 +88,257 @@ export function LinksPage() {
     <>
       <Helmet>
         <link rel="preconnect" href="https://wa.me" />
-        <link rel="preload" as="image" href="/links-bg.webp" type="image/webp" />
       </Helmet>
       
       <SEO 
         title="Links Oficiais | Sonus Pro AV" 
-        description="Engenharia de Áudio, Vídeo e Automação Corporativa. Acesse nossas soluções por ambiente, portfólio de obras e atendimento direto." 
+        description="Soluções de Áudio, Vídeo e Automação. Acesse nossas soluções por ambiente, portfólio de obras e atendimento direto." 
         url="https://sonusproaudio.com.br/links"
         noindex
       />
       
-      <main className="relative min-h-[100dvh] w-full bg-[#050505] text-zinc-100 flex flex-col items-center justify-between py-8 px-4 sm:px-6 overflow-x-hidden overflow-y-auto font-sans selection:bg-cyan-500/30 selection:text-white">
+      <main className="relative min-h-[100dvh] w-full bg-[#06080E] text-zinc-100 flex flex-col items-center justify-between py-7 px-4 sm:px-6 overflow-x-hidden overflow-y-auto font-sans selection:bg-cyan-500/30 selection:text-white">
         
-        {/* Fixed Background Layer */}
+        {/* Lightweight Subtle Top Glow (Zero GPU lag on Mobile) */}
         <div 
-          className="fixed inset-0 z-0 opacity-25 pointer-events-none" 
-          style={{ backgroundImage: 'url(/links-bg.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+          className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.14)_0%,transparent_70%)] z-0" 
           aria-hidden="true" 
         />
         
-        {/* Subtle Ambient Glow */}
-        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[380px] bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.16)_0%,transparent_70%)] pointer-events-none z-0" aria-hidden="true" />
-        
         <div className="w-full max-w-md relative z-10 flex flex-col items-center my-auto">
           
-          {/* Header / Authority & Logo */}
-          <div 
-            className="mb-7 flex flex-col items-center text-center animate-slide-up-fade"
-            style={{ animationDelay: '0s' }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/25 bg-cyan-500/10 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-300">
-                +28 Anos • Atuação Nacional
-              </span>
-            </div>
-
+          {/* Header & Authority */}
+          <div className="mb-5 flex flex-col items-center text-center w-full">
             <img 
               src="/logo.png" 
               alt="Sonus Pro AV" 
-              width={160} 
-              height={40} 
+              width={150} 
+              height={38} 
               fetchPriority="high"
-              className="h-6 md:h-7 mb-4 object-contain invert brightness-0" 
+              className="h-6 sm:h-7 mb-3.5 object-contain invert brightness-0" 
               style={{ filter: "brightness(0) invert(1)" }} 
             />
+
             <h1 className="text-white text-lg sm:text-xl font-extrabold tracking-tight leading-snug">
-              Engenharia de Áudio, Vídeo e Automação
+              Soluções de Áudio, Vídeo e Automação
             </h1>
-            <p className="text-zinc-400 text-xs sm:text-sm mt-1 max-w-xs leading-relaxed">
-              Projetos integrados de alta precisão para empresas, órgãos públicos e templos.
+            <p className="text-zinc-300 text-xs sm:text-sm mt-1 max-w-xs leading-relaxed">
+              Projetos completos e fáceis de usar para empresas, órgãos públicos e templos.
             </p>
+
+            {/* Quick Mobile-Friendly Authority Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3.5">
+              <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/10 text-[11px] font-semibold text-zinc-200">
+                <strong className="text-cyan-400">+28 Anos</strong> de Mercado
+              </span>
+              <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/10 text-[11px] font-semibold text-zinc-200">
+                <strong className="text-cyan-400">Atuação</strong> Nacional
+              </span>
+              <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/10 text-[11px] font-semibold text-zinc-200">
+                <strong className="text-cyan-400">Projeto</strong> Completo
+              </span>
+            </div>
           </div>
 
-          {/* Main Links Container */}
+          {/* Main Links Stack */}
           <div className="w-full flex flex-col gap-3">
             
-            {/* 1. Primary CTA: WhatsApp Engineering */}
+            {/* 1. Primary CTA: WhatsApp */}
             <a 
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-full flex items-center p-4 bg-gradient-to-r from-emerald-950/70 via-zinc-900/90 to-zinc-900/90 hover:from-emerald-900/70 backdrop-blur-lg border border-emerald-500/40 hover:border-emerald-400/70 rounded-2xl transition-all duration-300 overflow-hidden shadow-[0_0_25px_rgba(16,185,129,0.15)] animate-slide-up-fade"
-              style={{ animationDelay: '0.05s' }}
+              className="group relative w-full flex items-center justify-between p-4 bg-gradient-to-r from-emerald-950/90 via-zinc-900 to-zinc-900 border border-emerald-500/50 hover:border-emerald-400 rounded-2xl transition-all duration-200 shadow-[0_4px_25px_rgba(16,185,129,0.18)] active:scale-[0.99]"
               data-tracking="link-whatsapp"
               onClick={handleWhatsAppClick}
             >
-              <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={noiseStyle} />
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center shrink-0 border border-emerald-500/30 group-hover:scale-105 transition-transform duration-300">
-                <MessageCircle className="w-6 h-6 text-emerald-400" />
-              </div>
-              <div className="ml-3.5 flex-1 min-w-0">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
-                    Engenharia Online
-                  </span>
+              <div className="flex items-center min-w-0 pr-2">
+                <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center shrink-0 border border-emerald-500/40">
+                  <MessageCircle className="w-6 h-6 text-emerald-400" />
                 </div>
-                <h2 className="text-white font-bold text-sm sm:text-base truncate">
-                  Solicitar Orçamento ou Consultoria
-                </h2>
-                <p className="text-zinc-300 text-xs mt-0.5 truncate">
-                  Falar diretamente com especialista no WhatsApp
-                </p>
-              </div>
-              <ChevronRight className="w-5 h-5 text-emerald-400/80 group-hover:translate-x-1 transition-transform shrink-0 ml-2" />
-            </a>
-
-            {/* 2. Featured Portfolio Card with Real Photo */}
-            <div className="w-full animate-slide-up-fade" style={{ animationDelay: '0.1s' }}>
-              <Link 
-                to="/projetos"
-                className="group relative w-full flex items-center p-3.5 bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-lg border border-white/10 hover:border-white/25 rounded-2xl transition-all duration-300 overflow-hidden"
-                data-tracking="link-portfolio"
-                onClick={() => trackNavClick('click_links_portfolio')}
-              >
-                <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={noiseStyle} />
-                <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-white/15 relative bg-zinc-900">
-                  <img 
-                    src="/cresol.webp" 
-                    alt="Portfólio de Projetos Sonus" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="eager"
-                  />
-                </div>
-                <div className="ml-3.5 flex-1 min-w-0">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 block mb-0.5">
-                    Obras Entregues
-                  </span>
-                  <h2 className="text-white font-bold text-sm sm:text-base truncate">
-                    Ver Portfólio de Projetos
+                <div className="ml-3.5 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+                      Atendimento Online
+                    </span>
+                  </div>
+                  <h2 className="text-white font-bold text-sm sm:text-base leading-tight">
+                    Solicitar Orçamento
                   </h2>
-                  <p className="text-zinc-400 text-xs mt-0.5 truncate">
-                    Cases Cresol, Câmaras, Auditórios e Templos
+                  <p className="text-zinc-300 text-xs mt-0.5 truncate">
+                    Falar com especialista no WhatsApp
                   </p>
                 </div>
-                <ChevronRight className="w-5 h-5 text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 ml-2" />
-              </Link>
-            </div>
+              </div>
 
-            {/* 3. B2B Verticals 2x2 Grid */}
-            <div className="w-full pt-2 animate-slide-up-fade" style={{ animationDelay: '0.15s' }}>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2 px-1">
-                Soluções por Ambiente
-              </p>
+              <span className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-500 text-black font-bold text-xs shadow-sm group-hover:bg-emerald-400 transition-colors">
+                Iniciar
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
+            </a>
+
+            {/* 2. Featured Portfolio Card */}
+            <Link 
+              to="/projetos"
+              className="group relative w-full flex items-center p-3 bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/15 hover:border-cyan-500/40 rounded-2xl transition-all duration-200 active:scale-[0.99]"
+              data-tracking="link-portfolio"
+              onClick={() => trackNavClick('click_links_portfolio')}
+            >
+              <div className="w-16 h-14 rounded-xl overflow-hidden shrink-0 border border-white/15 bg-zinc-950">
+                <img 
+                  src="/cresol.webp" 
+                  alt="Portfólio de Projetos Sonus" 
+                  width={64}
+                  height={56}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="eager"
+                />
+              </div>
+              <div className="ml-3.5 flex-1 min-w-0">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 block mb-0.5">
+                  Obras Entregues
+                </span>
+                <h2 className="text-white font-bold text-sm sm:text-base leading-tight truncate">
+                  Ver Portfólio de Projetos
+                </h2>
+                <p className="text-zinc-300 text-xs mt-0.5 truncate">
+                  Cresol, Câmaras Municipais, Unisep e mais
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+            </Link>
+
+            {/* 3. Visual 2x2 Grid: Soluções por Ambiente */}
+            <div className="w-full pt-2">
+              <div className="flex items-center justify-between mb-2 px-1">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-300">
+                  Escolha o seu Ambiente
+                </p>
+                <span className="text-[10px] text-zinc-400">Toque para abrir</span>
+              </div>
+
               <div className="grid grid-cols-2 gap-2.5">
-                <Link
-                  to="/salas-reuniao"
-                  onClick={() => trackNavClick('click_links_salas')}
-                  className="group relative flex flex-col justify-between p-3.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-cyan-500/40 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                      <Video className="w-4 h-4 text-cyan-400" />
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xs sm:text-sm leading-tight">Salas de Reunião</h3>
-                    <p className="text-zinc-400 text-[11px] mt-0.5 leading-tight">Videoconferência e Diretoria</p>
-                  </div>
-                </Link>
+                {ENVIRONMENT_SOLUTIONS.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => trackNavClick(item.event)}
+                      className={`group flex flex-col overflow-hidden bg-zinc-900/95 border border-white/15 ${item.hoverBorder} rounded-2xl transition-all duration-200 active:scale-[0.98]`}
+                    >
+                      {/* Clean Visual Header */}
+                      <div className="relative h-20 w-full overflow-hidden bg-zinc-950">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          loading="lazy"
+                          width={200}
+                          height={80}
+                          className="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent" />
+                        <div className={`absolute top-2 left-2 w-7 h-7 rounded-lg border flex items-center justify-center ${item.accent}`}>
+                          <Icon className="w-3.5 h-3.5" />
+                        </div>
+                      </div>
 
-                <Link
-                  to="/auditorios-e-teatros"
-                  onClick={() => trackNavClick('click_links_auditorios')}
-                  className="group relative flex flex-col justify-between p-3.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-blue-500/40 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                      <Building2 className="w-4 h-4 text-blue-400" />
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xs sm:text-sm leading-tight">Auditórios e Teatros</h3>
-                    <p className="text-zinc-400 text-[11px] mt-0.5 leading-tight">Som, Vídeo e Automação</p>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/plenarios-e-camaras"
-                  onClick={() => trackNavClick('click_links_plenarios')}
-                  className="group relative flex flex-col justify-between p-3.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-indigo-500/40 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                      <Vote className="w-4 h-4 text-indigo-400" />
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xs sm:text-sm leading-tight">Plenários e Câmaras</h3>
-                    <p className="text-zinc-400 text-[11px] mt-0.5 leading-tight">Votação e Corte de Câmera</p>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/igrejas-e-templos"
-                  onClick={() => trackNavClick('click_links_igrejas')}
-                  className="group relative flex flex-col justify-between p-3.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-500/40 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                      <Mic className="w-4 h-4 text-amber-400" />
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xs sm:text-sm leading-tight">Igrejas e Templos</h3>
-                    <p className="text-zinc-400 text-[11px] mt-0.5 leading-tight">Acústica e Nitidez da Voz</p>
-                  </div>
-                </Link>
+                      {/* High-Contrast Text Footer */}
+                      <div className="p-3 pt-2 flex items-center justify-between gap-1">
+                        <div className="min-w-0">
+                          <h3 className="text-white font-bold text-xs sm:text-sm leading-tight truncate">
+                            {item.title}
+                          </h3>
+                          <p className="text-zinc-300 text-[11px] mt-0.5 leading-tight truncate">
+                            {item.subtitle}
+                          </p>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-white shrink-0" />
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
-            {/* 4. Q-SYS Platform Highlight */}
-            <div className="w-full animate-slide-up-fade" style={{ animationDelay: '0.2s' }}>
+            {/* 4. Secondary Solutions (Q-SYS & Bares/Clubes) */}
+            <div className="grid grid-cols-1 gap-2.5 pt-1">
               <Link 
                 to="/qsys"
-                className="group relative w-full flex items-center p-3.5 bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-lg border border-white/10 hover:border-cyan-500/30 rounded-2xl transition-all duration-300 overflow-hidden"
+                className="group w-full flex items-center p-3.5 bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/15 hover:border-cyan-500/40 rounded-2xl transition-all duration-200 active:scale-[0.99]"
                 onClick={() => trackNavClick('click_links_qsys')}
               >
-                <div className="w-10 h-10 bg-cyan-500/10 rounded-xl flex items-center justify-center shrink-0 border border-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-10 h-10 bg-cyan-500/15 rounded-xl flex items-center justify-center shrink-0 border border-cyan-500/30">
                   <Cpu className="w-5 h-5 text-cyan-400" />
                 </div>
                 <div className="ml-3.5 flex-1 min-w-0">
-                  <h2 className="text-white font-semibold text-xs sm:text-sm truncate">
+                  <h2 className="text-white font-bold text-xs sm:text-sm truncate">
                     Automação e Plataforma Q-SYS
                   </h2>
-                  <p className="text-zinc-400 text-[11px] mt-0.5 truncate">
-                    Controle unificado de áudio, vídeo e rede IP
+                  <p className="text-zinc-300 text-[11px] mt-0.5 truncate">
+                    Controle unificado de som, vídeo e câmeras
                   </p>
                 </div>
-                <ChevronRight className="w-4 h-4 text-zinc-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-white shrink-0 ml-2" />
               </Link>
-            </div>
 
-            {/* 5. Official Website Button */}
-            <div className="w-full animate-slide-up-fade" style={{ animationDelay: '0.25s' }}>
+              <Link 
+                to="/bares-e-casas-noturnas"
+                className="group w-full flex items-center p-3.5 bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/15 hover:border-purple-500/40 rounded-2xl transition-all duration-200 active:scale-[0.99]"
+                onClick={() => trackNavClick('click_links_bares')}
+              >
+                <div className="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center shrink-0 border border-purple-500/30">
+                  <Music className="w-5 h-5 text-purple-400" />
+                </div>
+                <div className="ml-3.5 flex-1 min-w-0">
+                  <h2 className="text-white font-bold text-xs sm:text-sm truncate">
+                    Bares, Lounges e Casas Noturnas
+                  </h2>
+                  <p className="text-zinc-300 text-[11px] mt-0.5 truncate">
+                    Som de alta potência e controle acústico
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-white shrink-0 ml-2" />
+              </Link>
+
+              {/* 5. Official Website Button */}
               <Link 
                 to="/"
-                className="group relative w-full flex items-center p-3.5 bg-white/[0.03] hover:bg-blue-950/30 backdrop-blur-lg border border-white/10 hover:border-blue-500/30 rounded-2xl transition-all duration-300 overflow-hidden"
+                className="group w-full flex items-center p-3.5 bg-zinc-900/60 hover:bg-zinc-800/80 border border-white/10 hover:border-blue-500/40 rounded-2xl transition-all duration-200 active:scale-[0.99]"
                 data-tracking="link-home"
                 onClick={() => trackNavClick('click_links_home')}
               >
-                <div className="w-10 h-10 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0 border border-blue-500/25 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-10 h-10 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0 border border-blue-500/30">
                   <Globe className="w-5 h-5 text-blue-400" />
                 </div>
                 <div className="ml-3.5 flex-1 min-w-0">
-                  <h2 className="text-white font-semibold text-xs sm:text-sm">
-                    Acessar Site Institucional Completo
+                  <h2 className="text-white font-bold text-xs sm:text-sm">
+                    Acessar Site Completo
                   </h2>
                   <p className="text-zinc-400 text-[11px] mt-0.5">
                     sonusproaudio.com.br
                   </p>
                 </div>
-                <ChevronRight className="w-4 h-4 text-zinc-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-white shrink-0 ml-2" />
               </Link>
             </div>
 
           </div>
 
-          {/* Footer Authority & Certified Partners */}
-          <div 
-            className="mt-8 pt-5 border-t border-white/10 w-full text-center animate-slide-up-fade"
-            style={{ animationDelay: '0.3s' }}
-          >
-            <p className="text-[10px] text-zinc-400 font-bold tracking-[0.2em] uppercase mb-1.5">
-              Q-SYS • SHURE • SENNHEISER • JBL
+          {/* Footer with Official Partner Logos */}
+          <div className="mt-7 pt-5 border-t border-white/10 w-full text-center">
+            <p className="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold mb-3">
+              Tecnologias Homologadas
             </p>
+            <div className="flex items-center justify-center gap-6 opacity-75 mb-4 px-2">
+              <img src="/qsys-logo.png" alt="Q-SYS" className="h-4 object-contain brightness-0 invert" loading="lazy" />
+              <img src="/marcas/shure.svg" alt="Shure" className="h-4 object-contain brightness-0 invert" loading="lazy" />
+              <img src="/marcas/sennheiser.svg" alt="Sennheiser" className="h-3.5 object-contain brightness-0 invert" loading="lazy" />
+              <img src="/marcas/qsc.png" alt="QSC" className="h-4 object-contain brightness-0 invert" loading="lazy" />
+            </div>
             <p className="text-[11px] text-zinc-500 font-medium">
-              Sonus Pro AV • Sede em Francisco Beltrão - PR
+              Sonus Pro AV • Francisco Beltrão - PR
             </p>
           </div>
 
