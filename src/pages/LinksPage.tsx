@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
@@ -61,6 +62,37 @@ export function LinksPage() {
   const WHATSAPP_MESSAGE = "Olá! Vim pelo Instagram da Sonus e gostaria de falar com um especialista sobre um projeto.";
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
+  const [isOnline, setIsOnline] = useState(true);
+
+  // Acompanha o horário comercial oficial (Seg a Sex das 08:00 às 18:00 no fuso de Brasília)
+  useEffect(() => {
+    const checkBusinessHours = () => {
+      try {
+        const formatter = new Intl.DateTimeFormat('pt-BR', {
+          timeZone: 'America/Sao_Paulo',
+          hour: 'numeric',
+          hour12: false
+        });
+        const currentHour = parseInt(formatter.format(new Date()), 10);
+
+        const dayFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/Sao_Paulo',
+          weekday: 'short'
+        });
+        const currentDay = dayFormatter.format(new Date());
+        const isWeekday = !['Sat', 'Sun'].includes(currentDay);
+
+        setIsOnline(isWeekday && currentHour >= 8 && currentHour < 18);
+      } catch (e) {
+        setIsOnline(true);
+      }
+    };
+
+    checkBusinessHours();
+    const interval = setInterval(checkBusinessHours, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleWhatsAppClick = (originLabel: string = 'links_instagram') => {
     getUserGeo().then(geo => {
       logLead({
@@ -80,7 +112,8 @@ export function LinksPage() {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
       event: 'falar_especialista_whatsapp',
-      source: 'links_page'
+      source: 'links_page',
+      button_status: isOnline ? 'online' : 'offline'
     });
   };
 
@@ -132,9 +165,9 @@ export function LinksPage() {
           {/* 1. CONSOLE TELEMETRY TOP BAR */}
           <div className="w-full flex items-center justify-between px-3.5 py-2 rounded-full bg-zinc-900/90 border border-white/10 mb-6">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">
-                Atendimento Online
+              <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+              <span className={`text-[10px] font-bold uppercase tracking-widest ${isOnline ? 'text-zinc-200' : 'text-amber-300/90'}`}>
+                {isOnline ? 'Atendimento Online' : 'Plantão • 08h às 18h'}
               </span>
             </div>
 
@@ -413,25 +446,41 @@ export function LinksPage() {
               rel="noopener noreferrer"
               data-tracking="link-whatsapp"
               onClick={() => handleWhatsAppClick('links_thumb_dock')}
-              className="group w-full flex items-center justify-between p-2.5 pl-3.5 rounded-2xl bg-zinc-950/95 border border-emerald-500/60 hover:border-emerald-400 shadow-[0_12px_35px_rgba(0,0,0,0.9),0_0_25px_rgba(16,185,129,0.22)] transition-all duration-200 active:scale-[0.98]"
+              className={`group w-full flex items-center justify-between p-2.5 pl-3.5 rounded-2xl bg-zinc-950/95 border transition-all duration-200 active:scale-[0.98] ${
+                isOnline 
+                  ? 'border-emerald-500/60 hover:border-emerald-400 shadow-[0_12px_35px_rgba(0,0,0,0.9),0_0_25px_rgba(16,185,129,0.22)]' 
+                  : 'border-amber-500/50 hover:border-amber-400 shadow-[0_12px_35px_rgba(0,0,0,0.9),0_0_25px_rgba(245,158,11,0.18)]'
+              }`}
             >
               <div className="flex items-center min-w-0 pr-2">
-                <div className="relative w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-5 h-5 text-emerald-400" />
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse border-2 border-zinc-950" />
+                <div className={`relative w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
+                  isOnline 
+                    ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400' 
+                    : 'bg-amber-500/20 border-amber-500/40 text-amber-400'
+                }`}>
+                  <MessageCircle className="w-5 h-5" />
+                  <span className={`absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 border-zinc-950 ${
+                    isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+                  }`} />
                 </div>
                 <div className="ml-3 min-w-0">
                   <p className="text-white font-extrabold text-xs sm:text-sm leading-tight truncate">
-                    Solicitar Orçamento
+                    {isOnline ? 'Solicitar Orçamento' : 'Deixar Mensagem'}
                   </p>
-                  <p className="text-emerald-300/90 text-[11px] leading-tight truncate mt-0.5">
-                    Falar com especialista no WhatsApp
+                  <p className={`text-[11px] leading-tight truncate mt-0.5 ${
+                    isOnline ? 'text-emerald-300/90' : 'text-amber-200/80'
+                  }`}>
+                    {isOnline ? 'Falar com especialista no WhatsApp' : 'Respondemos no próximo horário útil'}
                   </p>
                 </div>
               </div>
 
-              <span className="shrink-0 inline-flex items-center gap-1 px-4 py-2.5 rounded-xl bg-emerald-500 group-hover:bg-emerald-400 text-black font-extrabold text-xs uppercase tracking-wider transition-colors shadow-md">
-                Conversar
+              <span className={`shrink-0 inline-flex items-center gap-1 px-4 py-2.5 rounded-xl text-black font-extrabold text-xs uppercase tracking-wider transition-colors shadow-md ${
+                isOnline 
+                  ? 'bg-emerald-500 group-hover:bg-emerald-400' 
+                  : 'bg-amber-400 group-hover:bg-amber-300'
+              }`}>
+                {isOnline ? 'Conversar' : 'Mensagem'}
                 <ArrowUpRight className="w-4 h-4" />
               </span>
             </a>
