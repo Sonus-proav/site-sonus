@@ -121,7 +121,13 @@ async function prerender() {
 
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--no-zygote'
+      ]
     });
 
     for (const route of routes) {
@@ -138,8 +144,12 @@ async function prerender() {
         }
       });
 
-      await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
-      await new Promise(r => setTimeout(r, 1000));
+      try {
+        await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle2', timeout: 15000 });
+      } catch (err) {
+        console.warn(`[Prerender] Aviso ao carregar ${route} (continuando):`, err.message);
+      }
+      await new Promise(r => setTimeout(r, 600));
       const html = await page.content();
       
       const isHome = route === '/';
