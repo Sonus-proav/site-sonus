@@ -10,7 +10,7 @@ import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead } from "@/lib/analytics"
 import { SEO } from "../components/SEO"
 
-import { HeroVisual } from "@/components/ui/HeroVisual"
+const HeroVisual = lazy(() => import("@/components/ui/HeroVisual").then(m => ({ default: m.HeroVisual })))
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -180,7 +180,9 @@ export function Home() {
             </div>
 
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-               <HeroVisual />
+               <Suspense fallback={<div className="w-full h-[420px] sm:h-[480px] md:h-[600px]" />}>
+                 <HeroVisual />
+               </Suspense>
             </div>
 
           </div>
