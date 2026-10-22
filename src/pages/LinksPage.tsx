@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
 import { MessageCircle, Building2, Globe, Video, Vote, Mic, Cpu, Music, ArrowUpRight } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/metaPixel"
 import { logLead, getUserGeo } from "@/lib/analytics"
-import { AcousticSpace3D } from "@/components/links/AcousticSpace3D"
+
+const AcousticSpace3D = lazy(() => import("@/components/links/AcousticSpace3D"))
 
 const BENTO_ENVIRONMENTS = [
   {
@@ -152,7 +153,9 @@ export function LinksPage() {
       <main className="relative min-h-[100dvh] w-full bg-[#05060A] text-zinc-100 flex flex-col items-center pt-5 pb-28 px-3.5 sm:px-6 overflow-x-hidden overflow-y-auto font-sans selection:bg-cyan-500/30 selection:text-white">
         
         {/* Interactive 3D Acoustic Wavefield + Gyroscopic Sculptures */}
-        <AcousticSpace3D />
+        <Suspense fallback={null}>
+          <AcousticSpace3D />
+        </Suspense>
 
         {/* Subtle Architectural Grid + Ambient Top Glow (Zero GPU blur lag) */}
         <div 
