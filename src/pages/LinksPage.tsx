@@ -30,7 +30,7 @@ const ENVIRONMENT_SOLUTIONS = [
     title: "Plenários e Câmaras",
     subtitle: "Votação e Corte de Câmera",
     to: "/plenarios-e-camaras",
-    image: "/pato-branco.webp",
+    image: "/plenario-thumb.webp",
     icon: Vote,
     accent: "text-indigo-400 border-indigo-500/30 bg-indigo-950/80",
     hoverBorder: "hover:border-indigo-500/50",
