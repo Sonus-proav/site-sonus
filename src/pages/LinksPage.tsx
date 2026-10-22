@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO"
 import { MessageCircle, Building2, Globe, Video, Vote, Mic, Cpu, Music, ArrowUpRight } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/metaPixel"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { AcousticSpace3D } from "@/components/links/AcousticSpace3D"
 
 const BENTO_ENVIRONMENTS = [
   {
@@ -150,6 +151,9 @@ export function LinksPage() {
       
       <main className="relative min-h-[100dvh] w-full bg-[#05060A] text-zinc-100 flex flex-col items-center pt-5 pb-28 px-3.5 sm:px-6 overflow-x-hidden overflow-y-auto font-sans selection:bg-cyan-500/30 selection:text-white">
         
+        {/* Interactive 3D Acoustic Wavefield + Gyroscopic Sculptures */}
+        <AcousticSpace3D />
+
         {/* Subtle Architectural Grid + Ambient Top Glow (Zero GPU blur lag) */}
         <div 
           className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_80%)] z-0" 
