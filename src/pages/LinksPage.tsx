@@ -180,7 +180,7 @@ export function LinksPage() {
                 <span className="w-[2px] h-full bg-cyan-400 rounded-full origin-bottom animate-eq-4" />
               </div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-400">
-                +28 Anos • Brasil
+                +28 Anos
               </span>
             </div>
           </div>
