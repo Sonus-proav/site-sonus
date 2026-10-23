@@ -7,8 +7,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
-    if (document.documentElement.classList.contains('reduced-perf')) {
-      return; // Use native scroll on weak hardware
+    const isMobile =
+      typeof window !== 'undefined' &&
+      (window.innerWidth < 768 ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+        (typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches))
+
+    if (isMobile || document.documentElement.classList.contains('reduced-perf')) {
+      return; // Use 100% native 120Hz hardware momentum scrolling on mobile devices
     }
 
     if ('scrollRestoration' in window.history) {

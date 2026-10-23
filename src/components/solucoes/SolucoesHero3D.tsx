@@ -52,6 +52,15 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
     const camera = new THREE.PerspectiveCamera(34, width / height, 0.5, 45)
     camera.position.set(0, 0, 14)
 
+    const isMobile =
+      window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    const isCoarsePointer =
+      typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches
+    const isReducedPerf =
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("reduced-perf")
+    const maxDpr = isReducedPerf ? 1.0 : 1.75
+
     let renderer: THREE.WebGLRenderer
     try {
       renderer = new THREE.WebGLRenderer({
@@ -59,18 +68,14 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
         alpha: true,
         powerPreference: "high-performance",
         stencil: false,
-        depth: true
+        depth: true,
+        precision: "highp"
       })
     } catch {
       return
     }
 
-    const isMobile =
-      window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    const isCoarsePointer =
-      typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.75 : 2.0))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr))
     renderer.setSize(width, height)
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.15
@@ -87,7 +92,7 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
     renderer.domElement.addEventListener("webglcontextlost", onContextLost, false)
 
     // =========================================================================
-    // STUDIO SOFTBOX HDR ENVIRONMENT (Silky Specular Reflections on Bevels)
+    // STUDIO SOFTBOX HDR ENVIRONMENT
     // =========================================================================
     const pmremGenerator = new THREE.PMREMGenerator(renderer)
     pmremGenerator.compileEquirectangularShader()
@@ -275,17 +280,43 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
 
     let isInViewport = true
     let isTabVisible = !document.hidden
+    let isAnimating = false
+    let isScrolling = false
+    let scrollTimer: ReturnType<typeof setTimeout> | undefined
+
+    const handleScroll = () => {
+      if (!isMobile) return
+      isScrolling = true
+      isAnimating = false
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        isScrolling = false
+        if (isInViewport && isTabVisible) {
+          startLoop()
+        }
+      }, 80)
+    }
+
+    if (isMobile) {
+      window.addEventListener("scroll", handleScroll, { passive: true })
+    }
 
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         isInViewport = entry.isIntersecting
+        if (isInViewport && isTabVisible && !isScrolling) {
+          startLoop()
+        }
       },
-      { threshold: 0.02 }
+      { threshold: isMobile ? 0.25 : 0.02 }
     )
     visibilityObserver.observe(container)
 
     const onVisibilityChange = () => {
       isTabVisible = !document.hidden
+      if (isTabVisible && isInViewport && !isScrolling) {
+        startLoop()
+      }
     }
     document.addEventListener("visibilitychange", onVisibilityChange)
 
@@ -362,12 +393,15 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
     renderer.render(scene, camera)
 
     const animate = (now: number) => {
+      if (!isInViewport || !isTabVisible || isScrolling) {
+        isAnimating = false
+        return
+      }
+
       animationFrameId = requestAnimationFrame(animate)
 
       const dt = Math.min((now - lastTime) * 0.001, 0.1)
       lastTime = now
-
-      if (!isInViewport || !isTabVisible) return
 
       elapsed += dt
       const lerp = 1 - Math.pow(0.001, dt)
@@ -382,9 +416,22 @@ export const SolucoesHero3D = memo(function SolucoesHero3D() {
       renderer.render(scene, camera)
     }
 
-    animationFrameId = requestAnimationFrame(animate)
+    function startLoop() {
+      if (!isAnimating && isInViewport && isTabVisible && !isScrolling) {
+        isAnimating = true
+        lastTime = performance.now()
+        animationFrameId = requestAnimationFrame(animate)
+      }
+    }
+
+    startLoop()
 
     return () => {
+      isAnimating = false
+      if (isMobile) {
+        window.removeEventListener("scroll", handleScroll)
+        clearTimeout(scrollTimer)
+      }
       cancelAnimationFrame(animationFrameId)
       visibilityObserver.disconnect()
       if (resizeObserver) {

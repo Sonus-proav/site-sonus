@@ -380,6 +380,12 @@ export function HeroVisual() {
     camera.position.set(0, 6.2, 9.5)
     camera.lookAt(0.15, -0.05, 0)
 
+    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    const isReducedPerf =
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("reduced-perf")
+    const maxDpr = isReducedPerf ? 1.0 : 1.75
+
     let renderer: THREE.WebGLRenderer
     try {
       renderer = new THREE.WebGLRenderer({
@@ -387,15 +393,13 @@ export function HeroVisual() {
         alpha: true,
         powerPreference: "high-performance",
         stencil: false,
-        depth: true
+        depth: true,
+        precision: "highp"
       })
     } catch {
       return
     }
 
-    // Cap DPR at 2.0 on desktop and 1.75 on mobile for crisp visuals + 60/120fps stability
-    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    const maxDpr = isMobileDevice ? 1.75 : 2.0
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr))
     renderer.setSize(width, height)
     renderer.toneMapping = THREE.ACESFilmicToneMapping
@@ -407,7 +411,7 @@ export function HeroVisual() {
     container.appendChild(renderer.domElement)
 
     // =========================================================================
-    // 2. CONTROLLED RIM-ONLY STUDIO ENVIRONMENT (Precomputed once at startup)
+    // 2. CONTROLLED RIM-ONLY STUDIO ENVIRONMENT
     // =========================================================================
     const pmremGenerator = new THREE.PMREMGenerator(renderer)
     pmremGenerator.compileEquirectangularShader()
@@ -848,17 +852,43 @@ export function HeroVisual() {
 
     let isInViewport = true
     let isTabVisible = !document.hidden
+    let isAnimating = false
+    let isScrolling = false
+    let scrollTimer: ReturnType<typeof setTimeout> | undefined
+
+    const handleScroll = () => {
+      if (!isMobileDevice) return
+      isScrolling = true
+      isAnimating = false
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        isScrolling = false
+        if (isInViewport && isTabVisible) {
+          startLoop()
+        }
+      }, 80)
+    }
+
+    if (isMobileDevice) {
+      window.addEventListener("scroll", handleScroll, { passive: true })
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         isInViewport = entry.isIntersecting
+        if (isInViewport && isTabVisible && !isScrolling) {
+          startLoop()
+        }
       },
-      { threshold: 0.05 }
+      { threshold: isMobileDevice ? 0.25 : 0.05 }
     )
     observer.observe(wrapper)
 
     const onVisibilityChange = () => {
       isTabVisible = !document.hidden
+      if (isTabVisible && isInViewport && !isScrolling) {
+        startLoop()
+      }
     }
     document.addEventListener("visibilitychange", onVisibilityChange)
 
@@ -914,13 +944,15 @@ export function HeroVisual() {
     let animationFrameId: number
 
     const animate = (now: number) => {
+      if (!isInViewport || !isTabVisible || isScrolling) {
+        isAnimating = false
+        return
+      }
+
       animationFrameId = requestAnimationFrame(animate)
 
       const dt = Math.min((now - lastTime) * 0.001, 0.1)
       lastTime = now
-
-      // Zero GPU/CPU cost when off-screen or in a background tab
-      if (!isInViewport || !isTabVisible) return
 
       elapsed += dt
       const t = elapsed
@@ -1018,9 +1050,22 @@ export function HeroVisual() {
       }
     }
 
-    animationFrameId = requestAnimationFrame(animate)
+    function startLoop() {
+      if (!isAnimating && isInViewport && isTabVisible && !isScrolling) {
+        isAnimating = true
+        lastTime = performance.now()
+        animationFrameId = requestAnimationFrame(animate)
+      }
+    }
+
+    startLoop()
 
     return () => {
+      isAnimating = false
+      if (isMobileDevice) {
+        window.removeEventListener("scroll", handleScroll)
+        clearTimeout(scrollTimer)
+      }
       cancelAnimationFrame(animationFrameId)
       observer.disconnect()
       document.removeEventListener("visibilitychange", onVisibilityChange)

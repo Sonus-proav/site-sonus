@@ -71,6 +71,13 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
     const camera = new THREE.PerspectiveCamera(34, width / height, 0.5, 45)
     camera.position.set(0, 0, 14)
 
+    const isCoarsePointer =
+      typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches
+    const isReducedPerf =
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("reduced-perf")
+    const maxDpr = isReducedPerf ? 1.0 : 1.75
+
     let renderer: THREE.WebGLRenderer
     try {
       renderer = new THREE.WebGLRenderer({
@@ -78,18 +85,14 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
         alpha: true,
         powerPreference: "high-performance",
         stencil: false,
-        depth: true
+        depth: true,
+        precision: "highp"
       })
     } catch {
       return
     }
 
-    const isMobile =
-      window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    const isCoarsePointer =
-      typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.75 : 2.0))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr))
     renderer.setSize(width, height)
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.15
@@ -290,10 +293,14 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
 
     let isInViewport = true
     let isTabVisible = !document.hidden
+    let isAnimating = false
 
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         isInViewport = entry.isIntersecting
+        if (isInViewport && isTabVisible) {
+          startLoop()
+        }
       },
       { threshold: 0.02 }
     )
@@ -301,6 +308,9 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
 
     const onVisibilityChange = () => {
       isTabVisible = !document.hidden
+      if (isTabVisible && isInViewport) {
+        startLoop()
+      }
     }
     document.addEventListener("visibilitychange", onVisibilityChange)
 
@@ -380,12 +390,15 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
     renderer.render(scene, camera)
 
     const animate = (now: number) => {
+      if (!isInViewport || !isTabVisible) {
+        isAnimating = false
+        return
+      }
+
       animationFrameId = requestAnimationFrame(animate)
 
       const dt = Math.min((now - lastTime) * 0.001, 0.1)
       lastTime = now
-
-      if (!isInViewport || !isTabVisible) return
 
       elapsed += dt
       waveImpulseRef.current *= Math.pow(0.08, dt)
@@ -406,9 +419,18 @@ export const PortfolioCalibrator3D = memo(function PortfolioCalibrator3D({
       renderer.render(scene, camera)
     }
 
-    animationFrameId = requestAnimationFrame(animate)
+    function startLoop() {
+      if (!isAnimating && isInViewport && isTabVisible) {
+        isAnimating = true
+        lastTime = performance.now()
+        animationFrameId = requestAnimationFrame(animate)
+      }
+    }
+
+    startLoop()
 
     return () => {
+      isAnimating = false
       cancelAnimationFrame(animationFrameId)
       visibilityObserver.disconnect()
       if (resizeObserver) {

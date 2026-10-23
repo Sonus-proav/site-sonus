@@ -59,8 +59,14 @@ export function AcousticSpace3D() {
     } catch {
       return
     }
+    const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    const isReducedPerf =
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("reduced-perf")
+    const maxDpr = isReducedPerf ? 1.0 : isMobile ? 1.25 : 1.75
+
     renderer.setSize(width, height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.2
 
@@ -272,7 +278,25 @@ export function AcousticSpace3D() {
     const clock = new THREE.Clock()
     let animationFrameId: number
 
+    let isAnimating = false
+    let isTabVisible = !document.hidden
+
+    const onVisibilityChange = () => {
+      isTabVisible = !document.hidden
+      if (isTabVisible) {
+        startLoop()
+      }
+    }
+    document.addEventListener("visibilitychange", onVisibilityChange)
+
     const animate = () => {
+      if (!isTabVisible) {
+        isAnimating = false
+        return
+      }
+
+      animationFrameId = requestAnimationFrame(animate)
+
       const t = clock.getElapsedTime()
 
       pointer.currentX += (pointer.targetX - pointer.currentX) * 0.04
@@ -306,13 +330,21 @@ export function AcousticSpace3D() {
       }
 
       renderer.render(scene, camera)
-      animationFrameId = requestAnimationFrame(animate)
     }
 
-    animationFrameId = requestAnimationFrame(animate)
+    function startLoop() {
+      if (!isAnimating && isTabVisible) {
+        isAnimating = true
+        animationFrameId = requestAnimationFrame(animate)
+      }
+    }
+
+    startLoop()
 
     return () => {
+      isAnimating = false
       cancelAnimationFrame(animationFrameId)
+      document.removeEventListener("visibilitychange", onVisibilityChange)
       window.removeEventListener("resize", updateLayout)
       window.removeEventListener("mousemove", onMouseMove)
       window.removeEventListener("touchmove", onTouchMove)
