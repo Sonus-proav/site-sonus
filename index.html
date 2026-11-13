@@ -10,29 +10,26 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    <!-- Analytics (GTM + Meta Pixel): filas criadas na hora, scripts de terceiros carregados fora do caminho crítico -->
+    <!-- Analytics (GTM + Meta Pixel): filas criadas na hora; scripts de terceiros carregados fora do caminho crítico.
+         PageViews de rotas SPA são disparados pelo AnalyticsTracker (React) — veja src/lib/pageTracking.ts -->
     <script>
     (function(w,d){
-      // GTM: dataLayer e evento gtm.start imediatos (nada se perde)
+      // GTM: dataLayer e evento gtm.start imediatos (nada se perde: o GTM reprocessa a fila ao carregar)
       w.dataLayer = w.dataLayer || [];
       w.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
 
-      // Meta Pixel: stub + fila (fbevents.js processa a fila quando carregar)
+      // Meta Pixel: stub + fila (fbevents.js reprocessa a fila quando carregar)
       if (!w.fbq) {
         var n = w.fbq = function(){ n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
         if (!w._fbq) w._fbq = n;
         n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
       }
+      // SPA: o React Router controla os PageViews. Desliga o rastreio automático de pushState do Pixel
+      // (que só passaria a existir depois do fbevents.js carregar) para não duplicar nem perder rotas.
+      w.fbq.disablePushState = true;
+      w.fbq.allowDuplicatePageViews = true;
       w.fbq('init', '1711783468822151');
-      w.fbq('track', 'PageView');
-
-      // Suporte Nativo para React SPA
-      var pushState = history.pushState;
-      history.pushState = function() {
-        pushState.apply(history, arguments);
-        w.fbq('track', 'PageView');
-      };
-      w.addEventListener('popstate', function() { w.fbq('track', 'PageView'); });
+      w.fbq('track', 'PageView'); // PageView da carga inicial
 
       function inject(src) {
         var j = d.createElement('script');
@@ -45,11 +42,14 @@
         inject('https://www.googletagmanager.com/gtm.js?id=GTM-MXM6D6XR');
         inject('https://connect.facebook.net/en_US/fbevents.js');
       }
+      // Exposto para o AnalyticsTracker: a 1ª troca de rota carrega os scripts imediatamente
+      w.__sonusLoadThirdParty = loadThirdParty;
+
       function schedule() {
-        if ('requestIdleCallback' in w) w.requestIdleCallback(loadThirdParty, { timeout: 3500 });
-        else setTimeout(loadThirdParty, 2000);
+        if ('requestIdleCallback' in w) w.requestIdleCallback(loadThirdParty, { timeout: 1000 });
+        else setTimeout(loadThirdParty, 1000);
       }
-      // Após o load da página (ou na 1ª interação, o que vier primeiro)
+      // Após o load da página; ou antes, na 1ª interação / 1ª troca de rota
       if (d.readyState === 'complete') schedule(); else w.addEventListener('load', schedule, { once: true });
       ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function(ev) {
         w.addEventListener(ev, loadThirdParty, { once: true, passive: true });

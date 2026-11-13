@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { logPageView, updateTimeSpent, getUserGeo, flushPendingLeads } from "@/lib/analytics";
 import { whenIdle } from "@/lib/firestoreLazy";
+import { trackSpaPageView } from "@/lib/pageTracking";
 import { useEngagedSession } from "@/hooks/useEngagedSession";
 import { useReducedPerformance } from "@/hooks/useReducedPerformance";
 
@@ -10,7 +11,7 @@ export function AnalyticsTracker() {
   useEngagedSession(60); // Inicia o rastreador global de leitura profunda
   const location = useLocation();
   const currentDocId = useRef<string | null>(null);
-  const startTime = useRef<number>(Date.now());
+  const startTime = useRef<number>(0); // definido no efeito de rota (evita chamar Date.now() durante o render)
 
   // Detecta se é mobile ou desktop de forma simples
   const getDeviceType = () => {
@@ -20,7 +21,37 @@ export function AnalyticsTracker() {
     return "Desktop";
   };
 
-// Removemos fetchUserLocation duplicado. Usaremos getUserGeo direto do analytics.ts
+// ── PageView SPA (GTM dataLayer + Meta Pixel) a CADA troca de rota ──────────────
+  // A carga inicial já é registrada pelo index.html; aqui tratamos toda navegação interna
+  // (links, botão voltar/avançar), que não gera hard reload.
+  const lastTrackedKey = useRef<string | null>(null);
+  const lastTrackedUrl = useRef<string>("");
+  const routeKey = location.pathname + location.search;
+
+  useEffect(() => {
+    if (lastTrackedKey.current === null) {
+      // 1ª execução = carga inicial (já contada pelo index.html)
+      lastTrackedKey.current = routeKey;
+      lastTrackedUrl.current = window.location.href;
+      return;
+    }
+    if (lastTrackedKey.current === routeKey) return; // StrictMode / re-render sem mudança de rota
+    lastTrackedKey.current = routeKey;
+
+    if (location.pathname.startsWith("/admin")) return; // painel admin não entra nas métricas
+
+    // Pequeno debounce (150ms): deixa o <Helmet> atualizar document.title e descarta
+    // redirecionamentos instantâneos (ex.: NotFoundRedirect) que não são páginas vistas de verdade.
+    const referrer = lastTrackedUrl.current;
+    const timer = setTimeout(() => {
+      trackSpaPageView({ referrer });
+      lastTrackedUrl.current = window.location.href;
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [routeKey, location.pathname]);
+
+  // Removemos fetchUserLocation duplicado. Usaremos getUserGeo direto do analytics.ts
   useEffect(() => {
     // 1. Guardião de UTMs (Salva na memória se a URL tiver parâmetros de campanha)
     const params = new URLSearchParams(window.location.search);
