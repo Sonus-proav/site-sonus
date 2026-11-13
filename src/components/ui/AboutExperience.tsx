@@ -47,7 +47,9 @@ export function AboutExperience() {
               <div className="relative z-10 w-full aspect-[4/5] lg:aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_150px_rgba(6,182,212,0.2)] transition-shadow duration-1000">
                 {/* Imagem com Parallax Suave */}
                 <img 
-                  src="/teatro-unisep.webp" 
+                  src="/teatro-unisep.webp"
+          loading="lazy"
+          decoding="async" 
                   alt="Integração Audiovisual Sonus" 
                   className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform [transition-duration:2s] ease-out"
                 />

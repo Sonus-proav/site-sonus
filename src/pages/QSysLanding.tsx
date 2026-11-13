@@ -2,6 +2,7 @@ import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversio
 import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
 import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -68,7 +69,7 @@ export function QSysLanding() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", honeypot: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
   const [submitError, setSubmitError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -76,8 +77,6 @@ export function QSysLanding() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    
-    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -85,44 +84,38 @@ export function QSysLanding() {
       if (stored) utms = JSON.parse(stored);
     } catch(err) {}
 
-    try {
-      const response = await fetch("/api/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Q-SYS", utms })
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      source: "Landing Page Q-SYS",
+      utms,
+    })
+
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: 'form',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        source: 'Landing Page Q-SYS',
+        city: geo.city || 'Desconhecida',
+        region: geo.region || 'Desconhecida',
+        country: geo.country || 'BR',
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        utms
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        trackLeadConversion('form_qsys')
+    await Promise.allSettled([emailPromise, firestorePromise])
 
-        // Grava lead no Firebase com geolocalização do Cloudflare
-        logLead({
-          type: 'form',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          source: 'Landing Page Q-SYS',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-          timestamp: Date.now(),
-          utms
-        });
-
-        setIsSuccess(true)
-        setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
-      } else {
-        const err = await response.json()
-        setSubmitError(err.error || "Erro ao enviar a mensagem.")
-      }
-    } catch (error) {
-      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || [];
+    trackLeadConversion('form_qsys')
+    setIsSuccess(true)
+    setFormData({ name: "", email: "", phone: "", message: "", honeypot: "" })
+    setIsSubmitting(false)
   }
 
   const handleWhatsApp = () => {
@@ -307,10 +300,10 @@ export function QSysLanding() {
                       <div className="flex-1 flex flex-col gap-4 md:gap-6 animate-in fade-in zoom-in-95 duration-500 relative">
                         {/* Background Scenes */}
                         <div className={`absolute -inset-6 transition-opacity duration-1000 pointer-events-none ${activeFauxScene === "presentation" ? 'opacity-20' : 'opacity-0'}`}>
-                          <img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Apresentação" />
+                          <img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="w-full h-full object-cover mix-blend-luminosity" alt="Apresentação" />
                         </div>
                         <div className={`absolute -inset-6 transition-opacity duration-1000 pointer-events-none ${activeFauxScene === "video" ? 'opacity-20' : 'opacity-0'}`}>
-                          <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover mix-blend-luminosity" alt="Videochamada" />
+                          <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=1000&auto=format&fit=crop" loading="lazy" decoding="async" className="w-full h-full object-cover mix-blend-luminosity" alt="Videochamada" />
                         </div>
 
                         {/* Content */}
@@ -411,9 +404,9 @@ export function QSysLanding() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-6 text-center md:text-left">Equipe Oficialmente Certificada Q-SYS</p>
             <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 opacity-90">
-              <img src={certLevel2} alt="Q-SYS Level 2 Certified" className="h-10 md:h-12 w-auto object-contain" />
-              <img src={certVision} alt="Q-SYS Visionsuite Certified" className="h-10 md:h-12 w-auto object-contain" />
-              <img src={certSales} alt="Q-SYS Sales Professional" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={certLevel2} loading="lazy" decoding="async" alt="Q-SYS Level 2 Certified" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={certVision} loading="lazy" decoding="async" alt="Q-SYS Visionsuite Certified" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={certSales} loading="lazy" decoding="async" alt="Q-SYS Sales Professional" className="h-10 md:h-12 w-auto object-contain" />
             </div>
           </div>
           <div>

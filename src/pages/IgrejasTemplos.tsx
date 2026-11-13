@@ -1,6 +1,7 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
@@ -82,7 +83,7 @@ export function IgrejasTemplos() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
   const [projects, setProjects] = useState<Project[]>([])
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -105,8 +106,6 @@ export function IgrejasTemplos() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    
-    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -114,54 +113,44 @@ export function IgrejasTemplos() {
       if (stored) utms = JSON.parse(stored);
     } catch(e) {}
 
-    try {
-      const response = await fetch("/api/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Igrejas e Templos", utms })
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      source: "Landing Page Igrejas e Templos",
+      utms,
+    })
+
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: 'form',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        source: 'Landing Page Igrejas e Templos',
+        city: geo.city || 'Desconhecida',
+        region: geo.region || 'Desconhecida',
+        country: geo.country || 'BR',
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        utms
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        trackLeadConversion('form_igrejas', 500, 'BRL')
+    await Promise.allSettled([emailPromise, firestorePromise])
 
-        // Grava lead no Firebase com geolocalização do Cloudflare
-        logLead({
-          type: 'form',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          source: 'Landing Page Igrejas e Templos',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-          timestamp: Date.now(),
-          utms
-        });
-        
-        setIsSuccess(true)
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          message: "",
-          honeypot: ""
-        })
-      } else {
-        const errorData = await response.json().catch(() => null)
-        setSubmitError(errorData?.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente.")
-      }
-    } catch (error) {
-      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-    } finally {
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || [];
+    trackLeadConversion('form_igrejas', 500, 'BRL')
+    setIsSuccess(true)
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      honeypot: ""
+    })
+    setIsSubmitting(false)
   }
 
   const handleWhatsApp = () => {

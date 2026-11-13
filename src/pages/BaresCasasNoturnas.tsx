@@ -1,6 +1,7 @@
 import { trackFormStart, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel"
 import React, { useState, memo, useRef, lazy } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
@@ -15,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Turnstile } from "@marsidev/react-turnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
+import { ZoneMixer } from "@/components/bares/ZoneMixer"
 import { NightclubWarranty } from "@/components/bares/NightclubWarranty"
 import { Lazy3D } from "@/components/bares/Lazy3D"
 import { SpeakerPoster } from "@/components/bares/Posters"
@@ -42,7 +44,7 @@ const AudioLimiter3D = memo(function AudioLimiter3D() {
 // ─── 4. PATCH PANEL COMPONENT (Premium 3D) ────────────────────────────────────────────────
 const StageBoxVisual = memo(function StageBoxVisual() {
   return (
-    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-[#0a0a0a] to-black rounded-3xl relative overflow-hidden group border border-white/5">
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-[#0a0a0a] to-black rounded-3xl relative overflow-hidden group border border-white/5 [contain:layout_paint]">
        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0,transparent_70%)] pointer-events-none" />
        
        <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-zinc-700/50 rounded-xl shadow-[0_30px_60px_-10px_rgba(0,0,0,1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col p-6 z-10 overflow-hidden transition-all duration-700 group-hover:scale-105 group-hover:shadow-[0_40px_80px_-10px_rgba(0,0,0,1)]">
@@ -113,7 +115,7 @@ const StageBoxVisual = memo(function StageBoxVisual() {
 // ─── ART COMPONENT ────────────────────────────────────────────────────────
 const CertificadoART = memo(function CertificadoART() {
   return (
-    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-zinc-100 to-zinc-300 rounded-3xl relative overflow-hidden group">
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-zinc-100 to-zinc-300 rounded-3xl relative overflow-hidden group [contain:layout_paint]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0,transparent_100%)] pointer-events-none" />
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
@@ -203,7 +205,7 @@ export function BaresCasasNoturnas() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
@@ -236,62 +238,43 @@ export function BaresCasasNoturnas() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-
-    const finalToken = turnstileToken || "bypass_token"
     let utms = null
     try {
       const stored = localStorage.getItem("sonus_utms")
       if (stored) utms = JSON.parse(stored)
     } catch (err) {}
 
-    const message = `Estabelecimento: ${formData.establishment}\nObjetivo principal: ${formData.objective || "Não informado"}`
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: "",
+      phone: formData.phone,
+      message: `Estabelecimento: ${formData.establishment}\nObjetivo principal: ${formData.objective || "Não informado"}`,
+      source: "Landing Page Bares e Casas Noturnas",
+      utms,
+    })
 
-    try {
-      const response = await fetch("/api/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          email: "",
-          churchName: formData.establishment,
-          message,
-          honeypot: formData.honeypot,
-          turnstileToken: finalToken,
-          source: "Landing Page Bares e Casas Noturnas",
-          utms,
-        }),
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: "form",
+        name: formData.name,
+        phone: formData.phone,
+        source: "Landing Page Bares e Casas Noturnas",
+        city: geo.city || "Desconhecida",
+        region: geo.region || "Desconhecida",
+        country: geo.country || "BR",
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+        timestamp: Date.now(),
+        utms,
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}))
-        ;(window as any).dataLayer = (window as any).dataLayer || []
-        trackLeadConversion("form_bares", 500, "BRL")
+    await Promise.allSettled([emailPromise, firestorePromise])
 
-        logLead({
-          type: "form",
-          name: formData.name,
-          phone: formData.phone,
-          source: "Landing Page Bares e Casas Noturnas",
-          city: resData.geo?.city || "Desconhecida",
-          region: resData.geo?.region || "Desconhecida",
-          country: resData.geo?.country || "BR",
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
-          timestamp: Date.now(),
-          utms,
-        })
-
-        setIsSuccess(true)
-        setFormData({ name: "", establishment: "", phone: "", objective: "", honeypot: "" })
-      } else {
-        const errorData = await response.json().catch(() => null)
-        setSubmitError(errorData?.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente.")
-      }
-    } catch (error) {
-      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || []
+    trackLeadConversion("form_bares", 500, "BRL")
+    setIsSuccess(true)
+    setFormData({ name: "", establishment: "", phone: "", objective: "", honeypot: "" })
+    setIsSubmitting(false)
   }
 
   const schema = {
@@ -449,7 +432,7 @@ export function BaresCasasNoturnas() {
         </section>
 
         {/* ═══════════════ 4. BENTO GRID (A SOLUÇÃO PREMIUM) ═══════════════ */}
-        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-x-hidden">
+        <section className="py-24 md:py-40 relative bg-[#050505] border-t border-white/5 overflow-x-hidden [content-visibility:auto] [contain-intrinsic-size:auto_1500px]">
           {/* Ambient Lighting for Bento Grid */}
           <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[40px] md:blur-[150px] pointer-events-none" />
           <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[40px] md:blur-[150px] pointer-events-none" />
@@ -470,70 +453,92 @@ export function BaresCasasNoturnas() {
 
           <div className="w-full max-w-7xl mx-auto px-4">
              {/* THE BENTO GRID */}
-             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-6">
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 auto-rows-auto gap-5 md:gap-6">
                 
-                {/* BENTO 1: Zoneamento (Large - Span 2 cols, 2 rows on Desktop) */}
-                <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 h-auto md:h-full">
-                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* BENTO 1: Fase 01 — Limitação Digital (Mapa de dispersão sonora) */}
+                <FadeIn delay={0.1} className="md:col-span-2 lg:col-span-6 lg:row-span-2 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-blue-500/40 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                       
-                      <div className="p-5 md:p-8 pb-0 relative z-10">
-                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 mb-4 backdrop-blur-sm">
+                      <div className="p-6 md:p-8 lg:p-10 pb-0 relative z-10">
+                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 mb-5 backdrop-blur-sm">
                             <Lock className="w-3 h-3 text-blue-400" />
                             <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Fase 01</span>
                          </div>
-                         <h3 className="text-3xl font-black tracking-tight mb-3 text-white">Limitação Digital de Volume (Zero Multas)</h3>
-                         <p className="text-zinc-400 text-base font-light mb-6 max-w-sm">
+                         <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-4 text-white leading-tight">Limitação Digital de Volume (Zero Multas)</h3>
+                         <p className="text-zinc-400 text-base font-light leading-relaxed mb-6 max-w-md">
                            Dispersão sonora matemática. <strong>105dB cravados na pista</strong>, e silêncio absoluto na rua para proteger seu alvará.
                          </p>
                       </div>
                       
-                      <div className="w-full relative px-0 pb-4 flex-1">
-                           <div className="w-full h-full scale-95 origin-top">
-                             <ClubHeatmap />
-                           </div>
-                        </div>
+                      <div className="w-full relative px-0 pb-4 md:pb-6 flex-1">
+                         <div className="w-full h-full scale-95 origin-top">
+                           <ClubHeatmap />
+                         </div>
+                      </div>
                    </div>
                 </FadeIn>
 
-                {/* BENTO 2: Plug & Play (Vertical - Span 1 col, 2 rows) */}
-                <FadeIn delay={0.2} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-auto md:h-full">
-                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* BENTO 2: Fase 02 — Zoneamento Independente (Interface de zonas) */}
+                <FadeIn delay={0.2} className="md:col-span-2 lg:col-span-6 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-indigo-500/40 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                       
-                      <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
-                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 mb-4 backdrop-blur-sm">
+                      <div className="p-6 md:p-8 lg:p-10 pb-2 md:pb-4 relative z-10 flex flex-col">
+                         <div className="inline-flex self-start items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 mb-5 backdrop-blur-sm">
                             <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Fase 02</span>
                          </div>
-                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Zoneamento Independente</h3>
-                         <p className="text-zinc-400 text-sm font-light">
+                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white leading-tight">Zoneamento Independente</h3>
+                         <p className="text-zinc-400 text-sm md:text-base font-light leading-relaxed max-w-lg">
                            Controle volumes diferentes no mesmo ambiente. Mantenha a música alta na pista e um nível propício à conversação nas áreas de mesas, camarotes e varandas.
                          </p>
                       </div>
                       
-                      <div className="flex-1 w-full relative flex items-center justify-center p-4">
+                      <div className="flex-1 w-full relative flex items-center justify-center px-4 pb-6 md:px-8 md:pb-8 lg:px-10 lg:pb-10 pt-2">
+                         <ZoneMixer />
+                      </div>
+                   </div>
+                </FadeIn>
+
+                {/* BENTO 3: Fase 03 — Infraestrutura de Palco Plug & Play (Painel XLR) */}
+                <FadeIn delay={0.3} className="md:col-span-1 lg:col-span-3 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-cyan-500/40 hover:shadow-[0_20px_60px_-15px_rgba(6,182,212,0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                      
+                      <div className="p-6 md:p-8 pb-2 relative z-10 flex flex-col items-center text-center">
+                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-5 backdrop-blur-sm">
+                            <Zap className="w-3 h-3 text-cyan-400" />
+                            <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Fase 03</span>
+                         </div>
+                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white leading-tight">Infraestrutura de Palco Plug &amp; Play</h3>
+                         <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                           Instalação de painéis industriais fixos para conexão de bandas e DJs. Elimina cabos soltos pelo chão, curtos-circuitos e queimas de equipamento por falha de instalação.
+                         </p>
+                      </div>
+                      
+                      <div className="flex-1 w-full relative flex items-center justify-center p-4 md:p-6">
                          <StageBoxVisual />
                       </div>
                    </div>
                 </FadeIn>
 
-                {/* BENTO 3: ART (Vertical - Span 1 col, 2 rows) */}
-                <FadeIn delay={0.3} className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 h-auto md:h-full">
-                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* BENTO 4: Fase 04 — Laudo Técnico com ART (etapa separada) */}
+                <FadeIn delay={0.4} className="md:col-span-1 lg:col-span-3 h-auto md:h-full">
+                   <div className="w-full h-auto md:h-full min-h-[400px] bg-zinc-950 rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-green-500/40 hover:shadow-[0_20px_60px_-15px_rgba(34,197,94,0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                       
-                      <div className="p-5 md:p-8 relative z-10 flex flex-col items-center text-center">
-                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 mb-4 backdrop-blur-sm">
+                      <div className="p-6 md:p-8 pb-2 relative z-10 flex flex-col items-center text-center">
+                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 mb-5 backdrop-blur-sm">
                             <ShieldCheck className="w-3 h-3 text-green-400" />
-                            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Fase 03</span>
+                            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Fase 04</span>
                          </div>
-                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white">Infraestrutura de Palco Plug & Play</h3>
-                         <p className="text-zinc-400 text-sm font-light">
-                           Instalação de painéis industriais fixos para conexão de bandas e DJs. Elimina cabos soltos pelo chão, curtos-circuitos e queimas de equipamento por falha de instalação.
+                         <h3 className="text-2xl font-black tracking-tight mb-3 text-white leading-tight">Laudo Técnico com ART</h3>
+                         <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                           Medições com sonômetro Classe 1 e Anotação de Responsabilidade Técnica assinada por engenheiro habilitado, para defender autuações e renovar o seu alvará.
                          </p>
                       </div>
                       
-                      <div className="flex-1 w-full relative flex items-center justify-center p-4">
+                      <div className="flex-1 w-full relative flex items-center justify-center p-4 md:p-6">
                          <CertificadoART />
                       </div>
                    </div>
@@ -547,7 +552,7 @@ export function BaresCasasNoturnas() {
         <NightclubWarranty />
 
         {/* ═══════════════ 5. FORMULÁRIO (CONVERSÃO) ═══════════════ */}
-        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-white/5 overflow-hidden">
+        <section id="contato" className="py-24 md:py-32 px-4 relative bg-[#020202] border-white/5 overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_900px]">
           <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <FadeIn>
               <span className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6 block">Fale com um Especialista</span>

@@ -528,3 +528,15 @@
 
 /* Esconde o botao do whatsapp flutuante quando a StickyCtaBar estiver visivel */
 body.has-sticky-cta .global-whatsapp-btn { opacity: 0; pointer-events: none; }
+
+/* ═══════════════════════════════════════════
+   Acessibilidade + performance: respeita "reduzir movimento" do SO.
+   Para animações infinitas (economiza GPU/bateria em aparelhos fracos).
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-iteration-count: 1 !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

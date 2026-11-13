@@ -64,6 +64,8 @@ export function ClientMarquee() {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
+                  loading="lazy"
+                  decoding="async"
                   className={logo.className + " object-contain brightness-0 invert opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 w-auto relative z-10"}
                 />
               </div>
@@ -104,6 +106,8 @@ export function ClientMarquee() {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
+                  loading="lazy"
+                  decoding="async"
                   className={logo.className + " object-contain brightness-0 invert opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 w-auto relative z-10"}
                 />
               </div>

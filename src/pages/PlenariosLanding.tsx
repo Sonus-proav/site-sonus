@@ -7,6 +7,7 @@ import { motion, AnimatePresence, useScroll } from "framer-motion"
 import { Mic, CheckCircle2, Cctv, Cpu, X, FileText, Lock } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/metaPixel"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -207,13 +208,13 @@ const PlenaryBlueprint = memo(function PlenaryBlueprint() {
            <div className="w-full md:w-1/3 flex flex-col gap-4">
              <div className="h-24 md:h-full bg-zinc-900/50 border border-zinc-800 rounded-lg flex items-end p-4 gap-2 relative overflow-hidden">
                 <div className="absolute top-2 left-2 font-mono text-[8px] text-zinc-500">QUÓRUM</div>
-                <motion.div initial={{ height: 0 }} animate={{ height: '80%' }} transition={{ duration: 1 }} className="w-1/3 bg-green-500 rounded-t-sm shadow-[0_0_10px_rgba(34,197,94,0.3)] relative">
+                <motion.div initial={{ y: '100%' }} animate={{ y: '20%' }} transition={{ duration: 1 }} className="w-1/3 h-full bg-green-500 rounded-t-sm shadow-[0_0_10px_rgba(34,197,94,0.3)] relative">
                   <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-green-400">14</span>
                 </motion.div>
-                <motion.div initial={{ height: 0 }} animate={{ height: '10%' }} transition={{ duration: 1 }} className="w-1/3 bg-zinc-500 rounded-t-sm relative">
+                <motion.div initial={{ y: '100%' }} animate={{ y: '90%' }} transition={{ duration: 1 }} className="w-1/3 h-full bg-zinc-500 rounded-t-sm relative">
                   <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-zinc-400">00</span>
                 </motion.div>
-                <motion.div initial={{ height: 0 }} animate={{ height: '30%' }} transition={{ duration: 1 }} className="w-1/3 bg-red-500 rounded-t-sm shadow-[0_0_10px_rgba(239,68,68,0.3)] relative">
+                <motion.div initial={{ y: '100%' }} animate={{ y: '70%' }} transition={{ duration: 1 }} className="w-1/3 h-full bg-red-500 rounded-t-sm shadow-[0_0_10px_rgba(239,68,68,0.3)] relative">
                   <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-red-400">03</span>
                 </motion.div>
              </div>
@@ -308,44 +309,43 @@ const PlenariosForm = memo(function PlenariosForm() {
 
     try {
       const utms = JSON.parse(localStorage.getItem('sonus_utms') || 'null')
-      
-      const response = await fetch('/api/contato', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          source: 'Landing Page Plenários',
-          utms
-        })
+
+      const emailPromise = sendLeadEmail({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.role ? `Cargo: ${formData.role}\n${formData.message}` : formData.message,
+        source: "Landing Page Plenários",
+        utms,
       })
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        
-        if (typeof window !== 'undefined') {
-          (window as any).dataLayer = (window as any).dataLayer || [];
-          if (typeof (window as any).trackLeadConversion === 'function') {
-            (window as any).trackLeadConversion('form_plenarios', 500, 'BRL');
-          }
-        }
-        
+      const firestorePromise = getUserGeo().then((geo) =>
         logLead({
           type: 'form',
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
           source: 'Landing Page Plenários',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
+          city: geo.city || 'Desconhecida',
+          region: geo.region || 'Desconhecida',
+          country: geo.country || 'BR',
           device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
           timestamp: Date.now(),
           utms
-        });
+        })
+      )
 
-        setIsSuccess(true);
-        setFormData({ name: "", role: "", email: "", phone: "", message: "", honeypot: "" });
+      await Promise.allSettled([emailPromise, firestorePromise])
+
+      if (typeof window !== 'undefined') {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        if (typeof (window as any).trackLeadConversion === 'function') {
+          (window as any).trackLeadConversion('form_plenarios', 500, 'BRL');
+        }
       }
+
+      setIsSuccess(true);
+      setFormData({ name: "", role: "", email: "", phone: "", message: "", honeypot: "" });
     } catch (error) {
       console.error('Error submitting form:', error)
     } finally {
@@ -354,7 +354,7 @@ const PlenariosForm = memo(function PlenariosForm() {
   }
 
   return (
-    <div className="bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-16 shadow-2xl" style={{ willChange: 'transform' }}>
+    <div className="bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-16 shadow-2xl">
       {isSuccess ? (
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">

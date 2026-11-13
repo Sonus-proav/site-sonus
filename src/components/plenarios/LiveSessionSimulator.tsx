@@ -190,11 +190,10 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
             
             <div className="w-full h-1.5 bg-white/5 rounded-full mt-6 overflow-hidden z-10">
               <motion.div 
-                className="h-full bg-blue-500 rounded-full"
-                initial={{ width: "100%" }}
-                animate={{ width: `${(timeLeft / 20) * 100}%` }}
+                className="h-full w-full bg-blue-500 rounded-full origin-left"
+                initial={{ scaleX: 1 }}
+                animate={{ scaleX: timeLeft / 20 }}
                 transition={{ duration: 1, ease: "linear" }}
-                style={{ willChange: 'width' }}
               />
             </div>
           </div>
@@ -208,7 +207,7 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
                 <motion.span key={simCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{simCount}</motion.span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" animate={{ width: `${(simCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+                <motion.div className="h-full w-full origin-left bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" initial={false} animate={{ scaleX: simCount / 6 }} transition={{ type: 'spring' }} />
               </div>
 
               <div className="flex items-center justify-between pt-1">
@@ -216,7 +215,7 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
                 <motion.span key={naoCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{naoCount}</motion.span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" animate={{ width: `${(naoCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+                <motion.div className="h-full w-full origin-left bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" initial={false} animate={{ scaleX: naoCount / 6 }} transition={{ type: 'spring' }} />
               </div>
 
               <div className="flex items-center justify-between pt-1">
@@ -224,7 +223,7 @@ export const LiveSessionSimulator = memo(function LiveSessionSimulator() {
                 <motion.span key={absCount} initial={{ scale: 1.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-2xl font-black text-white">{absCount}</motion.span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-zinc-500 shadow-[0_0_10px_rgba(161,161,170,0.5)]" animate={{ width: `${(absCount / 6) * 100}%` }} transition={{ type: 'spring' }} style={{ willChange: 'width' }} />
+                <motion.div className="h-full w-full origin-left bg-zinc-500 shadow-[0_0_10px_rgba(161,161,170,0.5)]" initial={false} animate={{ scaleX: absCount / 6 }} transition={{ type: 'spring' }} />
               </div>
             </div>
           </div>

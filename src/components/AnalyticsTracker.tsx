@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { logPageView, updateTimeSpent, getUserGeo } from "@/lib/analytics";
+import { logPageView, updateTimeSpent, getUserGeo, flushPendingLeads } from "@/lib/analytics";
+import { whenIdle } from "@/lib/firestoreLazy";
 import { useEngagedSession } from "@/hooks/useEngagedSession";
 import { useReducedPerformance } from "@/hooks/useReducedPerformance";
 
@@ -64,7 +65,12 @@ export function AnalyticsTracker() {
       currentDocId.current = docId;
     };
 
-    recordView();
+    // Firestore carrega sob demanda: registra a visita em tempo ocioso (fora do caminho crítico)
+    // e, já com o Firestore pronto, reenvia leads pendentes de visitas anteriores.
+    whenIdle(() => {
+      recordView();
+      flushPendingLeads();
+    });
 
     // Tratamento caso o usuário feche a aba do navegador
     const handleBeforeUnload = () => {

@@ -123,7 +123,7 @@ export function BentoEspecialidades() {
                 key={item.id}
                 onMouseEnter={() => setActive(item.id)}
                 onClick={() => setActive(item.id)}
-                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group flex flex-col will-change-[flex] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'lg:flex-[5] flex-[4] bg-zinc-900' : 'flex-1 bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'}`}
+                className={`relative overflow-hidden rounded-[2rem] cursor-pointer group flex flex-col transition-[flex-grow,background-color,border-color] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'lg:flex-[5] flex-[4] bg-zinc-900' : 'flex-1 bg-zinc-950/50 hover:bg-zinc-900/50 border border-white/5'}`}
               >
                 {/* Background Image & Gradient (SIMPLIFIED FOR PERFORMANCE) */}
                 <div className="absolute inset-0 z-0 bg-[#050505]">
@@ -140,10 +140,10 @@ export function BentoEspecialidades() {
                 </div>
 
                 {/* Content Overlay */}
-                <div className={`relative z-10 p-4 lg:p-8 h-full flex transition-all duration-500 ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
+                <div className={`relative z-10 p-4 lg:p-8 h-full flex ${isActive ? "flex-col justify-end" : "flex-row lg:flex-col items-center lg:items-start justify-start lg:justify-end"}`}>
                   
                   {/* Ícone fixo */}
-                  <div className={`w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 z-20 shrink-0 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
+                  <div className={`w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center mb-6 transition-[transform,background-color,color] duration-500 z-20 shrink-0 ${isActive ? `bg-white/10 ${item.accent} scale-110` : 'bg-white/5 text-zinc-500'}`}>
                     {item.icon}
                   </div>
 
@@ -159,7 +159,7 @@ export function BentoEspecialidades() {
 
                   {/* Conteúdo Expandido - DOM Constante e Largura Fixa */}
                   {/* will-change-opacity previne reflows */}
-                  <div className={`flex flex-col w-[80vw] lg:w-[450px] transition-all duration-500 will-change-[opacity,transform] ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-4 pointer-events-none absolute bottom-8'}`}>
+                  <div className={`flex flex-col w-[80vw] lg:w-[450px] transition-[opacity,transform] duration-500 ${isActive ? 'opacity-100 translate-y-0 pointer-events-auto delay-100' : 'opacity-0 translate-y-4 pointer-events-none absolute bottom-8'}`}>
                     <h4 className={`${item.accent} text-xs font-bold uppercase tracking-[0.2em] mb-2`}>{item.subtitle}</h4>
                     <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight whitespace-normal">{item.title}</h3>
                     

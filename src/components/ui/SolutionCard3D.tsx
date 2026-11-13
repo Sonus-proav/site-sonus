@@ -65,8 +65,8 @@ export function SolutionCard3D({
           ref={ref}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{ rotateX, rotateY, transformStyle: "preserve-3d", willChange: "transform" }}
-          className="relative w-full max-w-lg aspect-square sm:aspect-[4/3] rounded-[2rem] border border-white/5 bg-zinc-950/50 cursor-pointer group"
+          style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+          className="relative w-full max-w-lg aspect-square sm:aspect-[4/3] rounded-[2rem] border border-white/5 bg-zinc-950/50 cursor-pointer group hover:will-change-transform"
         >
           {/* Ambient Glow */}
           <div 

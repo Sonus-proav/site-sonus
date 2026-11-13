@@ -2,6 +2,7 @@ import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversio
 import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta";
 import { useState, useRef, useEffect, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
 import { Navbar } from "@/components/layout/Navbar"
@@ -105,8 +106,9 @@ function InteractivePanelMockup() {
                 </div>
                 <div className="h-1.5 sm:h-2 bg-zinc-800 rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 relative"
-                    animate={{ width: `${config.volume}%` }}
+                    className="h-full w-full bg-gradient-to-r from-blue-500 to-cyan-400 relative"
+                    initial={false}
+                    animate={{ x: `${config.volume - 100}%` }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                   >
                     <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/20 blur-[2px]" />
@@ -176,15 +178,13 @@ export function AuditoriosTeatros() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    
-    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -192,49 +192,37 @@ export function AuditoriosTeatros() {
       if (stored) utms = JSON.parse(stored);
     } catch(e) {}
 
-    try {
-      const response = await fetch("/api/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Auditórios e Teatros", utms })
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      source: "Landing Page Auditórios e Teatros",
+      utms,
+    })
+
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: 'form',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        source: 'Landing Page Auditórios e Teatros',
+        city: geo.city || 'Desconhecida',
+        region: geo.region || 'Desconhecida',
+        country: geo.country || 'BR',
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        utms
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        trackLeadConversion('form_auditorios', 500, 'BRL')
+    await Promise.allSettled([emailPromise, firestorePromise])
 
-        // Grava lead no Firebase com geolocalização do Cloudflare
-        logLead({
-          type: 'form',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          source: 'Landing Page Auditórios e Teatros',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-          timestamp: Date.now(),
-          utms
-        });
-        
-        setIsSubmitting(false)
-        localStorage.removeItem('sonus_utms'); navigate("/obrigado")
-      } else {
-        const errData = await response.json().catch(() => ({}))
-        setSubmitError(errData.error || "Ocorreu um erro ao enviar sua mensagem. Tente novamente ou use o WhatsApp.")
-        setIsSubmitting(false)
-        ;(window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'form_error', error_type: 'api_rejection' });
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error)
-      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || [];
+    trackLeadConversion('form_auditorios', 500, 'BRL')
+    setIsSubmitting(false)
+    localStorage.removeItem('sonus_utms'); navigate("/obrigado")
   }
 
   const auditorioSchema = {

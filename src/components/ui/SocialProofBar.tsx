@@ -86,11 +86,13 @@ export function SocialProofBar({ stats = defaultStats }: SocialProofBarProps) {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.05)_0%,transparent_100%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)] pointer-events-none" />
       
-      <motion.div 
-        animate={{ left: ['-10%', '110%'] }} 
+      <motion.div
+        animate={{ x: ['-10%', '110%'] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-0 bottom-0 w-[1px] bg-cyan-500/50 shadow-[0_0_30px_5px_#06b6d4] z-0 pointer-events-none" 
-      />
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
+      >
+        <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-cyan-500/50 shadow-[0_0_30px_5px_#06b6d4]" />
+      </motion.div>
 
       {/* Top Status Dropdown */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-2 bg-black/80 border-x border-b border-white/10 rounded-b-2xl backdrop-blur-sm md:backdrop-blur-md">

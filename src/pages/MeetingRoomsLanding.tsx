@@ -1,6 +1,7 @@
 import { trackFormStart, trackPageIntent, trackWhatsAppClick, trackLeadConversion } from "@/lib/metaPixel";
 import { useState, useEffect, useRef } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -49,7 +50,7 @@ export function MeetingRoomsLanding() {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "", honeypot: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
   const [submitError, setSubmitError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,58 +58,48 @@ export function MeetingRoomsLanding() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
       const stored = localStorage.getItem('sonus_utms');
       if (stored) utms = JSON.parse(stored);
     } catch(err) {}
-    
-    try {
-      const response = await fetch('/api/contato', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Landing Page Salas de Reunião", utms })
+
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      source: "Landing Page Salas de Reunião",
+      utms,
+    })
+
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: 'form',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        source: 'Landing Page Salas de Reunião',
+        city: geo.city || 'Desconhecida',
+        region: geo.region || 'Desconhecida',
+        country: geo.country || 'BR',
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        utms
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        trackLeadConversion('form_salas', 500, 'BRL')
+    await Promise.race([
+      Promise.allSettled([emailPromise, firestorePromise]),
+      new Promise<void>((resolve) => setTimeout(resolve, 2500)),
+    ]);
 
-        // Grava lead no Firebase com geolocalização do Cloudflare
-        logLead({
-          type: 'form',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          source: 'Landing Page Salas de Reunião',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-          timestamp: Date.now(),
-          utms
-        });
-        
-        window.location.href = '/obrigado';
-      } else {
-        const errData = await response.json().catch(() => ({}))
-        setSubmitError(errData.error || "Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.")
-        setIsSubmitting(false)
-        ;(window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({ event: 'form_error', error_type: 'api_rejection' });
-      }
-    } catch (error) {
-      setSubmitError("Erro de conexão. Tente novamente ou use o WhatsApp.")
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-      ;(window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_error', error_type: 'network_failure' });
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || [];
+    trackLeadConversion('form_salas', 500, 'BRL')
+    window.location.href = '/obrigado';
   }
-  
+
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>
     if (callState === "connected") {

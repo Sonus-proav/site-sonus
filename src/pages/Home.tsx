@@ -7,7 +7,8 @@ import { motion,  } from "framer-motion"
 import { ArrowRight,  } from "lucide-react"
 
 import { trackLeadConversion } from "@/lib/metaPixel"
-import { logLead } from "@/lib/analytics"
+import { logLead, getUserGeo } from "@/lib/analytics"
+import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "../components/SEO"
 
 const HeroVisual = lazy(() => import("@/components/ui/HeroVisual").then(m => ({ default: m.HeroVisual })))
@@ -33,7 +34,7 @@ export function Home() {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "", honeypot: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
-  const [turnstileToken, setTurnstileToken] = useState("")
+  const [, setTurnstileToken] = useState("")
   const [isFormFocused, setIsFormFocused] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,8 +42,6 @@ export function Home() {
     if (formData.honeypot) return
     setIsSubmitting(true)
     setSubmitError("")
-    
-    const finalToken = turnstileToken || "bypass_token";
 
     let utms = null;
     try {
@@ -50,42 +49,36 @@ export function Home() {
       if (stored) utms = JSON.parse(stored);
     } catch(err) {}
 
-    try {
-      const response = await fetch("/api/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, turnstileToken: finalToken, source: "Página Inicial (Home)", utms })
+    const emailPromise = sendLeadEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      source: "Página Inicial (Home)",
+      utms,
+    })
+
+    const firestorePromise = getUserGeo().then((geo) =>
+      logLead({
+        type: 'form',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        source: 'Página Inicial (Home)',
+        city: geo.city || 'Desconhecida',
+        region: geo.region || 'Desconhecida',
+        country: geo.country || 'BR',
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+        timestamp: Date.now(),
+        utms
       })
+    )
 
-      if (response.ok) {
-        const resData = await response.json().catch(() => ({}));
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        trackLeadConversion('form_home', 500, 'BRL')
+    await Promise.allSettled([emailPromise, firestorePromise])
 
-        logLead({
-          type: 'form',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          source: 'Página Inicial (Home)',
-          city: resData.geo?.city || 'Desconhecida',
-          region: resData.geo?.region || 'Desconhecida',
-          country: resData.geo?.country || 'BR',
-          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-          timestamp: Date.now(),
-          utms
-        });
-
-        localStorage.removeItem('sonus_utms'); navigate("/obrigado")
-      } else {
-        const errData = await response.json().catch(() => ({}))
-        setSubmitError(errData.error || "Ocorreu um erro ao enviar. Tente novamente.")
-        setIsSubmitting(false)
-      }
-    } catch (error) {
-      setSubmitError("Erro de conexão. Tente novamente.")
-      setIsSubmitting(false)
-    }
+    ;(window as any).dataLayer = (window as any).dataLayer || [];
+    trackLeadConversion('form_home', 500, 'BRL')
+    localStorage.removeItem('sonus_utms'); navigate("/obrigado")
   }
 
   return (

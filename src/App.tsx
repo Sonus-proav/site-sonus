@@ -1,8 +1,6 @@
 import React, { Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 import { AppLayout } from "./components/layout/AppLayout"
-import { AuthProvider } from "./contexts/AuthContext"
-import { ProtectedRoute } from "./components/admin/ProtectedRoute"
 import { ErrorBoundary } from "./components/ErrorBoundary"
 
 // Lazy loading the pages to split the JS bundle
@@ -20,6 +18,9 @@ const IgrejasTemplos = React.lazy(() => import("./pages/IgrejasTemplos").then(mo
 const BaresCasasNoturnas = React.lazy(() => import("./pages/BaresCasasNoturnas").then(module => ({ default: module.BaresCasasNoturnas })))
 const LinksPage = React.lazy(() => import("./pages/LinksPage").then(module => ({ default: module.LinksPage })))
 const Solucoes = React.lazy(() => import("./pages/Solucoes").then(module => ({ default: module.Solucoes })))
+// Admin: AuthProvider/ProtectedRoute (e todo o firebase/auth) só são baixados nas rotas /admin-*
+const AdminAuthLayout = React.lazy(() => import("./components/admin/AdminAuthLayout"))
+const ProtectedRoute = React.lazy(() => import("./components/admin/ProtectedRoute").then(module => ({ default: module.ProtectedRoute })))
 
 import { HelmetProvider } from "react-helmet-async"
 import { useNavigate } from "react-router-dom"
@@ -45,7 +46,6 @@ function NotFoundRedirect() {
 function App() {
   return (
     <HelmetProvider>
-      <AuthProvider>
         <ErrorBoundary>
           <ScrollReset />
           <AnalyticsTracker />
@@ -67,20 +67,21 @@ function App() {
             <Route path="solucoes" element={<Solucoes />} />
             <Route path="obrigado" element={<ThankYou />} />
             
-            <Route path="/admin-login" element={<AdminLogin />} />
-            <Route 
-              path="/admin-dashboard-sonus" 
-              element={
-                <ProtectedRoute>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              } 
-            />
+            <Route element={<AdminAuthLayout />}>
+              <Route path="/admin-login" element={<AdminLogin />} />
+              <Route
+                path="/admin-dashboard-sonus"
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
             <Route path="*" element={<NotFoundRedirect />} />
           </Routes>
           </Suspense>
         </ErrorBoundary>
-      </AuthProvider>
     </HelmetProvider>
   )
 }

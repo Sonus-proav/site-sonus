@@ -205,7 +205,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: (index % 6) * 0.1 }}
-        className={`group relative rounded-[2rem] overflow-hidden bg-zinc-100 dark:bg-[#05060A] border border-black/5 dark:border-white/5 cursor-pointer transition-colors duration-300 [transform:translateZ(0)] will-change-transform ${heightClass}`}
+        className={`group relative rounded-[2rem] overflow-hidden bg-zinc-100 dark:bg-[#05060A] border border-black/5 dark:border-white/5 cursor-pointer transition-colors duration-300 ${heightClass}`}
       >
         <div 
           className="relative w-full h-full overflow-hidden"
