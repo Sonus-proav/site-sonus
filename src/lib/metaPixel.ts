@@ -55,7 +55,7 @@ export function trackWhatsAppClick(sourceId: string, pageName: string) {
 /**
  * Disparado para intenções profundas de páginas específicas (Remarketing Customizado).
  */
-export function trackPageIntent(intentName: 'Intent_Qsys' | 'Intent_Corporativo' | 'Intent_Auditorios' | 'Intent_Igrejas') {
+export function trackPageIntent(intentName: 'Intent_Qsys' | 'Intent_Corporativo' | 'Intent_Auditorios' | 'Intent_Igrejas' | 'Intent_Educacao' | 'Intent_Podcasts') {
   pushDataLayer({ event: 'page_intent', intent_type: intentName });
   safeFbq('trackCustom', intentName);
 }

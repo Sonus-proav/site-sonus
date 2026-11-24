@@ -540,3 +540,355 @@ body.has-sticky-cta .global-whatsapp-btn { opacity: 0; pointer-events: none; }
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════
+   Direção de Arte & Movimento Orgânico — Educação (/educacao)
+   100% GPU: apenas transform, opacity e stroke-dashoffset (60 FPS)
+   ═══════════════════════════════════════════ */
+.edu-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #67e8f9;
+}
+.edu-title {
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.08;
+  color: #ffffff;
+  text-wrap: balance;
+}
+.edu-lead {
+  color: #a1a1aa;
+  font-weight: 300;
+  line-height: 1.75;
+}
+.edu-hairline-top {
+  position: relative;
+}
+.edu-hairline-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 20%, rgba(34, 211, 238, 0.38) 50%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+  pointer-events: none;
+}
+
+@keyframes edu-packet {
+  0%   { stroke-dashoffset: 220; }
+  100% { stroke-dashoffset: 0; }
+}
+@keyframes edu-packet-reverse {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 220; }
+}
+@keyframes edu-lobe-breathe {
+  0%, 100% { transform: scale(0.91); opacity: 0.42; }
+  50%      { transform: scale(1.07); opacity: 0.88; }
+}
+@keyframes edu-ripple {
+  0%   { transform: scale(0.42); opacity: 0.72; }
+  75%  { opacity: 0.18; }
+  100% { transform: scale(1.48); opacity: 0; }
+}
+@keyframes edu-radar-sweep {
+  0%, 100% { transform: rotate(-4.5deg); }
+  50%      { transform: rotate(4.5deg); }
+}
+@keyframes edu-wave-arc {
+  0%, 100% { opacity: 0.18; transform: translateX(0px) scale(0.98); }
+  50%      { opacity: 0.95; transform: translateX(3px) scale(1.02); }
+}
+@keyframes edu-vu {
+  0%, 100% { transform: scaleY(0.24); opacity: 0.55; }
+  50%      { transform: scaleY(1);    opacity: 1; }
+}
+@keyframes edu-aurora {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+  50%      { transform: translate3d(-18px, 12px, 0) scale(1.06); opacity: 1; }
+}
+@keyframes edu-beacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.38; transform: scale(0.86); }
+}
+
+.edu-packet {
+  stroke-dasharray: 28 192;
+  animation: edu-packet 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.edu-packet-fast {
+  stroke-dasharray: 20 200;
+  animation: edu-packet 1.9s linear infinite;
+}
+.edu-packet-rev {
+  stroke-dasharray: 22 198;
+  animation: edu-packet-reverse 2.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.edu-lobe-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edu-lobe-breathe 4.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+.edu-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edu-ripple 3.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.edu-radar-sweep {
+  animation: edu-radar-sweep 6.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.edu-wave-arc {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: edu-wave-arc 2.8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+.edu-aurora {
+  will-change: transform, opacity;
+  animation: edu-aurora 16s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+.edu-beacon {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edu-beacon 2.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.edu-vu {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 13px;
+}
+.edu-vu i {
+  display: block;
+  width: 2px;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #67e8f9 0%, #3b82f6 100%);
+  transform-origin: bottom;
+  animation: edu-vu 1.15s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+.edu-vu i:nth-child(2) { animation-duration: 1.65s; animation-delay: -0.3s; }
+.edu-vu i:nth-child(3) { animation-duration: 0.95s; animation-delay: -0.7s; }
+.edu-vu i:nth-child(4) { animation-duration: 1.45s; animation-delay: -0.2s; }
+.edu-vu i:nth-child(5) { animation-duration: 1.85s; animation-delay: -0.9s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .edu-packet,
+  .edu-packet-fast,
+  .edu-packet-rev,
+  .edu-lobe-breathe,
+  .edu-ripple,
+  .edu-radar-sweep,
+  .edu-wave-arc,
+  .edu-aurora,
+  .edu-beacon,
+  .edu-vu i {
+    animation: none !important;
+  }
+  .edu-ripple { opacity: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════
+   Broadcast Cinema & Acoustic Obsidian — Podcasts (/podcasts)
+   100% GPU: apenas transform e opacity (60 FPS cravados)
+   ═══════════════════════════════════════════ */
+.pod-timecode-line {
+  position: relative;
+}
+.pod-timecode-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 15%,
+    rgba(245, 158, 11, 0.48) 42%,
+    rgba(239, 68, 68, 0.35) 56%,
+    rgba(34, 211, 238, 0.25) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes pod-tally-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes pod-eq-bar {
+  0%, 100% {
+    transform: scaleY(0.22);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pod-signal-sweep {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.95;
+  }
+  82% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateX(360%);
+    opacity: 0;
+  }
+}
+
+.pod-tally-dot {
+  transform-origin: center;
+  animation: pod-tally-pulse 1.6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.pod-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.pod-eq i {
+  display: block;
+  width: 2.5px;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 55%, #ef4444 100%);
+  transform-origin: bottom;
+  animation: pod-eq-bar 0.92s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.pod-eq i:nth-child(2) { animation-duration: 1.35s; animation-delay: -0.25s; }
+.pod-eq i:nth-child(3) { animation-duration: 0.78s; animation-delay: -0.6s; }
+.pod-eq i:nth-child(4) { animation-duration: 1.18s; animation-delay: -0.15s; }
+.pod-eq i:nth-child(5) { animation-duration: 1.48s; animation-delay: -0.75s; }
+
+.pod-signal-runner {
+  will-change: transform, opacity;
+  animation: pod-signal-sweep 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ── Controles com affordance clara (botão "físico" elevado) ── */
+.pod-btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.55), 0 10px 20px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s, background-color 0.2s, opacity 0.2s;
+}
+/* Hover só onde existe mouse — evita "hover preso" após o toque no celular */
+@media (hover: hover) {
+  .pod-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(251, 191, 36, 0.75);
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.2) 0%, rgba(255, 255, 255, 0.06) 100%);
+  }
+}
+/* Área de toque confortável (≥44px) em telas touch */
+@media (pointer: coarse) {
+  .pod-btn {
+    min-height: 44px;
+  }
+}
+.pod-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.pod-btn:focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}
+.pod-btn[data-active="true"] {
+  border-color: rgba(251, 191, 36, 0.95);
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.1) 100%);
+  box-shadow: 0 3px 0 rgba(120, 53, 15, 0.7), 0 14px 30px -12px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Dica de interação: ponto com anel pulsante (só transform/opacity) */
+.pod-hint-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #fbbf24;
+}
+.pod-hint-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #fbbf24;
+  animation: pod-hint-ring 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes pod-hint-ring {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+@keyframes pod-nudge {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(4px); }
+}
+.pod-nudge { animation: pod-nudge 1.4s cubic-bezier(0.37, 0, 0.63, 1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-tally-dot,
+  .pod-eq i,
+  .pod-signal-runner,
+  .pod-hint-dot::after,
+  .pod-nudge {
+    animation: none !important;
+  }
+  .pod-btn,
+  .pod-btn:hover,
+  .pod-btn:active {
+    transform: none !important;
+  }
+}
+
+/* Mobile: remove a aurora gigante em loop (camada grande = custo de GPU) e o runner do bus */
+@media (max-width: 767px) {
+  .edu-aurora,
+  .pod-signal-runner {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
+/* Touch genérico das LPs: alvo mínimo e sem highlight cinza do navegador */
+@media (pointer: coarse) {
+  [role="tab"] {
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}

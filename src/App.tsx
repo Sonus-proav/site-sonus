@@ -11,6 +11,8 @@ const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard").then(mo
 const AdminLogin = React.lazy(() => import("./pages/AdminLogin").then(module => ({ default: module.AdminLogin })))
 const QSysLanding = React.lazy(() => import("./pages/QSysLanding").then(module => ({ default: module.QSysLanding })))
 const MeetingRoomsLanding = React.lazy(() => import("./pages/MeetingRoomsLanding").then(module => ({ default: module.MeetingRoomsLanding })))
+const EducacaoLanding = React.lazy(() => import("./pages/EducacaoLanding").then(module => ({ default: module.EducacaoLanding })))
+const PodcastsLanding = React.lazy(() => import("./pages/PodcastsLanding").then(module => ({ default: module.PodcastsLanding })))
 const ThankYou = React.lazy(() => import("./pages/ThankYou").then(module => ({ default: module.ThankYou })))
 const AuditoriosTeatros = React.lazy(() => import("./pages/AuditoriosTeatros").then(module => ({ default: module.AuditoriosTeatros })))
 const PlenariosLanding = React.lazy(() => import("./pages/PlenariosLanding").then(module => ({ default: module.PlenariosLanding })))
@@ -59,6 +61,8 @@ function App() {
               <Route path="projetos/:id" element={<ProjectDetails />} />
             </Route>
             <Route path="qsys" element={<QSysLanding />} />
+            <Route path="educacao" element={<EducacaoLanding />} />
+            <Route path="podcasts" element={<PodcastsLanding />} />
             <Route path="salas-reuniao" element={<MeetingRoomsLanding />} />
             <Route path="auditorios-e-teatros" element={<AuditoriosTeatros />} />
             <Route path="plenarios-e-camaras" element={<PlenariosLanding />} />

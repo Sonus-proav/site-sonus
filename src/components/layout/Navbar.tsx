@@ -37,6 +37,8 @@ export function Navbar() {
 
   const solucoesLinks = [
     { name: "Visão Geral (Especialidades)", path: "/solucoes" },
+    { name: "Educação e Universidades", path: "/educacao" },
+    { name: "Estúdios de Podcast", path: "/podcasts" },
     { name: "Salas de Reunião", path: "/salas-reuniao" },
     { name: "Auditórios e Teatros", path: "/auditorios-e-teatros" },
     { name: "Plenários e Câmaras", path: "/plenarios-e-camaras" },
@@ -183,7 +185,7 @@ export function Navbar() {
               <ChevronDown className={cn("w-5 h-5 transition-transform", mobileSolucoesOpen && "rotate-180")} />
             </button>
             
-            <div className={cn("flex flex-col gap-1 overflow-hidden transition-all duration-300 pl-4", mobileSolucoesOpen ? "max-h-[500px] pb-3" : "max-h-0")}>
+            <div className={cn("flex flex-col gap-1 overflow-hidden transition-all duration-300 pl-4", mobileSolucoesOpen ? "max-h-[700px] pb-3" : "max-h-0")}>
               {solucoesLinks.map((link, idx) => (
                 <Link
                   key={idx}

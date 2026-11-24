@@ -16,6 +16,8 @@ const baseRoutes = [
   '/igrejas-e-templos',
   '/salas-reuniao',
   '/bares-e-casas-noturnas',
+  '/educacao',
+  '/podcasts',
   '/solucoes',
   '/qsys',
   '/links',
@@ -53,7 +55,7 @@ function generateSitemap(allRoutes) {
     } else if (route.startsWith('/projetos/')) { 
       priority = '0.7'; 
       changefreq = 'monthly'; 
-    } else if (['/bares-e-casas-noturnas', '/igrejas-e-templos', '/auditorios-e-teatros', '/salas-reuniao', '/plenarios-e-camaras'].includes(route)) {
+    } else if (['/bares-e-casas-noturnas', '/igrejas-e-templos', '/auditorios-e-teatros', '/salas-reuniao', '/plenarios-e-camaras', '/educacao', '/podcasts'].includes(route)) {
       priority = '0.9';
     } else if (route === '/links') {
       priority = '0.5';

@@ -63,6 +63,8 @@ export function Footer() {
               <li><Link to="/plenarios-e-camaras" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Plenários e Câmaras</Link></li>
               <li><Link to="/igrejas-e-templos" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Igrejas e Templos</Link></li>
               <li><Link to="/salas-reuniao" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Salas de Reunião</Link></li>
+              <li><Link to="/educacao" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Educação e Universidades</Link></li>
+              <li><Link to="/podcasts" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Estúdios de Podcast</Link></li>
               <li><Link to="/qsys" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Ecossistema Q-SYS</Link></li>
               <li><a href="/#sobre" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Sobre a Empresa</a></li>
             </ul>
