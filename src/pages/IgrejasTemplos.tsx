@@ -19,8 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-import { Turnstile } from '@marsidev/react-turnstile'
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import { Link } from "react-router-dom"
 import { getProjects, type Project } from "@/lib/publicStorage"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -632,15 +631,13 @@ export function IgrejasTemplos() {
                     </div>
 
                     <div className="flex justify-center pt-2 min-h-[65px]">
-                      <Turnstile 
-                        siteKey={getTurnstileSiteKey()} 
+                      <FormTurnstile
                         onSuccess={(token) => {
                           setSubmitError("");
                           setTurnstileToken(token);
                         }}
                         onError={() => setSubmitError("Erro ao carregar o sistema de segurança. Verifique se o domínio está liberado no Cloudflare ou desative seu Adblocker.")}
                         onExpire={() => setTurnstileToken("")}
-                        options={TURNSTILE_OPTIONS} 
                       />
                     </div>
                     

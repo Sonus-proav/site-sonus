@@ -138,11 +138,20 @@ async function prerender() {
     for (const route of routes) {
       console.log(`Prerenderizando a rota: ${route}...`);
       const page = await browser.newPage();
+
+      await page.evaluateOnNewDocument(() => {
+        window.__SONUS_PRERENDER__ = true;
+      });
       
       await page.setRequestInterception(true);
       page.on('request', (req) => {
         const url = req.url();
-        if (url.includes('google-analytics') || url.includes('facebook') || url.includes('googletagmanager')) {
+        if (
+          url.includes('google-analytics') ||
+          url.includes('facebook') ||
+          url.includes('googletagmanager') ||
+          url.includes('challenges.cloudflare.com')
+        ) {
           req.abort();
         } else {
           req.continue();
@@ -155,7 +164,8 @@ async function prerender() {
         console.warn(`[Prerender] Aviso ao carregar ${route} (continuando):`, err.message);
       }
       await new Promise(r => setTimeout(r, 600));
-      const html = await page.content();
+      let html = await page.content();
+      html = html.replace(/<script[^>]*id="cf-turnstile-script"[^>]*><\/script>/gi, '');
       
       const isHome = route === '/';
       

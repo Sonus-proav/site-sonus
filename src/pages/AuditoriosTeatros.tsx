@@ -20,8 +20,7 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Turnstile } from '@marsidev/react-turnstile'
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { 
@@ -641,12 +640,10 @@ export function AuditoriosTeatros() {
                 </div>
                 
                 <div className="flex justify-center pt-2 min-h-[65px]">
-                  <Turnstile 
-                    siteKey={getTurnstileSiteKey()} 
+                  <FormTurnstile
                     onSuccess={(token) => { setSubmitError(""); setTurnstileToken(token); }}
                     onError={() => setSubmitError("Erro ao carregar o sistema de segurança.")}
                     onExpire={() => setTurnstileToken("")}
-                    options={TURNSTILE_OPTIONS} 
                   />
                 </div>
 

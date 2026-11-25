@@ -6,8 +6,7 @@ import { Helmet } from "react-helmet-async"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Turnstile } from '@marsidev/react-turnstile'
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -621,7 +620,7 @@ export function MeetingRoomsLanding() {
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">
-                  <Turnstile siteKey={getTurnstileSiteKey()} onSuccess={setTurnstileToken} options={TURNSTILE_OPTIONS} />
+                  <FormTurnstile onSuccess={setTurnstileToken} />
                 </div>
                 
                 {submitError && <div className="text-red-500 text-sm text-center">{submitError}</div>}

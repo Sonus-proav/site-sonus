@@ -6,8 +6,7 @@ import { sendLeadEmail } from "@/lib/emailService"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Turnstile } from '@marsidev/react-turnstile'
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -654,12 +653,10 @@ export function QSysLanding() {
                   </div>
 
                   <div className="flex justify-center pt-2 min-h-[65px]">
-                    <Turnstile 
-                      siteKey={getTurnstileSiteKey()} 
+                    <FormTurnstile
                       onSuccess={(token) => { setSubmitError(""); setTurnstileToken(token); }}
                       onError={() => setSubmitError("Erro ao carregar segurança.")}
                       onExpire={() => setTurnstileToken("")}
-                      options={TURNSTILE_OPTIONS} 
                     />
                   </div>
                   

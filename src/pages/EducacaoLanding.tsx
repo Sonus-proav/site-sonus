@@ -1,7 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { Turnstile } from "@marsidev/react-turnstile"
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import {
   AlertTriangle,
   ChevronRight,
@@ -641,8 +640,7 @@ export function EducacaoLanding() {
                   </div>
 
                   <div className="flex justify-center pt-1 min-h-[65px]">
-                    <Turnstile
-                      siteKey={getTurnstileSiteKey()}
+                    <FormTurnstile
                       onSuccess={(token) => {
                         setSubmitError("")
                         setTurnstileToken(token)
@@ -653,7 +651,6 @@ export function EducacaoLanding() {
                         )
                       }
                       onExpire={() => setTurnstileToken("")}
-                      options={TURNSTILE_OPTIONS}
                     />
                   </div>
 

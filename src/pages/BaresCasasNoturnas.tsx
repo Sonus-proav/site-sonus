@@ -14,8 +14,7 @@ import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Turnstile } from "@marsidev/react-turnstile"
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
 import { ZoneMixer } from "@/components/bares/ZoneMixer"
@@ -674,15 +673,13 @@ export function BaresCasasNoturnas() {
                       </div>
 
                       <div className="flex justify-center pt-2 min-h-[65px]">
-                        <Turnstile
-                          siteKey={getTurnstileSiteKey()}
+                        <FormTurnstile
                           onSuccess={(token) => {
                             setSubmitError("")
                             setTurnstileToken(token)
                           }}
                           onError={() => setSubmitError("Erro ao carregar segurança. Verifique se o domínio está liberado ou desative seu Adblocker.")}
                           onExpire={() => setTurnstileToken("")}
-                          options={TURNSTILE_OPTIONS}
                         />
                       </div>
 

@@ -1,5 +1,15 @@
+declare global {
+  interface Window {
+    __SONUS_PRERENDER__?: boolean;
+  }
+}
+
 export const PROD_TURNSTILE_SITE_KEY = "0x4AAAAAADmmjbWL-CsAzHC9";
 export const DEV_TEST_TURNSTILE_SITE_KEY = "1x00000000000000000000AA";
+
+export function isTurnstilePrerender(): boolean {
+  return typeof window === "undefined" || Boolean(window.__SONUS_PRERENDER__);
+}
 
 export function getTurnstileSiteKey(): string {
   const envKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim();

@@ -15,8 +15,7 @@ const HeroVisual = lazy(() => import("@/components/ui/HeroVisual").then(m => ({ 
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { Turnstile } from '@marsidev/react-turnstile'
-import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
+import { FormTurnstile } from "@/components/ui/FormTurnstile"
 
 
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
@@ -264,8 +263,8 @@ export function Home() {
               <Textarea required placeholder="Descreva brevemente o que você precisa..." className="bg-black/50 border-white/10 min-h-[120px] text-white focus-visible:ring-1 focus-visible:ring-cyan-500 rounded-xl resize-none" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
             </div>
 
-            <div className="pt-2">
-              <Turnstile siteKey={getTurnstileSiteKey()} onSuccess={setTurnstileToken} options={TURNSTILE_OPTIONS} />
+            <div className="pt-2 min-h-[65px]">
+              <FormTurnstile onSuccess={setTurnstileToken} />
             </div>
 
             {submitError && <div className="text-red-400 text-sm font-medium p-4 bg-red-400/10 border border-red-400/20 rounded-xl">{submitError}</div>}
