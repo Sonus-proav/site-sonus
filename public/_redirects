@@ -1,7 +1,13 @@
 /contato /#contato 301
 /sobre-nós /#sobre 301
 /sobre-nos /#sobre 301
-/auditório-teatro /projetos 301
-/cópia-auditório-teatro /projetos 301
-/corporativos /projetos 301
-
+/auditório-teatro /auditorios-e-teatros 301
+/auditorio-teatro /auditorios-e-teatros 301
+/cópia-auditório-teatro /auditorios-e-teatros 301
+/auditorios /auditorios-e-teatros 301
+/corporativos /salas-reuniao 301
+/salas-de-reuniao /salas-reuniao 301
+/plenarios /plenarios-e-camaras 301
+/igrejas /igrejas-e-templos 301
+/bares /bares-e-casas-noturnas 301
+/podcast /podcasts 301

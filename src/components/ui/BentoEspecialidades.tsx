@@ -8,7 +8,7 @@ const SPECIALTIES = [
     title: "Auditórios e Teatros",
     subtitle: "Acústica Imersiva",
     description: "Projetos de sonorização de alta inteligibilidade e acústica arquitetônica para espaços com grande audiência, garantindo que a última fileira ouça com a mesma clareza da primeira.",
-    link: "/auditorios",
+    link: "/auditorios-e-teatros",
     color: "from-blue-500/20 to-transparent",
     accent: "text-blue-500",
     image: "/auditorio-sonus.webp",
@@ -34,7 +34,7 @@ const SPECIALTIES = [
     title: "Salas Corporativas",
     subtitle: "Videoconferência",
     description: "Transformamos salas de reunião tradicionais em hubs de colaboração híbrida. Integração invisível com Teams e Zoom, microfones de teto e câmeras com IA que acompanham quem fala.",
-    link: "/salas-de-reuniao",
+    link: "/salas-reuniao",
     color: "from-indigo-500/20 to-transparent",
     accent: "text-indigo-500",
     image: "/salas-corporativas.webp",
@@ -47,7 +47,7 @@ const SPECIALTIES = [
     title: "Plenários e Câmaras",
     subtitle: "Votação e Transmissão",
     description: "Sistemas robustos de votação eletrônica, microfones parlamentares com prioridade de fala e câmeras PTZ automatizadas integradas ao sistema de transmissão ao vivo (streaming).",
-    link: "/plenarios",
+    link: "/plenarios-e-camaras",
     color: "from-emerald-500/20 to-transparent",
     accent: "text-emerald-500",
     image: "/plenario-legislativo.jpg",
@@ -60,7 +60,7 @@ const SPECIALTIES = [
     title: "Igrejas e Templos",
     subtitle: "Palavra Clara",
     description: "Acústica controlada para atingir todos os fiéis com clareza. Da voz falada ao louvor com banda completa, sem microfonia. Sistemas dimensionados para a arquitetura do seu templo.",
-    link: "/igrejas",
+    link: "/igrejas-e-templos",
     color: "from-violet-500/20 to-transparent",
     accent: "text-violet-500",
     image: "/interior-matriz-xanxere.webp",
@@ -68,6 +68,39 @@ const SPECIALTIES = [
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     )
   }
+];
+
+const MORE_SPECIALTIES = [
+  {
+    id: "educacao",
+    title: "Educação & Universidades",
+    subtitle: "Ensino Híbrido Q-SYS",
+    description: "Padronização de salas híbridas (HyFlex) em um toque para professores e gestão remota do campus pela equipe de TI via Q-SYS Reflect.",
+    link: "/educacao",
+    accent: "text-cyan-400",
+    borderHover: "hover:border-cyan-500/30",
+    glow: "from-cyan-500/10",
+  },
+  {
+    id: "podcasts",
+    title: "Estúdios de Podcast",
+    subtitle: "100% Autônomos",
+    description: "Gravação executiva em um único toque sem equipe técnica na sala, corte multi-câmera automático por voz e entrega pronta em 16:9 e 9:16.",
+    link: "/podcasts",
+    accent: "text-amber-400",
+    borderHover: "hover:border-amber-500/30",
+    glow: "from-amber-500/10",
+  },
+  {
+    id: "bares",
+    title: "Bares & Casas Noturnas",
+    subtitle: "Controle DSP & Laudo ART",
+    description: "Alta pressão sonora na pista com zoneamento independente por ambiente, limitador eletrônico contra queima e adequação acústica legal.",
+    link: "/bares-e-casas-noturnas",
+    accent: "text-blue-400",
+    borderHover: "hover:border-blue-500/30",
+    glow: "from-blue-500/10",
+  },
 ];
 
 export function BentoEspecialidades() {
@@ -131,8 +164,11 @@ export function BentoEspecialidades() {
                     <img 
                       src={item.image} 
                       alt={item.title} 
+                      width={800}
+                      height={600}
                       className={`w-full h-full object-cover transition-opacity duration-500 ${isActive ? 'opacity-50' : 'opacity-10'}`}
                       loading="lazy"
+                      decoding="async"
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent opacity-90" />
@@ -179,6 +215,48 @@ export function BentoEspecialidades() {
               </div>
             )
           })}
+        </div>
+
+        {/* Linha complementar com verticais estratégicas */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          {MORE_SPECIALTIES.map((item) => (
+            <div
+              key={item.id}
+              className={`relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950/80 ${item.borderHover} p-6 lg:p-7 flex flex-col justify-between transition-colors duration-300`}
+            >
+              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${item.glow} via-transparent to-transparent`} />
+              <div className="relative z-10">
+                <span className={`${item.accent} text-[11px] font-bold uppercase tracking-[0.2em] block mb-2`}>
+                  {item.subtitle}
+                </span>
+                <h3 className="text-xl lg:text-2xl font-black tracking-tight text-white mb-2.5">
+                  {item.title}
+                </h3>
+                <p className="text-zinc-400 text-sm font-light leading-relaxed mb-6">
+                  {item.description}
+                </p>
+              </div>
+              <div className="relative z-10">
+                <Link
+                  to={item.link}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-[11px] transition-colors w-fit"
+                >
+                  Explorar Solução
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            to="/solucoes"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] hover:border-cyan-400/40 text-xs font-bold uppercase tracking-[0.18em] text-zinc-200 transition-colors"
+          >
+            Ver Ecossistema Completo de Soluções
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </Link>
         </div>
 
       </div>

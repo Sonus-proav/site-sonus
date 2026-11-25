@@ -4,7 +4,6 @@ import { Footer } from "./Footer"
 import { WhatsAppButton } from "./WhatsAppButton"
 import { useEffect } from "react"
 import { SmoothScroll } from "../ui/SmoothScroll"
-import { Helmet } from "react-helmet-async"
 
 export function AppLayout() {
   const { pathname, hash } = useLocation()
@@ -22,44 +21,8 @@ export function AppLayout() {
     }
   }, [pathname, hash])
 
-  const globalSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "Sonus Pro Audio e Video",
-        "url": "https://sonusproaudio.com.br",
-        "logo": "https://sonusproaudio.com.br/logo.png",
-        "sameAs": [
-          "https://instagram.com/sonus.av",
-          "https://br.linkedin.com/company/sonus-pro-av"
-        ]
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "Sonus Pro Audio e Video",
-        "image": "https://sonusproaudio.com.br/sobre-sonus.webp",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Francisco Beltrão",
-          "addressRegion": "PR",
-          "addressCountry": "BR"
-        },
-        "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
-        "knowsAbout": ["Audiovisual", "Projetos Acústicos", "Automação Corporativa", "Videoconferência"],
-        "telephone": "+5546920013151",
-        "priceRange": "$$$$"
-      }
-    ]
-  };
-
   return (
     <SmoothScroll>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(globalSchema)}
-        </script>
-      </Helmet>
       <div className="flex flex-col min-h-screen overflow-x-hidden w-full max-w-[100vw]">
         <Navbar />
         <main className="flex-1">

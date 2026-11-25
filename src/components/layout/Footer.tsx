@@ -59,6 +59,7 @@ export function Footer() {
             <h4 className="text-black dark:text-white font-semibold mb-6">Links Rápidos</h4>
             <ul className="flex flex-col gap-3">
               <li><Link to="/" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Início</Link></li>
+              <li><Link to="/solucoes" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Ecossistema de Soluções</Link></li>
               <li><Link to="/projetos" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Portfólio de Projetos</Link></li>
               <li><Link to="/auditorios-e-teatros" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Auditórios e Teatros</Link></li>
               <li><Link to="/plenarios-e-camaras" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Plenários e Câmaras</Link></li>
@@ -66,6 +67,7 @@ export function Footer() {
               <li><Link to="/salas-reuniao" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Salas de Reunião</Link></li>
               <li><Link to="/educacao" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Educação e Universidades</Link></li>
               <li><Link to="/podcasts" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Estúdios de Podcast</Link></li>
+              <li><Link to="/bares-e-casas-noturnas" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Bares e Casas Noturnas</Link></li>
               <li><Link to="/qsys" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Ecossistema Q-SYS</Link></li>
               <li><a href="/#sobre" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white text-sm transition-colors">Sobre a Empresa</a></li>
             </ul>

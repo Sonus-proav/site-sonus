@@ -244,9 +244,11 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
                   return (
                     <button
                       key={tab.id}
+                      id={`edu-scenario-tab-${tab.id}`}
                       type="button"
                       role="tab"
                       aria-selected={isSelected}
+                      aria-controls={`edu-scenario-panel-${tab.id}`}
                       onClick={() => handleSelectScenario(tab.id)}
                       className={`relative min-h-[44px] px-3 py-2 rounded-xl sm:rounded-full text-xs font-semibold transition-colors duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
                         isSelected ? "text-white" : "text-zinc-300 hover:text-white bg-white/[0.03] sm:bg-transparent"
@@ -280,56 +282,52 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
               <ClassroomStage3D scenario={scenario} />
             </Suspense>
 
-            {/* Human-Readable Scenario Summary */}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={active.summary}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.22, ease: EASE_OUT_EXPO }}
-                className="text-xs sm:text-sm text-zinc-200 sm:text-zinc-300 text-center max-w-xl mx-auto mt-1 mb-4 sm:mb-5 font-normal sm:font-light leading-relaxed px-1"
-              >
-                {active.summary}
-              </motion.p>
-            </AnimatePresence>
+            {/* All Scenarios Rendered in DOM for Crawlers & Screen Readers */}
+            {Object.values(SCENARIOS).map((sc) => {
+              const isSelected = sc.id === scenario
+              return (
+                <div
+                  key={sc.id}
+                  id={`edu-scenario-panel-${sc.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`edu-scenario-tab-${sc.id}`}
+                  hidden={!isSelected}
+                  className={isSelected ? "block" : "hidden"}
+                >
+                  <p className="text-xs sm:text-sm text-zinc-200 sm:text-zinc-300 text-center max-w-xl mx-auto mt-1 mb-4 sm:mb-5 font-normal sm:font-light leading-relaxed px-1">
+                    {sc.summary}
+                  </p>
 
-            {/* Bottom 4 Clear Readouts — Mini-cards on mobile, clean hairline divide on sm+ */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-y-4 sm:pt-5 sm:border-t sm:border-white/10 sm:divide-x sm:divide-white/10">
-              {[
-                { icon: Camera, color: "text-cyan-400", label: "Câmera Inteligente", val: active.camera },
-                { icon: Mic, color: "text-emerald-400", label: "Áudio no Teto", val: active.audio },
-                { icon: Tv, color: "text-blue-400", label: "Telas e Chamada", val: active.screens },
-                { icon: Lightbulb, color: "text-amber-400", label: "Ambiente", val: active.lighting },
-              ].map((item, idx) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={item.label}
-                    className={`rounded-xl bg-white/[0.035] border border-white/[0.08] p-2.5 sm:rounded-none sm:bg-transparent sm:border-0 sm:p-0 ${
-                      idx > 0 ? "sm:pl-4 sm:pr-2" : "sm:pr-2"
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 mb-1">
-                      <Icon className={`w-3.5 h-3.5 shrink-0 ${item.color}`} />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={item.val}
-                        initial={{ opacity: 0, y: 3 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -3 }}
-                        transition={{ duration: 0.2, ease: EASE_OUT_EXPO }}
-                        className="text-xs font-semibold text-white block leading-snug"
-                      >
-                        {item.val}
-                      </motion.span>
-                    </AnimatePresence>
+                  {/* Bottom 4 Clear Readouts — Mini-cards on mobile, clean hairline divide on sm+ */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-y-4 sm:pt-5 sm:border-t sm:border-white/10 sm:divide-x sm:divide-white/10">
+                    {[
+                      { icon: Camera, color: "text-cyan-400", label: "Câmera Inteligente", val: sc.camera },
+                      { icon: Mic, color: "text-emerald-400", label: "Áudio no Teto", val: sc.audio },
+                      { icon: Tv, color: "text-blue-400", label: "Telas e Chamada", val: sc.screens },
+                      { icon: Lightbulb, color: "text-amber-400", label: "Ambiente", val: sc.lighting },
+                    ].map((item, idx) => {
+                      const Icon = item.icon
+                      return (
+                        <div
+                          key={item.label}
+                          className={`rounded-xl bg-white/[0.035] border border-white/[0.08] p-2.5 sm:rounded-none sm:bg-transparent sm:border-0 sm:p-0 ${
+                            idx > 0 ? "sm:pl-4 sm:pr-2" : "sm:pr-2"
+                          }`}
+                        >
+                          <div className="flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 mb-1">
+                            <Icon className={`w-3.5 h-3.5 shrink-0 ${item.color}`} />
+                            <span className="truncate">{item.label}</span>
+                          </div>
+                          <span className="text-xs font-semibold text-white block leading-snug">
+                            {item.val}
+                          </span>
+                        </div>
+                      )
+                    })}
                   </div>
-                )
-              })}
-            </div>
+                </div>
+              )
+            })}
           </div>
         </FadeIn>
       </div>

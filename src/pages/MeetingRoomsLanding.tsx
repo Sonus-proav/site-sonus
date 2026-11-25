@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -17,6 +18,7 @@ import {
   Settings, ChevronRight
 } from "lucide-react"
 import { SEO } from "@/components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { lazy, Suspense } from "react"
 import { Navbar } from "@/components/layout/Navbar"
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
@@ -170,17 +172,22 @@ export function MeetingRoomsLanding() {
     window.open(`https://wa.me/5546920013151?text=${encodeURIComponent(text)}`, "_blank")
   }
 
-  const salasSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Automação de Salas de Reunião Corporativas",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro AV"
+  const salasSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/salas-reuniao#service`,
+      "url": `${SITE_URL}/salas-reuniao`,
+      "serviceType": "Automação de Salas de Reunião Corporativas",
+      "provider": { "@id": ORG_ID },
+      "areaServed": SONUS_ORGANIZATION.areaServed,
+      "description": "Empresa que projeta e instala salas de reunião corporativas, videoconferência de alta performance e sonorização (Shure, Q-SYS, Zoom, Teams)."
     },
-    "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
-    "description": "Empresa que projeta e instala salas de reunião corporativas, videoconferência de alta performance e sonorização (Shure, Q-SYS, Zoom, Teams)."
-  };
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Salas de Reunião", path: "/salas-reuniao" },
+    ])
+  );
 
   return (
     <div className="dark min-h-screen bg-[#050505] text-white selection:bg-emerald-500/30 font-sans">
@@ -614,7 +621,7 @@ export function MeetingRoomsLanding() {
                 </div>
 
                 <div className="flex justify-center pt-2 min-h-[65px]">
-                  <Turnstile siteKey="0x4AAAAAADmmjbWL-CsAzHC9" onSuccess={setTurnstileToken} options={{ theme: 'dark' }} />
+                  <Turnstile siteKey={getTurnstileSiteKey()} onSuccess={setTurnstileToken} options={TURNSTILE_OPTIONS} />
                 </div>
                 
                 {submitError && <div className="text-red-500 text-sm text-center">{submitError}</div>}

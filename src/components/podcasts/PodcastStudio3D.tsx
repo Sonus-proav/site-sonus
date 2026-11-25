@@ -778,6 +778,8 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
   const [outputFormat, setOutputFormat] = useState<OutputAspect>("9:16")
   const [wordStep, setWordStep] = useState(0)
   const [hasInteracted, setHasInteracted] = useState(false)
+  const [mobile3DEnabled, setMobile3DEnabled] = useState(false)
+  const showWebGL = !isHeadless && perfTier !== "low" && (!isCoarse || mobile3DEnabled)
 
   const activeMeta = SPEAKER_META[activeSpeaker]
 
@@ -884,7 +886,7 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
           {/* Subtle Ambient Backlight */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.09)_0%,transparent_65%)]" />
 
-          {perfTier === "low" || isHeadless ? (
+          {!showWebGL ? (
             <StudioBlueprintFallback activeSpeaker={activeSpeaker} />
           ) : (
             <Canvas
@@ -896,6 +898,17 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
             >
               <StudioScene3D activeSpeaker={activeSpeaker} isCoarse={isCoarse} />
             </Canvas>
+          )}
+
+          {isCoarse && perfTier !== "low" && !isHeadless && !mobile3DEnabled && (
+            <button
+              type="button"
+              onClick={() => setMobile3DEnabled(true)}
+              className="absolute top-3 right-3 z-20 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 hover:bg-black border border-amber-400/35 text-[10px] font-mono text-amber-200 transition-colors cursor-pointer"
+            >
+              <Rotate3D className="w-3 h-3 text-amber-400" />
+              Ativar 3D Interativo
+            </button>
           )}
 
           {/* Dica de primeira interação (some após o primeiro clique) */}
@@ -913,7 +926,7 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
           </div>
 
           {/* Orbit Cue & Speaker Pill Overlay */}
-          {!isCoarse && perfTier !== "low" && !isHeadless && (
+          {!isCoarse && showWebGL && (
             <div className="pointer-events-none absolute top-3.5 right-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-400">
               <Rotate3D className="w-3.5 h-3.5 text-amber-400" />
               Arraste para girar 3D

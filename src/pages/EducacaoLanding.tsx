@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react"
-import { Helmet } from "react-helmet-async"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Turnstile } from "@marsidev/react-turnstile"
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import {
   AlertTriangle,
   ChevronRight,
@@ -25,6 +25,7 @@ import { EducationHeroSimulator } from "@/components/educacao/EducationHeroSimul
 import { CampusBentoGrid } from "@/components/educacao/CampusBentoGrid"
 import { QSysReflectDashboard } from "@/components/educacao/QSysReflectDashboard"
 import { GlobalCasesShowcase } from "@/components/educacao/GlobalCasesShowcase"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import {
@@ -237,53 +238,43 @@ export function EducacaoLanding() {
     navigate("/obrigado")
   }
 
-  const educacaoSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Engenharia Audiovisual e Automação Q-SYS para Instituições de Ensino",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Sonus Pro AV",
-      url: "https://sonusproaudio.com.br",
+  const educacaoSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/educacao#service`,
+      url: `${SITE_URL}/educacao`,
+      serviceType: "Engenharia Audiovisual e Automação Q-SYS para Instituições de Ensino",
+      provider: { "@id": ORG_ID },
+      areaServed: SONUS_ORGANIZATION.areaServed,
+      audience: {
+        "@type": "EducationalAudience",
+        educationalRole: "Reitores, Diretores de TI, Pró-Reitores e Mantenedores",
+      },
+      description:
+        "Padronização de salas de aula híbridas (HyFlex), auditórios universitários, salas divisíveis e campus paging com ecossistema Q-SYS, VisionSuite e monitoramento remoto Q-SYS Reflect.",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Soluções Audiovisuais para Educação",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Salas de Aula Híbridas (HyFlex) Q-SYS" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auditórios e Salões Nobres Acadêmicos" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Salas Divisíveis Inteligentes" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Campus Paging e Sonorização IP" } },
+        ],
+      },
     },
-    areaServed: [
-      { "@type": "Country", "name": "Brazil" },
-      { "@type": "Continent", "name": "Latin America" },
-    ],
-    audience: {
-      "@type": "EducationalAudience",
-      educationalRole: "Reitores, Diretores de TI, Pró-Reitores e Mantenedores",
-    },
-    description:
-      "Padronização de salas de aula híbridas (HyFlex), auditórios universitários, salas divisíveis e campus paging com ecossistema Q-SYS, VisionSuite e monitoramento remoto Q-SYS Reflect.",
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Soluções Audiovisuais para Educação",
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Salas de Aula Híbridas (HyFlex) Q-SYS" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auditórios e Salões Nobres Acadêmicos" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Salas Divisíveis Inteligentes" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Campus Paging e Sonorização IP" } },
-      ],
-    },
-  }
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Educação e Universidades", path: "/educacao" },
+    ])
+  )
 
   const inputFieldClass =
     "bg-white/[0.03] border-white/10 hover:border-white/25 focus-visible:border-cyan-400/55 focus-visible:ring-2 focus-visible:ring-cyan-400/20 transition-[border-color,box-shadow] duration-200 h-14 text-white placeholder:text-zinc-500 rounded-xl"
 
   return (
     <div className="flex flex-col min-h-screen bg-[#030407] text-white selection:bg-cyan-500/30 font-sans overflow-x-hidden">
-      <Helmet>
-        <html lang="pt-BR" />
-        <title>Engenharia Audiovisual para Educação e Ensino Híbrido Q-SYS | Sonus Pro AV</title>
-        <meta
-          name="description"
-          content="Padronização de salas de aula híbridas (HyFlex), auditórios, salas divisíveis e campus paging com ecossistema Q-SYS. Operação One-Touch para docentes e gestão remota Q-SYS Reflect para TI."
-        />
-        <meta property="og:locale" content="pt_BR" />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
-
       <SEO
         schema={educacaoSchema}
         title="Engenharia Audiovisual para Educação e Ensino Híbrido Q-SYS | Sonus Pro AV"
@@ -306,15 +297,19 @@ export function EducacaoLanding() {
               Funciona nativamente com as plataformas que seus professores já usam
             </span>
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-9 md:gap-14 opacity-75">
-              <img src="/qsys-logo.png" alt="Q-SYS" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
+              <img src="/qsys-logo.png" alt="Q-SYS" width={120} height={24} loading="lazy" decoding="async" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
               <span className="text-sm sm:text-base md:text-lg font-extrabold tracking-tight text-white">Microsoft Teams</span>
-              <img src="/zoom-logo.png" alt="Zoom" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
+              <img src="/zoom-logo.png" alt="Zoom" width={100} height={24} loading="lazy" decoding="async" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
               <img
                 src="/google-meet-logo.png"
                 alt="Google Meet"
+                width={140}
+                height={24}
+                loading="lazy"
+                decoding="async"
                 className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert"
               />
-              <img src="/shure-logo.png" alt="Shure" className="h-3.5 sm:h-4 md:h-5 w-auto object-contain brightness-0 invert" />
+              <img src="/shure-logo.png" alt="Shure" width={110} height={20} loading="lazy" decoding="async" className="h-3.5 sm:h-4 md:h-5 w-auto object-contain brightness-0 invert" />
             </div>
           </div>
         </div>
@@ -353,6 +348,8 @@ export function EducacaoLanding() {
                 <div className="relative z-10 pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-5 sm:gap-6">
                   <img
                     src={certLevel2}
+                    width={96}
+                    height={48}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS Level 2"
@@ -360,6 +357,8 @@ export function EducacaoLanding() {
                   />
                   <img
                     src={certVision}
+                    width={96}
+                    height={48}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS VisionSuite"
@@ -367,6 +366,8 @@ export function EducacaoLanding() {
                   />
                   <img
                     src={certSales}
+                    width={96}
+                    height={48}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS"
@@ -387,6 +388,44 @@ export function EducacaoLanding() {
                   Cuidamos de tudo internamente — do desenho acústico à instalação nas férias e ao treinamento dos
                   professores — para sua instituição ter um único responsável do início ao fim.
                 </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 space-y-2.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 block">
+                  Projetos Reais Executados &amp; Arquitetura Q-SYS
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    to="/projetos/18"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 hover:border-cyan-400/50 hover:text-cyan-200 text-zinc-200 transition-colors"
+                  >
+                    Teatro UNISEP →
+                  </Link>
+                  <Link
+                    to="/projetos/20"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 hover:border-cyan-400/50 hover:text-cyan-200 text-zinc-200 transition-colors"
+                  >
+                    Auditório Cesul →
+                  </Link>
+                  <Link
+                    to="/projetos/22"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 hover:border-cyan-400/50 hover:text-cyan-200 text-zinc-200 transition-colors"
+                  >
+                    Auditório UNOESC →
+                  </Link>
+                  <Link
+                    to="/projetos"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 border border-cyan-400/30 hover:bg-cyan-500/20 text-cyan-200 transition-colors"
+                  >
+                    Ver Portfólio Completo
+                  </Link>
+                  <Link
+                    to="/qsys"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 border border-cyan-400/30 hover:bg-cyan-500/20 text-cyan-200 transition-colors"
+                  >
+                    Explorar Ecossistema Q-SYS
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -603,7 +642,7 @@ export function EducacaoLanding() {
 
                   <div className="flex justify-center pt-1 min-h-[65px]">
                     <Turnstile
-                      siteKey="0x4AAAAAADmmjbWL-CsAzHC9"
+                      siteKey={getTurnstileSiteKey()}
                       onSuccess={(token) => {
                         setSubmitError("")
                         setTurnstileToken(token)
@@ -614,7 +653,7 @@ export function EducacaoLanding() {
                         )
                       }
                       onExpire={() => setTurnstileToken("")}
-                      options={{ theme: "dark" }}
+                      options={TURNSTILE_OPTIONS}
                     />
                   </div>
 

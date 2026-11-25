@@ -1,5 +1,6 @@
 import { useEffect, useRef, memo } from "react"
 import * as THREE from "three"
+import { getPerfTier } from "@/lib/devicePerf"
 
 export type SolucoesCardVariant =
   | "plenarios"
@@ -182,6 +183,12 @@ export const SolucoesCard3D = memo(function SolucoesCard3D({
     if (!container) return
 
     if (typeof navigator !== "undefined" && /ReactSnap|Prerender/i.test(navigator.userAgent)) {
+      return
+    }
+
+    const isMobileViewport =
+      window.innerWidth < 768 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+    if (getPerfTier() === "low" || isMobileViewport) {
       return
     }
 

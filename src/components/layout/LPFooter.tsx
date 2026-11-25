@@ -1,14 +1,18 @@
-import { AudioLines } from "lucide-react"
+import { AudioLines, Mail, MapPin, Phone } from "lucide-react"
 import { Link } from "react-router-dom"
 import { PreferredSourceBadge } from "@/components/PreferredSourceBadge"
 
 const LINKS = [
   { to: "/", label: "Início" },
+  { to: "/solucoes", label: "Soluções" },
+  { to: "/projetos", label: "Portfólio" },
   { to: "/educacao", label: "Educação" },
   { to: "/podcasts", label: "Podcasts" },
   { to: "/salas-reuniao", label: "Salas de Reunião" },
   { to: "/auditorios-e-teatros", label: "Auditórios" },
   { to: "/plenarios-e-camaras", label: "Plenários" },
+  { to: "/igrejas-e-templos", label: "Igrejas" },
+  { to: "/bares-e-casas-noturnas", label: "Bares & Clubes" },
   { to: "/qsys", label: "Q-SYS" },
 ]
 
@@ -69,6 +73,44 @@ export function LPFooter() {
             Acompanhe nossos conteúdos técnicos na Pesquisa Google:
           </span>
           <PreferredSourceBadge variant="compact" placement="lp_footer" />
+        </div>
+
+        {/* Dados NAP & Canais Oficiais (E-E-A-T) */}
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-xs text-zinc-400 text-center">
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
+            R. Curitiba, 2187 — Francisco Beltrão - PR
+          </span>
+          <a
+            href="tel:+5546920013151"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
+            (46) 92001-3151
+          </a>
+          <a
+            href="mailto:sonusproaudio@gmail.com"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
+            sonusproaudio@gmail.com
+          </a>
+          <a
+            href="https://instagram.com/sonus.av"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            Instagram @sonus.av
+          </a>
+          <a
+            href="https://br.linkedin.com/company/sonus-pro-av"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            LinkedIn
+          </a>
         </div>
 
         <div className="w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-white/15 to-transparent mb-8" />

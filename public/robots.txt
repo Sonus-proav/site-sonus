@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin-login
+Disallow: /admin-dashboard-sonus
+Disallow: /admin-*
+Disallow: /obrigado
 
 Sitemap: https://sonusproaudio.com.br/sitemap.xml

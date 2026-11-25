@@ -1,7 +1,6 @@
 import { BentoEspecialidades } from "@/components/ui/BentoEspecialidades"
 import { AboutExperience } from "@/components/ui/AboutExperience";
 import { useState, useEffect, lazy, Suspense } from "react"
-import { Helmet } from "react-helmet-async"
 import { useLocation, useNavigate, Link } from "react-router-dom"
 import { motion,  } from "framer-motion"
 import { ArrowRight,  } from "lucide-react"
@@ -10,18 +9,49 @@ import { trackLeadConversion } from "@/lib/metaPixel"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "../components/SEO"
+import { ORG_ID, SITE_URL, SONUS_OFFER_CATALOG, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 
 const HeroVisual = lazy(() => import("@/components/ui/HeroVisual").then(m => ({ default: m.HeroVisual })))
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Turnstile } from '@marsidev/react-turnstile'
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 
 
 const SocialProofBar = lazy(() => import("@/components/ui/SocialProofBar").then(m => ({ default: m.SocialProofBar })))
 const ClientMarquee = lazy(() => import("@/components/ui/ClientMarquee").then(m => ({ default: m.ClientMarquee })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })));
 const ContactVault3D = lazy(() => import("@/components/home/ContactVault3D").then(m => ({ default: m.ContactVault3D })));
+const AeoFaq = lazy(() => import("@/components/ui/AeoFaq").then(m => ({ default: m.AeoFaq })));
+
+const HOME_FAQS = [
+  {
+    question: "Como funciona um projeto audiovisual da Sonus Pro Audio do diagnóstico à entrega?",
+    answer:
+      "Todo projeto começa com diagnóstico técnico e simulação acústica 3D do ambiente antes da compra dos equipamentos. Em seguida, fazemos a especificação completa, pré-montagem e validação em laboratório próprio, instalação limpa sem expor cabeamento, treinamento da equipe local e entrega com 3 anos de garantia.",
+  },
+  {
+    question: "A Sonus atende apenas no Paraná ou executa projetos em todo o Brasil e América Latina?",
+    answer:
+      "Nossa sede fica em Francisco Beltrão (PR), mas atendemos presencialmente e executamos projetos completos em todo o Brasil e América Latina (LATAM), incluindo fornecimento de equipamentos, integração Q-SYS, comissionamento e suporte técnico contínuo.",
+  },
+  {
+    question: "A Sonus faz locação de equipamentos para eventos ou coworking de salas de reunião?",
+    answer:
+      "Não. A Sonus Pro Audio atua exclusivamente com engenharia, venda e instalação de sistemas audiovisuais permanentes e integrados à rede corporativa, educacional, legislativa, religiosa ou de entretenimento — não alugamos espaços físicos nem locamos som para eventos pontuais.",
+  },
+  {
+    question: "Por que a Sonus utiliza a plataforma Q-SYS em projetos corporativos, educacionais e estúdios?",
+    answer:
+      "A arquitetura Q-SYS unifica processamento de áudio, roteamento de vídeo e automação em uma única plataforma sobre rede IP padrão. Isso permite operação em um único toque para professores, diretores e operadores, além de monitoramento remoto pela nuvem com Q-SYS Reflect por engenheiros com certificações oficiais Q-SYS Level 2 e VisionSuite.",
+  },
+  {
+    question: "Qual é a garantia técnica e como funciona o suporte após a instalação?",
+    answer:
+      "Entregamos 3 anos de garantia sobre toda a infraestrutura e instalação técnica executada pela Sonus, além de suporte remoto e monitoramento em nuvem via Q-SYS Reflect para diagnosticar e corrigir eventuais ocorrências na rede sem parar a operação.",
+  },
+];
 
 export function Home() {
   const location = useLocation()
@@ -83,40 +113,21 @@ export function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-cyan-500/30 selection:text-white">
-      <Helmet>
-        <title>Sonus Pro AV | Integração de Áudio e Vídeo para Ambientes Profissionais</title>
-      </Helmet>
       <SEO 
         title="Sonus Pro AV | Integração de Áudio e Vídeo para Ambientes Profissionais" 
         description="Projetamos e instalamos sistemas de som, videoconferência e automação. Transformamos auditórios, salas de reunião e plenários em espaços fáceis de usar e totalmente integrados à rede da empresa." 
-        url="https://sonusproaudio.com.br"
-        schema={{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Sonus Pro AV",
-  "image": "https://sonusproaudio.com.br/og-image.jpg",
-  "url": "https://sonusproaudio.com.br",
-  "telephone": "+5546920013151",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "BR",
-    "addressRegion": "PR"
-    },
-    "areaServed": [
-      {
-        "@type": "Country",
-        "name": "Brazil"
-      },
-      {
-        "@type": "Continent",
-        "name": "Latin America"
-      }
-    ],
-  "sameAs": [
-    "https://www.instagram.com/sonusproaudio",
-    "https://br.linkedin.com/company/sonus-pro-av"
-  ]
-}}
+        url={SITE_URL}
+        schema={buildGraph(
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/#service`,
+            name: "Engenharia e Integração de Áudio, Vídeo e Automação",
+            provider: { "@id": ORG_ID },
+            areaServed: SONUS_ORGANIZATION.areaServed,
+            hasOfferCatalog: SONUS_OFFER_CATALOG,
+          },
+          buildBreadcrumb([{ name: "Início", path: "/" }])
+        )}
       />
 
       {/* Navbar is rendered by AppLayout */}
@@ -211,6 +222,11 @@ export function Home() {
         <TestimonialSection />
       </Suspense>
 
+      {/* AEO FAQ */}
+      <Suspense fallback={null}>
+        <AeoFaq faqs={HOME_FAQS} title="Perguntas Frequentes" subtitle="Engenharia Audiovisual & Atendimento" />
+      </Suspense>
+
       {/* CONTACT FORM */}
       <section id="contato" className="py-32 px-4 bg-[#050505] border-t border-white/10 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_50%)] pointer-events-none" />
@@ -249,7 +265,7 @@ export function Home() {
             </div>
 
             <div className="pt-2">
-              <Turnstile siteKey="0x4AAAAAAAi9yYc7R3V1N1YF" onSuccess={setTurnstileToken} options={{ theme: 'dark' }} />
+              <Turnstile siteKey={getTurnstileSiteKey()} onSuccess={setTurnstileToken} options={TURNSTILE_OPTIONS} />
             </div>
 
             {submitError && <div className="text-red-400 text-sm font-medium p-4 bg-red-400/10 border border-red-400/20 rounded-xl">{submitError}</div>}

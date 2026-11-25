@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "@/components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
 import { TestimonialSection } from "@/components/ui/TestimonialSection"
@@ -19,6 +20,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 import { Turnstile } from '@marsidev/react-turnstile'
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import { Link } from "react-router-dom"
 import { getProjects, type Project } from "@/lib/publicStorage"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -207,36 +209,41 @@ export function IgrejasTemplos() {
     }
   }
 
-  const igrejaSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Projetos Acústicos para Templos e Sonorização Profissional",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro Audio e Video"
+  const igrejaSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/igrejas-e-templos#service`,
+      "url": `${SITE_URL}/igrejas-e-templos`,
+      "serviceType": "Projetos Acústicos para Templos e Sonorização Profissional",
+      "provider": { "@id": ORG_ID },
+      "areaServed": SONUS_ORGANIZATION.areaServed,
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Equipamentos de Autoridade",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistemas Q-SYS"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Microfones Shure"
+            }
+          }
+        ]
+      }
     },
-    "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Equipamentos de Autoridade",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Sistemas Q-SYS"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Microfones Shure"
-          }
-        }
-      ]
-    }
-  };
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Igrejas e Templos", path: "/igrejas-e-templos" },
+    ])
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-amber-500/30">
@@ -626,14 +633,14 @@ export function IgrejasTemplos() {
 
                     <div className="flex justify-center pt-2 min-h-[65px]">
                       <Turnstile 
-                        siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                        siteKey={getTurnstileSiteKey()} 
                         onSuccess={(token) => {
                           setSubmitError("");
                           setTurnstileToken(token);
                         }}
                         onError={() => setSubmitError("Erro ao carregar o sistema de segurança. Verifique se o domínio está liberado no Cloudflare ou desative seu Adblocker.")}
                         onExpire={() => setTurnstileToken("")}
-                        options={{ theme: 'auto' }} 
+                        options={TURNSTILE_OPTIONS} 
                       />
                     </div>
                     

@@ -5,6 +5,7 @@ import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { Navbar } from "@/components/layout/Navbar"
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
 const TestimonialSection = lazy(() => import("@/components/ui/TestimonialSection").then(m => ({ default: m.TestimonialSection })))
@@ -20,6 +21,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { 
@@ -225,36 +227,41 @@ export function AuditoriosTeatros() {
     localStorage.removeItem('sonus_utms'); navigate("/obrigado")
   }
 
-  const auditorioSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Automação Corporativa e Integração de Sistemas",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro Audio e Video"
+  const auditorioSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/auditorios-e-teatros#service`,
+      "url": `${SITE_URL}/auditorios-e-teatros`,
+      "serviceType": "Automação Corporativa e Integração de Sistemas para Auditórios e Teatros",
+      "provider": { "@id": ORG_ID },
+      "areaServed": SONUS_ORGANIZATION.areaServed,
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Equipamentos de Autoridade",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistemas Q-SYS"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Microfones Shure"
+            }
+          }
+        ]
+      }
     },
-    "areaServed": [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Equipamentos de Autoridade",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Sistemas Q-SYS"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Microfones Shure"
-          }
-        }
-      ]
-    }
-  };
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Auditórios e Teatros", path: "/auditorios-e-teatros" },
+    ])
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
@@ -635,11 +642,11 @@ export function AuditoriosTeatros() {
                 
                 <div className="flex justify-center pt-2 min-h-[65px]">
                   <Turnstile 
-                    siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                    siteKey={getTurnstileSiteKey()} 
                     onSuccess={(token) => { setSubmitError(""); setTurnstileToken(token); }}
                     onError={() => setSubmitError("Erro ao carregar o sistema de segurança.")}
                     onExpire={() => setTurnstileToken("")}
-                    options={{ theme: 'dark' }} 
+                    options={TURNSTILE_OPTIONS} 
                   />
                 </div>
 

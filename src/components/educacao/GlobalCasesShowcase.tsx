@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowUpRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -106,8 +106,6 @@ const UNIVERSITY_CASES: UniversityCase[] = [
   },
 ]
 
-const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const
-
 export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
   const [activeId, setActiveId] = useState<string>(UNIVERSITY_CASES[0].id)
   const activeCase = UNIVERSITY_CASES.find((c) => c.id === activeId) ?? UNIVERSITY_CASES[0]
@@ -155,9 +153,11 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
               return (
                 <button
                   key={item.id}
+                  id={`edu-case-tab-${item.id}`}
                   type="button"
                   role="tab"
                   aria-selected={isSelected}
+                  aria-controls={`edu-case-panel-${item.id}`}
                   onClick={() => handleSelect(item.id)}
                   className={`group relative rounded-2xl lg:rounded-none p-3.5 lg:py-5 lg:pl-6 lg:pr-3 text-left cursor-pointer transition-all border lg:border-0 ${
                     isSelected
@@ -205,155 +205,159 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
 
           {/* Right Open Case Study */}
           <div className="lg:col-span-8 rounded-3xl lg:rounded-none border border-white/10 lg:border-0 lg:border-l lg:border-white/10 bg-[#070a13]/85 lg:bg-transparent p-5 sm:p-7 lg:p-0 lg:pl-10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCase.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3.5 sm:gap-4 pb-5 sm:pb-7 border-b border-white/10">
-                  <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2">
-                      {activeCase.country} • {activeCase.focus}
-                    </span>
-                    <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                      {activeCase.institution}
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {activeCase.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] sm:text-xs text-zinc-200 sm:text-zinc-300 bg-white/[0.05] border border-white/10 px-2.5 sm:px-3 py-1 rounded-full"
-                      >
-                        {tag}
+            {UNIVERSITY_CASES.map((caseItem) => {
+              const isSelected = caseItem.id === activeCase.id
+              return (
+                <div
+                  key={caseItem.id}
+                  id={`edu-case-panel-${caseItem.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`edu-case-tab-${caseItem.id}`}
+                  hidden={!isSelected}
+                  className={isSelected ? "block" : "hidden"}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3.5 sm:gap-4 pb-5 sm:pb-7 border-b border-white/10">
+                    <div>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2">
+                        {caseItem.country} • {caseItem.focus}
                       </span>
-                    ))}
-                  </div>
-                </div>
+                      <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        {caseItem.institution}
+                      </h3>
+                    </div>
 
-                {/* Signal Flow Signature: Legible HTML pills on mobile, wide SVG wave on sm+ */}
-                <div className="py-4 sm:py-6 border-b border-white/[0.07]" aria-hidden="true">
-                  <div className="grid grid-cols-3 items-center gap-1.5 sm:hidden">
-                    {activeCase.nodes.map((nodeLabel, idx) => {
-                      const isCenter = idx === 1
-                      return (
-                        <div
-                          key={nodeLabel}
-                          className={`rounded-xl px-2 py-2 text-center border ${
-                            isCenter
-                              ? "bg-cyan-500/15 border-cyan-400/45 text-cyan-200 font-bold"
-                              : "bg-white/[0.03] border-white/10 text-zinc-300 font-medium"
-                          }`}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {caseItem.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[11px] sm:text-xs text-zinc-200 sm:text-zinc-300 bg-white/[0.05] border border-white/10 px-2.5 sm:px-3 py-1 rounded-full"
                         >
-                          <span className="block text-[9.5px] font-mono leading-tight tracking-tight">{nodeLabel}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-
-                  <svg viewBox="0 0 680 54" className="hidden sm:block w-full h-auto overflow-visible">
-                    <path
-                      d="M 95 24 C 185 4, 250 44, 340 24 C 430 4, 495 44, 585 24"
-                      fill="none"
-                      stroke="rgba(56,189,248,0.16)"
-                      strokeWidth="1.5"
-                    />
-                    <path
-                      d="M 95 24 C 185 4, 250 44, 340 24 C 430 4, 495 44, 585 24"
-                      fill="none"
-                      stroke="#38bdf8"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      className="edu-packet"
-                    />
-
-                    {[
-                      { x: 95, label: activeCase.nodes[0], active: false },
-                      { x: 340, label: activeCase.nodes[1], active: true },
-                      { x: 585, label: activeCase.nodes[2], active: false },
-                    ].map((n) => (
-                      <g key={n.label} transform={`translate(${n.x}, 24)`}>
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r={n.active ? 6 : 4.5}
-                          fill={n.active ? "#22d3ee" : "#0b1324"}
-                          stroke="#38bdf8"
-                          strokeWidth="1.5"
-                          className={n.active ? "edu-beacon" : ""}
-                        />
-                        <text
-                          y="21"
-                          textAnchor="middle"
-                          fill={n.active ? "#a5f3fc" : "#a1a1aa"}
-                          fontSize="9.5"
-                          fontFamily="monospace"
-                        >
-                          {n.label}
-                        </text>
-                      </g>
-                    ))}
-                  </svg>
-                </div>
-
-                {/* 3 Clear Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 py-6 sm:py-9 md:divide-x md:divide-white/10">
-                  <div className="md:pr-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-1.5 sm:mb-2.5">
-                      O Problema Antes
-                    </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-200 sm:text-zinc-300 font-normal sm:font-light leading-relaxed">
-                      {activeCase.challenge}
-                    </p>
-                  </div>
-
-                  <div className="md:px-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2.5">
-                      O Que Foi Feito
-                    </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
-                      {activeCase.architecture}
-                    </p>
-                  </div>
-
-                  <div className="md:pl-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 block mb-1.5 sm:mb-2.5">
-                      Resultado no Dia a Dia
-                    </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
-                      {activeCase.outcomes}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bottom Metrics + CTA */}
-                <div className="pt-5 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
-                  <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-start sm:items-center gap-3 sm:gap-10">
-                    {activeCase.stats.map((st) => (
-                      <div key={st.label} className="min-w-0">
-                        <span className="text-[11px] sm:text-xs text-zinc-400 sm:text-zinc-500 block mb-0.5 truncate">{st.label}</span>
-                        <span className="text-xs sm:text-lg font-extrabold text-white tracking-tight block leading-snug">
-                          {st.value}
+                          {tag}
                         </span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
 
-                  <Button
-                    type="button"
-                    onClick={() => onCtaClick(`case_${activeCase.id}`)}
-                    className="w-full sm:w-auto whitespace-normal text-center leading-tight rounded-full bg-white text-slate-950 hover:bg-cyan-50 font-bold text-sm px-6 sm:px-7 h-auto min-h-12 py-2.5 sm:shrink-0 transition-transform duration-300 hover:scale-[1.03]"
-                  >
-                    Trazer Esse Padrão ao Meu Campus
-                    <ArrowUpRight className="w-4 h-4 ml-1.5" />
-                  </Button>
+                  {/* Signal Flow Signature: Legible HTML pills on mobile, wide SVG wave on sm+ */}
+                  <div className="py-4 sm:py-6 border-b border-white/[0.07]" aria-hidden="true">
+                    <div className="grid grid-cols-3 items-center gap-1.5 sm:hidden">
+                      {caseItem.nodes.map((nodeLabel, idx) => {
+                        const isCenter = idx === 1
+                        return (
+                          <div
+                            key={nodeLabel}
+                            className={`rounded-xl px-2 py-2 text-center border ${
+                              isCenter
+                                ? "bg-cyan-500/15 border-cyan-400/45 text-cyan-200 font-bold"
+                                : "bg-white/[0.03] border-white/10 text-zinc-300 font-medium"
+                            }`}
+                          >
+                            <span className="block text-[9.5px] font-mono leading-tight tracking-tight">{nodeLabel}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <svg viewBox="0 0 680 54" className="hidden sm:block w-full h-auto overflow-visible">
+                      <path
+                        d="M 95 24 C 185 4, 250 44, 340 24 C 430 4, 495 44, 585 24"
+                        fill="none"
+                        stroke="rgba(56,189,248,0.16)"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M 95 24 C 185 4, 250 44, 340 24 C 430 4, 495 44, 585 24"
+                        fill="none"
+                        stroke="#38bdf8"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        className="edu-packet"
+                      />
+
+                      {[
+                        { x: 95, label: caseItem.nodes[0], active: false },
+                        { x: 340, label: caseItem.nodes[1], active: true },
+                        { x: 585, label: caseItem.nodes[2], active: false },
+                      ].map((n) => (
+                        <g key={n.label} transform={`translate(${n.x}, 24)`}>
+                          <circle
+                            cx="0"
+                            cy="0"
+                            r={n.active ? 6 : 4.5}
+                            fill={n.active ? "#22d3ee" : "#0b1324"}
+                            stroke="#38bdf8"
+                            strokeWidth="1.5"
+                            className={n.active ? "edu-beacon" : ""}
+                          />
+                          <text
+                            y="21"
+                            textAnchor="middle"
+                            fill={n.active ? "#a5f3fc" : "#a1a1aa"}
+                            fontSize="9.5"
+                            fontFamily="monospace"
+                          >
+                            {n.label}
+                          </text>
+                        </g>
+                      ))}
+                    </svg>
+                  </div>
+
+                  {/* 3 Clear Columns */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 py-6 sm:py-9 md:divide-x md:divide-white/10">
+                    <div className="md:pr-7">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-1.5 sm:mb-2.5">
+                        O Problema Antes
+                      </span>
+                      <p className="text-sm sm:text-[15px] text-zinc-200 sm:text-zinc-300 font-normal sm:font-light leading-relaxed">
+                        {caseItem.challenge}
+                      </p>
+                    </div>
+
+                    <div className="md:px-7">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2.5">
+                        O Que Foi Feito
+                      </span>
+                      <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
+                        {caseItem.architecture}
+                      </p>
+                    </div>
+
+                    <div className="md:pl-7">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 block mb-1.5 sm:mb-2.5">
+                        Resultado no Dia a Dia
+                      </span>
+                      <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
+                        {caseItem.outcomes}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Metrics + CTA */}
+                  <div className="pt-5 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
+                    <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-start sm:items-center gap-3 sm:gap-10">
+                      {caseItem.stats.map((st) => (
+                        <div key={st.label} className="min-w-0">
+                          <span className="text-[11px] sm:text-xs text-zinc-400 sm:text-zinc-500 block mb-0.5 truncate">{st.label}</span>
+                          <span className="text-xs sm:text-lg font-extrabold text-white tracking-tight block leading-snug">
+                            {st.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button
+                      type="button"
+                      onClick={() => onCtaClick(`case_${caseItem.id}`)}
+                      className="w-full sm:w-auto whitespace-normal text-center leading-tight rounded-full bg-white text-slate-950 hover:bg-cyan-50 font-bold text-sm px-6 sm:px-7 h-auto min-h-12 py-2.5 sm:shrink-0 transition-transform duration-300 hover:scale-[1.03]"
+                    >
+                      Trazer Esse Padrão ao Meu Campus
+                      <ArrowUpRight className="w-4 h-4 ml-1.5" />
+                    </Button>
+                  </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              )
+            })}
           </div>
         </div>
       </div>

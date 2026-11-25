@@ -9,6 +9,7 @@ import { ProjectModal } from "@/components/admin/ProjectModal"
 import { AnalyticsDashboardTab } from "@/components/admin/AnalyticsDashboardTab"
 import { LeadsDashboardTab } from "@/components/admin/LeadsDashboardTab"
 import { DeployButton } from "@/components/admin/DeployButton"
+import { SEO } from "@/components/SEO"
 
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"projects" | "analytics" | "leads">("projects")
@@ -107,6 +108,12 @@ export function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white p-4 md:p-8">
+      <SEO
+        title="Painel de Controle | Sonus Pro AV"
+        description="Gerenciamento interno Sonus Pro AV."
+        url="https://sonusproaudio.com.br/admin-dashboard-sonus"
+        noindex={true}
+      />
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header */}

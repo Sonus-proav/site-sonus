@@ -43,9 +43,13 @@ app.use((req, res) => {
 // Função para gerar o sitemap.xml
 function generateSitemap(allRoutes) {
   const baseUrl = 'https://sonusproaudio.com.br';
+  const nonIndexable = new Set(['/links', '/obrigado', '/admin-login', '/admin-dashboard-sonus']);
+  const sitemapRoutes = allRoutes.filter((route) => !nonIndexable.has(route));
+  const lastmod = new Date().toISOString().split('T')[0];
+
   let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
-  for (const route of allRoutes) {
+  for (const route of sitemapRoutes) {
     let priority = '0.8';
     let changefreq = 'monthly';
     
@@ -57,13 +61,12 @@ function generateSitemap(allRoutes) {
       changefreq = 'monthly'; 
     } else if (['/bares-e-casas-noturnas', '/igrejas-e-templos', '/auditorios-e-teatros', '/salas-reuniao', '/plenarios-e-camaras', '/educacao', '/podcasts'].includes(route)) {
       priority = '0.9';
-    } else if (route === '/links') {
-      priority = '0.5';
     }
 
     sitemapXml += `
   <url>
     <loc>${baseUrl}${route === '/' ? '' : route}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;

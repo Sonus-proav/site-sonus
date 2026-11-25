@@ -136,7 +136,9 @@ export const AuthoritySculpture3D = memo(function AuthoritySculpture3D() {
     }
 
     const tier = getPerfTier()
-    if (tier === "low") return
+    const isMobile =
+      window.innerWidth < 768 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+    if (tier === "low" || isMobile) return
 
     const disposables: { dispose: () => void }[] = []
     const track = <T extends { dispose: () => void }>(item: T): T => {
@@ -144,8 +146,7 @@ export const AuthoritySculpture3D = memo(function AuthoritySculpture3D() {
       return item
     }
 
-    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-    const maxDpr = isMobile ? 1.5 : 2.0
+    const maxDpr = 2.0
 
     const rect = container.getBoundingClientRect()
     let width = Math.max(1, Math.round(rect.width || container.clientWidth || 320))

@@ -1,5 +1,8 @@
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import type { ReactNode } from "react"
+
+const isPrerender =
+  typeof navigator !== "undefined" && /HeadlessChrome|Prerender|ReactSnap/i.test(navigator.userAgent)
 
 interface FadeInProps {
   children: ReactNode
@@ -22,6 +25,12 @@ export function FadeIn({
     left: { x: 40, y: 0 },
     right: { x: -40, y: 0 },
     none: { x: 0, y: 0 },
+  }
+
+  const prefersReducedMotion = useReducedMotion()
+
+  if (isPrerender || prefersReducedMotion) {
+    return <div className={className}>{children}</div>
   }
 
   return (

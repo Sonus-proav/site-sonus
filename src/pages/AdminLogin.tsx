@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { SEO } from "@/components/SEO";
 import { Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
 
 export function AdminLogin() {
@@ -41,6 +42,12 @@ export function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden transition-colors duration-300">
+      <SEO
+        title="Login Administrativo | Sonus Pro AV"
+        description="Acesso restrito ao painel administrativo."
+        url="https://sonusproaudio.com.br/admin-login"
+        noindex={true}
+      />
       {/* Elementos de Fundo Escuros */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
       

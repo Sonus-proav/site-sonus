@@ -3,6 +3,7 @@ import React, { useState, memo, useRef, lazy } from "react"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import { SEO } from "@/components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { Navbar } from "@/components/layout/Navbar"
 import { LPFooter } from "@/components/layout/LPFooter"
 import { StickyCtaBar } from "@/components/ui/StickyCtaBar"
@@ -14,6 +15,7 @@ import { Magnetic } from "@/components/ui/Magnetic"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Turnstile } from "@marsidev/react-turnstile"
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClubHeatmap } from "@/components/bares/ClubHeatmap"
 import { ZoneMixer } from "@/components/bares/ZoneMixer"
@@ -277,13 +279,21 @@ export function BaresCasasNoturnas() {
     setIsSubmitting(false)
   }
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Sonorização Profissional e Laudo Acústico para Bares e Casas Noturnas",
-    provider: { "@type": "LocalBusiness", name: "Sonus Pro Audio e Video" },
-    areaServed: [ { "@type": "Country", "name": "Brazil" }, { "@type": "Continent", "name": "Latin America" } ],
-  }
+  const schema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/bares-e-casas-noturnas#service`,
+      url: `${SITE_URL}/bares-e-casas-noturnas`,
+      serviceType: "Sonorização Profissional e Laudo Acústico para Bares e Casas Noturnas",
+      provider: { "@id": ORG_ID },
+      areaServed: SONUS_ORGANIZATION.areaServed,
+    },
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Bares e Casas Noturnas", path: "/bares-e-casas-noturnas" },
+    ])
+  )
   const inputClass = "bg-white/5 border-white/10 focus-visible:ring-blue-500 h-14 rounded-xl text-white placeholder:text-zinc-500"
 
   return (
@@ -665,14 +675,14 @@ export function BaresCasasNoturnas() {
 
                       <div className="flex justify-center pt-2 min-h-[65px]">
                         <Turnstile
-                          siteKey="0x4AAAAAADmmjbWL-CsAzHC9"
+                          siteKey={getTurnstileSiteKey()}
                           onSuccess={(token) => {
                             setSubmitError("")
                             setTurnstileToken(token)
                           }}
                           onError={() => setSubmitError("Erro ao carregar segurança. Verifique se o domínio está liberado ou desative seu Adblocker.")}
                           onExpire={() => setTurnstileToken("")}
-                          options={{ theme: "dark" }}
+                          options={TURNSTILE_OPTIONS}
                         />
                       </div>
 

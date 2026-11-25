@@ -34,6 +34,8 @@ export function SEO({
       <link rel="canonical" href={url} />
 
       {/* Open Graph / Facebook */}
+      <meta property="og:locale" content="pt_BR" />
+      <meta property="og:site_name" content="Sonus Pro AV" />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
@@ -41,11 +43,11 @@ export function SEO({
       <meta property="og:image" content={absoluteImage} />
 
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={absoluteImage} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={absoluteImage} />
 
       {/* JSON-LD Schema Markup */}
       {schema && (

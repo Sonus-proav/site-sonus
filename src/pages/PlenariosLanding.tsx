@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense, useEffect, useRef, memo } from "react"
-import { Helmet } from "react-helmet-async"
 import { SEO } from "@/components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { Navbar } from "@/components/layout/Navbar"
 import { useLocation } from "react-router-dom"
 import { motion, AnimatePresence, useScroll } from "framer-motion"
@@ -432,25 +432,29 @@ export function PlenariosLanding() {
   // Form State for Gov Project Request
 return (
     <div className="dark min-h-screen bg-[#020202] text-white selection:bg-blue-500/30 font-sans">
-      <Helmet>
-        <title>Integração Audiovisual para o Legislativo | Sonus Pro AV</title>
-        <meta name="description" content="Sistemas dedicados à organização do rito legislativo. Automação de corte de câmeras, gerenciamento de uso da palavra e painel de votação eletrônica nominal." />
-      </Helmet>
       <SEO 
         title="Integração Audiovisual para o Legislativo | Sonus Pro AV"
         description="Sistemas dedicados à organização do rito legislativo. Automação de corte de câmeras, gerenciamento de uso da palavra e painel de votação eletrônica nominal."
         image="/plenario-legislativo.jpg"
         url="https://sonusproaudio.com.br/plenarios-e-camaras"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Automação de Plenários e Câmaras Municipais",
-          provider: { "@type": "Organization", name: "Sonus Pro Audio" },
-          description: "Integração completa de áudio digital IP (Dante), automação de câmeras PTZ (Auto-Track) e sistemas de votação eletrônica nominal para Câmaras de Vereadores e Assembleias Legislativas.",
-          areaServed: { "@type": "Country", name: "Brasil" },
-          category: "Governo / Audiovisual",
-          serviceType: "Instalação AV Turn-key e Elaboração de TR"
-        }} 
+        schema={buildGraph(
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/plenarios-e-camaras#service`,
+            url: `${SITE_URL}/plenarios-e-camaras`,
+            name: "Automação de Plenários e Câmaras Municipais",
+            provider: { "@id": ORG_ID },
+            description: "Integração completa de áudio digital IP (Dante), automação de câmeras PTZ (Auto-Track) e sistemas de votação eletrônica nominal para Câmaras de Vereadores e Assembleias Legislativas.",
+            areaServed: SONUS_ORGANIZATION.areaServed,
+            category: "Governo / Audiovisual",
+            serviceType: "Instalação AV Turn-key e Elaboração de TR",
+          },
+          buildBreadcrumb([
+            { name: "Início", path: "/" },
+            { name: "Soluções", path: "/solucoes" },
+            { name: "Plenários e Câmaras", path: "/plenarios-e-camaras" },
+          ])
+        )} 
       />
       
       <Navbar />

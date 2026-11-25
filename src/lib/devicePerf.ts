@@ -16,9 +16,10 @@ let cached: PerfTier | null = null
 function hasHardwareWebGL(): boolean {
   try {
     const canvas = document.createElement("canvas")
+    const attrs: WebGLContextAttributes = { failIfMajorPerformanceCaveat: true }
     const gl =
-      (canvas.getContext("webgl2") as WebGLRenderingContext | null) ||
-      (canvas.getContext("webgl") as WebGLRenderingContext | null)
+      (canvas.getContext("webgl2", attrs) as WebGLRenderingContext | null) ||
+      (canvas.getContext("webgl", attrs) as WebGLRenderingContext | null)
     if (!gl) return false
     gl.getExtension("WEBGL_lose_context")?.loseContext()
     return true
@@ -46,11 +47,10 @@ export function getPerfTier(): PerfTier {
 
   let tier: PerfTier
   
-  // Apenas bloqueia WebGL se for mobile E muito fraco, ou sem suporte total a hardware.
-  // Desktops parrudos sempre devem pegar high ou medium.
-  if (!hasHardwareWebGL() || saveData) {
+  // Evita carregar/executar WebGL pesado em mobile modesto, sem GPU de hardware, economia de dados ou reduced motion.
+  if (!hasHardwareWebGL() || saveData || reducedMotion || forcedLite || (isMobile && (memory <= 4 || cores <= 4))) {
     tier = "low"
-  } else if (isMobile || reducedMotion || forcedLite || memory < 4 || cores <= 4) {
+  } else if (isMobile || memory < 4 || cores <= 4) {
     tier = "medium"
   } else {
     tier = "high"

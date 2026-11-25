@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Turnstile } from '@marsidev/react-turnstile'
-import { Helmet } from "react-helmet-async"
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import { FadeIn } from "@/components/ui/FadeIn"
 import { Reveal } from "@/components/ui/Reveal"
 import { Magnetic } from "@/components/ui/Magnetic"
@@ -17,6 +17,7 @@ import {
   Play, BrainCircuit, Wifi, Battery, Globe, Zap, Network, SlidersHorizontal, MonitorPlay, Lock, PlayCircle, X
 } from "lucide-react"
 import { SEO } from "../components/SEO"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })))
 import { Navbar } from "@/components/layout/Navbar"
 const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ default: m.LPFooter })))
@@ -144,23 +145,26 @@ export function QSysLanding() {
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
 
-  const qsysSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Instalação e Integração Q-SYS",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Sonus Pro AV"
+  const qsysSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/qsys#service`,
+      url: `${SITE_URL}/qsys`,
+      serviceType: "Instalação e Integração Q-SYS",
+      provider: { "@id": ORG_ID },
+      areaServed: SONUS_ORGANIZATION.areaServed,
+      description: "Especialistas em integração do ecossistema Q-SYS para controle centralizado de áudio, vídeo e automação corporativa.",
     },
-    "areaServed": "BR",
-    "description": "Especialistas em integração do ecossistema Q-SYS para controle centralizado de áudio, vídeo e automação corporativa."
-  };
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Automação Q-SYS", path: "/qsys" },
+    ])
+  );
 
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30">
-      <Helmet>
-      </Helmet>
       <SEO schema={qsysSchema} 
         title="Plataforma Q-SYS: Integração AV em Rede | Sonus Pro AV" 
         description="Processamento centralizado de Áudio, Vídeo e Controle (AV&C) baseado em software. Substitua múltiplos equipamentos analógicos por uma infraestrutura IP." 
@@ -651,11 +655,11 @@ export function QSysLanding() {
 
                   <div className="flex justify-center pt-2 min-h-[65px]">
                     <Turnstile 
-                      siteKey="0x4AAAAAADmmjbWL-CsAzHC9" 
+                      siteKey={getTurnstileSiteKey()} 
                       onSuccess={(token) => { setSubmitError(""); setTurnstileToken(token); }}
                       onError={() => setSubmitError("Erro ao carregar segurança.")}
                       onExpire={() => setTurnstileToken("")}
-                      options={{ theme: 'dark' }} 
+                      options={TURNSTILE_OPTIONS} 
                     />
                   </div>
                   

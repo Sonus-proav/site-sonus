@@ -5,3 +5,27 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-XSS-Protection: 1; mode=block
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.svg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/clientes/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/marcas/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/plenarios/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

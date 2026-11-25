@@ -238,9 +238,11 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
               return (
                 <button
                   key={stage.id}
+                  id={`pod-stage-tab-${stage.id}`}
                   type="button"
                   role="tab"
                   aria-selected={selected}
+                  aria-controls={`pod-stage-panel-${stage.id}`}
                   onClick={() => selectStage(stage.id)}
                   data-active={selected}
                   className="pod-btn group text-left p-3 sm:p-5 rounded-2xl relative overflow-hidden"
@@ -283,37 +285,40 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
           {/* Left Column on Desktop (5 Cols) / Bottom Details on Mobile */}
           <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col justify-between py-1 sm:py-2">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-4 sm:space-y-6"
-              >
-                <div>
-                  <span className="hidden lg:inline-block text-[11px] font-mono uppercase tracking-[0.22em] text-cyan-300">
-                    Etapa {current.step} • {current.kicker}
-                  </span>
-                  <h3 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-white mt-2.5 leading-tight tracking-tight">
-                    {current.title}
-                  </h3>
-                  <p className="text-zinc-200 sm:text-zinc-300/90 text-sm sm:text-base font-normal sm:font-light leading-relaxed lg:mt-4">
-                    {current.summary}
-                  </p>
-                </div>
+            {STAGES.map((st) => {
+              const isSelected = st.id === activeStage
+              return (
+                <div
+                  key={st.id}
+                  id={`pod-stage-panel-${st.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`pod-stage-tab-${st.id}`}
+                  hidden={!isSelected}
+                  className={isSelected ? "space-y-4 sm:space-y-6" : "hidden"}
+                >
+                  <div>
+                    <span className="hidden lg:inline-block text-[11px] font-mono uppercase tracking-[0.22em] text-cyan-300">
+                      Etapa {st.step} • {st.kicker}
+                    </span>
+                    <h3 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-white mt-2.5 leading-tight tracking-tight">
+                      {st.title}
+                    </h3>
+                    <p className="text-zinc-200 sm:text-zinc-300/90 text-sm sm:text-base font-normal sm:font-light leading-relaxed lg:mt-4">
+                      {st.summary}
+                    </p>
+                  </div>
 
-                <ul className="space-y-2.5 sm:space-y-3 pt-3 border-t border-white/10">
-                  {current.highlights.map((bullet, i) => (
-                    <li key={i} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatePresence>
+                  <ul className="space-y-2.5 sm:space-y-3 pt-3 border-t border-white/10">
+                    {st.highlights.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
+                        <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
 
             {/* Stage Telemetry Footer */}
             <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-white/10 flex items-center justify-between">

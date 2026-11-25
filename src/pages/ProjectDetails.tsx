@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { SEO } from "../components/SEO"
 import { Helmet } from "react-helmet-async"
 import { PreferredSourceBadge } from "@/components/PreferredSourceBadge"
+import { ORG_ID, SITE_URL, buildBreadcrumb, buildGraph } from "@/lib/schema"
 
 export function ProjectDetails() {
   const { id } = useParams()
@@ -107,27 +108,26 @@ export function ProjectDetails() {
     )
   }
 
-  const articleSchema = project ? {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": project.title,
-    "image": project.images ? [project.image, ...project.images] : [project.image],
-    "author": {
-      "@type": "Organization",
-      "name": "Sonus Pro Audio e Video",
-      "url": "https://sonusproaudio.com.br"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Sonus Pro Audio e Video",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://sonusproaudio.com.br/logo.png"
-      }
-    },
-    "description": project.description || "Estudo de caso e projeto audiovisual.",
-    "articleSection": project.category
-  } : undefined;
+  const articleSchema = project
+    ? buildGraph(
+        {
+          "@type": "Article",
+          "@id": `${SITE_URL}/projetos/${project.id}#article`,
+          headline: project.title,
+          image: project.images ? [project.image, ...project.images] : [project.image],
+          author: { "@id": ORG_ID },
+          publisher: { "@id": ORG_ID },
+          mainEntityOfPage: `${SITE_URL}/projetos/${project.id}`,
+          description: project.description || "Estudo de caso e projeto audiovisual.",
+          articleSection: project.category,
+        },
+        buildBreadcrumb([
+          { name: "Início", path: "/" },
+          { name: "Projetos", path: "/projetos" },
+          { name: project.title, path: `/projetos/${project.id}` },
+        ])
+      )
+    : undefined;
 
   return (
     <div className="min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">

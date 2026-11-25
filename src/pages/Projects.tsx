@@ -9,6 +9,7 @@ import { getProjects, getCachedProjects, optimizeImageUrl, type Project } from "
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { SEO } from "../components/SEO"
+import { ORG_ID, SITE_URL, WEBSITE_ID, buildBreadcrumb, buildGraph } from "@/lib/schema"
 
 const PortfolioCalibrator3D = lazy(() => import("@/components/projetos/PortfolioCalibrator3D").then(m => ({ default: m.PortfolioCalibrator3D })))
 
@@ -33,7 +34,21 @@ export function Projects() {
         title="Portfólio de Projetos Audiovisuais | Sonus Pro AV" 
         description="Conheça nossos cases de sucesso em sonorização e automação corporativa para empresas, auditórios e igrejas." 
         image="/pato-branco.webp"
-        url="https://sonusproaudio.com.br/projetos"
+        url={`${SITE_URL}/projetos`}
+        schema={buildGraph(
+          {
+            "@type": "CollectionPage",
+            "@id": `${SITE_URL}/projetos#webpage`,
+            url: `${SITE_URL}/projetos`,
+            name: "Portfólio de Projetos Audiovisuais | Sonus Pro Audio",
+            isPartOf: { "@id": WEBSITE_ID },
+            about: { "@id": ORG_ID },
+          },
+          buildBreadcrumb([
+            { name: "Início", path: "/" },
+            { name: "Portfólio de Projetos", path: "/projetos" },
+          ])
+        )}
       />
       <div className="relative flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-20">
         <Suspense fallback={null}>

@@ -1,8 +1,8 @@
-import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { lazy, Suspense } from "react";
 import { SEO } from "@/components/SEO";
-import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, Speaker } from "lucide-react";
+import { ORG_ID, SITE_URL, SONUS_OFFER_CATALOG, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema";
+import { Vote, Users, Mic2, HeartHandshake, Cpu, ArrowRight, Speaker, GraduationCap, Radio } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -13,39 +13,30 @@ const LPFooter = lazy(() => import("@/components/layout/LPFooter").then(m => ({ 
 const WhatsAppButton = lazy(() => import("@/components/layout/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
 
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Integração Audiovisual Corporativa",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Sonus Pro Audio e Video"
+const schema = buildGraph(
+  {
+    "@type": "Service",
+    "@id": `${SITE_URL}/solucoes#service`,
+    url: `${SITE_URL}/solucoes`,
+    serviceType: "Integração Audiovisual Corporativa",
+    provider: { "@id": ORG_ID },
+    areaServed: SONUS_ORGANIZATION.areaServed,
+    hasOfferCatalog: SONUS_OFFER_CATALOG,
   },
-  "areaServed": "Brasil",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Soluções de Tecnologia Audiovisual",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plenários e Câmaras" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Salas Corporativas de Videoconferência" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Auditórios e Teatros" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sonorização de Igrejas e Templos" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design e Programação Q-SYS" } }
-    ]
-  }
-};
+  buildBreadcrumb([
+    { name: "Início", path: "/" },
+    { name: "Soluções", path: "/solucoes" },
+  ])
+);
 
 export function Solucoes() {
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white selection:bg-cyan-500/30 font-sans overflow-x-hidden">
-      <Helmet>
-        <title>Ecossistema de Soluções | Sonus Pro AV</title>
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
       <SEO 
         title="Ecossistema de Soluções | Sonus Pro AV" 
-        description="Conheça nossas verticais de tecnologia audiovisual: Plenários, Salas Corporativas, Auditórios, Igrejas e Integração Q-SYS." 
+        description="Conheça nossas verticais de tecnologia audiovisual: Educação e Universidades, Estúdios de Podcast Autônomos, Plenários, Salas Corporativas, Auditórios, Igrejas, Bares e Plataforma Q-SYS." 
         url="https://sonusproaudio.com.br/solucoes"
+        schema={schema}
       />
 
       <Navbar />
@@ -247,7 +238,97 @@ export function Solucoes() {
               </div>
             </SpotlightCard>
 
-            {/* 6. BARES E CASAS NOTURNAS - SPANS 12 COLS */}
+            {/* 6. EDUCAÇÃO & UNIVERSIDADES - SPANS 6 COLS */}
+            <SpotlightCard className="col-span-1 lg:col-span-6 min-h-[380px] sm:min-h-[360px] group !p-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-[#050505] to-[#050505] z-0" />
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:36px_36px] opacity-25 z-0" aria-hidden="true" />
+              {/* Arte visual leve em CSS/SVG */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 220 220"
+                className="pointer-events-none absolute -right-4 -top-4 w-52 h-52 sm:w-64 sm:h-64 opacity-45 group-hover:opacity-75 transition-opacity duration-500 z-0"
+              >
+                <defs>
+                  <radialGradient id="eduCardGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                <circle cx="110" cy="110" r="95" fill="url(#eduCardGlow)" />
+                <circle cx="110" cy="110" r="78" fill="none" stroke="#22d3ee" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="4 6" />
+                <circle cx="110" cy="110" r="52" fill="none" stroke="#38bdf8" strokeOpacity="0.35" strokeWidth="1.2" />
+                <circle cx="110" cy="110" r="26" fill="none" stroke="#22d3ee" strokeOpacity="0.5" strokeWidth="1.5" />
+              </svg>
+
+              <div className="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto max-w-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 shrink-0">
+                    <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7" />
+                  </div>
+                  <span className="text-cyan-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest">Ensino Híbrido Q-SYS</span>
+                </div>
+                <div className="mt-auto pt-8 relative z-10">
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white mb-2 sm:mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Educação &amp; Universidades</h2>
+                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-light leading-relaxed mb-5 sm:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                    Salas de aula híbridas (HyFlex), auditórios acadêmicos e salas divisíveis com operação em um toque para docentes e gestão remota via Q-SYS Reflect.
+                  </p>
+                  <Link
+                    to="/educacao"
+                    onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Educação e Universidades' }); }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 hover:bg-cyan-500/20 text-cyan-300 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
+                  >
+                    Explorar Educação <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </SpotlightCard>
+
+            {/* 7. ESTÚDIOS DE PODCAST - SPANS 6 COLS */}
+            <SpotlightCard className="col-span-1 lg:col-span-6 min-h-[380px] sm:min-h-[360px] group !p-0">
+              <div className="absolute inset-0 bg-gradient-to-bl from-amber-950/30 via-[#050505] to-[#050505] z-0" />
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:36px_36px] opacity-25 z-0" aria-hidden="true" />
+              {/* Arte visual leve em CSS/SVG */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 220 220"
+                className="pointer-events-none absolute -right-4 -top-4 w-52 h-52 sm:w-64 sm:h-64 opacity-45 group-hover:opacity-75 transition-opacity duration-500 z-0"
+              >
+                <defs>
+                  <radialGradient id="podCardGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                <circle cx="110" cy="110" r="95" fill="url(#podCardGlow)" />
+                <circle cx="110" cy="110" r="76" fill="none" stroke="#f59e0b" strokeOpacity="0.2" strokeWidth="1" />
+                <circle cx="110" cy="110" r="52" fill="none" stroke="#fbbf24" strokeOpacity="0.35" strokeWidth="1.2" strokeDasharray="6 4" />
+                <circle cx="110" cy="110" r="28" fill="none" stroke="#f59e0b" strokeOpacity="0.55" strokeWidth="1.5" />
+              </svg>
+
+              <div className="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between pointer-events-none [&>*]:pointer-events-auto max-w-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-500 shrink-0">
+                    <Radio className="w-6 h-6 sm:w-7 sm:h-7" />
+                  </div>
+                  <span className="text-amber-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest">Autonomous Engine</span>
+                </div>
+                <div className="mt-auto pt-8 relative z-10">
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white mb-2 sm:mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Estúdios de Podcast</h2>
+                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-light leading-relaxed mb-5 sm:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                    Salas 100% autônomas em Q-SYS: toque único para gravar sem equipe na sala, corte multi-câmera 4K por voz e entrega automática em 16:9 e 9:16.
+                  </p>
+                  <Link
+                    to="/podcasts"
+                    onClick={() => { (window as any).dataLayer?.push({ event: 'navigate_solucoes_grid', dimension: 'Estúdios de Podcast' }); }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 text-amber-300 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors w-fit"
+                  >
+                    Conhecer Estúdios <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </SpotlightCard>
+
+            {/* 8. BARES E CASAS NOTURNAS - SPANS 12 COLS */}
             <SpotlightCard className="col-span-1 lg:col-span-12 min-h-[440px] sm:min-h-[380px] md:h-[300px] group !p-0">
               <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505] to-blue-900/10 z-0" />
 

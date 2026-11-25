@@ -1,6 +1,19 @@
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
+
+const isPrerender =
+  typeof navigator !== "undefined" && /HeadlessChrome|Prerender|ReactSnap/i.test(navigator.userAgent)
 
 export function Reveal({ children, delay = 0, className }: { children: React.ReactNode, delay?: number, className?: string }) {
+  const prefersReducedMotion = useReducedMotion()
+
+  if (isPrerender || prefersReducedMotion) {
+    return (
+      <div className={className} style={{ position: "relative", overflow: "visible" }}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <div className={className} style={{ position: "relative", overflow: "visible" }}>
       <motion.div

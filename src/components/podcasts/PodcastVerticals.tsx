@@ -1,5 +1,4 @@
 import { memo, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Building2, Church, GraduationCap, Lock, Mic2, Sparkles, TrendingUp } from "lucide-react"
 import { trackCustomizeProduct } from "@/lib/metaPixel"
 
@@ -128,14 +127,11 @@ interface PodcastVerticalsProps {
 
 export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile }: PodcastVerticalsProps) {
   const [selectedId, setSelectedId] = useState<PodcastProfileId>("corporativo")
-  const active = VERTICALS.find((v) => v.id === selectedId) ?? VERTICALS[0]
 
   const handleSelect = (id: PodcastProfileId) => {
     setSelectedId(id)
     trackCustomizeProduct("Podcast_Verticals", id)
   }
-
-  const ActiveIcon = active.icon
 
   return (
     <section
@@ -170,14 +166,22 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
               </span>
             </span>
 
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3">
+            <div
+              role="tablist"
+              aria-label="Perfis de operação para estúdios de podcast"
+              className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3"
+            >
               {VERTICALS.map((item) => {
                 const Icon = item.icon
                 const isSelected = item.id === selectedId
                 return (
                   <button
                     key={item.id}
+                    id={`pod-vert-tab-${item.id}`}
                     type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    aria-controls={`pod-vert-panel-${item.id}`}
                     onClick={() => handleSelect(item.id)}
                     data-active={isSelected}
                     className="pod-btn w-full text-left py-3 px-3 sm:py-4 sm:px-4 rounded-2xl flex items-center justify-between gap-2 sm:gap-3"
@@ -235,76 +239,84 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
 
           {/* Right Open Editorial Canvas (8 Cols) */}
           <div className="lg:col-span-8 space-y-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className={`rounded-3xl border bg-gradient-to-br from-[#171422] via-[#0b0a12] to-[#060509] p-5 sm:p-10 md:p-12 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)] ${active.accentBorder}`}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 mb-4 sm:mb-6">
-                  <span
-                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider bg-white/[0.05] border border-white/10 ${active.accentText}`}
-                  >
-                    <ActiveIcon className="w-3.5 h-3.5 shrink-0" />
-                    {active.badge}
-                  </span>
-
-                  <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400">
-                    <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                    Arquitetura Turn-Key Q-SYS
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.16] mb-4 sm:mb-5">
-                  {active.headline}
-                </h3>
-
-                <p className="text-zinc-200 sm:text-zinc-300 text-sm sm:text-base font-normal sm:font-light leading-relaxed mb-5 sm:mb-6">
-                  {active.narrative}
-                </p>
-
-                <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border-l-2 border-amber-400 mb-6 sm:mb-8">
-                  <span className="block text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-1">
-                    Impacto Direto na Operação
-                  </span>
-                  <p className="text-xs sm:text-sm text-zinc-100 sm:text-zinc-200 font-medium leading-relaxed">{active.painSolved}</p>
-                </div>
-
-                {/* Metrics Strip */}
-                <div className="grid grid-cols-3 gap-2.5 sm:gap-4 py-4 sm:py-6 border-y border-white/10 mb-6 sm:mb-8 divide-x divide-white/10 sm:divide-x-0">
-                  {active.metrics.map((m, i) => (
-                    <div key={m.label} className={i > 0 ? "pl-2.5 sm:pl-0 min-w-0" : "min-w-0"}>
-                      <span className={`block text-lg sm:text-3xl font-black tracking-tight break-words ${active.accentText}`}>
-                        {m.value}
-                      </span>
-                      <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">{m.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Deliverables List + Targeted CTA */}
-                <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
-                  {active.deliverables.map((d) => (
-                    <div key={d} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
-                      <Sparkles className={`w-4 h-4 shrink-0 mt-0.5 ${active.accentText}`} />
-                      <span>{d}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => onSelectProfile(active.formValue)}
-                  className="pod-btn w-full sm:w-auto justify-center text-center inline-flex items-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-full !bg-white !text-slate-950 text-xs sm:text-sm font-bold leading-tight"
+            {VERTICALS.map((vert) => {
+              const VertIcon = vert.icon
+              const isSelected = vert.id === selectedId
+              return (
+                <div
+                  key={vert.id}
+                  id={`pod-vert-panel-${vert.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`pod-vert-tab-${vert.id}`}
+                  hidden={!isSelected}
+                  className={
+                    isSelected
+                      ? `rounded-3xl border bg-gradient-to-br from-[#171422] via-[#0b0a12] to-[#060509] p-5 sm:p-10 md:p-12 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)] ${vert.accentBorder}`
+                      : "hidden"
+                  }
                 >
-                  <span>Dimensionar Estúdio para {active.tabLabel}</span>
-                  <ArrowRight className="w-4 h-4 shrink-0 pod-nudge" />
-                </button>
-              </motion.div>
-            </AnimatePresence>
+                  <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 mb-4 sm:mb-6">
+                    <span
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider bg-white/[0.05] border border-white/10 ${vert.accentText}`}
+                    >
+                      <VertIcon className="w-3.5 h-3.5 shrink-0" />
+                      {vert.badge}
+                    </span>
+
+                    <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400">
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                      Arquitetura Turn-Key Q-SYS
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.16] mb-4 sm:mb-5">
+                    {vert.headline}
+                  </h3>
+
+                  <p className="text-zinc-200 sm:text-zinc-300 text-sm sm:text-base font-normal sm:font-light leading-relaxed mb-5 sm:mb-6">
+                    {vert.narrative}
+                  </p>
+
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border-l-2 border-amber-400 mb-6 sm:mb-8">
+                    <span className="block text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-1">
+                      Impacto Direto na Operação
+                    </span>
+                    <p className="text-xs sm:text-sm text-zinc-100 sm:text-zinc-200 font-medium leading-relaxed">{vert.painSolved}</p>
+                  </div>
+
+                  {/* Metrics Strip */}
+                  <div className="grid grid-cols-3 gap-2.5 sm:gap-4 py-4 sm:py-6 border-y border-white/10 mb-6 sm:mb-8 divide-x divide-white/10 sm:divide-x-0">
+                    {vert.metrics.map((m, i) => (
+                      <div key={m.label} className={i > 0 ? "pl-2.5 sm:pl-0 min-w-0" : "min-w-0"}>
+                        <span className={`block text-lg sm:text-3xl font-black tracking-tight break-words ${vert.accentText}`}>
+                          {m.value}
+                        </span>
+                        <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Deliverables List + Targeted CTA */}
+                  <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
+                    {vert.deliverables.map((d) => (
+                      <div key={d} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
+                        <Sparkles className={`w-4 h-4 shrink-0 mt-0.5 ${vert.accentText}`} />
+                        <span>{d}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => onSelectProfile(vert.formValue)}
+                    className="pod-btn w-full sm:w-auto justify-center text-center inline-flex items-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-full !bg-white !text-slate-950 text-xs sm:text-sm font-bold leading-tight"
+                  >
+                    <span>Dimensionar Estúdio para {vert.tabLabel}</span>
+                    <ArrowRight className="w-4 h-4 shrink-0 pod-nudge" />
+                  </button>
+                </div>
+              )
+            })}
 
             {/* Confidentiality Callout on Mobile — placed AFTER the active card so it never blocks the tabs */}
             <div className="lg:hidden p-4 rounded-2xl bg-amber-500/[0.06] border border-amber-400/20 space-y-1.5">

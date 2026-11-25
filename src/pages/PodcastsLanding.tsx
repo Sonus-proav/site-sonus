@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react"
-import { Helmet } from "react-helmet-async"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Turnstile } from "@marsidev/react-turnstile"
+import { getTurnstileSiteKey, TURNSTILE_OPTIONS } from "@/lib/turnstile"
 import {
   AlertTriangle,
   AudioLines,
@@ -27,6 +27,7 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { InlineWhatsAppCta } from "@/components/ui/InlineWhatsAppCta"
 import { AutonomousPipeline } from "@/components/podcasts/AutonomousPipeline"
 import { PodcastVerticals } from "@/components/podcasts/PodcastVerticals"
+import { ORG_ID, SITE_URL, SONUS_ORGANIZATION, buildBreadcrumb, buildGraph } from "@/lib/schema"
 import { logLead, getUserGeo } from "@/lib/analytics"
 import { sendLeadEmail } from "@/lib/emailService"
 import {
@@ -188,7 +189,6 @@ export function PodcastsLanding() {
   }, [location.pathname, location.hash])
 
   const [roiPresetId, setRoiPresetId] = useState<(typeof ROI_PRESETS)[number]["id"]>("4ep")
-  const activeRoi = ROI_PRESETS.find((r) => r.id === roiPresetId) ?? ROI_PRESETS[1]
 
   const [formData, setFormData] = useState({
     name: "",
@@ -295,40 +295,33 @@ export function PodcastsLanding() {
     navigate("/obrigado")
   }
 
-  const podcastsSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Estúdios e Salas de Podcast 100% Autônomos com Ecossistema Q-SYS",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Sonus Pro Audio e Video",
-      url: "https://sonusproaudio.com.br",
+  const podcastsSchema = buildGraph(
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/podcasts#service`,
+      url: `${SITE_URL}/podcasts`,
+      serviceType: "Estúdios e Salas de Podcast 100% Autônomos com Ecossistema Q-SYS",
+      provider: { "@id": ORG_ID },
+      areaServed: SONUS_ORGANIZATION.areaServed,
+      description:
+        "Engenharia completa turn-key para estúdios e salas de podcast 100% autônomos. Acionamento em um toque via Q-SYS, corte automático multi-câmera por voz, tratamento acústico, transcrição automática e entrega de episódios 16:9 e cortes verticais 9:16 e 1:1 com legendas da marca.",
     },
-    areaServed: [
-      { "@type": "Country", name: "Brazil" },
-      { "@type": "Continent", name: "Latin America" },
-    ],
-    description:
-      "Engenharia completa turn-key para estúdios e salas de podcast 100% autônomos. Acionamento em um toque via Q-SYS, corte automático multi-câmera por voz, tratamento acústico, transcrição automática e entrega de episódios 16:9 e cortes verticais 9:16 e 1:1 com legendas da marca.",
-  }
+    buildBreadcrumb([
+      { name: "Início", path: "/" },
+      { name: "Soluções", path: "/solucoes" },
+      { name: "Estúdios de Podcast", path: "/podcasts" },
+    ])
+  )
 
   const inputFieldClass =
     "bg-white/[0.03] border-white/[0.12] hover:border-white/25 focus-visible:border-amber-400/60 focus-visible:ring-2 focus-visible:ring-amber-400/20 transition-[border-color,box-shadow] duration-200 h-12 text-white placeholder:text-zinc-500 rounded-xl"
 
   return (
     <div className="dark flex flex-col min-h-screen bg-[#060509] text-white selection:bg-amber-500/30 font-sans overflow-x-clip">
-      <Helmet>
-        <html lang="pt-BR" />
-        <title>Estúdios e Salas de Podcast 100% Autônomos com Q-SYS | Sonus Pro Audio</title>
-        <meta
-          name="description"
-          content="Projetos turn-key de estúdios de podcast corporativos e profissionais 100% autônomos. Um toque no painel Q-SYS para gravar com corte multi-câmera automático e receber episódio 16:9 + cortes verticais 9:16 legendados na sua marca."
-        />
-      </Helmet>
-
       <SEO
         title="Estúdios e Salas de Podcast 100% Autônomos com Q-SYS | Sonus Pro Audio"
-        description="Projetos turn-key de estúdios de podcast corporativos e profissionais 100% autônomos. Automação Q-SYS em um toque, corte de câmera por voz e entrega automática em 9:16, 1:1 e 16:9."
+        description="Projetos turn-key de estúdios de podcast corporativos e profissionais 100% autônomos. Automação Q-SYS em um toque, corte multi-câmera por voz e entrega automática em 9:16, 1:1 e 16:9."
+        image="/mixer-vu-bg.webp"
         url="https://sonusproaudio.com.br/podcasts"
         keywords="estúdio de podcast corporativo, sala de podcast autônoma Q-SYS, podcast executivo B2B, estúdio automático com corte de câmeras por voz, geração automática de cortes 9:16"
         schema={podcastsSchema}
@@ -510,45 +503,68 @@ export function PodcastsLanding() {
                     <span className="pod-hint-dot shrink-0" />
                     Toque e compare o rendimento mensal:
                   </span>
-                  <div className="grid grid-cols-3 sm:flex gap-1.5 w-full sm:w-auto">
-                    {ROI_PRESETS.map((preset) => (
-                      <button
-                        key={preset.id}
-                        type="button"
-                        onClick={() => {
-                          setRoiPresetId(preset.id)
-                          trackCustomizeProduct("Podcast_ROI_Calc", preset.id)
-                        }}
-                        data-active={roiPresetId === preset.id}
-                        className={`pod-btn px-2 sm:px-3.5 py-2 rounded-xl sm:rounded-lg text-xs font-bold text-center ${
-                          roiPresetId === preset.id ? "text-amber-100" : "text-zinc-100"
-                        }`}
-                      >
-                        <span className="sm:hidden">{preset.shortLabel}</span>
-                        <span className="hidden sm:inline">{preset.label}</span>
-                      </button>
-                    ))}
+                  <div
+                    role="tablist"
+                    aria-label="Rendimento mensal de episódios e cortes"
+                    className="grid grid-cols-3 sm:flex gap-1.5 w-full sm:w-auto"
+                  >
+                    {ROI_PRESETS.map((preset) => {
+                      const isSelected = roiPresetId === preset.id
+                      return (
+                        <button
+                          key={preset.id}
+                          id={`pod-roi-tab-${preset.id}`}
+                          type="button"
+                          role="tab"
+                          aria-selected={isSelected}
+                          aria-controls={`pod-roi-panel-${preset.id}`}
+                          onClick={() => {
+                            setRoiPresetId(preset.id)
+                            trackCustomizeProduct("Podcast_ROI_Calc", preset.id)
+                          }}
+                          data-active={isSelected}
+                          className={`pod-btn px-2 sm:px-3.5 py-2 rounded-xl sm:rounded-lg text-xs font-bold text-center ${
+                            isSelected ? "text-amber-100" : "text-zinc-100"
+                          }`}
+                        >
+                          <span className="sm:hidden">{preset.shortLabel}</span>
+                          <span className="hidden sm:inline">{preset.label}</span>
+                        </button>
+                      )
+                    })}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10">
-                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
-                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Agenda Líder</span>
-                    <span className="block text-base sm:text-lg font-extrabold text-white mt-1">{activeRoi.execTime}</span>
-                  </div>
-                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
-                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Long-Form</span>
-                    <span className="block text-base sm:text-lg font-extrabold text-cyan-300 mt-1">{activeRoi.longOutput}</span>
-                  </div>
-                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
-                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Peças Sociais</span>
-                    <span className="block text-base sm:text-lg font-extrabold text-amber-300 mt-1">{activeRoi.shortOutput}</span>
-                  </div>
-                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
-                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Resultado</span>
-                    <span className="block text-xs sm:text-sm font-bold text-emerald-400 mt-1 leading-snug">{activeRoi.crewCost}</span>
-                  </div>
-                </div>
+                {ROI_PRESETS.map((preset) => {
+                  const isSelected = preset.id === roiPresetId
+                  return (
+                    <div
+                      key={preset.id}
+                      id={`pod-roi-panel-${preset.id}`}
+                      role="tabpanel"
+                      aria-labelledby={`pod-roi-tab-${preset.id}`}
+                      hidden={!isSelected}
+                      className={isSelected ? "grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10" : "hidden"}
+                    >
+                      <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                        <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Agenda Líder</span>
+                        <span className="block text-base sm:text-lg font-extrabold text-white mt-1">{preset.execTime}</span>
+                      </div>
+                      <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                        <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Long-Form</span>
+                        <span className="block text-base sm:text-lg font-extrabold text-cyan-300 mt-1">{preset.longOutput}</span>
+                      </div>
+                      <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                        <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Peças Sociais</span>
+                        <span className="block text-base sm:text-lg font-extrabold text-amber-300 mt-1">{preset.shortOutput}</span>
+                      </div>
+                      <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                        <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Resultado</span>
+                        <span className="block text-xs sm:text-sm font-bold text-emerald-400 mt-1 leading-snug">{preset.crewCost}</span>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
@@ -558,14 +574,18 @@ export function PodcastsLanding() {
                 Padrão de Hardware & Distribuição Global
               </span>
               <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-12">
-                <img src="/qsys-logo.png" alt="Q-SYS" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
-                <img src="/shure-logo.png" alt="Shure" className="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert" />
+                <img src="/qsys-logo.png" alt="Q-SYS" width={120} height={20} loading="lazy" decoding="async" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
+                <img src="/shure-logo.png" alt="Shure" width={110} height={16} loading="lazy" decoding="async" className="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert" />
                 <img
                   src="/marcas/sennheiser.svg"
                   alt="Sennheiser"
+                  width={120}
+                  height={16}
+                  loading="lazy"
+                  decoding="async"
                   className="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert"
                 />
-                <img src="/marcas/qsc.png" alt="QSC" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
+                <img src="/marcas/qsc.png" alt="QSC" width={90} height={20} loading="lazy" decoding="async" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
               </div>
             </div>
           </div>
@@ -614,6 +634,8 @@ export function PodcastsLanding() {
               <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-5 sm:gap-6">
                 <img
                   src={certLevel2}
+                  width={96}
+                  height={48}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS Level 2"
@@ -621,6 +643,8 @@ export function PodcastsLanding() {
                 />
                 <img
                   src={certVision}
+                  width={96}
+                  height={48}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS VisionSuite"
@@ -628,11 +652,45 @@ export function PodcastsLanding() {
                 />
                 <img
                   src={certSales}
+                  width={96}
+                  height={48}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS"
                   className="h-10 sm:h-12 w-auto object-contain"
                 />
+              </div>
+
+              <div className="pt-4 border-t border-white/10 space-y-2.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-amber-300 block">
+                  Cases Executivos &amp; Arquitetura Q-SYS
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    to="/projetos/29"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 hover:border-amber-400/50 hover:text-amber-200 text-zinc-200 transition-colors"
+                  >
+                    Sala dos Diretores — Sede Nacional Cresol →
+                  </Link>
+                  <Link
+                    to="/projetos/28"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/[0.04] border border-white/10 hover:border-amber-400/50 hover:text-amber-200 text-zinc-200 transition-colors"
+                  >
+                    Auditório — Sede Nacional Cresol →
+                  </Link>
+                  <Link
+                    to="/projetos"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-amber-500/10 border border-amber-400/30 hover:bg-amber-500/20 text-amber-200 transition-colors"
+                  >
+                    Ver Portfólio Completo
+                  </Link>
+                  <Link
+                    to="/qsys"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-amber-500/10 border border-amber-400/30 hover:bg-amber-500/20 text-amber-200 transition-colors"
+                  >
+                    Explorar Ecossistema Q-SYS
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -873,7 +931,7 @@ export function PodcastsLanding() {
 
                   <div className="flex justify-center pt-1 min-h-[65px]">
                     <Turnstile
-                      siteKey="0x4AAAAAADmmjbWL-CsAzHC9"
+                      siteKey={getTurnstileSiteKey()}
                       onSuccess={(token) => {
                         setSubmitError("")
                         setTurnstileToken(token)
@@ -884,7 +942,7 @@ export function PodcastsLanding() {
                         )
                       }
                       onExpire={() => setTurnstileToken("")}
-                      options={{ theme: "dark" }}
+                      options={TURNSTILE_OPTIONS}
                     />
                   </div>
 
