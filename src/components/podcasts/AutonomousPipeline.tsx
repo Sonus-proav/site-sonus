@@ -180,22 +180,22 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
   return (
     <section
       aria-labelledby="pipeline-heading"
-      className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509] overflow-hidden"
+      className="relative py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509] overflow-hidden"
     >
       {/* Atmospheric Amber + Cyan Diffusion */}
       <div className="pointer-events-none absolute top-16 left-1/4 w-[480px] h-[340px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.08)_0%,transparent_70%)]" />
 
       <div className="max-w-[1380px] mx-auto relative z-10">
         {/* Editorial Heading Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14 md:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end mb-8 sm:mb-14 md:mb-16">
           <div className="lg:col-span-7">
-            <span className="inline-flex items-center gap-2.5 text-[11px] font-mono font-semibold uppercase tracking-[0.16em] sm:tracking-[0.28em] text-amber-400 mb-4">
-              <span className="w-6 h-px bg-amber-400/60" />
+            <span className="inline-flex items-center gap-2 text-[11px] font-mono font-semibold uppercase tracking-[0.14em] sm:tracking-[0.28em] text-amber-400 mb-3 sm:mb-4">
+              <span className="w-5 sm:w-6 h-px bg-amber-400/60" />
               Fluxo 100% Autônomo • Do Rec à Publicação
             </span>
             <h2
               id="pipeline-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-[1.06]"
+              className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-[1.08]"
             >
               Aperte um botão ao entrar.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400">
@@ -205,7 +205,7 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed lg:border-l lg:border-white/10 lg:pl-6">
+            <p className="text-sm sm:text-base text-zinc-200 sm:text-zinc-400 font-normal sm:font-light leading-relaxed lg:border-l lg:border-white/10 lg:pl-6">
               Unificamos sala acústica, automação Q-SYS, direção de câmeras por voz e pós-produção integrada em uma
               única esteira contínua — eliminando gargalos operacionais entre gravar e publicar.
             </p>
@@ -213,16 +213,16 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
         </div>
 
         {/* Dica de uso + atalho de navegação */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <span className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-amber-200">
-            <span className="pod-hint-dot" />
-            Clique em cada etapa e teste a simulação ao vivo
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 sm:mb-4">
+          <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-amber-200">
+            <span className="pod-hint-dot shrink-0" />
+            Toque nas etapas abaixo e teste ao vivo
           </span>
-          <span className="text-[11px] font-mono text-zinc-500">Etapa {current.step} de 04</span>
+          <span className="text-[11px] font-mono text-zinc-400 sm:text-zinc-500">Etapa {current.step} de 04</span>
         </div>
 
         {/* Interactive Signal Bus Selector (4 Stages) */}
-        <div className="relative mb-10">
+        <div className="relative mb-6 sm:mb-10">
           {/* Connecting live bus rail on desktop */}
           <div className="hidden lg:block absolute top-1/2 left-8 right-8 h-px bg-white/10 -translate-y-1/2 overflow-hidden pointer-events-none">
             <div className="h-full w-36 bg-gradient-to-r from-transparent via-amber-400 to-transparent pod-signal-runner" />
@@ -231,7 +231,7 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
           <div
             role="tablist"
             aria-label="Etapas do fluxo autônomo do estúdio"
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 relative z-10"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 relative z-10"
           >
             {STAGES.map((stage) => {
               const selected = stage.id === activeStage
@@ -243,11 +243,11 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
                   aria-selected={selected}
                   onClick={() => selectStage(stage.id)}
                   data-active={selected}
-                  className="pod-btn group text-left p-4 sm:p-5 rounded-2xl relative overflow-hidden"
+                  className="pod-btn group text-left p-3 sm:p-5 rounded-2xl relative overflow-hidden"
                 >
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <div className="flex items-center justify-between gap-1.5 mb-2 sm:mb-2.5">
                     <span
-                      className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
+                      className={`text-[11px] sm:text-xs font-mono font-bold px-2 py-0.5 rounded-md shrink-0 ${
                         selected
                           ? "bg-amber-400 text-slate-950"
                           : "bg-white/[0.06] text-zinc-400 group-hover:text-white"
@@ -255,14 +255,14 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
                     >
                       {stage.step}
                     </span>
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
+                    <span className="text-[9.5px] sm:text-[10px] font-mono text-zinc-400 sm:text-zinc-500 uppercase tracking-wider truncate">
                       {stage.metricValue}
                     </span>
                   </div>
-                  <div className={`text-sm sm:text-base font-bold tracking-tight ${selected ? "text-white" : "text-zinc-200"}`}>
+                  <div className={`text-xs sm:text-base font-bold tracking-tight truncate ${selected ? "text-white" : "text-zinc-200"}`}>
                     {stage.shortTitle}
                   </div>
-                  <div className={`mt-1 text-[11px] leading-snug ${selected ? "text-amber-200" : "text-zinc-400"}`}>
+                  <div className={`hidden sm:block mt-1 text-[11px] leading-snug ${selected ? "text-amber-200" : "text-zinc-400"}`}>
                     {stage.kicker}
                   </div>
                 </button>
@@ -271,10 +271,18 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
           </div>
         </div>
 
-        {/* Asymmetric Workbench: Left Executive Spec | Right Live Simulation */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          {/* Left Column (5 Cols): Narrative & Proof */}
-          <div className="lg:col-span-5 flex flex-col justify-between py-2">
+        {/* Mobile Compact Stage Title right above the Interactive Console so user sees immediate stage change */}
+        <div className="lg:hidden mb-3.5 px-1">
+          <span className="text-[10.5px] font-mono uppercase tracking-[0.14em] text-cyan-300 block">
+            Etapa {current.step} • {current.kicker}
+          </span>
+          <h3 className="text-lg font-extrabold text-white mt-1 leading-snug">{current.title}</h3>
+        </div>
+
+        {/* Asymmetric Workbench: Mobile puts Live Console FIRST (order-1) right below tabs, Narrative second (order-2) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
+          {/* Left Column on Desktop (5 Cols) / Bottom Details on Mobile */}
+          <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col justify-between py-1 sm:py-2">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
@@ -282,23 +290,23 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                className="space-y-6"
+                className="space-y-4 sm:space-y-6"
               >
                 <div>
-                  <span className="text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.22em] text-cyan-300">
+                  <span className="hidden lg:inline-block text-[11px] font-mono uppercase tracking-[0.22em] text-cyan-300">
                     Etapa {current.step} • {current.kicker}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-2.5 leading-tight tracking-tight">
+                  <h3 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-white mt-2.5 leading-tight tracking-tight">
                     {current.title}
                   </h3>
-                  <p className="text-zinc-300/90 text-sm sm:text-base font-light leading-relaxed mt-4">
+                  <p className="text-zinc-200 sm:text-zinc-300/90 text-sm sm:text-base font-normal sm:font-light leading-relaxed lg:mt-4">
                     {current.summary}
                   </p>
                 </div>
 
-                <ul className="space-y-3 pt-2 border-t border-white/10">
+                <ul className="space-y-2.5 sm:space-y-3 pt-3 border-t border-white/10">
                   {current.highlights.map((bullet, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
+                    <li key={i} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
                       <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                       <span>{bullet}</span>
                     </li>
@@ -308,12 +316,12 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
             </AnimatePresence>
 
             {/* Stage Telemetry Footer */}
-            <div className="mt-8 pt-5 border-t border-white/10 flex items-center justify-between">
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-white/10 flex items-center justify-between">
               <div>
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-500">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-400 sm:text-zinc-500">
                   {current.metricLabel}
                 </span>
-                <span className="text-lg font-extrabold text-white">{current.metricValue}</span>
+                <span className="text-base sm:text-lg font-extrabold text-white">{current.metricValue}</span>
               </div>
               <button
                 type="button"
@@ -329,8 +337,8 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
             </div>
           </div>
 
-          {/* Right Column (7 Cols): Stage-Specific Interactive Console */}
-          <div className="lg:col-span-7 rounded-3xl border border-white/15 bg-gradient-to-br from-[#14111f] via-[#0b0a12] to-[#06050a] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),0_0_0_1px_rgba(245,158,11,0.08),inset_0_1px_0_rgba(255,255,255,0.08)]">
+          {/* Right Column on Desktop (7 Cols) / Top Console on Mobile (order-1) */}
+          <div className="order-1 lg:order-2 lg:col-span-7 rounded-3xl border border-white/15 bg-gradient-to-br from-[#151221] via-[#0b0a12] to-[#06050a] p-4 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),0_0_0_1px_rgba(245,158,11,0.08),inset_0_1px_0_rgba(255,255,255,0.08)]">
             <div className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.12)_0%,transparent_70%)]" />
 
             <AnimatePresence mode="wait">
@@ -453,57 +461,55 @@ export const AutonomousPipeline = memo(function AutonomousPipeline() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3.5">
                     <div
-                      className={`p-4 rounded-2xl border transition-all ${
+                      className={`p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all min-w-0 ${
                         activeVoiceChannel === "host"
                           ? "bg-amber-500/10 border-amber-400/50"
                           : "bg-black/35 border-white/10"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <Mic className="w-4 h-4 text-amber-400" />
-                        <span className="text-[10px] font-mono text-zinc-400">CAM 01</span>
+                      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                        <Mic className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
+                        <span className="text-[9.5px] sm:text-[10px] font-mono text-zinc-400">CAM 01</span>
                       </div>
-                      <div className="text-sm font-bold text-white">Host (CEO)</div>
-                      <div className="text-[11px] font-mono text-amber-300 mt-1">
-                        {activeVoiceChannel === "host" ? "● NO AR • Close 85mm" : "Em espera"}
+                      <div className="text-xs sm:text-sm font-bold text-white truncate">Host (CEO)</div>
+                      <div className="text-[10px] sm:text-[11px] font-mono text-amber-300 mt-1 leading-tight">
+                        {activeVoiceChannel === "host" ? "● NO AR" : "Espera"}
                       </div>
                     </div>
 
                     <div
-                      className={`p-4 rounded-2xl border transition-all ${
+                      className={`p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all min-w-0 ${
                         activeVoiceChannel === "conv1"
                           ? "bg-cyan-500/10 border-cyan-400/50"
                           : "bg-black/35 border-white/10"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <Camera className="w-4 h-4 text-cyan-300" />
-                        <span className="text-[10px] font-mono text-zinc-400">CAM 02</span>
+                      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                        <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-300 shrink-0" />
+                        <span className="text-[9.5px] sm:text-[10px] font-mono text-zinc-400">CAM 02</span>
                       </div>
-                      <div className="text-sm font-bold text-white">Convidado 01</div>
-                      <div className="text-[11px] font-mono text-cyan-300 mt-1">
-                        {activeVoiceChannel === "conv1" ? "● NO AR • Tracking PTZ" : "Em espera"}
+                      <div className="text-xs sm:text-sm font-bold text-white truncate">Convidado</div>
+                      <div className="text-[10px] sm:text-[11px] font-mono text-cyan-300 mt-1 leading-tight">
+                        {activeVoiceChannel === "conv1" ? "● NO AR" : "Espera"}
                       </div>
                     </div>
 
                     <div
-                      className={`p-4 rounded-2xl border transition-all ${
+                      className={`p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all min-w-0 ${
                         activeVoiceChannel === "noise"
                           ? "bg-emerald-500/10 border-emerald-400/50"
                           : "bg-black/35 border-white/10"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <VolumeX className="w-4 h-4 text-emerald-400" />
-                        <span className="text-[10px] font-mono text-zinc-400">GATE DSP</span>
+                      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                        <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" />
+                        <span className="text-[9.5px] sm:text-[10px] font-mono text-zinc-400">FILTRO</span>
                       </div>
-                      <div className="text-sm font-bold text-white">Filtro Acústico</div>
-                      <div className="text-[11px] font-mono text-emerald-300 mt-1">
-                        {activeVoiceChannel === "noise"
-                          ? "✓ Ruído filtrado • Câmera mantida!"
-                          : "Monitorando transientes"}
+                      <div className="text-xs sm:text-sm font-bold text-white truncate">Anti-Ruído</div>
+                      <div className="text-[10px] sm:text-[11px] font-mono text-emerald-300 mt-1 leading-tight">
+                        {activeVoiceChannel === "noise" ? "✓ Bloqueado" : "Ativo"}
                       </div>
                     </div>
                   </div>

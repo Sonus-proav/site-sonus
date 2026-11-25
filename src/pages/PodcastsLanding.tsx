@@ -70,6 +70,7 @@ const ROI_PRESETS = [
   {
     id: "2ep",
     label: "2 Episódios / mês",
+    shortLabel: "2 ep / mês",
     execTime: "1h30 / mês",
     longOutput: "2 Episódios 16:9",
     shortOutput: "30+ Cortes 9:16 & 1:1",
@@ -78,14 +79,16 @@ const ROI_PRESETS = [
   {
     id: "4ep",
     label: "4 Episódios / mês",
+    shortLabel: "4 ep / mês",
     execTime: "3h / mês",
     longOutput: "4 Episódios 16:9",
     shortOutput: "60+ Cortes 9:16 & 1:1",
-    crewCost: "Presença diária no LinkedIn/Reels",
+    crewCost: "Presença diária LinkedIn/Reels",
   },
   {
     id: "8ep",
     label: "8 Episódios / mês",
+    shortLabel: "8 ep / mês",
     execTime: "6h / mês",
     longOutput: "8 Episódios 16:9",
     shortOutput: "120+ Cortes multi-canal",
@@ -335,34 +338,34 @@ export function PodcastsLanding() {
 
       <main className="flex-1 w-full relative z-10">
         {/* 1. HERO + 3D AUTONOMOUS STUDIO STAGE */}
-        <section className="relative pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-10 overflow-hidden">
+        <section className="relative pt-24 sm:pt-36 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-10 overflow-hidden">
           {/* Atmospheric Obsidian + Tungsten Glows */}
           <div className="pointer-events-none absolute -top-40 right-0 w-[680px] h-[520px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.12)_0%,transparent_68%)]" />
           <div className="pointer-events-none absolute top-40 -left-32 w-[520px] h-[440px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08)_0%,transparent_70%)]" />
 
           <div className="max-w-[1380px] mx-auto relative z-10">
             {/* Editorial Split Header */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end mb-12 md:mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-end mb-7 sm:mb-12 md:mb-16">
               <div className="lg:col-span-7">
-                <div className="inline-flex flex-wrap items-center gap-3 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-6">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold tracking-wider uppercase text-red-400">
+                <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-4 sm:mb-6">
+                  <span className="inline-flex items-center gap-1.5 text-[10.5px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-red-400">
                     <span className="w-2 h-2 rounded-full bg-red-500 pod-tally-dot" />
                     AUTONOMOUS ENGINE
                   </span>
                   <span className="text-white/20">•</span>
-                  <span className="text-[11px] font-mono tracking-[0.16em] uppercase text-amber-300">
+                  <span className="text-[10.5px] sm:text-[11px] font-mono tracking-[0.12em] sm:tracking-[0.16em] uppercase text-amber-300">
                     Ecossistema Q-SYS + Cortes Prontos
                   </span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] font-black tracking-tight leading-[1.03] text-white">
+                <h1 className="text-[2.1rem] sm:text-5xl md:text-6xl lg:text-[4.15rem] font-black tracking-tight leading-[1.05] text-white">
                   Estúdios de Podcast{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400">
                     100% Autônomos.
                   </span>
                 </h1>
 
-                <p className="text-base sm:text-xl text-zinc-300/90 font-light leading-relaxed mt-5 max-w-2xl">
+                <p className="text-sm sm:text-xl text-zinc-200 sm:text-zinc-300/90 font-normal sm:font-light leading-relaxed mt-4 sm:mt-5 max-w-2xl">
                   Sua diretoria entra na sala sem equipe técnica, toca em um único botão e grava com corte
                   automático de câmeras por voz. Ao encerrar, o sistema entrega o{" "}
                   <strong className="text-white font-semibold">episódio completo em 16:9</strong> e dezenas de{" "}
@@ -370,7 +373,7 @@ export function PodcastsLanding() {
                   identidade da sua marca.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-8">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mt-6 sm:mt-8">
                   <Magnetic className="w-full sm:w-auto">
                     <Button
                       size="lg"
@@ -393,31 +396,31 @@ export function PodcastsLanding() {
                 </div>
               </div>
 
-              {/* Right Header Metrics (Clean Broadcast Hairlines — Zero Box Clutter) */}
-              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10 lg:pt-0 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 [&>div]:min-w-0">
-                <div>
-                  <span className="block text-2xl sm:text-3xl font-black text-amber-300 tracking-tight">Zero</span>
-                  <span className="block text-xs text-zinc-400 mt-1 leading-snug">
-                    Técnicos ou operadores dentro da sala
+              {/* Right Header Metrics — Compact 3-col strip on mobile so 3D rises into view */}
+              <div className="lg:col-span-5 grid grid-cols-3 gap-2.5 sm:gap-4 pt-5 border-t border-white/10 divide-x divide-white/10 sm:divide-x-0 lg:pt-0 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 [&>div]:min-w-0">
+                <div className="pr-1 sm:pr-0">
+                  <span className="block text-lg sm:text-3xl font-black text-amber-300 tracking-tight">Zero</span>
+                  <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">
+                    Operadores na sala
                   </span>
                 </div>
-                <div>
-                  <span className="block text-2xl sm:text-3xl font-black text-white tracking-tight">1 Toque</span>
-                  <span className="block text-xs text-zinc-400 mt-1 leading-snug">
-                    Luz, áudio Q-SYS, PTZ e gravação no ar
+                <div className="pl-2.5 sm:pl-0 pr-1 sm:pr-0">
+                  <span className="block text-lg sm:text-3xl font-black text-white tracking-tight">1 Toque</span>
+                  <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">
+                    Luz, som e câmeras
                   </span>
                 </div>
-                <div>
-                  <span className="block text-2xl sm:text-3xl font-black text-cyan-300 tracking-tight">3 Formatos</span>
-                  <span className="block text-xs text-zinc-400 mt-1 leading-snug">
-                    Entregas automáticas em 9:16, 1:1 e 16:9
+                <div className="pl-2.5 sm:pl-0">
+                  <span className="block text-lg sm:text-3xl font-black text-cyan-300 tracking-tight">3 Formatos</span>
+                  <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">
+                    9:16, 1:1 e 16:9 prontos
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Proposta de valor em 3 passos — legível sem nenhum clique */}
-            <ol className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-0 mb-8 md:mb-10 relative">
+            {/* Proposta de valor em 3 passos — enxuta no mobile e legível sem nenhum clique */}
+            <ol className="grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-0 mb-6 sm:mb-8 md:mb-10 relative">
               {[
                 {
                   n: "1",
@@ -442,17 +445,17 @@ export function PodcastsLanding() {
                 return (
                   <li
                     key={item.n}
-                    className="relative flex items-start gap-4 p-5 md:p-6 rounded-2xl md:rounded-none md:first:rounded-l-2xl md:last:rounded-r-2xl bg-gradient-to-b from-[#15121e] to-[#0a090f] border border-white/[0.12] shadow-[0_24px_50px_-24px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]"
+                    className="relative flex items-start gap-3 sm:gap-4 p-3.5 sm:p-5 md:p-6 rounded-2xl md:rounded-none md:first:rounded-l-2xl md:last:rounded-r-2xl bg-gradient-to-b from-[#161321] to-[#0a090f] border border-white/[0.12] shadow-[0_24px_50px_-24px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)]"
                   >
-                    <span className="shrink-0 w-10 h-10 rounded-xl bg-amber-400 text-slate-950 font-black text-lg flex items-center justify-center shadow-[0_6px_18px_-4px_rgba(245,158,11,0.6)]">
+                    <span className="shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-amber-400 text-slate-950 font-black text-sm sm:text-lg flex items-center justify-center shadow-[0_6px_18px_-4px_rgba(245,158,11,0.6)]">
                       {item.n}
                     </span>
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                        {item.title}
+                        <span className="truncate">{item.title}</span>
                         <Icon className="w-4 h-4 text-amber-300 shrink-0" />
                       </h3>
-                      <p className="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">{item.desc}</p>
+                      <p className="text-xs sm:text-sm text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-relaxed">{item.desc}</p>
                     </div>
                     {i < 2 && (
                       <span className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-amber-400 text-slate-950 text-xs font-black items-center justify-center">
@@ -481,19 +484,19 @@ export function PodcastsLanding() {
         </section>
 
         {/* 2. EXECUTIVE ROI SIMULATOR & BROADCAST PARTNER BAR */}
-        <section className="relative py-20 md:py-24 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#08070d]">
+        <section className="relative py-14 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#090811]">
           <div className="max-w-[1380px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              <div className="lg:col-span-6 space-y-5">
-                <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.26em] text-amber-400">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 lg:gap-14 items-center">
+              <div className="lg:col-span-6 space-y-4 sm:space-y-5">
+                <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.26em] text-amber-400">
                   <Clock className="w-3.5 h-3.5" />
                   ROI do Tempo Executivo
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-[1.1]">
+                <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-[1.1]">
                   45 minutos do seu CEO viram{" "}
                   <span className="text-amber-300">um mês inteiro de presença digital.</span>
                 </h2>
-                <p className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed">
+                <p className="text-zinc-200 sm:text-zinc-400 text-sm sm:text-base font-normal sm:font-light leading-relaxed">
                   Projetos tradicionais param na falta de agenda das lideranças, na fila eterna da edição externa ou
                   no desconforto de gravar assuntos estratégicos diante de terceiros. Nossa arquitetura remove o atrito
                   técnico para transformar conversa executiva em distribuição contínua.
@@ -501,13 +504,13 @@ export function PodcastsLanding() {
               </div>
 
               {/* Interactive Cadence Multiplier */}
-              <div className="lg:col-span-6 rounded-3xl border border-white/15 bg-gradient-to-b from-[#15121e] to-[#0a090f] p-6 sm:p-8 space-y-6 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)]">
-                <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="lg:col-span-6 rounded-3xl border border-white/15 bg-gradient-to-b from-[#161321] to-[#0a090f] p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-between gap-2.5">
                   <span className="inline-flex items-center gap-2 text-xs font-semibold text-amber-200">
-                    <span className="pod-hint-dot" />
-                    Clique e veja o resultado do mês:
+                    <span className="pod-hint-dot shrink-0" />
+                    Toque e compare o rendimento mensal:
                   </span>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="grid grid-cols-3 sm:flex gap-1.5 w-full sm:w-auto">
                     {ROI_PRESETS.map((preset) => (
                       <button
                         key={preset.id}
@@ -517,51 +520,52 @@ export function PodcastsLanding() {
                           trackCustomizeProduct("Podcast_ROI_Calc", preset.id)
                         }}
                         data-active={roiPresetId === preset.id}
-                        className={`pod-btn px-3.5 py-2 rounded-lg text-xs font-bold ${
+                        className={`pod-btn px-2 sm:px-3.5 py-2 rounded-xl sm:rounded-lg text-xs font-bold text-center ${
                           roiPresetId === preset.id ? "text-amber-100" : "text-zinc-100"
                         }`}
                       >
-                        {preset.label}
+                        <span className="sm:hidden">{preset.shortLabel}</span>
+                        <span className="hidden sm:inline">{preset.label}</span>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-                  <div>
-                    <span className="block text-[10px] font-mono uppercase text-zinc-500">Agenda Líder</span>
-                    <span className="block text-lg font-extrabold text-white mt-1">{activeRoi.execTime}</span>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10">
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Agenda Líder</span>
+                    <span className="block text-base sm:text-lg font-extrabold text-white mt-1">{activeRoi.execTime}</span>
                   </div>
-                  <div>
-                    <span className="block text-[10px] font-mono uppercase text-zinc-500">Long-Form</span>
-                    <span className="block text-lg font-extrabold text-cyan-300 mt-1">{activeRoi.longOutput}</span>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Long-Form</span>
+                    <span className="block text-base sm:text-lg font-extrabold text-cyan-300 mt-1">{activeRoi.longOutput}</span>
                   </div>
-                  <div>
-                    <span className="block text-[10px] font-mono uppercase text-zinc-500">Peças Sociais</span>
-                    <span className="block text-lg font-extrabold text-amber-300 mt-1">{activeRoi.shortOutput}</span>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Peças Sociais</span>
+                    <span className="block text-base sm:text-lg font-extrabold text-amber-300 mt-1">{activeRoi.shortOutput}</span>
                   </div>
-                  <div>
-                    <span className="block text-[10px] font-mono uppercase text-zinc-500">Resultado</span>
-                    <span className="block text-sm font-bold text-emerald-400 mt-1">{activeRoi.crewCost}</span>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-3 sm:p-0 sm:bg-transparent sm:border-0">
+                    <span className="block text-[10px] font-mono uppercase text-zinc-400 sm:text-zinc-500">Resultado</span>
+                    <span className="block text-xs sm:text-sm font-bold text-emerald-400 mt-1 leading-snug">{activeRoi.crewCost}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Partner & Broadcast Ecosystem Logos */}
-            <div className="mt-14 pt-8 border-t border-white/[0.07] flex flex-wrap items-center justify-between gap-6 opacity-70">
-              <span className="text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.22em] text-zinc-500">
+            <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-white/[0.07] flex flex-col sm:flex-row sm:flex-wrap items-center justify-between gap-4 sm:gap-6 opacity-75">
+              <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.22em] text-zinc-400 sm:text-zinc-500 text-center sm:text-left">
                 Padrão de Hardware & Distribuição Global
               </span>
-              <div className="flex flex-wrap items-center gap-8 sm:gap-12">
-                <img src="/qsys-logo.png" alt="Q-SYS" className="h-5 w-auto object-contain brightness-0 invert" />
-                <img src="/shure-logo.png" alt="Shure" className="h-4 w-auto object-contain brightness-0 invert" />
+              <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-12">
+                <img src="/qsys-logo.png" alt="Q-SYS" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
+                <img src="/shure-logo.png" alt="Shure" className="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert" />
                 <img
                   src="/marcas/sennheiser.svg"
                   alt="Sennheiser"
-                  className="h-4 w-auto object-contain brightness-0 invert"
+                  className="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert"
                 />
-                <img src="/marcas/qsc.png" alt="QSC" className="h-5 w-auto object-contain brightness-0 invert" />
+                <img src="/marcas/qsc.png" alt="QSC" className="h-4 sm:h-5 w-auto object-contain brightness-0 invert" />
               </div>
             </div>
           </div>
@@ -570,7 +574,7 @@ export function PodcastsLanding() {
         {/* 3. PIPELINE INTERATIVO "DO REC À PUBLICAÇÃO" */}
         <AutonomousPipeline />
 
-        <div className="bg-[#060509] pb-20 px-4">
+        <div className="bg-[#060509] pb-12 sm:pb-20 px-4">
           <InlineWhatsAppCta
             origin="section_pipeline"
             pageName="podcasts"
@@ -585,68 +589,68 @@ export function PodcastsLanding() {
         {/* 5. ENGENHARIA ACÚSTICA, AUTORIDADE Q-SYS E GARANTIA */}
         <section
           aria-labelledby="engineering-heading"
-          className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509]"
+          className="relative py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509]"
         >
-          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-5 space-y-6">
-              <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.26em] text-cyan-300">
+          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5 space-y-5 sm:space-y-6">
+              <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.26em] text-cyan-300">
                 <Volume2 className="w-3.5 h-3.5" />
                 Acústica & Certificação Oficial
               </span>
               <h2
                 id="engineering-heading"
-                className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-[1.08]"
+                className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-[1.08]"
               >
                 28 anos desenhando áudio e vídeo de precisão —{" "}
                 <span className="text-cyan-300">da acústica à nuvem.</span>
               </h2>
-              <p className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed">
+              <p className="text-zinc-200 sm:text-zinc-400 text-sm sm:text-base font-normal sm:font-light leading-relaxed">
                 Microfone caro em sala ecoando entrega som amador. A Sonus projeta o tratamento acústico, a
                 distribuição elétrica silenciosa, o posicionamento óptico das câmeras PTZ e toda a programação Q-SYS
                 antes de instalar o primeiro parafuso.
               </p>
 
               {/* Q-SYS Certifications */}
-              <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-6">
+              <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-5 sm:gap-6">
                 <img
                   src={certLevel2}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS Level 2"
-                  className="h-11 sm:h-12 w-auto object-contain"
+                  className="h-10 sm:h-12 w-auto object-contain"
                 />
                 <img
                   src={certVision}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS VisionSuite"
-                  className="h-11 sm:h-12 w-auto object-contain"
+                  className="h-10 sm:h-12 w-auto object-contain"
                 />
                 <img
                   src={certSales}
                   loading="lazy"
                   decoding="async"
                   alt="Certificação Oficial Q-SYS"
-                  className="h-11 sm:h-12 w-auto object-contain"
+                  className="h-10 sm:h-12 w-auto object-contain"
                 />
               </div>
             </div>
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5">
               {ENGINEERING_PILLARS.map((item) => {
                 const Icon = item.icon
                 return (
                   <div
                     key={item.num}
-                    className="p-6 rounded-3xl border border-white/[0.08] bg-[#0b0a12]/90 hover:border-amber-400/35 transition-colors duration-300 flex flex-col justify-between"
+                    className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/10 bg-[#0d0c16]/90 hover:border-amber-400/35 transition-colors duration-300 flex flex-col justify-between"
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-mono font-bold text-zinc-500">{item.num}</span>
+                      <div className="flex items-center justify-between mb-3 sm:mb-4">
+                        <span className="text-xs font-mono font-bold text-zinc-400 sm:text-zinc-500">{item.num}</span>
                         <Icon className={`w-5 h-5 ${item.accent}`} />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">{item.desc}</p>
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-1.5 sm:mb-2">{item.title}</h3>
+                      <p className="text-sm text-zinc-200 sm:text-zinc-400 font-normal sm:font-light leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 )
@@ -667,23 +671,23 @@ export function PodcastsLanding() {
         <section
           id="contato"
           aria-labelledby="contact-title"
-          className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509]"
+          className="relative py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#060509]"
         >
-          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <FadeIn className="lg:col-span-5 space-y-8">
+          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
+            <FadeIn className="lg:col-span-5 space-y-6 sm:space-y-8">
               <div>
-                <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] sm:tracking-[0.26em] text-amber-400 mb-4">
+                <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.14em] sm:tracking-[0.26em] text-amber-400 mb-3 sm:mb-4">
                   <Sparkles className="w-3.5 h-3.5" />
                   Diagnóstico Personalizado
                 </span>
-                <h2 id="contact-title" className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+                <h2 id="contact-title" className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
                   Dimensione o{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-400">
                     Estúdio Autônomo
                   </span>{" "}
                   da sua operação.
                 </h2>
-                <p className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed mt-4">
+                <p className="text-zinc-200 sm:text-zinc-400 text-sm sm:text-base font-normal sm:font-light leading-relaxed mt-3 sm:mt-4">
                   Avaliamos o espaço disponível, o fluxo ideal de gravação e definimos toda a arquitetura de áudio,
                   câmeras PTZ, Q-SYS e entrega de cortes no padrão da sua marca.
                 </p>
@@ -707,26 +711,26 @@ export function PodcastsLanding() {
                     desc: "Entregamos tudo testado e ensaiado em 15 minutos com sua liderança e time de marketing.",
                   },
                 ].map((item) => (
-                  <div key={item.step} className="py-5 flex items-start gap-4">
-                    <span className="text-xs font-mono text-amber-400 pt-1">{item.step}</span>
+                  <div key={item.step} className="py-4 sm:py-5 flex items-start gap-3.5 sm:gap-4">
+                    <span className="text-xs font-mono text-amber-400 pt-0.5">{item.step}</span>
                     <div>
                       <h3 className="text-sm font-bold text-white">{item.title}</h3>
-                      <p className="text-xs text-zinc-400 font-light mt-1 leading-relaxed">{item.desc}</p>
+                      <p className="text-xs text-zinc-300 sm:text-zinc-400 font-normal sm:font-light mt-1 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 text-xs text-zinc-400">
+              <div className="flex items-center gap-3 text-xs text-zinc-300 sm:text-zinc-400">
                 <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Projetos, equipamentos e implantação presencial para todo o Brasil e LATAM.</span>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.12} className="lg:col-span-7 w-full">
-              <SpotlightCard className="rounded-[2rem] p-7 sm:p-10 md:p-12 border border-white/10 bg-[#0b0a12]/95 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
+              <SpotlightCard className="rounded-[1.75rem] sm:rounded-[2rem] p-5 sm:p-10 md:p-12 border border-white/12 bg-[#0d0c16]/95 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
                 <form
-                  className="space-y-6"
+                  className="space-y-5 sm:space-y-6"
                   onSubmit={handleSubmit}
                   onInvalid={() => {
                     ;(window as any).dataLayer = (window as any).dataLayer || []
@@ -747,12 +751,12 @@ export function PodcastsLanding() {
                     />
                   </div>
 
-                  {/* Quick Profile Pills */}
+                  {/* Quick Profile Pills — Clean 2x2 grid on mobile */}
                   <div className="space-y-2.5">
                     <span className="text-xs font-semibold text-zinc-300 block">
-                      Perfil do Projeto <span className="text-amber-300 font-normal">— clique para escolher</span>
+                      Perfil do Projeto <span className="text-amber-300 font-normal">— toque para escolher</span>
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
                       {PROFILE_OPTIONS.map((prof) => {
                         const selected = formData.profile === prof
                         return (
@@ -761,7 +765,7 @@ export function PodcastsLanding() {
                             type="button"
                             onClick={() => setFormData((prev) => ({ ...prev, profile: prof }))}
                             data-active={selected}
-                            className={`pod-btn px-4 py-2.5 rounded-xl text-xs font-bold ${
+                            className={`pod-btn px-3 sm:px-4 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold text-center leading-tight ${
                               selected ? "text-amber-100" : "text-zinc-100"
                             }`}
                           >

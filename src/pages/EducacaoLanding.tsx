@@ -300,21 +300,21 @@ export function EducacaoLanding() {
         <EducationHeroSimulator onCtaClick={scrollToForm} onWhatsAppClick={handleWhatsApp} />
 
         {/* FAIXA DE COMPATIBILIDADE */}
-        <div className="edu-hairline-top py-9 px-4 sm:px-6 lg:px-10 bg-[#040509]">
-          <div className="max-w-[1380px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <span className="text-xs text-zinc-400 text-center md:text-left">
+        <div className="edu-hairline-top py-7 sm:py-9 px-4 sm:px-6 lg:px-10 bg-[#05070d]">
+          <div className="max-w-[1380px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+            <span className="text-xs text-zinc-300 sm:text-zinc-400 text-center md:text-left">
               Funciona nativamente com as plataformas que seus professores já usam
             </span>
-            <div className="flex flex-wrap justify-center items-center gap-9 md:gap-14 opacity-65">
-              <img src="/qsys-logo.png" alt="Q-SYS" className="h-5 md:h-6 w-auto object-contain brightness-0 invert" />
-              <span className="text-base md:text-lg font-extrabold tracking-tight text-white">Microsoft Teams</span>
-              <img src="/zoom-logo.png" alt="Zoom" className="h-5 md:h-6 w-auto object-contain brightness-0 invert" />
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-9 md:gap-14 opacity-75">
+              <img src="/qsys-logo.png" alt="Q-SYS" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
+              <span className="text-sm sm:text-base md:text-lg font-extrabold tracking-tight text-white">Microsoft Teams</span>
+              <img src="/zoom-logo.png" alt="Zoom" className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert" />
               <img
                 src="/google-meet-logo.png"
                 alt="Google Meet"
-                className="h-5 md:h-6 w-auto object-contain brightness-0 invert"
+                className="h-4 sm:h-5 md:h-6 w-auto object-contain brightness-0 invert"
               />
-              <img src="/shure-logo.png" alt="Shure" className="h-4 md:h-5 w-auto object-contain brightness-0 invert" />
+              <img src="/shure-logo.png" alt="Shure" className="h-3.5 sm:h-4 md:h-5 w-auto object-contain brightness-0 invert" />
             </div>
           </div>
         </div>
@@ -322,7 +322,7 @@ export function EducacaoLanding() {
         {/* 2. GESTÃO À DISTÂNCIA PELA TI (Q-SYS REFLECT) */}
         <QSysReflectDashboard />
 
-        <div className="bg-[#040508] pb-20 px-4">
+        <div className="bg-[#040508] pb-12 sm:pb-20 px-4">
           <InlineWhatsAppCta
             origin="section_reflect"
             pageName="educacao"
@@ -340,44 +340,44 @@ export function EducacaoLanding() {
         {/* 5. AUTORIDADE SONUS + ESCULTURA 3D (SÓLIDA EM QUALQUER TELA) */}
         <section
           aria-labelledby="authority-title"
-          className="py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-[#040509]"
+          className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-[#05070e]"
         >
-          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-9 sm:gap-12 lg:gap-16 items-center">
             {/* Left Column (5 Cols): 3D Sculpture + Clear Executive Pitch + Official Badges */}
-            <div className="lg:col-span-5 space-y-7">
-              <div className="relative rounded-3xl border border-white/[0.07] bg-gradient-to-b from-[#09101d] to-[#05070d] p-6 overflow-hidden">
+            <div className="lg:col-span-5 space-y-6 sm:space-y-7">
+              <div className="relative rounded-3xl border border-white/10 bg-gradient-to-b from-[#0b1323] to-[#05070d] p-5 sm:p-6 overflow-hidden">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.14)_0%,transparent_70%)]" />
-                <Suspense fallback={<div className="w-full h-52 sm:h-60" />}>
+                <Suspense fallback={<div className="w-full h-44 sm:h-60" />}>
                   <AuthoritySculpture3D />
                 </Suspense>
-                <div className="relative z-10 pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-6">
+                <div className="relative z-10 pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-5 sm:gap-6">
                   <img
                     src={certLevel2}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS Level 2"
-                    className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                    className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
                   />
                   <img
                     src={certVision}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS VisionSuite"
-                    className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                    className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
                   />
                   <img
                     src={certSales}
                     loading="lazy"
                     decoding="async"
                     alt="Certificação Oficial Q-SYS"
-                    className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                    className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
                   />
                 </div>
               </div>
 
               <div>
-                <span className="edu-eyebrow mb-4">Por Que Confiar na Sonus</span>
-                <h2 id="authority-title" className="edu-title text-3xl sm:text-4xl mb-4">
+                <span className="edu-eyebrow mb-3 sm:mb-4">Por Que Confiar na Sonus</span>
+                <h2 id="authority-title" className="edu-title text-2xl sm:text-4xl mb-3 sm:mb-4">
                   28 anos entregando projetos{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-300">
                     prontos para funcionar.
@@ -392,22 +392,22 @@ export function EducacaoLanding() {
 
             {/* Right Column (7 Cols): 2x2 Clear Architectural Matrix */}
             <FadeIn delay={0.08} className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-white/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-0 sm:border-t sm:border-l sm:border-white/10">
                 {AUTHORITY_PILLARS.map((pillar) => {
                   const Icon = pillar.icon
                   return (
                     <div
                       key={pillar.num}
-                      className="group relative p-8 sm:p-10 border-r border-b border-white/10 transition-colors duration-300 hover:bg-white/[0.025]"
+                      className="group relative p-5 sm:p-10 rounded-2xl sm:rounded-none border border-white/10 sm:border-0 sm:border-r sm:border-b bg-white/[0.02] sm:bg-transparent transition-colors duration-300 hover:bg-white/[0.025]"
                     >
-                      <div className="flex items-center justify-between mb-6">
-                        <span className="text-xs font-mono tracking-widest text-zinc-500">{pillar.num}</span>
+                      <div className="flex items-center justify-between mb-3.5 sm:mb-6">
+                        <span className="text-xs font-mono tracking-widest text-zinc-400 sm:text-zinc-500">{pillar.num}</span>
                         <Icon
                           className={`w-5 h-5 ${pillar.accent} transition-transform duration-300 group-hover:scale-110`}
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-white tracking-tight mb-3">{pillar.title}</h3>
-                      <p className="text-sm text-zinc-300/90 font-light leading-relaxed">{pillar.desc}</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2 sm:mb-3">{pillar.title}</h3>
+                      <p className="text-sm text-zinc-200 sm:text-zinc-300/90 font-normal sm:font-light leading-relaxed">{pillar.desc}</p>
                     </div>
                   )
                 })}
@@ -428,21 +428,21 @@ export function EducacaoLanding() {
         <section
           id="contato"
           aria-labelledby="form-educacao-title"
-          className="py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-[#030407]"
+          className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-[#030407]"
         >
           <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[420px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.10)_0%,transparent_70%)]" />
 
-          <div className="max-w-[1380px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <FadeIn className="lg:col-span-5 space-y-8 lg:pt-4">
+          <div className="max-w-[1380px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-9 sm:gap-12 lg:gap-16 items-start">
+            <FadeIn className="lg:col-span-5 space-y-6 sm:space-y-8 lg:pt-4">
               <div>
-                <span className="edu-eyebrow mb-4">Diagnóstico Sem Compromisso</span>
-                <h2 id="form-educacao-title" className="edu-title text-3xl sm:text-4xl xl:text-[2.9rem] mb-5">
+                <span className="edu-eyebrow mb-3 sm:mb-4">Diagnóstico Sem Compromisso</span>
+                <h2 id="form-educacao-title" className="edu-title text-2xl sm:text-4xl xl:text-[2.9rem] mb-4 sm:mb-5">
                   Vamos planejar o novo padrão{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
                     das suas salas e auditórios?
                   </span>
                 </h2>
-                <p className="edu-lead text-base">
+                <p className="edu-lead text-sm sm:text-base">
                   Conte quantas salas ou blocos deseja modernizar. Nossos especialistas montam um plano sob medida para
                   a realidade e o calendário da sua instituição.
                 </p>
@@ -466,24 +466,24 @@ export function EducacaoLanding() {
                     desc: "Planejamos toda a entrega para acontecer no recesso, sem interromper um dia sequer de aula.",
                   },
                 ].map((item) => (
-                  <div key={item.step} className="py-5 flex items-start gap-4">
-                    <span className="text-xs font-mono text-cyan-400 pt-1">{item.step}</span>
+                  <div key={item.step} className="py-4 sm:py-5 flex items-start gap-3.5 sm:gap-4">
+                    <span className="text-xs font-mono text-cyan-400 pt-0.5">{item.step}</span>
                     <div>
                       <h3 className="text-sm font-bold text-white">{item.title}</h3>
-                      <p className="text-xs text-zinc-400 font-light mt-1 leading-relaxed">{item.desc}</p>
+                      <p className="text-xs text-zinc-300 sm:text-zinc-400 font-normal sm:font-light mt-1 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 text-xs text-zinc-400">
+              <div className="flex items-center gap-3 text-xs text-zinc-300 sm:text-zinc-400">
                 <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Atendemos universidades, faculdades, escolas e redes de ensino em todo o Brasil e LATAM.</span>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.12} className="lg:col-span-7 w-full">
-              <SpotlightCard className="rounded-[2rem] p-7 sm:p-10 md:p-12 border border-white/10 bg-[#080a11]/90 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
+              <SpotlightCard className="rounded-[1.75rem] sm:rounded-[2rem] p-5 sm:p-10 md:p-12 border border-white/12 bg-[#080b14]/95 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
                 <form
                   className="space-y-6"
                   onSubmit={handleSubmit}

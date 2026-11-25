@@ -821,9 +821,9 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
       className="relative w-full rounded-[2rem] border border-white/[0.09] bg-[#07060b]/90 shadow-[0_32px_90px_-24px_rgba(0,0,0,0.95)] overflow-hidden"
     >
       {/* Top Broadcast Tally & Telemetry Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-white/[0.08] bg-black/45">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/35 text-[11px] font-mono font-bold tracking-wider text-red-400">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 sm:px-6 py-3 sm:py-3.5 border-b border-white/[0.08] bg-black/50">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/35 text-[10px] sm:text-[11px] font-mono font-bold tracking-wider text-red-400">
             <span className="w-2 h-2 rounded-full bg-red-500 pod-tally-dot" />
             PGM ON AIR
           </span>
@@ -836,7 +836,7 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10">
             <span className="pod-eq" aria-hidden="true">
               <i />
@@ -857,19 +857,19 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
             }}
             data-active={autoCycle}
             title={autoCycle ? "Clique para pausar o corte automático" : "Clique para retomar o corte automático"}
-            className={`pod-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold ${
+            className={`pod-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-mono font-bold ${
               autoCycle ? "text-amber-200" : "text-zinc-200"
             }`}
           >
             {autoCycle ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
             {autoCycle ? (
               <>
-                <span className="sm:hidden">Auto-Corte ON · pausar</span>
+                <span className="sm:hidden">Auto-Corte ON</span>
                 <span className="hidden sm:inline">Auto-Corte: rodando • clique p/ pausar</span>
               </>
             ) : (
               <>
-                <span className="sm:hidden">Auto-Corte OFF · retomar</span>
+                <span className="sm:hidden">Auto-Corte OFF</span>
                 <span className="hidden sm:inline">Auto-Corte: pausado • clique p/ retomar</span>
               </>
             )}
@@ -877,10 +877,10 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
         </div>
       </div>
 
-      {/* Main Split Stage: 3D Interactive Studio + Live Dual-Format Preview */}
+      {/* Main Split Stage: On Mobile -> 3D (order-1) + Speaker Controls (order-2) + Output Monitor (order-3) */}
       <div className="grid grid-cols-1 xl:grid-cols-12">
-        {/* Left/Top (8 Cols): Real-Time Interactive 3D WebGL Studio */}
-        <div className="xl:col-span-8 relative h-[320px] sm:h-[390px] xl:h-[440px] bg-gradient-to-b from-[#0d0b14] via-[#08070c] to-[#060509] border-b xl:border-b-0 xl:border-r border-white/[0.07]">
+        {/* 1. Real-Time Interactive 3D WebGL Studio */}
+        <div className="order-1 xl:col-span-8 relative h-[235px] sm:h-[370px] xl:h-[440px] bg-gradient-to-b from-[#0d0b14] via-[#08070c] to-[#060509] border-b xl:border-b-0 xl:border-r border-white/[0.07]">
           {/* Subtle Ambient Backlight */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.09)_0%,transparent_65%)]" />
 
@@ -900,11 +900,17 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
 
           {/* Dica de primeira interação (some após o primeiro clique) */}
           {!hasInteracted && (
-            <div className="pointer-events-none absolute top-3.5 left-4 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 text-[11px] font-bold shadow-[0_8px_24px_-6px_rgba(245,158,11,0.7)]">
+            <div className="pointer-events-none absolute top-3 left-3 sm:top-3.5 sm:left-4 z-10 inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-amber-400 text-slate-950 text-[10.5px] sm:text-[11px] font-bold shadow-[0_8px_24px_-6px_rgba(245,158,11,0.7)]">
               <span className="w-2 h-2 rounded-full bg-slate-950 pod-tally-dot" />
-              Experimente: toque em quem fala ↓
+              Toque em quem fala ↓
             </div>
           )}
+
+          {/* Mobile Active Camera Telemetry Badge (visible on <sm where top bar hides it) */}
+          <div className="sm:hidden pointer-events-none absolute bottom-2.5 right-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-black/70 border border-amber-400/30 text-[10px] font-mono text-amber-200">
+            <Camera className="w-3 h-3 text-amber-400 shrink-0" />
+            <span>{activeMeta.camLabel.split("•")[0]?.trim()}</span>
+          </div>
 
           {/* Orbit Cue & Speaker Pill Overlay */}
           {!isCoarse && perfTier !== "low" && !isHeadless && (
@@ -915,34 +921,89 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
           )}
 
           {/* Bottom-Left Active Q-SYS Status Pill */}
-          <div className="pointer-events-none absolute bottom-3.5 left-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/65 backdrop-blur-md border border-white/10">
-            <Mic className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span className="text-[11px] font-mono text-zinc-200">
-              Q-SYS Automix <span className="text-emerald-400">● ATIVO</span>
+          <div className="pointer-events-none absolute bottom-2.5 left-3 sm:bottom-3.5 sm:left-4 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/10">
+            <Mic className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400 shrink-0" />
+            <span className="text-[10px] sm:text-[11px] font-mono text-zinc-200">
+              Q-SYS <span className="hidden sm:inline">Automix </span>
+              <span className="text-emerald-400">● ATIVO</span>
             </span>
           </div>
         </div>
 
-        {/* Right/Bottom (4 Cols): Dual-Format Autonomous Output Monitor (16:9 / 9:16) */}
-        <div className="xl:col-span-4 p-4 sm:p-5 bg-[#09080f] flex flex-col justify-between">
+        {/* 2 (Mobile) / 3 (Desktop): Interactive Speaker & Camera Cut Switcher */}
+        <div className="order-2 xl:order-3 xl:col-span-12 px-3.5 sm:px-6 py-3.5 sm:py-5 bg-gradient-to-b from-[#120f1c] to-[#0a0810] border-b xl:border-b-0 xl:border-t border-amber-400/25 shadow-[0_-18px_40px_-24px_rgba(245,158,11,0.35)] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4">
+          <div className="flex items-center gap-2.5">
+            <span className="pod-hint-dot shrink-0" />
+            <div>
+              <span className="block text-xs sm:text-sm font-bold text-white">Quem está falando agora?</span>
+              <span className="block text-[11px] text-zinc-300 sm:text-zinc-400">
+                <span className="xl:hidden">Toque abaixo: câmera 3D ↑ e corte legendado ↓ mudam na hora.</span>
+                <span className="hidden xl:inline">
+                  Clique em um botão: a câmera corta sozinha e o corte social é gerado ao lado.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="Selecionar microfone e corte de câmera no estúdio 3D"
+            className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5"
+          >
+            {(["host", "guest1", "guest2", "wide"] as SpeakerTarget[]).map((id) => {
+              const meta = SPEAKER_META[id]
+              const selected = activeSpeaker === id
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => handleSelectSpeaker(id)}
+                  data-active={selected}
+                  className={`pod-btn relative px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 ${
+                    selected ? "text-slate-950" : "text-zinc-100"
+                  }`}
+                >
+                  {selected && (
+                    <motion.span
+                      layoutId="pod-speaker-pill"
+                      transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                      className="absolute inset-0 rounded-xl bg-gradient-to-b from-amber-200 to-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.5)]"
+                    />
+                  )}
+                  {id === "wide" ? (
+                    <Maximize2 className="w-3.5 h-3.5 relative z-10 shrink-0" />
+                  ) : (
+                    <Mic className="w-3.5 h-3.5 relative z-10 shrink-0" />
+                  )}
+                  <span className="relative z-10 truncate">{meta.label}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* 3 (Mobile) / 2 (Desktop): Dual-Format Autonomous Output Monitor (16:9 / 9:16) */}
+        <div className="order-3 xl:order-2 xl:col-span-4 p-3.5 sm:p-5 bg-[#09080f] flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3.5">
-              <div>
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <div className="min-w-0">
                 <span className="block text-[10px] font-mono uppercase tracking-[0.2em] text-amber-400">
                   Prévia de Saída
                 </span>
-                <span className="text-xs font-semibold text-white">Corte + Legenda Automática</span>
-                <span className="block text-[10px] text-amber-300/90 mt-0.5">↗ Alterne o formato ao lado</span>
+                <span className="text-xs font-semibold text-white block truncate">Corte + Legenda Automática</span>
+                <span className="block text-[10px] text-amber-300/90 mt-0.5">Alterne 16:9 ou 9:16 →</span>
               </div>
 
               {/* Format Switcher 16:9 <-> 9:16 */}
-              <div className="inline-flex gap-1.5 p-1 rounded-xl bg-black/70 border border-white/15 shadow-[inset_0_2px_6px_rgba(0,0,0,0.7)]">
+              <div className="inline-flex gap-1.5 p-1 rounded-xl bg-black/70 border border-white/15 shadow-[inset_0_2px_6px_rgba(0,0,0,0.7)] shrink-0">
                 <button
                   type="button"
                   data-active={outputFormat === "16:9"}
                   onClick={() => handleToggleFormat("16:9")}
                   title="Ver como episódio horizontal (YouTube / LinkedIn)"
-                  className={`pod-btn inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold ${
+                  className={`pod-btn inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold ${
                     outputFormat === "16:9" ? "text-amber-100" : "text-zinc-300"
                   }`}
                 >
@@ -954,7 +1015,7 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
                   data-active={outputFormat === "9:16"}
                   onClick={() => handleToggleFormat("9:16")}
                   title="Ver como corte vertical (Reels / TikTok / Shorts)"
-                  className={`pod-btn inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold ${
+                  className={`pod-btn inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold ${
                     outputFormat === "9:16" ? "text-amber-100" : "text-zinc-300"
                   }`}
                 >
@@ -965,7 +1026,7 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
             </div>
 
             {/* Morphing Output Monitor Frame */}
-            <div className="h-[270px] flex items-center justify-center rounded-2xl bg-black/75 border border-white/[0.08] p-3 relative overflow-hidden">
+            <div className="h-[215px] sm:h-[270px] flex items-center justify-center rounded-2xl bg-black/75 border border-white/[0.08] p-2.5 sm:p-3 relative overflow-hidden">
               <motion.div
                 layout
                 transition={{ type: "spring", stiffness: 320, damping: 28 }}
@@ -1078,61 +1139,10 @@ export const PodcastStudio3D = memo(function PodcastStudio3D() {
             </div>
           </div>
 
-          <div className="mt-3 pt-3 border-t border-white/[0.07] flex items-center justify-between text-[11px] text-zinc-400">
+          <div className="mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-white/[0.07] flex items-center justify-between text-[11px] text-zinc-300 sm:text-zinc-400">
             <span className="truncate">{activeMeta.role}</span>
             <span className="font-mono text-emerald-400 shrink-0">Silêncios Removidos ✓</span>
           </div>
-        </div>
-      </div>
-
-      {/* Bottom Interactive Speaker & Camera Cut Switcher */}
-      <div className="px-4 sm:px-6 py-5 bg-gradient-to-b from-[#0d0b14] to-black/80 border-t border-amber-400/20 shadow-[0_-18px_40px_-24px_rgba(245,158,11,0.35)] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <span className="pod-hint-dot shrink-0" />
-          <div>
-            <span className="block text-sm font-bold text-white">Quem está falando agora?</span>
-            <span className="block text-[11px] text-zinc-400">
-              Clique em um botão: a câmera corta sozinha e o corte social é gerado ao lado.
-            </span>
-          </div>
-        </div>
-
-        <div
-          role="tablist"
-          aria-label="Selecionar microfone e corte de câmera no estúdio 3D"
-          className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5"
-        >
-          {(["host", "guest1", "guest2", "wide"] as SpeakerTarget[]).map((id) => {
-            const meta = SPEAKER_META[id]
-            const selected = activeSpeaker === id
-            return (
-              <button
-                key={id}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                onClick={() => handleSelectSpeaker(id)}
-                data-active={selected}
-                className={`pod-btn relative px-4 py-2.5 rounded-xl text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 ${
-                  selected ? "text-slate-950" : "text-zinc-100"
-                }`}
-              >
-                {selected && (
-                  <motion.span
-                    layoutId="pod-speaker-pill"
-                    transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                    className="absolute inset-0 rounded-xl bg-gradient-to-b from-amber-200 to-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.5)]"
-                  />
-                )}
-                {id === "wide" ? (
-                  <Maximize2 className="w-3.5 h-3.5 relative z-10" />
-                ) : (
-                  <Mic className="w-3.5 h-3.5 relative z-10" />
-                )}
-                <span className="relative z-10">{meta.label}</span>
-              </button>
-            )
-          })}
         </div>
       </div>
     </div>

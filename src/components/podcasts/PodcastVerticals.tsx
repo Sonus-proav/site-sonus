@@ -140,81 +140,88 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
   return (
     <section
       aria-labelledby="verticals-heading"
-      className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#08070d]"
+      className="relative py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 pod-timecode-line bg-[#090811]"
     >
       <div className="max-w-[1380px] mx-auto">
-        <div className="max-w-3xl mb-14 md:mb-16">
-          <span className="inline-flex items-center gap-2.5 text-[11px] font-mono font-semibold uppercase tracking-[0.16em] sm:tracking-[0.28em] text-amber-400 mb-4">
-            <span className="w-6 h-px bg-amber-400/60" />
+        <div className="max-w-3xl mb-8 sm:mb-14 md:mb-16">
+          <span className="inline-flex items-center gap-2 text-[11px] font-mono font-semibold uppercase tracking-[0.14em] sm:tracking-[0.28em] text-amber-400 mb-3 sm:mb-4">
+            <span className="w-5 sm:w-6 h-px bg-amber-400/60" />
             Aplicações por Perfil de Operação
           </span>
           <h2
             id="verticals-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-[1.08]"
+            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-[1.08]"
           >
             Projetado para a rotina corporativa.{" "}
             <span className="text-zinc-400 font-semibold">Adaptável a qualquer operação de conteúdo.</span>
           </h2>
         </div>
 
-        {/* Open Editorial Split Roster (Zero Card-Grid Monotony) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Navigation List (4 Cols) */}
-          <div className="lg:col-span-4 space-y-3">
-            <span className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-amber-200 mb-1">
-              <span className="pod-hint-dot" />
-              Escolha o seu perfil — o conteúdo ao lado muda
+        {/* Open Editorial Split Roster — On mobile, 2x2 selector sits directly above the content card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-10 lg:gap-14 items-start">
+          {/* Left Navigation List (4 Cols on Desktop, Compact 2x2 Grid on Mobile) */}
+          <div className="lg:col-span-4 space-y-2.5 sm:space-y-3">
+            <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-amber-200 mb-0.5 sm:mb-1">
+              <span className="pod-hint-dot shrink-0" />
+              <span>
+                Escolha o seu perfil — o conteúdo{" "}
+                <span className="lg:hidden">abaixo</span>
+                <span className="hidden lg:inline">ao lado</span> muda
+              </span>
             </span>
-            {VERTICALS.map((item) => {
-              const Icon = item.icon
-              const isSelected = item.id === selectedId
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleSelect(item.id)}
-                  data-active={isSelected}
-                  className="pod-btn w-full text-left py-4 px-4 rounded-2xl flex items-center justify-between gap-3"
-                >
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    <span
-                      className={`text-xs font-mono font-bold ${
-                        isSelected ? item.accentText : "text-zinc-500"
-                      }`}
-                    >
-                      {item.num}
-                    </span>
-                    <Icon
-                      className={`w-4 h-4 shrink-0 ${
-                        isSelected ? item.accentText : "text-zinc-500"
-                      }`}
-                    />
-                    <div className="min-w-0">
+
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3">
+              {VERTICALS.map((item) => {
+                const Icon = item.icon
+                const isSelected = item.id === selectedId
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => handleSelect(item.id)}
+                    data-active={isSelected}
+                    className="pod-btn w-full text-left py-3 px-3 sm:py-4 sm:px-4 rounded-2xl flex items-center justify-between gap-2 sm:gap-3"
+                  >
+                    <div className="flex items-center gap-2 sm:gap-3.5 min-w-0">
                       <span
-                        className={`block text-sm sm:text-base font-bold truncate ${
-                          isSelected ? "text-white" : "text-zinc-200"
+                        className={`hidden sm:inline text-xs font-mono font-bold ${
+                          isSelected ? item.accentText : "text-zinc-500"
                         }`}
                       >
-                        {item.tabLabel}
+                        {item.num}
                       </span>
-                      {item.isPrimary && (
-                        <span className="inline-block text-[10px] font-mono uppercase tracking-wider text-amber-400/90 mt-0.5">
-                          Foco Executivo B2B
+                      <Icon
+                        className={`w-4 h-4 shrink-0 ${
+                          isSelected ? item.accentText : "text-zinc-400"
+                        }`}
+                      />
+                      <div className="min-w-0">
+                        <span
+                          className={`block text-xs sm:text-base font-bold leading-snug lg:truncate ${
+                            isSelected ? "text-white" : "text-zinc-200"
+                          }`}
+                        >
+                          {item.tabLabel}
                         </span>
-                      )}
+                        {item.isPrimary && (
+                          <span className="hidden sm:inline-block text-[10px] font-mono uppercase tracking-wider text-amber-400/90 mt-0.5">
+                            Foco Executivo B2B
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <ArrowRight
-                    className={`w-4 h-4 shrink-0 transition-transform ${
-                      isSelected ? `${item.accentText} translate-x-0.5` : "text-zinc-600"
-                    }`}
-                  />
-                </button>
-              )
-            })}
+                    <ArrowRight
+                      className={`hidden sm:block w-4 h-4 shrink-0 transition-transform ${
+                        isSelected ? `${item.accentText} translate-x-0.5` : "text-zinc-600"
+                      }`}
+                    />
+                  </button>
+                )
+              })}
+            </div>
 
-            {/* Confidentiality & ROI Callout */}
-            <div className="mt-6 p-5 rounded-2xl bg-amber-500/[0.05] border border-amber-400/20 space-y-2">
+            {/* Confidentiality & ROI Callout — Desktop position */}
+            <div className="hidden lg:block mt-6 p-5 rounded-2xl bg-amber-500/[0.05] border border-amber-400/20 space-y-2">
               <div className="flex items-center gap-2 text-xs font-bold text-amber-300">
                 <Lock className="w-3.5 h-3.5" />
                 Confidencialidade de Sala C-Level
@@ -227,7 +234,7 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
           </div>
 
           {/* Right Open Editorial Canvas (8 Cols) */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 space-y-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -235,53 +242,53 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className={`rounded-3xl border bg-gradient-to-br from-[#16131f] via-[#0b0a12] to-[#060509] p-6 sm:p-10 md:p-12 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)] ${active.accentBorder}`}
+                className={`rounded-3xl border bg-gradient-to-br from-[#171422] via-[#0b0a12] to-[#060509] p-5 sm:p-10 md:p-12 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.08)] ${active.accentBorder}`}
               >
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 mb-4 sm:mb-6">
                   <span
-                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-semibold uppercase tracking-wider bg-white/[0.05] border border-white/10 ${active.accentText}`}
+                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider bg-white/[0.05] border border-white/10 ${active.accentText}`}
                   >
-                    <ActiveIcon className="w-3.5 h-3.5" />
+                    <ActiveIcon className="w-3.5 h-3.5 shrink-0" />
                     {active.badge}
                   </span>
 
-                  <span className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400">
+                  <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400">
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                     Arquitetura Turn-Key Q-SYS
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.14] mb-5">
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.16] mb-4 sm:mb-5">
                   {active.headline}
                 </h3>
 
-                <p className="text-zinc-300 text-sm sm:text-base font-light leading-relaxed mb-6">
+                <p className="text-zinc-200 sm:text-zinc-300 text-sm sm:text-base font-normal sm:font-light leading-relaxed mb-5 sm:mb-6">
                   {active.narrative}
                 </p>
 
-                <div className="p-4 rounded-xl bg-white/[0.03] border-l-2 border-amber-400 mb-8">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border-l-2 border-amber-400 mb-6 sm:mb-8">
                   <span className="block text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-1">
                     Impacto Direto na Operação
                   </span>
-                  <p className="text-sm text-zinc-200 font-medium">{active.painSolved}</p>
+                  <p className="text-xs sm:text-sm text-zinc-100 sm:text-zinc-200 font-medium leading-relaxed">{active.painSolved}</p>
                 </div>
 
                 {/* Metrics Strip */}
-                <div className="grid grid-cols-3 gap-4 py-6 border-y border-white/10 mb-8">
-                  {active.metrics.map((m) => (
-                    <div key={m.label}>
-                      <span className={`block text-base sm:text-3xl font-black tracking-tight break-words ${active.accentText}`}>
+                <div className="grid grid-cols-3 gap-2.5 sm:gap-4 py-4 sm:py-6 border-y border-white/10 mb-6 sm:mb-8 divide-x divide-white/10 sm:divide-x-0">
+                  {active.metrics.map((m, i) => (
+                    <div key={m.label} className={i > 0 ? "pl-2.5 sm:pl-0 min-w-0" : "min-w-0"}>
+                      <span className={`block text-lg sm:text-3xl font-black tracking-tight break-words ${active.accentText}`}>
                         {m.value}
                       </span>
-                      <span className="block text-[11px] sm:text-xs text-zinc-400 mt-1">{m.label}</span>
+                      <span className="block text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 leading-snug">{m.label}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Deliverables List + Targeted CTA */}
-                <div className="space-y-3 mb-8">
+                <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
                   {active.deliverables.map((d) => (
-                    <div key={d} className="flex items-start gap-3 text-sm text-zinc-300">
+                    <div key={d} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-200 sm:text-zinc-300">
                       <Sparkles className={`w-4 h-4 shrink-0 mt-0.5 ${active.accentText}`} />
                       <span>{d}</span>
                     </div>
@@ -291,13 +298,25 @@ export const PodcastVerticals = memo(function PodcastVerticals({ onSelectProfile
                 <button
                   type="button"
                   onClick={() => onSelectProfile(active.formValue)}
-                  className="pod-btn w-full sm:w-auto justify-center text-center inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full !bg-white !text-slate-950 text-sm font-bold"
+                  className="pod-btn w-full sm:w-auto justify-center text-center inline-flex items-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-full !bg-white !text-slate-950 text-xs sm:text-sm font-bold leading-tight"
                 >
-                  Dimensionar Estúdio para {active.tabLabel}
-                  <ArrowRight className="w-4 h-4 pod-nudge" />
+                  <span>Dimensionar Estúdio para {active.tabLabel}</span>
+                  <ArrowRight className="w-4 h-4 shrink-0 pod-nudge" />
                 </button>
               </motion.div>
             </AnimatePresence>
+
+            {/* Confidentiality Callout on Mobile — placed AFTER the active card so it never blocks the tabs */}
+            <div className="lg:hidden p-4 rounded-2xl bg-amber-500/[0.06] border border-amber-400/20 space-y-1.5">
+              <div className="flex items-center gap-2 text-xs font-bold text-amber-300">
+                <Lock className="w-3.5 h-3.5 shrink-0" />
+                Confidencialidade de Sala C-Level
+              </div>
+              <p className="text-xs text-zinc-300 leading-relaxed">
+                Para gravações estratégicas de conselho ou fusões internas, o estúdio opera em circuito fechado sem
+                operadores terceirizados dentro da sala.
+              </p>
+            </div>
           </div>
         </div>
       </div>

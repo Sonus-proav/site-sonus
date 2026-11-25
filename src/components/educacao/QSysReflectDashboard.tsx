@@ -104,7 +104,7 @@ export function QSysReflectDashboard() {
   const [runningAlert, setRunningAlert] = useState<AlertId | null>(null)
   const [terminalLogs, setTerminalLogs] = useState<string[]>([
     "Monitorando 48 salas e auditórios do campus em tempo real.",
-    "Clique em um aviso acima para ver como sua TI resolve tudo da própria mesa.",
+    "Toque em um aviso para ver como sua TI resolve tudo da própria mesa.",
   ])
 
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([])
@@ -159,17 +159,17 @@ export function QSysReflectDashboard() {
   return (
     <section
       aria-labelledby="reflect-section-title"
-      className="py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-gradient-to-b from-[#040509] via-[#070a12] to-[#040508]"
+      className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-gradient-to-b from-[#040509] via-[#080d19] to-[#040508]"
     >
       <div className="max-w-[1380px] mx-auto">
         {/* Clear Executive Header */}
-        <FadeIn className="mb-14 md:mb-18">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+        <FadeIn className="mb-9 sm:mb-14 md:mb-18">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 lg:gap-14 items-end">
             <div className="lg:col-span-7">
-              <span className="edu-eyebrow mb-4">Rotina Acadêmica &amp; Paz para a TI</span>
+              <span className="edu-eyebrow mb-3 sm:mb-4">Rotina Acadêmica &amp; Paz para a TI</span>
               <h2
                 id="reflect-section-title"
-                className="edu-title text-3xl sm:text-4xl xl:text-[3.1rem]"
+                className="edu-title text-2xl sm:text-4xl xl:text-[3.1rem]"
               >
                 Sua equipe de TI não precisa atravessar o campus{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-300">
@@ -178,22 +178,22 @@ export function QSysReflectDashboard() {
               </h2>
             </div>
 
-            <div className="lg:col-span-5 space-y-5">
-              <div className="pl-4 border-l-2 border-red-500/45">
+            <div className="lg:col-span-5 space-y-4 sm:space-y-5">
+              <div className="pl-4 border-l-2 border-red-500/55">
                 <span className="text-xs font-semibold text-red-400 block mb-1">
                   Como é nas salas comuns
                 </span>
-                <p className="text-sm text-zinc-400 font-light leading-relaxed">
+                <p className="text-sm text-zinc-300 sm:text-zinc-400 font-normal sm:font-light leading-relaxed">
                   A aula atrasa, o professor fica constrangido diante da turma e o técnico precisa correr de prédio em
                   prédio para reconectar um cabo.
                 </p>
               </div>
 
-              <div className="pl-4 border-l-2 border-emerald-400/75">
+              <div className="pl-4 border-l-2 border-emerald-400/80">
                 <span className="text-xs font-semibold text-emerald-300 block mb-1">
                   Como fica com <span className="whitespace-nowrap">Q-SYS Reflect</span>
                 </span>
-                <p className="text-sm text-zinc-200 font-light leading-relaxed">
+                <p className="text-sm text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
                   O sistema avisa a TI caso algo saia do lugar e permite resolver pela internet em segundos — antes
                   mesmo do professor entrar na sala.
                 </p>
@@ -204,12 +204,12 @@ export function QSysReflectDashboard() {
 
         {/* Interactive Campus Management Panel */}
         <FadeIn delay={0.1}>
-          <div className="relative rounded-[2rem] border border-white/10 bg-[#070910]/95 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)] overflow-hidden">
+          <div className="relative rounded-[1.75rem] sm:rounded-[2rem] border border-white/12 bg-[#070a13]/95 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)] overflow-hidden">
             {/* Top Bar */}
-            <div className="relative px-5 sm:px-8 py-5 border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-6">
-              <div className="flex items-center gap-3.5">
+            <div className="relative px-4 sm:px-8 py-4 sm:py-5 border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-4 sm:gap-6">
+              <div className="flex items-center gap-3">
                 <span
-                  className={`edu-beacon w-2.5 h-2.5 rounded-full ${
+                  className={`edu-beacon w-2.5 h-2.5 rounded-full shrink-0 ${
                     onlineRooms === 48 ? "bg-emerald-400" : "bg-amber-400"
                   }`}
                 />
@@ -217,8 +217,9 @@ export function QSysReflectDashboard() {
                   <span className="text-sm font-bold text-white block">
                     Visão Geral do Campus — <span className="whitespace-nowrap">Q-SYS Reflect</span>
                   </span>
-                  <span className="text-xs text-zinc-400">
-                    Todas as salas e auditórios acompanhados em uma única tela
+                  <span className="text-xs text-zinc-300 sm:text-zinc-400">
+                    <span className="lg:hidden">Toque nos alertas amarelos abaixo para resolver</span>
+                    <span className="hidden lg:inline">Todas as salas e auditórios acompanhados em uma única tela</span>
                   </span>
                 </div>
               </div>
@@ -243,13 +244,13 @@ export function QSysReflectDashboard() {
                 </svg>
               </div>
 
-              <div className="flex flex-wrap items-center gap-5">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
                 <div className="flex items-baseline gap-2">
                   <span className="text-xl sm:text-2xl font-extrabold text-white tabular-nums">
                     {onlineRooms}
                     <span className="text-zinc-500 font-normal">/48</span>
                   </span>
-                  <span className="text-xs text-zinc-400">Salas Prontas</span>
+                  <span className="text-xs text-zinc-300 sm:text-zinc-400">Salas Prontas</span>
                 </div>
 
                 {resolvedCount > 0 && (
@@ -267,21 +268,23 @@ export function QSysReflectDashboard() {
 
             {/* Body */}
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              {/* Left: Room List */}
+              {/* Left: Room List (with inline tap-to-fix on mobile so user sees immediate feedback!) */}
               <div className="lg:col-span-7 divide-y divide-white/[0.06]">
                 {CAMPUS_ROOMS.map((room) => {
-                  const isAlert = room.linkedAlert && !resolvedAlerts[room.linkedAlert]
-                  const isResolving = room.linkedAlert && runningAlert === room.linkedAlert
-                  const isFixed = room.linkedAlert && resolvedAlerts[room.linkedAlert]
+                  const alertId = room.linkedAlert
+                  const alertInfo = alertId ? ALERT_DETAILS[alertId] : null
+                  const isAlert = Boolean(alertId && !resolvedAlerts[alertId])
+                  const isResolving = Boolean(alertId && runningAlert === alertId)
+                  const isFixed = Boolean(alertId && resolvedAlerts[alertId])
 
                   return (
                     <div
                       key={room.id}
-                      className={`relative px-5 sm:px-8 py-4 flex items-center justify-between gap-4 transition-colors duration-500 ${
+                      className={`relative px-4 sm:px-8 py-3.5 sm:py-4 transition-colors duration-500 ${
                         isResolving
-                          ? "bg-cyan-500/[0.07]"
+                          ? "bg-cyan-500/[0.09]"
                           : isAlert
-                          ? "bg-amber-500/[0.06]"
+                          ? "bg-amber-500/[0.07]"
                           : "hover:bg-white/[0.02]"
                       }`}
                     >
@@ -297,47 +300,75 @@ export function QSysReflectDashboard() {
                         }`}
                       />
 
-                      <div className="min-w-0 flex items-center gap-3.5">
-                        <span
-                          className={`w-2 h-2 rounded-full shrink-0 ${
-                            isResolving
-                              ? "bg-cyan-400 edu-beacon"
-                              : isAlert
-                              ? "bg-amber-400 edu-beacon"
-                              : "bg-emerald-400"
-                          }`}
-                        />
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-white truncate">{room.name}</span>
-                            <span className="hidden sm:inline text-xs text-zinc-500">• {room.block}</span>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0 flex items-center gap-3">
+                          <span
+                            className={`w-2 h-2 rounded-full shrink-0 ${
+                              isResolving
+                                ? "bg-cyan-400 edu-beacon"
+                                : isAlert
+                                ? "bg-amber-400 edu-beacon"
+                                : "bg-emerald-400"
+                            }`}
+                          />
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-white truncate">{room.name}</span>
+                              <span className="hidden sm:inline text-xs text-zinc-500">• {room.block}</span>
+                            </div>
+                            <span className="text-xs text-zinc-300 sm:text-zinc-400 block truncate mt-0.5">
+                              {isAlert && alertInfo ? (
+                                <>
+                                  <span className="lg:hidden text-amber-200/95">{alertInfo.title.split("•")[1]?.trim()}</span>
+                                  <span className="hidden lg:inline">{room.peripherals}</span>
+                                </>
+                              ) : (
+                                room.peripherals
+                              )}
+                            </span>
                           </div>
-                          <span className="text-xs text-zinc-400 block truncate mt-0.5">{room.peripherals}</span>
+                        </div>
+
+                        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+                          <span className="hidden sm:inline text-xs text-zinc-500">{room.statusText}</span>
+                          <span
+                            className={`text-xs font-semibold text-right ${
+                              isAlert ? "hidden lg:inline-block lg:min-w-[84px]" : "min-w-[72px] sm:min-w-[84px]"
+                            } ${
+                              isResolving
+                                ? "text-cyan-300"
+                                : isAlert
+                                ? "text-amber-300"
+                                : "text-emerald-400"
+                            }`}
+                          >
+                            {isResolving ? "Ajustando..." : isAlert ? "Verificar" : isFixed ? "✓ Resolvido" : "Pronta"}
+                          </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 shrink-0">
-                        <span className="hidden sm:inline text-xs text-zinc-500">{room.statusText}</span>
-                        <span
-                          className={`text-xs font-semibold min-w-[84px] text-right ${
-                            isResolving
-                              ? "text-cyan-300"
-                              : isAlert
-                              ? "text-amber-300"
-                              : "text-emerald-400"
-                          }`}
-                        >
-                          {isResolving ? "Ajustando..." : isAlert ? "Verificar" : isFixed ? "Resolvido" : "Pronta"}
-                        </span>
-                      </div>
+                      {/* Mobile Inline Action right inside the alert row so feedback happens in-view */}
+                      {alertId && alertInfo && isAlert && (
+                        <div className="mt-3 pl-5 lg:hidden">
+                          <Button
+                            type="button"
+                            disabled={Boolean(runningAlert)}
+                            onClick={() => handleResolveAlert(alertId)}
+                            className="w-full h-10 rounded-full text-xs font-bold bg-white text-slate-950 hover:bg-cyan-50 shadow-[0_8px_24px_-6px_rgba(34,211,238,0.35)]"
+                          >
+                            {alertInfo.actionLabel}
+                            <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   )
                 })}
               </div>
 
-              {/* Right: Simulated Remote Fix */}
-              <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-white/[0.08] p-5 sm:p-8 flex flex-col justify-between gap-6 bg-black/25">
-                <div>
+              {/* Right: Simulated Remote Fix (Full console on lg+, compact live terminal on mobile) */}
+              <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-white/[0.08] p-4 sm:p-8 flex flex-col justify-between gap-6 bg-black/30">
+                <div className="hidden lg:block">
                   <div className="flex items-center justify-between mb-5">
                     <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
                       Teste o Suporte à Distância
@@ -396,8 +427,8 @@ export function QSysReflectDashboard() {
                 </div>
 
                 {/* Readable Status Feed */}
-                <div className="pt-5 border-t border-white/[0.08] text-xs space-y-2 min-h-[100px]">
-                  <div className="flex items-center gap-2 text-zinc-500 mb-2">
+                <div className="lg:pt-5 lg:border-t lg:border-white/[0.08] text-xs space-y-1.5 sm:space-y-2 min-h-[76px] sm:min-h-[100px]">
+                  <div className="flex items-center gap-2 text-zinc-400 sm:text-zinc-500 mb-1.5 sm:mb-2">
                     <Terminal className="w-3.5 h-3.5 text-cyan-400" />
                     <span className="font-mono uppercase tracking-wider text-[10px]">Histórico em Tempo Real</span>
                   </div>
@@ -407,7 +438,7 @@ export function QSysReflectDashboard() {
                       initial={{ opacity: 0, x: -6 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      className={line.startsWith("✓") ? "text-emerald-400 font-medium" : "text-zinc-300"}
+                      className={line.startsWith("✓") ? "text-emerald-400 font-medium" : "text-zinc-200 sm:text-zinc-300"}
                     >
                       {line}
                     </motion.p>

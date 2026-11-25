@@ -850,7 +850,7 @@ export const ClassroomStage3D = memo(function ClassroomStage3D({ scenario }: Cla
   }, [])
 
   return (
-    <div className="relative w-full h-[300px] sm:h-[360px] md:h-[395px] select-none">
+    <div className="relative w-full h-[235px] sm:h-[360px] md:h-[395px] select-none">
       <div
         aria-hidden={webglReady}
         className={`absolute inset-0 flex items-center justify-center transition-opacity duration-700 pointer-events-none ${

@@ -101,7 +101,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
   return (
     <section
       aria-labelledby="hero-educacao-title"
-      className="relative pt-28 pb-24 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-10 overflow-hidden bg-[#030407]"
+      className="relative pt-24 pb-14 sm:pt-32 sm:pb-24 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-10 overflow-hidden bg-[#030407]"
     >
       {/* Atmospheric Lighting */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
@@ -109,11 +109,11 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
         <div className="absolute bottom-[-20%] left-[-10%] w-[640px] h-[480px] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.07)_0%,transparent_70%)]" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
+      <div className="max-w-[1400px] mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-12 items-center">
         {/* LEFT COLUMN — Clear Executive Copy */}
         <div className="lg:col-span-5 flex flex-col items-start text-left">
           <FadeIn>
-            <div className="edu-eyebrow mb-6">
+            <div className="edu-eyebrow mb-4 sm:mb-6">
               <span className="edu-vu" aria-hidden="true">
                 <i />
                 <i />
@@ -128,7 +128,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
           <Reveal>
             <h1
               id="hero-educacao-title"
-              className="text-4xl sm:text-5xl xl:text-[3.7rem] font-extrabold tracking-[-0.022em] leading-[1.07] text-white mb-6 text-balance"
+              className="text-[2rem] sm:text-5xl xl:text-[3.7rem] font-extrabold tracking-[-0.022em] leading-[1.08] text-white mb-4 sm:mb-6 text-balance"
             >
               A aula começa no horário.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-emerald-300">
@@ -138,7 +138,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
           </Reveal>
 
           <FadeIn delay={0.12}>
-            <p className="edu-lead text-base sm:text-lg max-w-xl mb-9">
+            <p className="edu-lead text-sm sm:text-lg max-w-xl mb-6 sm:mb-9">
               Chega de perder 15 minutos de aula com cabos com mau contato, microfones sem bateria e controles
               diferentes em cada prédio. Padronize salas híbridas e auditórios na plataforma{" "}
               <strong className="text-white font-medium whitespace-nowrap">Q-SYS</strong> — simples em um toque para o
@@ -146,33 +146,33 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
             </p>
           </FadeIn>
 
-          {/* 3 Clear Executive Metrics */}
-          <FadeIn delay={0.18} className="w-full mb-9">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-white/10">
-              <div>
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white block">
+          {/* 3 Clear Executive Metrics — Compact 3-col strip on mobile */}
+          <FadeIn delay={0.18} className="w-full mb-6 sm:mb-9">
+            <div className="grid grid-cols-3 gap-2.5 sm:gap-6 pt-4 sm:pt-6 border-t border-white/10 divide-x divide-white/10">
+              <div className="pr-1 sm:pr-0 min-w-0">
+                <span className="text-base sm:text-2xl font-extrabold tracking-tight text-cyan-300 sm:text-white block">
                   1 Toque
                 </span>
-                <span className="text-xs text-zinc-400 mt-1 block leading-snug">
-                  Para ligar toda a sala
+                <span className="text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 block leading-snug">
+                  Liga toda a sala
                 </span>
               </div>
 
-              <div className="sm:border-l border-white/10 sm:pl-6">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white block">
+              <div className="pl-2.5 sm:pl-6 pr-1 sm:pr-0 min-w-0">
+                <span className="text-base sm:text-2xl font-extrabold tracking-tight text-white block">
                   Sem Lapela
                 </span>
-                <span className="text-xs text-zinc-400 mt-1 block leading-snug">
-                  Professor livre pela sala
+                <span className="text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 block leading-snug">
+                  Professor livre
                 </span>
               </div>
 
-              <div className="sm:border-l border-white/10 sm:pl-6">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white block">
+              <div className="pl-2.5 sm:pl-6 min-w-0">
+                <span className="text-base sm:text-2xl font-extrabold tracking-tight text-emerald-300 sm:text-white block">
                   100% Remoto
                 </span>
-                <span className="text-xs text-zinc-400 mt-1 block leading-snug">
-                  Suporte da TI sem deslocamento
+                <span className="text-[11px] sm:text-xs text-zinc-300 sm:text-zinc-400 mt-0.5 sm:mt-1 block leading-snug">
+                  Suporte da TI
                 </span>
               </div>
             </div>
@@ -203,18 +203,18 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
 
         {/* RIGHT COLUMN — Interactive 3D Classroom Stage + Touch Scenarios */}
         <FadeIn delay={0.16} direction="left" className="lg:col-span-7 w-full">
-          <div className="relative rounded-[2rem] border border-white/10 bg-gradient-to-b from-[#0a0f1a]/90 to-[#05070c]/90 p-5 sm:p-7 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
+          <div className="relative rounded-[1.75rem] sm:rounded-[2rem] border border-white/12 bg-gradient-to-b from-[#0b111e]/95 to-[#05070c]/95 p-4 sm:p-7 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.95)]">
             {/* Top Status & Pill Dock */}
-            <div className="relative z-10 flex flex-col gap-4 mb-3">
+            <div className="relative z-10 flex flex-col gap-3 sm:gap-4 mb-2.5 sm:mb-3">
               <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <span
-                    className={`edu-beacon w-2 h-2 rounded-full ${
+                    className={`edu-beacon w-2 h-2 rounded-full shrink-0 ${
                       isStandby ? "bg-amber-400" : "bg-emerald-400"
                     }`}
                   />
-                  <span className="text-xs font-medium text-zinc-300">
-                    Simulador 3D da Sala — <span className="text-zinc-500">Toque nos modos abaixo</span>
+                  <span className="text-xs font-semibold text-zinc-200">
+                    Simulador 3D — <span className="text-cyan-300/90 font-normal">Toque nos modos</span>
                   </span>
                 </div>
 
@@ -225,7 +225,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 4 }}
                     transition={{ duration: 0.2, ease: EASE_OUT_EXPO }}
-                    className="text-[11px] font-mono tracking-wider uppercase text-cyan-300"
+                    className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-cyan-300 bg-cyan-500/10 border border-cyan-400/20 px-2 py-0.5 rounded-full"
                   >
                     {active.badge}
                   </motion.span>
@@ -236,7 +236,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
               <div
                 role="tablist"
                 aria-label="Modos de uso da sala de aula"
-                className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1.5 rounded-2xl sm:rounded-full bg-black/40 border border-white/10"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1.5 rounded-2xl sm:rounded-full bg-black/50 border border-white/12"
               >
                 {SCENARIO_TABS.map((tab) => {
                   const Icon = tab.icon
@@ -248,8 +248,8 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
                       role="tab"
                       aria-selected={isSelected}
                       onClick={() => handleSelectScenario(tab.id)}
-                      className={`relative min-h-[44px] px-3.5 py-2.5 rounded-xl sm:rounded-full text-xs font-semibold transition-colors duration-200 cursor-pointer flex items-center justify-center gap-2 ${
-                        isSelected ? "text-white" : "text-zinc-400 hover:text-zinc-200"
+                      className={`relative min-h-[44px] px-3 py-2 rounded-xl sm:rounded-full text-xs font-semibold transition-colors duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        isSelected ? "text-white" : "text-zinc-300 hover:text-white bg-white/[0.03] sm:bg-transparent"
                       }`}
                     >
                       {isSelected && (
@@ -270,7 +270,7 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
             {/* Interactive 3D Isometric Classroom */}
             <Suspense
               fallback={
-                <div className="w-full h-[300px] sm:h-[360px] md:h-[395px] flex items-center justify-center">
+                <div className="w-full h-[235px] sm:h-[360px] md:h-[395px] flex items-center justify-center">
                   <span className="text-xs font-mono uppercase tracking-widest text-cyan-400/70">
                     Carregando Maquete 3D...
                   </span>
@@ -288,14 +288,14 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.22, ease: EASE_OUT_EXPO }}
-                className="text-sm text-zinc-300 text-center max-w-xl mx-auto mt-1 mb-5 font-light"
+                className="text-xs sm:text-sm text-zinc-200 sm:text-zinc-300 text-center max-w-xl mx-auto mt-1 mb-4 sm:mb-5 font-normal sm:font-light leading-relaxed px-1"
               >
                 {active.summary}
               </motion.p>
             </AnimatePresence>
 
-            {/* Bottom 4 Clear Readouts */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-4 pt-5 border-t border-white/10 sm:divide-x sm:divide-white/10">
+            {/* Bottom 4 Clear Readouts — Mini-cards on mobile, clean hairline divide on sm+ */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-y-4 sm:pt-5 sm:border-t sm:border-white/10 sm:divide-x sm:divide-white/10">
               {[
                 { icon: Camera, color: "text-cyan-400", label: "Câmera Inteligente", val: active.camera },
                 { icon: Mic, color: "text-emerald-400", label: "Áudio no Teto", val: active.audio },
@@ -304,10 +304,15 @@ export function EducationHeroSimulator({ onCtaClick, onWhatsAppClick }: Educatio
               ].map((item, idx) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.label} className={idx > 0 ? "sm:pl-4 pr-2" : "pr-2"}>
+                  <div
+                    key={item.label}
+                    className={`rounded-xl bg-white/[0.035] border border-white/[0.08] p-2.5 sm:rounded-none sm:bg-transparent sm:border-0 sm:p-0 ${
+                      idx > 0 ? "sm:pl-4 sm:pr-2" : "sm:pr-2"
+                    }`}
+                  >
                     <div className="flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 mb-1">
-                      <Icon className={`w-3.5 h-3.5 ${item.color}`} />
-                      <span>{item.label}</span>
+                      <Icon className={`w-3.5 h-3.5 shrink-0 ${item.color}`} />
+                      <span className="truncate">{item.label}</span>
                     </div>
                     <AnimatePresence mode="wait">
                       <motion.span

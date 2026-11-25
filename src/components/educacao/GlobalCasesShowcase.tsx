@@ -120,15 +120,15 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
   return (
     <section
       aria-labelledby="global-cases-title"
-      className="py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-gradient-to-b from-[#05070e] via-[#040509] to-[#030407]"
+      className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-10 relative z-10 edu-hairline-top bg-gradient-to-b from-[#060914] via-[#040509] to-[#030407]"
     >
       <div className="max-w-[1380px] mx-auto">
-        <FadeIn className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-18">
+        <FadeIn className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-8 mb-8 sm:mb-14 md:mb-18">
           <div className="max-w-2xl">
-            <span className="edu-eyebrow mb-4">Referências Mundiais no Ensino</span>
+            <span className="edu-eyebrow mb-3 sm:mb-4">Referências Mundiais no Ensino</span>
             <h2
               id="global-cases-title"
-              className="edu-title text-3xl sm:text-4xl xl:text-[3.1rem]"
+              className="edu-title text-2xl sm:text-4xl xl:text-[3.1rem]"
             >
               Como grandes universidades resolveram{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
@@ -137,17 +137,18 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
             </h2>
           </div>
           <p className="edu-lead text-sm sm:text-base max-w-md">
-            Escolha uma instituição ao lado para ver na prática o que mudou na rotina dos professores, dos alunos e da
-            equipe de TI.
+            Toque em uma universidade <span className="lg:hidden">abaixo</span>
+            <span className="hidden lg:inline">ao lado</span> para ver na prática o que mudou na rotina dos professores,
+            dos alunos e da equipe de TI.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start pt-4 border-t border-white/10">
-          {/* Left University Selector */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-start pt-4 border-t border-white/10">
+          {/* Left University Selector — Compact 2x2 grid on mobile so case stays in view, vertical rail on lg */}
           <div
             role="tablist"
             aria-label="Cases mundiais de universidades com Q-SYS"
-            className="lg:col-span-4 flex flex-col divide-y divide-white/[0.07]"
+            className="lg:col-span-4 grid grid-cols-2 gap-2 lg:flex lg:flex-col lg:gap-0 lg:divide-y lg:divide-white/[0.07]"
           >
             {UNIVERSITY_CASES.map((item) => {
               const isSelected = item.id === activeCase.id
@@ -158,26 +159,30 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(item.id)}
-                  className="group relative py-5 pl-6 pr-3 text-left cursor-pointer transition-colors"
+                  className={`group relative rounded-2xl lg:rounded-none p-3.5 lg:py-5 lg:pl-6 lg:pr-3 text-left cursor-pointer transition-all border lg:border-0 ${
+                    isSelected
+                      ? "bg-cyan-500/10 border-cyan-400/50 shadow-[0_10px_28px_-12px_rgba(34,211,238,0.4)] lg:bg-transparent lg:shadow-none"
+                      : "bg-white/[0.03] border-white/10 hover:border-white/25 lg:bg-transparent"
+                  }`}
                 >
                   {isSelected && (
                     <motion.span
                       layoutId="edu-case-active-rail"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                      className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-gradient-to-b from-cyan-300 to-blue-500 shadow-[0_0_16px_rgba(34,211,238,0.8)]"
+                      className="hidden lg:block absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-gradient-to-b from-cyan-300 to-blue-500 shadow-[0_0_16px_rgba(34,211,238,0.8)]"
                     />
                   )}
 
-                  <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center justify-between gap-1.5 mb-1">
                     <span
-                      className={`text-xs font-medium transition-colors ${
-                        isSelected ? "text-cyan-300" : "text-zinc-500 group-hover:text-zinc-400"
+                      className={`text-[10px] sm:text-xs font-medium truncate transition-colors ${
+                        isSelected ? "text-cyan-300" : "text-zinc-400 lg:text-zinc-500 group-hover:text-zinc-300"
                       }`}
                     >
                       {item.country}
                     </span>
                     <ChevronRight
-                      className={`w-4 h-4 transition-[transform,opacity] duration-300 ${
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-[transform,opacity] duration-300 ${
                         isSelected
                           ? "text-cyan-300 translate-x-0 opacity-100"
                           : "text-zinc-500 -translate-x-1 opacity-0 group-hover:opacity-60 group-hover:translate-x-0 [@media(hover:none)]:opacity-70 [@media(hover:none)]:translate-x-0"
@@ -186,20 +191,20 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                   </div>
 
                   <span
-                    className={`text-xl sm:text-2xl font-bold tracking-tight block transition-colors ${
-                      isSelected ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"
+                    className={`text-sm sm:text-2xl font-bold tracking-tight block leading-snug transition-colors ${
+                      isSelected ? "text-white" : "text-zinc-200 lg:text-zinc-400 group-hover:text-zinc-200"
                     }`}
                   >
                     {item.institution}
                   </span>
-                  <span className="text-xs text-zinc-500 block mt-1">{item.focus}</span>
+                  <span className="hidden lg:block text-xs text-zinc-500 mt-1">{item.focus}</span>
                 </button>
               )
             })}
           </div>
 
           {/* Right Open Case Study */}
-          <div className="lg:col-span-8 lg:pl-10 lg:border-l lg:border-white/10">
+          <div className="lg:col-span-8 rounded-3xl lg:rounded-none border border-white/10 lg:border-0 lg:border-l lg:border-white/10 bg-[#070a13]/85 lg:bg-transparent p-5 sm:p-7 lg:p-0 lg:pl-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCase.id}
@@ -208,21 +213,21 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
               >
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-7 border-b border-white/10">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3.5 sm:gap-4 pb-5 sm:pb-7 border-b border-white/10">
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2">
                       {activeCase.country} • {activeCase.focus}
                     </span>
-                    <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                       {activeCase.institution}
                     </h3>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {activeCase.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs text-zinc-300 bg-white/[0.04] border border-white/10 px-3 py-1 rounded-full"
+                        className="text-[11px] sm:text-xs text-zinc-200 sm:text-zinc-300 bg-white/[0.05] border border-white/10 px-2.5 sm:px-3 py-1 rounded-full"
                       >
                         {tag}
                       </span>
@@ -230,9 +235,27 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                   </div>
                 </div>
 
-                {/* Signal Flow Signature */}
-                <div className="py-6 border-b border-white/[0.07]" aria-hidden="true">
-                  <svg viewBox="0 0 680 54" className="w-full h-auto overflow-visible">
+                {/* Signal Flow Signature: Legible HTML pills on mobile, wide SVG wave on sm+ */}
+                <div className="py-4 sm:py-6 border-b border-white/[0.07]" aria-hidden="true">
+                  <div className="grid grid-cols-3 items-center gap-1.5 sm:hidden">
+                    {activeCase.nodes.map((nodeLabel, idx) => {
+                      const isCenter = idx === 1
+                      return (
+                        <div
+                          key={nodeLabel}
+                          className={`rounded-xl px-2 py-2 text-center border ${
+                            isCenter
+                              ? "bg-cyan-500/15 border-cyan-400/45 text-cyan-200 font-bold"
+                              : "bg-white/[0.03] border-white/10 text-zinc-300 font-medium"
+                          }`}
+                        >
+                          <span className="block text-[9.5px] font-mono leading-tight tracking-tight">{nodeLabel}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  <svg viewBox="0 0 680 54" className="hidden sm:block w-full h-auto overflow-visible">
                     <path
                       d="M 95 24 C 185 4, 250 44, 340 24 C 430 4, 495 44, 585 24"
                       fill="none"
@@ -267,7 +290,7 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                           y="21"
                           textAnchor="middle"
                           fill={n.active ? "#a5f3fc" : "#a1a1aa"}
-                          fontSize="9"
+                          fontSize="9.5"
                           fontFamily="monospace"
                         >
                           {n.label}
@@ -278,42 +301,42 @@ export function GlobalCasesShowcase({ onCtaClick }: GlobalCasesShowcaseProps) {
                 </div>
 
                 {/* 3 Clear Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 py-9 md:divide-x md:divide-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 py-6 sm:py-9 md:divide-x md:divide-white/10">
                   <div className="md:pr-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-2.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-1.5 sm:mb-2.5">
                       O Problema Antes
                     </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-300 font-light leading-relaxed">
+                    <p className="text-sm sm:text-[15px] text-zinc-200 sm:text-zinc-300 font-normal sm:font-light leading-relaxed">
                       {activeCase.challenge}
                     </p>
                   </div>
 
                   <div className="md:px-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-2.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block mb-1.5 sm:mb-2.5">
                       O Que Foi Feito
                     </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-200 font-light leading-relaxed">
+                    <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
                       {activeCase.architecture}
                     </p>
                   </div>
 
                   <div className="md:pl-7">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 block mb-2.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 block mb-1.5 sm:mb-2.5">
                       Resultado no Dia a Dia
                     </span>
-                    <p className="text-sm sm:text-[15px] text-zinc-200 font-light leading-relaxed">
+                    <p className="text-sm sm:text-[15px] text-zinc-100 sm:text-zinc-200 font-normal sm:font-light leading-relaxed">
                       {activeCase.outcomes}
                     </p>
                   </div>
                 </div>
 
                 {/* Bottom Metrics + CTA */}
-                <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                  <div className="flex flex-wrap items-center gap-8 sm:gap-10">
+                <div className="pt-5 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
+                  <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-start sm:items-center gap-3 sm:gap-10">
                     {activeCase.stats.map((st) => (
-                      <div key={st.label}>
-                        <span className="text-xs text-zinc-500 block mb-0.5">{st.label}</span>
-                        <span className="text-base sm:text-lg font-extrabold text-white tracking-tight block">
+                      <div key={st.label} className="min-w-0">
+                        <span className="text-[11px] sm:text-xs text-zinc-400 sm:text-zinc-500 block mb-0.5 truncate">{st.label}</span>
+                        <span className="text-xs sm:text-lg font-extrabold text-white tracking-tight block leading-snug">
                           {st.value}
                         </span>
                       </div>
