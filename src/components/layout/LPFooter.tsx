@@ -1,5 +1,6 @@
 import { AudioLines } from "lucide-react"
 import { Link } from "react-router-dom"
+import { PreferredSourceBadge } from "@/components/PreferredSourceBadge"
 
 const LINKS = [
   { to: "/", label: "Início" },
@@ -52,7 +53,7 @@ export function LPFooter() {
         </nav>
 
         {/* SEO Coverage Text */}
-        <div className="max-w-3xl text-center mb-12 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-6 py-5">
+        <div className="max-w-3xl text-center mb-8 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-6 py-5">
           <p className="text-zinc-500 text-xs leading-[1.8]">
             <strong className="text-zinc-300 font-semibold">Atendimento especializado em todo o Brasil e LATAM:</strong>{" "}
             Projetos, venda e instalação de sonorização, acústica e salas de videoconferência para empresas, universidades e instituições de ensino, auditórios e igrejas.
@@ -61,6 +62,13 @@ export function LPFooter() {
             <strong className="text-zinc-300 font-semibold">Projeto e Consultoria</strong> independente de onde estiver (Brasil e LATAM). Após a entrega técnica, a{" "}
             <strong className="text-zinc-300 font-semibold">execução e instalação</strong> podem ser contratadas conosco ou com parceiros locais indicados.
           </p>
+        </div>
+
+        <div className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+          <span className="text-xs text-zinc-400">
+            Acompanhe nossos conteúdos técnicos na Pesquisa Google:
+          </span>
+          <PreferredSourceBadge variant="compact" placement="lp_footer" />
         </div>
 
         <div className="w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-white/15 to-transparent mb-8" />

@@ -1,6 +1,7 @@
 import { trackContactCopy } from "@/lib/metaPixel";
 import { AudioLines, Mail, MapPin, Phone } from "lucide-react"
 import { Link } from "react-router-dom"
+import { PreferredSourceBadge } from "@/components/PreferredSourceBadge"
 
 export function Footer() {
   return (
@@ -107,8 +108,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-black/5 dark:border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col gap-2">
+        <div className="border-t border-black/5 dark:border-white/5 pt-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+          <div className="flex flex-col gap-2 max-w-3xl">
             <p className="text-zinc-500 text-xs">
               © {new Date().getFullYear()} Sonus Pro Audio e Video. Todos os direitos reservados. CNPJ: 02.484.642/0001-39
             </p>
@@ -116,6 +117,7 @@ export function Footer() {
               Empresa que projeta e instala salas de reunião corporativas, auditórios e igrejas. Sede em Francisco Beltrão. Projetos e consultoria acústica para todo o Brasil e América Latina. Fornecemos os equipamentos e executamos a instalação presencial onde o seu projeto precisar.
             </p>
           </div>
+          <PreferredSourceBadge variant="compact" placement="footer_main" className="shrink-0" />
         </div>
       </div>
     </footer>

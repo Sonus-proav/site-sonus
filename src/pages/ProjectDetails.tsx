@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { SEO } from "../components/SEO"
 import { Helmet } from "react-helmet-async"
+import { PreferredSourceBadge } from "@/components/PreferredSourceBadge"
 
 export function ProjectDetails() {
   const { id } = useParams()
@@ -283,6 +284,10 @@ export function ProjectDetails() {
                 {!project.description && !project.problem && !project.solution && !project.content && (
                   <p className="italic opacity-50">Nenhum detalhe disponível para este projeto.</p>
                 )}
+
+                <div className="pt-6 border-t border-black/10 dark:border-white/10">
+                  <PreferredSourceBadge variant="editorial" placement="project_case_study" />
+                </div>
               </div>
             </div>
           </FadeIn>
